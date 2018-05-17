@@ -21,7 +21,7 @@ class Manager {
             init_engine(Manager.rootFolder)
             restoreAllTorrents()
             while(true) {
-                updateTorrentsStatus()
+                mainLoop()
                 sleep(1)
             }
         }
@@ -38,7 +38,7 @@ class Manager {
         }
     }
     
-    static func updateTorrentsStatus() {
+    static func mainLoop() {
         let res = getTorrentInfo()
         Manager.torrentStates.removeAll()
         let nameArr = Array(UnsafeBufferPointer(start: res.name, count: Int(res.count)))
@@ -66,6 +66,11 @@ class Manager {
             status.totalSize = res.total_size[i]
             status.totalDone = res.total_done[i]
             status.creationDate = Date(timeIntervalSince1970: TimeInterval(res.creation_date[i]))
+            status.isPaused = res.is_paused[i] == 1
+            status.isFinished = res.is_finished[i] == 1
+            status.isSeed = res.is_seed[i] == 1
+            
+            status.displayState = getDisplayState(manager: status)
             
             Manager.torrentStates.append(status)
         }
@@ -79,7 +84,7 @@ class Manager {
     
     static func addTorrent(_ filePath: String) {
         add_torrent(filePath)
-        updateTorrentsStatus()
+        mainLoop()
         DispatchQueue.main.async {
             for i in Manager.managerAddedDelegates {
                 i.managerAdded();
@@ -89,12 +94,22 @@ class Manager {
     
     static func addMagnet(_ magnetLink: String) {
         add_magnet(magnetLink)
-        updateTorrentsStatus()
+        mainLoop()
         DispatchQueue.main.async {
             for i in Manager.managerAddedDelegates {
                 i.managerAdded();
             }
         }
+    }
+    
+    static func getDisplayState(manager: TorrentStatus) -> String {
+        if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused) {
+            return Utils.torrentStates.Seeding.rawValue
+        }
+        if (manager.state == Utils.torrentStates.Seeding.rawValue && manager.isPaused) {
+            return Utils.torrentStates.Finished.rawValue
+        }
+        return manager.state
     }
     
     static func getManagerByHash(hash: String) -> TorrentStatus? {

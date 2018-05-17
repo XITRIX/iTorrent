@@ -11,6 +11,7 @@ import Foundation
 class TorrentStatus {
     var title : String = ""
     var state : String = ""
+    var displayState : String = ""
     var hash : String = ""
     var creator : String = ""
     var comment : String = ""
@@ -26,4 +27,8 @@ class TorrentStatus {
     var totalSize : Int64 = 0
     var totalDone : Int64 = 0
     var creationDate : Date?
+    var isPaused : Bool = false
+    var isFinished : Bool = false
+    var isSeed : Bool = false
+    var seedMode : Bool = false
 }

@@ -28,6 +28,9 @@ typedef struct Result {
     long long * _Nonnull total_size;
     long long * _Nonnull total_done;
     time_t * _Nonnull creation_date;
+    int * _Nonnull is_paused;
+    int * _Nonnull is_finished;
+    int * _Nonnull is_seed;
 } Result;
 
 #endif /* result_struct_h */

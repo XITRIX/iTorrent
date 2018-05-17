@@ -71,6 +71,7 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
         dismiss(animated: true)
     }
     @IBAction func deselectAction(_ sender: UIBarButtonItem) {
+        
     }
     @IBAction func selectAction(_ sender: UIBarButtonItem) {
     }

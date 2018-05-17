@@ -809,11 +809,11 @@
                                         <rect key="frame" x="0.0" y="1064" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RsN-20-yfj" id="cyn-QD-Ek2">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Files" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2LQ-iM-Wa2">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -834,9 +834,17 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem systemItem="play" id="JHc-kY-FgK"/>
+                        <barButtonItem systemItem="play" id="JHc-kY-FgK">
+                            <connections>
+                                <action selector="startAction:" destination="0I4-Ms-eK9" id="YkK-1r-fnu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="bir-x1-yED"/>
-                        <barButtonItem systemItem="pause" id="Vas-zZ-3Tv"/>
+                        <barButtonItem systemItem="pause" id="Vas-zZ-3Tv">
+                            <connections>
+                                <action selector="pauseAction:" destination="0I4-Ms-eK9" id="BPw-vY-ngY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="GBE-cD-6xv"/>
                         <barButtonItem systemItem="refresh" id="mEE-pO-n4Z">
                             <connections>
@@ -863,7 +871,7 @@
                         <outlet property="pause" destination="Vas-zZ-3Tv" id="Hcg-tj-l3O"/>
                         <outlet property="peersLabel" destination="OjG-Q1-0VO" id="IVT-WV-Dmv"/>
                         <outlet property="progressLabel" destination="3ha-jb-8Sc" id="GM4-Z1-FPY"/>
-                        <outlet property="remove" destination="yaW-Q7-Y39" id="rnU-hO-0gt"/>
+                        <outlet property="rehash" destination="mEE-pO-n4Z" id="65P-Xt-ga3"/>
                         <outlet property="seedersLabel" destination="EBO-my-IxI" id="Eii-vd-DJE"/>
                         <outlet property="selectedLabel" destination="bpL-bK-a73" id="YON-WG-w7V"/>
                         <outlet property="start" destination="JHc-kY-FgK" id="1QK-8S-EQ4"/>

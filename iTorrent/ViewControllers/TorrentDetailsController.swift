@@ -12,8 +12,7 @@ import UIKit
 class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     @IBOutlet weak var start: UIBarButtonItem!
     @IBOutlet weak var pause: UIBarButtonItem!
-    @IBOutlet weak var remove: UIBarButtonItem!
-    
+    @IBOutlet weak var rehash: UIBarButtonItem!
     
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var downloadLabel: UILabel!
@@ -58,7 +57,7 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
             let calendar = Calendar.current
             
             title = manager.title
-            stateLabel.text = manager.state
+            stateLabel.text = manager.displayState
             downloadLabel.text = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
             uploadLabel.text = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
             timeRemainsLabel.text = manager.state == Utils.torrentStates.Downloading.rawValue ? Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone) : "---"
@@ -74,6 +73,28 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
             uploadedLabel.text = Utils.getSizeText(size: manager.totalUpload)
             seedersLabel.text = String(manager.numSeeds)
             peersLabel.text = String(manager.numPeers)
+            
+            print(manager.isPaused)
+            print(manager.isFinished)
+            print(manager.isSeed)
+            //print(manager.seedMode)
+            print("------------")
+            
+            if (manager.state == Utils.torrentStates.Hashing.rawValue) {
+                start.isEnabled = false
+                pause.isEnabled = false
+                rehash.isEnabled = false
+            } else {
+                if (manager.isPaused) {
+                    start.isEnabled = true
+                    pause.isEnabled = false
+                    rehash.isEnabled = true
+                } else {
+                    start.isEnabled = false
+                    pause.isEnabled = true
+                    rehash.isEnabled = true
+                }
+            }
         }
     }
     
@@ -89,6 +110,18 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
         if (segue.identifier == "Files") {
             (segue.destination as! TorrentFilesController).managerHash = managerHash
         }
+    }
+    
+    @IBAction func startAction(_ sender: UIBarButtonItem) {
+        start_torrent(managerHash)
+        start.isEnabled = false
+        pause.isEnabled = true
+    }
+    
+    @IBAction func pauseAction(_ sender: UIBarButtonItem) {
+        stop_torrent(managerHash)
+        start.isEnabled = true
+        pause.isEnabled = false
     }
     
     @IBAction func rehashAction(_ sender: UIBarButtonItem) {
