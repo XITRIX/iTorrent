@@ -37,8 +37,9 @@ class FileCell: UITableViewCell {
     @IBAction func switcherAction(_ sender: UISwitch) {
         action(sender)
     }
+	
     @IBAction func shareAction(_ sender: UIButton) {
-		let controller = UIAlertController(title: file.fileName, message: nil, preferredStyle: .actionSheet)
+		let controller = UIAlertController(title: nil, message: file.fileName, preferredStyle: .actionSheet)
 		let share = UIAlertAction(title: "Share", style: .default) { _ in
 			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.filePath, isDirectory: false)
 			let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
@@ -49,8 +50,27 @@ class FileCell: UITableViewCell {
 			}
 			UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
 		}
+//		let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
+//			let deleteController = UIAlertController(title: "Are you sure to delete?", message: self.file.fileName, preferredStyle: .actionSheet)
+//			let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+//
+//			}
+//			let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+//
+//			deleteController.addAction(deleteAction)
+//			deleteController.addAction(cancel)
+//
+//			if (deleteController.popoverPresentationController != nil) {
+//				deleteController.popoverPresentationController?.sourceView = sender
+//				deleteController.popoverPresentationController?.sourceRect = sender.bounds
+//				deleteController.popoverPresentationController?.permittedArrowDirections = .any
+//			}
+//
+//			UIApplication.shared.keyWindow?.rootViewController?.present(deleteController, animated: true)
+//		}
 		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
 		controller.addAction(share)
+		//controller.addAction(delete)
 		controller.addAction(cancel)
 		UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
     }

@@ -59,7 +59,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func managerUpdated() {
-		print("test")
+		//print("background test")
 		var changed = false
 		var oldManagers = managers
 		managers.removeAll()
@@ -179,17 +179,20 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	func removeTorrent(indexPath: IndexPath, isMagnet: Bool = false, removeData: Bool = false, visualOnly: Bool = false) {
 		if (!visualOnly) {
-			remove_torrent(self.managers[indexPath.section][indexPath.row].hash)
+			let manager = self.managers[indexPath.section][indexPath.row]
+			remove_torrent(manager.hash, removeData ? 1 : 0)
 			
 			if (!(splitViewController?.isCollapsed)!) {
 				splitViewController?.showDetailViewController(Utils.createEmptyViewController(), sender: self)
 			}
 			
 			if (!isMagnet) {
-				//TODO remove .torrent
+				Manager.removeTorrentFile(hash: manager.hash)
 				
 				if (removeData) {
-					
+					if (FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title)) {
+						try! FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
+					}
 				}
 			}
 		}

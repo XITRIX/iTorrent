@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FFE438075BB0CBD8801551AABC1D473D"
+               BlueprintIdentifier = "E26A4A30178C349AF718CC81BE51A20A"
                BuildableName = "Pods_iTorrent.framework"
                BlueprintName = "Pods-iTorrent"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FFE438075BB0CBD8801551AABC1D473D"
+            BlueprintIdentifier = "E26A4A30178C349AF718CC81BE51A20A"
             BuildableName = "Pods_iTorrent.framework"
             BlueprintName = "Pods-iTorrent"
             ReferencedContainer = "container:Pods.xcodeproj">

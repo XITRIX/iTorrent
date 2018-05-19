@@ -253,7 +253,6 @@ public:
         ifs.unsetf(std::ios_base::skipws);
         p.resume_data.assign(std::istream_iterator<char>(ifs), std::istream_iterator<char>());
         torrent_handle h = s->add_torrent(p, ec);
-       
         handlers.push_back(h);
 		
 		char* res = new char[h.status().hash_to_string().length() + 1];
@@ -327,9 +326,20 @@ extern "C" char* add_magnet(char* magnet_link) {
     return Engine::standart->addMagnet(magnet_link);
 }
 
-extern "C" void remove_torrent(char* torrent_hash) {
+extern "C" void remove_torrent(char* torrent_hash, int remove_files) {
 	torrent_handle* handle = Engine::standart->getHandleByHash(torrent_hash);
-	Engine::standart->s->remove_torrent(*handle);
+	
+//	if (remove_files == 1) {
+//		for (int i = 0; i < handle->torrent_file()->num_files(); i++) {
+//			std::string path = handle->torrent_file()->files().file_path(i);
+//			remove(path.c_str());
+//		}
+//	}
+	if (remove_files == 1) {
+		Engine::standart->s->remove_torrent(*handle, session::delete_files);
+	} else {
+		Engine::standart->s->remove_torrent(*handle);
+	}
 	Engine::standart->handlers = Engine::standart->s->get_torrents();
 }
 
@@ -375,8 +385,8 @@ extern "C" void set_torrent_files_priority(char* torrent_hash, int states[]) {
     for (int i = 0; i < info->num_files(); i++) {
         handle->file_priority(i, states[i]);
     }
-    printf("SETTED! %d\n", states[0]);
-    printf("%d\n", Engine::standart->getHandleByHash(torrent_hash)->file_priority(0));
+//    printf("SETTED! %d\n", states[0]);
+//    printf("%d\n", Engine::standart->getHandleByHash(torrent_hash)->file_priority(0));
 }
 
 extern "C" void start_torrent(char* torrent_hash) {
@@ -465,9 +475,8 @@ extern "C" void save_fast_resume() {
 			continue;
 		}
 		if (!s.need_save_resume) {
-			s.need_save_resume = true;
 			printf("Not need to save ");
-			//continue;
+			continue;
 		}
 
         h.save_resume_data();
@@ -483,30 +492,35 @@ extern "C" void save_fast_resume() {
         // if we don't get an alert within 10 seconds, abort
         if (a == 0) break;
 
-        std::auto_ptr<alert> holder = ses->pop_alert();
-
-        if (alert_cast<save_resume_data_failed_alert>(a))
-        {
-            //process_alert(a);
-            --outstanding_resume_data;
-            continue;
-        }
-
-        save_resume_data_alert const* rd = alert_cast<save_resume_data_alert>(a);
-        if (rd == 0)
-        {
-            //process_alert(a);
-            continue;
-        }
-
-        torrent_handle h = rd->handle;
-        torrent_info info = h.get_torrent_info();
-        std::ofstream out((h.save_path() + "/_Config/.FastResumes/" + info.hash_to_string() + ".fastresume").c_str(), std::ios_base::binary);
-        out.unsetf(std::ios_base::skipws);
-        bencode(std::ostream_iterator<char>(out), *rd->resume_data);
-        printf("FILE SAVED!!\n");
+		std::vector<alert*> alerts;
+		ses->pop_alerts(&alerts);
 		
-        --outstanding_resume_data;
+		for (alert* i : alerts) {
+			if (alert_cast<save_resume_data_failed_alert>(a))
+			{
+				//process_alert(a);
+				--outstanding_resume_data;
+				continue;
+			}
+			
+			save_resume_data_alert const* rd = alert_cast<save_resume_data_alert>(a);
+			if (rd == 0)
+			{
+				//process_alert(a);
+				continue;
+			}
+			
+			torrent_handle h = rd->handle;
+			torrent_info info = h.get_torrent_info();
+			std::ofstream out((h.save_path() + "/_Config/.FastResumes/" + info.hash_to_string() + ".fastresume").c_str(), std::ios_base::binary);
+			out.unsetf(std::ios_base::skipws);
+			bencode(std::ostream_iterator<char>(out), *rd->resume_data);
+			printf("FILE SAVED!!\n");
+			
+			--outstanding_resume_data;
+		}
+
+		
     }
     printf("SAVED!!\n");
 }
@@ -592,8 +606,12 @@ extern "C" Result getTorrentInfo() {
         res.num_seeds[i] = stat.num_seeds;
         
         res.num_peers[i] = stat.num_peers;
-        
-        res.creation_date[i] = info != NULL ? info->creation_date().value() : 0;
+		
+		try {
+        	res.creation_date[i] = info != NULL ? info->creation_date().value() : 0;
+		} catch (...) {
+			res.creation_date[i] = 0;
+		}
         
         torrent_handle handle = Engine::standart->handlers[i];
         res.is_paused[i] = handle.is_paused();

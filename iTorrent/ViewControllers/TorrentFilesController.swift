@@ -112,7 +112,6 @@ class TorrentFilesController : UIViewController, UITableViewDataSource, UITableV
 		cell.switcher.setOn(fileSelectes[sortMask[indexPath.row]] != 0, animated: false)
         cell.action = { switcher in
             self.fileSelectes[self.sortMask[indexPath.row]] = switcher.isOn ? 4 : 0
-            print("set " + String(self.fileSelectes[self.sortMask[indexPath.row]]))
         }
         return cell
     }

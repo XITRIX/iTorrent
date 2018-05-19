@@ -1,3 +1,56 @@
-PODFILE CHECKSUM: fd241a435521f3ef2f0918db478e93986af6af57
+PODS:
+  - MaterialComponents/AnimationTiming (54.12.0)
+  - MaterialComponents/Buttons (54.12.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Shapes
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Ink (54.12.0):
+    - MaterialComponents/private/Math
+  - MaterialComponents/OverlayWindow (54.12.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Application (54.12.0)
+  - MaterialComponents/private/KeyboardWatcher (54.12.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Math (54.12.0)
+  - MaterialComponents/private/Overlay (54.12.0)
+  - MaterialComponents/private/Shapes (54.12.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/ShadowElevations (54.12.0)
+  - MaterialComponents/ShadowLayer (54.12.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Snackbar (54.12.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/OverlayWindow
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Overlay
+    - MaterialComponents/Typography
+  - MaterialComponents/Typography (54.12.0):
+    - MaterialComponents/private/Application
+  - MDFInternationalization (1.0.4)
+  - MDFTextAccessibility (1.2.0)
+
+DEPENDENCIES:
+  - MaterialComponents/Snackbar
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
+
+SPEC CHECKSUMS:
+  MaterialComponents: 9cc85f4fea3adb8b2323094a8baf7a444ad382a1
+  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
+  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
+
+PODFILE CHECKSUM: 7cbce9e640f983b7df8bae3575271091c18e1371
 
 COCOAPODS: 1.5.0

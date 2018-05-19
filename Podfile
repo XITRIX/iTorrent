@@ -6,6 +6,7 @@ target 'iTorrent' do
   use_frameworks!
 
   # Pods for iTorrent
+  pod 'MaterialComponents/Snackbar'
 
 end
 

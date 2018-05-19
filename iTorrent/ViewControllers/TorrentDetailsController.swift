@@ -195,13 +195,15 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
 	
 	
 	func removeTorrent(manager: TorrentStatus, isMagnet: Bool = false, removeData: Bool = false) {
-		remove_torrent(manager.hash)
+		remove_torrent(manager.hash, removeData ? 1 : 0)
 		
 		if (!isMagnet) {
-			//TODO remove .torrent
+			Manager.removeTorrentFile(hash: manager.hash)
 			
 			if (removeData) {
-				
+				if (FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title)) {
+					try! FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
+				}
 			}
 		}
 		
