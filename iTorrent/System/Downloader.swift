@@ -16,7 +16,15 @@ class Downloader {
                 errorAction()
             } else {
                 // Do something with your file in location
-                try! FileManager.default.moveItem(at: location!, to: localUrl)
+				do {
+					if (FileManager.default.fileExists(atPath: localUrl.path)) {
+						try FileManager.default.removeItem(at: localUrl)
+						//TODO: Unregister this torrent from app
+					}
+                	try FileManager.default.moveItem(at: location!, to: localUrl)
+				} catch {
+					errorAction()
+				}
                 completion()
             }
         }

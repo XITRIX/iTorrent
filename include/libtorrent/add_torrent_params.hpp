@@ -397,6 +397,11 @@ namespace libtorrent
 		// is the only known property of the torrent. i.e. you don't have a
 		// .torrent file nor a magnet link.
 		sha1_hash info_hash;
+		std::string hash_to_string() {
+			std::stringstream ss;
+			ss << info_hash;
+			return ss.str();
+		}
 
 		// ``max_uploads``, ``max_connections``, ``upload_limit``,
 		// ``download_limit`` correspond to the ``set_max_uploads()``,

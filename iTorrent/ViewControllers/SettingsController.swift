@@ -11,8 +11,14 @@ import UIKit
 
 class SettingsController: UITableViewController {
     
-    override func viewDidLoad() {
+	@IBOutlet weak var backgroundSwitch: UISwitch!
+	@IBOutlet weak var backgroundSeedSwitch: UISwitch!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		backgroundSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey), animated: false)
+		backgroundSeedSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey), animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,5 +26,16 @@ class SettingsController: UITableViewController {
         
         navigationController?.isToolbarHidden = true
     }
-    
+	
+	@IBAction func backgroundAction(_ sender: UISwitch) {
+		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundKey)
+	}
+	
+	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
+		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+	}
+	
+	@IBAction func githubAction(_ sender: UIButton) {
+		UIApplication.shared.openURL(URL(string: "https://github.com/XITRIX/iTorrent")!)
+	}
 }

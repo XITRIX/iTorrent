@@ -12,11 +12,13 @@
 #include <sys/stat.h>
 #include <fstream>
 #include <list>
+#include <map>
 #include <thread>
 #include <boost/make_shared.hpp>
 #include "libtorrent/entry.hpp"
 #include "libtorrent/bencode.hpp"
 #include "libtorrent/session.hpp"
+#include "libtorrent/create_torrent.hpp"
 #include "libtorrent/torrent_info.hpp"
 #include "libtorrent/announce_entry.hpp"
 #include "libtorrent/magnet_uri.hpp"
@@ -24,6 +26,8 @@
 #include "libtorrent/alert_types.hpp"
 #include "result_struct.h"
 #include "file_struct.h"
+
+#include "helper_code.h"
 
 extern "C" int load_file(std::string const& filename, std::vector<char>& v
               , libtorrent::error_code& ec, int limit = 8000000)
@@ -164,13 +168,13 @@ libtorrent::torrent_info* get_torrent(std::string file_path) {
     using namespace libtorrent;
     namespace lt = libtorrent;
     
-    printf("%s\n", file_path.c_str());
+    //printf("%s\n", file_path.c_str());
     
     int item_limit = 1000000;
     int depth_limit = 1000;
     
     std::vector<char> buf;
-    error_code ec;
+	lt::error_code ec;
     int ret = load_file(file_path, buf, ec, 40 * 1000000);
     if (ret == -1)
     {
@@ -185,8 +189,7 @@ libtorrent::torrent_info* get_torrent(std::string file_path) {
     }
     bdecode_node e;
     int pos = -1;
-    printf("decoding. recursion limit: %d total item count limit: %d\n"
-           , depth_limit, item_limit);
+    //printf("decoding. recursion limit: %d total item count limit: %d\n", depth_limit, item_limit);
     ret = bdecode(&buf[0], &buf[0] + buf.size(), e, ec, &pos
                   , depth_limit, item_limit);
     
@@ -240,18 +243,22 @@ public:
         s->save_state(save);
     }
     
-    void addTorrent(torrent_info *torrent) {
+    char* addTorrent(torrent_info *torrent) {
         lt::error_code ec;
         add_torrent_params p;
         p.save_path = root_path;
         p.ti = boost::shared_ptr<torrent_info>(torrent);
-        std::string path = Engine::standart->root_path + "/_Config/" + torrent->hash_to_string() + ".fastresume";
+        std::string path = Engine::standart->root_path + "/_Config/.FastResumes/" + torrent->hash_to_string() + ".fastresume";
         std::ifstream ifs(path, std::ios_base::binary);
         ifs.unsetf(std::ios_base::skipws);
         p.resume_data.assign(std::istream_iterator<char>(ifs), std::istream_iterator<char>());
         torrent_handle h = s->add_torrent(p, ec);
        
         handlers.push_back(h);
+		
+		char* res = new char[h.status().hash_to_string().length() + 1];
+		strcpy(res, h.status().hash_to_string().c_str());
+		return res;
     }
     
     void addTorrentWithStates(torrent_info *torrent, int states[]) {
@@ -260,23 +267,32 @@ public:
         p.save_path = root_path;
         p.ti = boost::shared_ptr<torrent_info>(torrent);
         torrent_handle handle = s->add_torrent(p, ec);
+		handle.stop_when_ready(false);
         handlers.push_back(handle);
         for (int i = 0; i < torrent->num_files(); i++) {
             handle.file_priority(i, states[i] ? 4 : 0);
         }
     }
     
-    void addMagnet(char* magnetLink) {
+    char* addMagnet(char* magnetLink) {
         lt::error_code ec;
         add_torrent_params p;
         p.save_path = root_path;
         p.url = std::string(magnetLink);
-        handlers.push_back(s->add_torrent(p, ec));
+		torrent_handle handle = s->add_torrent(p, ec);
+		handle.stop_when_ready(false);
+		//handlers.push_back(handle);
+		handlers = s->get_torrents();
+		
+		char* res = new char[handle.status().hash_to_string().length() + 1];
+		strcpy(res, handle.status().hash_to_string().c_str());
+		return res;
     }
     
     torrent_handle* getHandleByHash(char* torrent_hash) {
         for (int i = 0; i < handlers.size(); i++) {
-            if (strcmp(handlers[i].status().hash_to_string().c_str(), torrent_hash) == 0) {
+			std::string s = handlers[i].status().hash_to_string();
+            if (strcmp(s.c_str(), torrent_hash) == 0) {
                 return &(handlers[i]);
             }
         }
@@ -299,16 +315,39 @@ extern "C" int init_engine(char* save_path) {
     return 0;
 }
 
-extern "C" void add_torrent(char* torrent_path) {
-    Engine::standart->addTorrent(get_torrent(torrent_path));
+extern "C" char* add_torrent(char* torrent_path) {
+	return Engine::standart->addTorrent(get_torrent(torrent_path));
 }
 
 extern "C" void add_torrent_with_states(char* torrent_path, int states[]) {
     Engine::standart->addTorrentWithStates(get_torrent(torrent_path), states);
 }
 
-extern "C" void add_magnet(char* magnet_link) {
-    Engine::standart->addMagnet(magnet_link);
+extern "C" char* add_magnet(char* magnet_link) {
+    return Engine::standart->addMagnet(magnet_link);
+}
+
+extern "C" void remove_torrent(char* torrent_hash) {
+	torrent_handle* handle = Engine::standart->getHandleByHash(torrent_hash);
+	Engine::standart->s->remove_torrent(*handle);
+	Engine::standart->handlers = Engine::standart->s->get_torrents();
+}
+
+extern "C" char* get_torrent_file_hash(char* torrent_path) {
+	std::string s = get_torrent(torrent_path)->hash_to_string();
+	char* res = new char[s.length() + 1];
+	strcpy(res, s.c_str());
+	return res;
+}
+
+extern "C" char* get_magnet_hash(char* magnet_link) {
+	add_torrent_params params;
+	lt::error_code ec;
+	parse_magnet_uri(magnet_link, params, ec);
+	std::string s = params.hash_to_string();
+	char* res = new char[s.length() + 1];
+	strcpy(res, s.c_str());
+	return res;
 }
 
 extern "C" Files get_files_of_torrent(torrent_info* info) {
@@ -342,16 +381,21 @@ extern "C" void set_torrent_files_priority(char* torrent_hash, int states[]) {
 
 extern "C" void start_torrent(char* torrent_hash) {
     torrent_handle* handle = Engine::standart->getHandleByHash(torrent_hash);
-    cout << handle->is_paused() << endl;
-    handle->stop_when_ready(false);
-    handle->resume();
+	printf("Started");
+	handle->stop_when_ready(false);
+	handle->resume();
 }
 
 extern "C" void stop_torrent(char* torrent_hash) {
     torrent_handle* handle = Engine::standart->getHandleByHash(torrent_hash);
-    cout << handle->is_finished() << endl;
-    handle->pause();
-    handle->stop_when_ready(true);
+	printf("Stopped");
+	handle->stop_when_ready(true);
+	handle->pause();
+}
+
+extern "C" void rehash_torrent(char* torrent_hash) {
+	torrent_handle* handle = Engine::standart->getHandleByHash(torrent_hash);
+	handle->force_recheck();
 }
 
 extern "C" Files get_files_of_torrent_by_path(char* torrent_path) {
@@ -369,32 +413,67 @@ extern "C" Files get_files_of_torrent_by_hash(char* torrent_hash) {
     }
     torrent_info* info = (torrent_info*)&handle->get_torrent_info();
     Files files = get_files_of_torrent(info);
+	files.file_downloaded = new long long[files.size];
+	files.file_path = new char*[files.size];
+	vector<int64_t> progress;
+	file_storage storage = handle->get_torrent_info().files();
+	handle->file_progress(progress);
     for (int i = 0; i < files.size; i++) {
         files.file_priority[i] = handle->file_priority(i);
+		files.file_downloaded[i] = progress[i];
+		
+		//cout << storage.file_path(i) << endl;
+		std::string s = storage.file_path(i);
+		files.file_path[i] = new char[s.length() + 1];
+		strcpy(files.file_path[i], s.c_str());
     }
     return files;
 }
 
+extern "C" void save_magnet_to_file(char* hash) {
+	torrent_handle* handle = Engine::standart->getHandleByHash(hash);
+	torrent_info torinfo = handle->get_torrent_info();
+	
+	std::ofstream out((Engine::standart->root_path + "/_Config/" + handle->name().c_str() + ".torrent").c_str(), std::ios_base::binary);
+	out.unsetf(std::ios_base::skipws);
+	bencode(std::ostream_iterator<char>(out), create_torrent(torinfo).generate());
+}
+
+extern "C" void resume_to_app() {
+	session* ses = Engine::standart->s;
+	ses->resume();
+}
+
 extern "C" void save_fast_resume() {
     session* ses = Engine::standart->s;
-    std::vector<torrent_handle> handles = ses->get_torrents();
+	ses->pause();
 
     int outstanding_resume_data = 0; // global counter of outstanding resume data
 
-    ses->pause();
+	std::vector<torrent_handle> handles = ses->get_torrents();
     for (std::vector<torrent_handle>::iterator i = handles.begin();
          i != handles.end(); ++i)
     {
         torrent_handle& h = *i;
-        if (!h.is_valid()) continue;
+		if (!h.is_valid()) {
+			printf("Not valid\n");
+			continue;
+		}
         torrent_status s = h.status();
-        if (!s.has_metadata) continue;
-        if (!s.need_save_resume) continue;
+		if (!s.has_metadata) {
+			printf("No metadata\n");
+			continue;
+		}
+		if (!s.need_save_resume) {
+			s.need_save_resume = true;
+			printf("Not need to save ");
+			//continue;
+		}
 
         h.save_resume_data();
         ++outstanding_resume_data;
         
-        printf("FILE ADDED!!");
+        printf("FILE ADDED!!\n");
     }
 
     while (outstanding_resume_data > 0)
@@ -422,16 +501,14 @@ extern "C" void save_fast_resume() {
 
         torrent_handle h = rd->handle;
         torrent_info info = h.get_torrent_info();
-        std::ofstream out((h.save_path() + "/_Config/" + info.hash_to_string() + ".fastresume").c_str()
-                          , std::ios_base::binary);
+        std::ofstream out((h.save_path() + "/_Config/.FastResumes/" + info.hash_to_string() + ".fastresume").c_str(), std::ios_base::binary);
         out.unsetf(std::ios_base::skipws);
         bencode(std::ostream_iterator<char>(out), *rd->resume_data);
-        printf("FILE SAVED!!");
+        printf("FILE SAVED!!\n");
+		
         --outstanding_resume_data;
     }
-    
-    
-    printf("SAVED!!");
+    printf("SAVED!!\n");
 }
 
 extern "C" Result getTorrentInfo() {
@@ -459,7 +536,8 @@ extern "C" Result getTorrentInfo() {
         .creation_date = new time_t[size],
         .is_paused = new int[size],
         .is_finished = new int[size],
-        .is_seed = new int[size]
+        .is_seed = new int[size],
+		.has_metadata = new int[size]
     };
     
     for(int i = 0; i < Engine::standart->handlers.size(); i++) {
@@ -521,11 +599,8 @@ extern "C" Result getTorrentInfo() {
         res.is_paused[i] = handle.is_paused();
         res.is_finished[i] = handle.is_finished();
         res.is_seed[i] = handle.is_seed();
+		res.has_metadata[i] = handle.has_metadata();
     }
     
     return res;
-}
-
-bool exists (const std::string& name) {
-    return ( access( name.c_str(), F_OK ) != -1 );
 }

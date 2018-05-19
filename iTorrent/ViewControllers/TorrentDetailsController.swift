@@ -13,7 +13,8 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     @IBOutlet weak var start: UIBarButtonItem!
     @IBOutlet weak var pause: UIBarButtonItem!
     @IBOutlet weak var rehash: UIBarButtonItem!
-    
+	@IBOutlet weak var switcher: UISwitch!
+	
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var downloadLabel: UILabel!
     @IBOutlet weak var uploadLabel: UILabel!
@@ -35,11 +36,28 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        managerUpdated()
+		if (managerHash == nil) {
+			return
+		}
+		
+		let calendar = Calendar.current
+		var saves = Manager.managerSaves[managerHash]
+		if (saves == nil) {
+			Manager.managerSaves[managerHash] = UserManagerSettings()
+			saves = Manager.managerSaves[managerHash]
+		}
+		switcher.setOn((saves?.seedMode)! , animated: false)
+		let date = saves?.addedDate ?? Date()
+		addedOnLabel.text = String(calendar.component(.day, from: date)) + "/" + String(calendar.component(.month, from: date)) + "/" + String(calendar.component(.year, from: date))
+		
+		managerUpdated()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+		if (managerHash == nil) {
+			return
+		}
         
         managerUpdated()
         Manager.managersUpdatedDelegates.append(self)
@@ -60,11 +78,10 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
             stateLabel.text = manager.displayState
             downloadLabel.text = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
             uploadLabel.text = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
-            timeRemainsLabel.text = manager.state == Utils.torrentStates.Downloading.rawValue ? Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone) : "---"
+            timeRemainsLabel.text = manager.displayState == Utils.torrentStates.Downloading.rawValue ? Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone) : "---"
             hashLabel.text = manager.hash.uppercased()
             creatorLabel.text = manager.creator
             createdOnLabel.text = String(calendar.component(.day, from: manager.creationDate!)) + "/" + String(calendar.component(.month, from: manager.creationDate!)) + "/" + String(calendar.component(.year, from: manager.creationDate!))
-            //addedOnLabel.text =
             commentsLabel.text = manager.comment
             selectedLabel.text = Utils.getSizeText(size: manager.totalWanted) + " / " + Utils.getSizeText(size: manager.totalSize)
             completedLabel.text = Utils.getSizeText(size: manager.totalWantedDone)
@@ -74,18 +91,23 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
             seedersLabel.text = String(manager.numSeeds)
             peersLabel.text = String(manager.numPeers)
             
-            print(manager.isPaused)
-            print(manager.isFinished)
-            print(manager.isSeed)
-            //print(manager.seedMode)
-            print("------------")
-            
-            if (manager.state == Utils.torrentStates.Hashing.rawValue) {
+//            print(manager.isPaused)
+//            print(manager.isFinished)
+//            print(manager.isSeed)
+//            print(manager.seedMode)
+//            print("------------")
+			
+            if (manager.state == Utils.torrentStates.Hashing.rawValue ||
+				manager.state == Utils.torrentStates.Metadata.rawValue) {
                 start.isEnabled = false
                 pause.isEnabled = false
                 rehash.isEnabled = false
             } else {
-                if (manager.isPaused) {
+				if (manager.isFinished && !switcher.isOn) {
+					start.isEnabled = false
+					pause.isEnabled = false
+					rehash.isEnabled = true
+				} else if (manager.isPaused) {
                     start.isEnabled = true
                     pause.isEnabled = false
                     rehash.isEnabled = true
@@ -111,7 +133,12 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
             (segue.destination as! TorrentFilesController).managerHash = managerHash
         }
     }
-    
+	
+	@IBAction func seedingStateChanged(_ sender: UISwitch) {
+		Manager.managerSaves[managerHash]?.seedMode = sender.isOn
+		managerUpdated()
+	}
+	
     @IBAction func startAction(_ sender: UIBarButtonItem) {
         start_torrent(managerHash)
         start.isEnabled = false
@@ -125,5 +152,82 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     }
     
     @IBAction func rehashAction(_ sender: UIBarButtonItem) {
+		let controller = UIAlertController(title: "Torrent rehash", message: "This action will recheck the state of all downloaded files", preferredStyle: .alert)
+		let hash = UIAlertAction(title: "Rehash", style: .destructive) { _ in
+			rehash_torrent(self.managerHash)
+		}
+		let cancel  = UIAlertAction(title: "Cancel", style: .cancel)
+		controller.addAction(hash)
+		controller.addAction(cancel)
+		present(controller, animated: true)
     }
+	
+	@IBAction func removeTorrent(_ sender: UIBarButtonItem) {
+		let manager = Manager.getManagerByHash(hash: managerHash)!
+		let message = manager.hasMetadata ? "Are you sure to remove " + manager.title + " torrent?" : "Are you sure to remove this magnet torrent?"
+		let removeController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+		let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
+			self.removeTorrent(manager: manager, removeData: true)
+		}
+		let removeTorrent = UIAlertAction(title: "Yes but keep data", style: .default) { _ in
+			self.removeTorrent(manager: manager)
+		}
+		let removeMagnet = UIAlertAction(title: "Remove", style: .destructive) { _ in
+			self.removeTorrent(manager: manager, isMagnet: true)
+		}
+		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+		if (!manager.hasMetadata) {
+			removeController.addAction(removeMagnet)
+		} else {
+			removeController.addAction(removeAll)
+			removeController.addAction(removeTorrent)
+		}
+		removeController.addAction(cancel)
+		
+		if (removeController.popoverPresentationController != nil) {
+			removeController.popoverPresentationController?.barButtonItem = sender
+			removeController.popoverPresentationController?.permittedArrowDirections = .down
+		}
+		
+		present(removeController, animated: true)
+	}
+	
+	
+	
+	func removeTorrent(manager: TorrentStatus, isMagnet: Bool = false, removeData: Bool = false) {
+		remove_torrent(manager.hash)
+		
+		if (!isMagnet) {
+			//TODO remove .torrent
+			
+			if (removeData) {
+				
+			}
+		}
+		
+		if (!(splitViewController?.isCollapsed)!) {
+			let splitView = UIApplication.shared.keyWindow?.rootViewController as! UISplitViewController
+			splitView.showDetailViewController(Utils.createEmptyViewController(), sender: self)
+			
+			print(splitView.viewControllers.count)
+			if let nav = splitView.viewControllers.first as? UINavigationController,
+				let view = nav.topViewController as? MainController {
+				print("Conditions ")
+				var indexPath: IndexPath?
+				for i in 0 ..< view.managers.count {
+					for j in 0 ..< view.managers[i].count {
+						if (view.managers[i][j].hash == manager.hash) {
+							indexPath = IndexPath(row: j, section: i)
+						}
+					}
+				}
+				if (indexPath != nil) {
+					view.removeTorrent(indexPath: indexPath!, visualOnly: true)
+				}
+			}
+		} else {
+			navigationController?.popViewController(animated: true)
+		}
+	}
+	
 }

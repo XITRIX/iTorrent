@@ -7,14 +7,19 @@
 //
 
 import Foundation
+import UIKit
+import UserNotifications
 
 class Manager {
-    
+	
+	public static var previousTorrentStates : [TorrentStatus] = []
     public static var torrentStates : [TorrentStatus] = []
     public static let rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!;
     public static let configFolder = Manager.rootFolder + "/_Config"
+	public static let fastResumesFolder = Manager.configFolder+"/.FastResumes"
     public static var managersUpdatedDelegates : [ManagersUpdatedDelegate] = []
-    public static var managerAddedDelegates : [ManagerAddedDelegade] = []
+    public static var managersStateChangedDelegade : [ManagerStateChangedDelegade] = []
+	public static var managerSaves : [String : UserManagerSettings] = [:]
     
     public static func InitManager() {
         DispatchQueue.global(qos: .background).async {
@@ -26,12 +31,29 @@ class Manager {
             }
         }
     }
+	
+	public static func saveTorrents() {
+		let encodedData = NSKeyedArchiver.archivedData(withRootObject: managerSaves)
+		do {
+			try encodedData.write(to: URL(fileURLWithPath: fastResumesFolder + "/userData.dat"))
+		} catch {
+			print("Couldn't write file")
+		}
+		save_fast_resume()
+	}
     
     static func restoreAllTorrents() {
         Utils.checkFolderExist(path: configFolder)
+		Utils.checkFolderExist(path: fastResumesFolder)
         if (FileManager.default.fileExists(atPath: configFolder+"/_temp.torrent")) {
             try! FileManager.default.removeItem(atPath: configFolder+"/_temp.torrent")
         }
+		
+		if let loadedStrings = NSKeyedUnarchiver.unarchiveObject(withFile: fastResumesFolder + "/userData.dat") as? [String : UserManagerSettings] {
+			print("resumed")
+			managerSaves = loadedStrings
+		}
+		
         let files = try! FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
         for file in files {
             addTorrent(configFolder + "/" + file)
@@ -40,7 +62,8 @@ class Manager {
     
     static func mainLoop() {
         let res = getTorrentInfo()
-        Manager.torrentStates.removeAll()
+		previousTorrentStates = torrentStates
+        torrentStates.removeAll()
         let nameArr = Array(UnsafeBufferPointer(start: res.name, count: Int(res.count)))
         let stateArr = Array(UnsafeBufferPointer(start: res.state, count: Int(res.count)))
         var hashArr = Array(UnsafeBufferPointer(start: res.hash, count: Int(res.count)))
@@ -69,48 +92,152 @@ class Manager {
             status.isPaused = res.is_paused[i] == 1
             status.isFinished = res.is_finished[i] == 1
             status.isSeed = res.is_seed[i] == 1
-            
+			status.hasMetadata = res.has_metadata[i] == 1
+			
+			if (managerSaves[status.hash] == nil) {
+				managerSaves[status.hash] = UserManagerSettings()
+			}
+			status.addedDate = managerSaves[status.hash]?.addedDate
+			status.seedMode = (managerSaves[status.hash]?.seedMode)!
+			
             status.displayState = getDisplayState(manager: status)
+			//print(status.displayState)
             
             Manager.torrentStates.append(status)
+			stateCorrector(manager: status)
         }
+		//print(Manager.torrentStates.count)
         
         DispatchQueue.main.async {
             for i in Manager.managersUpdatedDelegates {
                 i.managerUpdated();
             }
         }
+		
+		stateChanges()
     }
+	
+	static func addTorrentFromFile(_ filePath: URL) {
+		let dest = Manager.configFolder+"/_temp.torrent"
+		let hash = String(validatingUTF8: get_torrent_file_hash(filePath.path))!
+		if (torrentStates.contains(where: {$0.hash == hash})){
+			let controller = UIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
+			let close = UIAlertAction(title: "Close", style: .cancel)
+			controller.addAction(close)
+			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+			return
+		}
+		do {
+			try FileManager.default.copyItem(atPath: filePath.path, toPath: dest)
+			
+			let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
+			((controller as! UINavigationController).topViewController as! AddTorrentController).path = dest
+			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+		} catch {
+			print("File access error")
+		}
+	}
     
     static func addTorrent(_ filePath: String) {
-        add_torrent(filePath)
+		if let hash = String(validatingUTF8: add_torrent(filePath)),
+			managerSaves[hash] == nil {
+			print(hash)
+			managerSaves[hash] = UserManagerSettings()
+			managerSaves[hash]?.addedDate = Date()
+		}
         mainLoop()
-        DispatchQueue.main.async {
-            for i in Manager.managerAddedDelegates {
-                i.managerAdded();
-            }
-        }
-    }
+	}
     
     static func addMagnet(_ magnetLink: String) {
-        add_magnet(magnetLink)
-        mainLoop()
-        DispatchQueue.main.async {
-            for i in Manager.managerAddedDelegates {
-                i.managerAdded();
-            }
-        }
+		if magnetLink.starts(with: "magnet:"),
+			let hash = String(validatingUTF8: add_magnet(magnetLink)),
+			managerSaves[hash] == nil {
+			print(hash)
+			managerSaves[hash] = UserManagerSettings()
+			mainLoop()
+		} else {
+			let controller = UIAlertController(title: "Error", message: "Wrong magnet link, check it and try again!", preferredStyle: .alert)
+			let close = UIAlertAction(title: "Close", style: .cancel)
+			controller.addAction(close)
+			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+		}
     }
+	
+	static func isManagerExists(hash: String) -> Bool {
+		return torrentStates.contains(where: {$0.hash == hash})
+	}
     
     static func getDisplayState(manager: TorrentStatus) -> String {
-        if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused) {
+        if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused && (managerSaves[manager.hash]?.seedMode)!) {
             return Utils.torrentStates.Seeding.rawValue
         }
-        if (manager.state == Utils.torrentStates.Seeding.rawValue && manager.isPaused) {
+		if (manager.state == Utils.torrentStates.Seeding.rawValue && manager.isPaused) {
             return Utils.torrentStates.Finished.rawValue
         }
+		if (manager.state == Utils.torrentStates.Downloading.rawValue && !manager.isFinished && manager.isPaused) {
+			return Utils.torrentStates.Paused.rawValue
+		}
         return manager.state
     }
+	
+	static func stateCorrector(manager: TorrentStatus) {
+		if ((manager.state == Utils.torrentStates.Seeding.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
+			manager.isFinished &&
+			!manager.isPaused &&
+			!(managerSaves[manager.hash]?.seedMode)!) {
+			stop_torrent(manager.hash)
+		} else if (manager.state == Utils.torrentStates.Seeding.rawValue &&
+			!manager.isPaused &&
+			!(managerSaves[manager.hash]?.seedMode)!) {
+			stop_torrent(manager.hash)
+		} else if (manager.state == Utils.torrentStates.Hashing.rawValue && manager.isPaused) {
+			start_torrent(manager.hash)
+		}
+	}
+	
+	static func stateChanges() {
+		for t in torrentStates {
+			if let old = previousTorrentStates.filter({ $0.hash == t.hash }).first {
+				if (old.displayState != t.displayState) {
+					DispatchQueue.main.async {
+						for m in managersStateChangedDelegade {
+							m.managerStateChanged(manager: t, oldState: old.displayState, newState: t.displayState)
+						}
+						managersStateChanged(manager: t, oldState: old.displayState, newState: t.displayState)
+					}
+				}
+			} else {
+				DispatchQueue.main.async {
+					for m in managersStateChangedDelegade {
+						m.managerStateChanged(manager: t, oldState: "NONE", newState: t.displayState)
+					}
+					managersStateChanged(manager: t, oldState: "NONE", newState: t.displayState)
+				}
+			}
+		}
+	}
+	
+	static func managersStateChanged(manager: TorrentStatus, oldState: String, newState: String) {
+		if (oldState == Utils.torrentStates.Metadata.rawValue) {
+			save_magnet_to_file(manager.hash)
+		}
+		if (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue) {
+			if #available(iOS 10.0, *) {
+				let content = UNMutableNotificationContent()
+				content.title = "Download finished"
+				content.body = manager.title + " finished downloading"
+				content.sound = UNNotificationSound.default()
+				
+				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+				let identifier = manager.title;
+				let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+				
+				UNUserNotificationCenter.current().add(request)
+			}
+			
+			BackgroundTask.checkToStopBackground()
+		}
+	}
     
     static func getManagerByHash(hash: String) -> TorrentStatus? {
         return torrentStates.filter({$0.hash == hash}).first

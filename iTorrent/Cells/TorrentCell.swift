@@ -15,7 +15,6 @@ class TorrentCell: UITableViewCell {
     @IBOutlet weak var progress: UIProgressView!
     
     var manager: TorrentStatus!
-    var indexPath : IndexPath!
     
     func update() {
         title.text = manager.title

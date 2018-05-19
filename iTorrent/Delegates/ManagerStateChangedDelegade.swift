@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ManagerAddedDelegade : class {
-    func managerAdded();
+protocol ManagerStateChangedDelegade : class {
+	func managerStateChanged(manager: TorrentStatus, oldState: String, newState: String);
 }

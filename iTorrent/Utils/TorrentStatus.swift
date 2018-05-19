@@ -27,8 +27,10 @@ class TorrentStatus {
     var totalSize : Int64 = 0
     var totalDone : Int64 = 0
     var creationDate : Date?
+	var addedDate : Date?
     var isPaused : Bool = false
     var isFinished : Bool = false
     var isSeed : Bool = false
-    var seedMode : Bool = false
+	var seedMode : Bool = false
+	var hasMetadata : Bool = false
 }

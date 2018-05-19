@@ -9,12 +9,18 @@
 
 int init_engine(const char* save_path);
 Result getTorrentInfo();
-void add_torrent(const char* torrent_path);
+char* add_torrent(const char* torrent_path);
 void add_torrent_with_states(const char* torrent_path, int* states);
-void add_magnet(const char* magnet_link);
+char* add_magnet(const char* magnet_link);
+void remove_torrent(const char* torrent_hash);
+void save_magnet_to_file(const char* hash);
+char* get_torrent_file_hash(const char* torrent_path);
+char* get_magnet_hash(const char* magnet_link);
 Files get_files_of_torrent_by_path(const char* torrent_path);
 Files get_files_of_torrent_by_hash(const char* hash);
 void set_torrent_files_priority(const char* torrent_hash, int* states);
+void resume_to_app();
 void save_fast_resume();
 void stop_torrent(const char* torrent_hash);
 void start_torrent(const char* torrent_hash);
+void rehash_torrent(const char* torrent_hash);

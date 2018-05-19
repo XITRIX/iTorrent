@@ -1,3 +1,7 @@
 Podfile.lock
 Pods
 iTorrent.xcworkspace
+iTorrent.xcworkspace/xcuserdata/xitrix.xcuserdatad/UserInterfaceState.xcuserstate
+include/libtorrent/.DS_Store
+.DS_Store
+include/.DS_Store

@@ -31,6 +31,7 @@ typedef struct Result {
     int * _Nonnull is_paused;
     int * _Nonnull is_finished;
     int * _Nonnull is_seed;
+	int * _Nonnull has_metadata;
 } Result;
 
 #endif /* result_struct_h */

@@ -58,8 +58,9 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
         cell.title.text = fileNames[sortMask[indexPath.row]]
         cell.size.text = Utils.getSizeText(size: fileSizes[sortMask[indexPath.row]])
+		cell.switcher.setOn(fileSelectes[sortMask[indexPath.row]] != 0, animated: false)
         cell.action = { switcher in
-            self.fileSelectes[indexPath.row] = switcher.isOn ? 4 : 0
+			self.fileSelectes[self.sortMask[indexPath.row]] = switcher.isOn ? 4 : 0
         }
         return cell
     }
@@ -70,14 +71,31 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
         }
         dismiss(animated: true)
     }
+	
     @IBAction func deselectAction(_ sender: UIBarButtonItem) {
-        
+		for cell in tableView.visibleCells {
+			(cell as! FileCell).switcher.setOn(false, animated: true)
+		}
+		for i in 0 ..< fileSelectes.count {
+			fileSelectes[i] = 0
+		}
     }
+	
     @IBAction func selectAction(_ sender: UIBarButtonItem) {
+		for cell in tableView.visibleCells {
+			(cell as! FileCell).switcher.setOn(true, animated: true)
+		}
+		for i in 0 ..< fileSelectes.count {
+			fileSelectes[i] = 4
+		}
     }
+	
     @IBAction func downloadAction(_ sender: UIBarButtonItem) {
         let urlPath = URL(fileURLWithPath: path)
         let urlRes = urlPath.deletingLastPathComponent().appendingPathComponent(name+".torrent")
+		if (FileManager.default.fileExists(atPath: urlRes.path)) {
+			try! FileManager.default.removeItem(at: urlRes)
+		}
         try! FileManager.default.copyItem(at: urlPath, to: urlRes)
         if (path.hasSuffix("_temp.torrent")) {
             try! FileManager.default.removeItem(atPath: Manager.configFolder+"/_temp.torrent")

@@ -19,6 +19,7 @@ class Utils {
         case Seeding = "Seeding"
         case Allocating = "Allocating"
         case CheckingFastresume = "Checking fastresume"
+		case Paused = "Paused"
     }
     
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {

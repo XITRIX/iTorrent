@@ -14,7 +14,9 @@ typedef struct Files {
     int size;
     char* title;
     char** file_name;
+	char** file_path;
     long long* file_size;
+	long long* file_downloaded;
     int* file_priority;
 } Files;
 #endif /* file_struct_h */
