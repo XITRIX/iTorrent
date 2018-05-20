@@ -7,6 +7,7 @@ target 'iTorrent' do
 
   # Pods for iTorrent
   pod 'MaterialComponents/Snackbar'
+  pod 'Firebase/Core'
 
 end
 

@@ -1,8 +1,9 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MDFInternationalization" "${PODS_CONFIGURATION_BUILD_DIR}/MDFTextAccessibility" "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac" "${PODS_CONFIGURATION_BUILD_DIR}/MDFInternationalization" "${PODS_CONFIGURATION_BUILD_DIR}/MDFTextAccessibility" "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents" "${PODS_CONFIGURATION_BUILD_DIR}/nanopb" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseCore/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) PB_FIELD_32BIT=1 PB_NO_PACKED_STRUCTS=1
+HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/Firebase/Core/Sources "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Firebase"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MDFInternationalization/MDFInternationalization.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialComponents.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "MDFInternationalization" -framework "MDFTextAccessibility" -framework "MaterialComponents"
+OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MDFInternationalization/MDFInternationalization.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MaterialComponents/MaterialComponents.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Firebase"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"sqlite3" -l"z" -framework "FirebaseAnalytics" -framework "FirebaseCore" -framework "FirebaseCoreDiagnostics" -framework "FirebaseInstanceID" -framework "FirebaseNanoPB" -framework "GoogleToolboxForMac" -framework "MDFInternationalization" -framework "MDFTextAccessibility" -framework "MaterialComponents" -framework "StoreKit" -framework "SystemConfiguration" -framework "nanopb"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

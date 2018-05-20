@@ -484,6 +484,8 @@ extern "C" void save_fast_resume() {
         
         printf("FILE ADDED!!\n");
     }
+	
+	sleep(500);
 
     while (outstanding_resume_data > 0)
     {
@@ -496,14 +498,14 @@ extern "C" void save_fast_resume() {
 		ses->pop_alerts(&alerts);
 		
 		for (alert* i : alerts) {
-			if (alert_cast<save_resume_data_failed_alert>(a))
+			if (alert_cast<save_resume_data_failed_alert>(i))
 			{
 				//process_alert(a);
 				--outstanding_resume_data;
 				continue;
 			}
 			
-			save_resume_data_alert const* rd = alert_cast<save_resume_data_alert>(a);
+			save_resume_data_alert const* rd = alert_cast<save_resume_data_alert>(i);
 			if (rd == 0)
 			{
 				//process_alert(a);
@@ -518,6 +520,7 @@ extern "C" void save_fast_resume() {
 			printf("FILE SAVED!!\n");
 			
 			--outstanding_resume_data;
+			sleep(10);
 		}
 
 		

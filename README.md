@@ -1,18 +1,20 @@
 # iTorrent - iOS Torrent client App - LibTorrent Core
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
+![](https://www.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
 
 ## Screenshots
 
 ![pic](https://user-images.githubusercontent.com/9553519/39924916-59d76598-5532-11e8-83ee-f87877492603.png)
 
-**Download .ipa:** ([Later])
+**Download .ipa:** ([Google Drive](https://drive.google.com/open?id=1CPVckYWw1bCR9RpFkTLrspqfUV3g7jlP))
 
 ## Info
 
-Alternate version of [iTorrent app](https://github.com/XITRIX/iTorrent)
+Alternate version of [iTorrent app](https://github.com/XITRIX/iTorrent_CSharp) fully rewritten on Swift and C++ 
 
-Fully rewritten on Swift and C++ [libtorrent library](https://github.com/arvidn/libtorrent)
+### WARNING! : 
+if you used the previous version of this app, you will lose all your torrents in app UI (not downloaded files)
 
 It is an ordinary torrent client for iOS with Files app support.
 
@@ -29,12 +31,8 @@ What can this app do:
 
 ## Libraries used
 
-- [LibTorrent](https://www.libtorrent.org/index.html)
+- [LibTorrent](https://github.com/arvidn/libtorrent)
 - [BackgroundTask](https://github.com/yarodevuci/backgroundTask)
-
-## Known bugs
-
-- Sometimes could not save torrent state on app closing
 
 ## Donate for donuts
 

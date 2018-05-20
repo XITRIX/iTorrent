@@ -51,7 +51,7 @@ class SettingsController: UITableViewController {
 		updateLoading.startAnimating()
 		
 		DispatchQueue.global(qos: .background).async {
-			if let url = URL(string: "https://raw.githubusercontent.com/XITRIX/iTorrent/master/iTorrent/Resources/Version.cs") {
+			if let url = URL(string: "https://github.com/XITRIX/iTorrent/blob/master/iTorrent/Version.ver") {
 				do {
 					let remoteVersion = try String(contentsOf: url)
 					
