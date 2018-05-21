@@ -35,8 +35,8 @@
 		7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59320AC86F500A18C3E /* MainController.swift */; };
 		7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */; };
 		7CF5F59820AC871A00A18C3E /* ManagerStateChangedDelegade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */; };
-		7CF99DC220B3630F00E5BF3A /* iTorrent_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */; };
-		7CF99DC320B3630F00E5BF3A /* iTorrent_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CF99DC220B3630F00E5BF3A /* iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF99DC120B3630A00E5BF3A /* iTorrent.framework */; };
+		7CF99DC320B3630F00E5BF3A /* iTorrent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF99DC120B3630A00E5BF3A /* iTorrent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,7 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7CF99DC320B3630F00E5BF3A /* iTorrent_Framework.framework in Embed Frameworks */,
+				7CF99DC320B3630F00E5BF3A /* iTorrent.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +85,7 @@
 		7CF5F59320AC86F500A18C3E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersUpdatedDelegate.swift; sourceTree = "<group>"; };
 		7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerStateChangedDelegade.swift; sourceTree = "<group>"; };
-		7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent_Framework.framework; sourceTree = "<group>"; };
+		7CF99DC120B3630A00E5BF3A /* iTorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent.framework; sourceTree = "<group>"; };
 		F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CF99DC220B3630F00E5BF3A /* iTorrent_Framework.framework in Frameworks */,
+				7CF99DC220B3630F00E5BF3A /* iTorrent.framework in Frameworks */,
 				30E43CB42BC2C2439FD00F53 /* Pods_iTorrent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,7 +150,7 @@
 		7C3C694420A75FBF0023396C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */,
+				7CF99DC120B3630A00E5BF3A /* iTorrent.framework */,
 				65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */,
 			);
 			name = Frameworks;
