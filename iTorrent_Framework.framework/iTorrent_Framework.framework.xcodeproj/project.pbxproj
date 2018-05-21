@@ -1,0 +1,146 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXFileReference section */
+		7CF99DB820B3630A00E5BF3A /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		7CF99DB920B3630A00E5BF3A /* Headers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Headers; sourceTree = "<group>"; };
+		7CF99DBA20B3630A00E5BF3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Info.plist; sourceTree = "<group>"; };
+		7CF99DBB20B3630A00E5BF3A /* iTorrent_Framework */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = iTorrent_Framework; sourceTree = "<group>"; };
+		7CF99DBC20B3630A00E5BF3A /* Makefile.am */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		7CF99DBD20B3630A00E5BF3A /* Makefile.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		7CF99DB220B3630A00E5BF3A = {
+			isa = PBXGroup;
+			children = (
+				7CF99DB820B3630A00E5BF3A /* .DS_Store */,
+				7CF99DB920B3630A00E5BF3A /* Headers */,
+				7CF99DBA20B3630A00E5BF3A /* Info.plist */,
+				7CF99DBB20B3630A00E5BF3A /* iTorrent_Framework */,
+				7CF99DBC20B3630A00E5BF3A /* Makefile.am */,
+				7CF99DBD20B3630A00E5BF3A /* Makefile.in */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		7CF99DB720B3630A00E5BF3A /* iTorrent_Framework.framework */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 7CF99DBE20B3630A00E5BF3A /* Build configuration list for PBXLegacyTarget "iTorrent_Framework.framework" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/xitrix/Documents/GitHub/iTorrent---libtorrent-core/iTorrent_Framework.framework";
+			dependencies = (
+			);
+			name = iTorrent_Framework.framework;
+			passBuildSettingsInEnvironment = 1;
+			productName = iTorrent_Framework.framework;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		7CF99DB320B3630A00E5BF3A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 7CF99DB620B3630A00E5BF3A /* Build configuration list for PBXProject "iTorrent_Framework.framework" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7CF99DB220B3630A00E5BF3A;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7CF99DB720B3630A00E5BF3A /* iTorrent_Framework.framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		7CF99DB420B3630A00E5BF3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		7CF99DB520B3630A00E5BF3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		7CF99DBF20B3630A00E5BF3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = iTorrent_Framework.framework;
+			};
+			name = Debug;
+		};
+		7CF99DC020B3630A00E5BF3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = iTorrent_Framework.framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7CF99DB620B3630A00E5BF3A /* Build configuration list for PBXProject "iTorrent_Framework.framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CF99DB420B3630A00E5BF3A /* Debug */,
+				7CF99DB520B3630A00E5BF3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7CF99DBE20B3630A00E5BF3A /* Build configuration list for PBXLegacyTarget "iTorrent_Framework.framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CF99DBF20B3630A00E5BF3A /* Debug */,
+				7CF99DC020B3630A00E5BF3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7CF99DB320B3630A00E5BF3A /* Project object */;
+}

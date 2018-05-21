@@ -18,161 +18,6 @@
 		7C3E841D20AB10FE00577282 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E841C20AB10FE00577282 /* SettingsController.swift */; };
 		7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E841E20AB695800577282 /* AddTorrentController.swift */; };
 		7C3E842120AB6BB400577282 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E842020AB6BB400577282 /* FileCell.swift */; };
-		7C57CFEA20A783AF00FB774D /* wrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C57CFE920A783AF00FB774D /* wrapper.cpp */; };
-		7C8024D320A895B800673A4F /* codecvt_error_category.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80241D20A895B800673A4F /* codecvt_error_category.cpp */; };
-		7C8024D420A895B800673A4F /* operations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80241E20A895B800673A4F /* operations.cpp */; };
-		7C8024D520A895B800673A4F /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80241F20A895B800673A4F /* path.cpp */; };
-		7C8024D620A895B800673A4F /* path_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80242020A895B800673A4F /* path_traits.cpp */; };
-		7C8024D720A895B800673A4F /* portability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80242120A895B800673A4F /* portability.cpp */; };
-		7C8024D820A895B800673A4F /* unique_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80242220A895B800673A4F /* unique_path.cpp */; };
-		7C8024D920A895B800673A4F /* utf8_codecvt_facet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80242320A895B800673A4F /* utf8_codecvt_facet.cpp */; };
-		7C8024DA20A895B800673A4F /* windows_file_codecvt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80242420A895B800673A4F /* windows_file_codecvt.cpp */; };
-		7C8024DB20A895B800673A4F /* error_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80242720A895B800673A4F /* error_code.cpp */; };
-		7C8024E020A895B800673A4F /* CocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243720A895B800673A4F /* CocoaSecurity.m */; };
-		7C8024E120A895B800673A4F /* alert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243920A895B800673A4F /* alert.cpp */; };
-		7C8024E220A895B800673A4F /* alert_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243A20A895B800673A4F /* alert_manager.cpp */; };
-		7C8024E320A895B800673A4F /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243B20A895B800673A4F /* allocator.cpp */; };
-		7C8024E420A895B800673A4F /* announce_entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243C20A895B800673A4F /* announce_entry.cpp */; };
-		7C8024E520A895B800673A4F /* asio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243D20A895B800673A4F /* asio.cpp */; };
-		7C8024E620A895B800673A4F /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243E20A895B800673A4F /* assert.cpp */; };
-		7C8024E720A895B800673A4F /* bandwidth_limit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80243F20A895B800673A4F /* bandwidth_limit.cpp */; };
-		7C8024E820A895B800673A4F /* bandwidth_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244020A895B800673A4F /* bandwidth_manager.cpp */; };
-		7C8024E920A895B800673A4F /* bandwidth_queue_entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244120A895B800673A4F /* bandwidth_queue_entry.cpp */; };
-		7C8024EA20A895B800673A4F /* bdecode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244220A895B800673A4F /* bdecode.cpp */; };
-		7C8024EB20A895B800673A4F /* bitfield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244320A895B800673A4F /* bitfield.cpp */; };
-		7C8024EC20A895B800673A4F /* block_cache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244420A895B800673A4F /* block_cache.cpp */; };
-		7C8024ED20A895B800673A4F /* bloom_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244520A895B800673A4F /* bloom_filter.cpp */; };
-		7C8024EE20A895B800673A4F /* broadcast_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244620A895B800673A4F /* broadcast_socket.cpp */; };
-		7C8024EF20A895B800673A4F /* bt_peer_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244720A895B800673A4F /* bt_peer_connection.cpp */; };
-		7C8024F020A895B800673A4F /* chained_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244820A895B800673A4F /* chained_buffer.cpp */; };
-		7C8024F120A895B800673A4F /* choker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244920A895B800673A4F /* choker.cpp */; };
-		7C8024F220A895B800673A4F /* close_reason.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244A20A895B800673A4F /* close_reason.cpp */; };
-		7C8024F320A895B800673A4F /* ConvertUTF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244B20A895B800673A4F /* ConvertUTF.cpp */; };
-		7C8024F420A895B800673A4F /* cpuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244C20A895B800673A4F /* cpuid.cpp */; };
-		7C8024F520A895B800673A4F /* crc32c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244D20A895B800673A4F /* crc32c.cpp */; };
-		7C8024F620A895B800673A4F /* create_torrent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244E20A895B800673A4F /* create_torrent.cpp */; };
-		7C8024F720A895B800673A4F /* disk_buffer_holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80244F20A895B800673A4F /* disk_buffer_holder.cpp */; };
-		7C8024F820A895B800673A4F /* disk_buffer_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245020A895B800673A4F /* disk_buffer_pool.cpp */; };
-		7C8024F920A895B800673A4F /* disk_io_job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245120A895B800673A4F /* disk_io_job.cpp */; };
-		7C8024FA20A895B800673A4F /* disk_io_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245220A895B800673A4F /* disk_io_thread.cpp */; };
-		7C8024FB20A895B800673A4F /* disk_job_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245320A895B800673A4F /* disk_job_pool.cpp */; };
-		7C8024FC20A895B800673A4F /* add_scalar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245520A895B800673A4F /* add_scalar.cpp */; };
-		7C8024FD20A895B800673A4F /* fe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245620A895B800673A4F /* fe.cpp */; };
-		7C8024FE20A895B800673A4F /* ge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245920A895B800673A4F /* ge.cpp */; };
-		7C8024FF20A895B800673A4F /* key_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245B20A895B800673A4F /* key_exchange.cpp */; };
-		7C80250020A895B800673A4F /* keypair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245C20A895B800673A4F /* keypair.cpp */; };
-		7C80250120A895B800673A4F /* sc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80245E20A895B800673A4F /* sc.cpp */; };
-		7C80250220A895B800673A4F /* seed.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246020A895B800673A4F /* seed.cpp */; };
-		7C80250320A895B800673A4F /* sha512.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246120A895B800673A4F /* sha512.cpp */; };
-		7C80250420A895B800673A4F /* sign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246320A895B800673A4F /* sign.cpp */; };
-		7C80250520A895B800673A4F /* verify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246420A895B800673A4F /* verify.cpp */; };
-		7C80250620A895B800673A4F /* entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246520A895B800673A4F /* entry.cpp */; };
-		7C80250720A895B800673A4F /* enum_net.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246620A895B800673A4F /* enum_net.cpp */; };
-		7C80250820A895B800673A4F /* error_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246720A895B800673A4F /* error_code.cpp */; };
-		7C80250920A895B800673A4F /* escape_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246820A895B800673A4F /* escape_string.cpp */; };
-		7C80250A20A895B800673A4F /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246920A895B800673A4F /* file.cpp */; };
-		7C80250B20A895B800673A4F /* file_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246A20A895B800673A4F /* file_pool.cpp */; };
-		7C80250C20A895B800673A4F /* file_progress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246B20A895B800673A4F /* file_progress.cpp */; };
-		7C80250D20A895B800673A4F /* file_storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246C20A895B800673A4F /* file_storage.cpp */; };
-		7C80250E20A895B800673A4F /* fingerprint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246D20A895B800673A4F /* fingerprint.cpp */; };
-		7C80250F20A895B800673A4F /* gzip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246E20A895B800673A4F /* gzip.cpp */; };
-		7C80251020A895B800673A4F /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80246F20A895B800673A4F /* hasher.cpp */; };
-		7C80251120A895B800673A4F /* hex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247020A895B800673A4F /* hex.cpp */; };
-		7C80251220A895B800673A4F /* http_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247120A895B800673A4F /* http_connection.cpp */; };
-		7C80251320A895B800673A4F /* http_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247220A895B800673A4F /* http_parser.cpp */; };
-		7C80251420A895B800673A4F /* http_seed_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247320A895B800673A4F /* http_seed_connection.cpp */; };
-		7C80251520A895B800673A4F /* http_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247420A895B800673A4F /* http_stream.cpp */; };
-		7C80251620A895B800673A4F /* http_tracker_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247520A895B800673A4F /* http_tracker_connection.cpp */; };
-		7C80251720A895B800673A4F /* i2p_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247620A895B800673A4F /* i2p_stream.cpp */; };
-		7C80251820A895B800673A4F /* identify_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247720A895B800673A4F /* identify_client.cpp */; };
-		7C80251920A895B800673A4F /* instantiate_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247820A895B800673A4F /* instantiate_connection.cpp */; };
-		7C80251A20A895B800673A4F /* ip_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247920A895B800673A4F /* ip_filter.cpp */; };
-		7C80251B20A895B800673A4F /* ip_voter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247A20A895B800673A4F /* ip_voter.cpp */; };
-		7C80251C20A895B800673A4F /* dht_storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247C20A895B800673A4F /* dht_storage.cpp */; };
-		7C80251D20A895B800673A4F /* dht_tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247D20A895B800673A4F /* dht_tracker.cpp */; };
-		7C80251E20A895B800673A4F /* dos_blocker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247E20A895B800673A4F /* dos_blocker.cpp */; };
-		7C80251F20A895B800673A4F /* find_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80247F20A895B800673A4F /* find_data.cpp */; };
-		7C80252020A895B800673A4F /* get_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248020A895B800673A4F /* get_item.cpp */; };
-		7C80252120A895B800673A4F /* get_peers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248120A895B800673A4F /* get_peers.cpp */; };
-		7C80252220A895B800673A4F /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248220A895B800673A4F /* item.cpp */; };
-		7C80252320A895B800673A4F /* msg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248320A895B800673A4F /* msg.cpp */; };
-		7C80252420A895B800673A4F /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248420A895B800673A4F /* node.cpp */; };
-		7C80252520A895B800673A4F /* node_entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248520A895B800673A4F /* node_entry.cpp */; };
-		7C80252620A895B800673A4F /* node_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248620A895B800673A4F /* node_id.cpp */; };
-		7C80252720A895B800673A4F /* put_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248720A895B800673A4F /* put_data.cpp */; };
-		7C80252820A895B800673A4F /* refresh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248820A895B800673A4F /* refresh.cpp */; };
-		7C80252920A895B800673A4F /* routing_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248920A895B800673A4F /* routing_table.cpp */; };
-		7C80252A20A895B800673A4F /* rpc_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248A20A895B800673A4F /* rpc_manager.cpp */; };
-		7C80252B20A895B800673A4F /* traversal_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248B20A895B800673A4F /* traversal_algorithm.cpp */; };
-		7C80252C20A895B800673A4F /* lazy_bdecode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248C20A895B800673A4F /* lazy_bdecode.cpp */; };
-		7C80252E20A895B800673A4F /* lsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248E20A895B800673A4F /* lsd.cpp */; };
-		7C80252F20A895B800673A4F /* lt_trackers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80248F20A895B800673A4F /* lt_trackers.cpp */; };
-		7C80253020A895B800673A4F /* magnet_uri.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249020A895B800673A4F /* magnet_uri.cpp */; };
-		7C80253120A895B800673A4F /* Makefile.am in Resources */ = {isa = PBXBuildFile; fileRef = 7C80249120A895B800673A4F /* Makefile.am */; };
-		7C80253220A895B800673A4F /* Makefile.in in Resources */ = {isa = PBXBuildFile; fileRef = 7C80249220A895B800673A4F /* Makefile.in */; };
-		7C80253320A895B800673A4F /* merkle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249320A895B800673A4F /* merkle.cpp */; };
-		7C80253420A895B800673A4F /* metadata_transfer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249420A895B800673A4F /* metadata_transfer.cpp */; };
-		7C80253520A895B800673A4F /* mpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249520A895B800673A4F /* mpi.cpp */; };
-		7C80253620A895B800673A4F /* natpmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249620A895B800673A4F /* natpmp.cpp */; };
-		7C80253720A895B800673A4F /* packet_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249720A895B800673A4F /* packet_buffer.cpp */; };
-		7C80253820A895B800673A4F /* parse_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249820A895B800673A4F /* parse_url.cpp */; };
-		7C80253920A895B800673A4F /* part_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249920A895B800673A4F /* part_file.cpp */; };
-		7C80253A20A895B800673A4F /* pe_crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249A20A895B800673A4F /* pe_crypto.cpp */; };
-		7C80253B20A895B800673A4F /* peer_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249B20A895B800673A4F /* peer_class.cpp */; };
-		7C80253C20A895B800673A4F /* peer_class_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249C20A895B800673A4F /* peer_class_set.cpp */; };
-		7C80253D20A895B800673A4F /* peer_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249D20A895B800673A4F /* peer_connection.cpp */; };
-		7C80253E20A895B800673A4F /* peer_connection_handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249E20A895B800673A4F /* peer_connection_handle.cpp */; };
-		7C80253F20A895B800673A4F /* peer_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C80249F20A895B800673A4F /* peer_list.cpp */; };
-		7C80254020A895B800673A4F /* performance_counters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A020A895B800673A4F /* performance_counters.cpp */; };
-		7C80254120A895B800673A4F /* piece_picker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A120A895B800673A4F /* piece_picker.cpp */; };
-		7C80254220A895B800673A4F /* platform_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A220A895B800673A4F /* platform_util.cpp */; };
-		7C80254420A895B800673A4F /* proxy_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A420A895B800673A4F /* proxy_base.cpp */; };
-		7C80254520A895B800673A4F /* proxy_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A520A895B800673A4F /* proxy_settings.cpp */; };
-		7C80254620A895B800673A4F /* puff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A620A895B800673A4F /* puff.cpp */; };
-		7C80254720A895B800673A4F /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A720A895B800673A4F /* random.cpp */; };
-		7C80254820A895B800673A4F /* receive_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A820A895B800673A4F /* receive_buffer.cpp */; };
-		7C80254920A895B800673A4F /* request_blocks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024A920A895B800673A4F /* request_blocks.cpp */; };
-		7C80254A20A895B800673A4F /* resolve_links.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024AA20A895B800673A4F /* resolve_links.cpp */; };
-		7C80254B20A895B800673A4F /* resolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024AB20A895B800673A4F /* resolver.cpp */; };
-		7C80254C20A895B800673A4F /* rss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024AC20A895B800673A4F /* rss.cpp */; };
-		7C80254D20A895B800673A4F /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024AD20A895B800673A4F /* session.cpp */; };
-		7C80254E20A895B800673A4F /* session_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024AE20A895B800673A4F /* session_call.cpp */; };
-		7C80254F20A895B800673A4F /* session_handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024AF20A895B800673A4F /* session_handle.cpp */; };
-		7C80255020A895B800673A4F /* session_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B020A895B800673A4F /* session_impl.cpp */; };
-		7C80255120A895B800673A4F /* session_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B120A895B800673A4F /* session_settings.cpp */; };
-		7C80255220A895B800673A4F /* session_stats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B220A895B800673A4F /* session_stats.cpp */; };
-		7C80255320A895B800673A4F /* settings_pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B320A895B800673A4F /* settings_pack.cpp */; };
-		7C80255420A895B800673A4F /* sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B420A895B800673A4F /* sha1.cpp */; };
-		7C80255520A895B800673A4F /* smart_ban.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B520A895B800673A4F /* smart_ban.cpp */; };
-		7C80255620A895B800673A4F /* socket_io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B620A895B800673A4F /* socket_io.cpp */; };
-		7C80255720A895B800673A4F /* socket_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B720A895B800673A4F /* socket_type.cpp */; };
-		7C80255820A895B800673A4F /* socks5_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B820A895B800673A4F /* socks5_stream.cpp */; };
-		7C80255920A895B800673A4F /* stat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024B920A895B800673A4F /* stat.cpp */; };
-		7C80255A20A895B800673A4F /* stat_cache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024BA20A895B800673A4F /* stat_cache.cpp */; };
-		7C80255B20A895B800673A4F /* storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024BB20A895B800673A4F /* storage.cpp */; };
-		7C80255C20A895B800673A4F /* string_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024BC20A895B800673A4F /* string_util.cpp */; };
-		7C80255D20A895B800673A4F /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024BD20A895B800673A4F /* thread.cpp */; };
-		7C80255E20A895B800673A4F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024BE20A895B800673A4F /* time.cpp */; };
-		7C80255F20A895B800673A4F /* timestamp_history.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024BF20A895B800673A4F /* timestamp_history.cpp */; };
-		7C80256020A895B800673A4F /* torrent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C020A895B800673A4F /* torrent.cpp */; };
-		7C80256120A895B800673A4F /* torrent_handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C120A895B800673A4F /* torrent_handle.cpp */; };
-		7C80256220A895B800673A4F /* torrent_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C220A895B800673A4F /* torrent_info.cpp */; };
-		7C80256320A895B800673A4F /* torrent_peer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C320A895B800673A4F /* torrent_peer.cpp */; };
-		7C80256420A895B800673A4F /* torrent_peer_allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C420A895B800673A4F /* torrent_peer_allocator.cpp */; };
-		7C80256520A895B800673A4F /* torrent_status.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C520A895B800673A4F /* torrent_status.cpp */; };
-		7C80256620A895B800673A4F /* tracker_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C620A895B800673A4F /* tracker_manager.cpp */; };
-		7C80256720A895B800673A4F /* udp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C720A895B800673A4F /* udp_socket.cpp */; };
-		7C80256820A895B800673A4F /* udp_tracker_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C820A895B800673A4F /* udp_tracker_connection.cpp */; };
-		7C80256920A895B800673A4F /* upnp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024C920A895B800673A4F /* upnp.cpp */; };
-		7C80256A20A895B800673A4F /* ut_metadata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024CA20A895B800673A4F /* ut_metadata.cpp */; };
-		7C80256B20A895B800673A4F /* ut_pex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024CB20A895B800673A4F /* ut_pex.cpp */; };
-		7C80256C20A895B800673A4F /* utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024CC20A895B800673A4F /* utf8.cpp */; };
-		7C80256D20A895B800673A4F /* utp_socket_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024CD20A895B800673A4F /* utp_socket_manager.cpp */; };
-		7C80256E20A895B800673A4F /* utp_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024CE20A895B800673A4F /* utp_stream.cpp */; };
-		7C80256F20A895B800673A4F /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024CF20A895B800673A4F /* version.cpp */; };
-		7C80257020A895B800673A4F /* web_connection_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024D020A895B800673A4F /* web_connection_base.cpp */; };
-		7C80257120A895B800673A4F /* web_peer_connection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024D120A895B800673A4F /* web_peer_connection.cpp */; };
-		7C80257220A895B800673A4F /* xml_parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8024D220A895B800673A4F /* xml_parse.cpp */; };
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
 		7CB8082920AA26DD00F76931 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082820AA26DD00F76931 /* Manager.swift */; };
 		7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082A20AA28F200F76931 /* TorrentStatus.swift */; };
@@ -190,7 +35,23 @@
 		7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59320AC86F500A18C3E /* MainController.swift */; };
 		7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */; };
 		7CF5F59820AC871A00A18C3E /* ManagerStateChangedDelegade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */; };
+		7CF99DC220B3630F00E5BF3A /* iTorrent_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */; };
+		7CF99DC320B3630F00E5BF3A /* iTorrent_Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7CF5F5CB20B2FC4000A18C3E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7CF99DC320B3630F00E5BF3A /* iTorrent_Framework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,190 +68,24 @@
 		7C3E841C20AB10FE00577282 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		7C3E841E20AB695800577282 /* AddTorrentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTorrentController.swift; sourceTree = "<group>"; };
 		7C3E842020AB6BB400577282 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
-		7C57CFE820A783AF00FB774D /* iTorrent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTorrent-Bridging-Header.h"; sourceTree = "<group>"; };
-		7C57CFE920A783AF00FB774D /* wrapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wrapper.cpp; sourceTree = "<group>"; };
-		7C80241D20A895B800673A4F /* codecvt_error_category.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = codecvt_error_category.cpp; sourceTree = "<group>"; };
-		7C80241E20A895B800673A4F /* operations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = operations.cpp; sourceTree = "<group>"; };
-		7C80241F20A895B800673A4F /* path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
-		7C80242020A895B800673A4F /* path_traits.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path_traits.cpp; sourceTree = "<group>"; };
-		7C80242120A895B800673A4F /* portability.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = portability.cpp; sourceTree = "<group>"; };
-		7C80242220A895B800673A4F /* unique_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unique_path.cpp; sourceTree = "<group>"; };
-		7C80242320A895B800673A4F /* utf8_codecvt_facet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utf8_codecvt_facet.cpp; sourceTree = "<group>"; };
-		7C80242420A895B800673A4F /* windows_file_codecvt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windows_file_codecvt.cpp; sourceTree = "<group>"; };
-		7C80242520A895B800673A4F /* windows_file_codecvt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = windows_file_codecvt.hpp; sourceTree = "<group>"; };
-		7C80242720A895B800673A4F /* error_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error_code.cpp; sourceTree = "<group>"; };
-		7C80243620A895B800673A4F /* CocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaSecurity.h; sourceTree = "<group>"; };
-		7C80243720A895B800673A4F /* CocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaSecurity.m; sourceTree = "<group>"; };
-		7C80243920A895B800673A4F /* alert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alert.cpp; sourceTree = "<group>"; };
-		7C80243A20A895B800673A4F /* alert_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alert_manager.cpp; sourceTree = "<group>"; };
-		7C80243B20A895B800673A4F /* allocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allocator.cpp; sourceTree = "<group>"; };
-		7C80243C20A895B800673A4F /* announce_entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = announce_entry.cpp; sourceTree = "<group>"; };
-		7C80243D20A895B800673A4F /* asio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = asio.cpp; sourceTree = "<group>"; };
-		7C80243E20A895B800673A4F /* assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assert.cpp; sourceTree = "<group>"; };
-		7C80243F20A895B800673A4F /* bandwidth_limit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bandwidth_limit.cpp; sourceTree = "<group>"; };
-		7C80244020A895B800673A4F /* bandwidth_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bandwidth_manager.cpp; sourceTree = "<group>"; };
-		7C80244120A895B800673A4F /* bandwidth_queue_entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bandwidth_queue_entry.cpp; sourceTree = "<group>"; };
-		7C80244220A895B800673A4F /* bdecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bdecode.cpp; sourceTree = "<group>"; };
-		7C80244320A895B800673A4F /* bitfield.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitfield.cpp; sourceTree = "<group>"; };
-		7C80244420A895B800673A4F /* block_cache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = block_cache.cpp; sourceTree = "<group>"; };
-		7C80244520A895B800673A4F /* bloom_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bloom_filter.cpp; sourceTree = "<group>"; };
-		7C80244620A895B800673A4F /* broadcast_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = broadcast_socket.cpp; sourceTree = "<group>"; };
-		7C80244720A895B800673A4F /* bt_peer_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bt_peer_connection.cpp; sourceTree = "<group>"; };
-		7C80244820A895B800673A4F /* chained_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chained_buffer.cpp; sourceTree = "<group>"; };
-		7C80244920A895B800673A4F /* choker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = choker.cpp; sourceTree = "<group>"; };
-		7C80244A20A895B800673A4F /* close_reason.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = close_reason.cpp; sourceTree = "<group>"; };
-		7C80244B20A895B800673A4F /* ConvertUTF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConvertUTF.cpp; sourceTree = "<group>"; };
-		7C80244C20A895B800673A4F /* cpuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cpuid.cpp; sourceTree = "<group>"; };
-		7C80244D20A895B800673A4F /* crc32c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crc32c.cpp; sourceTree = "<group>"; };
-		7C80244E20A895B800673A4F /* create_torrent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = create_torrent.cpp; sourceTree = "<group>"; };
-		7C80244F20A895B800673A4F /* disk_buffer_holder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disk_buffer_holder.cpp; sourceTree = "<group>"; };
-		7C80245020A895B800673A4F /* disk_buffer_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disk_buffer_pool.cpp; sourceTree = "<group>"; };
-		7C80245120A895B800673A4F /* disk_io_job.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disk_io_job.cpp; sourceTree = "<group>"; };
-		7C80245220A895B800673A4F /* disk_io_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disk_io_thread.cpp; sourceTree = "<group>"; };
-		7C80245320A895B800673A4F /* disk_job_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = disk_job_pool.cpp; sourceTree = "<group>"; };
-		7C80245520A895B800673A4F /* add_scalar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = add_scalar.cpp; sourceTree = "<group>"; };
-		7C80245620A895B800673A4F /* fe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fe.cpp; sourceTree = "<group>"; };
-		7C80245720A895B800673A4F /* fe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fe.h; sourceTree = "<group>"; };
-		7C80245820A895B800673A4F /* fixedint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixedint.h; sourceTree = "<group>"; };
-		7C80245920A895B800673A4F /* ge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ge.cpp; sourceTree = "<group>"; };
-		7C80245A20A895B800673A4F /* ge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ge.h; sourceTree = "<group>"; };
-		7C80245B20A895B800673A4F /* key_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = key_exchange.cpp; sourceTree = "<group>"; };
-		7C80245C20A895B800673A4F /* keypair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keypair.cpp; sourceTree = "<group>"; };
-		7C80245D20A895B800673A4F /* precomp_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = precomp_data.h; sourceTree = "<group>"; };
-		7C80245E20A895B800673A4F /* sc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sc.cpp; sourceTree = "<group>"; };
-		7C80245F20A895B800673A4F /* sc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sc.h; sourceTree = "<group>"; };
-		7C80246020A895B800673A4F /* seed.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = seed.cpp; sourceTree = "<group>"; };
-		7C80246120A895B800673A4F /* sha512.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha512.cpp; sourceTree = "<group>"; };
-		7C80246220A895B800673A4F /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha512.h; sourceTree = "<group>"; };
-		7C80246320A895B800673A4F /* sign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sign.cpp; sourceTree = "<group>"; };
-		7C80246420A895B800673A4F /* verify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = verify.cpp; sourceTree = "<group>"; };
-		7C80246520A895B800673A4F /* entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry.cpp; sourceTree = "<group>"; };
-		7C80246620A895B800673A4F /* enum_net.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enum_net.cpp; sourceTree = "<group>"; };
-		7C80246720A895B800673A4F /* error_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error_code.cpp; sourceTree = "<group>"; };
-		7C80246820A895B800673A4F /* escape_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = escape_string.cpp; sourceTree = "<group>"; };
-		7C80246920A895B800673A4F /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
-		7C80246A20A895B800673A4F /* file_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_pool.cpp; sourceTree = "<group>"; };
-		7C80246B20A895B800673A4F /* file_progress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_progress.cpp; sourceTree = "<group>"; };
-		7C80246C20A895B800673A4F /* file_storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_storage.cpp; sourceTree = "<group>"; };
-		7C80246D20A895B800673A4F /* fingerprint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fingerprint.cpp; sourceTree = "<group>"; };
-		7C80246E20A895B800673A4F /* gzip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gzip.cpp; sourceTree = "<group>"; };
-		7C80246F20A895B800673A4F /* hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher.cpp; sourceTree = "<group>"; };
-		7C80247020A895B800673A4F /* hex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hex.cpp; sourceTree = "<group>"; };
-		7C80247120A895B800673A4F /* http_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_connection.cpp; sourceTree = "<group>"; };
-		7C80247220A895B800673A4F /* http_parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_parser.cpp; sourceTree = "<group>"; };
-		7C80247320A895B800673A4F /* http_seed_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_seed_connection.cpp; sourceTree = "<group>"; };
-		7C80247420A895B800673A4F /* http_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_stream.cpp; sourceTree = "<group>"; };
-		7C80247520A895B800673A4F /* http_tracker_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_tracker_connection.cpp; sourceTree = "<group>"; };
-		7C80247620A895B800673A4F /* i2p_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = i2p_stream.cpp; sourceTree = "<group>"; };
-		7C80247720A895B800673A4F /* identify_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = identify_client.cpp; sourceTree = "<group>"; };
-		7C80247820A895B800673A4F /* instantiate_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = instantiate_connection.cpp; sourceTree = "<group>"; };
-		7C80247920A895B800673A4F /* ip_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ip_filter.cpp; sourceTree = "<group>"; };
-		7C80247A20A895B800673A4F /* ip_voter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ip_voter.cpp; sourceTree = "<group>"; };
-		7C80247C20A895B800673A4F /* dht_storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dht_storage.cpp; sourceTree = "<group>"; };
-		7C80247D20A895B800673A4F /* dht_tracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dht_tracker.cpp; sourceTree = "<group>"; };
-		7C80247E20A895B800673A4F /* dos_blocker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dos_blocker.cpp; sourceTree = "<group>"; };
-		7C80247F20A895B800673A4F /* find_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = find_data.cpp; sourceTree = "<group>"; };
-		7C80248020A895B800673A4F /* get_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_item.cpp; sourceTree = "<group>"; };
-		7C80248120A895B800673A4F /* get_peers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = get_peers.cpp; sourceTree = "<group>"; };
-		7C80248220A895B800673A4F /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
-		7C80248320A895B800673A4F /* msg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = msg.cpp; sourceTree = "<group>"; };
-		7C80248420A895B800673A4F /* node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node.cpp; sourceTree = "<group>"; };
-		7C80248520A895B800673A4F /* node_entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node_entry.cpp; sourceTree = "<group>"; };
-		7C80248620A895B800673A4F /* node_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node_id.cpp; sourceTree = "<group>"; };
-		7C80248720A895B800673A4F /* put_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = put_data.cpp; sourceTree = "<group>"; };
-		7C80248820A895B800673A4F /* refresh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = refresh.cpp; sourceTree = "<group>"; };
-		7C80248920A895B800673A4F /* routing_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = routing_table.cpp; sourceTree = "<group>"; };
-		7C80248A20A895B800673A4F /* rpc_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rpc_manager.cpp; sourceTree = "<group>"; };
-		7C80248B20A895B800673A4F /* traversal_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = traversal_algorithm.cpp; sourceTree = "<group>"; };
-		7C80248C20A895B800673A4F /* lazy_bdecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lazy_bdecode.cpp; sourceTree = "<group>"; };
-		7C80248E20A895B800673A4F /* lsd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lsd.cpp; sourceTree = "<group>"; };
-		7C80248F20A895B800673A4F /* lt_trackers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lt_trackers.cpp; sourceTree = "<group>"; };
-		7C80249020A895B800673A4F /* magnet_uri.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = magnet_uri.cpp; sourceTree = "<group>"; };
-		7C80249120A895B800673A4F /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		7C80249220A895B800673A4F /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
-		7C80249320A895B800673A4F /* merkle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = merkle.cpp; sourceTree = "<group>"; };
-		7C80249420A895B800673A4F /* metadata_transfer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metadata_transfer.cpp; sourceTree = "<group>"; };
-		7C80249520A895B800673A4F /* mpi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mpi.cpp; sourceTree = "<group>"; };
-		7C80249620A895B800673A4F /* natpmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = natpmp.cpp; sourceTree = "<group>"; };
-		7C80249720A895B800673A4F /* packet_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = packet_buffer.cpp; sourceTree = "<group>"; };
-		7C80249820A895B800673A4F /* parse_url.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parse_url.cpp; sourceTree = "<group>"; };
-		7C80249920A895B800673A4F /* part_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = part_file.cpp; sourceTree = "<group>"; };
-		7C80249A20A895B800673A4F /* pe_crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pe_crypto.cpp; sourceTree = "<group>"; };
-		7C80249B20A895B800673A4F /* peer_class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = peer_class.cpp; sourceTree = "<group>"; };
-		7C80249C20A895B800673A4F /* peer_class_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = peer_class_set.cpp; sourceTree = "<group>"; };
-		7C80249D20A895B800673A4F /* peer_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = peer_connection.cpp; sourceTree = "<group>"; };
-		7C80249E20A895B800673A4F /* peer_connection_handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = peer_connection_handle.cpp; sourceTree = "<group>"; };
-		7C80249F20A895B800673A4F /* peer_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = peer_list.cpp; sourceTree = "<group>"; };
-		7C8024A020A895B800673A4F /* performance_counters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = performance_counters.cpp; sourceTree = "<group>"; };
-		7C8024A120A895B800673A4F /* piece_picker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = piece_picker.cpp; sourceTree = "<group>"; };
-		7C8024A220A895B800673A4F /* platform_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = platform_util.cpp; sourceTree = "<group>"; };
-		7C8024A420A895B800673A4F /* proxy_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proxy_base.cpp; sourceTree = "<group>"; };
-		7C8024A520A895B800673A4F /* proxy_settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = proxy_settings.cpp; sourceTree = "<group>"; };
-		7C8024A620A895B800673A4F /* puff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = puff.cpp; sourceTree = "<group>"; };
-		7C8024A720A895B800673A4F /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
-		7C8024A820A895B800673A4F /* receive_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = receive_buffer.cpp; sourceTree = "<group>"; };
-		7C8024A920A895B800673A4F /* request_blocks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = request_blocks.cpp; sourceTree = "<group>"; };
-		7C8024AA20A895B800673A4F /* resolve_links.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resolve_links.cpp; sourceTree = "<group>"; };
-		7C8024AB20A895B800673A4F /* resolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = resolver.cpp; sourceTree = "<group>"; };
-		7C8024AC20A895B800673A4F /* rss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rss.cpp; sourceTree = "<group>"; };
-		7C8024AD20A895B800673A4F /* session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cpp; sourceTree = "<group>"; };
-		7C8024AE20A895B800673A4F /* session_call.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session_call.cpp; sourceTree = "<group>"; };
-		7C8024AF20A895B800673A4F /* session_handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session_handle.cpp; sourceTree = "<group>"; };
-		7C8024B020A895B800673A4F /* session_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session_impl.cpp; sourceTree = "<group>"; };
-		7C8024B120A895B800673A4F /* session_settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session_settings.cpp; sourceTree = "<group>"; };
-		7C8024B220A895B800673A4F /* session_stats.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session_stats.cpp; sourceTree = "<group>"; };
-		7C8024B320A895B800673A4F /* settings_pack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = settings_pack.cpp; sourceTree = "<group>"; };
-		7C8024B420A895B800673A4F /* sha1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sha1.cpp; sourceTree = "<group>"; };
-		7C8024B520A895B800673A4F /* smart_ban.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = smart_ban.cpp; sourceTree = "<group>"; };
-		7C8024B620A895B800673A4F /* socket_io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_io.cpp; sourceTree = "<group>"; };
-		7C8024B720A895B800673A4F /* socket_type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_type.cpp; sourceTree = "<group>"; };
-		7C8024B820A895B800673A4F /* socks5_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socks5_stream.cpp; sourceTree = "<group>"; };
-		7C8024B920A895B800673A4F /* stat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stat.cpp; sourceTree = "<group>"; };
-		7C8024BA20A895B800673A4F /* stat_cache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stat_cache.cpp; sourceTree = "<group>"; };
-		7C8024BB20A895B800673A4F /* storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = storage.cpp; sourceTree = "<group>"; };
-		7C8024BC20A895B800673A4F /* string_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_util.cpp; sourceTree = "<group>"; };
-		7C8024BD20A895B800673A4F /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
-		7C8024BE20A895B800673A4F /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
-		7C8024BF20A895B800673A4F /* timestamp_history.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timestamp_history.cpp; sourceTree = "<group>"; };
-		7C8024C020A895B800673A4F /* torrent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = torrent.cpp; sourceTree = "<group>"; };
-		7C8024C120A895B800673A4F /* torrent_handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = torrent_handle.cpp; sourceTree = "<group>"; };
-		7C8024C220A895B800673A4F /* torrent_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = torrent_info.cpp; sourceTree = "<group>"; };
-		7C8024C320A895B800673A4F /* torrent_peer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = torrent_peer.cpp; sourceTree = "<group>"; };
-		7C8024C420A895B800673A4F /* torrent_peer_allocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = torrent_peer_allocator.cpp; sourceTree = "<group>"; };
-		7C8024C520A895B800673A4F /* torrent_status.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = torrent_status.cpp; sourceTree = "<group>"; };
-		7C8024C620A895B800673A4F /* tracker_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tracker_manager.cpp; sourceTree = "<group>"; };
-		7C8024C720A895B800673A4F /* udp_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = udp_socket.cpp; sourceTree = "<group>"; };
-		7C8024C820A895B800673A4F /* udp_tracker_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = udp_tracker_connection.cpp; sourceTree = "<group>"; };
-		7C8024C920A895B800673A4F /* upnp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = upnp.cpp; sourceTree = "<group>"; };
-		7C8024CA20A895B800673A4F /* ut_metadata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ut_metadata.cpp; sourceTree = "<group>"; };
-		7C8024CB20A895B800673A4F /* ut_pex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ut_pex.cpp; sourceTree = "<group>"; };
-		7C8024CC20A895B800673A4F /* utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utf8.cpp; sourceTree = "<group>"; };
-		7C8024CD20A895B800673A4F /* utp_socket_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utp_socket_manager.cpp; sourceTree = "<group>"; };
-		7C8024CE20A895B800673A4F /* utp_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utp_stream.cpp; sourceTree = "<group>"; };
-		7C8024CF20A895B800673A4F /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
-		7C8024D020A895B800673A4F /* web_connection_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_connection_base.cpp; sourceTree = "<group>"; };
-		7C8024D120A895B800673A4F /* web_peer_connection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = web_peer_connection.cpp; sourceTree = "<group>"; };
-		7C8024D220A895B800673A4F /* xml_parse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_parse.cpp; sourceTree = "<group>"; };
 		7C80257420A9B17C00673A4F /* TorrentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentCell.swift; sourceTree = "<group>"; };
-		7CB8082620A9DB5B00F76931 /* result_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = result_struct.h; sourceTree = "<group>"; };
 		7CB8082820AA26DD00F76931 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = iTorrent/Manager.swift; sourceTree = SOURCE_ROOT; };
 		7CB8082A20AA28F200F76931 /* TorrentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentStatus.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsController.swift; sourceTree = "<group>"; };
 		7CB8083A20AB008700F76931 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
-		7CF522E120ADF75900D319E6 /* helper_code.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = helper_code.h; sourceTree = "<group>"; };
 		7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerSettings.swift; sourceTree = "<group>"; };
 		7CF522E520AE1F5000D319E6 /* SortingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingManager.swift; sourceTree = "<group>"; };
 		7CF522E720AEF3DB00D319E6 /* FileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
 		7CF522EB20AF78B100D319E6 /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		7CF522ED20AF7B0200D319E6 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
 		7CF522EF20AF85AB00D319E6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
-		7CF5F59020AB6F8A00A18C3E /* file_struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = file_struct.h; sourceTree = "<group>"; };
 		7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesController.swift; sourceTree = "<group>"; };
 		7CF5F59320AC86F500A18C3E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersUpdatedDelegate.swift; sourceTree = "<group>"; };
 		7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerStateChangedDelegade.swift; sourceTree = "<group>"; };
+		7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent_Framework.framework; sourceTree = "<group>"; };
 		F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CF99DC220B3630F00E5BF3A /* iTorrent_Framework.framework in Frameworks */,
 				30E43CB42BC2C2439FD00F53 /* Pods_iTorrent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,21 +132,17 @@
 		7C3C693120A754FB0023396C /* iTorrent */ = {
 			isa = PBXGroup;
 			children = (
-				7C27A1A320B223630065238C /* GoogleService-Info.plist */,
-				7C27A16720B0B9040065238C /* Version.ver */,
-				7CF522ED20AF7B0200D319E6 /* 3.wav */,
+				7CF99DC420B3636D00E5BF3A /* Resources */,
 				7CF522E420AE1F2C00D319E6 /* Utils */,
 				7CB8083320AAEDE200F76931 /* ViewControllers */,
 				7CB8082E20AA380400F76931 /* Delegates */,
 				7CB8082720AA26CE00F76931 /* System */,
 				7C80257320A9B15300673A4F /* Cells */,
-				7C80241B20A895B800673A4F /* Source */,
 				7C3C693220A754FB0023396C /* AppDelegate.swift */,
 				7C3C693620A754FB0023396C /* Main.storyboard */,
 				7C3C693920A754FD0023396C /* Assets.xcassets */,
 				7C3C693B20A754FD0023396C /* LaunchScreen.storyboard */,
 				7C3C693E20A754FD0023396C /* Info.plist */,
-				7CF5F58F20AB6F3100A18C3E /* Native Code */,
 			);
 			path = iTorrent;
 			sourceTree = "<group>";
@@ -458,226 +150,10 @@
 		7C3C694420A75FBF0023396C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CF99DC120B3630A00E5BF3A /* iTorrent_Framework.framework */,
 				65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7C80241B20A895B800673A4F /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				7C80241C20A895B800673A4F /* boost_filesystem */,
-				7C80242620A895B800673A4F /* boost_system */,
-				7C80243520A895B800673A4F /* Security */,
-				7C80243820A895B800673A4F /* torrent */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		7C80241C20A895B800673A4F /* boost_filesystem */ = {
-			isa = PBXGroup;
-			children = (
-				7C80241D20A895B800673A4F /* codecvt_error_category.cpp */,
-				7C80241E20A895B800673A4F /* operations.cpp */,
-				7C80241F20A895B800673A4F /* path.cpp */,
-				7C80242020A895B800673A4F /* path_traits.cpp */,
-				7C80242120A895B800673A4F /* portability.cpp */,
-				7C80242220A895B800673A4F /* unique_path.cpp */,
-				7C80242320A895B800673A4F /* utf8_codecvt_facet.cpp */,
-				7C80242420A895B800673A4F /* windows_file_codecvt.cpp */,
-				7C80242520A895B800673A4F /* windows_file_codecvt.hpp */,
-			);
-			path = boost_filesystem;
-			sourceTree = "<group>";
-		};
-		7C80242620A895B800673A4F /* boost_system */ = {
-			isa = PBXGroup;
-			children = (
-				7C80242720A895B800673A4F /* error_code.cpp */,
-			);
-			path = boost_system;
-			sourceTree = "<group>";
-		};
-		7C80243520A895B800673A4F /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				7C80243620A895B800673A4F /* CocoaSecurity.h */,
-				7C80243720A895B800673A4F /* CocoaSecurity.m */,
-			);
-			path = Security;
-			sourceTree = "<group>";
-		};
-		7C80243820A895B800673A4F /* torrent */ = {
-			isa = PBXGroup;
-			children = (
-				7C80243920A895B800673A4F /* alert.cpp */,
-				7C80243A20A895B800673A4F /* alert_manager.cpp */,
-				7C80243B20A895B800673A4F /* allocator.cpp */,
-				7C80243C20A895B800673A4F /* announce_entry.cpp */,
-				7C80243D20A895B800673A4F /* asio.cpp */,
-				7C80243E20A895B800673A4F /* assert.cpp */,
-				7C80243F20A895B800673A4F /* bandwidth_limit.cpp */,
-				7C80244020A895B800673A4F /* bandwidth_manager.cpp */,
-				7C80244120A895B800673A4F /* bandwidth_queue_entry.cpp */,
-				7C80244220A895B800673A4F /* bdecode.cpp */,
-				7C80244320A895B800673A4F /* bitfield.cpp */,
-				7C80244420A895B800673A4F /* block_cache.cpp */,
-				7C80244520A895B800673A4F /* bloom_filter.cpp */,
-				7C80244620A895B800673A4F /* broadcast_socket.cpp */,
-				7C80244720A895B800673A4F /* bt_peer_connection.cpp */,
-				7C80244820A895B800673A4F /* chained_buffer.cpp */,
-				7C80244920A895B800673A4F /* choker.cpp */,
-				7C80244A20A895B800673A4F /* close_reason.cpp */,
-				7C80244B20A895B800673A4F /* ConvertUTF.cpp */,
-				7C80244C20A895B800673A4F /* cpuid.cpp */,
-				7C80244D20A895B800673A4F /* crc32c.cpp */,
-				7C80244E20A895B800673A4F /* create_torrent.cpp */,
-				7C80244F20A895B800673A4F /* disk_buffer_holder.cpp */,
-				7C80245020A895B800673A4F /* disk_buffer_pool.cpp */,
-				7C80245120A895B800673A4F /* disk_io_job.cpp */,
-				7C80245220A895B800673A4F /* disk_io_thread.cpp */,
-				7C80245320A895B800673A4F /* disk_job_pool.cpp */,
-				7C80245420A895B800673A4F /* ed25519 */,
-				7C80246520A895B800673A4F /* entry.cpp */,
-				7C80246620A895B800673A4F /* enum_net.cpp */,
-				7C80246720A895B800673A4F /* error_code.cpp */,
-				7C80246820A895B800673A4F /* escape_string.cpp */,
-				7C80246920A895B800673A4F /* file.cpp */,
-				7C80246A20A895B800673A4F /* file_pool.cpp */,
-				7C80246B20A895B800673A4F /* file_progress.cpp */,
-				7C80246C20A895B800673A4F /* file_storage.cpp */,
-				7C80246D20A895B800673A4F /* fingerprint.cpp */,
-				7C80246E20A895B800673A4F /* gzip.cpp */,
-				7C80246F20A895B800673A4F /* hasher.cpp */,
-				7C80247020A895B800673A4F /* hex.cpp */,
-				7C80247120A895B800673A4F /* http_connection.cpp */,
-				7C80247220A895B800673A4F /* http_parser.cpp */,
-				7C80247320A895B800673A4F /* http_seed_connection.cpp */,
-				7C80247420A895B800673A4F /* http_stream.cpp */,
-				7C80247520A895B800673A4F /* http_tracker_connection.cpp */,
-				7C80247620A895B800673A4F /* i2p_stream.cpp */,
-				7C80247720A895B800673A4F /* identify_client.cpp */,
-				7C80247820A895B800673A4F /* instantiate_connection.cpp */,
-				7C80247920A895B800673A4F /* ip_filter.cpp */,
-				7C80247A20A895B800673A4F /* ip_voter.cpp */,
-				7C80247B20A895B800673A4F /* kademlia */,
-				7C80248C20A895B800673A4F /* lazy_bdecode.cpp */,
-				7C80248E20A895B800673A4F /* lsd.cpp */,
-				7C80248F20A895B800673A4F /* lt_trackers.cpp */,
-				7C80249020A895B800673A4F /* magnet_uri.cpp */,
-				7C80249120A895B800673A4F /* Makefile.am */,
-				7C80249220A895B800673A4F /* Makefile.in */,
-				7C80249320A895B800673A4F /* merkle.cpp */,
-				7C80249420A895B800673A4F /* metadata_transfer.cpp */,
-				7C80249520A895B800673A4F /* mpi.cpp */,
-				7C80249620A895B800673A4F /* natpmp.cpp */,
-				7C80249720A895B800673A4F /* packet_buffer.cpp */,
-				7C80249820A895B800673A4F /* parse_url.cpp */,
-				7C80249920A895B800673A4F /* part_file.cpp */,
-				7C80249A20A895B800673A4F /* pe_crypto.cpp */,
-				7C80249B20A895B800673A4F /* peer_class.cpp */,
-				7C80249C20A895B800673A4F /* peer_class_set.cpp */,
-				7C80249D20A895B800673A4F /* peer_connection.cpp */,
-				7C80249E20A895B800673A4F /* peer_connection_handle.cpp */,
-				7C80249F20A895B800673A4F /* peer_list.cpp */,
-				7C8024A020A895B800673A4F /* performance_counters.cpp */,
-				7C8024A120A895B800673A4F /* piece_picker.cpp */,
-				7C8024A220A895B800673A4F /* platform_util.cpp */,
-				7C8024A420A895B800673A4F /* proxy_base.cpp */,
-				7C8024A520A895B800673A4F /* proxy_settings.cpp */,
-				7C8024A620A895B800673A4F /* puff.cpp */,
-				7C8024A720A895B800673A4F /* random.cpp */,
-				7C8024A820A895B800673A4F /* receive_buffer.cpp */,
-				7C8024A920A895B800673A4F /* request_blocks.cpp */,
-				7C8024AA20A895B800673A4F /* resolve_links.cpp */,
-				7C8024AB20A895B800673A4F /* resolver.cpp */,
-				7C8024AC20A895B800673A4F /* rss.cpp */,
-				7C8024AD20A895B800673A4F /* session.cpp */,
-				7C8024AE20A895B800673A4F /* session_call.cpp */,
-				7C8024AF20A895B800673A4F /* session_handle.cpp */,
-				7C8024B020A895B800673A4F /* session_impl.cpp */,
-				7C8024B120A895B800673A4F /* session_settings.cpp */,
-				7C8024B220A895B800673A4F /* session_stats.cpp */,
-				7C8024B320A895B800673A4F /* settings_pack.cpp */,
-				7C8024B420A895B800673A4F /* sha1.cpp */,
-				7C8024B520A895B800673A4F /* smart_ban.cpp */,
-				7C8024B620A895B800673A4F /* socket_io.cpp */,
-				7C8024B720A895B800673A4F /* socket_type.cpp */,
-				7C8024B820A895B800673A4F /* socks5_stream.cpp */,
-				7C8024B920A895B800673A4F /* stat.cpp */,
-				7C8024BA20A895B800673A4F /* stat_cache.cpp */,
-				7C8024BB20A895B800673A4F /* storage.cpp */,
-				7C8024BC20A895B800673A4F /* string_util.cpp */,
-				7C8024BD20A895B800673A4F /* thread.cpp */,
-				7C8024BE20A895B800673A4F /* time.cpp */,
-				7C8024BF20A895B800673A4F /* timestamp_history.cpp */,
-				7C8024C020A895B800673A4F /* torrent.cpp */,
-				7C8024C120A895B800673A4F /* torrent_handle.cpp */,
-				7C8024C220A895B800673A4F /* torrent_info.cpp */,
-				7C8024C320A895B800673A4F /* torrent_peer.cpp */,
-				7C8024C420A895B800673A4F /* torrent_peer_allocator.cpp */,
-				7C8024C520A895B800673A4F /* torrent_status.cpp */,
-				7C8024C620A895B800673A4F /* tracker_manager.cpp */,
-				7C8024C720A895B800673A4F /* udp_socket.cpp */,
-				7C8024C820A895B800673A4F /* udp_tracker_connection.cpp */,
-				7C8024C920A895B800673A4F /* upnp.cpp */,
-				7C8024CA20A895B800673A4F /* ut_metadata.cpp */,
-				7C8024CB20A895B800673A4F /* ut_pex.cpp */,
-				7C8024CC20A895B800673A4F /* utf8.cpp */,
-				7C8024CD20A895B800673A4F /* utp_socket_manager.cpp */,
-				7C8024CE20A895B800673A4F /* utp_stream.cpp */,
-				7C8024CF20A895B800673A4F /* version.cpp */,
-				7C8024D020A895B800673A4F /* web_connection_base.cpp */,
-				7C8024D120A895B800673A4F /* web_peer_connection.cpp */,
-				7C8024D220A895B800673A4F /* xml_parse.cpp */,
-			);
-			path = torrent;
-			sourceTree = "<group>";
-		};
-		7C80245420A895B800673A4F /* ed25519 */ = {
-			isa = PBXGroup;
-			children = (
-				7C80245520A895B800673A4F /* add_scalar.cpp */,
-				7C80245620A895B800673A4F /* fe.cpp */,
-				7C80245720A895B800673A4F /* fe.h */,
-				7C80245820A895B800673A4F /* fixedint.h */,
-				7C80245920A895B800673A4F /* ge.cpp */,
-				7C80245A20A895B800673A4F /* ge.h */,
-				7C80245B20A895B800673A4F /* key_exchange.cpp */,
-				7C80245C20A895B800673A4F /* keypair.cpp */,
-				7C80245D20A895B800673A4F /* precomp_data.h */,
-				7C80245E20A895B800673A4F /* sc.cpp */,
-				7C80245F20A895B800673A4F /* sc.h */,
-				7C80246020A895B800673A4F /* seed.cpp */,
-				7C80246120A895B800673A4F /* sha512.cpp */,
-				7C80246220A895B800673A4F /* sha512.h */,
-				7C80246320A895B800673A4F /* sign.cpp */,
-				7C80246420A895B800673A4F /* verify.cpp */,
-			);
-			path = ed25519;
-			sourceTree = "<group>";
-		};
-		7C80247B20A895B800673A4F /* kademlia */ = {
-			isa = PBXGroup;
-			children = (
-				7C80247C20A895B800673A4F /* dht_storage.cpp */,
-				7C80247D20A895B800673A4F /* dht_tracker.cpp */,
-				7C80247E20A895B800673A4F /* dos_blocker.cpp */,
-				7C80247F20A895B800673A4F /* find_data.cpp */,
-				7C80248020A895B800673A4F /* get_item.cpp */,
-				7C80248120A895B800673A4F /* get_peers.cpp */,
-				7C80248220A895B800673A4F /* item.cpp */,
-				7C80248320A895B800673A4F /* msg.cpp */,
-				7C80248420A895B800673A4F /* node.cpp */,
-				7C80248520A895B800673A4F /* node_entry.cpp */,
-				7C80248620A895B800673A4F /* node_id.cpp */,
-				7C80248720A895B800673A4F /* put_data.cpp */,
-				7C80248820A895B800673A4F /* refresh.cpp */,
-				7C80248920A895B800673A4F /* routing_table.cpp */,
-				7C80248A20A895B800673A4F /* rpc_manager.cpp */,
-				7C80248B20A895B800673A4F /* traversal_algorithm.cpp */,
-			);
-			path = kademlia;
 			sourceTree = "<group>";
 		};
 		7C80257320A9B15300673A4F /* Cells */ = {
@@ -735,16 +211,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		7CF5F58F20AB6F3100A18C3E /* Native Code */ = {
+		7CF99DC420B3636D00E5BF3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7C57CFE820A783AF00FB774D /* iTorrent-Bridging-Header.h */,
-				7CB8082620A9DB5B00F76931 /* result_struct.h */,
-				7C57CFE920A783AF00FB774D /* wrapper.cpp */,
-				7CF5F59020AB6F8A00A18C3E /* file_struct.h */,
-				7CF522E120ADF75900D319E6 /* helper_code.h */,
+				7C27A1A320B223630065238C /* GoogleService-Info.plist */,
+				7C27A16720B0B9040065238C /* Version.ver */,
+				7CF522ED20AF7B0200D319E6 /* 3.wav */,
 			);
-			name = "Native Code";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -759,6 +233,7 @@
 				7C3C692C20A754FB0023396C /* Frameworks */,
 				7C3C692D20A754FB0023396C /* Resources */,
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
+				7CF5F5CB20B2FC4000A18C3E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -815,10 +290,8 @@
 			files = (
 				7CF522EE20AF7B0300D319E6 /* 3.wav in Resources */,
 				7C27A1A420B223630065238C /* GoogleService-Info.plist in Resources */,
-				7C80253220A895B800673A4F /* Makefile.in in Resources */,
 				7C27A16820B0B9040065238C /* Version.ver in Resources */,
 				7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */,
-				7C80253120A895B800673A4F /* Makefile.am in Resources */,
 				7C3C693A20A754FD0023396C /* Assets.xcassets in Resources */,
 				7C3C693820A754FB0023396C /* Main.storyboard in Resources */,
 			);
@@ -878,180 +351,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C8024FC20A895B800673A4F /* add_scalar.cpp in Sources */,
-				7C8024F120A895B800673A4F /* choker.cpp in Sources */,
-				7C80252E20A895B800673A4F /* lsd.cpp in Sources */,
-				7C80254D20A895B800673A4F /* session.cpp in Sources */,
-				7C80254720A895B800673A4F /* random.cpp in Sources */,
-				7C80250B20A895B800673A4F /* file_pool.cpp in Sources */,
-				7C8024E120A895B800673A4F /* alert.cpp in Sources */,
-				7C80251620A895B800673A4F /* http_tracker_connection.cpp in Sources */,
-				7C8024FA20A895B800673A4F /* disk_io_thread.cpp in Sources */,
 				7C3E842120AB6BB400577282 /* FileCell.swift in Sources */,
-				7C80253020A895B800673A4F /* magnet_uri.cpp in Sources */,
-				7C8024E420A895B800673A4F /* announce_entry.cpp in Sources */,
-				7C8024F820A895B800673A4F /* disk_buffer_pool.cpp in Sources */,
-				7C80255620A895B800673A4F /* socket_io.cpp in Sources */,
-				7C80250220A895B800673A4F /* seed.cpp in Sources */,
-				7C80250920A895B800673A4F /* escape_string.cpp in Sources */,
-				7C8024EB20A895B800673A4F /* bitfield.cpp in Sources */,
-				7C80251320A895B800673A4F /* http_parser.cpp in Sources */,
-				7C80255D20A895B800673A4F /* thread.cpp in Sources */,
-				7C8024FB20A895B800673A4F /* disk_job_pool.cpp in Sources */,
-				7C80253F20A895B800673A4F /* peer_list.cpp in Sources */,
-				7C80252720A895B800673A4F /* put_data.cpp in Sources */,
-				7C80250E20A895B800673A4F /* fingerprint.cpp in Sources */,
 				7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */,
-				7C80253D20A895B800673A4F /* peer_connection.cpp in Sources */,
-				7C80253C20A895B800673A4F /* peer_class_set.cpp in Sources */,
-				7C8024DA20A895B800673A4F /* windows_file_codecvt.cpp in Sources */,
-				7C80255C20A895B800673A4F /* string_util.cpp in Sources */,
-				7C80251120A895B800673A4F /* hex.cpp in Sources */,
-				7C80254420A895B800673A4F /* proxy_base.cpp in Sources */,
-				7C8024E220A895B800673A4F /* alert_manager.cpp in Sources */,
-				7C80254C20A895B800673A4F /* rss.cpp in Sources */,
-				7C8024F720A895B800673A4F /* disk_buffer_holder.cpp in Sources */,
-				7C80256820A895B800673A4F /* udp_tracker_connection.cpp in Sources */,
-				7C80256D20A895B800673A4F /* utp_socket_manager.cpp in Sources */,
-				7C80252920A895B800673A4F /* routing_table.cpp in Sources */,
-				7C80250A20A895B800673A4F /* file.cpp in Sources */,
-				7C80254620A895B800673A4F /* puff.cpp in Sources */,
-				7C80256720A895B800673A4F /* udp_socket.cpp in Sources */,
 				7CB8083220AADA8300F76931 /* Utils.swift in Sources */,
-				7C80253820A895B800673A4F /* parse_url.cpp in Sources */,
 				7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */,
-				7C8024F620A895B800673A4F /* create_torrent.cpp in Sources */,
 				7CB8083720AAFFD200F76931 /* TorrentDetailsController.swift in Sources */,
-				7C8024D820A895B800673A4F /* unique_path.cpp in Sources */,
-				7C80250720A895B800673A4F /* enum_net.cpp in Sources */,
-				7C80251F20A895B800673A4F /* find_data.cpp in Sources */,
-				7C80251520A895B800673A4F /* http_stream.cpp in Sources */,
-				7C80250820A895B800673A4F /* error_code.cpp in Sources */,
-				7C80252320A895B800673A4F /* msg.cpp in Sources */,
-				7C8024F520A895B800673A4F /* crc32c.cpp in Sources */,
-				7C8024E820A895B800673A4F /* bandwidth_manager.cpp in Sources */,
-				7C80256C20A895B800673A4F /* utf8.cpp in Sources */,
-				7C80254920A895B800673A4F /* request_blocks.cpp in Sources */,
-				7C80256020A895B800673A4F /* torrent.cpp in Sources */,
-				7C80253720A895B800673A4F /* packet_buffer.cpp in Sources */,
-				7C80256F20A895B800673A4F /* version.cpp in Sources */,
-				7C80257220A895B800673A4F /* xml_parse.cpp in Sources */,
-				7C80255220A895B800673A4F /* session_stats.cpp in Sources */,
-				7C80251720A895B800673A4F /* i2p_stream.cpp in Sources */,
-				7C80255F20A895B800673A4F /* timestamp_history.cpp in Sources */,
-				7C80251420A895B800673A4F /* http_seed_connection.cpp in Sources */,
-				7C80257020A895B800673A4F /* web_connection_base.cpp in Sources */,
 				7CF522EC20AF78B100D319E6 /* BackgroundTask.swift in Sources */,
-				7C80256220A895B800673A4F /* torrent_info.cpp in Sources */,
-				7C80255520A895B800673A4F /* smart_ban.cpp in Sources */,
-				7C8024E320A895B800673A4F /* allocator.cpp in Sources */,
-				7C8024E620A895B800673A4F /* assert.cpp in Sources */,
-				7C80250D20A895B800673A4F /* file_storage.cpp in Sources */,
-				7C80255A20A895B800673A4F /* stat_cache.cpp in Sources */,
 				7CF522F020AF85AB00D319E6 /* UserDefaultsKeys.swift in Sources */,
-				7C80254A20A895B800673A4F /* resolve_links.cpp in Sources */,
-				7C8024D320A895B800673A4F /* codecvt_error_category.cpp in Sources */,
-				7C8024EC20A895B800673A4F /* block_cache.cpp in Sources */,
-				7C8024F020A895B800673A4F /* chained_buffer.cpp in Sources */,
-				7C80251A20A895B800673A4F /* ip_filter.cpp in Sources */,
-				7C80252820A895B800673A4F /* refresh.cpp in Sources */,
-				7C8024D920A895B800673A4F /* utf8_codecvt_facet.cpp in Sources */,
-				7C8024D620A895B800673A4F /* path_traits.cpp in Sources */,
 				7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */,
-				7C80250320A895B800673A4F /* sha512.cpp in Sources */,
-				7C8024D720A895B800673A4F /* portability.cpp in Sources */,
 				7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */,
-				7C8024E720A895B800673A4F /* bandwidth_limit.cpp in Sources */,
-				7C8024D520A895B800673A4F /* path.cpp in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
-				7C80253420A895B800673A4F /* metadata_transfer.cpp in Sources */,
-				7C80256620A895B800673A4F /* tracker_manager.cpp in Sources */,
 				7CF5F59820AC871A00A18C3E /* ManagerStateChangedDelegade.swift in Sources */,
-				7C80253620A895B800673A4F /* natpmp.cpp in Sources */,
-				7C8024F420A895B800673A4F /* cpuid.cpp in Sources */,
 				7C3C693320A754FB0023396C /* AppDelegate.swift in Sources */,
-				7C80251E20A895B800673A4F /* dos_blocker.cpp in Sources */,
-				7C80250420A895B800673A4F /* sign.cpp in Sources */,
-				7C80256520A895B800673A4F /* torrent_status.cpp in Sources */,
-				7C80255E20A895B800673A4F /* time.cpp in Sources */,
-				7C80254520A895B800673A4F /* proxy_settings.cpp in Sources */,
-				7C8024F920A895B800673A4F /* disk_io_job.cpp in Sources */,
-				7C80251D20A895B800673A4F /* dht_tracker.cpp in Sources */,
-				7C80251B20A895B800673A4F /* ip_voter.cpp in Sources */,
-				7C80254220A895B800673A4F /* platform_util.cpp in Sources */,
-				7C80250620A895B800673A4F /* entry.cpp in Sources */,
-				7C80254120A895B800673A4F /* piece_picker.cpp in Sources */,
-				7C80252A20A895B800673A4F /* rpc_manager.cpp in Sources */,
-				7C8024EE20A895B800673A4F /* broadcast_socket.cpp in Sources */,
-				7C80254F20A895B800673A4F /* session_handle.cpp in Sources */,
-				7C80251920A895B800673A4F /* instantiate_connection.cpp in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
-				7C80255020A895B800673A4F /* session_impl.cpp in Sources */,
-				7C80256120A895B800673A4F /* torrent_handle.cpp in Sources */,
-				7C80255B20A895B800673A4F /* storage.cpp in Sources */,
-				7C80253B20A895B800673A4F /* peer_class.cpp in Sources */,
-				7C80253920A895B800673A4F /* part_file.cpp in Sources */,
-				7C8024FE20A895B800673A4F /* ge.cpp in Sources */,
-				7C80256320A895B800673A4F /* torrent_peer.cpp in Sources */,
-				7C80254020A895B800673A4F /* performance_counters.cpp in Sources */,
-				7C80255820A895B800673A4F /* socks5_stream.cpp in Sources */,
-				7C80254E20A895B800673A4F /* session_call.cpp in Sources */,
-				7C80255920A895B800673A4F /* stat.cpp in Sources */,
-				7C80256920A895B800673A4F /* upnp.cpp in Sources */,
-				7C80255120A895B800673A4F /* session_settings.cpp in Sources */,
 				7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */,
-				7C80256B20A895B800673A4F /* ut_pex.cpp in Sources */,
-				7C80250120A895B800673A4F /* sc.cpp in Sources */,
-				7C80251020A895B800673A4F /* hasher.cpp in Sources */,
-				7C80255320A895B800673A4F /* settings_pack.cpp in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
-				7C80252120A895B800673A4F /* get_peers.cpp in Sources */,
-				7C80253320A895B800673A4F /* merkle.cpp in Sources */,
-				7C80253E20A895B800673A4F /* peer_connection_handle.cpp in Sources */,
-				7C80252620A895B800673A4F /* node_id.cpp in Sources */,
-				7C80251C20A895B800673A4F /* dht_storage.cpp in Sources */,
-				7C80252420A895B800673A4F /* node.cpp in Sources */,
 				7CB8082920AA26DD00F76931 /* Manager.swift in Sources */,
-				7C80250C20A895B800673A4F /* file_progress.cpp in Sources */,
-				7C8024EF20A895B800673A4F /* bt_peer_connection.cpp in Sources */,
 				7C3E841D20AB10FE00577282 /* SettingsController.swift in Sources */,
-				7C8024E520A895B800673A4F /* asio.cpp in Sources */,
-				7C80257120A895B800673A4F /* web_peer_connection.cpp in Sources */,
-				7C8024F220A895B800673A4F /* close_reason.cpp in Sources */,
-				7C80252020A895B800673A4F /* get_item.cpp in Sources */,
-				7C80254820A895B800673A4F /* receive_buffer.cpp in Sources */,
-				7C80254B20A895B800673A4F /* resolver.cpp in Sources */,
-				7C80250F20A895B800673A4F /* gzip.cpp in Sources */,
-				7C80250520A895B800673A4F /* verify.cpp in Sources */,
-				7C80255420A895B800673A4F /* sha1.cpp in Sources */,
-				7C8024ED20A895B800673A4F /* bloom_filter.cpp in Sources */,
-				7C8024D420A895B800673A4F /* operations.cpp in Sources */,
-				7C80251820A895B800673A4F /* identify_client.cpp in Sources */,
-				7C8024E020A895B800673A4F /* CocoaSecurity.m in Sources */,
-				7C57CFEA20A783AF00FB774D /* wrapper.cpp in Sources */,
-				7C80255720A895B800673A4F /* socket_type.cpp in Sources */,
-				7C8024E920A895B800673A4F /* bandwidth_queue_entry.cpp in Sources */,
-				7C80250020A895B800673A4F /* keypair.cpp in Sources */,
-				7C8024FD20A895B800673A4F /* fe.cpp in Sources */,
-				7C8024FF20A895B800673A4F /* key_exchange.cpp in Sources */,
-				7C80253520A895B800673A4F /* mpi.cpp in Sources */,
-				7C8024EA20A895B800673A4F /* bdecode.cpp in Sources */,
-				7C80252B20A895B800673A4F /* traversal_algorithm.cpp in Sources */,
-				7C8024DB20A895B800673A4F /* error_code.cpp in Sources */,
-				7C80252520A895B800673A4F /* node_entry.cpp in Sources */,
 				7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */,
-				7C80252C20A895B800673A4F /* lazy_bdecode.cpp in Sources */,
 				7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */,
-				7C8024F320A895B800673A4F /* ConvertUTF.cpp in Sources */,
-				7C80251220A895B800673A4F /* http_connection.cpp in Sources */,
-				7C80252F20A895B800673A4F /* lt_trackers.cpp in Sources */,
-				7C80256E20A895B800673A4F /* utp_stream.cpp in Sources */,
-				7C80256420A895B800673A4F /* torrent_peer_allocator.cpp in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
-				7C80253A20A895B800673A4F /* pe_crypto.cpp in Sources */,
-				7C80252220A895B800673A4F /* item.cpp in Sources */,
 				7CF5F59220AC325100A18C3E /* TorrentFilesController.swift in Sources */,
-				7C80256A20A895B800673A4F /* ut_metadata.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,6 +523,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D59DHVRS87;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = iTorrent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1210,7 +534,10 @@
 					"@executable_path/Frameworks",
 					/usr/local/Cellar/boost/1.67.0_1/lib,
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1220,9 +547,9 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "iTorrent/iTorrent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/iTorrent_Framework.framework/Headers";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = /usr/include/net;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Debug;
@@ -1237,6 +564,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D59DHVRS87;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = iTorrent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1244,7 +575,10 @@
 					"@executable_path/Frameworks",
 					/usr/local/Cellar/boost/1.67.0_1/lib,
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
@@ -1252,9 +586,9 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iTorrent/iTorrent-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/iTorrent_Framework.framework/Headers";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = /usr/include/net;
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Release;

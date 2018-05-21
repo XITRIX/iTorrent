@@ -30,6 +30,7 @@ class Manager {
                 sleep(1)
             }
         }
+        
     }
 	
 	public static func saveTorrents() {

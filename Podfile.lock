@@ -62,7 +62,7 @@ DEPENDENCIES:
   - MaterialComponents/Snackbar
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -86,4 +86,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: db7d327199f890937a30dec0638390133c805f1c
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

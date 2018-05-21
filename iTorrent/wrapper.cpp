@@ -14,16 +14,16 @@
 #include <list>
 #include <map>
 #include <thread>
-#include <boost/make_shared.hpp>
-#include "libtorrent/entry.hpp"
-#include "libtorrent/bencode.hpp"
-#include "libtorrent/session.hpp"
-#include "libtorrent/create_torrent.hpp"
-#include "libtorrent/torrent_info.hpp"
+#include "alert_types.hpp"
 #include "libtorrent/announce_entry.hpp"
+#include "libtorrent/bencode.hpp"
+#include "libtorrent/create_torrent.hpp"
+#include "libtorrent/entry.hpp"
 #include "libtorrent/magnet_uri.hpp"
+#include "libtorrent/session.hpp"
+#include "libtorrent/torrent_info.hpp"
 #include "libtorrent/torrent_status.hpp"
-#include "libtorrent/alert_types.hpp"
+#include <boost/make_shared.hpp>
 #include "result_struct.h"
 #include "file_struct.h"
 
