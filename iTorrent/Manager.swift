@@ -154,15 +154,13 @@ class Manager {
 			managerSaves[hash] == nil {
 			print(hash)
 			managerSaves[hash] = UserManagerSettings()
-			managerSaves[hash]?.addedDate = Date()
 		}
         mainLoop()
 	}
     
     static func addMagnet(_ magnetLink: String) {
 		if magnetLink.starts(with: "magnet:"),
-			let hash = String(validatingUTF8: add_magnet(magnetLink)),
-			managerSaves[hash] == nil {
+			let hash = String(validatingUTF8: add_magnet(magnetLink)) {
 			print(hash)
 			managerSaves[hash] = UserManagerSettings()
 			mainLoop()
@@ -232,7 +230,7 @@ class Manager {
 		if (oldState == Utils.torrentStates.Metadata.rawValue) {
 			save_magnet_to_file(manager.hash)
 		}
-		if (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue) {
+        if (oldState == Utils.torrentStates.Downloading.rawValue && (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue)) {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
 				content.title = "Download finished"
@@ -244,7 +242,14 @@ class Manager {
 				let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 				
 				UNUserNotificationCenter.current().add(request)
-			}
+            } else {
+                let notification = UILocalNotification()
+                notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
+                notification.alertTitle = "Download finished"
+                notification.alertBody = manager.title + " finished downloading"
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.shared.scheduleLocalNotification(notification)
+            }
 			
 			BackgroundTask.checkToStopBackground()
 		}

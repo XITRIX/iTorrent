@@ -101,6 +101,8 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
             try! FileManager.default.removeItem(atPath: Manager.configFolder+"/_temp.torrent")
         }
         dismiss(animated: true)
+        let hash = String(validatingUTF8: get_torrent_file_hash(urlRes.path)) ?? "ERROR"
         add_torrent_with_states(urlRes.path, UnsafeMutablePointer(mutating: fileSelectes))
+        Manager.managerSaves[hash] = UserManagerSettings()
     }
 }

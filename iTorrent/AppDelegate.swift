@@ -32,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
 				print("Granted: " + String(granted))
 			}
-		} 
+        } else {
+            application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+        }
         
         return true
     }
