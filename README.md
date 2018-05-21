@@ -13,8 +13,7 @@
 
 Alternate version of [iTorrent app](https://github.com/XITRIX/iTorrent_CSharp) fully rewritten on Swift and C++ 
 
-### WARNING! : 
-if you used the previous version of this app, you will lose all your torrents in app UI (not downloaded files)
+### WARNING! : if you used the previous version of this app, you will lose all your torrents in app UI (not downloaded files)
 
 It is an ordinary torrent client for iOS with Files app support.
 
