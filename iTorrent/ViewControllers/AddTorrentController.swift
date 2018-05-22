@@ -64,6 +64,12 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
         }
         return cell
     }
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath) as! FileCell
+		cell.switcher.setOn(!cell.switcher.isOn, animated: true)
+		cell.action(cell.switcher)
+	}
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         if (FileManager.default.fileExists(atPath: Manager.configFolder+"/_temp.torrent")) {

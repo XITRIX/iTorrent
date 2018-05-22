@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+		
+		defaultUserDefaultsSettings()
+		
 		FirebaseApp.configure()
 		
         Manager.InitManager()
@@ -35,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         } else {
             application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
         }
+		
+		UIApplication.shared.applicationIconBadgeNumber = 0
         
         return true
     }
@@ -65,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+		UIApplication.shared.applicationIconBadgeNumber = 0
 		BackgroundTask.stopBackgroundTask()
 		resume_to_app()
 	}
@@ -121,6 +127,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return nil
     }
+	
+	func defaultUserDefaultsSettings() {
+		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationsKey) == nil) {
+			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.notificationsKey)
+		}
+	}
 
 }
 

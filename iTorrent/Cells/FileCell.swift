@@ -14,8 +14,8 @@ class FileCell: UITableViewCell {
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var shareButton: UIButton!
-    
-    var action : (_ sender: UISwitch)->() = {_ in }
+	
+	var action : (_ sender: UISwitch)->() = {_ in }
 	var name : String!
 	var indexPath : IndexPath!
 	var file : FileInfo!
@@ -33,7 +33,7 @@ class FileCell: UITableViewCell {
 			switcher.isHidden = false
 		}
 	}
-    
+	
     @IBAction func switcherAction(_ sender: UISwitch) {
         action(sender)
     }

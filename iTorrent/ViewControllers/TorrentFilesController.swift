@@ -115,6 +115,16 @@ class TorrentFilesController : UIViewController, UITableViewDataSource, UITableV
         }
         return cell
     }
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let file = files[sortMask[indexPath.row]]
+		let percent = Float(file.fileDownloaded) / Float(file.fileSize) * 100
+		if (percent < 100) {
+			let cell = tableView.cellForRow(at: indexPath) as! FileCell
+			cell.switcher.setOn(!cell.switcher.isOn, animated: true)
+			cell.action(cell.switcher)
+		}
+	}
     
     @IBAction func deselectAction(_ sender: UIBarButtonItem) {
 		for cell in tableView.visibleCells {

@@ -230,9 +230,11 @@ class Manager {
 		if (oldState == Utils.torrentStates.Metadata.rawValue) {
 			save_magnet_to_file(manager.hash)
 		}
-        if (oldState == Utils.torrentStates.Downloading.rawValue && (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue)) {
+        if UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsKey) &&
+			(oldState == Utils.torrentStates.Downloading.rawValue && (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue)) {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
+				
 				content.title = "Download finished"
 				content.body = manager.title + " finished downloading"
 				content.sound = UNNotificationSound.default()
@@ -244,12 +246,18 @@ class Manager {
 				UNUserNotificationCenter.current().add(request)
             } else {
                 let notification = UILocalNotification()
+				
                 notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
                 notification.alertTitle = "Download finished"
                 notification.alertBody = manager.title + " finished downloading"
                 notification.soundName = UILocalNotificationDefaultSoundName
+				
                 UIApplication.shared.scheduleLocalNotification(notification)
             }
+			
+			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey)) {
+				UIApplication.shared.applicationIconBadgeNumber += 1
+			}
 			
 			BackgroundTask.checkToStopBackground()
 		}

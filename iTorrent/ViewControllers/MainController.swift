@@ -79,8 +79,10 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 		} else {
 			for cell in tableView.visibleCells {
 				let cell = (cell as! TorrentCell)
-				cell.manager = Manager.getManagerByHash(hash: cell.manager.hash)!
-				cell.update()
+				if let manager = Manager.getManagerByHash(hash: cell.manager.hash) {
+					cell.manager = manager
+					cell.update()
+				}
 			}
 		}
     }

@@ -15,6 +15,8 @@ class SettingsController: UITableViewController {
     
 	@IBOutlet weak var backgroundSwitch: UISwitch!
 	@IBOutlet weak var backgroundSeedSwitch: UISwitch!
+	@IBOutlet weak var notificationSwitch: UISwitch!
+	@IBOutlet weak var badgeSwitch: UISwitch!
 	@IBOutlet weak var updateLabel: UILabel!
 	@IBOutlet weak var updateLoading: UIActivityIndicatorView!
 	
@@ -23,6 +25,12 @@ class SettingsController: UITableViewController {
 		
 		backgroundSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey), animated: false)
 		backgroundSeedSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey), animated: false)
+		
+		let notif = UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsKey)
+		notificationSwitch.setOn(notif, animated: false)
+		badgeSwitch.isEnabled = notif
+		
+		badgeSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey), animated: false)
 		
 		checkUpdates()
     }
@@ -37,7 +45,7 @@ class SettingsController: UITableViewController {
 		switch section {
 		case 0:
 			return "Enable downloading in background through multimedia functions"
-		case 1:
+		case 2:
 			let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
 			return "Current app version: " + version
 		default:
@@ -88,6 +96,15 @@ class SettingsController: UITableViewController {
 	
 	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
 		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+	}
+	
+	@IBAction func notificationAction(_ sender: UISwitch) {
+		badgeSwitch.isEnabled = sender.isOn
+		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.notificationsKey)
+	}
+	
+	@IBAction func badgeAction(_ sender: UISwitch) {
+		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.badgeKey)
 	}
 	
 	@IBAction func githubAction(_ sender: UIButton) {
