@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		
 		if #available(iOS 10.0, *) {
 			let center = UNUserNotificationCenter.current()
-			center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+			center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
 				print("Granted: " + String(granted))
 			}
         } else {
