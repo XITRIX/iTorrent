@@ -35,8 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
 				print("Granted: " + String(granted))
 			}
+			center.removeAllDeliveredNotifications()
         } else {
             application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+			UIApplication.shared.cancelAllLocalNotifications()
         }
 		
 		UIApplication.shared.applicationIconBadgeNumber = 0
@@ -70,6 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+		if #available(iOS 10.0, *) {
+			UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+		} else {
+			UIApplication.shared.cancelAllLocalNotifications()
+		}
 		UIApplication.shared.applicationIconBadgeNumber = 0
 		BackgroundTask.stopBackgroundTask()
 		resume_to_app()
