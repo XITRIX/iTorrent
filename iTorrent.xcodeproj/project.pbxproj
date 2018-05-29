@@ -572,7 +572,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xitrix/Library/Developer/Xcode/DerivedData/iTorrent-acfumcplnhntmnhaytevwoykyddc/Build/Products/Debug-iphoneos/iTorrent.framework/Headers/iTorrent-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent.framework/Headers/iTorrent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
@@ -621,7 +621,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xitrix/Library/Developer/Xcode/DerivedData/iTorrent-acfumcplnhntmnhaytevwoykyddc/Build/Products/Debug-iphoneos/iTorrent.framework/Headers/iTorrent-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent.framework/Headers/iTorrent-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
