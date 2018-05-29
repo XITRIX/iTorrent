@@ -41,7 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			UIApplication.shared.cancelAllLocalNotifications()
         }
 		
-		UIApplication.shared.applicationIconBadgeNumber = 0
+		if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)) {
+			Manager.startFTP()
+		}
         
         return true
     }
@@ -65,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+		UIApplication.shared.applicationIconBadgeNumber = 0
 		if (!BackgroundTask.startBackground()) {
 			Manager.saveTorrents()
 		}
@@ -136,8 +139,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 	
 	func defaultUserDefaultsSettings() {
+		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.backgroundKey) == nil) {
+			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundKey)
+		}
 		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationsKey) == nil) {
 			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.notificationsKey)
+		}
+		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.badgeKey) == nil) {
+			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.badgeKey)
 		}
 	}
 

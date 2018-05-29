@@ -7,13 +7,13 @@
 
 ![pic](https://user-images.githubusercontent.com/9553519/39924916-59d76598-5532-11e8-83ee-f87877492603.png)
 
-**Download .ipa:** ([Google Drive](https://drive.google.com/open?id=1CPVckYWw1bCR9RpFkTLrspqfUV3g7jlP))
+**Download .ipa:** ([Google Drive](https://goo.gl/j2WRbv))
 
 ## Info
 
 Alternate version of [iTorrent app](https://github.com/XITRIX/iTorrent_CSharp) fully rewritten on Swift and C++ 
 
-### WARNING! : if you used the previous version of this app, you will lose all your torrents in app UI (not downloaded files)
+**WARNING!:** if you used iTorrent-CSharp version, you will lose all your torrents in app UI (not downloaded files)
 
 It is an ordinary torrent client for iOS with Files app support.
 
@@ -25,6 +25,7 @@ What can this app do:
 - Download torrent by link
 - Download torrent by magnet
 - Send notification on torrent downloaded (iOS 10+)
+- FTP Server (Read only)
 - Select files to download
 - ??? 
 
@@ -32,6 +33,7 @@ What can this app do:
 
 - [LibTorrent](https://github.com/arvidn/libtorrent)
 - [BackgroundTask](https://github.com/yarodevuci/backgroundTask)
+- [Orianne-FTP-Server (My fork)](https://github.com/XITRIX/Orianne-FTP-Server)
 
 ## Donate for donuts
 

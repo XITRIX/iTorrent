@@ -79,7 +79,9 @@ class BackgroundTask {
 			status.displayState == Utils.torrentStates.Metadata.rawValue ||
 			status.displayState == Utils.torrentStates.Hashing.rawValue ||
 			(status.displayState == Utils.torrentStates.Seeding.rawValue &&
-				UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey)) &&
-				status.seedMode
+				UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
+				status.seedMode) ||
+			(UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey) &&
+			UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpBackgroundKey))
 	}
 }

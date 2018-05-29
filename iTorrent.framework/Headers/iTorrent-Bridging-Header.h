@@ -6,7 +6,7 @@
 #include "result_struct.h"
 #include "file_struct.h"
 
-
+//TORRENT
 int init_engine(const char* save_path);
 Result getTorrentInfo();
 char* add_torrent(const char* torrent_path);
@@ -24,3 +24,7 @@ void save_fast_resume();
 void stop_torrent(const char* torrent_hash);
 void start_torrent(const char* torrent_hash);
 void rehash_torrent(const char* torrent_hash);
+
+//FTP
+void ftp_start(int port, const char* path);
+void ftp_stop();

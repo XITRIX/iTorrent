@@ -267,4 +267,16 @@ class Manager {
 		let localStates = torrentStates
         return localStates.filter({$0.hash == hash}).first
     }
+	
+	static func startFTP(){
+		DispatchQueue.global(qos: .background).async {
+			ftp_start(21, rootFolder)
+		}
+	}
+	
+	static func stopFTP(){
+		DispatchQueue.global(qos: .background).async {
+			ftp_stop()
+		}
+	}
 }

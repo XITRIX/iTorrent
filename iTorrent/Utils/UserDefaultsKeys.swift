@@ -13,4 +13,6 @@ class UserDefaultsKeys {
 	static let backgroundSeedKey = "backgroundSeedKey"
 	static let notificationsKey = "notificationsKey"
 	static let badgeKey = "badgeKey"
+	static let ftpKey = "ftpKey"
+	static let ftpBackgroundKey = "ftpBackgroundKey"
 }

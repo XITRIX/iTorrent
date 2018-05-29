@@ -15,6 +15,8 @@ class SettingsController: UITableViewController {
     
 	@IBOutlet weak var backgroundSwitch: UISwitch!
 	@IBOutlet weak var backgroundSeedSwitch: UISwitch!
+	@IBOutlet weak var ftpSwitch: UISwitch!
+	@IBOutlet weak var ftpBackgroundSwitch: UISwitch!
 	@IBOutlet weak var notificationSwitch: UISwitch!
 	@IBOutlet weak var badgeSwitch: UISwitch!
 	@IBOutlet weak var updateLabel: UILabel!
@@ -23,13 +25,22 @@ class SettingsController: UITableViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		backgroundSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey), animated: false)
+		let back = UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey)
+		backgroundSwitch.setOn(back, animated: false)
+		
+		backgroundSeedSwitch.isEnabled = back
 		backgroundSeedSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey), animated: false)
+		
+		let ftp = UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)
+		ftpSwitch.setOn(ftp, animated: false)
+		
+		ftpBackgroundSwitch.isEnabled = ftp && back
+		ftpBackgroundSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpBackgroundKey), animated: false)
 		
 		let notif = UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsKey)
 		notificationSwitch.setOn(notif, animated: false)
-		badgeSwitch.isEnabled = notif
 		
+		badgeSwitch.isEnabled = notif
 		badgeSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey), animated: false)
 		
 		checkUpdates()
@@ -45,12 +56,28 @@ class SettingsController: UITableViewController {
 		switch section {
 		case 0:
 			return "Enable downloading in background through multimedia functions"
-		case 2:
+		case 1:
+			let addr = Utils.getWiFiAddress()
+			if let addr = addr {
+				let b = UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)
+				return b ? "Connect to: ftp://" + addr + ":21" : ""
+			} else {
+				return "Connect to WIFI to use FTP"
+			}
+		case 3:
 			let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
 			return "Current app version: " + version
 		default:
 			return nil
 		}
+	}
+	
+	func setSwitchHides() {
+		backgroundSeedSwitch.isEnabled = backgroundSwitch.isOn
+		ftpBackgroundSwitch.isEnabled = ftpSwitch.isOn && backgroundSwitch.isOn
+		badgeSwitch.isEnabled = notificationSwitch.isOn
+		notificationSwitch.isEnabled = backgroundSwitch.isOn
+		badgeSwitch.isEnabled = backgroundSwitch.isOn
 	}
 	
 	func checkUpdates() {
@@ -92,15 +119,53 @@ class SettingsController: UITableViewController {
 	
 	@IBAction func backgroundAction(_ sender: UISwitch) {
 		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundKey)
+		setSwitchHides()
 	}
 	
 	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+		if (sender.isOn) {
+			let controller = UIAlertController(title: "WARNING", message: "This action will let this app work in backgroung permanently in case any torrent is in seeding state. You will need to close app manually.\nIt could cause a battery leak.", preferredStyle: .alert)
+			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
+				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+			}
+			let close = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+				sender.setOn(false, animated: true)
+			}
+			controller.addAction(enable)
+			controller.addAction(close)
+			present(controller, animated: true)
+		} else {
+			UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+		}
+	}
+	
+	@IBAction func ftpAction(_ sender: UISwitch) {
+		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpKey)
+		sender.isOn ? Manager.startFTP() : Manager.stopFTP()
+		setSwitchHides()
+		tableView.reloadData()
+	}
+	
+	@IBAction func ftpBackgroundAction(_ sender: UISwitch) {
+		if (sender.isOn) {
+			let controller = UIAlertController(title: "WARNING", message: "This action will let this app work in backgroung permanently in case FTP server enabled. You will need to close app manually.\nIt could cause a battery leak.", preferredStyle: .alert)
+			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
+				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
+			}
+			let close = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+				sender.setOn(false, animated: true)
+			}
+			controller.addAction(enable)
+			controller.addAction(close)
+			present(controller, animated: true)
+		} else {
+			UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
+		}
 	}
 	
 	@IBAction func notificationAction(_ sender: UISwitch) {
-		badgeSwitch.isEnabled = sender.isOn
 		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.notificationsKey)
+		setSwitchHides()
 	}
 	
 	@IBAction func badgeAction(_ sender: UISwitch) {

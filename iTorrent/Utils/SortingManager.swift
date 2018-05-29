@@ -130,9 +130,9 @@ class SortingManager {
 			addManager(&res, &allocatingManagers, &headers, Utils.torrentStates.Allocating.rawValue)
 			addManager(&res, &checkingFastresumeManagers, &headers, Utils.torrentStates.CheckingFastresume.rawValue)
 			addManager(&res, &seedingManagers, &headers, Utils.torrentStates.Seeding.rawValue)
+			addManager(&res, &hashingManagers, &headers, Utils.torrentStates.Hashing.rawValue)
 			addManager(&res, &downloadingManagers, &headers, Utils.torrentStates.Downloading.rawValue)
 			addManager(&res, &finishedManagers, &headers, Utils.torrentStates.Finished.rawValue)
-			addManager(&res, &hashingManagers, &headers, Utils.torrentStates.Hashing.rawValue)
 			addManager(&res, &pausedManagers, &headers, Utils.torrentStates.Paused.rawValue)
 			addManager(&res, &queuedManagers, &headers, Utils.torrentStates.Queued.rawValue)
 		} else {
