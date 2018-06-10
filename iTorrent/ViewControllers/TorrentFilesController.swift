@@ -78,7 +78,9 @@ class TorrentFilesController : UIViewController, UITableViewDataSource, UITableV
 		
 		for i in 0 ..< size {
 			let file = FileInfo()
-			file.fileName = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
+			var name = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
+			name = String(name.split(separator: "/").last!)
+			file.fileName = name
 			file.filePath = String(validatingUTF8: pathsArr[Int(i)]!) ?? "ERROR"
 			file.fileSize = sizesArr[i]
 			file.fileDownloaded = localFiles.file_downloaded[i]
