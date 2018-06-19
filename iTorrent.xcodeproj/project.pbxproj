@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07C0A02020D8BF9E003E98B1 /* ManagerStateChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0A01F20D8BF9E003E98B1 /* ManagerStateChangedDelegate.swift */; };
+		07C0A02420D8BFB0003E98B1 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0A02120D8BFAF003E98B1 /* Manager.swift */; };
+		07C0A02520D8BFB0003E98B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0A02220D8BFB0003E98B1 /* AppDelegate.swift */; };
+		07C0A02620D8BFB0003E98B1 /* ManagersUpdated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0A02320D8BFB0003E98B1 /* ManagersUpdated.swift */; };
 		7C06249720BD676500C7466C /* iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C06249620BD676500C7466C /* iTorrent.framework */; };
 		7C06249920BD676F00C7466C /* iTorrent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C06249620BD676500C7466C /* iTorrent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C27A16820B0B9040065238C /* Version.ver in Resources */ = {isa = PBXBuildFile; fileRef = 7C27A16720B0B9040065238C /* Version.ver */; };
@@ -20,7 +24,6 @@
 		7C3E842120AB6BB400577282 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E842020AB6BB400577282 /* FileCell.swift */; };
 		7C4FADE620B5D4CC00ED9C84 /* Pods_iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */; };
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
-		7CB8082920AA26DD00F76931 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082820AA26DD00F76931 /* Manager.swift */; };
 		7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082A20AA28F200F76931 /* TorrentStatus.swift */; };
 		7CB8083220AADA8300F76931 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
 		7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083420AAF09F00F76931 /* Downloader.swift */; };
@@ -35,7 +38,6 @@
 		7CF5F59220AC325100A18C3E /* TorrentFilesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */; };
 		7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59320AC86F500A18C3E /* MainController.swift */; };
 		7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */; };
-		7CF5F59820AC871A00A18C3E /* ManagerStateChangedDelegade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		07C0A01F20D8BF9E003E98B1 /* ManagerStateChangedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerStateChangedDelegate.swift; sourceTree = "<group>"; };
+		07C0A02120D8BFAF003E98B1 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		07C0A02220D8BFB0003E98B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07C0A02320D8BFB0003E98B1 /* ManagersUpdated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersUpdated.swift; sourceTree = "<group>"; };
 		2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
 		65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTorrent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C06249620BD676500C7466C /* iTorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent.framework; sourceTree = "<group>"; };
@@ -68,7 +74,6 @@
 		7C3E841E20AB695800577282 /* AddTorrentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTorrentController.swift; sourceTree = "<group>"; };
 		7C3E842020AB6BB400577282 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		7C80257420A9B17C00673A4F /* TorrentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentCell.swift; sourceTree = "<group>"; };
-		7CB8082820AA26DD00F76931 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = iTorrent/Manager.swift; sourceTree = SOURCE_ROOT; };
 		7CB8082A20AA28F200F76931 /* TorrentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentStatus.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -83,7 +88,6 @@
 		7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesController.swift; sourceTree = "<group>"; };
 		7CF5F59320AC86F500A18C3E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersUpdatedDelegate.swift; sourceTree = "<group>"; };
-		7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerStateChangedDelegade.swift; sourceTree = "<group>"; };
 		F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,9 +171,11 @@
 		7CB8082720AA26CE00F76931 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				7CB8082820AA26DD00F76931 /* Manager.swift */,
-				7CB8083420AAF09F00F76931 /* Downloader.swift */,
+				07C0A02220D8BFB0003E98B1 /* AppDelegate.swift */,
 				7CF522EB20AF78B100D319E6 /* BackgroundTask.swift */,
+				7CB8083420AAF09F00F76931 /* Downloader.swift */,
+				07C0A02120D8BFAF003E98B1 /* Manager.swift */,
+				07C0A02320D8BFB0003E98B1 /* ManagersUpdated.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -177,7 +183,7 @@
 		7CB8082E20AA380400F76931 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				7CF5F59720AC871A00A18C3E /* ManagerStateChangedDelegade.swift */,
+				07C0A01F20D8BF9E003E98B1 /* ManagerStateChangedDelegate.swift */,
 				7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */,
 			);
 			path = Delegates;
@@ -198,12 +204,12 @@
 		7CF522E420AE1F2C00D319E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
+				7CF522E520AE1F5000D319E6 /* SortingManager.swift */,
 				7CB8082A20AA28F200F76931 /* TorrentStatus.swift */,
+				7CF522EF20AF85AB00D319E6 /* UserDefaultsKeys.swift */,
 				7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */,
 				7CB8083120AADA8300F76931 /* Utils.swift */,
-				7CF522E520AE1F5000D319E6 /* SortingManager.swift */,
-				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
-				7CF522EF20AF85AB00D319E6 /* UserDefaultsKeys.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -307,9 +313,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
-				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
-				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -317,9 +320,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -373,19 +373,21 @@
 				7CB8083720AAFFD200F76931 /* TorrentDetailsController.swift in Sources */,
 				7CF522EC20AF78B100D319E6 /* BackgroundTask.swift in Sources */,
 				7CF522F020AF85AB00D319E6 /* UserDefaultsKeys.swift in Sources */,
+				07C0A02620D8BFB0003E98B1 /* ManagersUpdated.swift in Sources */,
 				7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */,
 				7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
-				7CF5F59820AC871A00A18C3E /* ManagerStateChangedDelegade.swift in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
+				07C0A02020D8BF9E003E98B1 /* ManagerStateChangedDelegate.swift in Sources */,
 				7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
-				7CB8082920AA26DD00F76931 /* Manager.swift in Sources */,
 				7C3E841D20AB10FE00577282 /* SettingsController.swift in Sources */,
 				7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */,
 				7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
+				07C0A02520D8BFB0003E98B1 /* AppDelegate.swift in Sources */,
 				7CF5F59220AC325100A18C3E /* TorrentFilesController.swift in Sources */,
+				07C0A02420D8BFB0003E98B1 /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

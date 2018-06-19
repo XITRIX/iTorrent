@@ -1,4 +1,5 @@
 *.lock
+**/*.lock
 Pods/
 iTorrent.xcworkspace/xcuserdata
 iTorrent.xcodeproj/xcuserdata
