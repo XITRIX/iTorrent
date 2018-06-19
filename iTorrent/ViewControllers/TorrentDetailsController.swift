@@ -34,6 +34,10 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     
     var managerHash : String!
     
+    deinit {
+        print("Details DEINIT")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 		if (managerHash == nil) {

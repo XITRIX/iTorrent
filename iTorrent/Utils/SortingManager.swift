@@ -126,15 +126,37 @@ class SortingManager {
 					break;
 				}
 			}
-			addManager(&res, &metadataManagers, &headers, Utils.torrentStates.Metadata.rawValue)
-			addManager(&res, &allocatingManagers, &headers, Utils.torrentStates.Allocating.rawValue)
-			addManager(&res, &checkingFastresumeManagers, &headers, Utils.torrentStates.CheckingFastresume.rawValue)
-			addManager(&res, &seedingManagers, &headers, Utils.torrentStates.Seeding.rawValue)
-			addManager(&res, &hashingManagers, &headers, Utils.torrentStates.Hashing.rawValue)
-			addManager(&res, &downloadingManagers, &headers, Utils.torrentStates.Downloading.rawValue)
-			addManager(&res, &finishedManagers, &headers, Utils.torrentStates.Finished.rawValue)
-			addManager(&res, &pausedManagers, &headers, Utils.torrentStates.Paused.rawValue)
-			addManager(&res, &queuedManagers, &headers, Utils.torrentStates.Queued.rawValue)
+            
+            let sortingOrder = UserDefaults.standard.value(forKey: UserDefaultsKeys.sectionsSortingOrder) as! [Int]
+            for id in sortingOrder {
+                let state = Utils.torrentStates.init(id: id)!
+                switch (state) {
+                case .Allocating:
+                    addManager(&res, &allocatingManagers, &headers, Utils.torrentStates.Allocating.rawValue)
+                    break
+                case .CheckingFastresume:
+                    addManager(&res, &checkingFastresumeManagers, &headers, Utils.torrentStates.CheckingFastresume.rawValue)
+                case .Downloading:
+                    addManager(&res, &downloadingManagers, &headers, Utils.torrentStates.Downloading.rawValue)
+                case .Finished:
+                    addManager(&res, &finishedManagers, &headers, Utils.torrentStates.Finished.rawValue)
+                case .Hashing:
+                    addManager(&res, &hashingManagers, &headers, Utils.torrentStates.Hashing.rawValue)
+                    break
+                case .Metadata:
+                    addManager(&res, &metadataManagers, &headers, Utils.torrentStates.Metadata.rawValue)
+                    break
+                case .Paused:
+                    addManager(&res, &pausedManagers, &headers, Utils.torrentStates.Paused.rawValue)
+                    break
+                case .Queued:
+                    addManager(&res, &queuedManagers, &headers, Utils.torrentStates.Queued.rawValue)
+                    break
+                case .Seeding:
+                    addManager(&res, &seedingManagers, &headers, Utils.torrentStates.Seeding.rawValue)
+                    break
+                }
+            }
 		} else {
 			headers.append("");
 			simpleSort(&localManagers);

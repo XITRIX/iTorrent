@@ -15,17 +15,18 @@ class FileCell: UITableViewCell {
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var shareButton: UIButton!
 	
-	var action : (_ sender: UISwitch)->() = {_ in }
+    weak var actionDelegate : FileCellActionDelegate?
 	var name : String!
 	var index : Int!
+    var addind = false
 	weak var file : FileInfo!
 	
 	func update() {
 		title.text = file?.fileName
 		let percent = Float(file.fileDownloaded) / Float(file.fileSize) * 100
-		size.text = Utils.getSizeText(size: file.fileSize) + " / " + Utils.getSizeText(size: file.fileDownloaded) + " (" + String(format: "%.2f", percent) + "%)"
+        size.text = addind ? Utils.getSizeText(size: file.fileSize) : Utils.getSizeText(size: file.fileSize) + " / " + Utils.getSizeText(size: file.fileDownloaded) + " (" + String(format: "%.2f", percent) + "%)"
 		
-		if (percent >= 100) {
+		if (percent >= 100 && !addind) {
 			shareButton.isHidden = false
 			switcher.isHidden = true
 		} else {
@@ -35,7 +36,9 @@ class FileCell: UITableViewCell {
 	}
 	
     @IBAction func switcherAction(_ sender: UISwitch) {
-        action(sender)
+        if (actionDelegate != nil) {
+            actionDelegate?.fileCellAction(sender, index: index)
+        }
     }
 	
     @IBAction func shareAction(_ sender: UIButton) {

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ManagerStateChangedDelegate : class {
-	func managerStateChanged(manager: TorrentStatus, oldState: String, newState: String);
+	func managerStateChanged(manager: TorrentStatus, oldState: String, newState: String)
 }

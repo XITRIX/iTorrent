@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ManagersUpdatedDelegate : class {
-    func managerUpdated();
+    func managerUpdated()
 }

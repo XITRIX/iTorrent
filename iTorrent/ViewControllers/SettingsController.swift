@@ -20,6 +20,10 @@ class SettingsController: UITableViewController {
 	@IBOutlet weak var updateLabel: UILabel!
 	@IBOutlet weak var updateLoading: UIActivityIndicatorView!
 	
+    deinit {
+        print("Settings DEINIT")
+    }
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -52,9 +56,9 @@ class SettingsController: UITableViewController {
 	
 	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		switch section {
-		case 0:
-			return "Enable downloading in background through multimedia functions"
 		case 1:
+			return "Enable downloading in background through multimedia functions"
+		case 2:
 			let addr = Utils.getWiFiAddress()
 			if let addr = addr {
 				let b = UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)
@@ -62,7 +66,7 @@ class SettingsController: UITableViewController {
 			} else {
 				return "Connect to WIFI to use FTP"
 			}
-		case 3:
+		case 4:
 			let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
 			return "Current app version: " + version
 		default:
@@ -122,7 +126,7 @@ class SettingsController: UITableViewController {
 	
 	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-            let controller = UIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background permanently, in case any torrent is seeding. \n\nThis can cause significant battery drain; you will need to force close the app to stop this!", preferredStyle: .alert)
+            let controller = UIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background permanently, in case any torrent is seeding, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
 			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
 			}
@@ -146,7 +150,7 @@ class SettingsController: UITableViewController {
 	
 	@IBAction func ftpBackgroundAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-			let controller = UIAlertController(title: "WARNING", message: "This will let iTorrent run in the background permanently, which can cause battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
+			let controller = UIAlertController(title: "WARNING", message: "This will let iTorrent run in the background permanently, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
 			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
 			}
@@ -187,7 +191,7 @@ class SettingsController: UITableViewController {
     //rewritten to remove Snackbar dependency
     //https://stackoverflow.com/questions/3737911/how-to-display-temporary-popup-message-on-iphone-ipad-ios#7133966
     @IBAction func donateAction(_ sender: UIButton) {
-        UIPasteboard.general.string = "4890494471688218"
+        UIPasteboard.general.string = "5106211026617147" //4890494471688218
         let alert = UIAlertController(title: "", message: "Copied CC # to clipboard!", preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
         // change alert timer to 2 seconds, then dismiss

@@ -15,4 +15,5 @@ class UserDefaultsKeys {
 	static let badgeKey = "badgeKey"
 	static let ftpKey = "ftpKey"
 	static let ftpBackgroundKey = "ftpBackgroundKey"
+    static let sectionsSortingOrder = "sectionsSortingOrder"
 }

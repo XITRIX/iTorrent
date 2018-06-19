@@ -10,10 +10,14 @@
 			<key>CFBundleTypeIconFiles</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>Torrent File</string>
+			<string>Torrent</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>ru.nonamedude.torrent</string>
+				<string>com.bittorrent.torrent</string>
 			</array>
 		</dict>
 	</array>
@@ -28,12 +32,12 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 			<key>CFBundleURLName</key>
 			<string>ru.nonamedude.magnet</string>
 			<key>CFBundleURLSchemes</key>
@@ -43,7 +47,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>7.0</string>
+	<string>8.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
@@ -89,15 +93,19 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Torrent File</string>
+			<string>BitTorrent Metadata</string>
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>ru.nonamedude.torrent</string>
+			<string>com.bittorrent.torrent</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<string>torrent</string>
+				<array>
+					<string>torrent</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/x-bittorrent</string>
 			</dict>
 		</dict>
 	</array>

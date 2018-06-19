@@ -129,9 +129,53 @@ class Manager {
     }
 	
 	static func addTorrentFromFile(_ filePath: URL) {
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            if var nav = (topController as? UINavigationController)?.topViewController {
+                while let presentedViewController = nav.presentedViewController {
+                    nav = presentedViewController
+                }
+                if nav is AddTorrentController {
+                    let controller = UIAlertController(title: "Error", message: "Finish the previous torrent adding before start the new one.", preferredStyle: .alert)
+                    let close = UIAlertAction(title: "Close", style: .cancel)
+                    controller.addAction(close)
+                    nav.present(controller, animated: true)
+                    
+                    return
+                }
+            }
+        }
+        
 		let dest = Manager.configFolder+"/_temp.torrent"
-		let hash = String(validatingUTF8: get_torrent_file_hash(filePath.path))!
-		if (torrentStates.contains(where: {$0.hash == hash})){
+        print(filePath.startAccessingSecurityScopedResource())
+        do {
+            if (FileManager.default.fileExists(atPath: dest)) {
+                try FileManager.default.removeItem(atPath: dest)
+            }
+            print(FileManager.default.fileExists(atPath: filePath.path))
+            try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
+        } catch {
+            print(error.localizedDescription)
+            
+            let controller = UIAlertController(title: "Error on torrent opening", message: error.localizedDescription, preferredStyle: .alert)
+            let close = UIAlertAction(title: "Close", style: .cancel)
+            controller.addAction(close)
+            UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+            
+            return
+        }
+        filePath.stopAccessingSecurityScopedResource()
+        
+		let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
+        if (hash == "-1") {
+            let controller = UIAlertController(title: "Error on torrent reading", message: "Torrent file opening error has been occured", preferredStyle: .alert)
+            let close = UIAlertAction(title: "Close", style: .cancel)
+            controller.addAction(close)
+            UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+            return
+        } else if (torrentStates.contains(where: {$0.hash == hash})){
 			let controller = UIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
 			let close = UIAlertAction(title: "Close", style: .cancel)
 			controller.addAction(close)
@@ -139,13 +183,10 @@ class Manager {
 			return
 		}
 		do {
-			try FileManager.default.copyItem(atPath: filePath.path, toPath: dest)
 			
 			let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
 			((controller as! UINavigationController).topViewController as! AddTorrentController).path = dest
 			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
-		} catch {
-			print("File access error")
 		}
 	}
     

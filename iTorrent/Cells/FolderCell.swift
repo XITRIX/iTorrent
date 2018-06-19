@@ -14,10 +14,12 @@ class FolderCell : UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var size: UILabel!
     
-    var action : (_ sender: UIButton)->() = {_ in }
+    weak var actionDelegate : FolderCellActionDelegate?
     
     @IBAction func more(_ sender: UIButton) {
-        action(sender)
+        if (actionDelegate != nil) {
+            actionDelegate?.folderCellAction(title.text!, sender: sender)
+        }
     }
     
 }

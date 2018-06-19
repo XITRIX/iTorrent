@@ -45,11 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			Manager.startFTP()
 		}
         
+//        if let url = launchOptions?[UIApplicationLaunchOptionsKey.url] as? URL {
+//            Manager.addTorrentFromFile(url)
+//            print("RUN!!!!!!!")
+//            return false
+//        } else {
+//            print("NOT!!!!!!!")
+//        }
         return true
     }
 	
 	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-		print("Path: " + url.absoluteString)
+		print("Path: " + url.path)
 		if (url.absoluteString.hasPrefix("magnet:")) {
 			Manager.addMagnet(url.absoluteString)
 		} else {
@@ -139,6 +146,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 	
 	func defaultUserDefaultsSettings() {
+        let res = UserDefaults.standard.object(forKey: UserDefaultsKeys.sectionsSortingOrder)
+        if (res == nil || !(res is [Int])) {
+            let sort = [3,
+                        7,
+                        8,
+                        6,
+                        2,
+                        4,
+                        5,
+                        9,
+                        1]
+            UserDefaults.standard.set(sort, forKey: UserDefaultsKeys.sectionsSortingOrder)
+        }
 		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.backgroundKey) == nil) {
 			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundKey)
 		}

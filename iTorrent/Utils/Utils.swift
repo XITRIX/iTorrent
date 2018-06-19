@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Utils {
-    public enum torrentStates : String {
+    public enum torrentStates : String, CaseIterable {
         case Queued = "Queued"
         case Hashing = "Hashing"
         case Metadata = "Metadata"
@@ -20,6 +20,21 @@ class Utils {
         case Allocating = "Allocating"
         case CheckingFastresume = "Checking fastresume"
 		case Paused = "Paused"
+        
+        init?(id : Int) {
+            switch id {
+            case 1: self = .Queued
+            case 2: self = .Hashing
+            case 3: self = .Metadata
+            case 4: self = .Downloading
+            case 5: self = .Finished
+            case 6: self = .Seeding
+            case 7: self = .Allocating
+            case 8: self = .CheckingFastresume
+            case 9: self = .Paused
+            default: return nil
+            }
+        }
     }
     
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {

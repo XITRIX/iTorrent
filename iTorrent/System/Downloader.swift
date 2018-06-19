@@ -13,7 +13,9 @@ class Downloader {
         let task = URLSession.shared.downloadTask(with: url) { location, response, error in
             if error != nil {
                 print("Error downloading from \(url)")
-                errorAction()
+                DispatchQueue.main.async {
+                    errorAction()
+                }
             } else {
                 // Do something with your file in location
 				do {
@@ -22,10 +24,14 @@ class Downloader {
 						//TODO: Unregister this torrent from app
 					}
                 	try FileManager.default.moveItem(at: location!, to: localUrl)
-				} catch {
-					errorAction()
+                } catch {
+                    DispatchQueue.main.async {
+                        errorAction()
+                    }
 				}
-                completion()
+                DispatchQueue.main.async {
+                    completion()
+                }
             }
         }
         task.resume()
