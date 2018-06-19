@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ManagersUpdatedDelegate, ManagerStateChangedDelegade {
+class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ManagersUpdatedDelegate, ManagerStateChangedDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var managers : [[TorrentStatus]] = []
@@ -50,7 +50,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidDisappear(animated)
         
         Manager.managersUpdatedDelegates = Manager.managersUpdatedDelegates.filter({$0 !== (self as ManagersUpdatedDelegate)})
-		Manager.managersStateChangedDelegade = Manager.managersStateChangedDelegade.filter({$0 !== (self as ManagerStateChangedDelegade)})
+		Manager.managersStateChangedDelegade = Manager.managersStateChangedDelegade.filter({$0 !== (self as ManagerStateChangedDelegate)})
     }
 
     override func didReceiveMemoryWarning() {

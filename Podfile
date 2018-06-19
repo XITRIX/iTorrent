@@ -6,7 +6,6 @@ target 'iTorrent' do
   use_frameworks!
 
   # Pods for iTorrent
-  pod 'MaterialComponents/Snackbar'
   pod 'Firebase/Core'
   pod 'Firebase/Performance'
   pod 'Fabric', '~> 1.7.7'
