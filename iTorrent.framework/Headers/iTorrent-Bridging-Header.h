@@ -19,6 +19,7 @@ char* get_magnet_hash(const char* magnet_link);
 Files get_files_of_torrent_by_path(const char* torrent_path);
 Files get_files_of_torrent_by_hash(const char* hash);
 void set_torrent_files_priority(const char* torrent_hash, int* states);
+void set_torrent_file_priority(const char* torrent_hash, int file_number, int state);
 void resume_to_app();
 void save_fast_resume();
 void stop_torrent(const char* torrent_hash);

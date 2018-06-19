@@ -131,6 +131,7 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Files") {
             (segue.destination as! TorrentFilesController).managerHash = managerHash
+            (segue.destination as! TorrentFilesController).name = title!
         }
     }
 	

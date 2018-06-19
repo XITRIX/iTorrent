@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -150,7 +150,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktb-TS-ZZd">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="r7d-VI-Cyc"/>
                                                     </constraints>
@@ -192,7 +192,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OU6-UE-wsR">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Qb8-qG-8tj"/>
                                                     </constraints>
@@ -230,7 +230,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26s-y7-Ys8">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="FuU-S4-gms"/>
                                                     </constraints>
@@ -268,7 +268,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time remains" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mc-qX-nuW">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="ebm-Z4-Vxd"/>
                                                     </constraints>
@@ -310,7 +310,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow seeding" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-KE-5PY">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="RBA-od-KFM"/>
                                                     </constraints>
@@ -350,7 +350,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hash" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN8-EP-fZn">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="okD-Ct-fAa"/>
                                                     </constraints>
@@ -388,7 +388,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBl-l3-0QI">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Vrj-yP-zH2"/>
                                                     </constraints>
@@ -426,7 +426,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created On" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wd4-dg-QKP">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="hJH-R5-vzB"/>
                                                     </constraints>
@@ -464,7 +464,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added On" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AM-iO-VGS">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Ugj-gN-VUc"/>
                                                     </constraints>
@@ -502,7 +502,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93F-Tf-9hD">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="TDy-2G-sQm"/>
                                                     </constraints>
@@ -544,7 +544,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected/Total" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtJ-YQ-1f8">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="HcI-LB-4lo"/>
                                                     </constraints>
@@ -582,7 +582,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEg-ok-zwa">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="iO6-6R-T4d"/>
                                                     </constraints>
@@ -620,7 +620,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress Selected/Total" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wg-im-gUC">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="CXx-L0-Ol9"/>
                                                     </constraints>
@@ -658,7 +658,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloaded" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r47-w0-OZ2">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Ibm-33-0Rg"/>
                                                     </constraints>
@@ -696,7 +696,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uploaded" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYF-JU-Unw">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="Ur9-5b-UEs"/>
                                                     </constraints>
@@ -734,7 +734,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seeders" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekS-WN-Tu8">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="DR1-IY-pza"/>
                                                     </constraints>
@@ -772,7 +772,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peers" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOB-UI-7bk">
-                                                    <rect key="frame" x="15" y="12" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="VO2-nn-XjI"/>
                                                     </constraints>
@@ -1116,13 +1116,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VISA CREDIT CARD NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSv-9s-lXG">
-                                                    <rect key="frame" x="20" y="12" width="281" height="21"/>
+                                                    <rect key="frame" x="20" y="12" width="281" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5X-kX-aXT">
-                                                    <rect key="frame" x="309" y="7" width="46" height="30"/>
+                                                    <rect key="frame" x="309" y="7" width="46" height="30.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="Vji-Se-btw"/>
                                                     </constraints>
@@ -1330,6 +1330,46 @@
                                             <outlet property="title" destination="5MK-tI-3Kq" id="Xvs-Ik-pGP"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FolderCell" rowHeight="78" id="yZn-Ea-exK" customClass="FolderCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="106" width="375" height="78"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yZn-Ea-exK" id="Vkx-D0-9ph">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="77.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQN-u4-ahV">
+                                                    <rect key="frame" x="55" y="8" width="249" height="47"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1024 MB" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCF-3o-ecE">
+                                                    <rect key="frame" x="15" y="48" width="319" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Folder" translatesAutoresizingMaskIntoConstraints="NO" id="0zk-xb-Cjd">
+                                                    <rect key="frame" x="15" y="15" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCk-8c-zMx">
+                                                    <rect key="frame" x="312" y="23" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="More"/>
+                                                    <connections>
+                                                        <action selector="more:" destination="yZn-Ea-exK" eventType="touchUpInside" id="Ory-yQ-Pc2"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="size" destination="aCF-3o-ecE" id="rEd-uA-c0L"/>
+                                            <outlet property="title" destination="nQN-u4-ahV" id="WvE-D3-kzE"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -1363,6 +1403,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Folder" width="170" height="170"/>
+        <image name="More" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
         <image name="Share" width="25" height="25"/>
         <image name="Sort" width="25" height="25"/>

@@ -17,8 +17,8 @@ class FileCell: UITableViewCell {
 	
 	var action : (_ sender: UISwitch)->() = {_ in }
 	var name : String!
-	var indexPath : IndexPath!
-	var file : FileInfo!
+	var index : Int!
+	weak var file : FileInfo!
 	
 	func update() {
 		title.text = file?.fileName
