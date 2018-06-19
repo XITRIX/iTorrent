@@ -1,5 +1,5 @@
 //
-//  FunctionDelegate.swift
+//  ManagersUpdated.swift
 //  iTorrent
 //
 //  Created by  XITRIX on 14.05.2018.

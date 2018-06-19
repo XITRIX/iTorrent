@@ -28,9 +28,9 @@ class SortingManager {
 		
 		let cancel = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil);
 		
-		var sortAlertController = UIAlertController(title: "Sorting type", message: nil, preferredStyle: .actionSheet)
+        var sortAlertController = UIAlertController(title: "Sort Torrents By:", message: nil, preferredStyle: .actionSheet)
 		
-		var message = "Current select: ";
+		var message = "Currently sorted by ";
 		checkConditionToAddButtonToList(&sortAlertController, &message, alphabetAction, SortingTypes.Name);
 		checkConditionToAddButtonToList(&sortAlertController, &message, dateAddedAction, SortingTypes.DateAdded);
 		checkConditionToAddButtonToList(&sortAlertController, &message, dateCreatedAction, SortingTypes.DateCreated);
