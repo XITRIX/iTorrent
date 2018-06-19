@@ -18,7 +18,7 @@ class Manager {
     public static let configFolder = Manager.rootFolder + "/_Config"
 	public static let fastResumesFolder = Manager.configFolder+"/.FastResumes"
     public static var managersUpdatedDelegates : [ManagersUpdatedDelegate] = []
-    public static var managersStateChangedDelegade : [ManagerStateChangedDelegade] = []
+    public static var managersStateChangedDelegade : [ManagerStateChangedDelegate] = []
 	public static var managerSaves : [String : UserManagerSettings] = [:]
     
     public static func InitManager() {

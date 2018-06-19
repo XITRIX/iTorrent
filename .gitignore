@@ -1,7 +1,10 @@
-Podfile.lock
-Pods
-iTorrent.xcworkspace
-iTorrent.xcworkspace/xcuserdata/xitrix.xcuserdatad/UserInterfaceState.xcuserstate
-include/libtorrent/.DS_Store
+*.lock
+**/*.lock
+Pods/
+iTorrent.xcworkspace/xcuserdata
+iTorrent.xcodeproj/xcuserdata
+iTorrent.xcodeproj/project.xcworkspace/xcuserdata
 .DS_Store
-include/.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
