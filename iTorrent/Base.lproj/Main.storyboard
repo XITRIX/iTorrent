@@ -85,6 +85,11 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="iTorrent" id="JmO-fx-ysb">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="k0l-PX-752">
+                            <connections>
+                                <action selector="editAction:" destination="BYZ-38-t0r" id="Do6-Ew-jwT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Sort" id="mrM-F3-05V">
                             <connections>
                                 <action selector="sortAction:" destination="BYZ-38-t0r" id="WIp-Kf-R0x"/>

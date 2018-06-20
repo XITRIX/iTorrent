@@ -14,8 +14,13 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     var managers : [[TorrentStatus]] = []
 	var headers : [String] = []
     
+    var topRightItemsCopy : [UIBarButtonItem]?
+    var bottomItemsCopy : [UIBarButtonItem]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.allowsMultipleSelectionDuringEditing = true
         
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 104
@@ -51,6 +56,10 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         Manager.managersUpdatedDelegates = Manager.managersUpdatedDelegates.filter({$0 !== (self as ManagersUpdatedDelegate)})
 		Manager.managersStateChangedDelegade = Manager.managersStateChangedDelegade.filter({$0 !== (self as ManagerStateChangedDelegate)})
+        
+        if (tableView.isEditing) {
+            editAction(navigationItem.leftBarButtonItem!)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,20 +135,47 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as! TorrentDetailsController
-        viewController.managerHash = managers[indexPath.section][indexPath.row].hash
-        
-        if (!(splitViewController?.isCollapsed)!) {
-//            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
-//                if let fileController = nav.topViewController
-//            }
-            let navController = UINavigationController(rootViewController: viewController)
-            navController.isToolbarHidden = false
-            navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-            navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
-            splitViewController?.showDetailViewController(navController, sender: self)
+        if (tableView.isEditing) {
+            var b = true
+            if let count = (tableView.indexPathsForSelectedRows?.count) {
+                b = count > 0
+                navigationItem.rightBarButtonItem?.title = "Deselect (\(count))"
+            }
+            for item in toolbarItems! {
+                item.isEnabled = b
+            }
+            
         } else {
-            splitViewController?.showDetailViewController(viewController, sender: self)
+            let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as! TorrentDetailsController
+            viewController.managerHash = managers[indexPath.section][indexPath.row].hash
+            
+            if (!(splitViewController?.isCollapsed)!) {
+    //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
+    //                if let fileController = nav.topViewController
+    //            }
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.isToolbarHidden = false
+                navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+                navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
+                splitViewController?.showDetailViewController(navController, sender: self)
+            } else {
+                splitViewController?.showDetailViewController(viewController, sender: self)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if (tableView.isEditing) {
+            var b = false
+            if let count = (tableView.indexPathsForSelectedRows?.count) {
+                b = count > 0
+                navigationItem.rightBarButtonItem?.title = "Deselect (\(count))"
+            } else {
+                navigationItem.rightBarButtonItem?.title = "Select All"
+            }
+            for item in toolbarItems! {
+                item.isEnabled = b
+            }
         }
     }
 	
@@ -294,6 +330,42 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         present(addController, animated: true)
     }
+    
+    @IBAction func editAction(_ sender: UIBarButtonItem) {
+        let edit = !tableView.isEditing
+        tableView.setEditing(edit, animated: true)
+        sender.title = edit ? "Done" : "Edit"
+        
+        //NavBarItems
+        var copy = navigationItem.rightBarButtonItems
+        if (topRightItemsCopy == nil) {
+            let item = UIBarButtonItem(title: "Select All", style: .plain, target: self, action: #selector(selectAllItem(_:)))
+            topRightItemsCopy = [item]
+        }
+        navigationItem.setRightBarButtonItems(topRightItemsCopy, animated: true)
+        topRightItemsCopy = copy
+        
+        //ToolBarItems
+        copy = toolbarItems
+        if (bottomItemsCopy == nil) {
+            let play = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: nil)
+            let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: nil)
+            let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
+            let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
+            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace , target: self, action: nil)
+            bottomItemsCopy = [play, space, pause, space, refresh, space, space, space, space, trash]
+        }
+        setToolbarItems(bottomItemsCopy, animated: true)
+        bottomItemsCopy = copy
+        
+        if (edit) {
+            navigationItem.rightBarButtonItem?.title = "Select All"
+            for item in toolbarItems! {
+                item.isEnabled = false
+            }
+        }
+    }
+    
     @IBAction func sortAction(_ sender: UIBarButtonItem) {
 		let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
 			self.managers.removeAll()
@@ -301,6 +373,37 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 			self.tableView.reloadData();
 		})
 		present(sortingController, animated: true)
+    }
+    
+    @objc func selectAllItem(_ sender: UIBarButtonItem) {
+        var b = false
+        if let count = tableView.indexPathsForSelectedRows?.count {
+            b = count > 0
+        }
+        if (!b) {
+            for i in 0 ..< tableView.numberOfSections {
+                for j in 0 ..< tableView.numberOfRows(inSection: i) {
+                    tableView.selectRow(at: IndexPath(row: j, section: i), animated: true, scrollPosition: .none)
+                }
+            }
+            if let count = tableView.indexPathsForSelectedRows?.count {
+                sender.title = "Deselect (\(count))"
+                
+                for item in toolbarItems! {
+                    item.isEnabled = true
+                }
+            }
+        } else {
+            for i in 0 ..< tableView.numberOfSections {
+                for j in 0 ..< tableView.numberOfRows(inSection: i) {
+                    tableView.deselectRow(at: IndexPath(row: j, section: i), animated: true)
+                }
+            }
+            for item in toolbarItems! {
+                item.isEnabled = false
+            }
+            sender.title = "Select All"
+        }
     }
     
 }
