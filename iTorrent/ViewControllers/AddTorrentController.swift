@@ -227,14 +227,21 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
 		if (FileManager.default.fileExists(atPath: urlRes.path)) {
 			try! FileManager.default.removeItem(at: urlRes)
 		}
-        try! FileManager.default.copyItem(at: urlPath, to: urlRes)
-        if (path.hasSuffix("_temp.torrent")) {
-            try! FileManager.default.removeItem(atPath: Manager.configFolder+"/_temp.torrent")
-        }
-        dismiss(animated: true)
-        let hash = String(validatingUTF8: get_torrent_file_hash(urlRes.path)) ?? "ERROR"
-        add_torrent_with_states(urlRes.path, UnsafeMutablePointer(mutating: fileSelectes.fileSelectes))
-        Manager.managerSaves[hash] = UserManagerSettings()
+		do {
+			try FileManager.default.copyItem(at: urlPath, to: urlRes)
+			if (path.hasSuffix("_temp.torrent")) {
+				try FileManager.default.removeItem(atPath: Manager.configFolder+"/_temp.torrent")
+			}
+			dismiss(animated: true)
+			let hash = String(validatingUTF8: get_torrent_file_hash(urlRes.path)) ?? "ERROR"
+			add_torrent_with_states(urlRes.path, UnsafeMutablePointer(mutating: fileSelectes.fileSelectes))
+			Manager.managerSaves[hash] = UserManagerSettings()
+		} catch {
+			let controller = UIAlertController(title: "Error has been occured", message: error.localizedDescription, preferredStyle: .alert)
+			let close = UIAlertAction(title: "Close", style: .cancel)
+			controller.addAction(close)
+			present(controller, animated: true)
+		}
     }
 }
 

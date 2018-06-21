@@ -46,9 +46,10 @@ class Manager {
     static func restoreAllTorrents() {
         Utils.checkFolderExist(path: configFolder)
 		Utils.checkFolderExist(path: fastResumesFolder)
-        if (FileManager.default.fileExists(atPath: configFolder+"/_temp.torrent")) {
-            try! FileManager.default.removeItem(atPath: configFolder+"/_temp.torrent")
-        }
+		// This code may be the reason of this bug: https://github.com/XITRIX/iTorrent/issues/2
+//        if (FileManager.default.fileExists(atPath: configFolder+"/_temp.torrent")) {
+//            try! FileManager.default.removeItem(atPath: configFolder+"/_temp.torrent")
+//        }
 		
 		if let loadedStrings = NSKeyedUnarchiver.unarchiveObject(withFile: fastResumesFolder + "/userData.dat") as? [String : UserManagerSettings] {
 			print("resumed")
@@ -57,6 +58,7 @@ class Manager {
 		
         let files = try! FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
         for file in files {
+			if (file == "/_temp.torrent") { continue }
             addTorrent(configFolder + "/" + file)
         }
     }
