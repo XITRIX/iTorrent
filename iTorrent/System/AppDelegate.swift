@@ -44,14 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)) {
 			Manager.startFTP()
 		}
-        
-//        if let url = launchOptions?[UIApplicationLaunchOptionsKey.url] as? URL {
-//            Manager.addTorrentFromFile(url)
-//            print("RUN!!!!!!!")
-//            return false
-//        } else {
-//            print("NOT!!!!!!!")
-//        }
+		
         return true
     }
 	

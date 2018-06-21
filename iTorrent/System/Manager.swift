@@ -58,7 +58,7 @@ class Manager {
 		
         let files = try! FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
         for file in files {
-			if (file == "/_temp.torrent") { continue }
+			if (file == "_temp.torrent") { continue }
             addTorrent(configFolder + "/" + file)
         }
     }
