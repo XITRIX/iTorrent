@@ -193,10 +193,16 @@ class Manager {
 	}
     
     static func addTorrent(_ filePath: String) {
-		if let hash = String(validatingUTF8: add_torrent(filePath)),
-			managerSaves[hash] == nil {
-			print(hash)
-			managerSaves[hash] = UserManagerSettings()
+		if let hash = String(validatingUTF8: add_torrent(filePath)) {
+			if hash != "-1",
+				managerSaves[hash] == nil {
+				print(hash)
+				managerSaves[hash] = UserManagerSettings()
+			} else if hash == "-1" {
+				do {
+					try FileManager.default.removeItem(atPath: filePath)
+				} catch { print(error.localizedDescription) }
+			}
 		}
         mainLoop()
 	}

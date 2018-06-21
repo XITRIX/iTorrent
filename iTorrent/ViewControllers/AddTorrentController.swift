@@ -35,9 +35,18 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         let localFiles = get_files_of_torrent_by_path(path)
-        
+		
+		let size = Int(localFiles.size)
+		if (size == -1) {
+			let controller = UIAlertController(title: "Error has been occured", message: "Torrent file is broken and cannot be readed", preferredStyle: .alert)
+			let close = UIAlertAction(title: "Close", style: .cancel) { _ in
+				self.dismiss(animated: true)
+			}
+			controller.addAction(close)
+			present(controller, animated: true)
+			return
+		}
         name = String(validatingUTF8: localFiles.title) ?? "ERROR"
-        let size = Int(localFiles.size)
         let namesArr = Array(UnsafeBufferPointer(start: localFiles.file_name, count: size))
         let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
         
