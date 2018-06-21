@@ -124,6 +124,9 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		if (tableView.isEditing) {
+			navigationItem.rightBarButtonItem?.title = "Select All"
+		}
         return managers[section].count
     }
     
@@ -217,7 +220,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	func removeTorrent(indexPath: IndexPath, isMagnet: Bool = false, removeData: Bool = false, visualOnly: Bool = false) {
 		if (!visualOnly) {
-			let manager = self.managers[indexPath.section][indexPath.row]
+			let manager = managers[indexPath.section][indexPath.row]
 			remove_torrent(manager.hash, removeData ? 1 : 0)
 			
 			if (!(splitViewController?.isCollapsed)!) {
@@ -235,12 +238,12 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 			}
 		}
 		
-		self.managers[indexPath.section].remove(at: indexPath.row)
-		if (self.managers[indexPath.section].count > 0) {
+		managers[indexPath.section].remove(at: indexPath.row)
+		if (managers[indexPath.section].count > 0) {
 			tableView.deleteRows(at: [indexPath], with: .automatic)
 		} else {
-			self.headers.remove(at: indexPath.section)
-			self.managers.remove(at: indexPath.section)
+			headers.remove(at: indexPath.section)
+			managers.remove(at: indexPath.section)
 			tableView.deleteSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .automatic)
 		}
 	}
@@ -348,10 +351,10 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         //ToolBarItems
         copy = toolbarItems
         if (bottomItemsCopy == nil) {
-            let play = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: nil)
-            let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: nil)
-            let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
-            let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
+			let play = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startSelectedOfTorrents(_:)))
+            let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseSelectedOfTorrents(_:)))
+            let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rehashSelectedTorrents(_:)))
+            let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(removeSelectedTorrents(_:)))
             let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace , target: self, action: nil)
             bottomItemsCopy = [play, space, pause, space, refresh, space, space, space, space, trash]
         }
@@ -405,6 +408,131 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             sender.title = "Select All"
         }
     }
+	
+	@objc func startSelectedOfTorrents(_ sender: UIBarButtonItem) {
+		if let selected = tableView.indexPathsForSelectedRows {
+			for indexPath in selected {
+				start_torrent(managers[indexPath.section][indexPath.row].hash)
+			}
+		}
+	}
+	
+	@objc func pauseSelectedOfTorrents(_ sender: UIBarButtonItem) {
+		if let selected = tableView.indexPathsForSelectedRows {
+			for indexPath in selected {
+				stop_torrent(managers[indexPath.section][indexPath.row].hash)
+			}
+		}
+	}
+	
+	@objc func rehashSelectedTorrents(_ sender: UIBarButtonItem) {
+		if let selected = tableView.indexPathsForSelectedRows {
+			var selectedHashes : [String] = []
+			var message = ""
+			for indexPath in selected {
+				selectedHashes.append(managers[indexPath.section][indexPath.row].hash)
+				message += "\n" + managers[indexPath.section][indexPath.row].title
+			}
+			
+			message = message.trimmingCharacters(in: .whitespacesAndNewlines)
+			
+			let controller = UIAlertController(title: "This action will recheck the state of all downloaded files for torrents:", message: message, preferredStyle: .actionSheet)
+			let hash = UIAlertAction(title: "Rehash", style: .destructive) { _ in
+				for hash in selectedHashes {
+					rehash_torrent(hash)
+				}
+			}
+			let cancel  = UIAlertAction(title: "Cancel", style: .cancel)
+			controller.addAction(hash)
+			controller.addAction(cancel)
+			
+			if (controller.popoverPresentationController != nil) {
+				controller.popoverPresentationController?.barButtonItem = sender
+				controller.popoverPresentationController?.permittedArrowDirections = .down
+			}
+			
+			present(controller, animated: true)
+		}
+	}
+	
+	@objc func removeSelectedTorrents(_ sender: UIBarButtonItem) {
+		if let selected = tableView.indexPathsForSelectedRows {
+			var selectedHashes : [String] = []
+			for indexPath in selected {
+				selectedHashes.append(managers[indexPath.section][indexPath.row].hash)
+			}
+			
+			var message = ""
+			for indexPath in selected {
+				message += managers[indexPath.section][indexPath.row].title + "\n"
+			}
+			message = message.trimmingCharacters(in: .whitespacesAndNewlines)
+			
+			let removeController = UIAlertController(title: "Are you sure to remove \(selected.count) torrents?", message: message, preferredStyle: .actionSheet)
+			let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
+				for hash in selectedHashes {
+					var index : IndexPath!
+					for section in 0 ..< self.managers.count {
+						for row in 0 ..< self.managers[section].count {
+							if (self.managers[section][row].hash == hash) {
+								index = IndexPath(row: row, section: section)
+								break
+							}
+						}
+					}
+					if (index == nil) {
+						print("Selected torrent dows not exists")
+						continue
+					}
+					
+					if (!self.managers[index.section][index.row].hasMetadata) {
+						self.removeTorrent(indexPath: index, isMagnet: true)
+					} else {
+						self.removeTorrent(indexPath: index, removeData: true)
+					}
+				}
+			}
+			let removeTorrent = UIAlertAction(title: "Yes but keep data", style: .default) { _ in
+				for hash in selectedHashes {
+					var index : IndexPath!
+					for section in 0 ..< self.managers.count {
+						for row in 0 ..< self.managers[section].count {
+							if (self.managers[section][row].hash == hash) {
+								index = IndexPath(row: row, section: section)
+								break
+							}
+						}
+					}
+					if (index == nil) {
+						print("Selected torrent dows not exists")
+						continue
+					}
+					
+					if (!self.managers[index.section][index.row].hasMetadata) {
+						self.removeTorrent(indexPath: index, isMagnet: true)
+					} else {
+						self.removeTorrent(indexPath: index)
+					}
+				}
+			}
+			let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+			
+			removeController.addAction(removeAll)
+			removeController.addAction(removeTorrent)
+			removeController.addAction(cancel)
+			
+			if (removeController.popoverPresentationController != nil) {
+				removeController.popoverPresentationController?.barButtonItem = sender
+				removeController.popoverPresentationController?.permittedArrowDirections = .down
+			}
+			
+			present(removeController, animated: true)
+			
+		}
+		
+		//let message = managers[indexPath.section][indexPath.row].hasMetadata ? "Are you sure to remove " + managers[indexPath.section][indexPath.row].title + " torrent?" : "Are you sure to remove this magnet torrent?"
+		
+	}
     
 }
 
