@@ -231,8 +231,11 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 				Manager.removeTorrentFile(hash: manager.hash)
 				
 				if (removeData) {
-					if (FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title)) {
-						try! FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
+					do {
+						try FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
+					} catch {
+						print("MainController: removeTorrent()")
+						print(error.localizedDescription)
 					}
 				}
 			}
@@ -264,6 +267,17 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 				if let url = URL(string: textField.text!) {
 					Downloader.load(url: url, to: URL(fileURLWithPath: Manager.configFolder+"/_temp.torrent"), completion: {
 						let hash = String(validatingUTF8: get_torrent_file_hash(Manager.configFolder+"/_temp.torrent"))!
+						if (hash == "-1") {
+							let controller = UIAlertController(title: "Error has been occured", message: "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari", preferredStyle: .alert)
+							let safari = UIAlertAction(title: "Open in Safari", style: .default) { _ in
+								UIApplication.shared.openURL(url)
+							}
+							let close = UIAlertAction(title: "Close", style: .cancel)
+							controller.addAction(safari)
+							controller.addAction(close)
+							UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+							return
+						}
 						if (Manager.torrentStates.contains(where: {$0.hash == hash})) {
 							let controller = UIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
 							let close = UIAlertAction(title: "Close", style: .cancel)
