@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-class SettingsController: UITableViewController {
+class SettingsController: ThemedUITableViewController {
     
+	@IBOutlet weak var darkThemeSwitch: UISwitch!
 	@IBOutlet weak var backgroundSwitch: UISwitch!
 	@IBOutlet weak var backgroundSeedSwitch: UISwitch!
 	@IBOutlet weak var ftpSwitch: UISwitch!
@@ -26,6 +27,8 @@ class SettingsController: UITableViewController {
     
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		darkThemeSwitch.setOn(UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum) == 1, animated: false)
 		
 		let back = UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey)
 		backgroundSwitch.setOn(back, animated: false)
@@ -119,6 +122,22 @@ class SettingsController: UITableViewController {
 		}
 	}
 	
+	@IBAction func darkThemeAction(_ sender: UISwitch) {
+		UserDefaults.standard.set(sender.isOn ? 1 : 0, forKey: UserDefaultsKeys.themeNum)
+		self.updateTheme()
+		
+		if (!(splitViewController?.isCollapsed)!) {
+			if let themed = splitViewController?.viewControllers.last as? Themed {
+				themed.updateTheme()
+			} else if let nav = splitViewController?.viewControllers.last as? UINavigationController,
+				let themed = nav.topViewController as? Themed {
+				themed.updateTheme()
+			} else {
+				print("NO")
+			}
+		}
+	}
+	
 	@IBAction func backgroundAction(_ sender: UISwitch) {
 		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundKey)
 		setSwitchHides()
@@ -126,7 +145,7 @@ class SettingsController: UITableViewController {
 	
 	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-            let controller = UIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background permanently, in case any torrent is seeding, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
+            let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background permanently, in case any torrent is seeding, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
 			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
 			}
@@ -150,7 +169,7 @@ class SettingsController: UITableViewController {
 	
 	@IBAction func ftpBackgroundAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-			let controller = UIAlertController(title: "WARNING", message: "This will let iTorrent run in the background permanently, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
+			let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in the background permanently, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
 			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
 			}
@@ -192,7 +211,7 @@ class SettingsController: UITableViewController {
     //https://stackoverflow.com/questions/3737911/how-to-display-temporary-popup-message-on-iphone-ipad-ios#7133966
     @IBAction func donateAction(_ sender: UIButton) {
         UIPasteboard.general.string = "5106211026617147" //4890494471688218
-        let alert = UIAlertController(title: "", message: "Copied CC # to clipboard!", preferredStyle: .alert)
+        let alert = ThemedUIAlertController(title: "", message: "Copied CC # to clipboard!", preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
         // change alert timer to 2 seconds, then dismiss
         let when = DispatchTime.now() + 2

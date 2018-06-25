@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FileCell: UITableViewCell {
+class FileCell: ThemedUITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var switcher: UISwitch!
@@ -20,6 +20,13 @@ class FileCell: UITableViewCell {
 	var index : Int!
     var addind = false
 	weak var file : FileInfo!
+	
+	override func updateTheme() {
+		super.updateTheme()
+		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		title.textColor = Themes.shared.theme[theme].mainText
+		size.textColor = Themes.shared.theme[theme].secondaryText
+	}
 	
 	func update() {
 		title.text = file?.fileName
@@ -42,7 +49,7 @@ class FileCell: UITableViewCell {
     }
 	
     @IBAction func shareAction(_ sender: UIButton) {
-		let controller = UIAlertController(title: nil, message: file.fileName, preferredStyle: .actionSheet)
+		let controller = ThemedUIAlertController(title: nil, message: file.fileName, preferredStyle: .actionSheet)
 		let share = UIAlertAction(title: "Share", style: .default) { _ in
 			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.filePath, isDirectory: false)
 			let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
@@ -54,7 +61,7 @@ class FileCell: UITableViewCell {
 			UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
 		}
 //		let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
-//			let deleteController = UIAlertController(title: "Are you sure to delete?", message: self.file.fileName, preferredStyle: .actionSheet)
+//			let deleteController = ThemedUIAlertController(title: "Are you sure to delete?", message: self.file.fileName, preferredStyle: .actionSheet)
 //			let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
 //
 //			}

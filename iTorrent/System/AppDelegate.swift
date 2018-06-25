@@ -107,9 +107,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
-		if let nav = primaryViewController as? UINavigationController,
-            nav.topViewController is SettingsController{
-            return Utils.createEmptyViewController()
+		if let nav = primaryViewController as? UINavigationController {
+			if nav.topViewController is SettingsController || nav.topViewController is SettingsSortingController {
+            	return Utils.createEmptyViewController()
+			}
         }
         
         let controllers = splitViewController.viewControllers
@@ -126,10 +127,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             if (viewControllers.count == 0) {
                 return Utils.createEmptyViewController()
             }
+			
+			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
             
             let detailNavController = UINavigationController()
             detailNavController.viewControllers = viewControllers
             detailNavController.setToolbarHidden(false, animated: false)
+			detailNavController.navigationBar.barStyle = Themes.shared.theme[theme].barStyle
+			detailNavController.toolbar.barStyle = Themes.shared.theme[theme].barStyle
             detailNavController.navigationBar.tintColor = navController.navigationBar.tintColor
             detailNavController.toolbar.tintColor = navController.navigationBar.tintColor
             

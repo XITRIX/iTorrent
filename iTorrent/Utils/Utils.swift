@@ -94,9 +94,8 @@ class Utils {
     }
     
     public static func createEmptyViewController() -> UIViewController {
-        let view = UIViewController()
-        view.view.backgroundColor = UIColor(red: 237 / 255, green: 237 / 255, blue: 237 / 255, alpha: 1)
-        return view
+        let view = ThemedUIViewController()
+		return view
     }
 	
 	public static func getWiFiAddress() -> String? {

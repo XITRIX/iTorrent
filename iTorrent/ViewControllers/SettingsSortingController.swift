@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingsSortingController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsSortingController : ThemedUIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -48,6 +48,11 @@ class SettingsSortingController : UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = Utils.torrentStates.init(id: data[indexPath.row])?.rawValue
+		
+		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		cell.textLabel?.textColor = Themes.shared.theme[theme].mainText
+		cell.backgroundColor = Themes.shared.theme[theme].backgroundMain
+		
         return cell
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
+class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDelegate {
     @IBOutlet weak var start: UIBarButtonItem!
     @IBOutlet weak var pause: UIBarButtonItem!
     @IBOutlet weak var rehash: UIBarButtonItem!
@@ -72,6 +72,13 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
         
         Manager.managersUpdatedDelegates = Manager.managersUpdatedDelegates.filter({$0 !== (self as ManagersUpdatedDelegate)})
     }
+	
+	override func numberOfSections(in tableView: UITableView) -> Int {
+		if (managerHash == nil) {
+			return 0
+		}
+		return super.numberOfSections(in: tableView)
+	}
     
     func managerUpdated() {
         if managerHash != nil,
@@ -157,7 +164,7 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
     }
     
     @IBAction func rehashAction(_ sender: UIBarButtonItem) {
-		let controller = UIAlertController(title: "Torrent rehash", message: "This action will recheck the state of all downloaded files", preferredStyle: .alert)
+		let controller = ThemedUIAlertController(title: "Torrent rehash", message: "This action will recheck the state of all downloaded files", preferredStyle: .alert)
 		let hash = UIAlertAction(title: "Rehash", style: .destructive) { _ in
 			rehash_torrent(self.managerHash)
 		}
@@ -170,7 +177,7 @@ class TorrentDetailsController: UITableViewController, ManagersUpdatedDelegate {
 	@IBAction func removeTorrent(_ sender: UIBarButtonItem) {
 		let manager = Manager.getManagerByHash(hash: managerHash)!
 		let message = manager.hasMetadata ? "Are you sure to remove " + manager.title + " torrent?" : "Are you sure to remove this magnet torrent?"
-		let removeController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+		let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
 		let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
 			self.removeTorrent(manager: manager, removeData: true)
 		}

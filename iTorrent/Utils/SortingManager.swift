@@ -18,7 +18,7 @@ class SortingManager {
 		case Size = 3
 	}
 	
-	public static func createSortingController(buttonItem: UIBarButtonItem? = nil, applyChanges: @escaping ()->() = {}) -> UIAlertController {
+	public static func createSortingController(buttonItem: UIBarButtonItem? = nil, applyChanges: @escaping ()->() = {}) -> ThemedUIAlertController {
 		let alphabetAction = createAlertButton("Name", SortingTypes.Name, applyChanges);
 		let dateAddedAction = createAlertButton("Date Added", SortingTypes.DateAdded, applyChanges);
 		let dateCreatedAction = createAlertButton("Date Created", SortingTypes.DateCreated, applyChanges);
@@ -28,7 +28,7 @@ class SortingManager {
 		
 		let cancel = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil);
 		
-        var sortAlertController = UIAlertController(title: "Sort Torrents By:", message: nil, preferredStyle: .actionSheet)
+        var sortAlertController = ThemedUIAlertController(title: "Sort Torrents By:", message: nil, preferredStyle: .actionSheet)
 		
 		var message = "Currently sorted by ";
 		checkConditionToAddButtonToList(&sortAlertController, &message, alphabetAction, SortingTypes.Name);
@@ -64,7 +64,7 @@ class SortingManager {
 		}
 	}
 	
-	private static func checkConditionToAddButtonToList(_ sortAlertController: inout UIAlertController, _ message: inout String, _ alertAction: UIAlertAction, _ sortingType: SortingTypes) {
+	private static func checkConditionToAddButtonToList(_ sortAlertController: inout ThemedUIAlertController, _ message: inout String, _ alertAction: UIAlertAction, _ sortingType: SortingTypes) {
 		if (SortingTypes(rawValue: UserDefaults.standard.integer(forKey: "SortingType")) != sortingType) {
 			sortAlertController.addAction(alertAction)
 		} else {

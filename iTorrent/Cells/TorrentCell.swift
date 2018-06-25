@@ -8,15 +8,28 @@
 
 import UIKit
 
-class TorrentCell: UITableViewCell {
+class TorrentCell: ThemedUITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var info: UILabel!
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var progress: UIProgressView!
     
     var manager: TorrentStatus!
+	
+	override func updateTheme() {
+		super.updateTheme()
+		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		title.textColor = Themes.shared.theme[theme].mainText
+		info.textColor = Themes.shared.theme[theme].secondaryText
+		status.textColor = Themes.shared.theme[theme].secondaryText
+		
+		let bgColorView = UIView()
+		bgColorView.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
+		selectedBackgroundView = bgColorView
+	}
     
     func update() {
+		updateTheme()
         title.text = manager.title
         progress.progress = manager.progress
         info.text = Utils.getSizeText(size: manager.totalWantedDone) + " of " + Utils.getSizeText(size: manager.totalWanted) + " (" + String(format: "%.2f", manager.progress * 100) + "%)"

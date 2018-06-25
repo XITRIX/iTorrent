@@ -140,7 +140,7 @@ class Manager {
                     nav = presentedViewController
                 }
                 if nav is AddTorrentController {
-                    let controller = UIAlertController(title: "Error", message: "Finish the previous torrent adding before start the new one.", preferredStyle: .alert)
+                    let controller = ThemedUIAlertController(title: "Error", message: "Finish the previous torrent adding before start the new one.", preferredStyle: .alert)
                     let close = UIAlertAction(title: "Close", style: .cancel)
                     controller.addAction(close)
                     nav.present(controller, animated: true)
@@ -161,7 +161,7 @@ class Manager {
         } catch {
             print(error.localizedDescription)
             
-            let controller = UIAlertController(title: "Error on torrent opening", message: error.localizedDescription, preferredStyle: .alert)
+            let controller = ThemedUIAlertController(title: "Error on torrent opening", message: error.localizedDescription, preferredStyle: .alert)
             let close = UIAlertAction(title: "Close", style: .cancel)
             controller.addAction(close)
             UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -172,13 +172,13 @@ class Manager {
         
 		let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
         if (hash == "-1") {
-            let controller = UIAlertController(title: "Error on torrent reading", message: "Torrent file opening error has been occured", preferredStyle: .alert)
+            let controller = ThemedUIAlertController(title: "Error on torrent reading", message: "Torrent file opening error has been occured", preferredStyle: .alert)
             let close = UIAlertAction(title: "Close", style: .cancel)
             controller.addAction(close)
             UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
             return
         } else if (torrentStates.contains(where: {$0.hash == hash})){
-			let controller = UIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
+			let controller = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
 			let close = UIAlertAction(title: "Close", style: .cancel)
 			controller.addAction(close)
 			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -214,7 +214,7 @@ class Manager {
 			managerSaves[hash] = UserManagerSettings()
 			mainLoop()
 		} else {
-			let controller = UIAlertController(title: "Error", message: "Wrong magnet link, check it and try again!", preferredStyle: .alert)
+			let controller = ThemedUIAlertController(title: "Error", message: "Wrong magnet link, check it and try again!", preferredStyle: .alert)
 			let close = UIAlertAction(title: "Close", style: .cancel)
 			controller.addAction(close)
 			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)

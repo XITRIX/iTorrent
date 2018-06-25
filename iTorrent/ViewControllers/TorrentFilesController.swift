@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class TorrentFilesController : UIViewController, UITableViewDataSource, UITableViewDelegate, FileCellActionDelegate, FolderCellActionDelegate {
-    @IBOutlet weak var tableView: UITableView!
+class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UITableViewDelegate, FileCellActionDelegate, FolderCellActionDelegate {
+    @IBOutlet weak var tableView: ThemedUITableView!
     
     var managerHash : String!
     var name : String!
@@ -222,12 +222,13 @@ class TorrentFilesController : UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.row < folders.keys.count) {
+		if (indexPath.row < folders.keys.count) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as! FolderCell
             let key = folders.keys.sorted()[indexPath.row]
             cell.title.text = key
             cell.size.text = Utils.getSizeText(size: foldersSize[key]!)
             cell.actionDelegate = self
+			cell.updateTheme()
             return cell
         } else {
             let index = indexPath.row - folders.keys.count
@@ -238,6 +239,7 @@ class TorrentFilesController : UIViewController, UITableViewDataSource, UITableV
             cell.update()
             cell.switcher.setOn(filesContainer.fileSelectes[showSortMask[index]] != 0, animated: false)
             cell.actionDelegate = self
+			cell.updateTheme()
             return cell
         }
         
@@ -266,7 +268,7 @@ class TorrentFilesController : UIViewController, UITableViewDataSource, UITableV
 	}
     
     func folderCellAction(_ key: String, sender : UIButton) {
-        let controller = UIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
+        let controller = ThemedUIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
         
         let download = UIAlertAction(title: "Download", style: .default) { alert in
             for i in self.folders[key]! {

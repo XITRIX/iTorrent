@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ManagersUpdatedDelegate, ManagerStateChangedDelegate {
-    @IBOutlet weak var tableView: UITableView!
+class MainController: ThemedUIViewController, UITableViewDataSource, UITableViewDelegate, ManagersUpdatedDelegate, ManagerStateChangedDelegate {
+    @IBOutlet weak var tableView: ThemedUITableView!
     
     var managers : [[TorrentStatus]] = []
 	var headers : [String] = []
@@ -34,11 +34,8 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 		
+		tableView.updateTheme()
 		navigationController?.toolbar.tintColor = navigationController?.navigationBar.tintColor
-		
-		if (!(splitViewController?.isCollapsed)!) {
-			splitViewController?.showDetailViewController(Utils.createEmptyViewController(), sender: self)
-		}
 		
 		managers.removeAll()
 		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
@@ -112,14 +109,27 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
 		if (!(view.subviews[0] is UIVisualEffectView)) {
-			view.tintColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.9)
 			let blurEffect = UIBlurEffect(style: .light)
 			let blurEffectView = UIVisualEffectView(effect: blurEffect)
-			//always fill the view
 			blurEffectView.frame = view.bounds
 			blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			
+			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+			view.tintColor = Themes.shared.theme[theme].tableHeaderColor
+				
+			if let header = view as? UITableViewHeaderFooterView {
+				header.textLabel?.textColor = Themes.shared.theme[theme].mainText
+			}
+			
 			view.addSubview(blurEffectView)
 			view.insertSubview(blurEffectView, at: 0)
+		} else {
+			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+			view.tintColor = Themes.shared.theme[theme].tableHeaderColor
+			
+			if let header = view as? UITableViewHeaderFooterView {
+				header.textLabel?.textColor = Themes.shared.theme[theme].mainText
+			}
 		}
 	}
 
@@ -189,7 +199,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if (editingStyle == .delete) {
 			let message = managers[indexPath.section][indexPath.row].hasMetadata ? "Are you sure to remove " + managers[indexPath.section][indexPath.row].title + " torrent?" : "Are you sure to remove this magnet torrent?"
-			let removeController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+			let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
 			let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
 				self.removeTorrent(indexPath: indexPath, removeData: true)
 			}
@@ -252,12 +262,14 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 	}
     
     @IBAction func AddTorrentAction(_ sender: UIBarButtonItem) {
-        let addController = UIAlertController(title: "Add from...", message: nil, preferredStyle: .actionSheet)
+        let addController = ThemedUIAlertController(title: "Add from...", message: nil, preferredStyle: .actionSheet)
         
         let addURL = UIAlertAction(title: "URL", style: .default) { _ in
-            let addURLController = UIAlertController(title: "Add from URL", message: "Please enter the existing torrent's URL below", preferredStyle: .alert)
+            let addURLController = ThemedUIAlertController(title: "Add from URL", message: "Please enter the existing torrent's URL below", preferredStyle: .alert)
             addURLController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "https://"
+				let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+				textField.keyboardAppearance = Themes.shared.theme[theme].keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
                 let textField = addURLController.textFields![0]
@@ -268,7 +280,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 					Downloader.load(url: url, to: URL(fileURLWithPath: Manager.configFolder+"/_temp.torrent"), completion: {
 						let hash = String(validatingUTF8: get_torrent_file_hash(Manager.configFolder+"/_temp.torrent"))!
 						if (hash == "-1") {
-							let controller = UIAlertController(title: "Error has been occured", message: "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari", preferredStyle: .alert)
+							let controller = ThemedUIAlertController(title: "Error has been occured", message: "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari", preferredStyle: .alert)
 							let safari = UIAlertAction(title: "Open in Safari", style: .default) { _ in
 								UIApplication.shared.openURL(url)
 							}
@@ -279,7 +291,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 							return
 						}
 						if (Manager.torrentStates.contains(where: {$0.hash == hash})) {
-							let controller = UIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
+							let controller = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
 							let close = UIAlertAction(title: "Close", style: .cancel)
 							controller.addAction(close)
 							UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -289,13 +301,13 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 						((controller as! UINavigationController).topViewController as! AddTorrentController).path = Manager.configFolder+"/_temp.torrent"
 						self.present(controller, animated: true)
 					}, errorAction: {
-						let alertController = UIAlertController(title: "An error occurred", message: "Please, open this link in Safari, and send .torrent file from there", preferredStyle: .alert)
+						let alertController = ThemedUIAlertController(title: "An error occurred", message: "Please, open this link in Safari, and send .torrent file from there", preferredStyle: .alert)
 						let close = UIAlertAction(title: "Close", style: .cancel)
 						alertController.addAction(close)
 						self.present(alertController, animated: true)
 					})
 				} else {
-					let alertController = UIAlertController(title: "Error", message: "Wrong link, check it and try again!", preferredStyle: .alert)
+					let alertController = ThemedUIAlertController(title: "Error", message: "Wrong link, check it and try again!", preferredStyle: .alert)
 					let close = UIAlertAction(title: "Close", style: .cancel)
 					alertController.addAction(close)
 					self.present(alertController, animated: true)
@@ -309,9 +321,14 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.present(addURLController, animated: true)
         }
         let addMagnet = UIAlertAction(title: "Magnet", style: .default) { _ in
-            let addMagnetController = UIAlertController(title: "Add from magnet", message: "Please enter the magnet link below", preferredStyle: .alert)
+            let addMagnetController = ThemedUIAlertController(title: "Add from magnet", message: "Please enter the magnet link below", preferredStyle: .alert)
             addMagnetController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "magnet:"
+				let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+				textField.keyboardAppearance = Themes.shared.theme[theme].keyboardAppearence
+				//textField.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
+				//textField.color
+				//textField.textColor = Themes.shared.theme[theme].mainText
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
                 let textField = addMagnetController.textFields![0]
@@ -319,7 +336,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
                 Utils.checkFolderExist(path: Manager.configFolder)
 				let hash = String(validatingUTF8: get_magnet_hash(textField.text!))
 				if (Manager.torrentStates.contains(where: {$0.hash == hash})) {
-					let alert = UIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash! + "\" already exists in download queue", preferredStyle: .alert)
+					let alert = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash! + "\" already exists in download queue", preferredStyle: .alert)
 					let close = UIAlertAction(title: "Close", style: .cancel)
 					alert.addAction(close)
 					self.present(alert, animated: true)
@@ -450,7 +467,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 			
 			message = message.trimmingCharacters(in: .whitespacesAndNewlines)
 			
-			let controller = UIAlertController(title: "This action will recheck the state of all downloaded files for torrents:", message: message, preferredStyle: .actionSheet)
+			let controller = ThemedUIAlertController(title: "This action will recheck the state of all downloaded files for torrents:", message: message, preferredStyle: .actionSheet)
 			let hash = UIAlertAction(title: "Rehash", style: .destructive) { _ in
 				for hash in selectedHashes {
 					rehash_torrent(hash)
@@ -482,7 +499,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 			}
 			message = message.trimmingCharacters(in: .whitespacesAndNewlines)
 			
-			let removeController = UIAlertController(title: "Are you sure to remove \(selected.count) torrents?", message: message, preferredStyle: .actionSheet)
+			let removeController = ThemedUIAlertController(title: "Are you sure to remove \(selected.count) torrents?", message: message, preferredStyle: .actionSheet)
 			let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
 				for hash in selectedHashes {
 					var index : IndexPath!

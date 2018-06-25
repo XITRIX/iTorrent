@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AddTorrentController : UIViewController, UITableViewDataSource, UITableViewDelegate, FileCellActionDelegate, FolderCellActionDelegate {
+class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITableViewDelegate, FileCellActionDelegate, FolderCellActionDelegate {
     
     @IBOutlet var tableView: UITableView!
     
@@ -38,7 +38,7 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
 		
 		let size = Int(localFiles.size)
 		if (size == -1) {
-			let controller = UIAlertController(title: "Error has been occured", message: "Torrent file is broken and cannot be readed", preferredStyle: .alert)
+			let controller = ThemedUIAlertController(title: "Error has been occured", message: "Torrent file is broken and cannot be readed", preferredStyle: .alert)
 			let close = UIAlertAction(title: "Close", style: .cancel) { _ in
 				self.dismiss(animated: true)
 			}
@@ -166,7 +166,7 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
 	}
     
     func folderCellAction(_ key: String, sender: UIButton) {
-        let controller = UIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
+        let controller = ThemedUIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
         
         let download = UIAlertAction(title: "Download", style: .default) { alert in
             for i in self.folders[key]! {
@@ -246,7 +246,7 @@ class AddTorrentController : UIViewController, UITableViewDataSource, UITableVie
 			add_torrent_with_states(urlRes.path, UnsafeMutablePointer(mutating: fileSelectes.fileSelectes))
 			Manager.managerSaves[hash] = UserManagerSettings()
 		} catch {
-			let controller = UIAlertController(title: "Error has been occured", message: error.localizedDescription, preferredStyle: .alert)
+			let controller = ThemedUIAlertController(title: "Error has been occured", message: error.localizedDescription, preferredStyle: .alert)
 			let close = UIAlertAction(title: "Close", style: .cancel)
 			controller.addAction(close)
 			present(controller, animated: true)
