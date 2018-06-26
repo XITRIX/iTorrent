@@ -82,6 +82,13 @@ class FileCell: ThemedUITableViewCell {
 		controller.addAction(share)
 		//controller.addAction(delete)
 		controller.addAction(cancel)
+		
+		if (controller.popoverPresentationController != nil) {
+			controller.popoverPresentationController?.sourceView = sender
+			controller.popoverPresentationController?.sourceRect = sender.bounds
+			controller.popoverPresentationController?.permittedArrowDirections = .right
+		}
+		
 		UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
     }
 }
