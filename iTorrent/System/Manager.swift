@@ -20,10 +20,13 @@ class Manager {
     public static var managersUpdatedDelegates : [ManagersUpdatedDelegate] = []
     public static var managersStateChangedDelegade : [ManagerStateChangedDelegate] = []
 	public static var managerSaves : [String : UserManagerSettings] = [:]
+	public static var engineInited : Bool = false
+	public static var torrentsRestored : Bool = false
     
     public static func InitManager() {
         DispatchQueue.global(qos: .background).async {
             init_engine(Manager.rootFolder)
+			engineInited = true
             restoreAllTorrents()
             while(true) {
                 mainLoop()
@@ -46,10 +49,6 @@ class Manager {
     static func restoreAllTorrents() {
         Utils.checkFolderExist(path: configFolder)
 		Utils.checkFolderExist(path: fastResumesFolder)
-		// This code may be the reason of this bug: https://github.com/XITRIX/iTorrent/issues/2
-//        if (FileManager.default.fileExists(atPath: configFolder+"/_temp.torrent")) {
-//            try! FileManager.default.removeItem(atPath: configFolder+"/_temp.torrent")
-//        }
 		
 		if let loadedStrings = NSKeyedUnarchiver.unarchiveObject(withFile: fastResumesFolder + "/userData.dat") as? [String : UserManagerSettings] {
 			print("resumed")
@@ -61,6 +60,7 @@ class Manager {
 			if (file == "_temp.torrent") { continue }
             addTorrent(configFolder + "/" + file)
         }
+		torrentsRestored = true
     }
 	
 	static func removeTorrentFile(hash: String) {
@@ -149,46 +149,48 @@ class Manager {
                 }
             }
         }
-        
-		let dest = Manager.configFolder+"/_temp.torrent"
-        print(filePath.startAccessingSecurityScopedResource())
-        do {
-            if (FileManager.default.fileExists(atPath: dest)) {
-                try FileManager.default.removeItem(atPath: dest)
-            }
-            print(FileManager.default.fileExists(atPath: filePath.path))
-            try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
-        } catch {
-            print(error.localizedDescription)
-            
-            let controller = ThemedUIAlertController(title: "Error on torrent opening", message: error.localizedDescription, preferredStyle: .alert)
-            let close = UIAlertAction(title: "Close", style: .cancel)
-            controller.addAction(close)
-            UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
-            
-            return
-        }
-        filePath.stopAccessingSecurityScopedResource()
-        
-		let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
-        if (hash == "-1") {
-            let controller = ThemedUIAlertController(title: "Error on torrent reading", message: "Torrent file opening error has been occured", preferredStyle: .alert)
-            let close = UIAlertAction(title: "Close", style: .cancel)
-            controller.addAction(close)
-            UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
-            return
-        } else if (torrentStates.contains(where: {$0.hash == hash})){
-			let controller = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
-			let close = UIAlertAction(title: "Close", style: .cancel)
-			controller.addAction(close)
-			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
-			return
-		}
-		do {
-			
-			let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
-			((controller as! UINavigationController).topViewController as! AddTorrentController).path = dest
-			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+		
+		DispatchQueue.global(qos: .background).async {
+			while (!torrentsRestored) { sleep(1) }
+			DispatchQueue.main.async {
+				let dest = Manager.configFolder+"/_temp.torrent"
+				print(filePath.startAccessingSecurityScopedResource())
+				do {
+					if (FileManager.default.fileExists(atPath: dest)) {
+						try FileManager.default.removeItem(atPath: dest)
+					}
+					print(FileManager.default.fileExists(atPath: filePath.path))
+					try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
+				} catch {
+					let controller = ThemedUIAlertController(title: "Error on torrent opening", message: error.localizedDescription, preferredStyle: .alert)
+					let close = UIAlertAction(title: "Close", style: .cancel)
+					controller.addAction(close)
+					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+					
+					return
+				}
+				filePath.stopAccessingSecurityScopedResource()
+				
+				let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
+				if (hash == "-1") {
+					let controller = ThemedUIAlertController(title: "Error on torrent reading", message: "Torrent file opening error has been occured", preferredStyle: .alert)
+					let close = UIAlertAction(title: "Close", style: .cancel)
+					controller.addAction(close)
+					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+					return
+				} else if (torrentStates.contains(where: {$0.hash == hash})) {
+					let controller = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
+					let close = UIAlertAction(title: "Close", style: .cancel)
+					controller.addAction(close)
+					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+					return
+				}
+				do {
+					let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
+					((controller as! UINavigationController).topViewController as! AddTorrentController).path = dest
+					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+				}
+			}
 		}
 	}
     
@@ -208,16 +210,28 @@ class Manager {
 	}
     
     static func addMagnet(_ magnetLink: String) {
-		if magnetLink.starts(with: "magnet:"),
-			let hash = String(validatingUTF8: add_magnet(magnetLink)) {
-			print(hash)
-			managerSaves[hash] = UserManagerSettings()
-			mainLoop()
-		} else {
-			let controller = ThemedUIAlertController(title: "Error", message: "Wrong magnet link, check it and try again!", preferredStyle: .alert)
-			let close = UIAlertAction(title: "Close", style: .cancel)
-			controller.addAction(close)
-			UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+		if magnetLink.starts(with: "magnet:") {
+			DispatchQueue.global(qos: .background).async {
+				while (!torrentsRestored) { sleep(1) }
+				DispatchQueue.main.async {
+					let hash = String(validatingUTF8: get_magnet_hash(magnetLink))
+					if (Manager.torrentStates.contains(where: {$0.hash == hash})) {
+						let alert = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash! + "\" already exists in download queue", preferredStyle: .alert)
+						let close = UIAlertAction(title: "Close", style: .cancel)
+						alert.addAction(close)
+						UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
+					} else if let hash = String(validatingUTF8: add_magnet(magnetLink)) {
+						print(hash)
+						managerSaves[hash] = UserManagerSettings()
+						mainLoop()
+					} else {
+						let controller = ThemedUIAlertController(title: "Error", message: "Wrong magnet link, check it and try again!", preferredStyle: .alert)
+						let close = UIAlertAction(title: "Close", style: .cancel)
+						controller.addAction(close)
+						UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
+					}
+				}
+			}
 		}
     }
 	

@@ -1,4 +1,4 @@
-# iTorrent - iOS Torrent client App - LibTorrent Core
+# iTorrent - iOS Torrent client App
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
 ![](https://www.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
@@ -18,15 +18,17 @@ Alternate version of [iTorrent app](https://github.com/XITRIX/iTorrent_CSharp) f
 It is an ordinary torrent client for iOS with Files app support.
 
 What can this app do:
-- Download in the background by using music or microphone hack
+- Download in the background
 - Add torrent files from Share menu (Safari and other apps)
-- Store files in Files app (only iOS 11)
-- Support for <iOS 11 versions, like sending files directly from app
+- Add magnet links directly from Safari
+- Store files in Files app (iOS 11+)
+- File sharing directly from app
 - Download torrent by link
 - Download torrent by magnet
-- Send notification on torrent downloaded (iOS 10+)
-- FTP Server (Read only)
-- Select files to download
+- Send notification on torrent downloaded
+- FTP Server (unstable)
+- Select files to download or not
+- Change UI to dark theme
 - ??? 
 
 ## Libraries used
@@ -37,7 +39,7 @@ What can this app do:
 
 ## Donate for donuts
 
-- VISA CARD - 4890 4944 7168 8218
+- VISA CARD - 5106 2110 2661 7147
 - [QIWI Moneybox](https://qiwi.me/c5ec30ff-21d6-428b-9a10-29a1d18242db)
 
 ## License

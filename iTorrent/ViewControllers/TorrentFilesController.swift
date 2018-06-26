@@ -25,6 +25,16 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     var root : String!
     
     var runUpdate = false
+	
+	override func updateTheme() {
+		super.updateTheme()
+		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		tableView.backgroundColor = Themes.shared.theme[theme].backgroundMain
+	}
+	
+	deinit {
+		print("Files DEINIT!!")
+	}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +63,8 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
         runUpdate = true
         DispatchQueue.global(qos: .background).async {
             while(self.runUpdate) {
@@ -78,10 +90,6 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
         super.viewWillDisappear(animated)
         
         runUpdate = false
-    }
-    
-    deinit {
-        print("Files DEINIT!!")
     }
 	
 	func initialize() {

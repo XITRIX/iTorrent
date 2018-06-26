@@ -24,8 +24,8 @@ class ThemedUITableViewController : UITableViewController, Themed {
 		tableView.reloadData()
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
 		updateTheme()
 	}
 	

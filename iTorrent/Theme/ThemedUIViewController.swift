@@ -14,7 +14,6 @@ class ThemedUIViewController : UIViewController, Themed {
 	func updateTheme() {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		
-		
 		view.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
 		navigationController?.navigationBar.barStyle = Themes.shared.theme[theme].barStyle
 		navigationController?.toolbar.barStyle = Themes.shared.theme[theme].barStyle

@@ -26,6 +26,12 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
     var showSortMask : [Int] = []
     
     var root : String!
+	
+	override func updateTheme() {
+		super.updateTheme()
+		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		tableView.backgroundColor = Themes.shared.theme[theme].backgroundMain
+	}
     
     deinit {
         print("Add Torrent DEINIT!!")
