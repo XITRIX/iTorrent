@@ -28,6 +28,13 @@ class Manager {
             init_engine(Manager.rootFolder)
 			engineInited = true
             restoreAllTorrents()
+			
+			let down = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
+			set_download_limit(Int32(down))
+			
+			let up = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
+			set_upload_limit(Int32(up))
+			
             while(true) {
                 mainLoop()
                 sleep(1)
