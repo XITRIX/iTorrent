@@ -5,7 +5,7 @@
 
 ## Screenshots
 
-![itorrent](https://user-images.githubusercontent.com/9553519/42247376-4ef05222-7f29-11e8-9419-001571574c34.png)
+![itorrent](https://user-images.githubusercontent.com/9553519/42249216-da6f6190-7f32-11e8-9126-e559be69ebf5.png)
 
 **Download .ipa:** ([Google Drive](https://goo.gl/j2WRbv))
 
