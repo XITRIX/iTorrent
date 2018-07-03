@@ -112,14 +112,14 @@ class Manager {
 			}
 			status.addedDate = managerSaves[status.hash]?.addedDate
 			status.seedMode = (managerSaves[status.hash]?.seedMode)!
+			status.seedLimit = (managerSaves[status.hash]?.seedLimit)!
 			
             status.displayState = getDisplayState(manager: status)
 			//print(status.displayState)
-            
+			
             Manager.torrentStates.append(status)
 			stateCorrector(manager: status)
         }
-		//print(Manager.torrentStates.count)
         
         DispatchQueue.main.async {
             for i in Manager.managersUpdatedDelegates {
@@ -253,7 +253,10 @@ class Manager {
     }
 	
 	static func stateCorrector(manager: TorrentStatus) {
-		if ((manager.state == Utils.torrentStates.Seeding.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
+		if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
+			!(managerSaves[manager.hash]?.seedMode)!) {
+			stop_torrent(manager.hash)
+		} else if ((manager.state == Utils.torrentStates.Seeding.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
 			manager.isFinished &&
 			!manager.isPaused &&
 			!(managerSaves[manager.hash]?.seedMode)!) {
@@ -261,6 +264,13 @@ class Manager {
 		} else if (manager.state == Utils.torrentStates.Seeding.rawValue &&
 			!manager.isPaused &&
 			!(managerSaves[manager.hash]?.seedMode)!) {
+			stop_torrent(manager.hash)
+		} else if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
+			!manager.isPaused &&
+			(managerSaves[manager.hash]?.seedMode)! &&
+			manager.totalUpload >= (managerSaves[manager.hash]?.seedLimit)! &&
+			(managerSaves[manager.hash]?.seedLimit)! != 0) {
+			managerSaves[manager.hash]?.seedMode = false
 			stop_torrent(manager.hash)
 		} else if (manager.state == Utils.torrentStates.Hashing.rawValue && manager.isPaused) {
 			start_torrent(manager.hash)
@@ -303,7 +313,7 @@ class Manager {
 				content.sound = UNNotificationSound.default()
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-				let identifier = manager.title;
+				let identifier = manager.hash;
 				let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 				
 				UNUserNotificationCenter.current().add(request)
@@ -317,6 +327,37 @@ class Manager {
 				
                 UIApplication.shared.scheduleLocalNotification(notification)
             }
+			
+			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey)) {
+				UIApplication.shared.applicationIconBadgeNumber += 1
+			}
+			
+			BackgroundTask.checkToStopBackground()
+		}
+		if UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsSeedKey) &&
+			(oldState == Utils.torrentStates.Seeding.rawValue && (newState == Utils.torrentStates.Finished.rawValue)) {
+			if #available(iOS 10.0, *) {
+				let content = UNMutableNotificationContent()
+				
+				content.title = "Seeding finished"
+				content.body = manager.title + " finished seeding"
+				content.sound = UNNotificationSound.default()
+				
+				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+				let identifier = manager.hash;
+				let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+				
+				UNUserNotificationCenter.current().add(request)
+			} else {
+				let notification = UILocalNotification()
+				
+				notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
+				notification.alertTitle = "Seeding finished"
+				notification.alertBody = manager.title + " finished seeding"
+				notification.soundName = UILocalNotificationDefaultSoundName
+				
+				UIApplication.shared.scheduleLocalNotification(notification)
+			}
 			
 			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey)) {
 				UIApplication.shared.applicationIconBadgeNumber += 1

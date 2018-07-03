@@ -19,4 +19,14 @@ typedef struct Files {
 	long long* file_downloaded;
     int* file_priority;
 } Files;
+
+typedef struct Trackers {
+	int size;
+	char** tracker_url;
+	char** messages;
+	int* seeders;
+	int* peers;
+	int* working;
+	int* verified;
+} Trackers;
 #endif /* file_struct_h */

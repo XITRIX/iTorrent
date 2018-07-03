@@ -10,6 +10,7 @@ target 'iTorrent' do
   pod 'Firebase/Performance'
   pod 'Fabric', '~> 1.7.7'
   pod 'Crashlytics', '~> 3.10.2'
+  pod 'MarqueeLabel/Swift'
 
 end
 

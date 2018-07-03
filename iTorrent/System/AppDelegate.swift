@@ -102,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             viewControllers += (primaryNav?.viewControllers)!
             viewControllers += (secondNav?.viewControllers)!
             primaryNav?.viewControllers = viewControllers
+			primaryNav?.isToolbarHidden = false
         }
         return true
     }
@@ -163,8 +164,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationsKey) == nil) {
 			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.notificationsKey)
 		}
+		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationsSeedKey) == nil) {
+			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.notificationsSeedKey)
+		}
 		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.badgeKey) == nil) {
 			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.badgeKey)
+		}
+		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.downloadLimit) == nil) {
+			UserDefaults.standard.set(0, forKey: UserDefaultsKeys.downloadLimit)
+		}
+		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.uploadLimit) == nil) {
+			UserDefaults.standard.set(0, forKey: UserDefaultsKeys.uploadLimit)
 		}
 	}
 

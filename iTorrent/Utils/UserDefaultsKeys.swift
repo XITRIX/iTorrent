@@ -12,9 +12,12 @@ class UserDefaultsKeys {
 	static let backgroundKey = "backgroundKey"
 	static let backgroundSeedKey = "backgroundSeedKey"
 	static let notificationsKey = "notificationsKey"
+	static let notificationsSeedKey = "notificationsSeedKey"
 	static let badgeKey = "badgeKey"
 	static let ftpKey = "ftpKey"
 	static let ftpBackgroundKey = "ftpBackgroundKey"
     static let sectionsSortingOrder = "sectionsSortingOrder"
 	static let themeNum = "themeNum"
+	static let downloadLimit = "downloadLimit"
+	static let uploadLimit = "uploadLimit"
 }

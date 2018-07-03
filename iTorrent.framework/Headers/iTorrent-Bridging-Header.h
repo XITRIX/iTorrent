@@ -25,6 +25,10 @@ void save_fast_resume();
 void stop_torrent(const char* torrent_hash);
 void start_torrent(const char* torrent_hash);
 void rehash_torrent(const char* torrent_hash);
+Trackers get_trackers_by_hash(const char* torrent_hash);
+int add_tracker_to_torrent(const char* torrent_hash, const char* tracker_url);
+void set_download_limit(int limit_in_bytes);
+void set_upload_limit(int limit_in_bytes);
 
 //FTP
 void ftp_start(int port, const char* path);

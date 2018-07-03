@@ -32,5 +32,6 @@ class TorrentStatus {
     var isFinished : Bool = false
     var isSeed : Bool = false
 	var seedMode : Bool = false
+	var seedLimit : Int64 = 0
 	var hasMetadata : Bool = false
 }

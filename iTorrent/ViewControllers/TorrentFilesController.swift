@@ -226,7 +226,6 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return folders.keys.count + showFiles.count
-        //return files.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

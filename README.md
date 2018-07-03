@@ -1,19 +1,15 @@
 # iTorrent - iOS Torrent client App
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
-![](https://www.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
+![](https://app.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
 
 ## Screenshots
 
-![pic](https://user-images.githubusercontent.com/9553519/39924916-59d76598-5532-11e8-83ee-f87877492603.png)
+![itorrent](https://user-images.githubusercontent.com/9553519/42247376-4ef05222-7f29-11e8-9419-001571574c34.png)
 
 **Download .ipa:** ([Google Drive](https://goo.gl/j2WRbv))
 
 ## Info
-
-Alternate version of [iTorrent app](https://github.com/XITRIX/iTorrent_CSharp) fully rewritten on Swift and C++ 
-
-**WARNING!:** if you used iTorrent-CSharp version, you will lose all your torrents in app UI (not downloaded files)
 
 It is an ordinary torrent client for iOS with Files app support.
 
@@ -36,6 +32,7 @@ What can this app do:
 - [LibTorrent](https://github.com/arvidn/libtorrent)
 - [BackgroundTask](https://github.com/yarodevuci/backgroundTask)
 - [Orianne-FTP-Server (My fork)](https://github.com/XITRIX/Orianne-FTP-Server)
+- [MarqueeLabel](https://github.com/cbpowell/MarqueeLabel)
 
 ## Donate for donuts
 

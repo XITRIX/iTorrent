@@ -69,7 +69,7 @@ class Utils {
         return res
     }
     
-    public static func getSizeText(size: Int64) -> String {
+	public static func getSizeText(size: Int64, decimals: Bool = false) -> String {
         var size = size
         let names = ["B", "KB", "MB", "GB"]
         var count = 0
@@ -83,7 +83,8 @@ class Utils {
             }
             count+=1;
         }
-        let res = count > 1 ? String(format: "%.2f", fRes) : String(size)
+		let format = decimals ? "%.0f" : "%.2f"
+        let res = count > 1 ? String(format: format, fRes) : String(size)
         return res + " " + names[count]
     }
     

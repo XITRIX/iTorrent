@@ -9,11 +9,16 @@
 import Foundation
 import UIKit
 
+import MarqueeLabel
+
 class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDelegate {
-    @IBOutlet weak var start: UIBarButtonItem!
+	@IBOutlet weak var shareButton: UIBarButtonItem!
+	
+	@IBOutlet weak var start: UIBarButtonItem!
     @IBOutlet weak var pause: UIBarButtonItem!
     @IBOutlet weak var rehash: UIBarButtonItem!
 	@IBOutlet weak var switcher: UISwitch!
+	@IBOutlet weak var seedLimitButton: UIButton!
 	
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var downloadLabel: UILabel!
@@ -33,10 +38,26 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
     @IBOutlet weak var peersLabel: UILabel!
     
     var managerHash : String!
+	
+	var seedLimitPickerView : SeedLimitPickerView!
+	var myPickerView : UIPickerView!
     
     deinit {
         print("Details DEINIT")
     }
+	
+	override func updateTheme() {
+		super.updateTheme()
+		
+		if (seedLimitPickerView != nil && !seedLimitPickerView.dismissed) {
+			seedLimitPickerView.updateTheme()
+		}
+		
+		if let label = navigationItem.titleView as? UILabel {
+			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+			label.textColor = Themes.shared.theme[theme].mainText
+		}
+	}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +75,25 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 		let date = saves?.addedDate ?? Date()
 		addedOnLabel.text = String(calendar.component(.day, from: date)) + "/" + String(calendar.component(.month, from: date)) + "/" + String(calendar.component(.year, from: date))
 		
+		let limit = Manager.managerSaves[self.managerHash]?.seedLimit
+		if (limit == 0) {
+			seedLimitButton.setTitle("Unlinited", for: .normal)
+		} else {
+			seedLimitButton.setTitle(Utils.getSizeText(size: limit!, decimals: true), for: .normal)
+		}
+		
+		view.isUserInteractionEnabled = true
+		tableView.isUserInteractionEnabled = true
+		
 		managerUpdated()
+		
+		// MARQUEE LABEL
+		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		let label = MarqueeLabel.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
+		label.font = UIFont.boldSystemFont(ofSize: 17)
+		label.textAlignment = NSTextAlignment.center
+		label.textColor = Themes.shared.theme[theme].mainText
+		navigationItem.titleView = label
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +105,15 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
         managerUpdated()
         Manager.managersUpdatedDelegates.append(self)
     }
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		if (seedLimitPickerView != nil) {
+			seedLimitPickerView.dismiss()
+			seedLimitPickerView = nil
+		}
+	}
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -78,6 +126,13 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 			return 0
 		}
 		return super.numberOfSections(in: tableView)
+	}
+	
+	override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+		if (seedLimitPickerView != nil) {
+			seedLimitPickerView.dismiss()
+			seedLimitPickerView = nil
+		}
 	}
     
     func managerUpdated() {
@@ -101,6 +156,8 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
             uploadedLabel.text = Utils.getSizeText(size: manager.totalUpload)
             seedersLabel.text = String(manager.numSeeds)
             peersLabel.text = String(manager.numPeers)
+			
+			switcher.setOn((Manager.managerSaves[managerHash]?.seedMode)! , animated: true)
             
 //            print(manager.isPaused)
 //            print(manager.isFinished)
@@ -128,15 +185,29 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
                     rehash.isEnabled = true
                 }
             }
+			
+			if let title = title {
+				if FileManager.default.fileExists(atPath: Manager.configFolder + "/" + title + ".torrent") {
+					shareButton.isEnabled = true
+				}
+				if let label = navigationItem.titleView as? UILabel {
+					label.text = title + "        " 
+				}
+			} else {
+				shareButton.isEnabled = false
+			}
         }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "Files" &&
             Manager.getManagerByHash(hash: managerHash)?.state != Utils.torrentStates.Metadata.rawValue) {
-            return true;
+            return true
         }
-        return false;
+		if (identifier == "Trackers") {
+			return true
+		}
+        return false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -144,11 +215,47 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
             (segue.destination as! TorrentFilesController).managerHash = managerHash
             (segue.destination as! TorrentFilesController).name = title!
         }
+		if (segue.identifier == "Trackers") {
+			(segue.destination as! TrackersListController).managerHash = managerHash
+		}
     }
 	
 	@IBAction func seedingStateChanged(_ sender: UISwitch) {
 		Manager.managerSaves[managerHash]?.seedMode = sender.isOn
+		if let manager = Manager.getManagerByHash(hash: managerHash),
+			sender.isOn,
+			manager.isPaused {
+			start_torrent(managerHash)
+		}
 		managerUpdated()
+	}
+	
+	@IBAction func seedLimitAction(_ sender: UIButton) {
+		if (seedLimitPickerView == nil || seedLimitPickerView.dismissed) {
+			seedLimitPickerView = SeedLimitPickerView(self, defaultValue: (Manager.managerSaves[self.managerHash]?.seedLimit)!, onStateChange: { res in
+				Manager.managerSaves[self.managerHash]?.seedLimit = res
+				if (res == 0) {
+					sender.setTitle("Unlinited", for: .normal)
+				} else {
+					sender.setTitle(Utils.getSizeText(size: res, decimals: true), for: .normal)
+				}
+			})
+		}
+	}
+	
+	@IBAction func sendTorrent(_ sender: UIBarButtonItem) {
+		if let title = title {
+			let stringPath = Manager.configFolder + "/" + title + ".torrent"
+			if (FileManager.default.fileExists(atPath: stringPath)) {
+				let path = NSURL(fileURLWithPath: stringPath, isDirectory: false)
+				let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+				if (shareController.popoverPresentationController != nil) {
+					shareController.popoverPresentationController?.barButtonItem = sender
+					shareController.popoverPresentationController?.permittedArrowDirections = .any
+				}
+				UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
+			}
+		}
 	}
 	
     @IBAction func startAction(_ sender: UIBarButtonItem) {
@@ -243,5 +350,4 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 			navigationController?.popViewController(animated: true)
 		}
 	}
-	
 }

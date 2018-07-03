@@ -54,9 +54,9 @@ class FileCell: ThemedUITableViewCell {
 			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.filePath, isDirectory: false)
 			let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
 			if (shareController.popoverPresentationController != nil) {
-				shareController.popoverPresentationController?.sourceView = sender;
-				shareController.popoverPresentationController?.sourceRect = sender.bounds;
-				shareController.popoverPresentationController?.permittedArrowDirections = .any;
+				shareController.popoverPresentationController?.sourceView = sender
+				shareController.popoverPresentationController?.sourceRect = sender.bounds
+				shareController.popoverPresentationController?.permittedArrowDirections = .any
 			}
 			UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
 		}

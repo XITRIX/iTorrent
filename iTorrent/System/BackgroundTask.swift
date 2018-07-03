@@ -15,9 +15,11 @@ class BackgroundTask {
 	static var backgrounding = false
 	
 	static func startBackgroundTask() {
-		NotificationCenter.default.addObserver(self, selector: #selector(interuptedAudio), name: NSNotification.Name.AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
-		BackgroundTask.playAudio()
-		backgrounding = true
+		if (!backgrounding) {
+			NotificationCenter.default.addObserver(self, selector: #selector(interuptedAudio), name: NSNotification.Name.AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
+			BackgroundTask.playAudio()
+			backgrounding = true
+		}
 	}
 	
 	static func stopBackgroundTask() {

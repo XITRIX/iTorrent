@@ -140,7 +140,7 @@
         <scene sceneID="9ca-t6-lZK">
             <objects>
                 <tableViewController storyboardIdentifier="Detail" id="0I4-Ms-eK9" customClass="TorrentDetailsController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="p9w-mj-cff">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="p9w-mj-cff">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -343,12 +343,48 @@
                                             <outlet property="title" destination="tPP-KE-5PY" id="Dwd-Vm-UwG"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="rtl-7Z-LD2" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="368" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rtl-7Z-LD2" id="Fz3-IA-u9K">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seed Limit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sj4-t0-u6i" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="12" width="160" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="160" id="yfg-vg-roH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VX-R4-Jbh">
+                                                    <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="1024 GB"/>
+                                                    <connections>
+                                                        <action selector="seedLimitAction:" destination="0I4-Ms-eK9" eventType="touchUpInside" id="Gt7-27-cnH"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sj4-t0-u6i" firstAttribute="leading" secondItem="Fz3-IA-u9K" secondAttribute="leading" constant="15" id="4AP-Lv-MfA"/>
+                                                <constraint firstAttribute="bottom" secondItem="sj4-t0-u6i" secondAttribute="bottom" constant="11" id="RoO-Hn-JXD"/>
+                                                <constraint firstItem="sj4-t0-u6i" firstAttribute="top" secondItem="Fz3-IA-u9K" secondAttribute="top" constant="12" id="qRN-01-TOw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="sj4-t0-u6i" id="z2Y-bT-pSn"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="General information" id="ou1-dL-PNj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="BJ2-No-KbW" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="424" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="468" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BJ2-No-KbW" id="1lQ-Fv-wCq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -386,7 +422,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="lIA-RN-8Vj" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="468" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="512" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lIA-RN-8Vj" id="Q0G-5V-Xx8">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -424,7 +460,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="UiG-6x-jpD" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="512" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="556" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UiG-6x-jpD" id="XuK-Yj-5jE">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -462,7 +498,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="7Qw-6F-yTx" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="556" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="600" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Qw-6F-yTx" id="DkL-10-img">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -500,7 +536,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="nBu-TF-az3" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="600" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="644" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nBu-TF-az3" id="1EI-QN-SLO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -542,7 +578,7 @@
                             <tableViewSection headerTitle="Transfer" id="And-Ph-abv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="hvh-Yw-93f" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="700" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="744" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hvh-Yw-93f" id="I0h-CT-yOk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -580,7 +616,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="4gW-q5-k4K" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="744" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="788" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4gW-q5-k4K" id="W0u-is-ArZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -618,7 +654,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="7BO-iG-VIf" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="788" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="832" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7BO-iG-VIf" id="klj-lB-f8b">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -656,7 +692,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="maD-7Z-ZVF" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="832" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="876" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="maD-7Z-ZVF" id="YEV-7w-dlM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -694,7 +730,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="d40-Mo-aWF" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="876" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="920" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d40-Mo-aWF" id="Q7o-ou-jzn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -732,7 +768,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="NkZ-2b-bKe" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="920" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="964" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NkZ-2b-bKe" id="IWG-Fc-PVE">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -770,7 +806,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CellDetail" id="FbL-AC-xW2" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="964" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="1008" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FbL-AC-xW2" id="ce6-Pz-Xz6">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -811,15 +847,35 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="More" id="TmW-3z-2fD">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellDetail" textLabel="4sl-7t-NS3" style="IBUITableViewCellStyleDefault" id="bPs-F0-4Cu" customClass="DetailCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1108" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bPs-F0-4Cu" id="Pg1-iC-Buh">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Trackers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4sl-7t-NS3">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="4es-eS-3GG" kind="show" identifier="Trackers" id="01Z-Cp-EqA"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="2LQ-iM-Wa2" style="IBUITableViewCellStyleDefault" id="RsN-20-yfj">
-                                        <rect key="frame" x="0.0" y="1064" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="1152" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RsN-20-yfj" id="cyn-QD-Ek2">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Files" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2LQ-iM-Wa2">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -867,7 +923,13 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Detail" id="eBT-x9-uyn"/>
+                    <navigationItem key="navigationItem" title="Detail" id="eBT-x9-uyn">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="rFq-3W-50x">
+                            <connections>
+                                <action selector="sendTorrent:" destination="0I4-Ms-eK9" id="DIS-e9-gy7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addedOnLabel" destination="SxL-CI-RZv" id="GMS-e0-qju"/>
@@ -882,8 +944,10 @@
                         <outlet property="peersLabel" destination="OjG-Q1-0VO" id="IVT-WV-Dmv"/>
                         <outlet property="progressLabel" destination="3ha-jb-8Sc" id="GM4-Z1-FPY"/>
                         <outlet property="rehash" destination="mEE-pO-n4Z" id="65P-Xt-ga3"/>
+                        <outlet property="seedLimitButton" destination="4VX-R4-Jbh" id="cfg-qu-WiC"/>
                         <outlet property="seedersLabel" destination="EBO-my-IxI" id="Eii-vd-DJE"/>
                         <outlet property="selectedLabel" destination="bpL-bK-a73" id="YON-WG-w7V"/>
+                        <outlet property="shareButton" destination="rFq-3W-50x" id="u0F-Un-7oN"/>
                         <outlet property="start" destination="JHc-kY-FgK" id="1QK-8S-EQ4"/>
                         <outlet property="stateLabel" destination="4iO-T2-sWR" id="LBc-k6-2wd"/>
                         <outlet property="switcher" destination="qM7-Xq-pec" id="elH-ER-99L"/>
@@ -894,7 +958,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MLy-wt-v7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1830" y="117"/>
+            <point key="canvasLocation" x="1829.5999999999999" y="116.49175412293854"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="WC4-w3-y0S">
@@ -958,7 +1022,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Background downloading" footerTitle="Enable downloading while in background through multimedia functions" id="jbO-2T-J5g">
+                            <tableViewSection headerTitle="Background downloading" footerTitle="Enable downloading in background through multimedia functions" id="jbO-2T-J5g">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="dHF-4K-oR5" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="217" width="375" height="44"/>
@@ -1020,10 +1084,72 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Speed limitation" id="t8j-hz-Rpg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="fK6-u0-QqB" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="389" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fK6-u0-QqB" id="dWW-Ub-Kdb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Download Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg2-Gj-EYJ" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="12" width="276" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFq-kX-Dn0">
+                                                    <rect key="frame" x="243" y="6" width="119" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="1024 MB/S"/>
+                                                    <connections>
+                                                        <action selector="downloadLimitAction:" destination="9Ia-KW-DZw" eventType="touchUpInside" id="BFb-ii-W4k"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="Rg2-Gj-EYJ" id="d6b-Sh-srq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Dmv-Or-DNi" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="433" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dmv-Or-DNi" id="A44-mK-wEf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upload Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1k-rS-3Yc" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="12" width="276" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6i-JH-VXn">
+                                                    <rect key="frame" x="243" y="6" width="119" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="1024 MB/S"/>
+                                                    <connections>
+                                                        <action selector="uploadLimitAction:" destination="9Ia-KW-DZw" eventType="touchUpInside" id="Mmd-fj-lGr"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="d1k-rS-3Yc" id="4C6-2c-wMI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="FTP Server (BETA)" footerTitle="Connect to: ftp://192.168.1.1:22" id="33F-A6-k0I">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Q09-87-aFW" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="396.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="550.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q09-87-aFW" id="kcn-DD-ebg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1052,7 +1178,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="RGX-L7-cEz" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="440.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="594.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RGX-L7-cEz" id="G2g-Qe-RJI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1085,13 +1211,13 @@
                             <tableViewSection headerTitle="Notifications" id="1PP-y1-lwp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Fn6-yo-gLa" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="552.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="706.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fn6-yo-gLa" id="18q-dt-5Qs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notify on finished loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28o-GC-LyJ" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On finished loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28o-GC-LyJ" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="12" width="276" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1113,8 +1239,37 @@
                                             <outlet property="title" destination="28o-GC-LyJ" id="Und-dY-x4L"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="eSZ-Ka-gmB" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="750.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eSZ-Ka-gmB" id="fek-ML-nN5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On finished seeding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr7-DN-lT1" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="12" width="276" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W9O-Bc-ylu">
+                                                    <rect key="frame" x="304" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="notificationSeedAction:" destination="9Ia-KW-DZw" eventType="valueChanged" id="ehM-bG-4TG"/>
+                                                        <action selector="valueChangedAction:" destination="eSZ-Ka-gmB" eventType="valueChanged" id="Gbr-ab-Xlv"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="switcher" destination="W9O-Bc-ylu" id="o2d-Fr-do5"/>
+                                            <outlet property="title" destination="xr7-DN-lT1" id="PWV-X1-IKr"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="j6Z-mC-ii6" customClass="SwitchCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="596.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="794.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j6Z-mC-ii6" id="HPv-cS-CNV">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1147,7 +1302,7 @@
                             <tableViewSection headerTitle="Updates" id="Y5e-tt-VUv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="d6O-0p-fR8" customClass="ButtonCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="706.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="904.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d6O-0p-fR8" id="swU-Oo-z6T">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1176,7 +1331,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="JUl-Mr-8cb">
-                                        <rect key="frame" x="0.0" y="750.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="948.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JUl-Mr-8cb" id="rcF-Xu-zyJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1201,7 +1356,7 @@
                             <tableViewSection headerTitle="Donate for donuts" id="f0A-fe-3qf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="i4D-5c-PxF" customClass="ButtonCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="860.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="1058.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i4D-5c-PxF" id="jpl-6C-4UF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1239,11 +1394,14 @@
                         <outlet property="backgroundSwitch" destination="XLM-0H-rak" id="B6S-BM-Ltv"/>
                         <outlet property="badgeSwitch" destination="IEy-LO-Xq3" id="0ut-ee-3Qm"/>
                         <outlet property="darkThemeSwitch" destination="53D-pu-u4C" id="32H-OO-aXg"/>
+                        <outlet property="downloadLimitButton" destination="JFq-kX-Dn0" id="21o-UA-7v9"/>
                         <outlet property="ftpBackgroundSwitch" destination="4r7-DN-IDs" id="CLN-oR-OhK"/>
                         <outlet property="ftpSwitch" destination="Tfe-SV-FCH" id="KRK-qd-O9j"/>
+                        <outlet property="notificationSeedSwitch" destination="W9O-Bc-ylu" id="vA7-a0-5OQ"/>
                         <outlet property="notificationSwitch" destination="IzH-4p-ses" id="nyN-YI-JvG"/>
                         <outlet property="updateLabel" destination="eDX-Bv-9aF" id="ez9-V9-b1p"/>
                         <outlet property="updateLoading" destination="Al1-11-Awz" id="D3b-Wd-BfV"/>
+                        <outlet property="uploadLimitButton" destination="i6i-JH-VXn" id="iyy-dc-eag"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvH-ne-AFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1587,6 +1745,102 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJR-Kr-uIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2733.5999999999999" y="116.49175412293854"/>
+        </scene>
+        <!--Trackers-->
+        <scene sceneID="nwu-5E-Gsb">
+            <objects>
+                <viewController id="4es-eS-3GG" customClass="TrackersListController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cPt-Kn-KER">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="27h-ly-MCo" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" focusStyle="custom" rowHeight="64" id="Jun-79-x53" customClass="TrackerCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jun-79-x53" id="NOy-Im-oa9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYR-lv-IF5" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="8" width="378" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3E-zY-93P" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="36" width="346" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtb-QR-qoJ" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="64" width="165" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNi-AY-9uK" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                    <rect key="frame" x="187" y="64" width="173" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="message" destination="W3E-zY-93P" id="7rm-F7-ueK"/>
+                                            <outlet property="peers" destination="LNi-AY-9uK" id="LLS-9J-pMH"/>
+                                            <outlet property="seeders" destination="gtb-QR-qoJ" id="mGx-sE-UUa"/>
+                                            <outlet property="title" destination="UYR-lv-IF5" id="IjV-th-HQK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8dA-Rk-I9e"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="flexibleSpace" id="gXh-p3-M5s"/>
+                        <barButtonItem enabled="NO" systemItem="add" id="VIO-M1-7nY">
+                            <connections>
+                                <action selector="addAction:" destination="4es-eS-3GG" id="Epq-Qs-e3z"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="5Ep-iW-Qj5"/>
+                        <barButtonItem enabled="NO" systemItem="trash" id="VvP-CB-LSd">
+                            <connections>
+                                <action selector="removeAction:" destination="4es-eS-3GG" id="pSj-oK-mWA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="l2h-1r-Xq2"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Trackers" id="sOp-Cs-bgM">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="pIK-sG-MTR">
+                            <connections>
+                                <action selector="editAction:" destination="4es-eS-3GG" id="VmW-Se-beu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addButton" destination="VIO-M1-7nY" id="MLP-G0-plf"/>
+                        <outlet property="removeButton" destination="VvP-CB-LSd" id="pWb-xZ-P7k"/>
+                        <outlet property="tableView" destination="27h-ly-MCo" id="aNf-cW-Pvy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kbI-hs-YPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2733.5999999999999" y="-654.42278860569718"/>
         </scene>
     </scenes>
     <resources>

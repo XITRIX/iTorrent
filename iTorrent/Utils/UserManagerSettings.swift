@@ -10,6 +10,7 @@ import Foundation
 
 class UserManagerSettings : NSObject, NSCoding  {
 	var seedMode : Bool = false
+	var seedLimit : Int64 = 0
 	var addedDate : Date!
 	
 	override init() {
@@ -18,11 +19,13 @@ class UserManagerSettings : NSObject, NSCoding  {
 	
 	required init(coder decoder: NSCoder) {
 		self.seedMode = decoder.decodeBool(forKey: "seedMode")
+		self.seedLimit = decoder.decodeInt64(forKey: "seedLimit")
 		self.addedDate = decoder.decodeObject(forKey: "addedDate") as? Date ?? Date()
 	}
 	
 	func encode(with coder: NSCoder) {
 		coder.encode(seedMode, forKey: "seedMode")
+		coder.encode(seedLimit, forKey: "seedLimit")
 		coder.encode(addedDate, forKey: "addedDate")
 	}
 }

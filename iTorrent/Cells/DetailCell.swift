@@ -17,7 +17,11 @@ class DetailCell: ThemedUITableViewCell {
 	override func updateTheme() {
 		super.updateTheme()
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		title.textColor = Themes.shared.theme[theme].mainText
-		details.textColor = Themes.shared.theme[theme].selectedText
+		if (title != nil) {
+			title.textColor = Themes.shared.theme[theme].mainText
+		}
+		if (details != nil) {
+			details.textColor = Themes.shared.theme[theme].selectedText
+		}
 	}
 }

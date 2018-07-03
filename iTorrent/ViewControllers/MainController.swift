@@ -369,6 +369,7 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
         let edit = !tableView.isEditing
         tableView.setEditing(edit, animated: true)
         sender.title = edit ? "Done" : "Edit"
+		sender.style = edit ? .done : .plain
         
         //NavBarItems
         var copy = navigationItem.rightBarButtonItems
