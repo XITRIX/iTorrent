@@ -39,6 +39,26 @@ What can this app do:
 - VISA CARD - 5106 2110 2661 7147
 - [QIWI Moneybox](https://qiwi.me/c5ec30ff-21d6-428b-9a10-29a1d18242db)
 
+## Important information
+
+This app using Firebase Analytics and so it collects next information from your device:
+- The country of your internet provider
+- Time of app's working session
+
+All this data presents as statistic, and cannot be used to get someone's personal information
+
+Also this app using Firebase Crashlytics, which collects the next information when application crashes:
+- Model of your device (IPhone X or IPad Pro (10.5 inch) for example)
+- Device orientation
+- Free space on RAM and ROM
+- IOS version
+- Time of crash
+- Detailed log of the thread where the stuck happens
+
+All this information is using for bug fixing and improving the quality of this app
+
+More information you can find on [Firebase website](https://firebase.google.com)
+
 ## License
 
 Copyright (c) 2018 XITRIX (Vinogradov Daniil)
