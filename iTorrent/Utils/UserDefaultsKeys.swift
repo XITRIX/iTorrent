@@ -20,4 +20,5 @@ class UserDefaultsKeys {
 	static let themeNum = "themeNum"
 	static let downloadLimit = "downloadLimit"
 	static let uploadLimit = "uploadLimit"
+	static let seedBackgroundWarning = "seedBackgroundWarning"
 }

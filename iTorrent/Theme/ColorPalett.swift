@@ -31,9 +31,14 @@ class Themes {
 		darkTheme.barStyle = .black
 		darkTheme.blurEffect = .dark
 		darkTheme.keyboardAppearence = .dark
+		darkTheme.loadingIndicatorStyle = .white
 		
 		theme.append(ColorPalett())
 		theme.append(darkTheme)
+	}
+	
+	static func current() -> ColorPalett {
+		return shared.theme[UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)]
 	}
 	
 }
@@ -52,4 +57,5 @@ class ColorPalett {
 	var barStyle : UIBarStyle = .default
 	var blurEffect : UIBlurEffect.Style = .light
 	var keyboardAppearence : UIKeyboardAppearance = .default
+	var loadingIndicatorStyle : UIActivityIndicatorViewStyle = .gray
 }

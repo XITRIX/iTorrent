@@ -14,7 +14,7 @@ class Manager {
 	
 	public static var previousTorrentStates : [TorrentStatus] = []
     public static var torrentStates : [TorrentStatus] = []
-    public static let rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!;
+    public static let rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     public static let configFolder = Manager.rootFolder + "/_Config"
 	public static let fastResumesFolder = Manager.configFolder+"/.FastResumes"
     public static var managersUpdatedDelegates : [ManagersUpdatedDelegate] = []
@@ -96,7 +96,7 @@ class Manager {
             status.title = status.state == Utils.torrentStates.Metadata.rawValue ? "Obtaining Metadata" : String(validatingUTF8: nameArr[Int(i)]!) ?? "ERROR"
             status.hash = String(validatingUTF8: hashArr[Int(i)]!) ?? "ERROR"
             status.creator = String(validatingUTF8: creatorArr[Int(i)]!) ?? "ERROR"
-            status.comment = String(validatingUTF8: commentArr[Int(i)]!) ?? "ERROR"
+			status.comment = String(validatingUTF8: commentArr[Int(i)]!) ?? "ERROR"
             status.progress = res.progress[i]
             status.totalWanted = res.total_wanted[i]
             status.totalWantedDone = res.total_wanted_done[i]
@@ -250,7 +250,7 @@ class Manager {
         if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused && (managerSaves[manager.hash]?.seedMode)!) {
             return Utils.torrentStates.Seeding.rawValue
         }
-		if (manager.state == Utils.torrentStates.Seeding.rawValue && manager.isPaused) {
+		if (manager.state == Utils.torrentStates.Seeding.rawValue && (manager.isPaused || !(managerSaves[manager.hash]?.seedMode)!)) {
             return Utils.torrentStates.Finished.rawValue
         }
 		if (manager.state == Utils.torrentStates.Downloading.rawValue && !manager.isFinished && manager.isPaused) {
@@ -262,6 +262,9 @@ class Manager {
 	static func stateCorrector(manager: TorrentStatus) {
 		if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
 			!(managerSaves[manager.hash]?.seedMode)!) {
+			stop_torrent(manager.hash)
+		} else if (manager.displayState == Utils.torrentStates.Finished.rawValue &&
+			!manager.isPaused) {
 			stop_torrent(manager.hash)
 		} else if ((manager.state == Utils.torrentStates.Seeding.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
 			manager.isFinished &&

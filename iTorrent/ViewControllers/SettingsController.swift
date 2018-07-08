@@ -30,6 +30,12 @@ class SettingsController: ThemedUITableViewController {
     deinit {
         print("Settings DEINIT")
     }
+	
+	override func updateTheme() {
+		super.updateTheme()
+		
+		updateLoading.activityIndicatorViewStyle = Themes.current().loadingIndicatorStyle
+	}
     
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -188,7 +194,7 @@ class SettingsController: ThemedUITableViewController {
 	
 	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-            let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background permanently, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
+            let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
 			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
 			}
@@ -199,7 +205,8 @@ class SettingsController: ThemedUITableViewController {
 			controller.addAction(close)
 			present(controller, animated: true)
 		} else {
-			UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+			UserDefaults.standard.set(false, forKey: UserDefaultsKeys.seedBackgroundWarning)
+			UserDefaults.standard.set(false, forKey: UserDefaultsKeys.backgroundSeedKey)
 		}
 	}
 	
@@ -250,7 +257,7 @@ class SettingsController: ThemedUITableViewController {
 	
 	@IBAction func ftpBackgroundAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-			let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in the background permanently, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
+			let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
 			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
 			}

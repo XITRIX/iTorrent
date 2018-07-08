@@ -77,7 +77,7 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 		
 		let limit = Manager.managerSaves[self.managerHash]?.seedLimit
 		if (limit == 0) {
-			seedLimitButton.setTitle("Unlinited", for: .normal)
+			seedLimitButton.setTitle("Unlimited", for: .normal)
 		} else {
 			seedLimitButton.setTitle(Utils.getSizeText(size: limit!, decimals: true), for: .normal)
 		}
@@ -204,7 +204,8 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
             Manager.getManagerByHash(hash: managerHash)?.state != Utils.torrentStates.Metadata.rawValue) {
             return true
         }
-		if (identifier == "Trackers") {
+		if (identifier == "Trackers" &&
+			Manager.getManagerByHash(hash: managerHash)?.state != Utils.torrentStates.Metadata.rawValue) {
 			return true
 		}
         return false
@@ -222,11 +223,32 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 	
 	@IBAction func seedingStateChanged(_ sender: UISwitch) {
 		Manager.managerSaves[managerHash]?.seedMode = sender.isOn
-		if let manager = Manager.getManagerByHash(hash: managerHash),
-			sender.isOn,
-			manager.isPaused {
-			start_torrent(managerHash)
+		if let manager = Manager.getManagerByHash(hash: managerHash) {
+			if sender.isOn {
+				if manager.isPaused {
+					start_torrent(managerHash)
+				}
+				if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
+					!UserDefaults.standard.bool(forKey: UserDefaultsKeys.seedBackgroundWarning)) {
+					let controller = ThemedUIAlertController(title: "Warning", message: "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.", preferredStyle: .alert)
+					let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
+						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundSeedKey)
+					}
+					let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.seedBackgroundWarning)
+					}
+					
+					controller.addAction(enable)
+					controller.addAction(cancel)
+					
+					present(controller, animated: true)
+				}
+			} else if !sender.isOn,
+				manager.isPaused {
+				stop_torrent(managerHash)
+			}
 		}
+		Manager.mainLoop()
 		managerUpdated()
 	}
 	
