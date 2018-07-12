@@ -338,7 +338,7 @@ class Manager {
                 UIApplication.shared.scheduleLocalNotification(notification)
             }
 			
-			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey)) {
+			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey) && AppDelegate.backgrounded) {
 				UIApplication.shared.applicationIconBadgeNumber += 1
 			}
 			
@@ -369,7 +369,7 @@ class Manager {
 				UIApplication.shared.scheduleLocalNotification(notification)
 			}
 			
-			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey)) {
+			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey) && AppDelegate.backgrounded) {
 				UIApplication.shared.applicationIconBadgeNumber += 1
 			}
 			

@@ -15,6 +15,8 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
+	
+	static var backgrounded = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -71,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		if (!BackgroundTask.startBackground()) {
 			Manager.saveTorrents()
 		}
+		AppDelegate.backgrounded = true
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -83,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		UIApplication.shared.applicationIconBadgeNumber = 0
 		BackgroundTask.stopBackgroundTask()
 		resume_to_app()
+		AppDelegate.backgrounded = false
 	}
 
     func applicationDidBecomeActive(_ application: UIApplication) {

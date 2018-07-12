@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7C06249720BD676500C7466C /* iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C06249620BD676500C7466C /* iTorrent.framework */; };
 		7C06249920BD676F00C7466C /* iTorrent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C06249620BD676500C7466C /* iTorrent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */; };
+		7C0D2F1F20F77F9B00B7FBC6 /* FileManagerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */; };
 		7C27A16820B0B9040065238C /* Version.ver in Resources */ = {isa = PBXBuildFile; fileRef = 7C27A16720B0B9040065238C /* Version.ver */; };
 		7C27A1A420B223630065238C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C27A1A320B223630065238C /* GoogleService-Info.plist */; };
 		7C3C693820A754FB0023396C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693620A754FB0023396C /* Main.storyboard */; };
@@ -74,6 +76,8 @@
 		2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
 		65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTorrent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C06249620BD676500C7466C /* iTorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent.framework; sourceTree = "<group>"; };
+		7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileManagerTitleView.xib; sourceTree = "<group>"; };
+		7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTitleView.swift; sourceTree = "<group>"; };
 		7C27A16720B0B9040065238C /* Version.ver */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version.ver; sourceTree = "<group>"; };
 		7C27A1A320B223630065238C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C3C692F20A754FB0023396C /* iTorrent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTorrent.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +102,7 @@
 		7C4B10AE20EA30C500440E74 /* TrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCell.swift; sourceTree = "<group>"; };
 		7C4B10B420EAE00C00440E74 /* SeedLimitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedLimitPickerView.swift; sourceTree = "<group>"; };
 		7C4B10B620EBF50500440E74 /* SpeedLimitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedLimitPickerView.swift; sourceTree = "<group>"; };
+		7C59CD6520F2AF960042C4C1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C7D0AB520D8EA50001B08E5 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
@@ -145,6 +150,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7C0D2F1B20F77F5200B7FBC6 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */,
+				7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		7C3C692620A754FB0023396C = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +180,8 @@
 		7C3C693120A754FB0023396C /* iTorrent */ = {
 			isa = PBXGroup;
 			children = (
+				7C59CD6520F2AF960042C4C1 /* MyPlayground.playground */,
+				7C0D2F1B20F77F5200B7FBC6 /* CustomViews */,
 				7C4B109720DFDECA00440E74 /* Theme */,
 				7CF99DC420B3636D00E5BF3A /* Resources */,
 				7CF522E420AE1F2C00D319E6 /* Utils */,
@@ -350,6 +366,7 @@
 			files = (
 				7CF522EE20AF7B0300D319E6 /* 3.wav in Resources */,
 				7C27A1A420B223630065238C /* GoogleService-Info.plist in Resources */,
+				7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */,
 				7C27A16820B0B9040065238C /* Version.ver in Resources */,
 				7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */,
 				7C3C693A20A754FD0023396C /* Assets.xcassets in Resources */,
@@ -451,6 +468,7 @@
 				7C4B10B520EAE00C00440E74 /* SeedLimitPickerView.swift in Sources */,
 				7C4B109920DFDEEC00440E74 /* ColorPalett.swift in Sources */,
 				7C3E841D20AB10FE00577282 /* SettingsController.swift in Sources */,
+				7C0D2F1F20F77F9B00B7FBC6 /* FileManagerTitleView.swift in Sources */,
 				7C4B10A120E0019100440E74 /* ThemedUITableViewController.swift in Sources */,
 				7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */,
 				7C7D0ABA20D911EB001B08E5 /* SettingsSortingController.swift in Sources */,

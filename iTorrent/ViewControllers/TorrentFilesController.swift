@@ -14,22 +14,24 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     
     var managerHash : String!
     var name : String!
-    
-    var filesContainer : FilesContainer!
-    
-    var folders : [String : [Int]] = [:]
-    var foldersSize : [String : Int64] = [:]
-    var showFiles : [Int] = []
-    var showSortMask : [Int] = []
-    
-    var root : String!
-    
+	
+	var files : [File] = []
+	var notSortedFiles : [File] = []
+	
+	var showFolders : [String:Folder] = [:]
+	var showFiles : [File] = []
+	
+	var root : String = ""
+	
     var runUpdate = false
 	
 	override func updateTheme() {
 		super.updateTheme()
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		tableView.backgroundColor = Themes.shared.theme[theme].backgroundMain
+		if let titleView = navigationItem.titleView as? FileManagerTitleView {
+			titleView.updateTheme()
+		}
 	}
 	
 	deinit {
@@ -38,23 +40,27 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (root == nil) {
-            root = name + "/"
-            
-            let but = UIBarButtonItem()
-            but.title = name
-            navigationItem.backBarButtonItem = but
+		
+		if (root.starts(with: "/")) { root.removeFirst() }
+		
+        if (root == "") {
+            let back = UIBarButtonItem()
+            back.title = "Root"
+            navigationItem.backBarButtonItem = back
+			
+			initialize()
         } else {
-            title = URL(fileURLWithPath: root).lastPathComponent
+			let urlRoot = URL(string: root.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+			title = urlRoot?.lastPathComponent
+			
+			let titleView = FileManagerTitleView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+			titleView.title.text = title
+			titleView.subTitle.text = urlRoot?.deletingLastPathComponent().path
+			titleView.updateTheme()
+			navigationItem.titleView = titleView
         }
-        
-        if (filesContainer == nil) {
-            filesContainer = FilesContainer()
-            initialize()
-        } else {
-            initFolders()
-        }
+		initFolder()
+		update()
 		
         tableView.dataSource = self
         tableView.delegate = self
@@ -68,144 +74,89 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
         runUpdate = true
         DispatchQueue.global(qos: .background).async {
             while(self.runUpdate) {
+				self.update()
                 DispatchQueue.main.async {
-                    self.update()
-                    
                     for cell in self.tableView.visibleCells {
                         if let cell = cell as? FileCell {
-                            cell.file = self.filesContainer.files[self.showSortMask[cell.index]]
+							cell.file = self.showFiles[cell.index]
                             cell.update()
                         }
                     }
                 }
-                
                 sleep(1)
             }
         }
-        
         tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         runUpdate = false
     }
 	
 	func initialize() {
-        filesContainer.files.removeAll()
-        filesContainer.sortMask.removeAll()
-        filesContainer.fileSelectes.removeAll()
-        
-        showSortMask.removeAll()
-        folders.removeAll()
-        foldersSize.removeAll()
-        showFiles.removeAll()
-        
 		let localFiles = get_files_of_torrent_by_hash(managerHash)
 		if localFiles.error == 1 {
 			dismiss(animated: false)
 			return
         }
-        
-        filesContainer.name = String(validatingUTF8: localFiles.title) ?? "ERROR"
+		
         let size = Int(localFiles.size)
         let namesArr = Array(UnsafeBufferPointer(start: localFiles.file_name, count: size))
-        let pathsArr = Array(UnsafeBufferPointer(start: localFiles.file_path, count: size))
         let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
         
         for i in 0 ..< size {
-            filesContainer.fileSelectes.append(localFiles.file_priority[Int(i)])
-            
-            let file = FileInfo()
-            let name = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
-            
-            var cutName = name
-            if (cutName.hasPrefix(root)) {
-                cutName = String(cutName.dropFirst(root.count))
-            }
-            
-            if (root == self.filesContainer.name + "/" || name.contains(root)) {
-                let nameParts = cutName.split(separator: "/")
-                if (nameParts.count > 1) {
-                    if (folders[String(nameParts[0])] == nil) {
-                        folders[String(nameParts[0])] = []
-                    }
-                    folders[String(nameParts[0])]?.append(i)
-                } else {
-                    showFiles.append(i)
-                }
-            }
-            
-            file.fileName = cutName
-            file.filePath = String(validatingUTF8: pathsArr[Int(i)]!) ?? "ERROR"
-            file.fileSize = sizesArr[i]
-            file.fileDownloaded = localFiles.file_downloaded[i]
-            filesContainer.files.append(file)
+            let file = File()
+			
+			let n = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
+			let name = URL(string: n.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
+			file.name = name.lastPathComponent
+			file.path = name.deletingLastPathComponent().path == "." ? "" : name.deletingLastPathComponent().path
+			file.size = sizesArr[i]
+			file.isDownloading = localFiles.file_priority[Int(i)] != 0
+			file.number = i
+			
+			files.append(file)
+			
+			if (i == 0 && root == "" && n.starts(with: self.name + "/")) {
+				root = self.name
+			}
         }
-        
-        for f in folders {
-            var size : Int64 = 0
-            for s in f.value {
-                size += filesContainer.files[s].fileSize
-            }
-            foldersSize[f.key] = size
-        }
-        
-        let sort = filesContainer.files.sorted(by: {$0.fileName < $1.fileName})
-        for i in 0 ..< sort.count {
-            let index = filesContainer.files.index(where: {$0.fileName == sort[i].fileName})!
-            if (showFiles.contains(index)) {
-                showSortMask.append(index)
-            }
-            filesContainer.sortMask.append(index)
-        }
+		notSortedFiles = files
+		files.sort{$0.name < $1.name}
 	}
-    
-    func initFolders() {
-        showSortMask.removeAll()
-        folders.removeAll()
-        foldersSize.removeAll()
-        showFiles.removeAll()
-        
-        for i in 0 ..< filesContainer.files.count {
-            var cutName = filesContainer.files[i].filePath
-            if (cutName.hasPrefix(root)) {
-                cutName = String(cutName.dropFirst(root.count))
-            }
-            
-            if (root == filesContainer.name + "/" || filesContainer.files[i].filePath.contains(root)) {
-                let nameParts = cutName.split(separator: "/")
-                if (nameParts.count > 1) {
-                    if (folders[String(nameParts[0])] == nil) {
-                        folders[String(nameParts[0])] = []
-                    }
-                    folders[String(nameParts[0])]?.append(i)
-                } else {
-                    showFiles.append(i)
-                    filesContainer.files[i].fileName = cutName
-                }
-            }
-            
-        }
-        
-        for f in folders {
-            var size : Int64 = 0
-            for s in f.value {
-                size += filesContainer.files[s].fileSize
-            }
-            foldersSize[f.key] = size
-        }
-        
-        let sort = filesContainer.files.sorted(by: {$0.fileName < $1.fileName})
-        for i in 0 ..< sort.count {
-            let index = filesContainer.files.index(where: {$0.fileName == sort[i].fileName})!
-            if (showFiles.contains(index)) {
-                showSortMask.append(index)
-            }
-            filesContainer.sortMask.append(index)
-        }
-    }
+	
+	func initFolder() {
+		let rootPathParts = root.split(separator: "/")
+		for file in files {
+			if (file.path == root) {
+				showFiles.append(file)
+				continue
+			}
+			let filePathParts = file.path.split(separator: "/")
+			if (file.path.starts(with: root + "/") && filePathParts.count > rootPathParts.count) {
+				let folderName = String(filePathParts[rootPathParts.count])
+				if (showFolders[folderName] == nil) {
+					let folder = Folder()
+					folder.name = folderName
+					showFolders[folderName] = folder
+				}
+				let folder = showFolders[folderName]!
+				print("\(file.path) : \(root)/\(folderName)")
+				if (file.path.starts(with:("\(root)/\(folderName)"))) {
+					folder.files.append(file)
+				}
+			}
+		}
+		
+		for folder in showFolders.keys {
+			var size : Int64 = 0
+			for s in (showFolders[folder]?.files)! {
+				size += s.size
+			}
+			showFolders[folder]?.size = size
+		}
+	}
 	
 	func update() {
 		let localFiles = get_files_of_torrent_by_hash(managerHash)
@@ -214,37 +165,35 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 			return
 		}
 		
-		filesContainer.name = String(validatingUTF8: localFiles.title) ?? "ERROR"
 		let size = Int(localFiles.size)
 		let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
-		
+
 		for i in 0 ..< size {
-			filesContainer.files[i].fileSize = sizesArr[i]
-			filesContainer.files[i].fileDownloaded = localFiles.file_downloaded[i]
+			notSortedFiles[i].size = sizesArr[i]
+			notSortedFiles[i].downloaded = localFiles.file_downloaded[i]
 		}
 	}
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return folders.keys.count + showFiles.count
+		return showFolders.keys.count + showFiles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if (indexPath.row < folders.keys.count) {
+		if (indexPath.row < showFolders.keys.count) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as! FolderCell
-            let key = folders.keys.sorted()[indexPath.row]
+            let key = showFolders.keys.sorted()[indexPath.row]
             cell.title.text = key
-            cell.size.text = Utils.getSizeText(size: foldersSize[key]!)
+            cell.size.text = Utils.getSizeText(size: showFolders[key]!.size)
             cell.actionDelegate = self
 			cell.updateTheme()
             return cell
         } else {
-            let index = indexPath.row - folders.keys.count
+            let index = indexPath.row - showFolders.keys.count
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
-            cell.file = filesContainer.files[showSortMask[index]]
-            cell.name = filesContainer.name
+            cell.file = showFiles[index]
             cell.index = index
             cell.update()
-            cell.switcher.setOn(filesContainer.fileSelectes[showSortMask[index]] != 0, animated: false)
+            cell.switcher.setOn(showFiles[index].isDownloading, animated: false)
             cell.actionDelegate = self
 			cell.updateTheme()
             return cell
@@ -253,17 +202,18 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     }
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.row < folders.keys.count) {
+        if (indexPath.row < showFolders.keys.count) {
             let controller = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Files") as! TorrentFilesController
             controller.managerHash = managerHash
             controller.name = name
-            controller.root = root + folders.keys.sorted()[indexPath.row] + "/"
-            controller.filesContainer = filesContainer
+            controller.root = root + "/" + showFolders.keys.sorted()[indexPath.row]
+			controller.notSortedFiles = notSortedFiles
+            controller.files = files
             show(controller, sender: self)
         } else {
-            let index = indexPath.row - folders.keys.count
-            let file = filesContainer.files[showSortMask[indexPath.row]]
-            let percent = Float(file.fileDownloaded) / Float(file.fileSize) * 100
+            let index = indexPath.row - showFolders.keys.count
+            let file = showFiles[index]
+            let percent = Float(file.downloaded) / Float(file.size) * 100
             if (percent < 100) {
                 let cell = tableView.cellForRow(at: indexPath) as! FileCell
                 cell.switcher.setOn(!cell.switcher.isOn, animated: true)
@@ -278,20 +228,20 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
         let controller = ThemedUIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
         
         let download = UIAlertAction(title: "Download", style: .default) { alert in
-            for i in self.folders[key]! {
-                self.filesContainer.fileSelectes[i] = 4
+            for i in self.showFolders[key]!.files {
+                i.isDownloading = true
             }
-            set_torrent_files_priority(self.managerHash, UnsafeMutablePointer(mutating: self.filesContainer.fileSelectes))
+			self.setFilesPriority()
         }
         let notDownload = UIAlertAction(title: "Don't Download", style: .destructive) { alert in
-            for i in self.folders[key]! {
-                if (self.filesContainer.files[i].fileSize != 0 && self.filesContainer.files[i].fileDownloaded / self.filesContainer.files[i].fileSize == 1) {
-                    self.filesContainer.fileSelectes[i] = 4
+            for i in self.showFolders[key]!.files {
+                if (i.size != 0 && i.downloaded / i.size == 1) {
+                    i.isDownloading = true
                 } else {
-                    self.filesContainer.fileSelectes[i] = 0
+                    i.isDownloading = false
                 }
             }
-            set_torrent_files_priority(self.managerHash, UnsafeMutablePointer(mutating: self.filesContainer.fileSelectes))
+			self.setFilesPriority()
         }
         let cancel = UIAlertAction(title: "Close", style: .cancel)
         
@@ -309,8 +259,8 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     }
     
     func fileCellAction(_ sender: UISwitch, index: Int) {
-        filesContainer.fileSelectes[showSortMask[index]] = sender.isOn ? 4 : 0
-        set_torrent_file_priority(managerHash, Int32(showSortMask[index]), sender.isOn ? 4 : 0)
+        showFiles[index].isDownloading = sender.isOn
+        set_torrent_file_priority(managerHash, Int32(showFiles[index].number), sender.isOn ? 4 : 0)
     }
     
     @IBAction func deselectAction(_ sender: UIBarButtonItem) {
@@ -319,14 +269,14 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
                 cell.switcher.setOn(false, animated: true)
             }
 		}
-		for i in 0 ..< filesContainer.fileSelectes.count {
-			if (filesContainer.files[i].fileSize != 0 && filesContainer.files[i].fileDownloaded / filesContainer.files[i].fileSize == 1) {
-				filesContainer.fileSelectes[i] = 4
+		for i in 0 ..< files.count {
+			if (files[i].size != 0 && files[i].downloaded / files[i].size == 1) {
+				files[i].isDownloading = true
 			} else {
-				filesContainer.fileSelectes[i] = 0
+				files[i].isDownloading = false
 			}
 		}
-        set_torrent_files_priority(managerHash, UnsafeMutablePointer(mutating: filesContainer.fileSelectes))
+		setFilesPriority()
     }
 	
     @IBAction func selectAction(_ sender: UIBarButtonItem) {
@@ -335,16 +285,17 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
                 cell.switcher.setOn(true, animated: true)
             }
 		}
-		for i in 0 ..< filesContainer.fileSelectes.count {
-			filesContainer.fileSelectes[i] = 4
+		for i in 0 ..< files.count {
+			files[i].isDownloading = true
 		}
-        set_torrent_files_priority(managerHash, UnsafeMutablePointer(mutating: filesContainer.fileSelectes))
+		setFilesPriority()
     }
-}
-
-class FilesContainer {
-    var name : String = ""
-    var files : [FileInfo] = []
-    var sortMask : [Int] = []
-    var fileSelectes : [Int32] = []
+	
+	func setFilesPriority() {
+		var res : [Int32] = []
+		for file in notSortedFiles {
+			res.append(file.isDownloading ? 4 : 0)
+		}
+		set_torrent_files_priority(managerHash, UnsafeMutablePointer(mutating: res))
+	}
 }

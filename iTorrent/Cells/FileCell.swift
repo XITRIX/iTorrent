@@ -19,7 +19,7 @@ class FileCell: ThemedUITableViewCell {
 	var name : String!
 	var index : Int!
     var addind = false
-	weak var file : FileInfo!
+	weak var file : File!
 	
 	override func updateTheme() {
 		super.updateTheme()
@@ -29,9 +29,9 @@ class FileCell: ThemedUITableViewCell {
 	}
 	
 	func update() {
-		title.text = file?.fileName
-		let percent = Float(file.fileDownloaded) / Float(file.fileSize) * 100
-        size.text = addind ? Utils.getSizeText(size: file.fileSize) : Utils.getSizeText(size: file.fileSize) + " / " + Utils.getSizeText(size: file.fileDownloaded) + " (" + String(format: "%.2f", percent) + "%)"
+		title.text = file?.name
+		let percent = Float(file.downloaded) / Float(file.size) * 100
+        size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
 		
 		if (percent >= 100 && !addind) {
 			shareButton.isHidden = false
@@ -49,9 +49,9 @@ class FileCell: ThemedUITableViewCell {
     }
 	
     @IBAction func shareAction(_ sender: UIButton) {
-		let controller = ThemedUIAlertController(title: nil, message: file.fileName, preferredStyle: .actionSheet)
+		let controller = ThemedUIAlertController(title: nil, message: file.name, preferredStyle: .actionSheet)
 		let share = UIAlertAction(title: "Share", style: .default) { _ in
-			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.filePath, isDirectory: false)
+			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.path + "/" + self.file.name, isDirectory: false)
 			let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
 			if (shareController.popoverPresentationController != nil) {
 				shareController.popoverPresentationController?.sourceView = sender

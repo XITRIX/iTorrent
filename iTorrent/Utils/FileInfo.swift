@@ -8,9 +8,17 @@
 
 import Foundation
 
-class FileInfo {
-	var fileName : String = ""
-	var filePath : String = ""
-	var fileSize : Int64 = 0
-	var fileDownloaded : Int64 = 0
+class File {
+	var name : String = ""
+	var path : String = ""
+	var size : Int64 = 0
+	var downloaded : Int64 = 0
+	var isDownloading : Bool = false
+	var number : Int = 0
+}
+
+class Folder {
+	var name : String = ""
+	var size : Int64 = 0
+	var files : [File] = []
 }

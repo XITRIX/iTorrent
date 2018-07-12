@@ -46,8 +46,11 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		
 		view = UIView(frame: CGRect(x: 0, y: tableViewController.view.frame.size.height, width: tableViewController.view.frame.size.width, height: 216))
-		view.layer.cornerRadius = 10
 		view.clipsToBounds = true
+		view.layer.cornerRadius = 10
+		if #available(iOS 11.0, *) {
+			view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+		}
 		
 		pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 216))
 		pickerView.delegate = self

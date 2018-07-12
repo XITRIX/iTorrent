@@ -20,5 +20,11 @@ post_install do |installer|
 			config.build_settings['ENABLE_BITCODE'] = 'YES'
 		end
 	end
+
+	#fix MarqueeLabel IBDesignable error
+	installer.pods_project.build_configurations.each do |config|
+    		config.build_settings.delete('CODE_SIGNING_ALLOWED')
+    		config.build_settings.delete('CODE_SIGNING_REQUIRED')
+  	end
 end
 
