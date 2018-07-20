@@ -27,6 +27,20 @@ What can this app do:
 - Change UI to dark theme
 - ??? 
 
+## Build
+
+To build that project you need to have Cocoapods installed
+
+Steps:
+- cd terminal to project's folder "cd /home/user/iTorrent"
+- Build pods "pod install"
+- Open .xcworkspace and build it
+- Profit
+
+### Warning!
+
+This repo contains iTorrent framework which was compiled only for real devices so it will not run on Simulator, if you want to build this app for Simulator, you have to replace itorrent.framework by [this one](https://github.com/XITRIX/iTorrent_Framework/releases)
+
 ## Libraries used
 
 - [LibTorrent](https://github.com/arvidn/libtorrent)
