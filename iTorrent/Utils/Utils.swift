@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Utils {
-    public enum torrentStates : String, CaseIterable {
+	public enum torrentStates : String {
         case Queued = "Queued"
         case Hashing = "Hashing"
         case Metadata = "Metadata"

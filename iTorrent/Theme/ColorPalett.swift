@@ -55,7 +55,7 @@ class ColorPalett {
 	var actionCancelButtonColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
 	var statusBarStyle : UIStatusBarStyle = .default
 	var barStyle : UIBarStyle = .default
-	var blurEffect : UIBlurEffect.Style = .light
+	var blurEffect : UIBlurEffectStyle = .light
 	var keyboardAppearence : UIKeyboardAppearance = .default
 	var loadingIndicatorStyle : UIActivityIndicatorViewStyle = .gray
 }
