@@ -79,6 +79,46 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 		}
 		
 		name = String(validatingUTF8: localFiles.title) ?? "ERROR"
+		
+		if let oldManager = Manager.torrentStates.filter({$0.title == name}).first {
+			let controller = ThemedUIAlertController(title: "Torrent update detected", message: "Torrent with name \(name) already exists, do you want to apply previous files selection settings to this torrent?", preferredStyle: .alert)
+			let apply = UIAlertAction(title: "Apply", style: .default) { _ in
+				let oldFilesContainer = get_files_of_torrent_by_hash(oldManager.hash)
+				var oldFiles : [File] = []
+				
+				let oldSize = Int(oldFilesContainer.size)
+				let oldNamesArr = Array(UnsafeBufferPointer(start: oldFilesContainer.file_name, count: oldSize))
+				let sizesArr = Array(UnsafeBufferPointer(start: oldFilesContainer.file_size, count: oldSize))
+				
+				for i in 0 ..< oldSize {
+					let file = File()
+					
+					let n = String(validatingUTF8: oldNamesArr[Int(i)]!) ?? "ERROR"
+					let name = URL(string: n.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
+					file.name = name.lastPathComponent
+					file.isDownloading = oldFilesContainer.file_priority[Int(i)] != 0
+					file.size = sizesArr[i]
+					file.downloaded = oldFilesContainer.file_downloaded[i]
+					
+					oldFiles.append(file)
+				}
+				
+				for file in self.files {
+					if let oldFile = oldFiles.filter({$0.name == file.name}).first {
+						file.isDownloading = oldFile.isDownloading
+					}
+				}
+				
+				self.tableView.reloadData()
+			}
+			let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+			
+			controller.addAction(apply)
+			controller.addAction(cancel)
+			
+			present(controller, animated: true)
+		}
+		
 		let size = Int(localFiles.size)
 		let namesArr = Array(UnsafeBufferPointer(start: localFiles.file_name, count: size))
 		let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
@@ -153,6 +193,9 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 			cell.index = index
 			cell.update()
 			cell.switcher.setOn(showFiles[index].isDownloading, animated: false)
+			if (showFiles[index].size != 0 && showFiles[index].size == showFiles[index].downloaded) {
+				cell.switcher.isEnabled = false
+			}
 			cell.actionDelegate = self
 			cell.updateTheme()
 			return cell
@@ -170,6 +213,9 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 			show(controller, sender: self)
 		} else {
 			let index = indexPath.row - showFolders.keys.count
+			if (showFiles[index].size != 0 && showFiles[index].size == showFiles[index].downloaded) {
+				return
+			}
 			let cell = tableView.cellForRow(at: indexPath) as! FileCell
 			cell.switcher.setOn(!cell.switcher.isOn, animated: true)
 			if (cell.actionDelegate != nil) {
@@ -188,7 +234,11 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 		}
 		let notDownload = UIAlertAction(title: "Don't Download", style: .destructive) { alert in
 			for i in self.showFolders[key]!.files {
-				i.isDownloading = false
+				if (i.size != 0 && i.size == i.downloaded) {
+					i.isDownloading = true
+				} else {
+					i.isDownloading = false
+				}
 			}
 		}
 		let cancel = UIAlertAction(title: "Close", style: .cancel)
@@ -218,24 +268,30 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
     }
 	
     @IBAction func deselectAction(_ sender: UIBarButtonItem) {
-		for cell in tableView.visibleCells {
-			if let cell = cell as? FileCell {
-				cell.switcher.setOn(false, animated: true)
+		for i in 0 ..< files.count {
+			if (files[i].size != 0 && files[i].size == files[i].downloaded) {
+				files[i].isDownloading = true
+			} else {
+				files[i].isDownloading = false
 			}
 		}
-		for i in 0 ..< files.count {
-			files[i].isDownloading = false
+		for cell in tableView.visibleCells {
+			if let cell = cell as? FileCell {
+				if (cell.switcher.isEnabled) {
+					cell.switcher.setOn(false, animated: true)
+				}
+			}
 		}
     }
 	
     @IBAction func selectAction(_ sender: UIBarButtonItem) {
+		for i in 0 ..< files.count {
+			files[i].isDownloading = true
+		}
 		for cell in tableView.visibleCells {
 			if let cell = cell as? FileCell {
 				cell.switcher.setOn(true, animated: true)
 			}
-		}
-		for i in 0 ..< files.count {
-			files[i].isDownloading = true
 		}
     }
 	

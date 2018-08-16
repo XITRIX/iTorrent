@@ -25,7 +25,7 @@ class Manager {
     
     public static func InitManager() {
         DispatchQueue.global(qos: .background).async {
-            init_engine(Manager.rootFolder)
+            init_engine(Manager.rootFolder, Manager.configFolder)
 			engineInited = true
             restoreAllTorrents()
 			
@@ -203,11 +203,12 @@ class Manager {
     
     static func addTorrent(_ filePath: String) {
 		if let hash = String(validatingUTF8: add_torrent(filePath)) {
-			if hash != "-1",
-				managerSaves[hash] == nil {
-				print(hash)
-				managerSaves[hash] = UserManagerSettings()
-			} else if hash == "-1" {
+			if hash != "-1" {
+				if managerSaves[hash] == nil {
+					print(hash)
+					managerSaves[hash] = UserManagerSettings()
+				}
+			} else {
 				do {
 					try FileManager.default.removeItem(atPath: filePath)
 				} catch { print(error.localizedDescription) }

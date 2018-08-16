@@ -257,7 +257,7 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 			seedLimitPickerView = SeedLimitPickerView(self, defaultValue: (Manager.managerSaves[self.managerHash]?.seedLimit)!, onStateChange: { res in
 				Manager.managerSaves[self.managerHash]?.seedLimit = res
 				if (res == 0) {
-					sender.setTitle("Unlinited", for: .normal)
+					sender.setTitle("Unlimited", for: .normal)
 				} else {
 					sender.setTitle(Utils.getSizeText(size: res, decimals: true), for: .normal)
 				}

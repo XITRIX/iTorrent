@@ -65,7 +65,6 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
     }
     
     func managerUpdated() {
-		//print("background test")
 		var changed = false
 		var oldManagers = managers
 		managers.removeAll()
@@ -198,16 +197,38 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if (editingStyle == .delete) {
+			let selectedHash = managers[indexPath.section][indexPath.row].hash
 			let message = managers[indexPath.section][indexPath.row].hasMetadata ? "Are you sure to remove " + managers[indexPath.section][indexPath.row].title + " torrent?" : "Are you sure to remove this magnet torrent?"
 			let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
 			let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
-				self.removeTorrent(indexPath: indexPath, removeData: true)
+				for section in 0 ..< self.managers.count {
+					for row in 0 ..< self.managers[section].count {
+						if (self.managers[section][row].hash == selectedHash) {
+							self.removeTorrent(indexPath: IndexPath(row: row, section: section), removeData: true)
+							break
+						}
+					}
+				}
 			}
 			let removeTorrent = UIAlertAction(title: "Yes but keep data", style: .default) { _ in
-				self.removeTorrent(indexPath: indexPath)
+				for section in 0 ..< self.managers.count {
+					for row in 0 ..< self.managers[section].count {
+						if (self.managers[section][row].hash == selectedHash) {
+							self.removeTorrent(indexPath: IndexPath(row: row, section: section))
+							break
+						}
+					}
+				}
 			}
 			let removeMagnet = UIAlertAction(title: "Remove", style: .destructive) { _ in
-				self.removeTorrent(indexPath: indexPath, isMagnet: true)
+				for section in 0 ..< self.managers.count {
+					for row in 0 ..< self.managers[section].count {
+						if (self.managers[section][row].hash == selectedHash) {
+							self.removeTorrent(indexPath: IndexPath(row: row, section: section), isMagnet: true)
+							break
+						}
+					}
+				}
 			}
 			let cancel = UIAlertAction(title: "Cancel", style: .cancel)
 			if (!managers[indexPath.section][indexPath.row].hasMetadata) {
