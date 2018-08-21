@@ -47,7 +47,7 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = Utils.torrentStates.init(id: data[indexPath.row])?.rawValue
+		cell.textLabel?.text = NSLocalizedString(Utils.torrentStates.init(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
 		
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		cell.textLabel?.textColor = Themes.shared.theme[theme].mainText

@@ -38,11 +38,12 @@
 		7C7D0AB220D82AA0001B08E5 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */; };
 		7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */; };
 		7C7D0AB620D8EA50001B08E5 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB520D8EA50001B08E5 /* Manager.swift */; };
-		7C7D0AB820D8EA5B001B08E5 /* ManagerStateChangedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB720D8EA5B001B08E5 /* ManagerStateChangedDelegate.swift */; };
 		7C7D0ABA20D911EB001B08E5 /* SettingsSortingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */; };
 		7C7D0ABC20D97B3A001B08E5 /* FileCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */; };
 		7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */; };
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
+		7C802CFF212B3B630031C19F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C802D01212B3B630031C19F /* Localizable.strings */; };
+		7C802D07212C6D060031C19F /* UpdatesDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* UpdatesDialog.swift */; };
 		7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082A20AA28F200F76931 /* TorrentStatus.swift */; };
 		7CB8083220AADA8300F76931 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
 		7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083420AAF09F00F76931 /* Downloader.swift */; };
@@ -56,7 +57,6 @@
 		7CF522F020AF85AB00D319E6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522EF20AF85AB00D319E6 /* UserDefaultsKeys.swift */; };
 		7CF5F59220AC325100A18C3E /* TorrentFilesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */; };
 		7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59320AC86F500A18C3E /* MainController.swift */; };
-		7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,11 +107,15 @@
 		7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C7D0AB520D8EA50001B08E5 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
-		7C7D0AB720D8EA5B001B08E5 /* ManagerStateChangedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerStateChangedDelegate.swift; sourceTree = "<group>"; };
 		7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSortingController.swift; sourceTree = "<group>"; };
 		7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCellActionDelegate.swift; sourceTree = "<group>"; };
 		7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCellActionDelegate.swift; sourceTree = "<group>"; };
 		7C80257420A9B17C00673A4F /* TorrentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentCell.swift; sourceTree = "<group>"; };
+		7C802CFB212B328D0031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		7C802CFC212B328F0031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7C802D02212B3B860031C19F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7C802D03212B3D240031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7C802D06212C6D060031C19F /* UpdatesDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesDialog.swift; sourceTree = "<group>"; };
 		7CB8082A20AA28F200F76931 /* TorrentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentStatus.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -125,7 +129,6 @@
 		7CF522EF20AF85AB00D319E6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesController.swift; sourceTree = "<group>"; };
 		7CF5F59320AC86F500A18C3E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
-		7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagersUpdatedDelegate.swift; sourceTree = "<group>"; };
 		F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,8 +254,6 @@
 		7CB8082E20AA380400F76931 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				7C7D0AB720D8EA5B001B08E5 /* ManagerStateChangedDelegate.swift */,
-				7CF5F59520AC870300A18C3E /* ManagersUpdatedDelegate.swift */,
 				7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */,
 				7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */,
 			);
@@ -283,6 +284,7 @@
 				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
 				7CF522EF20AF85AB00D319E6 /* UserDefaultsKeys.swift */,
 				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
+				7C802D06212C6D060031C19F /* UpdatesDialog.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -293,6 +295,7 @@
 				7C27A1A320B223630065238C /* GoogleService-Info.plist */,
 				7C27A16720B0B9040065238C /* Version.ver */,
 				7CF522ED20AF7B0200D319E6 /* 3.wav */,
+				7C802D01212B3B630031C19F /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 7C3C692620A754FB0023396C;
 			productRefGroup = 7C3C693020A754FB0023396C /* Products */;
@@ -370,6 +374,7 @@
 				7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */,
 				7C27A16820B0B9040065238C /* Version.ver in Resources */,
 				7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */,
+				7C802CFF212B3B630031C19F /* Localizable.strings in Resources */,
 				7C3C693A20A754FD0023396C /* Assets.xcassets in Resources */,
 				7C3C693820A754FB0023396C /* Main.storyboard in Resources */,
 			);
@@ -453,7 +458,6 @@
 				7CF522EC20AF78B100D319E6 /* BackgroundTask.swift in Sources */,
 				7CF522F020AF85AB00D319E6 /* UserDefaultsKeys.swift in Sources */,
 				7C4B10A720E02A4900440E74 /* ThemedUIAlertController.swift in Sources */,
-				7CF5F59620AC870400A18C3E /* ManagersUpdatedDelegate.swift in Sources */,
 				7C4B109F20DFF32B00440E74 /* ThemedUITableView.swift in Sources */,
 				7C4B10A520E00CA600440E74 /* ThemedUITableViewCell.swift in Sources */,
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
@@ -464,7 +468,7 @@
 				7C7D0AB220D82AA0001B08E5 /* FolderCell.swift in Sources */,
 				7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */,
 				7C4B109D20DFF12300440E74 /* ThemedUIViewController.swift in Sources */,
-				7C7D0AB820D8EA5B001B08E5 /* ManagerStateChangedDelegate.swift in Sources */,
+				7C802D07212C6D060031C19F /* UpdatesDialog.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
 				7C4B10B520EAE00C00440E74 /* SeedLimitPickerView.swift in Sources */,
 				7C4B109920DFDEEC00440E74 /* ColorPalett.swift in Sources */,
@@ -492,6 +496,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7C3C693720A754FB0023396C /* Base */,
+				7C802CFB212B328D0031C19F /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -500,8 +505,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				7C3C693C20A754FD0023396C /* Base */,
+				7C802CFC212B328F0031C19F /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7C802D01212B3B630031C19F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C802D02212B3B860031C19F /* en */,
+				7C802D03212B3D240031C19F /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -511,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -572,6 +588,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

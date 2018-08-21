@@ -32,13 +32,13 @@ class TorrentCell: ThemedUITableViewCell {
 		updateTheme()
         title.text = manager.title
         progress.progress = manager.progress
-        info.text = Utils.getSizeText(size: manager.totalWantedDone) + " of " + Utils.getSizeText(size: manager.totalWanted) + " (" + String(format: "%.2f", manager.progress * 100) + "%)"
+        info.text = Utils.getSizeText(size: manager.totalWantedDone) + " \(NSLocalizedString("of", comment: "")) " + Utils.getSizeText(size: manager.totalWanted) + " (" + String(format: "%.2f", manager.progress * 100) + "%)"
         if (manager.displayState == Utils.torrentStates.Downloading.rawValue) {
-            status.text = manager.displayState + " - DL:" + Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s - time remains: " + Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone)
+            status.text = NSLocalizedString(manager.displayState, comment: "") + " - DL:" + Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s - time remains: " + Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone)
         } else if (manager.displayState == Utils.torrentStates.Seeding.rawValue) {
-            status.text = manager.displayState + " - UL:" + Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
+            status.text = NSLocalizedString(manager.displayState, comment: "") + " - UL:" + Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
         } else {
-            status.text = manager.displayState
+            status.text = NSLocalizedString(manager.displayState, comment: "")
         }
     }
 }

@@ -23,6 +23,7 @@ class SettingsController: ThemedUITableViewController {
 	@IBOutlet weak var badgeSwitch: UISwitch!
 	@IBOutlet weak var updateLabel: UILabel!
 	@IBOutlet weak var updateLoading: UIActivityIndicatorView!
+	@IBOutlet weak var adsSwitch: UISwitch!
 	
 	var downloadLimitPicker: SpeedLimitPickerView!
 	var uploadLimitPicker: SpeedLimitPickerView!
@@ -65,17 +66,20 @@ class SettingsController: ThemedUITableViewController {
 		
 		let up = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
 		if (up == 0) {
-			uploadLimitButton.setTitle("Unlimited", for: .normal)
+			uploadLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 		} else {
 			uploadLimitButton.setTitle(Utils.getSizeText(size: up, decimals: true) + "/S", for: .normal)
 		}
 		
 		let down = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
 		if (down == 0) {
-			downloadLimitButton.setTitle("Unlimited", for: .normal)
+			downloadLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 		} else {
 			downloadLimitButton.setTitle(Utils.getSizeText(size: down, decimals: true) + "/S", for: .normal)
 		}
+		
+		let disabledAds = UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds)
+		adsSwitch.setOn(disabledAds, animated: false)
 		
 		checkUpdates()
     }
@@ -103,15 +107,22 @@ class SettingsController: ThemedUITableViewController {
 			let addr = Utils.getWiFiAddress()
 			if let addr = addr {
 				let b = UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)
-				return b ? "Connect to: ftp://" + addr + ":21" : ""
+				return b ? NSLocalizedString("Connect to: ftp://", comment: "") + addr + ":21" : ""
 			} else {
-				return "Connect to WIFI to use FTP"
+				return NSLocalizedString("Connect to WIFI to use FTP", comment: "")
 			}
 		case 5:
 			let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
-			return "Current app version: " + version
+			return NSLocalizedString("Current app version: ", comment: "") + version
 		default:
 			return super.tableView(tableView, titleForFooterInSection: section)
+		}
+	}
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if indexPath.section == 5,
+			indexPath.row == 1 {
+			present(UpdatesDialog.summon(forced: true)!, animated: true)
 		}
 	}
 	
@@ -147,13 +158,13 @@ class SettingsController: ThemedUITableViewController {
 					
 					DispatchQueue.main.async {
 						if (remoteVersion > localVersion) {
-							self.updateLabel.text = "New version " + remoteVersion + " available"
+							self.updateLabel.text = NSLocalizedString("New version ", comment: "") + remoteVersion + NSLocalizedString(" available", comment: "")
 							self.updateLabel.textColor = UIColor.red
 						} else if (remoteVersion < localVersion) {
-							self.updateLabel.text = "WOW, is it a new inDev build, huh?"
+							self.updateLabel.text = NSLocalizedString("WOW, is it a new inDev build, huh?", comment: "")
 							self.updateLabel.textColor = UIColor.red
 						} else {
-							self.updateLabel.text = "Latest version installed"
+							self.updateLabel.text = NSLocalizedString("Latest version installed", comment: "")
 						}
 						self.updateLabel.isHidden = false
 						self.updateLoading.isHidden = true
@@ -161,7 +172,7 @@ class SettingsController: ThemedUITableViewController {
 					}
 				} catch {
 					DispatchQueue.main.async {
-						self.updateLabel.text = "Update check failed"
+						self.updateLabel.text = NSLocalizedString("Update check failed", comment: "")
 						self.updateLabel.isHidden = false
 						self.updateLoading.isHidden = true
 						self.updateLoading.stopAnimating()
@@ -194,11 +205,11 @@ class SettingsController: ThemedUITableViewController {
 	
 	@IBAction func backgroundSeedingAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-            let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
-			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
+            let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", comment: ""), preferredStyle: .alert)
+			let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
 			}
-			let close = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+			let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
 				sender.setOn(false, animated: true)
 			}
 			controller.addAction(enable)
@@ -218,7 +229,7 @@ class SettingsController: ThemedUITableViewController {
 			let def = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
 			downloadLimitPicker = SpeedLimitPickerView(self, defaultValue: def, onStateChange: { res in
 				if (res == 0) {
-					sender.setTitle("Unlimited", for: .normal)
+					sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 				} else {
 					sender.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
 				}
@@ -237,7 +248,7 @@ class SettingsController: ThemedUITableViewController {
 			let def = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
 			uploadLimitPicker = SpeedLimitPickerView(self, defaultValue: def, onStateChange: { res in
 				if (res == 0) {
-					sender.setTitle("Unlimited", for: .normal)
+					sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 				} else {
 					sender.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
 				}
@@ -257,11 +268,11 @@ class SettingsController: ThemedUITableViewController {
 	
 	@IBAction func ftpBackgroundAction(_ sender: UISwitch) {
 		if (sender.isOn) {
-			let controller = ThemedUIAlertController(title: "WARNING", message: "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", preferredStyle: .alert)
-			let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
+			let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", comment: ""), preferredStyle: .alert)
+			let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
 				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
 			}
-			let close = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+			let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
 				sender.setOn(false, animated: true)
 			}
 			controller.addAction(enable)
@@ -299,7 +310,24 @@ class SettingsController: ThemedUITableViewController {
         }
         open(scheme: "https://github.com/XITRIX/iTorrent")
     }
-    
+	
+	@IBAction func disableAdsAction(_ sender: UISwitch) {
+		if (sender.isOn) {
+			let controller = ThemedUIAlertController(title: NSLocalizedString("Supplication", comment: ""), message: NSLocalizedString("If you enjoy this app, consider supporting the developer by keeping the ads on.", comment: ""), preferredStyle: .alert)
+			let enable = UIAlertAction(title: NSLocalizedString("Disable Anyway", comment: ""), style: .destructive) { _ in
+				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.disableAds)
+			}
+			let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+				sender.setOn(false, animated: true)
+			}
+			controller.addAction(enable)
+			controller.addAction(close)
+			present(controller, animated: true)
+		} else {
+			UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.disableAds)
+		}
+	}
+	
     //rewritten to remove Snackbar dependency
     //https://stackoverflow.com/questions/3737911/how-to-display-temporary-popup-message-on-iphone-ipad-ios#7133966
     @IBAction func donateAction(_ sender: UIButton) {
@@ -314,7 +342,7 @@ class SettingsController: ThemedUITableViewController {
 				
 				DispatchQueue.main.async {
 					UIPasteboard.general.string = card
-					let alert = ThemedUIAlertController(title: "", message: "Copied CC # to clipboard!", preferredStyle: .alert)
+					let alert = ThemedUIAlertController(title: "", message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
 					self.present(alert, animated: true, completion: nil)
 					// change alert timer to 2 seconds, then dismiss
 					let when = DispatchTime.now() + 2

@@ -27,6 +27,14 @@ What can this app do:
 - Change UI to dark theme
 - ??? 
 
+## Localization
+
+Now iTorrent supports the following languages:
+- English
+- Russian
+
+If you are fluent in the languages not listed above and want to help with translation, you are welcome!
+
 ## Build
 
 To build that project you need to have Cocoapods installed

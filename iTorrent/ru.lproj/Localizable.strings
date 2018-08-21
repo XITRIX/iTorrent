@@ -1,0 +1,129 @@
+/* 
+  Localizable.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 20/08/2018.
+  Copyright © 2018  XITRIX. All rights reserved.
+*/
+
+
+//Torrent States
+"Queued" = "В очереди";
+"Hashing" = "Хэширование";
+"Metadata" = "Метадата";
+"Downloading" = "Загрузка";
+"Finished" = "Готово";
+"Seeding" = "Раздача";
+"Allocating" = "Распределение";
+"Checking fastresume" = "Проверка восстановления";
+"Paused" = "Пауза";
+
+//Main Controller
+"of" = "из";
+
+"Done" = "Готово";
+"Edit" = "Изменить";
+"Select All" = "Выбрать все";
+"Deselect" = "Отменить";
+
+"Add from..." = "Добавить из...";
+"Add from URL" = "Добавить из URL";
+"Please enter the existing torrent's URL below" = "Введите ссылку ниже";
+"Error has been occured" = "Произошла ошибка";
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Torrent файл повреждён или данная ссылка имеет DDOS защиту, можете попробовать открыть ссылку в Safari";
+"Open in Safari" = "Открыть в Safari";
+"This torrent already exists" = "Этот Torrent уже существует";
+"Torrent with hash:" = "Torrent с хэшем:";
+"already exists in download queue" = "уже существует в списке загрузок";
+"Please, open this link in Safari, and send .torrent file from there" = "Откройте эту ссылку в Safari, и отправьте .torrent файл от туда";
+"Wrong link, check it and try again!" = "Неверная ссылка, проверьте её и попробуйте ещё раз!";
+"Add from magnet" = "Добавить из magnet";
+"Please enter the magnet link below" = "Введите magnet ссылку ниже";
+"Close" = "Закрыть";
+"Cancel" = "Отмена";
+"Error" = "Ошибка";
+
+"Are you sure to remove" = "Вы уверены что хотите удалить";
+"torrents" = "шт.";
+"Yes and remove data" = "Да и удалить файлы";
+"Yes but keep data" = "Да, но оставить файлы";
+
+"torrent" = "";
+"Are you sure to remove this magnet torrent?" = "Вы уверены что хотите удалить эту magnet ссылку?";
+"Remove" = "Удалить";
+
+"Name" = "Имени";
+"Date Added" = "Дате Добавления";
+"Date Created" = "Дате создания";
+"Size" = "Размеру";
+"Sort Torrents By:" = "Сортировать торренты по:";
+"Currently sorted by " = "Сейчас отсортеровано по ";
+"Disable state sections" = "Отключить разделение на секции";
+"Enable state sections" = "Отключить разделение на секции";
+
+//Settings Controller
+"Warning" = "Внимание";
+"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
+"Enable" = "Включить";
+"Unlimited" = "Без ограничений";
+"Torrent rehash" = "Перепроверка хэша";
+"This action will recheck the state of all downloaded files" = "Это перепроверит состояние всех скачанных файлов";
+"Rehash" = "Старт";
+
+"Connect to: ftp://" = "Подключитесь к: ftp://";
+"Connect to WIFI to use FTP" = "Подключитесь к WIFI чтобы использовать FTP";
+"Current app version: " = "Версия приложения: ";
+"New version " = "Доступна новая версия: ";
+" available" = "";
+"WOW, is it a new inDev build, huh?" = "ВАУ, это новый inDev билд, а???";
+"Latest version installed" = "Установлена последняя версия";
+"Update check failed" = "Ошибка проверки обновлений";
+"WARNING" = "ВНИМАНИЕ";
+"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
+"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Это позволит iTorrent работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
+"Copied CC # to clipboard!" = "Номер карты скопирован!";
+
+"Supplication" = "Просьба";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "Если Вам нравится это приложение, не выключайте рекламу, поддержите разработчика!\nСпасибо!";
+"Disable Anyway" = "Выключить всё равно";
+
+//Add Torrent Controller
+"Back" = "Назад";
+"Torrent update detected" = "Обновление имеющегося торрента";
+"Torrent with name" = "Торрент и именем";
+"already exists, do you want to apply previous files selection settings to this torrent" = "уже существует, хотите применить предыдущие настройки загрузки файлов к этому торренту";
+"Apply" = "Применить";
+"Download content of folder" = "Содержимное папки";
+"Download" = "Скачать";
+"Don't Download" = "Не скачивать";
+"Share" = "Поделиться";
+
+//Trackers List Controller
+"Working" = "Работает";
+"Inactive" = "Неактивен";
+"Verified" = "Проверен";
+"Sorry" = "Извините";
+"This action will be available in future updates" = "Это действие будет доступно в будущих обновлениях";
+"Add Tracker" = "Добавить Трекер";
+"Enter the full tracker's URL" = "Введите подный URL трекера";
+"Tracker's URL" = "Введите URL трекера";
+"Add" = "Добавить";
+
+//AppDelegate
+"Obtaining Metadata" = "Получение Метадаты";
+"Finish the previous torrent adding before start the new one." = "Закончите добавление предыдущего торрента перед добавлением нового.";
+"Error on torrent opening" = "Ошибка при открытии торрента";
+"Error on torrent reading" = "Ошибка при чтении торрента";
+"Torrent file opening error has been occured" = "Произошла ошибка при открытии Torrent файла";
+"Wrong magnet link, check it and try again!" = "Неправильная magnet ссылка, проверьте её и попробуйте снова!";
+"Download finished" = "Загрузка завершена";
+" finished downloading" = " закончил загрузку";
+"Seeding finished" = "Раздача завершена";
+" finished seeding" = " закончил раздачу";
+
+"This action will recheck the state of all downloaded files for torrents:" = "Это перепроверит состояние всех скачанных файлов для этих торрентов:";
+
+//Version Info
+"info" = " Изменения";
+"UpdateText" = "- Добавлена Русская локализация\n- Восстановление параметров загрузки файлов при обновлении торрента\n- Добавлен небольшой рекламный баннер для желающих поддержать разработчика\n- Небольшие улучшения\n- Исправления багов";
+

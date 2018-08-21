@@ -50,7 +50,7 @@ class FileCell: ThemedUITableViewCell {
 	
     @IBAction func shareAction(_ sender: UIButton) {
 		let controller = ThemedUIAlertController(title: nil, message: file.name, preferredStyle: .actionSheet)
-		let share = UIAlertAction(title: "Share", style: .default) { _ in
+		let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
 			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.path + "/" + self.file.name, isDirectory: false)
 			let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
 			if (shareController.popoverPresentationController != nil) {
@@ -78,7 +78,7 @@ class FileCell: ThemedUITableViewCell {
 //
 //			UIApplication.shared.keyWindow?.rootViewController?.present(deleteController, animated: true)
 //		}
-		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+		let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 		controller.addAction(share)
 		//controller.addAction(delete)
 		controller.addAction(cancel)

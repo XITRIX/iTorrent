@@ -1,0 +1,129 @@
+/* 
+  Localizable.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 20/08/2018.
+  Copyright © 2018  XITRIX. All rights reserved.
+*/
+
+
+// Torrent States
+"Queued" = "Queued";
+"Hashing" = "Hashing";
+"Metadata" = "Metadata";
+"Downloading" = "Downloading";
+"Finished" = "Finished";
+"Seeding" = "Seeding";
+"Allocating" = "Allocating";
+"CheckingFastresume" = "Checking fastresume";
+"Paused" = "Paused";
+
+//Main Controller
+"of" = "of";
+
+"Done" = "Done";
+"Edit" = "Edit";
+"Select All" = "Select All";
+"Deselect" = "Deselect";
+
+"Add from..." = "Add from...";
+"Add from URL" = "Add from URL";
+"Please enter the existing torrent's URL below" = "Please enter the existing torrent's URL below";
+"Error has been occured" = "Error has been occured";
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari";
+"Open in Safari" = "Open in Safari";
+"This torrent already exists" = "This torrent already exists";
+"Torrent with hash:" = "Torrent with hash:";
+"already exists in download queue" = "already exists in download queue";
+"Please, open this link in Safari, and send .torrent file from there" = "Please, open this link in Safari, and send .torrent file from there";
+"Wrong link, check it and try again!" = "Wrong link, check it and try again!";
+"Add from magnet" = "Add from magnet";
+"Please enter the magnet link below" = "Please enter the magnet link below";
+"Close" = "Close";
+"Cancel" = "Cancel";
+"Error" = "Error";
+
+"Are you sure to remove" = "Are you sure to remove";
+"torrents" = "torrents";
+"Yes and remove data" = "Yes and remove data";
+"Yes but keep data" = "Yes but keep data";
+
+"torrent" = "torrent";
+"Are you sure to remove this magnet torrent?" = "Are you sure to remove this magnet torrent?";
+"Remove" = "Remove";
+
+"Name" = "Name";
+"Date Added" = "Date Added";
+"Date Created" = "Date Created";
+"Size" = "Size";
+"Sort Torrents By:" = "Sort Torrents By:";
+"Currently sorted by " = "Currently sorted by ";
+"Disable state sections" = "Disable state sections";
+"Enable state sections" = "Enable state sections";
+
+//Settings Controller
+"Warning" = "Warning";
+"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
+"Enable" = "Enable";
+"Unlimited" = "Unlimited";
+"Torrent rehash" = "Torrent rehash";
+"This action will recheck the state of all downloaded files" = "This action will recheck the state of all downloaded files";
+"Rehash" = "Rehash";
+
+"Connect to: ftp://" = "Connect to: ftp://";
+"Connect to WIFI to use FTP" = "Connect to WIFI to use FTP";
+"Current app version: " = "Current app version: ";
+"New version " = "New version ";
+" available" = " available";
+"WOW, is it a new inDev build, huh?" = "WOW, is it a new inDev build, huh?";
+"Latest version installed" = "Latest version installed";
+"Update check failed" = "Update check failed";
+"WARNING" = "WARNING";
+"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
+"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
+"Copied CC # to clipboard!" = "Copied CC # to clipboard!";
+
+"Supplication" = "Supplication";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "If you enjoy this app, consider supporting the developer by keeping the ads on.\nThanks!";
+"Disable Anyway" = "Disable Anyway";
+
+//Add Torrent Controller
+"Back" = "Back";
+"Torrent update detected" = "Torrent update detected";
+"Torrent with name" = "Torrent with name";
+"already exists, do you want to apply previous files selection settings to this torrent" = "already exists, do you want to apply previous files selection settings to this torrent";
+"Apply" = "Apply";
+"Download content of folder" = "Download content of folder";
+"Download" = "Download";
+"Don't Download" = "Don't Download";
+"Share" = "Share";
+
+//Trackers List Controller
+"Working" = "Working";
+"Inactive" = "Inactive";
+"Verified" = "Verified";
+"Sorry" = "Sorry";
+"This action will be available in future updates" = "This action will be available in future updates";
+"Add Tracker" = "Add Tracker";
+"Enter the full tracker's URL" = "Enter the full tracker URL";
+"Tracker's URL" = "Enter tracker URL";
+"Add" = "Add";
+
+//AppDelegate
+"Obtaining Metadata" = "Obtaining Metadata";
+"Finish the previous torrent adding before start the new one." = "Finish the previous torrent adding before start the new one.";
+"Error on torrent opening" = "Error on torrent opening";
+"Error on torrent reading" = "Error on torrent reading";
+"Torrent file opening error has been occured" = "Torrent file opening error has been occured";
+"Wrong magnet link, check it and try again!" = "Wrong magnet link, check it and try again!";
+"Download finished" = "Download finished";
+" finished downloading" = " finished downloading";
+"Seeding finished" = "Seeding finished";
+" finished seeding" = " finished seeding";
+
+"This action will recheck the state of all downloaded files for torrents:" = "This action will recheck the state of all downloaded files for torrents:";
+
+//Version Info
+"info" = " Update info";
+"UpdateText" = "- Added Russian localization\n- Added restoration of previous file selection when updating a torrent\n- Added small ad banner to support the developer\n- Minor improvements\n- Bug fixes";
+

@@ -1,0 +1,303 @@
+
+/* Class = "UITableViewSection"; headerTitle = "Notifications"; ObjectID = "1PP-y1-lwp"; */
+"1PP-y1-lwp.headerTitle" = "Оповещения";
+
+/* Class = "UILabel"; text = "Upload"; ObjectID = "26s-y7-Ys8"; */
+"26s-y7-Ys8.text" = "Отдача";
+
+/* Class = "UILabel"; text = "On finished loading"; ObjectID = "28o-GC-LyJ"; */
+"28o-GC-LyJ.text" = "По окончании загрузки";
+
+/* Class = "UILabel"; text = "Files"; ObjectID = "2LQ-iM-Wa2"; */
+"2LQ-iM-Wa2.text" = "Файлы";
+
+/* Class = "UITableViewSection"; footerTitle = "Connect to: ftp://192.168.1.1:22"; ObjectID = "33F-A6-k0I"; */
+"33F-A6-k0I.footerTitle" = "Connect to: ftp://192.168.1.1:22";
+
+/* Class = "UITableViewSection"; headerTitle = "FTP Server (BETA)"; ObjectID = "33F-A6-k0I"; */
+"33F-A6-k0I.headerTitle" = "FTP Сервер (БЕТА)";
+
+/* Class = "UILabel"; text = "Added On"; ObjectID = "3AM-iO-VGS"; */
+"3AM-iO-VGS.text" = "Добавлен";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3ha-jb-8Sc"; */
+"3ha-jb-8Sc.text" = "Label";
+
+/* Class = "UILabel"; text = "Page on GitHub"; ObjectID = "40Q-Z6-qD9"; */
+"40Q-Z6-qD9.text" = "Страница на GitHub";
+
+/* Class = "UIButton"; normalTitle = "1024 GB"; ObjectID = "4VX-R4-Jbh"; */
+"4VX-R4-Jbh.normalTitle" = "1024 GB";
+
+/* Class = "UIBarButtonItem"; title = "Revert"; ObjectID = "4Wn-tX-QVW"; */
+"4Wn-tX-QVW.title" = "Сброс";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4iO-T2-sWR"; */
+"4iO-T2-sWR.text" = "Label";
+
+/* Class = "UILabel"; text = "Trackers"; ObjectID = "4sl-7t-NS3"; */
+"4sl-7t-NS3.text" = "Трекеры";
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i"; ObjectID = "5MK-tI-3Kq"; */
+"5MK-tI-3Kq.text" = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i";
+
+/* Class = "UILabel"; text = "Progress Selected/Total"; ObjectID = "5wg-im-gUC"; */
+"5wg-im-gUC.text" = "Прогресс\nОтмеченные/Всего";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7Ra-TQ-es2"; */
+"7Ra-TQ-es2.text" = "Label";
+
+/* Class = "UILabel"; text = "Comment"; ObjectID = "93F-Tf-9hD"; */
+"93F-Tf-9hD.text" = "Коментарий";
+
+/* Class = "UILabel"; text = "Time remains"; ObjectID = "9mc-qX-nuW"; */
+"9mc-qX-nuW.text" = "Осталось";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "ANF-Z7-e4l"; */
+"ANF-Z7-e4l.text" = "1024 MB";
+
+/* Class = "UITableViewSection"; headerTitle = "Transfer"; ObjectID = "And-Ph-abv"; */
+"And-Ph-abv.headerTitle" = "Transfer";
+
+/* Class = "UILabel"; text = "Run in background"; ObjectID = "AyL-CZ-VMU"; */
+"AyL-CZ-VMU.text" = "Работа в фоне";
+
+/* Class = "UILabel"; text = "Allow seeding"; ObjectID = "BiO-by-1jm"; */
+"BiO-by-1jm.text" = "Разрешить раздачу";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Bur-uj-G4e"; */
+"Bur-uj-G4e.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Cnu-Ng-Rik"; */
+"Cnu-Ng-Rik.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EBO-my-IxI"; */
+"EBO-my-IxI.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EH3-LO-4n7"; */
+"EH3-LO-4n7.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "FKU-d6-mSo"; */
+"FKU-d6-mSo.title" = "Отменить Все";
+
+/* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "FeY-Vw-7DL"; */
+"FeY-Vw-7DL.title" = "Отметить Все";
+
+/* Class = "UITableViewSection"; headerTitle = "Speed"; ObjectID = "GNL-HM-equ"; */
+"GNL-HM-equ.headerTitle" = "Скорость";
+
+/* Class = "UIButton"; normalTitle = "Open"; ObjectID = "H7h-xw-6ZC"; */
+"H7h-xw-6ZC.normalTitle" = "Открыть";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "J01-de-z4J"; */
+"J01-de-z4J.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "1024 MB/S"; ObjectID = "JFq-kX-Dn0"; */
+"JFq-kX-Dn0.normalTitle" = "1024 MB/S";
+
+/* Class = "UINavigationItem"; title = "iTorrent"; ObjectID = "JmO-fx-ysb"; */
+"JmO-fx-ysb.title" = "iTorrent";
+
+/* Class = "UILabel"; text = "Completed"; ObjectID = "KEg-ok-zwa"; */
+"KEg-ok-zwa.text" = "Завершено";
+
+/* Class = "UILabel"; text = "Hash"; ObjectID = "LN8-EP-fZn"; */
+"LN8-EP-fZn.text" = "Хэш";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LNi-AY-9uK"; */
+"LNi-AY-9uK.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "MGE-5Q-ZzR"; */
+"MGE-5Q-ZzR.title" = "Настройки";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "OGs-R9-Pih"; */
+"OGs-R9-Pih.title" = "Отмена";
+
+/* Class = "UILabel"; text = "Download"; ObjectID = "OU6-UE-wsR"; */
+"OU6-UE-wsR.text" = "Загрузка";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OYW-fm-8a9"; */
+"OYW-fm-8a9.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OjG-Q1-0VO"; */
+"OjG-Q1-0VO.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Paw-01-myX"; */
+"Paw-01-myX.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Download"; ObjectID = "R7C-MG-vsY"; */
+"R7C-MG-vsY.title" = "Скачать";
+
+/* Class = "UILabel"; text = "Uploaded"; ObjectID = "RYF-JU-Unw"; */
+"RYF-JU-Unw.text" = "Отданно";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Rat-kV-myt"; */
+"Rat-kV-myt.text" = "Label";
+
+/* Class = "UILabel"; text = "Download Limit"; ObjectID = "Rg2-Gj-EYJ"; */
+"Rg2-Gj-EYJ.text" = "Лимит Загрузки";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SxL-CI-RZv"; */
+"SxL-CI-RZv.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "TmW-3z-2fD"; */
+"TmW-3z-2fD.headerTitle" = "Ещё";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UYR-lv-IF5"; */
+"UYR-lv-IF5.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "W3E-zY-93P"; */
+"W3E-zY-93P.text" = "Label";
+
+/* Class = "UILabel"; text = "Created On"; ObjectID = "Wd4-dg-QKP"; */
+"Wd4-dg-QKP.text" = "Создан";
+
+/* Class = "UITableViewSection"; headerTitle = "Updates"; ObjectID = "Y5e-tt-VUv"; */
+"Y5e-tt-VUv.headerTitle" = "Обновления";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YV6-CV-Q4f"; */
+"YV6-CV-Q4f.text" = "Label";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "aCF-3o-ecE"; */
+"aCF-3o-ecE.text" = "1024 MB";
+
+/* Class = "UILabel"; text = "Peers"; ObjectID = "aOB-UI-7bk"; */
+"aOB-UI-7bk.text" = "Пиры";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bpL-bK-a73"; */
+"bpL-bK-a73.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Copy"; ObjectID = "co2-Iu-yeb"; */
+"co2-Iu-yeb.normalTitle" = "Скопировать";
+
+/* Class = "UILabel"; text = "Upload Limit"; ObjectID = "d1k-rS-3Yc"; */
+"d1k-rS-3Yc.text" = "Лимит Раздачи";
+
+/* Class = "UINavigationItem"; title = "Detail"; ObjectID = "eBT-x9-uyn"; */
+"eBT-x9-uyn.title" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eDX-Bv-9aF"; */
+"eDX-Bv-9aF.text" = "Label";
+
+/* Class = "UILabel"; text = "Enable"; ObjectID = "eEw-mK-CiU"; */
+"eEw-mK-CiU.text" = "Включить";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "eTY-J1-26U"; */
+"eTY-J1-26U.text" = "1024 MB";
+
+/* Class = "UILabel"; text = "Seeders"; ObjectID = "ekS-WN-Tu8"; */
+"ekS-WN-Tu8.text" = "Сиды";
+
+/* Class = "UITableViewSection"; headerTitle = "Donate for donuts"; ObjectID = "f0A-fe-3qf"; */
+"f0A-fe-3qf.headerTitle" = "Донат на еду";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gcE-G8-T43"; */
+"gcE-G8-T43.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gtb-QR-qoJ"; */
+"gtb-QR-qoJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i"; ObjectID = "hFU-bT-S6s"; */
+"hFU-bT-S6s.text" = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "hrV-Dx-Iw2"; */
+"hrV-Dx-Iw2.text" = "1024 MB";
+
+/* Class = "UILabel"; text = "Sections order"; ObjectID = "TC9-yd-pmX"; */
+"A0D-cC-LGB.text" = "Порядок секций";
+
+/* Class = "UIButton"; normalTitle = "1024 MB/S"; ObjectID = "i6i-JH-VXn"; */
+"i6i-JH-VXn.normalTitle" = "1024 MB/S";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance"; ObjectID = "j0m-rB-xAj"; */
+"j0m-rB-xAj.headerTitle" = "Внешний вид";
+
+/* Class = "UITableViewSection"; footerTitle = "Enable downloading in background through multimedia functions"; ObjectID = "jbO-2T-J5g"; */
+"jbO-2T-J5g.footerTitle" = "Включает скачивание в фоне с помощью мультимедийных функций";
+
+/* Class = "UITableViewSection"; headerTitle = "Background downloading"; ObjectID = "jbO-2T-J5g"; */
+"jbO-2T-J5g.headerTitle" = "Фоновая загрузка";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "k0l-PX-752"; */
+"k0l-PX-752.title" = "Изменить";
+
+/* Class = "UILabel"; text = "Enable app's badge icon"; ObjectID = "k0y-yE-eKI"; */
+"k0y-yE-eKI.text" = "Показывать бейджик над иконкой";
+
+/* Class = "UILabel"; text = "State"; ObjectID = "ktb-TS-ZZd"; */
+"ktb-TS-ZZd.text" = "Состояние";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m24-h1-ojE"; */
+"m24-h1-ojE.text" = "Label";
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i"; ObjectID = "nQN-u4-ahV"; */
+"nQN-u4-ahV.text" = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i";
+
+/* Class = "UITableViewSection"; headerTitle = "General information"; ObjectID = "ou1-dL-PNj"; */
+"ou1-dL-PNj.headerTitle" = "Основная информация";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "pIK-sG-MTR"; */
+"pIK-sG-MTR.title" = "Изменить";
+
+/* Class = "UILabel"; text = "Downloaded"; ObjectID = "r47-w0-OZ2"; */
+"r47-w0-OZ2.text" = "Скачано";
+
+/* Class = "UINavigationItem"; title = "Trackers"; ObjectID = "sOp-Cs-bgM"; */
+"sOp-Cs-bgM.title" = "Трекеры";
+
+/* Class = "UILabel"; text = "Seed Limit"; ObjectID = "sj4-t0-u6i"; */
+"sj4-t0-u6i.text" = "Лимит Раздачи";
+
+/* Class = "UITableViewSection"; headerTitle = "Speed limitation"; ObjectID = "t8j-hz-Rpg"; */
+"t8j-hz-Rpg.headerTitle" = "Ограничение скорости";
+
+/* Class = "UINavigationItem"; title = "Sections order"; ObjectID = "tKt-R3-aos"; */
+"tKt-R3-aos.title" = "Порядок секций";
+
+/* Class = "UILabel"; text = "Allow seeding"; ObjectID = "tPP-KE-5PY"; */
+"tPP-KE-5PY.text" = "Разрешить раздачу";
+
+/* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "tSN-hF-er4"; */
+"tSN-hF-er4.title" = "Отменить Все";
+
+/* Class = "UITableViewSection"; headerTitle = "Seeding"; ObjectID = "ue2-iG-c31"; */
+"ue2-iG-c31.headerTitle" = "Раздача";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "umK-F7-bUF"; */
+"umK-F7-bUF.text" = "Label";
+
+/* Class = "UILabel"; text = "Dark theme"; ObjectID = "veD-oa-Jz4"; */
+"veD-oa-Jz4.text" = "Тёмная тема";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "w6E-Ia-pgc"; */
+"w6E-Ia-pgc.text" = "Title";
+
+/* Class = "UILabel"; text = "Creator"; ObjectID = "wBl-l3-0QI"; */
+"wBl-l3-0QI.text" = "Создатель";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wZM-Mw-hAO"; */
+"wZM-Mw-hAO.text" = "Label";
+
+/* Class = "UILabel"; text = "Selected/Total"; ObjectID = "wtJ-YQ-1f8"; */
+"wtJ-YQ-1f8.text" = "Отмечено/Всего";
+
+/* Class = "UILabel"; text = "VISA CREDIT CARD NUMBER"; ObjectID = "xFq-lQ-aH8"; */
+"xFq-lQ-aH8.text" = "Номер Карты VISA";
+
+/* Class = "UILabel"; text = "Enable"; ObjectID = "xUt-wS-iYi"; */
+"xUt-wS-iYi.text" = "Включить";
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i"; ObjectID = "xmh-iG-mwT"; */
+"xmh-iG-mwT.text" = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i";
+
+/* Class = "UILabel"; text = "On finished seeding"; ObjectID = "xr7-DN-lT1"; */
+"xr7-DN-lT1.text" = "По окончании раздачи";
+
+/* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "yiV-n5-Akv"; */
+"yiV-n5-Akv.title" = "Выделить Все";
+
+/* Class = "UINavigationItem"; title = "Add .torrent"; ObjectID = "zRk-TY-ISC"; */
+"zRk-TY-ISC.title" = "Добавить .torrent";
+
+/* Class = "UILabel"; title = "Disable ADS"; ObjectID = "DTL-Hu-2Hh"; */
+"DTL-Hu-2Hh.text" = "Отключить рекламу";

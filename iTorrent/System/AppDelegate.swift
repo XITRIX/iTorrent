@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -17,13 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
 	
 	static var backgrounded = false
+	
+//	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+//		Locale.setupInitialLanguage()
+//		setupNotifications()
+//
+//		return true
+//	}
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-		
 		defaultUserDefaultsSettings()
 		
 		FirebaseApp.configure()
+		GADMobileAds.configure(withApplicationID: "ca-app-pub-3833820876743264~3795726972")
 		
         Manager.InitManager()
         
@@ -70,9 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 		UIApplication.shared.applicationIconBadgeNumber = 0
-		if (!BackgroundTask.startBackground()) {
-			Manager.saveTorrents()
-		}
+		Manager.saveTorrents(filesStatesOnly: BackgroundTask.startBackground())
 		AppDelegate.backgrounded = true
     }
 
@@ -181,6 +187,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			UserDefaults.standard.set(0, forKey: UserDefaultsKeys.uploadLimit)
 		}
 	}
-
+	
+//	fileprivate func setupNotifications() {
+//		let nc = NotificationCenter.default
+//		nc.addObserver(forName: NSLocale.currentLocaleDidChangeNotification, object: nil, queue: OperationQueue.main) {
+//			[weak self] notification in
+//			guard let `self` = self else { return }
+//
+//			//	this is the only way I know of to force-reload storyboard-based stuff
+//			//	limitations like this is one of the main reason why I avoid basing entire app on them
+//			//	since doing this essentialy resets the app and all user-generated context and data
+//			let sb = UIStoryboard(name: "Main", bundle: nil)
+//			let vc = sb.instantiateInitialViewController()
+//			self.window?.rootViewController = vc
+//		}
+//	}
 }
 

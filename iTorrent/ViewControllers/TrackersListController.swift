@@ -32,9 +32,9 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		for i in 0 ..< Int(trackersRaw.size) {
 			let tracker = Tracker()
 			tracker.url = String(validatingUTF8: urlArr[i]!) ?? "ERROR"
-			var msg = trackersRaw.working[i] == 1 ? "Working" : "Inactive"
+			var msg = trackersRaw.working[i] == 1 ? NSLocalizedString("Working", comment: "") : NSLocalizedString("Inactive", comment: "")
 			if (trackersRaw.verified[i] == 1) {
-				msg += ", Verified"
+				msg += ", " + NSLocalizedString("Verified", comment: "")
 			}
 			tracker.message = msg
 			tracker.peers = Int(trackersRaw.peers[i])
@@ -117,7 +117,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 	}
 	
 	@IBAction func editAction(_ sender: UIBarButtonItem) {
-		let alertController = ThemedUIAlertController(title: "Sorry", message: "This action will be available in future updates", preferredStyle: .alert)
+		let alertController = ThemedUIAlertController(title: NSLocalizedString("Sorry", comment: ""), message: NSLocalizedString("This action will be available in future updates", comment: ""), preferredStyle: .alert)
 		let close = UIAlertAction(title: "OK", style: .cancel)
 		alertController.addAction(close)
 		self.present(alertController, animated: true)
@@ -138,13 +138,13 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 	}
 	
 	@IBAction func addAction(_ sender: UIBarButtonItem) {
-		let controller = ThemedUIAlertController(title: "Add Tracker", message: "Enter the full tracker URL", preferredStyle: .alert)
+		let controller = ThemedUIAlertController(title: NSLocalizedString("Add Tracker", comment: ""), message: NSLocalizedString("Enter the full tracker's URL", comment: ""), preferredStyle: .alert)
 		controller.addTextField(configurationHandler: { (textField) in
-			textField.placeholder = "Enter tracker URL"
+			textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
 			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 			textField.keyboardAppearance = Themes.shared.theme[theme].keyboardAppearence
 		})
-		let add = UIAlertAction(title: "Add", style: .default) { _ in
+		let add = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { _ in
 			let textField = controller.textFields![0]
 			
 			Utils.checkFolderExist(path: Manager.configFolder)
@@ -152,13 +152,13 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 			if let _ = URL(string: textField.text!) {
 				print(add_tracker_to_torrent(self.managerHash, textField.text))
 			} else {
-				let alertController = ThemedUIAlertController(title: "Error", message: "Wrong link, check it and try again!", preferredStyle: .alert)
-				let close = UIAlertAction(title: "Close", style: .cancel)
+				let alertController = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Wrong link, check it and try again!", comment: ""), preferredStyle: .alert)
+				let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 				alertController.addAction(close)
 				self.present(alertController, animated: true)
 			}
 		}
-		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+		let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 		
 		controller.addAction(add)
 		controller.addAction(cancel)

@@ -71,7 +71,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 		toolBar.tintColor = tableViewController.navigationController?.navigationBar.tintColor
 		
 		// Adding Button ToolBar
-		let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(SeedLimitPickerView.doneClick))
+		let doneButton = UIBarButtonItem(title: NSLocalizedString("Done", comment: ""), style: .done, target: self, action: #selector(SeedLimitPickerView.doneClick))
 		let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 		//let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(SeedLimitPicker.cancelClick))
 		toolBar.setItems([spaceButton, doneButton], animated: false)
@@ -120,7 +120,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		let titleFont:[NSAttributedStringKey : Any] = [ .foregroundColor : Themes.shared.theme[theme].mainText ]
 		if (component == 0 && row == 0) {
-			return NSAttributedString(string: "Unlimited", attributes: titleFont)
+			return NSAttributedString(string: NSLocalizedString("Unlimited", comment: ""), attributes: titleFont)
 		}
 		if (component == 0) {
 			if (pickerView.numberOfComponents > 1 && pickerView.numberOfRows(inComponent: 1) > 1 && pickerView.selectedRow(inComponent: 1) == 1) {

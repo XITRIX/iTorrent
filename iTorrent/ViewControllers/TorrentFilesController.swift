@@ -225,15 +225,15 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 	}
     
     func folderCellAction(_ key: String, sender : UIButton) {
-        let controller = ThemedUIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
+        let controller = ThemedUIAlertController(title: NSLocalizedString("Download content of folder", comment: ""), message: key, preferredStyle: .actionSheet)
         
-        let download = UIAlertAction(title: "Download", style: .default) { alert in
+        let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { alert in
             for i in self.showFolders[key]!.files {
                 i.isDownloading = true
             }
 			self.setFilesPriority()
         }
-        let notDownload = UIAlertAction(title: "Don't Download", style: .destructive) { alert in
+        let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { alert in
             for i in self.showFolders[key]!.files {
                 if (i.size != 0 && i.downloaded / i.size == 1) {
                     i.isDownloading = true
@@ -243,7 +243,7 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
             }
 			self.setFilesPriority()
         }
-        let cancel = UIAlertAction(title: "Close", style: .cancel)
+        let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
         
         controller.addAction(download)
         controller.addAction(notDownload)

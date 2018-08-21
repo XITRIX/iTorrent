@@ -17,8 +17,6 @@ class Manager {
     public static let rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     public static let configFolder = Manager.rootFolder + "/_Config"
 	public static let fastResumesFolder = Manager.configFolder+"/.FastResumes"
-    public static var managersUpdatedDelegates : [ManagersUpdatedDelegate] = []
-    public static var managersStateChangedDelegade : [ManagerStateChangedDelegate] = []
 	public static var managerSaves : [String : UserManagerSettings] = [:]
 	public static var engineInited : Bool = false
 	public static var torrentsRestored : Bool = false
@@ -43,14 +41,16 @@ class Manager {
         
     }
 	
-	public static func saveTorrents() {
+	public static func saveTorrents(filesStatesOnly: Bool = false) {
 		let encodedData = NSKeyedArchiver.archivedData(withRootObject: managerSaves)
 		do {
 			try encodedData.write(to: URL(fileURLWithPath: fastResumesFolder + "/userData.dat"))
 		} catch {
 			print("Couldn't write file")
 		}
-		save_fast_resume()
+		if (!filesStatesOnly) {
+			save_fast_resume()
+		}
 	}
     
     static func restoreAllTorrents() {
@@ -93,7 +93,7 @@ class Manager {
             let status = TorrentStatus()
             
             status.state = String(validatingUTF8: stateArr[Int(i)]!) ?? "ERROR"
-            status.title = status.state == Utils.torrentStates.Metadata.rawValue ? "Obtaining Metadata" : String(validatingUTF8: nameArr[Int(i)]!) ?? "ERROR"
+            status.title = status.state == Utils.torrentStates.Metadata.rawValue ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: nameArr[Int(i)]!) ?? "ERROR"
             status.hash = String(validatingUTF8: hashArr[Int(i)]!) ?? "ERROR"
             status.creator = String(validatingUTF8: creatorArr[Int(i)]!) ?? "ERROR"
 			status.comment = String(validatingUTF8: commentArr[Int(i)]!) ?? "ERROR"
@@ -129,9 +129,7 @@ class Manager {
         }
         
         DispatchQueue.main.async {
-            for i in Manager.managersUpdatedDelegates {
-                i.managerUpdated();
-            }
+			NotificationCenter.default.post(name: .torrentsUpdated, object: nil)
         }
 		
 		stateChanges()
@@ -147,8 +145,8 @@ class Manager {
                     nav = presentedViewController
                 }
                 if nav is AddTorrentController {
-                    let controller = ThemedUIAlertController(title: "Error", message: "Finish the previous torrent adding before start the new one.", preferredStyle: .alert)
-                    let close = UIAlertAction(title: "Close", style: .cancel)
+                    let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Finish the previous torrent adding before start the new one.", comment: ""), preferredStyle: .alert)
+                    let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     nav.present(controller, animated: true)
                     
@@ -169,8 +167,8 @@ class Manager {
 					print(FileManager.default.fileExists(atPath: filePath.path))
 					try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
 				} catch {
-					let controller = ThemedUIAlertController(title: "Error on torrent opening", message: error.localizedDescription, preferredStyle: .alert)
-					let close = UIAlertAction(title: "Close", style: .cancel)
+					let controller = ThemedUIAlertController(title: NSLocalizedString("Error on torrent opening", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+					let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 					controller.addAction(close)
 					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
 					
@@ -180,14 +178,14 @@ class Manager {
 				
 				let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
 				if (hash == "-1") {
-					let controller = ThemedUIAlertController(title: "Error on torrent reading", message: "Torrent file opening error has been occured", preferredStyle: .alert)
-					let close = UIAlertAction(title: "Close", style: .cancel)
+					let controller = ThemedUIAlertController(title: NSLocalizedString("Error on torrent reading", comment: ""), message: NSLocalizedString("Torrent file opening error has been occured", comment: ""), preferredStyle: .alert)
+					let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 					controller.addAction(close)
 					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
 					return
 				} else if (torrentStates.contains(where: {$0.hash == hash})) {
-					let controller = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash + "\" already exists in download queue", preferredStyle: .alert)
-					let close = UIAlertAction(title: "Close", style: .cancel)
+					let controller = ThemedUIAlertController(title: NSLocalizedString("This torrent already exists", comment: ""), message: "\(NSLocalizedString("Torrent with hash:", comment: "")) \"" + hash + "\" \(NSLocalizedString("already exists in download queue", comment: ""))", preferredStyle: .alert)
+					let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 					controller.addAction(close)
 					UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
 					return
@@ -224,8 +222,8 @@ class Manager {
 				DispatchQueue.main.async {
 					let hash = String(validatingUTF8: get_magnet_hash(magnetLink))
 					if (Manager.torrentStates.contains(where: {$0.hash == hash})) {
-						let alert = ThemedUIAlertController(title: "This torrent already exists", message: "Torrent with hash: \"" + hash! + "\" already exists in download queue", preferredStyle: .alert)
-						let close = UIAlertAction(title: "Close", style: .cancel)
+						let alert = ThemedUIAlertController(title: NSLocalizedString("This torrent already exists", comment: ""), message: "\(NSLocalizedString("Torrent with hash:", comment: "")) \"" + hash! + "\" \(NSLocalizedString("already exists in download queue", comment: ""))", preferredStyle: .alert)
+						let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 						alert.addAction(close)
 						UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
 					} else if let hash = String(validatingUTF8: add_magnet(magnetLink)) {
@@ -233,8 +231,8 @@ class Manager {
 						managerSaves[hash] = UserManagerSettings()
 						mainLoop()
 					} else {
-						let controller = ThemedUIAlertController(title: "Error", message: "Wrong magnet link, check it and try again!", preferredStyle: .alert)
-						let close = UIAlertAction(title: "Close", style: .cancel)
+						let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Wrong magnet link, check it and try again!", comment: ""), preferredStyle: .alert)
+						let close = UIAlertAction(title: NSLocalizedString(NSLocalizedString("Close", comment: ""), comment: ""), style: .cancel)
 						controller.addAction(close)
 						UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
 					}
@@ -293,17 +291,13 @@ class Manager {
 			if let old = previousTorrentStates.filter({ $0.hash == t.hash }).first {
 				if (old.displayState != t.displayState) {
 					DispatchQueue.main.async {
-						for m in managersStateChangedDelegade {
-							m.managerStateChanged(manager: t, oldState: old.displayState, newState: t.displayState)
-						}
+						NotificationCenter.default.post(name: .torrentsStateChanged, object: nil, userInfo: ["data" : (manager: t, oldState: old.displayState, newState: t.displayState)])
 						managersStateChanged(manager: t, oldState: old.displayState, newState: t.displayState)
 					}
 				}
 			} else {
 				DispatchQueue.main.async {
-					for m in managersStateChangedDelegade {
-						m.managerStateChanged(manager: t, oldState: "NONE", newState: t.displayState)
-					}
+					NotificationCenter.default.post(name: .torrentsStateChanged, object: nil, userInfo: ["data" : (manager: t, oldState: "NONE", newState: t.displayState)])
 					managersStateChanged(manager: t, oldState: "NONE", newState: t.displayState)
 				}
 			}
@@ -319,8 +313,8 @@ class Manager {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
 				
-				content.title = "Download finished"
-				content.body = manager.title + " finished downloading"
+				content.title = NSLocalizedString("Download finished", comment: "")
+				content.body = manager.title + NSLocalizedString(" finished downloading", comment: "")
 				content.sound = UNNotificationSound.default()
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -332,8 +326,8 @@ class Manager {
                 let notification = UILocalNotification()
 				
                 notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-                notification.alertTitle = "Download finished"
-                notification.alertBody = manager.title + " finished downloading"
+                notification.alertTitle = NSLocalizedString("Download finished", comment: "")
+                notification.alertBody = manager.title + NSLocalizedString(" finished downloading", comment: "")
                 notification.soundName = UILocalNotificationDefaultSoundName
 				
                 UIApplication.shared.scheduleLocalNotification(notification)
@@ -350,8 +344,8 @@ class Manager {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
 				
-				content.title = "Seeding finished"
-				content.body = manager.title + " finished seeding"
+				content.title = NSLocalizedString("Seeding finished", comment: "")
+				content.body = manager.title + NSLocalizedString(" finished seeding", comment: "")
 				content.sound = UNNotificationSound.default()
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
@@ -363,8 +357,8 @@ class Manager {
 				let notification = UILocalNotification()
 				
 				notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-				notification.alertTitle = "Seeding finished"
-				notification.alertBody = manager.title + " finished seeding"
+				notification.alertTitle = NSLocalizedString("Seeding finished", comment: "")
+				notification.alertBody = manager.title + NSLocalizedString(" finished seeding", comment: "")
 				notification.soundName = UILocalNotificationDefaultSoundName
 				
 				UIApplication.shared.scheduleLocalNotification(notification)

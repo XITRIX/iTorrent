@@ -11,7 +11,7 @@ import UIKit
 
 import MarqueeLabel
 
-class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDelegate {
+class TorrentDetailsController: ThemedUITableViewController {
 	@IBOutlet weak var shareButton: UIBarButtonItem!
 	
 	@IBOutlet weak var start: UIBarButtonItem!
@@ -77,7 +77,7 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 		
 		let limit = Manager.managerSaves[self.managerHash]?.seedLimit
 		if (limit == 0) {
-			seedLimitButton.setTitle("Unlimited", for: .normal)
+			seedLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 		} else {
 			seedLimitButton.setTitle(Utils.getSizeText(size: limit!, decimals: true), for: .normal)
 		}
@@ -103,7 +103,7 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 		}
         
         managerUpdated()
-        Manager.managersUpdatedDelegates.append(self)
+		NotificationCenter.default.addObserver(self, selector: #selector(managerUpdated), name: .torrentsUpdated, object: nil)
     }
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -117,8 +117,8 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        Manager.managersUpdatedDelegates = Manager.managersUpdatedDelegates.filter({$0 !== (self as ManagersUpdatedDelegate)})
+		
+		NotificationCenter.default.removeObserver(self, name: .torrentsUpdated, object: nil)
     }
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -135,13 +135,13 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 		}
 	}
     
-    func managerUpdated() {
+    @objc func managerUpdated() {
         if managerHash != nil,
             let manager = Manager.getManagerByHash(hash: managerHash) {
             let calendar = Calendar.current
             
             title = manager.title
-            stateLabel.text = manager.displayState
+            stateLabel.text = NSLocalizedString(manager.displayState, comment: "") 
             downloadLabel.text = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
             uploadLabel.text = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
             timeRemainsLabel.text = manager.displayState == Utils.torrentStates.Downloading.rawValue ? Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone) : "---"
@@ -158,12 +158,6 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
             peersLabel.text = String(manager.numPeers)
 			
 			switcher.setOn((Manager.managerSaves[managerHash]?.seedMode)! , animated: true)
-            
-//            print(manager.isPaused)
-//            print(manager.isFinished)
-//            print(manager.isSeed)
-//            print(manager.seedMode)
-//            print("------------")
 			
             if (manager.state == Utils.torrentStates.Hashing.rawValue ||
 				manager.state == Utils.torrentStates.Metadata.rawValue) {
@@ -230,11 +224,11 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 				}
 				if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
 					!UserDefaults.standard.bool(forKey: UserDefaultsKeys.seedBackgroundWarning)) {
-					let controller = ThemedUIAlertController(title: "Warning", message: "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.", preferredStyle: .alert)
-					let enable = UIAlertAction(title: "Enable", style: .destructive) { _ in
+					let controller = ThemedUIAlertController(title: NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.", comment: ""), preferredStyle: .alert)
+					let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
 						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundSeedKey)
 					}
-					let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+					let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
 						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.seedBackgroundWarning)
 					}
 					
@@ -257,7 +251,7 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 			seedLimitPickerView = SeedLimitPickerView(self, defaultValue: (Manager.managerSaves[self.managerHash]?.seedLimit)!, onStateChange: { res in
 				Manager.managerSaves[self.managerHash]?.seedLimit = res
 				if (res == 0) {
-					sender.setTitle("Unlimited", for: .normal)
+					sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 				} else {
 					sender.setTitle(Utils.getSizeText(size: res, decimals: true), for: .normal)
 				}
@@ -293,11 +287,11 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
     }
     
     @IBAction func rehashAction(_ sender: UIBarButtonItem) {
-		let controller = ThemedUIAlertController(title: "Torrent rehash", message: "This action will recheck the state of all downloaded files", preferredStyle: .alert)
-		let hash = UIAlertAction(title: "Rehash", style: .destructive) { _ in
+		let controller = ThemedUIAlertController(title: NSLocalizedString("Torrent rehash", comment: ""), message: NSLocalizedString("This action will recheck the state of all downloaded files", comment: ""), preferredStyle: .alert)
+		let hash = UIAlertAction(title: NSLocalizedString("Rehash", comment: ""), style: .destructive) { _ in
 			rehash_torrent(self.managerHash)
 		}
-		let cancel  = UIAlertAction(title: "Cancel", style: .cancel)
+		let cancel  = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 		controller.addAction(hash)
 		controller.addAction(cancel)
 		present(controller, animated: true)
@@ -305,18 +299,18 @@ class TorrentDetailsController: ThemedUITableViewController, ManagersUpdatedDele
 	
 	@IBAction func removeTorrent(_ sender: UIBarButtonItem) {
 		let manager = Manager.getManagerByHash(hash: managerHash)!
-		let message = manager.hasMetadata ? "Are you sure to remove " + manager.title + " torrent?" : "Are you sure to remove this magnet torrent?"
+		let message = manager.hasMetadata ? "\(NSLocalizedString("Are you sure to remove", comment: "")) \( manager.title) \(NSLocalizedString("torrent", comment: ""))?" : NSLocalizedString("Are you sure to remove this magnet torrent?", comment: "")
 		let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
-		let removeAll = UIAlertAction(title: "Yes and remove data", style: .destructive) { _ in
+		let removeAll = UIAlertAction(title: NSLocalizedString("Yes and remove data", comment: ""), style: .destructive) { _ in
 			self.removeTorrent(manager: manager, removeData: true)
 		}
-		let removeTorrent = UIAlertAction(title: "Yes but keep data", style: .default) { _ in
+		let removeTorrent = UIAlertAction(title: NSLocalizedString("Yes but keep data", comment: ""), style: .default) { _ in
 			self.removeTorrent(manager: manager)
 		}
-		let removeMagnet = UIAlertAction(title: "Remove", style: .destructive) { _ in
+		let removeMagnet = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
 			self.removeTorrent(manager: manager, isMagnet: true)
 		}
-		let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+		let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 		if (!manager.hasMetadata) {
 			removeController.addAction(removeMagnet)
 		} else {

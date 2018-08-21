@@ -21,4 +21,6 @@ class UserDefaultsKeys {
 	static let downloadLimit = "downloadLimit"
 	static let uploadLimit = "uploadLimit"
 	static let seedBackgroundWarning = "seedBackgroundWarning"
+	static let disableAds = "disableAds"
+	static let versionNews = "versionNews"
 }

@@ -42,7 +42,7 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 		
 		if (root == "") {
 			let back = UIBarButtonItem()
-			back.title = "Back"
+			back.title = NSLocalizedString("Back", comment: "")
 			navigationItem.backBarButtonItem = back
 			
 			initialize()
@@ -81,8 +81,8 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 		name = String(validatingUTF8: localFiles.title) ?? "ERROR"
 		
 		if let oldManager = Manager.torrentStates.filter({$0.title == name}).first {
-			let controller = ThemedUIAlertController(title: "Torrent update detected", message: "Torrent with name \(name) already exists, do you want to apply previous files selection settings to this torrent?", preferredStyle: .alert)
-			let apply = UIAlertAction(title: "Apply", style: .default) { _ in
+			let controller = ThemedUIAlertController(title: NSLocalizedString("Torrent update detected", comment: ""), message: "\(NSLocalizedString("Torrent with name", comment: "")) \(name) \(NSLocalizedString("already exists, do you want to apply previous files selection settings to this torrent", comment: ""))?", preferredStyle: .alert)
+			let apply = UIAlertAction(title: NSLocalizedString("Apply", comment: ""), style: .default) { _ in
 				let oldFilesContainer = get_files_of_torrent_by_hash(oldManager.hash)
 				var oldFiles : [File] = []
 				
@@ -111,7 +111,7 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 				
 				self.tableView.reloadData()
 			}
-			let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+			let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 			
 			controller.addAction(apply)
 			controller.addAction(cancel)
@@ -225,14 +225,14 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 	}
     
     func folderCellAction(_ key: String, sender: UIButton) {
-		let controller = ThemedUIAlertController(title: "Download content of folder", message: key, preferredStyle: .actionSheet)
+		let controller = ThemedUIAlertController(title: NSLocalizedString("Download content of folder", comment: ""), message: key, preferredStyle: .actionSheet)
 		
-		let download = UIAlertAction(title: "Download", style: .default) { alert in
+		let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { alert in
 			for i in self.showFolders[key]!.files {
 				i.isDownloading = true
 			}
 		}
-		let notDownload = UIAlertAction(title: "Don't Download", style: .destructive) { alert in
+		let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { alert in
 			for i in self.showFolders[key]!.files {
 				if (i.size != 0 && i.size == i.downloaded) {
 					i.isDownloading = true
@@ -241,7 +241,7 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 				}
 			}
 		}
-		let cancel = UIAlertAction(title: "Close", style: .cancel)
+		let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 		
 		controller.addAction(download)
 		controller.addAction(notDownload)
@@ -301,6 +301,12 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 		if (FileManager.default.fileExists(atPath: urlRes.path)) {
 			try! FileManager.default.removeItem(at: urlRes)
 		}
+		for manager in Manager.torrentStates {
+			if (manager.title == name) {
+				remove_torrent(manager.hash, 0)
+				break
+			}
+		}
 		do {
 			try FileManager.default.copyItem(at: urlPath, to: urlRes)
 			if (path.hasSuffix("_temp.torrent")) {
@@ -316,8 +322,8 @@ class AddTorrentController : ThemedUIViewController, UITableViewDataSource, UITa
 			add_torrent_with_states(urlRes.path, UnsafeMutablePointer(mutating: res))
 			Manager.managerSaves[hash] = UserManagerSettings()
 		} catch {
-			let controller = ThemedUIAlertController(title: "Error has been occured", message: error.localizedDescription, preferredStyle: .alert)
-			let close = UIAlertAction(title: "Close", style: .cancel)
+			let controller = ThemedUIAlertController(title: NSLocalizedString("Error has been occured", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+			let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
 			controller.addAction(close)
 			present(controller, animated: true)
 		}

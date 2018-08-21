@@ -19,18 +19,18 @@ class SortingManager {
 	}
 	
 	public static func createSortingController(buttonItem: UIBarButtonItem? = nil, applyChanges: @escaping ()->() = {}) -> ThemedUIAlertController {
-		let alphabetAction = createAlertButton("Name", SortingTypes.Name, applyChanges);
-		let dateAddedAction = createAlertButton("Date Added", SortingTypes.DateAdded, applyChanges);
-		let dateCreatedAction = createAlertButton("Date Created", SortingTypes.DateCreated, applyChanges);
-		let sizeAction = createAlertButton("Size", SortingTypes.Size, applyChanges);
+		let alphabetAction = createAlertButton(NSLocalizedString("Name", comment: ""), SortingTypes.Name, applyChanges);
+		let dateAddedAction = createAlertButton(NSLocalizedString("Date Added", comment: ""), SortingTypes.DateAdded, applyChanges);
+		let dateCreatedAction = createAlertButton(NSLocalizedString("Date Created", comment: ""), SortingTypes.DateCreated, applyChanges);
+		let sizeAction = createAlertButton(NSLocalizedString("Size", comment: ""), SortingTypes.Size, applyChanges);
 		
 		let sectionsAction = createSectionsAlertButton(applyChanges);
 		
-		let cancel = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil);
+		let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: UIAlertActionStyle.cancel, handler: nil);
 		
-        var sortAlertController = ThemedUIAlertController(title: "Sort Torrents By:", message: nil, preferredStyle: .actionSheet)
+        var sortAlertController = ThemedUIAlertController(title: NSLocalizedString("Sort Torrents By:", comment: ""), message: nil, preferredStyle: .actionSheet)
 		
-		var message = "Currently sorted by ";
+		var message = NSLocalizedString("Currently sorted by ", comment: "");
 		checkConditionToAddButtonToList(&sortAlertController, &message, alphabetAction, SortingTypes.Name);
 		checkConditionToAddButtonToList(&sortAlertController, &message, dateAddedAction, SortingTypes.DateAdded);
 		checkConditionToAddButtonToList(&sortAlertController, &message, dateCreatedAction, SortingTypes.DateCreated);
@@ -57,7 +57,7 @@ class SortingManager {
 	
 	private static func createSectionsAlertButton(_ applyChanges: @escaping ()->() = {}) -> UIAlertAction {
 		let sections = UserDefaults.standard.bool(forKey: "SortingSections")
-		let name = sections ? "Disable state sections" : "Enable state sections"
+		let name = sections ? NSLocalizedString("Disable state sections", comment: "") : NSLocalizedString("Enable state sections", comment: "")
 		return UIAlertAction(title: name, style: sections ? .destructive : .default) { _ in
 			UserDefaults.standard.set(!sections, forKey: "SortingSections")
 			applyChanges()
