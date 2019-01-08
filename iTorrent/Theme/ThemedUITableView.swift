@@ -10,21 +10,19 @@ import Foundation
 import UIKit
 
 class ThemedUITableView : UITableView, Themed {
-	
-	func updateTheme() {
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+        themeUpdate()
+    }
+    
+    @objc func themeUpdate() {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		backgroundColor = Themes.shared.theme[theme].backgroundTertiary
 		reloadData()
 	}
-	
-	override func awakeFromNib() {
-		super.awakeFromNib()
-		updateTheme()
-	}
-	
-	override func prepareForInterfaceBuilder() {
-		super.prepareForInterfaceBuilder()
-		updateTheme()
-	}
-	
 }

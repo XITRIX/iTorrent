@@ -16,13 +16,13 @@ class TrackerCell : ThemedUITableViewCell {
 	@IBOutlet weak var seeders: UILabel!
 	@IBOutlet weak var peers: UILabel!
 	
-	override func updateTheme() {
-		super.updateTheme()
+	override func themeUpdate() {
+		super.themeUpdate()
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		title.textColor = Themes.shared.theme[theme].mainText
-		message.textColor = Themes.shared.theme[theme].secondaryText
-		seeders.textColor = Themes.shared.theme[theme].secondaryText
-		peers.textColor = Themes.shared.theme[theme].secondaryText
+		title?.textColor = Themes.shared.theme[theme].mainText
+		message?.textColor = Themes.shared.theme[theme].secondaryText
+		seeders?.textColor = Themes.shared.theme[theme].secondaryText
+		peers?.textColor = Themes.shared.theme[theme].secondaryText
 		
 		let bgColorView = UIView()
 		bgColorView.backgroundColor = Themes.shared.theme[theme].backgroundSecondary

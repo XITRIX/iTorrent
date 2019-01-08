@@ -9,20 +9,33 @@
 import UIKit
 import GoogleMobileAds
 
-class MainController: ThemedUIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
+class MainController: ThemedUIViewController {
     @IBOutlet weak var tableView: ThemedUITableView!
 	@IBOutlet weak var adsView: GADBannerView!
-	
+    @IBOutlet var tableHeaderView: TableHeaderView!
+    
     var managers : [[TorrentStatus]] = []
 	var headers : [String] = []
     
     var topRightItemsCopy : [UIBarButtonItem]?
     var bottomItemsCopy : [UIBarButtonItem]?
+	lazy var bottomEditItems : [UIBarButtonItem] = {
+		let play = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startSelectedOfTorrents(_:)))
+		let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseSelectedOfTorrents(_:)))
+		let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rehashSelectedTorrents(_:)))
+		let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(removeSelectedTorrents(_:)))
+		let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace , target: self, action: nil)
+		return [play, space, pause, space, refresh, space, space, space, space, trash]
+	}()
 	
 	var adsLoaded = false
+	
+	var tableViewEditMode : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(TableHeaderView.uiNib(), forHeaderFooterViewReuseIdentifier: "HeaderView")
         
         tableView.allowsMultipleSelectionDuringEditing = true
         
@@ -49,7 +62,6 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 		
-		tableView.updateTheme()
 		navigationController?.toolbar.tintColor = navigationController?.navigationBar.tintColor
 		
 		managers.removeAll()
@@ -82,11 +94,6 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
         if (tableView.isEditing) {
             editAction(navigationItem.leftBarButtonItem!)
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func managerUpdated() {
@@ -121,157 +128,6 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
 		managers.removeAll()
 		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
 		tableView.reloadData()
-	}
-	
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return headers.count
-	}
-	
-	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return NSLocalizedString(headers[section], comment: "")
-	}
-	
-	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-		if (!(view.subviews[0] is UIVisualEffectView)) {
-			let blurEffect = UIBlurEffect(style: .light)
-			let blurEffectView = UIVisualEffectView(effect: blurEffect)
-			blurEffectView.frame = view.bounds
-			blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-			
-			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-			view.tintColor = Themes.shared.theme[theme].tableHeaderColor
-				
-			if let header = view as? UITableViewHeaderFooterView {
-				header.textLabel?.textColor = Themes.shared.theme[theme].mainText
-			}
-			
-			view.addSubview(blurEffectView)
-			view.insertSubview(blurEffectView, at: 0)
-		} else {
-			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-			view.tintColor = Themes.shared.theme[theme].tableHeaderColor
-			
-			if let header = view as? UITableViewHeaderFooterView {
-				header.textLabel?.textColor = Themes.shared.theme[theme].mainText
-			}
-		}
-	}
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if (tableView.isEditing) {
-			navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
-		}
-        return managers[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TorrentCell
-        cell.manager = managers[indexPath.section][indexPath.row]
-        cell.update()
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView.isEditing) {
-            var b = true
-            if let count = (tableView.indexPathsForSelectedRows?.count) {
-                b = count > 0
-                navigationItem.rightBarButtonItem?.title = "\(NSLocalizedString("Deselect", comment: "")) (\(count))"
-            }
-            for item in toolbarItems! {
-                item.isEnabled = b
-            }
-            
-        } else {
-            let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as! TorrentDetailsController
-            viewController.managerHash = managers[indexPath.section][indexPath.row].hash
-            
-            if (!(splitViewController?.isCollapsed)!) {
-    //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
-    //                if let fileController = nav.topViewController
-    //            }
-                let navController = UINavigationController(rootViewController: viewController)
-                navController.isToolbarHidden = false
-                navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-                navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
-                splitViewController?.showDetailViewController(navController, sender: self)
-            } else {
-                splitViewController?.showDetailViewController(viewController, sender: self)
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if (tableView.isEditing) {
-            var b = false
-            if let count = (tableView.indexPathsForSelectedRows?.count) {
-                b = count > 0
-                navigationItem.rightBarButtonItem?.title = "\(NSLocalizedString("Deselect", comment: "")) (\(count))"
-            } else {
-                navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
-            }
-            for item in toolbarItems! {
-                item.isEnabled = b
-            }
-        }
-    }
-	
-	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		return true
-	}
-	
-	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-		if (editingStyle == .delete) {
-			let selectedHash = managers[indexPath.section][indexPath.row].hash
-			let message = managers[indexPath.section][indexPath.row].hasMetadata ? NSLocalizedString("Are you sure to remove", comment: "") + " " + managers[indexPath.section][indexPath.row].title + " \(NSLocalizedString("torrent", comment: ""))?" : NSLocalizedString("Are you sure to remove this magnet torrent?", comment: "")
-			let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
-			let removeAll = UIAlertAction(title: NSLocalizedString("Yes and remove data", comment: ""), style: .destructive) { _ in
-				findHash: for section in 0 ..< self.managers.count {
-					for row in 0 ..< self.managers[section].count {
-						if (self.managers[section][row].hash == selectedHash) {
-							self.removeTorrent(indexPath: IndexPath(row: row, section: section), removeData: true)
-							break findHash
-						}
-					}
-				}
-			}
-			let removeTorrent = UIAlertAction(title: NSLocalizedString("Yes but keep data", comment: ""), style: .default) { _ in
-				findHash: for section in 0 ..< self.managers.count {
-					for row in 0 ..< self.managers[section].count {
-						if (self.managers[section][row].hash == selectedHash) {
-							self.removeTorrent(indexPath: IndexPath(row: row, section: section))
-							break findHash
-						}
-					}
-				}
-			}
-			let removeMagnet = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
-				findHash: for section in 0 ..< self.managers.count {
-					for row in 0 ..< self.managers[section].count {
-						if (self.managers[section][row].hash == selectedHash) {
-							self.removeTorrent(indexPath: IndexPath(row: row, section: section), isMagnet: true)
-							break findHash
-						}
-					}
-				}
-			}
-			let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-			if (!managers[indexPath.section][indexPath.row].hasMetadata) {
-				removeController.addAction(removeMagnet)
-			} else {
-				removeController.addAction(removeAll)
-				removeController.addAction(removeTorrent)
-			}
-			removeController.addAction(cancel)
-			
-			if (removeController.popoverPresentationController != nil) {
-				removeController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
-				removeController.popoverPresentationController?.sourceRect = (tableView.cellForRow(at: indexPath)?.bounds)!
-				removeController.popoverPresentationController?.permittedArrowDirections = .left
-			}
-			
-			present(removeController, animated: true)
-		}
 	}
 	
 	func removeTorrent(indexPath: IndexPath, isMagnet: Bool = false, removeData: Bool = false, visualOnly: Bool = false) {
@@ -314,8 +170,8 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
             let addURLController = ThemedUIAlertController(title: NSLocalizedString("Add from URL", comment: ""), message: NSLocalizedString("Please enter the existing torrent's URL below", comment: ""), preferredStyle: .alert)
             addURLController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "https://"
-				let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-				textField.keyboardAppearance = Themes.shared.theme[theme].keyboardAppearence
+				let theme = Themes.current()
+				textField.keyboardAppearance = theme.keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
                 let textField = addURLController.textFields![0]
@@ -370,11 +226,8 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
             let addMagnetController = ThemedUIAlertController(title: NSLocalizedString("Add from magnet", comment: ""), message: NSLocalizedString("Please enter the magnet link below", comment: ""), preferredStyle: .alert)
             addMagnetController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "magnet:"
-				let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-				textField.keyboardAppearance = Themes.shared.theme[theme].keyboardAppearence
-				//textField.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
-				//textField.color
-				//textField.textColor = Themes.shared.theme[theme].mainText
+				let theme = Themes.current()
+				textField.keyboardAppearance = theme.keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
                 let textField = addMagnetController.textFields![0]
@@ -412,34 +265,36 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func editAction(_ sender: UIBarButtonItem) {
-        let edit = !tableView.isEditing
-        tableView.setEditing(edit, animated: true)
-        sender.title = edit ? NSLocalizedString("Done", comment: "") : NSLocalizedString("Edit", comment: "")
-		sender.style = edit ? .done : .plain
+		if (!tableView.isEditing) {
+			tableViewEditMode = true
+			
+		} else {
+			tableViewEditMode = false
+			
+		}
+		
+        tableView.setEditing(tableViewEditMode, animated: true)
+        sender.title = tableViewEditMode ? NSLocalizedString("Done", comment: "") : NSLocalizedString("Edit", comment: "")
+		sender.style = tableViewEditMode ? .done : .plain
         
         //NavBarItems
-        var copy = navigationItem.rightBarButtonItems
-        if (topRightItemsCopy == nil) {
-            let item = UIBarButtonItem(title: NSLocalizedString("Select All", comment: ""), style: .plain, target: self, action: #selector(selectAllItem(_:)))
-            topRightItemsCopy = [item]
-        }
-        navigationItem.setRightBarButtonItems(topRightItemsCopy, animated: true)
-        topRightItemsCopy = copy
+		if (tableViewEditMode) {
+			topRightItemsCopy = navigationItem.rightBarButtonItems
+			let item = UIBarButtonItem(title: NSLocalizedString("Select All", comment: ""), style: .plain, target: self, action: #selector(selectAllItem(_:)))
+			navigationItem.setRightBarButtonItems([item], animated: true)
+		} else {
+			navigationItem.setRightBarButtonItems(topRightItemsCopy, animated: true)
+		}
         
         //ToolBarItems
-        copy = toolbarItems
-        if (bottomItemsCopy == nil) {
-			let play = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startSelectedOfTorrents(_:)))
-            let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseSelectedOfTorrents(_:)))
-            let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rehashSelectedTorrents(_:)))
-            let trash = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(removeSelectedTorrents(_:)))
-            let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace , target: self, action: nil)
-            bottomItemsCopy = [play, space, pause, space, refresh, space, space, space, space, trash]
-        }
-        setToolbarItems(bottomItemsCopy, animated: true)
-        bottomItemsCopy = copy
+		if (tableViewEditMode) {
+        	bottomItemsCopy = toolbarItems
+			setToolbarItems(bottomEditItems, animated: true)
+		} else {
+			setToolbarItems(bottomItemsCopy, animated: true)
+		}
         
-        if (edit) {
+        if (tableViewEditMode) {
             navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
             for item in toolbarItems! {
                 item.isEnabled = false
@@ -611,24 +466,164 @@ class MainController: ThemedUIViewController, UITableViewDataSource, UITableView
 		//let message = managers[indexPath.section][indexPath.row].hasMetadata ? "Are you sure to remove " + managers[indexPath.section][indexPath.row].title + " torrent?" : "Are you sure to remove this magnet torrent?"
 		
 	}
-	
-	func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-		adsLoaded = false
-		
-		bannerView.isHidden = true
-		tableView.contentInset.bottom = 0
-		tableView.scrollIndicatorInsets.bottom = 0
-	}
-	
-	func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-		// Add banner to view and add constraints as above.
-		adsLoaded = true
-		if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds)) {
-			bannerView.isHidden = false
-			tableView.contentInset.bottom = bannerView.frame.height
-			tableView.scrollIndicatorInsets.bottom = bannerView.frame.height
-		}
-	}
+}
+
+extension MainController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return headers.count
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (tableView.isEditing) {
+            navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
+        }
+        return managers[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TorrentCell
+        cell.manager = managers[indexPath.section][indexPath.row]
+        cell.update()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let selectedHash = managers[indexPath.section][indexPath.row].hash
+            let message = managers[indexPath.section][indexPath.row].hasMetadata ? NSLocalizedString("Are you sure to remove", comment: "") + " " + managers[indexPath.section][indexPath.row].title + " \(NSLocalizedString("torrent", comment: ""))?" : NSLocalizedString("Are you sure to remove this magnet torrent?", comment: "")
+            let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
+            let removeAll = UIAlertAction(title: NSLocalizedString("Yes and remove data", comment: ""), style: .destructive) { _ in
+                findHash: for section in 0 ..< self.managers.count {
+                    for row in 0 ..< self.managers[section].count {
+                        if (self.managers[section][row].hash == selectedHash) {
+                            self.removeTorrent(indexPath: IndexPath(row: row, section: section), removeData: true)
+                            break findHash
+                        }
+                    }
+                }
+            }
+            let removeTorrent = UIAlertAction(title: NSLocalizedString("Yes but keep data", comment: ""), style: .default) { _ in
+                findHash: for section in 0 ..< self.managers.count {
+                    for row in 0 ..< self.managers[section].count {
+                        if (self.managers[section][row].hash == selectedHash) {
+                            self.removeTorrent(indexPath: IndexPath(row: row, section: section))
+                            break findHash
+                        }
+                    }
+                }
+            }
+            let removeMagnet = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
+                findHash: for section in 0 ..< self.managers.count {
+                    for row in 0 ..< self.managers[section].count {
+                        if (self.managers[section][row].hash == selectedHash) {
+                            self.removeTorrent(indexPath: IndexPath(row: row, section: section), isMagnet: true)
+                            break findHash
+                        }
+                    }
+                }
+            }
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+            if (!managers[indexPath.section][indexPath.row].hasMetadata) {
+                removeController.addAction(removeMagnet)
+            } else {
+                removeController.addAction(removeAll)
+                removeController.addAction(removeTorrent)
+            }
+            removeController.addAction(cancel)
+            
+            if (removeController.popoverPresentationController != nil) {
+                removeController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
+                removeController.popoverPresentationController?.sourceRect = (tableView.cellForRow(at: indexPath)?.bounds)!
+                removeController.popoverPresentationController?.permittedArrowDirections = .left
+            }
+            
+            present(removeController, animated: true)
+        }
+    }
+}
+
+extension MainController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headers[section].isEmpty ? 0 : 28
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! TableHeaderView
+        let theme = Themes.current()
+
+        cell.title.text = NSLocalizedString(headers[section], comment: "")
+        cell.background.effect = UIBlurEffect(style: theme.blurEffect)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView.isEditing) {
+            var b = true
+            if let count = (tableView.indexPathsForSelectedRows?.count) {
+                b = count > 0
+                navigationItem.rightBarButtonItem?.title = "\(NSLocalizedString("Deselect", comment: "")) (\(count))"
+            }
+            for item in toolbarItems! {
+                item.isEnabled = b
+            }
+            
+        } else {
+            let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as! TorrentDetailsController
+            viewController.managerHash = managers[indexPath.section][indexPath.row].hash
+            
+            if (!(splitViewController?.isCollapsed)!) {
+                //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
+                //                if let fileController = nav.topViewController
+                //            }
+                let navController = UINavigationController(rootViewController: viewController)
+                navController.isToolbarHidden = false
+                navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+                navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
+                splitViewController?.showDetailViewController(navController, sender: self)
+            } else {
+                splitViewController?.showDetailViewController(viewController, sender: self)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if (tableView.isEditing) {
+            var b = false
+            if let count = (tableView.indexPathsForSelectedRows?.count) {
+                b = count > 0
+                navigationItem.rightBarButtonItem?.title = "\(NSLocalizedString("Deselect", comment: "")) (\(count))"
+            } else {
+                navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
+            }
+            for item in toolbarItems! {
+                item.isEnabled = b
+            }
+        }
+    }
+}
+
+extension MainController: GADBannerViewDelegate {
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adsLoaded = false
+        
+        bannerView.isHidden = true
+        tableView.contentInset.bottom = 0
+        tableView.scrollIndicatorInsets.bottom = 0
+    }
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        // Add banner to view and add constraints as above.
+        adsLoaded = true
+        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds)) {
+            bannerView.isHidden = false
+            tableView.contentInset.bottom = bannerView.frame.height
+            tableView.scrollIndicatorInsets.bottom = bannerView.frame.height
+        }
+    }
 }
 

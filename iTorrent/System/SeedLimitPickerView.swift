@@ -27,6 +27,8 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 	init(_ tableViewController: UIViewController, defaultValue: Int64, onStateChange action: @escaping (Int64)->()) {
 		super.init()
 		
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+        
 		self.tableViewController = tableViewController
 		self.action = action
 		
@@ -96,7 +98,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 		}
 	}
 	
-	func updateTheme() {
+    @objc func themeUpdate() {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		blurEffectView.effect = UIBlurEffect(style: Themes.shared.theme[theme].blurEffect)
 		pickerView.reloadAllComponents()

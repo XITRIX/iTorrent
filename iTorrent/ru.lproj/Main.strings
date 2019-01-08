@@ -222,7 +222,7 @@
 "k0l-PX-752.title" = "Изменить";
 
 /* Class = "UILabel"; text = "Enable app's badge icon"; ObjectID = "k0y-yE-eKI"; */
-"k0y-yE-eKI.text" = "Показывать бейджик над иконкой";
+"k0y-yE-eKI.text" = "Показывать бейджик";
 
 /* Class = "UILabel"; text = "State"; ObjectID = "ktb-TS-ZZd"; */
 "ktb-TS-ZZd.text" = "Состояние";
@@ -301,3 +301,6 @@
 
 /* Class = "UILabel"; title = "Disable ADS"; ObjectID = "DTL-Hu-2Hh"; */
 "DTL-Hu-2Hh.text" = "Отключить рекламу";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "tn3-eJ-eiv"; */
+"tn3-eJ-eiv.title" = "Выбрать";

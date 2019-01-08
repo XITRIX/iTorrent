@@ -13,7 +13,7 @@ class File {
 	var path : String = ""
 	var size : Int64 = 0
 	var downloaded : Int64 = 0
-	var isDownloading : Bool = false
+	var isDownloading : Int32 = 0
 	var number : Int = 0
 }
 

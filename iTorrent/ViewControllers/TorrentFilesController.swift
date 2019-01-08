@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UITableViewDelegate, FileCellActionDelegate, FolderCellActionDelegate {
+class TorrentFilesController : ThemedUIViewController {
     @IBOutlet weak var tableView: ThemedUITableView!
     
     var managerHash : String!
@@ -17,6 +17,7 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 	
 	var files : [File] = []
 	var notSortedFiles : [File] = []
+	var downloadedFiles : [File] = []
 	
 	var showFolders : [String:Folder] = [:]
 	var showFiles : [File] = []
@@ -25,13 +26,35 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 	
     var runUpdate = false
 	
-	override func updateTheme() {
-		super.updateTheme()
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		tableView.backgroundColor = Themes.shared.theme[theme].backgroundMain
-		if let titleView = navigationItem.titleView as? FileManagerTitleView {
-			titleView.updateTheme()
+	var tableViewEditMode : Bool = false
+	
+	var defaultToolBarItems : [UIBarButtonItem]?
+	lazy var editBarItems : [UIBarButtonItem] = {
+		let res = [UIBarButtonItem(title: NSLocalizedString("All", comment: ""), style: .plain, target: self, action: #selector(shareAll)),
+				   UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+				   UIBarButtonItem(title: NSLocalizedString("Share", comment: ""), style: .plain, target: self, action: nil),
+				   UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
+				   UIBarButtonItem(title: NSLocalizedString("Selected", comment: ""), style: .plain, target: self, action: #selector(shareSelected))]
+		
+		res[0].width = (NSLocalizedString("All", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 21)], context: nil).width
+		res[4].width = (NSLocalizedString("Selected", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 21)], context: nil).width
+		
+		if (res[0].width < res[4].width) {
+			res[0].width = res[4].width
+		} else {
+			res[4].width = res[0].width
 		}
+		return res
+	}()
+	
+	@IBOutlet weak var selectButton: ThemedUITableView!
+	
+	override func themeUpdate() {
+		super.themeUpdate()
+        
+		let theme = Themes.current()
+		tableView.backgroundColor = theme.backgroundMain
+		editBarItems[2].tintColor = theme.tertiaryText
 	}
 	
 	deinit {
@@ -40,6 +63,8 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		defaultToolBarItems = toolbarItems
 		
 		if (root.starts(with: "/")) { root.removeFirst() }
 		
@@ -56,7 +81,6 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 			let titleView = FileManagerTitleView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
 			titleView.title.text = title
 			titleView.subTitle.text = urlRoot?.deletingLastPathComponent().path
-			titleView.updateTheme()
 			navigationItem.titleView = titleView
         }
 		initFolder()
@@ -66,6 +90,7 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
         tableView.delegate = self
         
         tableView.rowHeight = 78
+		tableView.allowsMultipleSelectionDuringEditing = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +103,7 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
                 DispatchQueue.main.async {
                     for cell in self.tableView.visibleCells {
                         if let cell = cell as? FileCell {
-							cell.file = self.showFiles[cell.index]
+							cell.file = self.tableViewEditMode ? self.downloadedFiles[cell.index] : self.showFiles[cell.index]
                             cell.update()
                         }
                     }
@@ -113,7 +138,7 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 			file.name = name.lastPathComponent
 			file.path = name.deletingLastPathComponent().path == "." ? "" : name.deletingLastPathComponent().path
 			file.size = sizesArr[i]
-			file.isDownloading = localFiles.file_priority[Int(i)] != 0
+			file.isDownloading = localFiles.file_priority[Int(i)]
 			file.number = i
 			
 			files.append(file)
@@ -174,74 +199,315 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
 		}
 	}
     
+    @IBAction func deselectAction(_ sender: UIBarButtonItem) {
+		for cell in tableView.visibleCells {
+            if let cell = cell as? FileCell {
+                cell.switcher.setOn(false, animated: true)
+            }
+		}
+		for i in 0 ..< files.count {
+			if (files[i].size != 0 && files[i].downloaded / files[i].size == 1) {
+				files[i].isDownloading = 4
+			} else {
+				files[i].isDownloading = 0
+			}
+		}
+		setFilesPriority()
+    }
+	
+    @IBAction func selectAction(_ sender: UIBarButtonItem) {
+		for cell in tableView.visibleCells {
+            if let cell = cell as? FileCell {
+                cell.switcher.setOn(true, animated: true)
+            }
+		}
+		for i in 0 ..< files.count {
+			files[i].isDownloading = 4
+		}
+		setFilesPriority()
+    }
+	
+	func setFilesPriority() {
+		var res : [Int32] = []
+		for file in notSortedFiles {
+			res.append(file.isDownloading)
+		}
+		set_torrent_files_priority(managerHash, UnsafeMutablePointer(mutating: res))
+	}
+	
+	@IBAction func selectButtonItem(_ sender: UIBarButtonItem) {
+		if (!tableView.isEditing) {
+			tableView.setEditing(true, animated: true)
+			tableViewEditMode = true
+			
+			navigationItem.setLeftBarButton(UIBarButtonItem(title: NSLocalizedString("Select All", comment: ""), style: .plain, target: self, action: #selector(selectAllOnEdit)), animated: true)
+			navigationItem.rightBarButtonItem?.title = NSLocalizedString("Done", comment: "")
+			navigationItem.rightBarButtonItem?.style = .done
+			
+			editBarItems[4].isEnabled = false
+			setToolbarItems(editBarItems, animated: true)
+		} else {
+			tableView.setEditing(false, animated: true)
+			tableViewEditMode = false
+			
+			navigationItem.setLeftBarButton(nil, animated: true)
+			navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select", comment: "")
+			navigationItem.rightBarButtonItem?.style = .plain
+			
+			setToolbarItems(defaultToolBarItems, animated: true)
+		}
+		
+		tableView.reloadSections([0], with: .automatic)
+		for cell in tableView.visibleCells {
+			if let cell = cell as? FileCell {
+				cell.hideUI = tableViewEditMode
+				cell.update()
+			} else if let cell = cell as? FolderCell {
+				cell.update()
+			}
+		}
+	}
+	
+	@objc func selectAllOnEdit() {
+		if (tableView.indexPathsForSelectedRows?.count ?? 0 > 0) {
+			for indexPath in tableView.indexPathsForSelectedRows! {
+				tableView.deselectRow(at: indexPath, animated: true)
+			}
+		} else {
+			for i in 0 ..< downloadedFiles.count {
+				tableView.selectRow(at: IndexPath(row: i, section: 0), animated: true, scrollPosition: .none)
+			}
+		}
+		updateLeftEditSelectionButton()
+	}
+	
+	func updateLeftEditSelectionButton() {
+		if tableView.isEditing {
+			if (tableView.indexPathsForSelectedRows?.count ?? 0 > 0) {
+				navigationItem.leftBarButtonItem?.title = "\(NSLocalizedString("Deselect", comment: "")) (\(tableView.indexPathsForSelectedRows!.count))"
+				editBarItems[4].isEnabled = true
+			} else {
+				navigationItem.leftBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
+				editBarItems[4].isEnabled = false
+			}
+		}
+	}
+	
+	@objc func shareAll() {
+		print(Manager.rootFolder + "/" + root)
+		var path : NSURL
+		if (root.isEmpty) {
+			if let file = showFiles.first {
+				path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + file.path + "/" + file.name, isDirectory: false)
+			} else { return }
+		} else {
+			path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + root, isDirectory: true)
+		}
+		let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+		if (shareController.popoverPresentationController != nil) {
+			shareController.popoverPresentationController?.barButtonItem = editBarItems[0]
+			shareController.popoverPresentationController?.permittedArrowDirections = .any
+		}
+		UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
+	}
+	
+	@objc func shareSelected() {
+		var paths : [NSURL] = []
+		for indexPath in tableView.indexPathsForSelectedRows! {
+			if indexPath.row < showFolders.keys.count {
+				let key = showFolders.keys.sorted()[indexPath.row]
+				paths.append(NSURL(fileURLWithPath: Manager.rootFolder + "/" + root + "/" + showFolders[key]!.name, isDirectory: true))
+			} else {
+				let index = indexPath.row - showFolders.keys.count
+				paths.append(NSURL(fileURLWithPath: Manager.rootFolder + "/" + downloadedFiles[index].path + "/" + downloadedFiles[index].name, isDirectory: false))
+			}
+		}
+		let shareController = UIActivityViewController(activityItems: paths, applicationActivities: nil)
+		if (shareController.popoverPresentationController != nil) {
+			shareController.popoverPresentationController?.barButtonItem = editBarItems[4]
+			shareController.popoverPresentationController?.permittedArrowDirections = .any
+		}
+		UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
+	}
+}
+
+extension TorrentFilesController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return showFolders.keys.count + showFiles.count
+        if (tableViewEditMode) {
+            downloadedFiles = showFiles.filter({$0.downloaded == $0.size})
+            return showFolders.keys.count + downloadedFiles.count
+        }
+        return showFolders.keys.count + showFiles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		if (indexPath.row < showFolders.keys.count) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as! FolderCell
-            let key = showFolders.keys.sorted()[indexPath.row]
-            cell.title.text = key
-            cell.size.text = Utils.getSizeText(size: showFolders[key]!.size)
-            cell.actionDelegate = self
-			cell.updateTheme()
-            return cell
+        if (tableViewEditMode) {
+            if (indexPath.row < showFolders.keys.count) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as! FolderCell
+                let key = showFolders.keys.sorted()[indexPath.row]
+                cell.title.text = key
+                cell.size.text = Utils.getSizeText(size: showFolders[key]!.size)
+                cell.actionDelegate = self
+                return cell
+            } else {
+                let index = indexPath.row - showFolders.keys.count
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
+                cell.file = downloadedFiles[index]
+                cell.index = index
+                cell.hideUI = true
+                cell.update()
+                cell.switcher.setOn(downloadedFiles[index].isDownloading != 0, animated: false)
+                cell.actionDelegate = self
+                return cell
+            }
         } else {
-            let index = indexPath.row - showFolders.keys.count
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
-            cell.file = showFiles[index]
-            cell.index = index
-            cell.update()
-            cell.switcher.setOn(showFiles[index].isDownloading, animated: false)
-            cell.actionDelegate = self
-			cell.updateTheme()
-            return cell
-        }
-        
-    }
-	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.row < showFolders.keys.count) {
-            let controller = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Files") as! TorrentFilesController
-            controller.managerHash = managerHash
-            controller.name = name
-            controller.root = root + "/" + showFolders.keys.sorted()[indexPath.row]
-			controller.notSortedFiles = notSortedFiles
-            controller.files = files
-            show(controller, sender: self)
-        } else {
-            let index = indexPath.row - showFolders.keys.count
-            let file = showFiles[index]
-            let percent = Float(file.downloaded) / Float(file.size) * 100
-            if (percent < 100) {
-                let cell = tableView.cellForRow(at: indexPath) as! FileCell
-                cell.switcher.setOn(!cell.switcher.isOn, animated: true)
-                if (cell.actionDelegate != nil) {
-                    cell.actionDelegate?.fileCellAction(cell.switcher, index: index)
-                }
+            if (indexPath.row < showFolders.keys.count) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as! FolderCell
+                let key = showFolders.keys.sorted()[indexPath.row]
+                cell.title.text = key
+                cell.size.text = Utils.getSizeText(size: showFolders[key]!.size)
+                cell.actionDelegate = self
+                return cell
+            } else {
+                let index = indexPath.row - showFolders.keys.count
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
+                cell.file = showFiles[index]
+                cell.index = index
+                cell.hideUI = false
+                cell.update()
+                cell.switcher.setOn(showFiles[index].isDownloading != 0, animated: false)
+                cell.actionDelegate = self
+                return cell
             }
         }
-	}
+    }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (tableViewEditMode) {
+            return true
+        }
+        if (indexPath.row < showFolders.count ) {
+            return false
+        } else {
+            let file = showFiles[indexPath.row - showFolders.count]
+            if (file.downloaded == file.size) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let title = NSLocalizedString("Priority", comment: "")
+        let button = UITableViewRowAction(style: .default, title: title) { action, indexPath in
+            let controller = ThemedUIAlertController(title: NSLocalizedString("Priority", comment: ""), message: nil, preferredStyle: .actionSheet)
+            
+            // "Normal"
+            let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in
+                let index = indexPath.row - self.showFolders.count
+                self.showFiles[index].isDownloading = 4
+                (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
+                set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 4)
+            })
+            let high = UIAlertAction(title: NSLocalizedString("Medium", comment: ""), style: .default, handler: { _ in
+                let index = indexPath.row - self.showFolders.count
+                self.showFiles[index].isDownloading = 3
+                (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
+                set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 3)
+            })
+            let norm = UIAlertAction(title: NSLocalizedString("Low", comment: ""), style: .default, handler: { _ in
+                let index = indexPath.row - self.showFolders.count
+                self.showFiles[index].isDownloading = 2
+                (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
+                set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 2)
+            })
+            //            let min = UIAlertAction(title: NSLocalizedString("Low", comment: ""), style: .default, handler: { _ in
+            //                let index = indexPath.row - self.showFolders.count
+            //                self.showFiles[indexPath.row - self.showFolders.count].isDownloading = 1
+            //                (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
+            //                set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 1)
+            //            })
+            
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+            
+            controller.addAction(max)
+            controller.addAction(high)
+            controller.addAction(norm)
+            //            controller.addAction(min)
+            controller.addAction(cancel)
+            
+            if (controller.popoverPresentationController != nil) {
+                controller.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
+                controller.popoverPresentationController?.sourceRect = (tableView.cellForRow(at: indexPath)?.bounds)!
+                controller.popoverPresentationController?.permittedArrowDirections = [.up, .down]
+            }
+            
+            self.present(controller, animated: true)
+        }
+        button.backgroundColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
+        (tableView.cellForRow(at: indexPath) as? FileCell)?.update()
+        return [button]
+    }
+}
+
+extension TorrentFilesController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableViewEditMode) {
+            updateLeftEditSelectionButton()
+        } else {
+            if (indexPath.row < showFolders.keys.count) {
+                let controller = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Files") as! TorrentFilesController
+                controller.managerHash = managerHash
+                controller.name = name
+                controller.root = root + "/" + showFolders.keys.sorted()[indexPath.row]
+                controller.notSortedFiles = notSortedFiles
+                controller.files = files
+                show(controller, sender: self)
+            } else {
+                let index = indexPath.row - showFolders.keys.count
+                let file = showFiles[index]
+                let percent = Float(file.downloaded) / Float(file.size) * 100
+                if (percent < 100) {
+                    let cell = tableView.cellForRow(at: indexPath) as! FileCell
+                    cell.switcher.setOn(!cell.switcher.isOn, animated: true)
+                    if (cell.actionDelegate != nil) {
+                        cell.actionDelegate?.fileCellAction(cell.switcher, index: index)
+                    }
+                } else {
+                    let cell = tableView.cellForRow(at: indexPath) as! FileCell
+                    cell.shareAction(cell.shareButton)
+                }
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if (tableView.isEditing) {
+            updateLeftEditSelectionButton()
+        }
+    }
+}
+
+extension TorrentFilesController: FolderCellActionDelegate {
     func folderCellAction(_ key: String, sender : UIButton) {
         let controller = ThemedUIAlertController(title: NSLocalizedString("Download content of folder", comment: ""), message: key, preferredStyle: .actionSheet)
         
         let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { alert in
             for i in self.showFolders[key]!.files {
-                i.isDownloading = true
+                i.isDownloading = 4
             }
-			self.setFilesPriority()
+            self.setFilesPriority()
         }
         let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { alert in
             for i in self.showFolders[key]!.files {
                 if (i.size != 0 && i.downloaded / i.size == 1) {
-                    i.isDownloading = true
+                    i.isDownloading = 4
                 } else {
-                    i.isDownloading = false
+                    i.isDownloading = 0
                 }
             }
-			self.setFilesPriority()
+            self.setFilesPriority()
         }
         let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
         
@@ -257,45 +523,11 @@ class TorrentFilesController : ThemedUIViewController, UITableViewDataSource, UI
         
         self.present(controller, animated: true)
     }
-    
+}
+
+extension TorrentFilesController: FileCellActionDelegate {
     func fileCellAction(_ sender: UISwitch, index: Int) {
-        showFiles[index].isDownloading = sender.isOn
+        showFiles[index].isDownloading = sender.isOn ? 4 : 0
         set_torrent_file_priority(managerHash, Int32(showFiles[index].number), sender.isOn ? 4 : 0)
     }
-    
-    @IBAction func deselectAction(_ sender: UIBarButtonItem) {
-		for cell in tableView.visibleCells {
-            if let cell = cell as? FileCell {
-                cell.switcher.setOn(false, animated: true)
-            }
-		}
-		for i in 0 ..< files.count {
-			if (files[i].size != 0 && files[i].downloaded / files[i].size == 1) {
-				files[i].isDownloading = true
-			} else {
-				files[i].isDownloading = false
-			}
-		}
-		setFilesPriority()
-    }
-	
-    @IBAction func selectAction(_ sender: UIBarButtonItem) {
-		for cell in tableView.visibleCells {
-            if let cell = cell as? FileCell {
-                cell.switcher.setOn(true, animated: true)
-            }
-		}
-		for i in 0 ..< files.count {
-			files[i].isDownloading = true
-		}
-		setFilesPriority()
-    }
-	
-	func setFilesPriority() {
-		var res : [Int32] = []
-		for file in notSortedFiles {
-			res.append(file.isDownloading ? 4 : 0)
-		}
-		set_torrent_files_priority(managerHash, UnsafeMutablePointer(mutating: res))
-	}
 }

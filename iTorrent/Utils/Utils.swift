@@ -39,7 +39,7 @@ class Utils {
     
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
         if (speedInBytes == 0) {
-            return "eternity"
+            return NSLocalizedString("eternity", comment: "")
         }
         let seconds = (fileSize - downloadedSize) / speedInBytes
         return secondsToTimeText(seconds: seconds)

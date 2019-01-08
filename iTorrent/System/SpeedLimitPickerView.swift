@@ -29,6 +29,8 @@ class SpeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSou
 	
 	init(_ viewController: UIViewController, defaultValue: Int64, onStateChange: @escaping (Int64)->(), onDismiss: @escaping (Int64)->()) {
 		super.init()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
 		
 		self.viewController = viewController
 		self.action = onStateChange
@@ -101,7 +103,7 @@ class SpeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSou
 		}
 	}
 	
-	func updateTheme() {
+    @objc func themeUpdate() {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		blurEffectView.effect = UIBlurEffect(style: Themes.shared.theme[theme].blurEffect)
 		pickerView.reloadAllComponents()

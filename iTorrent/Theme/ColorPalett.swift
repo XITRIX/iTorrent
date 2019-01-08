@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class Themes {
+    public static let updateNotification = NSNotification.Name("ThemeUpdated")
 	
 	static let shared = Themes()
 	
@@ -27,6 +28,7 @@ class Themes {
 		darkTheme.backgroundTertiary = UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
 		darkTheme.tableHeaderColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 0.9)
 		darkTheme.actionCancelButtonColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 28.0/255.0, alpha: 1.0)
+		darkTheme.actionButtonColor = .orange
 		darkTheme.statusBarStyle = .lightContent
 		darkTheme.barStyle = .black
 		darkTheme.blurEffect = .dark
@@ -53,9 +55,10 @@ class ColorPalett {
 	var backgroundTertiary = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
 	var tableHeaderColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.9)
 	var actionCancelButtonColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
+	var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
 	var statusBarStyle : UIStatusBarStyle = .default
 	var barStyle : UIBarStyle = .default
-	var blurEffect : UIBlurEffectStyle = .light
+	var blurEffect : UIBlurEffectStyle = .extraLight
 	var keyboardAppearence : UIKeyboardAppearance = .default
 	var loadingIndicatorStyle : UIActivityIndicatorViewStyle = .gray
 }

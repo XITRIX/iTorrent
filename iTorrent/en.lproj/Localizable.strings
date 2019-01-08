@@ -23,8 +23,12 @@
 
 "Done" = "Done";
 "Edit" = "Edit";
+"Select" = "Select";
 "Select All" = "Select All";
 "Deselect" = "Deselect";
+
+"time remains" = "time remains";
+"eternity" = "eternity";
 
 "Add from..." = "Add from...";
 "Add from URL" = "Add from URL";
@@ -125,5 +129,5 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added Russian localization\n- Added restoration of previous file selection when updating a torrent\n- Added small ad banner to support the developer\n- Minor improvements\n- Bug fixes";
+"UpdateText" = "- Added sending a group of files\n- Added file download priority selection\n- Localization fixes\n- Minor improvements";
 

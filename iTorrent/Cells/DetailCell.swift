@@ -11,17 +11,13 @@ import UIKit
 
 class DetailCell: ThemedUITableViewCell {
     
-    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var title: ThemedUILabel!
     @IBOutlet weak var details: UILabel!
 	
-	override func updateTheme() {
-		super.updateTheme()
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		if (title != nil) {
-			title.textColor = Themes.shared.theme[theme].mainText
-		}
-		if (details != nil) {
-			details.textColor = Themes.shared.theme[theme].selectedText
-		}
+	override func themeUpdate() {
+		super.themeUpdate()
+        
+		let theme = Themes.current()
+        details?.textColor = theme.selectedText
 	}
 }

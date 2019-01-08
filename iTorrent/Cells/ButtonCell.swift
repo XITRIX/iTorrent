@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 class ButtonCell : ThemedUITableViewCell {
-	
 	@IBOutlet weak var title: ThemedUILabel!
 	@IBOutlet weak var button: UIButton!
 	
-	override func updateTheme() {
-		super.updateTheme()
+	override func themeUpdate() {
+		super.themeUpdate()
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		title.textColor = Themes.shared.theme[theme].mainText
-		button.titleLabel?.textColor = Themes.shared.theme[theme].selectedText
+        title?.textColor = Themes.shared.theme[theme].mainText
+		button?.titleLabel?.textColor = Themes.shared.theme[theme].selectedText
 	}
 }

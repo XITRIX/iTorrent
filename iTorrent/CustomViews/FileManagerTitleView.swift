@@ -28,10 +28,14 @@ class FileManagerTitleView : UIView, Themed {
 	}
 	
 	func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+        
 		Bundle.main.loadNibNamed("FileManagerTitleView", owner: self, options: nil)
 		addSubview(contentView)
 		contentView.frame = self.bounds
 		contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        themeUpdate()
 	}
 	
 	func loadViewFromNib() -> UIView! {
@@ -42,9 +46,9 @@ class FileManagerTitleView : UIView, Themed {
 		return view
 	}
 	
-	func updateTheme() {
+    @objc func themeUpdate() {
 		let theme = Themes.current()
-		title.textColor = theme.mainText
-		subTitle.textColor = theme.tertiaryText
+		title?.textColor = theme.mainText
+		subTitle?.textColor = theme.tertiaryText
 	}
 }

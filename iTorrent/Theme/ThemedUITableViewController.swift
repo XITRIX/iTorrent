@@ -10,8 +10,21 @@ import Foundation
 import UIKit
 
 class ThemedUITableViewController : UITableViewController, Themed {
-	
-	func updateTheme() {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        themeUpdate()
+    }
+    
+    @objc func themeUpdate() {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
 		navigationController?.navigationBar.barStyle = Themes.shared.theme[theme].barStyle
 		navigationController?.toolbar.barStyle = Themes.shared.theme[theme].barStyle
@@ -23,36 +36,20 @@ class ThemedUITableViewController : UITableViewController, Themed {
 		
 		tableView.reloadData()
 	}
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		updateTheme()
-	}
-	
-	override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		if let header = view as? UITableViewHeaderFooterView {
-			header.textLabel?.textColor = Themes.shared.theme[theme].secondaryText
-		}
-	}
-	
-	override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		if let footer = view as? UITableViewHeaderFooterView {
-			footer.textLabel?.textColor = Themes.shared.theme[theme].secondaryText
-		}
-	}
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		let cell = super.tableView(tableView, cellForRowAt: indexPath)
-		cell.textLabel?.textColor = Themes.shared.theme[theme].mainText
-		cell.backgroundColor = Themes.shared.theme[theme].backgroundMain
-		if let cell = cell as? Themed {
-			cell.updateTheme()
-		}
-		return cell
-	}
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = Themes.shared.theme[theme].secondaryText
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        if let footer = view as? UITableViewHeaderFooterView {
+            footer.textLabel?.textColor = Themes.shared.theme[theme].secondaryText
+        }
+    }
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)

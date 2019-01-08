@@ -16,9 +16,9 @@ class SwitchCell: ThemedUITableViewCell {
     @IBAction func valueChangedAction(_ sender: UISwitch) {
     }
 	
-	override func updateTheme() {
-		super.updateTheme()
+	override func themeUpdate() {
+		super.themeUpdate()
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		title.textColor = Themes.shared.theme[theme].mainText
+		title?.textColor = Themes.shared.theme[theme].mainText
 	}
 }

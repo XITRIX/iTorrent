@@ -12,7 +12,7 @@ import UIKit
 class FileCell: ThemedUITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var size: UILabel!
-    @IBOutlet weak var switcher: UISwitch!
+	@IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var shareButton: UIButton!
 	
     weak var actionDelegate : FileCellActionDelegate?
@@ -21,11 +21,19 @@ class FileCell: ThemedUITableViewCell {
     var addind = false
 	weak var file : File!
 	
-	override func updateTheme() {
-		super.updateTheme()
+	var hideUI : Bool = false
+	
+	@IBOutlet weak var titleConstraint: NSLayoutConstraint!
+	
+	override func themeUpdate() {
+		super.themeUpdate()
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		title.textColor = Themes.shared.theme[theme].mainText
-		size.textColor = Themes.shared.theme[theme].secondaryText
+		title?.textColor = Themes.shared.theme[theme].mainText
+		size?.textColor = Themes.shared.theme[theme].secondaryText
+		
+		let bgColorView = UIView()
+		bgColorView.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
+		selectedBackgroundView = bgColorView
 	}
 	
 	func update() {
@@ -33,13 +41,45 @@ class FileCell: ThemedUITableViewCell {
 		let percent = Float(file.downloaded) / Float(file.size) * 100
         size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
 		
-		if (percent >= 100 && !addind) {
-			shareButton.isHidden = false
-			switcher.isHidden = true
-		} else {
+		if (hideUI) {
 			shareButton.isHidden = true
-			switcher.isHidden = false
+			switcher.isHidden = true
+			titleConstraint.constant = 12
+		} else {
+			titleConstraint.constant = 74
+			if (percent >= 100 && !addind) {
+				shareButton.isHidden = false
+				switcher.isHidden = true
+			} else {
+				shareButton.isHidden = true
+				switcher.isHidden = false
+			}
 		}
+		
+		switch (file.isDownloading) {
+		case 0:
+			switcher.setOn(false, animated: true)
+			switcher.onTintColor = nil
+		case 1:
+			switcher.setOn(true, animated: true)
+			switcher.onTintColor = UIColor.gray
+		case 2:
+			switcher.setOn(true, animated: true)
+			switcher.onTintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
+		case 3:
+			switcher.setOn(true, animated: true)
+			switcher.onTintColor = UIColor.orange
+		case 4:
+			switcher.setOn(true, animated: true)
+			switcher.onTintColor = nil
+		default:
+			break
+		}
+	}
+	
+	func canShare() -> Bool {
+		let percent = Float(file.downloaded) / Float(file.size) * 100
+		return percent >= 100 && !addind
 	}
 	
     @IBAction func switcherAction(_ sender: UISwitch) {

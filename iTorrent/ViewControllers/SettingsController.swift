@@ -32,8 +32,8 @@ class SettingsController: ThemedUITableViewController {
         print("Settings DEINIT")
     }
 	
-	override func updateTheme() {
-		super.updateTheme()
+	override func themeUpdate() {
+		super.themeUpdate()
 		
 		updateLoading.activityIndicatorViewStyle = Themes.current().loadingIndicatorStyle
 	}
@@ -184,18 +184,8 @@ class SettingsController: ThemedUITableViewController {
 	
 	@IBAction func darkThemeAction(_ sender: UISwitch) {
 		UserDefaults.standard.set(sender.isOn ? 1 : 0, forKey: UserDefaultsKeys.themeNum)
-		self.updateTheme()
-		
-		if (!(splitViewController?.isCollapsed)!) {
-			if let themed = splitViewController?.viewControllers.last as? Themed {
-				themed.updateTheme()
-			} else if let nav = splitViewController?.viewControllers.last as? UINavigationController,
-				let themed = nav.topViewController as? Themed {
-				themed.updateTheme()
-			} else {
-				print("NO")
-			}
-		}
+        
+        NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
 	}
 	
 	@IBAction func backgroundAction(_ sender: UISwitch) {

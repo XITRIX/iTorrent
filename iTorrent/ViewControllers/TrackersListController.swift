@@ -43,10 +43,9 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		}
 	}
 	
-	override func updateTheme() {
-		super.updateTheme()
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		tableView.backgroundColor = Themes.shared.theme[theme].backgroundMain
+	override func themeUpdate() {
+		super.themeUpdate()
+		tableView.backgroundColor = Themes.current().backgroundMain
 	}
 	
 	override func viewDidLoad() {
@@ -96,7 +95,6 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		cell.message.text = trackers[indexPath.row].message
 		cell.peers.text = "" //"Peers: \(trackers[indexPath.row].peers)"
 		cell.seeders.text = "Seeds: \(trackers[indexPath.row].seeders)"
-		cell.updateTheme()
 		return cell
 	}
 	
@@ -141,8 +139,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		let controller = ThemedUIAlertController(title: NSLocalizedString("Add Tracker", comment: ""), message: NSLocalizedString("Enter the full tracker's URL", comment: ""), preferredStyle: .alert)
 		controller.addTextField(configurationHandler: { (textField) in
 			textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
-			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-			textField.keyboardAppearance = Themes.shared.theme[theme].keyboardAppearence
+			textField.keyboardAppearance = Themes.current().keyboardAppearence
 		})
 		let add = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { _ in
 			let textField = controller.textFields![0]

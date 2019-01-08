@@ -46,16 +46,12 @@ class TorrentDetailsController: ThemedUITableViewController {
         print("Details DEINIT")
     }
 	
-	override func updateTheme() {
-		super.updateTheme()
-		
-		if (seedLimitPickerView != nil && !seedLimitPickerView.dismissed) {
-			seedLimitPickerView.updateTheme()
-		}
+	override func themeUpdate() {
+		super.themeUpdate()
 		
 		if let label = navigationItem.titleView as? UILabel {
-			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-			label.textColor = Themes.shared.theme[theme].mainText
+			let theme = Themes.current()
+			label.textColor = theme.mainText
 		}
 	}
     
@@ -88,11 +84,11 @@ class TorrentDetailsController: ThemedUITableViewController {
 		managerUpdated()
 		
 		// MARQUEE LABEL
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+		let theme = Themes.current()
 		let label = MarqueeLabel.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
 		label.font = UIFont.boldSystemFont(ofSize: 17)
 		label.textAlignment = NSTextAlignment.center
-		label.textColor = Themes.shared.theme[theme].mainText
+		label.textColor = theme.mainText
 		navigationItem.titleView = label
     }
     

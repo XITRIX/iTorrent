@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingsSortingController : ThemedUIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,18 +41,34 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDataSource,
         UserDefaults.standard.set(data, forKey: UserDefaultsKeys.sectionsSortingOrder)
     }
     
+    @IBAction func revertAction(_ sender: UIBarButtonItem) {
+        data = [3,
+                7,
+                8,
+                6,
+                2,
+                4,
+                5,
+                9,
+                1]
+        
+        tableView.reloadData()
+    }
+}
+
+extension SettingsSortingController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-		cell.textLabel?.text = NSLocalizedString(Utils.torrentStates.init(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
-		
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		cell.textLabel?.textColor = Themes.shared.theme[theme].mainText
-		cell.backgroundColor = Themes.shared.theme[theme].backgroundMain
-		
+        cell.textLabel?.text = NSLocalizedString(Utils.torrentStates.init(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
+        
+        let theme = Themes.current()
+        cell.textLabel?.textColor = theme.mainText
+        cell.backgroundColor = theme.backgroundMain
+        
         return cell
     }
     
@@ -68,19 +84,5 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .none
-    }
-    
-    @IBAction func revertAction(_ sender: UIBarButtonItem) {
-        data = [3,
-                7,
-                8,
-                6,
-                2,
-                4,
-                5,
-                9,
-                1]
-        
-        tableView.reloadData()
     }
 }

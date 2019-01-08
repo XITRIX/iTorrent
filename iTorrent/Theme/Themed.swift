@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol Themed {
-	func updateTheme()
+	func themeUpdate()
 }
