@@ -47,13 +47,13 @@
 "Cancel" = "Cancel";
 "Error" = "Error";
 
-"Are you sure to remove" = "Are you sure to remove";
+"Are you sure to remove" = "Are you sure you want to remove";
 "torrents" = "torrents";
 "Yes and remove data" = "Yes and remove data";
 "Yes but keep data" = "Yes but keep data";
 
 "torrent" = "torrent";
-"Are you sure to remove this magnet torrent?" = "Are you sure to remove this magnet torrent?";
+"Are you sure to remove this magnet torrent?" = "Are you sure you want to remove this magnet torrent?";
 "Remove" = "Remove";
 
 "Name" = "Name";
@@ -97,7 +97,7 @@
 "Torrent with name" = "Torrent with name";
 "already exists, do you want to apply previous files selection settings to this torrent" = "already exists, do you want to apply previous files selection settings to this torrent";
 "Apply" = "Apply";
-"Download content of folder" = "Download content of folder";
+"Download content of folder" = "Download contents of folder";
 "Download" = "Download";
 "Don't Download" = "Don't Download";
 "Share" = "Share";
