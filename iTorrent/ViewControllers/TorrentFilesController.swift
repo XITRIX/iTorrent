@@ -303,7 +303,7 @@ class TorrentFilesController : ThemedUIViewController {
 		} else {
 			path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + root, isDirectory: true)
 		}
-		let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+		let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
 		if (shareController.popoverPresentationController != nil) {
 			shareController.popoverPresentationController?.barButtonItem = editBarItems[0]
 			shareController.popoverPresentationController?.permittedArrowDirections = .any
@@ -322,7 +322,7 @@ class TorrentFilesController : ThemedUIViewController {
 				paths.append(NSURL(fileURLWithPath: Manager.rootFolder + "/" + downloadedFiles[index].path + "/" + downloadedFiles[index].name, isDirectory: false))
 			}
 		}
-		let shareController = UIActivityViewController(activityItems: paths, applicationActivities: nil)
+		let shareController = ThemedUIActivityViewController(activityItems: paths, applicationActivities: nil)
 		if (shareController.popoverPresentationController != nil) {
 			shareController.popoverPresentationController?.barButtonItem = editBarItems[4]
 			shareController.popoverPresentationController?.permittedArrowDirections = .any

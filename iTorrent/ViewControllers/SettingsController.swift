@@ -185,7 +185,9 @@ class SettingsController: ThemedUITableViewController {
 	@IBAction func darkThemeAction(_ sender: UISwitch) {
 		UserDefaults.standard.set(sender.isOn ? 1 : 0, forKey: UserDefaultsKeys.themeNum)
         
-        NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+        UIView.animate(withDuration: 0.1) {
+            NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+        }
 	}
 	
 	@IBAction func backgroundAction(_ sender: UISwitch) {

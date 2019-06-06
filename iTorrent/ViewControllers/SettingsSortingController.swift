@@ -15,6 +15,11 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     
     var data : [Int]!
     
+    override func themeUpdate() {
+        super.themeUpdate()
+        tableView.backgroundColor = Themes.current().backgroundMain
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

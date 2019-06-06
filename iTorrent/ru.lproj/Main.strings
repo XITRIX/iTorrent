@@ -57,7 +57,7 @@
 "ANF-Z7-e4l.text" = "1024 MB";
 
 /* Class = "UITableViewSection"; headerTitle = "Transfer"; ObjectID = "And-Ph-abv"; */
-"And-Ph-abv.headerTitle" = "Transfer";
+"And-Ph-abv.headerTitle" = "Передано";
 
 /* Class = "UILabel"; text = "Run in background"; ObjectID = "AyL-CZ-VMU"; */
 "AyL-CZ-VMU.text" = "Работа в фоне";

@@ -22,34 +22,38 @@ class ThemedUIAlertController : UIAlertController, Themed {
 	open override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
 		
-		visualEffectView.forEach({$0.effect = UIBlurEffect(style: Themes.current().blurEffect)})
+        if #available(iOS 13.0, *) {}
+        else {
+            visualEffectView.forEach({$0.effect = UIBlurEffect(style: Themes.current().blurEffect)})
+        }
 	}
 	
 	func themeUpdate() {
-		visualEffectView.forEach({$0.effect = UIBlurEffect(style: Themes.current().blurEffect)})
-		
-		//_UIDimmingKnockoutBackdropView
-		//		if let back = NSClassFromString("_UIDimmingKnockoutBackdropView") as? UIView.Type {
-		//			back.appearance().subviewsBackgroundColorNonVisualEffect = Theme.current.backgroundColor
-		//		}
-		
-		if let cancelBackgroundViewType = NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView") as? UIView.Type {
-			cancelBackgroundViewType.appearance().subviewsBackgroundColor = Themes.current().actionCancelButtonColor
-		}
-		
-		if let title = title {
-			let titleFont:[NSAttributedString.Key : Any] = [ .foregroundColor : preferredStyle == .alert ? Themes.current().mainText : Themes.current().secondaryText,
-															 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
-			let attributedTitle = NSMutableAttributedString(string: title, attributes: titleFont)
-			setValue(attributedTitle, forKey: "attributedTitle")
-		}
-		if let message = message {
-			let messageFont:[NSAttributedString.Key : Any] = [ .foregroundColor : preferredStyle == .alert ? Themes.current().mainText : Themes.current().secondaryText ]
-			let attributedMessage = NSMutableAttributedString(string: message, attributes: messageFont)
-			setValue(attributedMessage, forKey: "attributedMessage")
-		}
-		view.tintColor = Themes.current().actionButtonColor
-		//actions.forEach({$0})
+        let theme = Themes.current()
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
+        }
+        else {
+            visualEffectView.forEach({$0.effect = UIBlurEffect(style: theme.blurEffect)})
+            
+            if let cancelBackgroundViewType = NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView") as? UIView.Type {
+                cancelBackgroundViewType.appearance().subviewsBackgroundColor = theme.actionCancelButtonColor
+            }
+            
+            if let title = title {
+                let titleFont:[NSAttributedString.Key : Any] = [ .foregroundColor : preferredStyle == .alert ? theme.mainText : theme.secondaryText,
+                                                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 17)]
+                let attributedTitle = NSMutableAttributedString(string: title, attributes: titleFont)
+                setValue(attributedTitle, forKey: "attributedTitle")
+            }
+            if let message = message {
+                let messageFont:[NSAttributedString.Key : Any] = [ .foregroundColor : preferredStyle == .alert ? theme.mainText : theme.secondaryText ]
+                let attributedMessage = NSMutableAttributedString(string: message, attributes: messageFont)
+                setValue(attributedMessage, forKey: "attributedMessage")
+            }
+        }
+		view.tintColor = theme.actionButtonColor
 	}
 	
 	override func viewDidLoad() {

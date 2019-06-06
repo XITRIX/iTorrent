@@ -141,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			
 			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
             
-            let detailNavController = UINavigationController()
+            let detailNavController = ThemedUINavigationController()
             detailNavController.viewControllers = viewControllers
             detailNavController.setToolbarHidden(false, animated: false)
 			detailNavController.navigationBar.barStyle = Themes.shared.theme[theme].barStyle

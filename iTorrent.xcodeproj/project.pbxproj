@@ -51,6 +51,8 @@
 		7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083420AAF09F00F76931 /* Downloader.swift */; };
 		7CB8083720AAFFD200F76931 /* TorrentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */; };
 		7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083A20AB008700F76931 /* SwitchCell.swift */; };
+		7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */; };
+		7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
 		7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */; };
 		7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E520AE1F5000D319E6 /* SortingManager.swift */; };
 		7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E720AEF3DB00D319E6 /* FileInfo.swift */; };
@@ -125,6 +127,8 @@
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsController.swift; sourceTree = "<group>"; };
 		7CB8083A20AB008700F76931 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUINavigationController.swift; sourceTree = "<group>"; };
+		7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUIActivityViewController.swift; sourceTree = "<group>"; };
 		7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerSettings.swift; sourceTree = "<group>"; };
 		7CF522E520AE1F5000D319E6 /* SortingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingManager.swift; sourceTree = "<group>"; };
 		7CF522E720AEF3DB00D319E6 /* FileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
@@ -226,12 +230,14 @@
 			isa = PBXGroup;
 			children = (
 				7C4B109820DFDEEC00440E74 /* ColorPalett.swift */,
+				7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */,
 				7C4B109C20DFF12300440E74 /* ThemedUIViewController.swift */,
-				7C4B109E20DFF32B00440E74 /* ThemedUITableView.swift */,
 				7C4B10A020E0019100440E74 /* ThemedUITableViewController.swift */,
+				7C4B109E20DFF32B00440E74 /* ThemedUITableView.swift */,
 				7C4B10A220E0099300440E74 /* ThemedUILabel.swift */,
 				7C4B10A420E00CA600440E74 /* ThemedUITableViewCell.swift */,
 				7C4B10A620E02A4900440E74 /* ThemedUIAlertController.swift */,
+				7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */,
 				7C4B10A820E1565100440E74 /* Themed.swift */,
 			);
 			path = Theme;
@@ -477,6 +483,8 @@
 				7C4B10A520E00CA600440E74 /* ThemedUITableViewCell.swift in Sources */,
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
 				7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */,
+				7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */,
+				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
 				7C4B10AD20EA278900440E74 /* TrackersListController.swift in Sources */,
@@ -591,7 +599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -647,7 +655,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -691,6 +699,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MARKETING_VERSION = 1.6.2;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -741,6 +750,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				MARKETING_VERSION = 1.6.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;

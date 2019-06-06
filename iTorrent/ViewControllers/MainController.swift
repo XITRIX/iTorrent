@@ -32,6 +32,12 @@ class MainController: ThemedUIViewController {
 	
 	var tableViewEditMode : Bool = false
     
+    override func themeUpdate() {
+        super.themeUpdate()
+        
+        tableView.backgroundColor = Themes.current().backgroundMain
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -580,7 +586,7 @@ extension MainController: UITableViewDelegate {
                 //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
                 //                if let fileController = nav.topViewController
                 //            }
-                let navController = UINavigationController(rootViewController: viewController)
+                let navController = ThemedUINavigationController(rootViewController: viewController)
                 navController.isToolbarHidden = false
                 navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
                 navController.toolbar.tintColor = navigationController?.navigationBar.tintColor

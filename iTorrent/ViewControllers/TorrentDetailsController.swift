@@ -260,7 +260,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 			let stringPath = Manager.configFolder + "/" + title + ".torrent"
 			if (FileManager.default.fileExists(atPath: stringPath)) {
 				let path = NSURL(fileURLWithPath: stringPath, isDirectory: false)
-				let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+				let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
 				if (shareController.popoverPresentationController != nil) {
 					shareController.popoverPresentationController?.barButtonItem = sender
 					shareController.popoverPresentationController?.permittedArrowDirections = .any
@@ -345,7 +345,6 @@ class TorrentDetailsController: ThemedUITableViewController {
 			print(splitView.viewControllers.count)
 			if let nav = splitView.viewControllers.first as? UINavigationController,
 				let view = nav.topViewController as? MainController {
-				print("Conditions ")
 				var indexPath: IndexPath?
 				for i in 0 ..< view.managers.count {
 					for j in 0 ..< view.managers[i].count {

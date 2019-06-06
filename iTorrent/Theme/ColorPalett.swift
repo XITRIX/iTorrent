@@ -30,10 +30,14 @@ class Themes {
 		darkTheme.actionCancelButtonColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 28.0/255.0, alpha: 1.0)
 		darkTheme.actionButtonColor = .orange
 		darkTheme.statusBarStyle = .lightContent
-		darkTheme.barStyle = .black
+		darkTheme.barStyle = .blackTranslucent
 		darkTheme.blurEffect = .dark
 		darkTheme.keyboardAppearence = .dark
 		darkTheme.loadingIndicatorStyle = .white
+        
+        if #available(iOS 12.0, *) {
+            darkTheme.overrideUserInterfaceStyle = UIUserInterfaceStyle.dark.rawValue
+        }
 		
 		theme.append(ColorPalett())
 		theme.append(darkTheme)
@@ -61,4 +65,11 @@ class ColorPalett {
 	var blurEffect : UIBlurEffectStyle = .extraLight
 	var keyboardAppearence : UIKeyboardAppearance = .default
 	var loadingIndicatorStyle : UIActivityIndicatorViewStyle = .gray
+    var overrideUserInterfaceStyle : Int!
+    
+    init() {
+        if #available(iOS 12.0, *) {
+            overrideUserInterfaceStyle = UIUserInterfaceStyle.light.rawValue
+        }
+    }
 }
