@@ -65,6 +65,11 @@
 "Disable state sections" = "Disable state sections";
 "Enable state sections" = "Enable state sections";
 
+//Torrent details
+"Torrent file" = "Torrent file";
+"Magnet link" = "Magnet link";
+"Magnet link copied to clipboard" = "Magnet link copied to clipboard";
+
 //Settings Controller
 "Warning" = "Warning";
 "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";

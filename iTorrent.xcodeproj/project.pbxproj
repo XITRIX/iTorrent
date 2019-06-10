@@ -35,6 +35,7 @@
 		7C4B10AF20EA30C500440E74 /* TrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B10AE20EA30C500440E74 /* TrackerCell.swift */; };
 		7C4B10B520EAE00C00440E74 /* SeedLimitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B10B420EAE00C00440E74 /* SeedLimitPickerView.swift */; };
 		7C4B10B720EBF50600440E74 /* SpeedLimitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B10B620EBF50500440E74 /* SpeedLimitPickerView.swift */; };
+		7C4DB4E122AD457A00D45494 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */; };
 		7C4FADE620B5D4CC00ED9C84 /* Pods_iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */; };
 		7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */; };
 		7C7D0AB220D82AA0001B08E5 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */; };
@@ -109,6 +110,7 @@
 		7C4B10AE20EA30C500440E74 /* TrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCell.swift; sourceTree = "<group>"; };
 		7C4B10B420EAE00C00440E74 /* SeedLimitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedLimitPickerView.swift; sourceTree = "<group>"; };
 		7C4B10B620EBF50500440E74 /* SpeedLimitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedLimitPickerView.swift; sourceTree = "<group>"; };
+		7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesExtention.swift; sourceTree = "<group>"; };
 		7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */,
 				7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */,
+				7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				7C4B10AF20EA30C500440E74 /* TrackerCell.swift in Sources */,
 				7C7D0AB620D8EA50001B08E5 /* Manager.swift in Sources */,
 				7C4B10A320E0099300440E74 /* ThemedUILabel.swift in Sources */,
+				7C4DB4E122AD457A00D45494 /* SegmentedProgressView.swift in Sources */,
 				7C4B10A920E1565100440E74 /* Themed.swift in Sources */,
 				7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,

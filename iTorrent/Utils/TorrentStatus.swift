@@ -34,4 +34,7 @@ class TorrentStatus {
 	var seedMode : Bool = false
 	var seedLimit : Int64 = 0
 	var hasMetadata : Bool = false
+    var numPieces : Int = 0
+    var pieces : [Int32] = []
+    var sequentialDownload : Bool = false
 }

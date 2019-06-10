@@ -89,7 +89,7 @@ class TorrentFilesController : ThemedUIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 78
+        tableView.rowHeight = 82
 		tableView.allowsMultipleSelectionDuringEditing = true
     }
     
@@ -127,19 +127,18 @@ class TorrentFilesController : ThemedUIViewController {
         }
 		
         let size = Int(localFiles.size)
-        let namesArr = Array(UnsafeBufferPointer(start: localFiles.file_name, count: size))
-        let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
         
         for i in 0 ..< size {
             let file = File()
 			
-			let n = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
+			let n = String(validatingUTF8: localFiles.files[i].file_name) ?? "ERROR"
 			let name = URL(string: n.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 			file.name = name.lastPathComponent
 			file.path = name.deletingLastPathComponent().path == "." ? "" : name.deletingLastPathComponent().path
-			file.size = sizesArr[i]
-			file.isDownloading = localFiles.file_priority[Int(i)]
+			file.size = localFiles.files[i].file_size
+			file.isDownloading = localFiles.files[i].file_priority
 			file.number = i
+            file.pieces = Array(UnsafeBufferPointer(start: localFiles.files[i].pieces, count: Int(localFiles.files[i].num_pieces)))
 			
 			files.append(file)
 			
@@ -191,11 +190,11 @@ class TorrentFilesController : ThemedUIViewController {
 		}
 		
 		let size = Int(localFiles.size)
-		let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
 
 		for i in 0 ..< size {
-			notSortedFiles[i].size = sizesArr[i]
-			notSortedFiles[i].downloaded = localFiles.file_downloaded[i]
+			notSortedFiles[i].size = localFiles.files[i].file_size
+			notSortedFiles[i].downloaded = localFiles.files[i].file_downloaded
+            notSortedFiles[i].pieces = Array(UnsafeBufferPointer(start: localFiles.files[i].pieces, count: Int(localFiles.files[i].num_pieces)))
 		}
 	}
     
@@ -400,7 +399,7 @@ extension TorrentFilesController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let title = NSLocalizedString("Priority", comment: "")
         let button = UITableViewRowAction(style: .default, title: title) { action, indexPath in
-            let controller = ThemedUIAlertController(title: NSLocalizedString("Priority", comment: ""), message: nil, preferredStyle: .actionSheet)
+            let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Priority", comment: ""), preferredStyle: .actionSheet)
             
             // "Normal"
             let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in
