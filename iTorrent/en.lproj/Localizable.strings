@@ -117,6 +117,10 @@
 "Enter the full tracker's URL" = "Enter the full tracker URL";
 "Tracker's URL" = "Enter tracker URL";
 "Add" = "Add";
+"Peers" = "Peers";
+"Seeds" = "Seeds";
+"Leechers" = "Leechers";
+"Are you shure to remove this trackers?" = "Are you shure to remove this trackers?";
 
 //AppDelegate
 "Obtaining Metadata" = "Obtaining Metadata";

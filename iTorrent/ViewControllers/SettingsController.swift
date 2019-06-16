@@ -334,7 +334,7 @@ class SettingsController: ThemedUITableViewController {
 				
 				DispatchQueue.main.async {
 					UIPasteboard.general.string = card
-					let alert = ThemedUIAlertController(title: "", message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
+					let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
 					self.present(alert, animated: true, completion: nil)
 					// change alert timer to 2 seconds, then dismiss
 					let when = DispatchTime.now() + 2

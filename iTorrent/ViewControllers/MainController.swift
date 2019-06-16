@@ -170,7 +170,7 @@ class MainController: ThemedUIViewController {
 	}
     
     @IBAction func AddTorrentAction(_ sender: UIBarButtonItem) {
-        let addController = ThemedUIAlertController(title: NSLocalizedString("Add from...", comment: ""), message: nil, preferredStyle: .actionSheet)
+        let addController = ThemedUIAlertController(title: nil, message: NSLocalizedString("Add from...", comment: ""), preferredStyle: .actionSheet)
         
         let addURL = UIAlertAction(title: "URL", style: .default) { _ in
             let addURLController = ThemedUIAlertController(title: NSLocalizedString("Add from URL", comment: ""), message: NSLocalizedString("Please enter the existing torrent's URL below", comment: ""), preferredStyle: .alert)

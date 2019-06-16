@@ -65,6 +65,11 @@
 "Disable state sections" = "Отключить разделение на секции";
 "Enable state sections" = "Включить разделение на секции";
 
+//Torrent details
+"Torrent file" = "Torrent файл";
+"Magnet link" = "Magnet ссылка";
+"Magnet link copied to clipboard" = "Magnet ссылка скопирована";
+
 //Settings Controller
 "Warning" = "Внимание";
 "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
@@ -119,6 +124,10 @@
 "Enter the full tracker's URL" = "Введите подный URL трекера";
 "Tracker's URL" = "Введите URL трекера";
 "Add" = "Добавить";
+"Peers" = "Пиры";
+"Seeds" = "Сиды";
+"Leechers" = "Личеры";
+"Are you shure to remove this trackers?" = "Вы уверены что хотите удалить эти трекеры?";
 
 //AppDelegate
 "Obtaining Metadata" = "Получение Метадаты";

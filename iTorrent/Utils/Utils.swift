@@ -132,4 +132,16 @@ class Utils {
 		
 		return address
 	}
+    
+    public static func withArrayOfCStrings<R>(
+        _ args: [String],
+        _ body: ([UnsafeMutablePointer<CChar>?]) -> R
+        ) -> R {
+        var cStrings = args.map { strdup($0) }
+        cStrings.append(nil)
+        defer {
+            cStrings.forEach { free($0) }
+        }
+        return body(cStrings)
+    }
 }

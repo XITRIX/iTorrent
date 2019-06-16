@@ -30,11 +30,12 @@ typedef struct Files {
 
 typedef struct Trackers {
 	int size;
-	char** tracker_url;
-	char** messages;
-	int* seeders;
-	int* peers;
-	int* working;
-	int* verified;
+    char * _Nonnull * _Nonnull tracker_url;
+    char * _Nonnull * _Nonnull messages;
+    int * _Nonnull seeders;
+    int * _Nonnull peers;
+    int * _Nonnull leechs;
+    int * _Nonnull working;
+    int * _Nonnull verified;
 } Trackers;
 #endif /* file_struct_h */
