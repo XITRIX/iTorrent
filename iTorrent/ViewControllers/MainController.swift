@@ -17,6 +17,8 @@ class MainController: ThemedUIViewController {
     var managers : [[TorrentStatus]] = []
 	var headers : [String] = []
     
+    var filterQuery : String?
+    
     var topRightItemsCopy : [UIBarButtonItem]?
     var bottomItemsCopy : [UIBarButtonItem]?
 	lazy var bottomEditItems : [UIBarButtonItem] = {
@@ -63,6 +65,16 @@ class MainController: ThemedUIViewController {
 				self.present(dialog, animated: true)
 			}
 		}
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
+        if #available(iOS 11.0, *) {
+            navigationItem.searchController = searchController
+        }
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +83,8 @@ class MainController: ThemedUIViewController {
 		navigationController?.toolbar.tintColor = navigationController?.navigationBar.tintColor
 		
 		managers.removeAll()
-		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        updateFilterQuery()
         tableView.reloadData()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(managerUpdated), name: .torrentsUpdated, object: nil)
@@ -104,10 +117,11 @@ class MainController: ThemedUIViewController {
     
     @objc func managerUpdated() {
 		var changed = false
-		var oldManagers = managers
+        let oldManagers = managers
 		managers.removeAll()
-		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
-		if (oldManagers.count != managers.count) {
+        managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        updateFilterQuery()
+        if (oldManagers.count != managers.count) {
 			changed = true
 		} else {
 			for i in 0 ..< managers.count {
@@ -132,8 +146,9 @@ class MainController: ThemedUIViewController {
 		
 	@objc func managerStateChanged(notfication: NSNotification) {
 		managers.removeAll()
-		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
-		tableView.reloadData()
+        managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        updateFilterQuery()
+        tableView.reloadData()
 	}
 	
 	func removeTorrent(indexPath: IndexPath, isMagnet: Bool = false, removeData: Bool = false, visualOnly: Bool = false) {
@@ -311,8 +326,9 @@ class MainController: ThemedUIViewController {
     @IBAction func sortAction(_ sender: UIBarButtonItem) {
 		let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
 			self.managers.removeAll()
-			self.managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &self.headers))
-			self.tableView.reloadData();
+            self.managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &self.headers))
+            self.updateFilterQuery()
+            self.tableView.reloadData();
 		})
 		present(sortingController, animated: true)
     }
@@ -554,7 +570,7 @@ extension MainController: UITableViewDataSource {
 
 extension MainController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headers[section].isEmpty ? 0 : 28
+        return managers[section].isEmpty ? 0 : 28
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -633,3 +649,20 @@ extension MainController: GADBannerViewDelegate {
     }
 }
 
+extension MainController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterQuery = searchController.searchBar.text
+        self.updateFilterQuery()
+        self.tableView.reloadData()
+    }
+    
+    func updateFilterQuery() {
+        if let filterQuery = filterQuery, !filterQuery.isEmpty {
+            for index in 0 ..< managers.count {
+                managers[index] = managers[index].filter { manager -> Bool in
+                    return manager.title.lowercased().contains(filterQuery.lowercased())
+                }
+            }
+        }
+    }
+}

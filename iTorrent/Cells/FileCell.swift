@@ -40,9 +40,11 @@ class FileCell: ThemedUITableViewCell {
 	func update() {
 		title.text = file?.name
         let progressValue = Float(file.downloaded) / Float(file.size)
-		let percent = progressValue * 100
-        size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
-        progress.setProgress(progressValue == 1 ? [1] : file.pieces.map{ CGFloat($0) })
+        let percent = progressValue * 100
+        if (progress != nil) {
+            size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
+            progress.setProgress(progressValue == 1 ? [1] : file.pieces.map{ CGFloat($0) })
+        }
 		
 		if (hideUI) {
 			shareButton.isHidden = true
