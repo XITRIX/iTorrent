@@ -64,9 +64,9 @@ class ColorPalett {
 	var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
 	var statusBarStyle : UIStatusBarStyle = .default
 	var barStyle : UIBarStyle = .default
-	var blurEffect : UIBlurEffectStyle = .extraLight
+	var blurEffect : UIBlurEffect.Style = .extraLight
 	var keyboardAppearence : UIKeyboardAppearance = .default
-	var loadingIndicatorStyle : UIActivityIndicatorViewStyle = .gray
+	var loadingIndicatorStyle : UIActivityIndicatorView.Style = .gray
     var overrideUserInterfaceStyle : Int!
     
     init() {

@@ -36,8 +36,8 @@ class TorrentFilesController : ThemedUIViewController {
 				   UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
 				   UIBarButtonItem(title: NSLocalizedString("Selected", comment: ""), style: .plain, target: self, action: #selector(shareSelected))]
 		
-		res[0].width = (NSLocalizedString("All", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 21)], context: nil).width
-		res[4].width = (NSLocalizedString("Selected", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 21)], context: nil).width
+		res[0].width = (NSLocalizedString("All", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 21)], context: nil).width
+		res[4].width = (NSLocalizedString("Selected", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 21)], context: nil).width
 		
 		if (res[0].width < res[4].width) {
 			res[0].width = res[4].width

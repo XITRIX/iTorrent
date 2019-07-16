@@ -1,14 +1,14 @@
 //
-//  ThemedUINavigationController.swift
+//  ThemedUISplitViewController.swift
 //  iTorrent
 //
-//  Created by Daniil Vinogradov on 04/06/2019.
+//  Created by Daniil Vinogradov on 13/07/2019.
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
 import UIKit
 
-class ThemedUINavigationController : UINavigationController, Themed {
+class ThemedUISplitViewController : UISplitViewController, Themed {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
@@ -21,16 +21,6 @@ class ThemedUINavigationController : UINavigationController, Themed {
     }
     
     @objc func themeUpdate() {
-        let theme = Themes.current()
-        
-        if #available(iOS 13.0, *) {
-            let i = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
-            overrideUserInterfaceStyle = i
-        }
-        
-        navigationBar.barStyle = theme.barStyle
-        toolbar.barStyle = theme.barStyle
-        
         setNeedsStatusBarAppearanceUpdate()
     }
     

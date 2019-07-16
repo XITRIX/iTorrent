@@ -12,7 +12,15 @@ import GoogleMobileAds
 class MainController: ThemedUIViewController {
     @IBOutlet weak var tableView: ThemedUITableView!
 	@IBOutlet weak var adsView: GADBannerView!
-    @IBOutlet var tableHeaderView: TableHeaderView!
+    
+    lazy var searchControllerInsideNavigation : Bool = {
+        if #available(iOS 11.0, *) {
+            return true // Cause of iOS 13 bug in safe area
+        }
+        return false
+    }()
+    
+    var searchController : UISearchController = UISearchController(searchResultsController: nil)
     
     var managers : [[TorrentStatus]] = []
 	var headers : [String] = []
@@ -37,7 +45,21 @@ class MainController: ThemedUIViewController {
     override func themeUpdate() {
         super.themeUpdate()
         
-        tableView.backgroundColor = Themes.current().backgroundMain
+        let theme = Themes.current()
+        tableView.backgroundColor = theme.backgroundMain
+        searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
+        searchController.searchBar.barStyle = theme.barStyle
+        searchController.searchBar.tintColor = view.tintColor
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = theme.backgroundSecondary
+        if !searchControllerInsideNavigation {
+            searchController.searchBar.barTintColor = theme.backgroundMain
+            searchController.searchBar.layer.borderWidth = 1
+            searchController.searchBar.layer.borderColor = theme.backgroundMain.cgColor
+            
+            let back = tableView.backgroundView ?? UIView()
+            back.backgroundColor = theme.backgroundMain
+            tableView.backgroundView = back
+        }
     }
     
     override func viewDidLoad() {
@@ -66,13 +88,14 @@ class MainController: ThemedUIViewController {
 			}
 		}
         
-        let searchController = UISearchController(searchResultsController: nil)
-        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, *),
+            searchControllerInsideNavigation {
             navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
         }
         definesPresentationContext = true
     }
@@ -513,7 +536,7 @@ extension MainController: UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             let selectedHash = managers[indexPath.section][indexPath.row].hash
             let message = managers[indexPath.section][indexPath.row].hasMetadata ? NSLocalizedString("Are you sure to remove", comment: "") + " " + managers[indexPath.section][indexPath.row].title + " \(NSLocalizedString("torrent", comment: ""))?" : NSLocalizedString("Are you sure to remove this magnet torrent?", comment: "")
