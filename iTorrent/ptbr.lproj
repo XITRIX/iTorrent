@@ -1,0 +1,134 @@
+/* 
+  Localizable.strings
+  iTorrent
+Language translate for PT-BR - by Lucas Lima on 23/07/2019
+
+  Criado por Daniil Vinogradov em 20/08/2018.
+  Copyright © 2018  XITRIX. Todos os direitos reservados.
+*/
+
+
+// Torrent States
+"Queued" = "Fila";
+"Hashing" = "Hashing";
+"Metadata" = "Metadata";
+"Downloading" = "Baixando";
+"Finished" = "Terminado";
+"Seeding" = "Semeando";
+"Allocating" = "Alocando";
+"CheckingFastresume" = "Checando resumo rápido";
+"Paused" = "Pausa";
+
+//Main Controller
+"of" = "de";
+
+"Done" = "Feito";
+"Edit" = "Edição";
+"Select" = "Selecionar";
+"Select All" = "Selecionar Todos";
+"Deselect" = "Desmarcar";
+
+"time remains" = "tempo restante";
+"eternity" = "eternidade";
+
+"Add from..." = "Adicionar de...";
+"Add from URL" = "Adicionar por URL";
+"Please enter the existing torrent's URL below" = "Por favor insira um URL existente ";
+"Error has been occured" = "Ocorreu um erro;
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "O arquivo Torrent está inválido ou o URL tem alguma proteção DDOS, você pode tentar abrir o link no Safari";
+"Open in Safari" = "Abra no Safari";
+"This torrent already exists" = "Este torrente já existe";
+"Torrent with hash:" = "Torrent com hash:";
+"already exists in download queue" = "já existe downloads na fila";
+"Please, open this link in Safari, and send .torrent file from there" = "Por favor, abra o link no Safari, e envie o arquivo .torrent para cá";
+"Wrong link, check it and try again!" = "Link errado, cheque e tente novamente!";
+"Add from magnet" = "Adicione pelo magnet";
+"Please enter the magnet link below" = "Por favor insira o link do magnet abaixo";
+"Close" = "Fechar";
+"Cancel" = "Cancelar";
+"Error" = "Erro";
+
+"Are you sure to remove" = "Você tem certeza que quer remover?";
+"torrents" = "torrents";
+"Yes and remove data" = "Sim e remova os dados";
+"Yes but keep data" = "Sim mas mantenha os dados";
+
+"torrent" = "torrent";
+"Are you sure to remove this magnet torrent?" = "Você tem certeza que quer remover esse magnet do torrent?";
+"Remove" = "Remover";
+
+"Name" = "nome";
+"Date Added" = "Data Adicionada";
+"Date Created" = "Data Criada";
+"Size" = "Tamanho";
+"Sort Torrents By:" = "Classificar Torrents por:";
+"Currently sorted by " = "Classificado por";
+"Disable state sections" = "Desativar sessão de estado";
+"Enable state sections" = "Ativar sessão de estado";
+
+//Settings Controller
+"Warning" = "Cuidado";
+"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Semeando em segundo plano está desativado, se você fechar este aplicativo, o seed será interrompido. Deseja ativar o seed em plano de fundo? \ NSe o limite de seed não estiver definido, o aplicativo continuará trabalhando em segundo plano indefinidamente, o que poderá causar a perda de bateria.";
+"Enable" = "Ativado";
+"Unlimited" = "Ilimitado";
+"Torrent rehash" = "Refazer Torrent";
+"This action will recheck the state of all downloaded files" = "Esta ação irá reavaliar o estado de todos os arquivos baixados";
+"Rehash" = "REFAZER";
+
+"Connect to: ftp://" = "Conecte a: ftp://";
+"Connect to WIFI to use FTP" = "Conecte ao WIFI para usar FTP";
+"Current app version: " = "Versão atual do app: ";
+"New version " = "Nova versão ";
+" available" = " disponível";
+"WOW, is it a new inDev build, huh?" = "WOW, é uma nova versão do inDev, hein?";
+"Latest version installed" = "Última versão instalada";
+"Update check failed" = "Checagem de atualização falhou";
+"WARNING" = "CUIDADO";
+"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Isso permitirá que o iTorrent seja executado indefinidamente em segundo plano, no caso de qualquer torrent ser semeado sem limites, o que pode causar uma perda significativa de bateria. \ n \ nVocê precisará forçar o fechamento do aplicativo para parar isso!";
+"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Isso permitirá que o iTorrent seja executado indefinidamente em segundo plano, o que pode causar uma perda significativa de bateria. \ n \ nVocê precisará forçar o fechamento do aplicativo para parar isso!";
+"Copied CC # to clipboard!" = "Copiar CC # para o teclado";
+
+"Supplication" = "Súplica";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "Se você gosta deste aplicativo, considere apoiar o desenvolvedor mantendo os anúncios.\nObrigado!";
+"Disable Anyway" = "Desativar de qualquer maneira";
+
+//Add Torrent Controller
+"Back" = "Back";
+"Torrent update detected" = "Torrent update detected";
+"Torrent with name" = "Torrent with name";
+"already exists, do you want to apply previous files selection settings to this torrent" = "already exists, do you want to apply previous files selection settings to this torrent";
+"Apply" = "Apply";
+"Download content of folder" = "Download content of folder";
+"Download" = "Download";
+"Don't Download" = "Don't Download";
+"Share" = "Share";
+
+//Trackers List Controller
+"Working" = "Trabalhando";
+"Inactive" = "Inativo";
+"Verified" = "Verificando";
+"Sorry" = "Desculpe";
+"This action will be available in future updates" = "Essa ação estará disponível em atualizações futuras";
+"Add Tracker" = "Adicionar Tracker";
+"Enter the full tracker's URL" = "Digite o URL completo do tracker";
+"Tracker's URL" = "Digite o URL do tracker";
+"Add" = "Adicionar";
+
+//AppDelegate
+"Obtaining Metadata" = "Obtendo Metadata";
+"Finish the previous torrent adding before start the new one." = "Termine o torrent anterior adicionando antes de iniciar o novo.";
+"Error on torrent opening" = "Erro na abertura do torrent";
+"Error on torrent reading" = "Erro na leitura do torrent";
+"Torrent file opening error has been occured" = "Ocorreu um erro de abertura de arquivo torrent";
+"Wrong magnet link, check it and try again!" = "Link magnet errado, cheque isso e tente novamente!";
+"Download finished" = "Download terminando";
+" finished downloading" = " terminando downloading";
+"Seeding finished" = "Semeagem terminada";
+" finished seeding" = " terminando de semear";
+
+"This action will recheck the state of all downloaded files for torrents:" = "Esta ação irá reavaliar o estado de todos os arquivos baixados para torrents:";
+
+//Version Info
+"info" = " Atualizar informações";
+"UpdateText" = "- Adicionado envio de um grupo de arquivos \ n- Seleção de prioridade de download de arquivo adicionado \ n- Correções de localização \ n- Melhorias menores ";
+
