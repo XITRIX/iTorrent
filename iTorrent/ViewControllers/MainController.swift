@@ -15,7 +15,7 @@ class MainController: ThemedUIViewController {
     
     lazy var searchControllerInsideNavigation : Bool = {
         if #available(iOS 11.0, *) {
-            return true // Cause of iOS 13 bug in safe area
+            return true
         }
         return false
     }()
@@ -50,7 +50,6 @@ class MainController: ThemedUIViewController {
         searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
         searchController.searchBar.barStyle = theme.barStyle
         searchController.searchBar.tintColor = view.tintColor
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = theme.backgroundSecondary
         if !searchControllerInsideNavigation {
             searchController.searchBar.barTintColor = theme.backgroundMain
             searchController.searchBar.layer.borderWidth = 1
@@ -675,15 +674,16 @@ extension MainController: GADBannerViewDelegate {
 extension MainController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterQuery = searchController.searchBar.text
-        self.updateFilterQuery()
+        managerUpdated()
         self.tableView.reloadData()
     }
     
     func updateFilterQuery() {
         if let filterQuery = filterQuery, !filterQuery.isEmpty {
+            let separatedQuery = filterQuery.lowercased().split{$0 == " " || $0 == ","}
             for index in 0 ..< managers.count {
                 managers[index] = managers[index].filter { manager -> Bool in
-                    return manager.title.lowercased().contains(filterQuery.lowercased())
+                    return separatedQuery.allSatisfy {manager.title.lowercased().contains($0)}
                 }
             }
         }
