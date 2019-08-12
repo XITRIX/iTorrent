@@ -1027,6 +1027,7 @@
                         <outlet property="creatorLabel" destination="J01-de-z4J" id="wlm-h2-iVW"/>
                         <outlet property="downloadLabel" destination="YV6-CV-Q4f" id="GIc-Sj-420"/>
                         <outlet property="downloadedLabel" destination="EH3-LO-4n7" id="eh5-Zb-frc"/>
+                        <outlet property="filesButtonLabel" destination="2LQ-iM-Wa2" id="Gcu-Hx-kkl"/>
                         <outlet property="hashLabel" destination="m24-h1-ojE" id="C0G-Oa-9Dg"/>
                         <outlet property="pause" destination="Vas-zZ-3Tv" id="Hcg-tj-l3O"/>
                         <outlet property="peersLabel" destination="OjG-Q1-0VO" id="IVT-WV-Dmv"/>
@@ -1043,6 +1044,7 @@
                         <outlet property="stateLabel" destination="4iO-T2-sWR" id="LBc-k6-2wd"/>
                         <outlet property="switcher" destination="qM7-Xq-pec" id="elH-ER-99L"/>
                         <outlet property="timeRemainsLabel" destination="Bur-uj-G4e" id="C0A-0A-8RX"/>
+                        <outlet property="trackersButtonLabel" destination="4sl-7t-NS3" id="UOk-kb-ejK"/>
                         <outlet property="uploadLabel" destination="gcE-G8-T43" id="xQ4-Zq-RcL"/>
                         <outlet property="uploadedLabel" destination="wZM-Mw-hAO" id="7eZ-hT-lgX"/>
                     </connections>

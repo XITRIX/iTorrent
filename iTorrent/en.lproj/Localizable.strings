@@ -71,6 +71,8 @@
 "Torrent file" = "Torrent file";
 "Magnet link" = "Magnet link";
 "Magnet link copied to clipboard" = "Magnet link copied to clipboard";
+"Files" = "Files";
+"Trackers" = "Trackers";
 
 //Settings Controller
 "Warning" = "Warning";

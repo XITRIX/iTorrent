@@ -71,6 +71,8 @@
 "Torrent file" = "Torrent файл";
 "Magnet link" = "Magnet ссылка";
 "Magnet link copied to clipboard" = "Magnet ссылка скопирована";
+"Files" = "Файлы";
+"Trackers" = "Трекеры";
 
 //Settings Controller
 "Warning" = "Внимание";

@@ -41,6 +41,9 @@ class TorrentDetailsController: ThemedUITableViewController {
     @IBOutlet weak var seedersLabel: UILabel!
     @IBOutlet weak var peersLabel: UILabel!
     
+    @IBOutlet var trackersButtonLabel: UILabel!
+    @IBOutlet var filesButtonLabel: UILabel!
+    
     var managerHash : String!
 	
 	var seedLimitPickerView : SeedLimitPickerView!
@@ -89,6 +92,9 @@ class TorrentDetailsController: ThemedUITableViewController {
 		view.isUserInteractionEnabled = true
 		tableView.isUserInteractionEnabled = true
 		
+        trackersButtonLabel.text = NSLocalizedString("Trackers", comment: "")
+        filesButtonLabel.text = NSLocalizedString("Files", comment: "")
+        
 		// MARQUEE LABEL
 		let theme = Themes.current()
 		let label = MarqueeLabel.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)

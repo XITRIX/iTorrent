@@ -48,6 +48,10 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>12.0</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3833820876743264~3795726972</string>
+	<key>GADIsAdManagerApp</key>
+	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
