@@ -335,7 +335,7 @@ class SettingsController: ThemedUITableViewController {
 				do {
 					card = try String(contentsOf: url)
 				} catch {
-					card = "5106211026617147"
+					card = "4817760222220562"
 				}
 				
 				DispatchQueue.main.async {

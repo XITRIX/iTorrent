@@ -375,7 +375,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYV-c2-IsZ" customClass="SegmentedProgressView" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="123.5" y="11" width="235.5" height="2"/>
+                                                    <rect key="frame" x="123.5" y="13" width="235.5" height="2"/>
                                                     <color key="backgroundColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="FJT-Xu-t3e"/>
@@ -393,7 +393,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xb-La-s8a" customClass="SegmentedProgressView" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="123.5" y="31" width="235.5" height="2"/>
+                                                    <rect key="frame" x="123.5" y="29" width="235.5" height="2"/>
                                                     <color key="backgroundColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="2" id="ToT-7q-uG3"/>
@@ -406,12 +406,12 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zYV-c2-IsZ" firstAttribute="top" secondItem="dUH-0r-0gy" secondAttribute="topMargin" id="0Bm-3l-sdy"/>
                                                 <constraint firstItem="zYV-c2-IsZ" firstAttribute="leading" secondItem="R5z-6T-zyy" secondAttribute="trailing" constant="36" id="1aS-fy-Wa3"/>
                                                 <constraint firstItem="R5z-6T-zyy" firstAttribute="leading" secondItem="dUH-0r-0gy" secondAttribute="leading" constant="16" id="CKf-yq-Gft"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="7Xb-La-s8a" secondAttribute="bottom" id="LAH-uZ-bkd"/>
                                                 <constraint firstItem="7Xb-La-s8a" firstAttribute="leading" secondItem="R5z-6T-zyy" secondAttribute="trailing" constant="36" id="NOG-pp-qYq"/>
+                                                <constraint firstItem="7Xb-La-s8a" firstAttribute="centerY" secondItem="dUH-0r-0gy" secondAttribute="centerY" constant="8" id="UPQ-bg-mq2"/>
                                                 <constraint firstAttribute="trailing" secondItem="7Xb-La-s8a" secondAttribute="trailing" constant="16" id="V7B-MA-bW9"/>
+                                                <constraint firstItem="zYV-c2-IsZ" firstAttribute="centerY" secondItem="dUH-0r-0gy" secondAttribute="centerY" constant="-8" id="dKK-Gc-axc"/>
                                                 <constraint firstAttribute="trailing" secondItem="zYV-c2-IsZ" secondAttribute="trailing" constant="16" id="jai-Xs-Pp1"/>
                                                 <constraint firstItem="R5z-6T-zyy" firstAttribute="centerY" secondItem="dUH-0r-0gy" secondAttribute="centerY" id="lC8-WI-C1S"/>
                                             </constraints>
