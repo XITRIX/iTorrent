@@ -297,6 +297,14 @@ class MainController: ThemedUIViewController {
         
         addController.addAction(addMagnet)
         addController.addAction(addURL)
+        
+        if #available(iOS 11.0, *) {
+            let files = UIAlertAction(title: NSLocalizedString("Files", comment: ""), style: .default) { _ in
+                self.present(FilesBrowserController(), animated: true)
+            }
+            addController.addAction(files)
+        }
+        
         addController.addAction(cancel)
 		
 		if (addController.popoverPresentationController != nil) {

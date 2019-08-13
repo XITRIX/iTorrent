@@ -37,6 +37,7 @@
 		7C4B10B720EBF50600440E74 /* SpeedLimitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B10B620EBF50500440E74 /* SpeedLimitPickerView.swift */; };
 		7C4DB4E122AD457A00D45494 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */; };
 		7C4FADE620B5D4CC00ED9C84 /* Pods_iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */; };
+		7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D7683230335A4002E1352 /* FilesBrowserController.swift */; };
 		7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */; };
 		7C7D0AB220D82AA0001B08E5 /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */; };
 		7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */; };
@@ -112,6 +113,7 @@
 		7C4B10B420EAE00C00440E74 /* SeedLimitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedLimitPickerView.swift; sourceTree = "<group>"; };
 		7C4B10B620EBF50500440E74 /* SpeedLimitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedLimitPickerView.swift; sourceTree = "<group>"; };
 		7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressView.swift; sourceTree = "<group>"; };
+		7C5D7683230335A4002E1352 /* FilesBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBrowserController.swift; sourceTree = "<group>"; };
 		7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesExtention.swift; sourceTree = "<group>"; };
 		7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */,
 				7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */,
 				7C4B10AC20EA278800440E74 /* TrackersListController.swift */,
+				7C5D7683230335A4002E1352 /* FilesBrowserController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				7CF522EC20AF78B100D319E6 /* BackgroundTask.swift in Sources */,
 				7CF522F020AF85AB00D319E6 /* UserDefaultsKeys.swift in Sources */,
 				7C4B10A720E02A4900440E74 /* ThemedUIAlertController.swift in Sources */,
+				7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */,
 				7C4B109F20DFF32B00440E74 /* ThemedUITableView.swift in Sources */,
 				7C4B10A520E00CA600440E74 /* ThemedUITableViewCell.swift in Sources */,
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
