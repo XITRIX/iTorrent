@@ -28,12 +28,17 @@ class Themes {
 		darkTheme.backgroundTertiary = UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
 		darkTheme.tableHeaderColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 0.9)
 		darkTheme.actionCancelButtonColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 28.0/255.0, alpha: 1.0)
+        darkTheme.progressBarBackground = UIColor(red: 0.24, green: 0.24, blue: 0.25, alpha: 1)
 		darkTheme.actionButtonColor = .orange
 		darkTheme.statusBarStyle = .lightContent
-		darkTheme.barStyle = .black
+		darkTheme.barStyle = .blackTranslucent
 		darkTheme.blurEffect = .dark
 		darkTheme.keyboardAppearence = .dark
 		darkTheme.loadingIndicatorStyle = .white
+        
+        if #available(iOS 12.0, *) {
+            darkTheme.overrideUserInterfaceStyle = UIUserInterfaceStyle.dark.rawValue
+        }
 		
 		theme.append(ColorPalett())
 		theme.append(darkTheme)
@@ -55,10 +60,18 @@ class ColorPalett {
 	var backgroundTertiary = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1)
 	var tableHeaderColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.9)
 	var actionCancelButtonColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
+    var progressBarBackground = UIColor(red: 0.85, green: 0.85, blue: 0.87, alpha: 1)
 	var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
 	var statusBarStyle : UIStatusBarStyle = .default
 	var barStyle : UIBarStyle = .default
-	var blurEffect : UIBlurEffectStyle = .extraLight
+	var blurEffect : UIBlurEffect.Style = .extraLight
 	var keyboardAppearence : UIKeyboardAppearance = .default
-	var loadingIndicatorStyle : UIActivityIndicatorViewStyle = .gray
+	var loadingIndicatorStyle : UIActivityIndicatorView.Style = .gray
+    var overrideUserInterfaceStyle : Int!
+    
+    init() {
+        if #available(iOS 12.0, *) {
+            overrideUserInterfaceStyle = UIUserInterfaceStyle.light.rawValue
+        }
+    }
 }

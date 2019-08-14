@@ -62,10 +62,13 @@ class Manager {
 			managerSaves = loadedStrings
 		}
 		
-        let files = try! FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
-        for file in files {
-			if (file == "_temp.torrent") { continue }
-            addTorrent(configFolder + "/" + file)
+        if let files = try? FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")}) {
+            for file in files {
+                if (file == "_temp.torrent") { continue }
+                addTorrent(configFolder + "/" + file)
+            }
+        } else {
+            //TODO: Error handler
         }
 		torrentsRestored = true
     }
@@ -84,36 +87,36 @@ class Manager {
         let res = getTorrentInfo()
 		previousTorrentStates = torrentStates
         torrentStates.removeAll()
-        let nameArr = Array(UnsafeBufferPointer(start: res.name, count: Int(res.count)))
-        let stateArr = Array(UnsafeBufferPointer(start: res.state, count: Int(res.count)))
-        var hashArr = Array(UnsafeBufferPointer(start: res.hash, count: Int(res.count)))
-        let creatorArr = Array(UnsafeBufferPointer(start: res.creator, count: Int(res.count)))
-        let commentArr = Array(UnsafeBufferPointer(start: res.comment, count: Int(res.count)))
+        let torrents = Array(UnsafeBufferPointer(start: res.torrents, count: Int(res.count)))
         for i in 0 ..< Int(res.count) {
             let status = TorrentStatus()
             
-            status.state = String(validatingUTF8: stateArr[Int(i)]!) ?? "ERROR"
-            status.title = status.state == Utils.torrentStates.Metadata.rawValue ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: nameArr[Int(i)]!) ?? "ERROR"
-            status.hash = String(validatingUTF8: hashArr[Int(i)]!) ?? "ERROR"
-            status.creator = String(validatingUTF8: creatorArr[Int(i)]!) ?? "ERROR"
-			status.comment = String(validatingUTF8: commentArr[Int(i)]!) ?? "ERROR"
-            status.progress = res.progress[i]
-            status.totalWanted = res.total_wanted[i]
-            status.totalWantedDone = res.total_wanted_done[i]
-            status.downloadRate = Int(res.download_rate[i])
-            status.uploadRate = Int(res.upload_rate[i])
-            status.totalDownload = res.total_download[i]
-            status.totalUpload = res.total_upload[i]
-            status.numSeeds = Int(res.num_seeds[i])
-            status.numPeers = Int(res.num_peers[i])
-            status.totalSize = res.total_size[i]
-            status.totalDone = res.total_done[i]
-            status.creationDate = Date(timeIntervalSince1970: TimeInterval(res.creation_date[i]))
-            status.isPaused = res.is_paused[i] == 1
-            status.isFinished = res.is_finished[i] == 1
-            status.isSeed = res.is_seed[i] == 1
-			status.hasMetadata = res.has_metadata[i] == 1
-			
+            status.state = String(validatingUTF8: torrents[i].state) ?? "ERROR"
+            status.title = status.state == Utils.torrentStates.Metadata.rawValue ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: torrents[i].name) ?? "ERROR"
+            status.hash = String(validatingUTF8: torrents[i].hash) ?? "ERROR"
+            status.creator = String(validatingUTF8: torrents[i].creator) ?? "ERROR"
+			status.comment = String(validatingUTF8: torrents[i].comment) ?? "ERROR"
+            status.progress = torrents[i].progress
+            status.totalWanted = torrents[i].total_wanted
+            status.totalWantedDone = torrents[i].total_wanted_done
+            status.downloadRate = Int(torrents[i].download_rate)
+            status.uploadRate = Int(torrents[i].upload_rate)
+            status.totalDownload = torrents[i].total_download
+            status.totalUpload = torrents[i].total_upload
+            status.numSeeds = Int(torrents[i].num_seeds)
+            status.numPeers = Int(torrents[i].num_peers)
+            status.totalSize = torrents[i].total_size
+            status.totalDone = torrents[i].total_done
+            status.creationDate = Date(timeIntervalSince1970: TimeInterval(torrents[i].creation_date))
+            status.isPaused = torrents[i].is_paused == 1
+            status.isFinished = torrents[i].is_finished == 1
+            status.isSeed = torrents[i].is_seed == 1
+			status.hasMetadata = torrents[i].has_metadata == 1
+            
+            status.sequentialDownload = torrents[i].sequential_download == 1
+            status.numPieces = Int(torrents[i].num_pieces)
+            status.pieces = Array(UnsafeBufferPointer(start: torrents[i].pieces, count: status.numPieces))
+            
 			if (managerSaves[status.hash] == nil) {
 				managerSaves[status.hash] = UserManagerSettings()
 			}
@@ -315,7 +318,7 @@ class Manager {
 				
 				content.title = NSLocalizedString("Download finished", comment: "")
 				content.body = manager.title + NSLocalizedString(" finished downloading", comment: "")
-				content.sound = UNNotificationSound.default()
+				content.sound = UNNotificationSound.default
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
 				let identifier = manager.hash;
@@ -346,7 +349,7 @@ class Manager {
 				
 				content.title = NSLocalizedString("Seeding finished", comment: "")
 				content.body = manager.title + NSLocalizedString(" finished seeding", comment: "")
-				content.sound = UNNotificationSound.default()
+				content.sound = UNNotificationSound.default
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
 				let identifier = manager.hash;
@@ -374,7 +377,7 @@ class Manager {
     
     static func getManagerByHash(hash: String) -> TorrentStatus? {
 		let localStates = torrentStates
-        return localStates.filter({$0.hash == hash}).first
+        return localStates.filter({$0.hash == hash}).first //TODO: can crach (Out of Index) - localStates.count == 0
     }
 	
 	static func startFTP(){

@@ -120,7 +120,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 	
 	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
 		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		let titleFont:[NSAttributedStringKey : Any] = [ .foregroundColor : Themes.shared.theme[theme].mainText ]
+		let titleFont:[NSAttributedString.Key : Any] = [ .foregroundColor : Themes.shared.theme[theme].mainText ]
 		if (component == 0 && row == 0) {
 			return NSAttributedString(string: NSLocalizedString("Unlimited", comment: ""), attributes: titleFont)
 		}

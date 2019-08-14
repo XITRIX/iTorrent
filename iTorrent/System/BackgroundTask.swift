@@ -17,7 +17,6 @@ class BackgroundTask {
 	static func startBackgroundTask() {
 		if (!backgrounding) {
 			backgrounding = true
-			NotificationCenter.default.addObserver(self, selector: #selector(interuptedAudio), name: NSNotification.Name.AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
 			BackgroundTask.playAudio()
 		}
 	}
@@ -25,25 +24,15 @@ class BackgroundTask {
 	static func stopBackgroundTask() {
 		if (backgrounding) {
 			backgrounding = false
-			NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
 			player.stop()
 		}
 	}
-	
-	@objc fileprivate func interuptedAudio(_ notification: Notification) {
-		if notification.name == NSNotification.Name.AVAudioSessionInterruption && notification.userInfo != nil {
-			var info = notification.userInfo!
-			var intValue = 0
-			(info[AVAudioSessionInterruptionTypeKey]! as AnyObject).getValue(&intValue)
-			if intValue == 1 { BackgroundTask.playAudio() }
-		}
-	}
-	
+
 	static fileprivate func playAudio() {
 		do {
 			let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
 			let alertSound = URL(fileURLWithPath: bundle!)
-			try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with:AVAudioSessionCategoryOptions.mixWithOthers)
+            try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
 			try AVAudioSession.sharedInstance().setActive(true)
 			try BackgroundTask.player = AVAudioPlayer(contentsOf: alertSound)
 			BackgroundTask.player.numberOfLoops = -1

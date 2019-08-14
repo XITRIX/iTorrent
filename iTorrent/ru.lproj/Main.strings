@@ -53,11 +53,17 @@
 /* Class = "UILabel"; text = "Time remains"; ObjectID = "9mc-qX-nuW"; */
 "9mc-qX-nuW.text" = "Осталось";
 
+/* Class = "UILabel"; text = "Sequential download"; ObjectID = "oeR-dU-Ejk"; */
+"oeR-dU-Ejk.text" = "Последовательная загрузка";
+
+/* Class = "UILabel"; text = "Progress"; ObjectID = "R5z-6T-zyy"; */
+"R5z-6T-zyy.text" = "Прогресс";
+
 /* Class = "UILabel"; text = "1024 MB"; ObjectID = "ANF-Z7-e4l"; */
 "ANF-Z7-e4l.text" = "1024 MB";
 
 /* Class = "UITableViewSection"; headerTitle = "Transfer"; ObjectID = "And-Ph-abv"; */
-"And-Ph-abv.headerTitle" = "Transfer";
+"And-Ph-abv.headerTitle" = "Передано";
 
 /* Class = "UILabel"; text = "Run in background"; ObjectID = "AyL-CZ-VMU"; */
 "AyL-CZ-VMU.text" = "Работа в фоне";
@@ -78,7 +84,7 @@
 "EH3-LO-4n7.text" = "Label";
 
 /* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "FKU-d6-mSo"; */
-"FKU-d6-mSo.title" = "Отменить Все";
+"FKU-d6-mSo.title" = "Убрать Все";
 
 /* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "FeY-Vw-7DL"; */
 "FeY-Vw-7DL.title" = "Отметить Все";
@@ -259,6 +265,9 @@
 
 /* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "tSN-hF-er4"; */
 "tSN-hF-er4.title" = "Отменить Все";
+
+/* Class = "UITableViewSection"; headerTitle = "Downloading"; ObjectID = "Ji6-fS-SS9"; */
+"Ji6-fS-SS9.headerTitle" = "Загрузка";
 
 /* Class = "UITableViewSection"; headerTitle = "Seeding"; ObjectID = "ue2-iG-c31"; */
 "ue2-iG-c31.headerTitle" = "Раздача";

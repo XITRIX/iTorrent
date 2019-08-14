@@ -12,10 +12,20 @@ import GoogleMobileAds
 class MainController: ThemedUIViewController {
     @IBOutlet weak var tableView: ThemedUITableView!
 	@IBOutlet weak var adsView: GADBannerView!
-    @IBOutlet var tableHeaderView: TableHeaderView!
+    
+    lazy var searchControllerInsideNavigation : Bool = {
+        if #available(iOS 11.0, *) {
+            return true
+        }
+        return false
+    }()
+    
+    var searchController : UISearchController = UISearchController(searchResultsController: nil)
     
     var managers : [[TorrentStatus]] = []
 	var headers : [String] = []
+    
+    var filterQuery : String?
     
     var topRightItemsCopy : [UIBarButtonItem]?
     var bottomItemsCopy : [UIBarButtonItem]?
@@ -31,6 +41,25 @@ class MainController: ThemedUIViewController {
 	var adsLoaded = false
 	
 	var tableViewEditMode : Bool = false
+    
+    override func themeUpdate() {
+        super.themeUpdate()
+        
+        let theme = Themes.current()
+        tableView.backgroundColor = theme.backgroundMain
+        searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
+        searchController.searchBar.barStyle = theme.barStyle
+        searchController.searchBar.tintColor = view.tintColor
+        if !searchControllerInsideNavigation {
+            searchController.searchBar.barTintColor = theme.backgroundMain
+            searchController.searchBar.layer.borderWidth = 1
+            searchController.searchBar.layer.borderColor = theme.backgroundMain.cgColor
+            
+            let back = tableView.backgroundView ?? UIView()
+            back.backgroundColor = theme.backgroundMain
+            tableView.backgroundView = back
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +86,17 @@ class MainController: ThemedUIViewController {
 				self.present(dialog, animated: true)
 			}
 		}
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
+        if #available(iOS 11.0, *),
+            searchControllerInsideNavigation {
+            navigationItem.searchController = searchController
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +105,8 @@ class MainController: ThemedUIViewController {
 		navigationController?.toolbar.tintColor = navigationController?.navigationBar.tintColor
 		
 		managers.removeAll()
-		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        updateFilterQuery()
         tableView.reloadData()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(managerUpdated), name: .torrentsUpdated, object: nil)
@@ -98,10 +139,11 @@ class MainController: ThemedUIViewController {
     
     @objc func managerUpdated() {
 		var changed = false
-		var oldManagers = managers
+        let oldManagers = managers
 		managers.removeAll()
-		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
-		if (oldManagers.count != managers.count) {
+        managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        updateFilterQuery()
+        if (oldManagers.count != managers.count) {
 			changed = true
 		} else {
 			for i in 0 ..< managers.count {
@@ -126,8 +168,9 @@ class MainController: ThemedUIViewController {
 		
 	@objc func managerStateChanged(notfication: NSNotification) {
 		managers.removeAll()
-		managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
-		tableView.reloadData()
+        managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
+        updateFilterQuery()
+        tableView.reloadData()
 	}
 	
 	func removeTorrent(indexPath: IndexPath, isMagnet: Bool = false, removeData: Bool = false, visualOnly: Bool = false) {
@@ -164,7 +207,7 @@ class MainController: ThemedUIViewController {
 	}
     
     @IBAction func AddTorrentAction(_ sender: UIBarButtonItem) {
-        let addController = ThemedUIAlertController(title: NSLocalizedString("Add from...", comment: ""), message: nil, preferredStyle: .actionSheet)
+        let addController = ThemedUIAlertController(title: nil, message: NSLocalizedString("Add from...", comment: ""), preferredStyle: .actionSheet)
         
         let addURL = UIAlertAction(title: "URL", style: .default) { _ in
             let addURLController = ThemedUIAlertController(title: NSLocalizedString("Add from URL", comment: ""), message: NSLocalizedString("Please enter the existing torrent's URL below", comment: ""), preferredStyle: .alert)
@@ -254,6 +297,14 @@ class MainController: ThemedUIViewController {
         
         addController.addAction(addMagnet)
         addController.addAction(addURL)
+        
+        if #available(iOS 11.0, *) {
+            let files = UIAlertAction(title: NSLocalizedString("Files", comment: ""), style: .default) { _ in
+                self.present(FilesBrowserController(), animated: true)
+            }
+            addController.addAction(files)
+        }
+        
         addController.addAction(cancel)
 		
 		if (addController.popoverPresentationController != nil) {
@@ -305,8 +356,9 @@ class MainController: ThemedUIViewController {
     @IBAction func sortAction(_ sender: UIBarButtonItem) {
 		let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
 			self.managers.removeAll()
-			self.managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &self.headers))
-			self.tableView.reloadData();
+            self.managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &self.headers))
+            self.updateFilterQuery()
+            self.tableView.reloadData();
 		})
 		present(sortingController, animated: true)
     }
@@ -491,7 +543,7 @@ extension MainController: UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             let selectedHash = managers[indexPath.section][indexPath.row].hash
             let message = managers[indexPath.section][indexPath.row].hasMetadata ? NSLocalizedString("Are you sure to remove", comment: "") + " " + managers[indexPath.section][indexPath.row].title + " \(NSLocalizedString("torrent", comment: ""))?" : NSLocalizedString("Are you sure to remove this magnet torrent?", comment: "")
@@ -548,7 +600,7 @@ extension MainController: UITableViewDataSource {
 
 extension MainController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headers[section].isEmpty ? 0 : 28
+        return managers[section].isEmpty || headers[section].isEmpty ? CGFloat.leastNonzeroMagnitude : 28
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -580,7 +632,7 @@ extension MainController: UITableViewDelegate {
                 //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
                 //                if let fileController = nav.topViewController
                 //            }
-                let navController = UINavigationController(rootViewController: viewController)
+                let navController = ThemedUINavigationController(rootViewController: viewController)
                 navController.isToolbarHidden = false
                 navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
                 navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
@@ -627,3 +679,21 @@ extension MainController: GADBannerViewDelegate {
     }
 }
 
+extension MainController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterQuery = searchController.searchBar.text
+        managerUpdated()
+        self.tableView.reloadData()
+    }
+    
+    func updateFilterQuery() {
+        if let filterQuery = filterQuery, !filterQuery.isEmpty {
+            let separatedQuery = filterQuery.lowercased().split{$0 == " " || $0 == ","}
+            for index in 0 ..< managers.count {
+                managers[index] = managers[index].filter { manager -> Bool in
+                    return separatedQuery.allSatisfy {manager.title.lowercased().contains($0)}
+                }
+            }
+        }
+    }
+}

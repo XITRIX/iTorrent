@@ -27,6 +27,8 @@
 "Select All" = "Select All";
 "Deselect" = "Deselect";
 
+"Search" = "Search";
+
 "time remains" = "time remains";
 "eternity" = "eternity";
 
@@ -64,6 +66,13 @@
 "Currently sorted by " = "Currently sorted by ";
 "Disable state sections" = "Disable state sections";
 "Enable state sections" = "Enable state sections";
+
+//Torrent details
+"Torrent file" = "Torrent file";
+"Magnet link" = "Magnet link";
+"Magnet link copied to clipboard" = "Magnet link copied to clipboard";
+"Files" = "Files";
+"Trackers" = "Trackers";
 
 //Settings Controller
 "Warning" = "Warning";
@@ -112,6 +121,10 @@
 "Enter the full tracker's URL" = "Enter the full tracker URL";
 "Tracker's URL" = "Enter tracker URL";
 "Add" = "Add";
+"Peers" = "Peers";
+"Seeds" = "Seeds";
+"Leechers" = "Leechers";
+"Are you shure to remove this trackers?" = "Are you shure to remove this trackers?";
 
 //AppDelegate
 "Obtaining Metadata" = "Obtaining Metadata";
@@ -129,5 +142,5 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added sending a group of files\n- Added file download priority selection\n- Localization fixes\n- Minor improvements";
+"UpdateText" = "- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n- Income call crash fixed\n- Minor improvements";
 

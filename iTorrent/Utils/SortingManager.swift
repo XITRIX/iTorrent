@@ -26,7 +26,7 @@ class SortingManager {
 		
 		let sectionsAction = createSectionsAlertButton(applyChanges);
 		
-		let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: UIAlertActionStyle.cancel, handler: nil);
+		let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: UIAlertAction.Style.cancel, handler: nil);
 		
         var sortAlertController = ThemedUIAlertController(title: NSLocalizedString("Sort Torrents By:", comment: ""), message: nil, preferredStyle: .actionSheet)
 		

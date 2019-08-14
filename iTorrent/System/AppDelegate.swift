@@ -18,20 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
 	
 	static var backgrounded = false
-	
-//	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-//		Locale.setupInitialLanguage()
-//		setupNotifications()
-//
-//		return true
-//	}
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 		defaultUserDefaultsSettings()
 		
 		FirebaseApp.configure()
-		GADMobileAds.configure(withApplicationID: "ca-app-pub-3833820876743264~3795726972")
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
 		
         Manager.InitManager()
         
@@ -58,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return true
     }
 	
-	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 		print("Path: " + url.path)
 		if (url.absoluteString.hasPrefix("magnet:")) {
 			Manager.addMagnet(url.absoluteString)
@@ -141,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			
 			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
             
-            let detailNavController = UINavigationController()
+            let detailNavController = ThemedUINavigationController()
             detailNavController.viewControllers = viewControllers
             detailNavController.setToolbarHidden(false, animated: false)
 			detailNavController.navigationBar.barStyle = Themes.shared.theme[theme].barStyle

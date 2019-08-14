@@ -6,7 +6,6 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class TrackerCell : ThemedUITableViewCell {
@@ -15,17 +14,19 @@ class TrackerCell : ThemedUITableViewCell {
 	@IBOutlet weak var message: UILabel!
 	@IBOutlet weak var seeders: UILabel!
 	@IBOutlet weak var peers: UILabel!
-	
+    @IBOutlet var leechers: UILabel!
+    
 	override func themeUpdate() {
 		super.themeUpdate()
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		title?.textColor = Themes.shared.theme[theme].mainText
-		message?.textColor = Themes.shared.theme[theme].secondaryText
-		seeders?.textColor = Themes.shared.theme[theme].secondaryText
-		peers?.textColor = Themes.shared.theme[theme].secondaryText
+		let theme = Themes.current()
+		title?.textColor = theme.mainText
+		message?.textColor = theme.secondaryText
+		seeders?.textColor = theme.secondaryText
+		peers?.textColor = theme.secondaryText
+        leechers?.textColor = theme.secondaryText
 		
 		let bgColorView = UIView()
-		bgColorView.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
+		bgColorView.backgroundColor = theme.backgroundSecondary
 		selectedBackgroundView = bgColorView
 	}
 }

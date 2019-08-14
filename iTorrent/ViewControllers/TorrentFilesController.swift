@@ -36,8 +36,8 @@ class TorrentFilesController : ThemedUIViewController {
 				   UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
 				   UIBarButtonItem(title: NSLocalizedString("Selected", comment: ""), style: .plain, target: self, action: #selector(shareSelected))]
 		
-		res[0].width = (NSLocalizedString("All", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 21)], context: nil).width
-		res[4].width = (NSLocalizedString("Selected", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 21)], context: nil).width
+		res[0].width = (NSLocalizedString("All", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 21)], context: nil).width
+		res[4].width = (NSLocalizedString("Selected", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 21)], context: nil).width
 		
 		if (res[0].width < res[4].width) {
 			res[0].width = res[4].width
@@ -89,7 +89,7 @@ class TorrentFilesController : ThemedUIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 78
+        tableView.rowHeight = 82
 		tableView.allowsMultipleSelectionDuringEditing = true
     }
     
@@ -118,6 +118,11 @@ class TorrentFilesController : ThemedUIViewController {
         super.viewWillDisappear(animated)
         runUpdate = false
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        Manager.saveTorrents()
+    }
 	
 	func initialize() {
 		let localFiles = get_files_of_torrent_by_hash(managerHash)
@@ -127,19 +132,18 @@ class TorrentFilesController : ThemedUIViewController {
         }
 		
         let size = Int(localFiles.size)
-        let namesArr = Array(UnsafeBufferPointer(start: localFiles.file_name, count: size))
-        let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
         
         for i in 0 ..< size {
             let file = File()
 			
-			let n = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
+			let n = String(validatingUTF8: localFiles.files[i].file_name) ?? "ERROR"
 			let name = URL(string: n.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 			file.name = name.lastPathComponent
 			file.path = name.deletingLastPathComponent().path == "." ? "" : name.deletingLastPathComponent().path
-			file.size = sizesArr[i]
-			file.isDownloading = localFiles.file_priority[Int(i)]
+			file.size = localFiles.files[i].file_size
+			file.isDownloading = localFiles.files[i].file_priority
 			file.number = i
+            file.pieces = Array(UnsafeBufferPointer(start: localFiles.files[i].pieces, count: Int(localFiles.files[i].num_pieces)))
 			
 			files.append(file)
 			
@@ -191,11 +195,11 @@ class TorrentFilesController : ThemedUIViewController {
 		}
 		
 		let size = Int(localFiles.size)
-		let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
 
 		for i in 0 ..< size {
-			notSortedFiles[i].size = sizesArr[i]
-			notSortedFiles[i].downloaded = localFiles.file_downloaded[i]
+			notSortedFiles[i].size = localFiles.files[i].file_size
+			notSortedFiles[i].downloaded = localFiles.files[i].file_downloaded
+            notSortedFiles[i].pieces = Array(UnsafeBufferPointer(start: localFiles.files[i].pieces, count: Int(localFiles.files[i].num_pieces)))
 		}
 	}
     
@@ -303,7 +307,7 @@ class TorrentFilesController : ThemedUIViewController {
 		} else {
 			path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + root, isDirectory: true)
 		}
-		let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+		let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
 		if (shareController.popoverPresentationController != nil) {
 			shareController.popoverPresentationController?.barButtonItem = editBarItems[0]
 			shareController.popoverPresentationController?.permittedArrowDirections = .any
@@ -322,7 +326,7 @@ class TorrentFilesController : ThemedUIViewController {
 				paths.append(NSURL(fileURLWithPath: Manager.rootFolder + "/" + downloadedFiles[index].path + "/" + downloadedFiles[index].name, isDirectory: false))
 			}
 		}
-		let shareController = UIActivityViewController(activityItems: paths, applicationActivities: nil)
+		let shareController = ThemedUIActivityViewController(activityItems: paths, applicationActivities: nil)
 		if (shareController.popoverPresentationController != nil) {
 			shareController.popoverPresentationController?.barButtonItem = editBarItems[4]
 			shareController.popoverPresentationController?.permittedArrowDirections = .any
@@ -400,7 +404,7 @@ extension TorrentFilesController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let title = NSLocalizedString("Priority", comment: "")
         let button = UITableViewRowAction(style: .default, title: title) { action, indexPath in
-            let controller = ThemedUIAlertController(title: NSLocalizedString("Priority", comment: ""), message: nil, preferredStyle: .actionSheet)
+            let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Priority", comment: ""), preferredStyle: .actionSheet)
             
             // "Normal"
             let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in

@@ -21,7 +21,6 @@ class ThemedUILabel : UILabel, Themed {
     }
     
     @objc func themeUpdate() {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		textColor = Themes.shared.theme[theme].mainText
+		textColor = Themes.current().mainText
 	}
 }

@@ -88,21 +88,19 @@ class AddTorrentController : ThemedUIViewController {
 			let controller = ThemedUIAlertController(title: NSLocalizedString("Torrent update detected", comment: ""), message: "\(NSLocalizedString("Torrent with name", comment: "")) \(name) \(NSLocalizedString("already exists, do you want to apply previous files selection settings to this torrent", comment: ""))?", preferredStyle: .alert)
 			let apply = UIAlertAction(title: NSLocalizedString("Apply", comment: ""), style: .default) { _ in
 				let oldFilesContainer = get_files_of_torrent_by_hash(oldManager.hash)
-				var oldFiles : [File] = []
+                var oldFiles : [File] = []
 				
 				let oldSize = Int(oldFilesContainer.size)
-				let oldNamesArr = Array(UnsafeBufferPointer(start: oldFilesContainer.file_name, count: oldSize))
-				let sizesArr = Array(UnsafeBufferPointer(start: oldFilesContainer.file_size, count: oldSize))
 				
 				for i in 0 ..< oldSize {
 					let file = File()
 					
-					let n = String(validatingUTF8: oldNamesArr[Int(i)]!) ?? "ERROR"
+					let n = String(validatingUTF8: oldFilesContainer.files[i].file_name) ?? "ERROR"
 					let name = URL(string: n.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 					file.name = name.lastPathComponent
-					file.isDownloading = oldFilesContainer.file_priority[Int(i)]
-					file.size = sizesArr[i]
-					file.downloaded = oldFilesContainer.file_downloaded[i]
+                    file.isDownloading = oldFilesContainer.files[Int(i)].file_priority
+					file.size = oldFilesContainer.files[Int(i)].file_size
+					file.downloaded = oldFilesContainer.files[Int(i)].file_downloaded
 					
 					oldFiles.append(file)
 				}
@@ -124,17 +122,15 @@ class AddTorrentController : ThemedUIViewController {
 		}
 		
 		let size = Int(localFiles.size)
-		let namesArr = Array(UnsafeBufferPointer(start: localFiles.file_name, count: size))
-		let sizesArr = Array(UnsafeBufferPointer(start: localFiles.file_size, count: size))
 		
 		for i in 0 ..< size {
 			let file = File()
 			
-			let n = String(validatingUTF8: namesArr[Int(i)]!) ?? "ERROR"
+			let n = String(validatingUTF8: localFiles.files[i].file_name) ?? "ERROR"
 			let name = URL(string: n.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!
 			file.name = name.lastPathComponent
 			file.path = name.deletingLastPathComponent().path == "." ? "" : name.deletingLastPathComponent().path
-			file.size = sizesArr[i]
+			file.size = localFiles.files[i].file_size
 			file.isDownloading = 4
 			file.number = i
 			
@@ -297,7 +293,7 @@ extension AddTorrentController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let title = NSLocalizedString("Priority", comment: "")
         let button = UITableViewRowAction(style: .default, title: title) { action, indexPath in
-            let controller = ThemedUIAlertController(title: NSLocalizedString("Priority", comment: ""), message: nil, preferredStyle: .actionSheet)
+            let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Priority", comment: ""), preferredStyle: .actionSheet)
             
             // "Normal"
             let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in

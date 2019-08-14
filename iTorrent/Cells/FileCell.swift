@@ -14,7 +14,8 @@ class FileCell: ThemedUITableViewCell {
     @IBOutlet weak var size: UILabel!
 	@IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var shareButton: UIButton!
-	
+    @IBOutlet var progress: SegmentedProgressView!
+    
     weak var actionDelegate : FileCellActionDelegate?
 	var name : String!
 	var index : Int!
@@ -38,8 +39,12 @@ class FileCell: ThemedUITableViewCell {
 	
 	func update() {
 		title.text = file?.name
-		let percent = Float(file.downloaded) / Float(file.size) * 100
-        size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
+        let progressValue = Float(file.downloaded) / Float(file.size)
+        let percent = progressValue * 100
+        if (progress != nil) {
+            size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
+            progress.setProgress(progressValue == 1 ? [1] : file.pieces.map{ CGFloat($0) })
+        }
 		
 		if (hideUI) {
 			shareButton.isHidden = true
@@ -92,7 +97,7 @@ class FileCell: ThemedUITableViewCell {
 		let controller = ThemedUIAlertController(title: nil, message: file.name, preferredStyle: .actionSheet)
 		let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
 			let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.path + "/" + self.file.name, isDirectory: false)
-			let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+			let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
 			if (shareController.popoverPresentationController != nil) {
 				shareController.popoverPresentationController?.sourceView = sender
 				shareController.popoverPresentationController?.sourceRect = sender.bounds

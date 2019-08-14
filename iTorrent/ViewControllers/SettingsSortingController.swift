@@ -15,6 +15,11 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     
     var data : [Int]!
     
+    override func themeUpdate() {
+        super.themeUpdate()
+        tableView.backgroundColor = Themes.current().backgroundMain
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,7 +87,7 @@ extension SettingsSortingController: UITableViewDataSource {
         data.insert(itemToMove, at: destinationIndexPath.row)
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
 }

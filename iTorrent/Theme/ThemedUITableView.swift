@@ -21,8 +21,7 @@ class ThemedUITableView : UITableView, Themed {
     }
     
     @objc func themeUpdate() {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
-		backgroundColor = Themes.shared.theme[theme].backgroundTertiary
+		backgroundColor = Themes.current().backgroundTertiary
 		reloadData()
 	}
 }
