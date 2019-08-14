@@ -600,7 +600,7 @@ extension MainController: UITableViewDataSource {
 
 extension MainController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return managers[section].isEmpty || headers[section].isEmpty ? 0 : 28
+        return managers[section].isEmpty || headers[section].isEmpty ? CGFloat.leastNonzeroMagnitude : 28
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

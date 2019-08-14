@@ -142,5 +142,5 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n- Added search by your torrents\n- Localization fixes\n- Minor improvements";
+"UpdateText" = "- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n- Income call crash fixed\n- Minor improvements";
 

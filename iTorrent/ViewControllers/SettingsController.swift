@@ -104,7 +104,6 @@ class SettingsController: ThemedUITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        super.viewWillAppear(animated)
     }
 	
 	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {

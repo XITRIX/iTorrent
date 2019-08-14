@@ -9,9 +9,17 @@
 import UIKit
 
 @available(iOS 11.0, *)
-class FilesBrowserController : UIDocumentPickerViewController {
+class FilesBrowserController : UIDocumentPickerViewController, Themed {
     init() {
         super.init(documentTypes: ["com.bittorrent.torrent"], in: .open)
+    }
+    
+    @objc func themeUpdate() {
+        let theme = Themes.current()
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -20,6 +28,9 @@ class FilesBrowserController : UIDocumentPickerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+        themeUpdate()
         
         delegate = self
         
