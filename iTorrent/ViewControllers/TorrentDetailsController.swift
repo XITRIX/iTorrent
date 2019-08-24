@@ -406,7 +406,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 			
 			if (removeData) {
 				if (FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title)) {
-					try! FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
+					try? FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
 				}
 			}
 		}

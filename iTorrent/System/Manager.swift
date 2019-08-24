@@ -74,10 +74,10 @@ class Manager {
     }
 	
 	static func removeTorrentFile(hash: String) {
-		let files = try! FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
-		for file in files {
+		let files = try? FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
+		for file in files ?? [] {
 			if (hash == String(cString: get_torrent_file_hash(configFolder + "/" + file))) {
-				try! FileManager.default.removeItem(atPath: configFolder + "/" + file)
+				try? FileManager.default.removeItem(atPath: configFolder + "/" + file)
 				break
 			}
 		}
