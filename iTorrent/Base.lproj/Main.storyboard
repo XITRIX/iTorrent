@@ -1752,7 +1752,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="shareButton" destination="HyO-bM-ySY" id="7iV-y7-vID"/>
-                                    <outlet property="size" destination="hrV-Dx-Iw2" id="oIA-QH-H3n"/>
+                                    <outlet property="size" destination="hrV-Dx-Iw2" id="iwn-aZ-E1e"/>
                                     <outlet property="switcher" destination="Ngl-gk-0zB" id="V2f-9s-iLo"/>
                                     <outlet property="title" destination="hFU-bT-S6s" id="dnn-aI-Bvr"/>
                                     <outlet property="titleConstraint" destination="Njs-rc-TRv" id="NQC-uo-b5B"/>

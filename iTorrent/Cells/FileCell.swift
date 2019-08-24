@@ -19,7 +19,7 @@ class FileCell: ThemedUITableViewCell {
     weak var actionDelegate : FileCellActionDelegate?
 	var name : String!
 	var index : Int!
-    var addind = false
+    var adding = false
 	weak var file : File!
 	
 	var hideUI : Bool = false
@@ -37,22 +37,20 @@ class FileCell: ThemedUITableViewCell {
 		selectedBackgroundView = bgColorView
 	}
 	
-	func update() {
+    func update() {
 		title.text = file?.name
         let progressValue = Float(file.downloaded) / Float(file.size)
         let percent = progressValue * 100
-        if (progress != nil) {
-            size.text = addind ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
-            progress.setProgress(progressValue == 1 ? [1] : file.pieces.map{ CGFloat($0) })
-        }
-		
+        size.text = adding ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
+        progress?.setProgress(progressValue == 1 ? [1] : file.pieces.map{ CGFloat($0) })
+        
 		if (hideUI) {
 			shareButton.isHidden = true
 			switcher.isHidden = true
 			titleConstraint.constant = 12
 		} else {
 			titleConstraint.constant = 74
-			if (percent >= 100 && !addind) {
+			if (percent >= 100 && !adding) {
 				shareButton.isHidden = false
 				switcher.isHidden = true
 			} else {
@@ -84,7 +82,7 @@ class FileCell: ThemedUITableViewCell {
 	
 	func canShare() -> Bool {
 		let percent = Float(file.downloaded) / Float(file.size) * 100
-		return percent >= 100 && !addind
+		return percent >= 100 && !adding
 	}
 	
     @IBAction func switcherAction(_ sender: UISwitch) {

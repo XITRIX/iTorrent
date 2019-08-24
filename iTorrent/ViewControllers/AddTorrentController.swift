@@ -273,6 +273,7 @@ extension AddTorrentController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
             cell.file = showFiles[index]
             cell.index = index
+            cell.adding = true
             cell.update()
             cell.switcher.setOn(showFiles[index].isDownloading != 0, animated: false)
             if (showFiles[index].size != 0 && showFiles[index].size == showFiles[index].downloaded) {
