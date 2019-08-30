@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-		defaultUserDefaultsSettings()
-		
 		FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
 		
@@ -44,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 			UIApplication.shared.cancelAllLocalNotifications()
         }
 		
-		if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)) {
+        if (UserPreferences.ftpKey.value) {
 			Manager.startFTP()
 		}
 		
@@ -132,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 return Utils.createEmptyViewController()
             }
 			
-			let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+            let theme = UserPreferences.themeNum.value
             
             let detailNavController = ThemedUINavigationController()
             detailNavController.viewControllers = viewControllers
@@ -146,41 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return nil
     }
-	
-	func defaultUserDefaultsSettings() {
-        let res = UserDefaults.standard.object(forKey: UserDefaultsKeys.sectionsSortingOrder)
-        if (res == nil || !(res is [Int])) {
-            let sort = [3,
-                        7,
-                        8,
-                        6,
-                        2,
-                        4,
-                        5,
-                        9,
-                        1]
-            UserDefaults.standard.set(sort, forKey: UserDefaultsKeys.sectionsSortingOrder)
-        }
-		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.backgroundKey) == nil) {
-			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundKey)
-		}
-		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationsKey) == nil) {
-			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.notificationsKey)
-		}
-		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationsSeedKey) == nil) {
-			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.notificationsSeedKey)
-		}
-		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.badgeKey) == nil) {
-			UserDefaults.standard.set(true, forKey: UserDefaultsKeys.badgeKey)
-		}
-		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.downloadLimit) == nil) {
-			UserDefaults.standard.set(0, forKey: UserDefaultsKeys.downloadLimit)
-		}
-		if (UserDefaults.standard.object(forKey: UserDefaultsKeys.uploadLimit) == nil) {
-			UserDefaults.standard.set(0, forKey: UserDefaultsKeys.uploadLimit)
-		}
-	}
-	
+    
 //	fileprivate func setupNotifications() {
 //		let nc = NotificationCenter.default
 //		nc.addObserver(forName: NSLocale.currentLocaleDidChangeNotification, object: nil, queue: OperationQueue.main) {

@@ -41,44 +41,44 @@ class SettingsController: ThemedUITableViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		darkThemeSwitch.setOn(UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum) == 1, animated: false)
+        darkThemeSwitch.setOn(UserPreferences.themeNum.value == 1, animated: false)
 		
-		let back = UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey)
+        let back = UserPreferences.background.value
 		backgroundSwitch.setOn(back, animated: false)
 		
 		backgroundSeedSwitch.isEnabled = back
-		backgroundSeedSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey), animated: false)
+        backgroundSeedSwitch.setOn(UserPreferences.backgroundSeedKey.value, animated: false)
 		
-		let ftp = UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)
+        let ftp = UserPreferences.ftpKey.value
 		ftpSwitch.setOn(ftp, animated: false)
 		
 		ftpBackgroundSwitch.isEnabled = ftp && back
-		ftpBackgroundSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpBackgroundKey), animated: false)
+        ftpBackgroundSwitch.setOn(UserPreferences.ftpBackgroundKey.value, animated: false)
 		
-		let notif = UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsKey)
+        let notif = UserPreferences.notificationsKey.value
 		notificationSwitch.setOn(notif, animated: false)
 		
-		let notifSeed = UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsSeedKey)
+        let notifSeed = UserPreferences.notificationsSeedKey.value
 		notificationSeedSwitch.setOn(notifSeed, animated: false)
 		
 		badgeSwitch.isEnabled = notif || notifSeed
-		badgeSwitch.setOn(UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey), animated: false)
+        badgeSwitch.setOn(UserPreferences.badgeKey.value, animated: false)
 		
-		let up = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
+        let up = UserPreferences.uploadLimit.value
 		if (up == 0) {
 			uploadLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 		} else {
 			uploadLimitButton.setTitle(Utils.getSizeText(size: up, decimals: true) + "/S", for: .normal)
 		}
 		
-		let down = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
+        let down = UserPreferences.downloadLimit.value
 		if (down == 0) {
 			downloadLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
 		} else {
 			downloadLimitButton.setTitle(Utils.getSizeText(size: down, decimals: true) + "/S", for: .normal)
 		}
 		
-		let disabledAds = UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds)
+        let disabledAds = UserPreferences.disableAds.value
 		adsSwitch.setOn(disabledAds, animated: false)
 		
 		checkUpdates()
@@ -111,7 +111,7 @@ class SettingsController: ThemedUITableViewController {
 		case 3:
 			let addr = Utils.getWiFiAddress()
 			if let addr = addr {
-				let b = UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey)
+                let b = UserPreferences.ftpKey.value
 				return b ? NSLocalizedString("Connect to: ftp://", comment: "") + addr + ":21" : ""
 			} else {
 				return NSLocalizedString("Connect to WIFI to use FTP", comment: "")
@@ -188,7 +188,7 @@ class SettingsController: ThemedUITableViewController {
 	}
 	
 	@IBAction func darkThemeAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn ? 1 : 0, forKey: UserDefaultsKeys.themeNum)
+        UserPreferences.themeNum.value = sender.isOn ? 1 : 0
         
         UIView.animate(withDuration: 0.1) {
             NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
@@ -196,7 +196,7 @@ class SettingsController: ThemedUITableViewController {
 	}
 	
 	@IBAction func backgroundAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundKey)
+        UserPreferences.background.value = sender.isOn
 		setSwitchHides()
 	}
 	
@@ -204,7 +204,7 @@ class SettingsController: ThemedUITableViewController {
 		if (sender.isOn) {
             let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", comment: ""), preferredStyle: .alert)
 			let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
-				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.backgroundSeedKey)
+                UserPreferences.backgroundSeedKey.value = sender.isOn
 			}
 			let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
 				sender.setOn(false, animated: true)
@@ -213,8 +213,8 @@ class SettingsController: ThemedUITableViewController {
 			controller.addAction(close)
 			present(controller, animated: true)
 		} else {
-			UserDefaults.standard.set(false, forKey: UserDefaultsKeys.seedBackgroundWarning)
-			UserDefaults.standard.set(false, forKey: UserDefaultsKeys.backgroundSeedKey)
+            UserPreferences.seedBackgroundWarning.value = false
+			UserPreferences.backgroundSeedKey.value = false
 		}
 	}
 	
@@ -223,7 +223,7 @@ class SettingsController: ThemedUITableViewController {
 			uploadLimitPicker.dismiss()
 		}
 		if (downloadLimitPicker == nil || downloadLimitPicker.dismissed) {
-			let def = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
+            let def = UserPreferences.downloadLimit.value
 			downloadLimitPicker = SpeedLimitPickerView(self, defaultValue: def, onStateChange: { res in
 				if (res == 0) {
 					sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
@@ -231,7 +231,7 @@ class SettingsController: ThemedUITableViewController {
 					sender.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
 				}
 			}, onDismiss: { res in
-				UserDefaults.standard.set(res, forKey: UserDefaultsKeys.downloadLimit)
+                UserPreferences.downloadLimit.value = res
 				set_download_limit(Int32(res))
 			})
 		}
@@ -242,7 +242,7 @@ class SettingsController: ThemedUITableViewController {
 			downloadLimitPicker.dismiss()
 		}
 		if (uploadLimitPicker == nil || uploadLimitPicker.dismissed) {
-			let def = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
+            let def = UserPreferences.uploadLimit.value
 			uploadLimitPicker = SpeedLimitPickerView(self, defaultValue: def, onStateChange: { res in
 				if (res == 0) {
 					sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
@@ -250,14 +250,14 @@ class SettingsController: ThemedUITableViewController {
 					sender.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
 				}
 			}, onDismiss: { res in
-				UserDefaults.standard.set(res, forKey: UserDefaultsKeys.uploadLimit)
+                UserPreferences.uploadLimit.value = res
 				set_upload_limit(Int32(res))
 			})
 		}
 	}
 	
 	@IBAction func ftpAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpKey)
+        UserPreferences.ftpKey.value = sender.isOn
 		sender.isOn ? Manager.startFTP() : Manager.stopFTP()
 		setSwitchHides()
 		tableView.reloadData()
@@ -267,7 +267,7 @@ class SettingsController: ThemedUITableViewController {
 		if (sender.isOn) {
 			let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", comment: ""), preferredStyle: .alert)
 			let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
-				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
+                UserPreferences.ftpBackgroundKey.value = sender.isOn
 			}
 			let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
 				sender.setOn(false, animated: true)
@@ -276,22 +276,22 @@ class SettingsController: ThemedUITableViewController {
 			controller.addAction(close)
 			present(controller, animated: true)
 		} else {
-			UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.ftpBackgroundKey)
+            UserPreferences.ftpBackgroundKey.value = sender.isOn
 		}
 	}
 	
 	@IBAction func notificationAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.notificationsKey)
+        UserPreferences.notificationsKey.value = sender.isOn
 		setSwitchHides()
 	}
 	
 	@IBAction func notificationSeedAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.notificationsSeedKey)
+        UserPreferences.notificationsSeedKey.value = sender.isOn
 		setSwitchHides()
 	}
 	
 	@IBAction func badgeAction(_ sender: UISwitch) {
-		UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.badgeKey)
+        UserPreferences.badgeKey.value = sender.isOn
 	}
 	
     @IBAction func githubAction(_ sender: UIButton) {
@@ -312,7 +312,7 @@ class SettingsController: ThemedUITableViewController {
 		if (sender.isOn) {
 			let controller = ThemedUIAlertController(title: NSLocalizedString("Supplication", comment: ""), message: NSLocalizedString("If you enjoy this app, consider supporting the developer by keeping the ads on.", comment: ""), preferredStyle: .alert)
 			let enable = UIAlertAction(title: NSLocalizedString("Disable Anyway", comment: ""), style: .destructive) { _ in
-				UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.disableAds)
+                UserPreferences.disableAds.value = sender.isOn
 			}
 			let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
 				sender.setOn(false, animated: true)
@@ -321,7 +321,7 @@ class SettingsController: ThemedUITableViewController {
 			controller.addAction(close)
 			present(controller, animated: true)
 		} else {
-			UserDefaults.standard.set(sender.isOn, forKey: UserDefaultsKeys.disableAds)
+            UserPreferences.disableAds.value = sender.isOn
 		}
 	}
 	

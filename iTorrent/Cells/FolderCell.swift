@@ -22,7 +22,7 @@ class FolderCell : ThemedUITableViewCell {
 	override func themeUpdate() {
 		super.themeUpdate()
 		
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        let theme = UserPreferences.themeNum.value
 		
 		title?.textColor = Themes.shared.theme[theme].mainText
 		size?.textColor = Themes.shared.theme[theme].secondaryText

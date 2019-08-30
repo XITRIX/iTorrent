@@ -27,10 +27,10 @@ class Manager {
 			engineInited = true
             restoreAllTorrents()
 			
-			let down = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
+            let down = UserPreferences.downloadLimit.value
 			set_download_limit(Int32(down))
 			
-			let up = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
+			let up = UserPreferences.uploadLimit.value
 			set_upload_limit(Int32(up))
 			
             while(true) {
@@ -311,7 +311,7 @@ class Manager {
 		if (oldState == Utils.torrentStates.Metadata.rawValue) {
 			save_magnet_to_file(manager.hash)
 		}
-        if UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsKey) &&
+        if UserPreferences.notificationsKey.value &&
 			(oldState == Utils.torrentStates.Downloading.rawValue && (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue)) {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
@@ -336,13 +336,13 @@ class Manager {
                 UIApplication.shared.scheduleLocalNotification(notification)
             }
 			
-			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey) && AppDelegate.backgrounded) {
+            if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
 				UIApplication.shared.applicationIconBadgeNumber += 1
 			}
 			
 			BackgroundTask.checkToStopBackground()
 		}
-		if UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsSeedKey) &&
+        if UserPreferences.notificationsSeedKey.value &&
 			(oldState == Utils.torrentStates.Seeding.rawValue && (newState == Utils.torrentStates.Finished.rawValue)) {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
@@ -367,7 +367,7 @@ class Manager {
 				UIApplication.shared.scheduleLocalNotification(notification)
 			}
 			
-			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey) && AppDelegate.backgrounded) {
+            if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
 				UIApplication.shared.applicationIconBadgeNumber += 1
 			}
 			

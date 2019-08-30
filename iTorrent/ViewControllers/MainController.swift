@@ -115,7 +115,7 @@ class MainController: ThemedUIViewController {
     
         navigationController?.isToolbarHidden = false
 		
-		if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds) && adsLoaded) {
+        if (!UserPreferences.disableAds.value && adsLoaded) {
 			adsView.isHidden = false
 			tableView.contentInset.bottom = adsView.frame.height
 			tableView.scrollIndicatorInsets.bottom = adsView.frame.height
@@ -671,7 +671,7 @@ extension MainController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         // Add banner to view and add constraints as above.
         adsLoaded = true
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds)) {
+        if (!UserPreferences.disableAds.value) {
             bannerView.isHidden = false
             tableView.contentInset.bottom = bannerView.frame.height
             tableView.scrollIndicatorInsets.bottom = bannerView.frame.height

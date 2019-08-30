@@ -43,7 +43,7 @@ class BackgroundTask {
 	}
 	
 	static func startBackground() -> Bool {
-		if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey)) {
+        if (UserPreferences.background.value) {
 			if (Manager.torrentStates.contains(where: { (status) -> Bool in
 				return getBackgroundConditions(status)
 			})) {
@@ -70,9 +70,9 @@ class BackgroundTask {
 			status.displayState == Utils.torrentStates.Metadata.rawValue ||
 			status.displayState == Utils.torrentStates.Hashing.rawValue ||
 			(status.displayState == Utils.torrentStates.Seeding.rawValue &&
-				UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
+                UserPreferences.backgroundSeedKey.value &&
 				status.seedMode) ||
-			(UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey) &&
-			UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpBackgroundKey))
+            (UserPreferences.ftpKey.value &&
+                UserPreferences.ftpBackgroundKey.value)
 	}
 }

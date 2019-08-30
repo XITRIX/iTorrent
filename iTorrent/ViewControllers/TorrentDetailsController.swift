@@ -266,14 +266,14 @@ class TorrentDetailsController: ThemedUITableViewController {
 				if manager.isPaused {
 					start_torrent(managerHash)
 				}
-				if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
-					!UserDefaults.standard.bool(forKey: UserDefaultsKeys.seedBackgroundWarning)) {
+                if (!UserPreferences.backgroundSeedKey.value &&
+                    !UserPreferences.seedBackgroundWarning.value) {
 					let controller = ThemedUIAlertController(title: NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.", comment: ""), preferredStyle: .alert)
 					let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
-						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundSeedKey)
+                        UserPreferences.backgroundSeedKey.value = true
 					}
 					let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.seedBackgroundWarning)
+                        UserPreferences.seedBackgroundWarning.value = true
 					}
 					
 					controller.addAction(enable)

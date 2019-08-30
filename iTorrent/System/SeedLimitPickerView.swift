@@ -45,7 +45,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 		size.append(mbSize)
 		size.append(gbSize)
 		
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        let theme = UserPreferences.themeNum.value
 		
 		view = UIView(frame: CGRect(x: 0, y: tableViewController.view.frame.size.height, width: tableViewController.view.frame.size.width, height: 216))
 		view.clipsToBounds = true
@@ -99,7 +99,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
     @objc func themeUpdate() {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        let theme = UserPreferences.themeNum.value
 		blurEffectView.effect = UIBlurEffect(style: Themes.shared.theme[theme].blurEffect)
 		pickerView.reloadAllComponents()
 	}
@@ -119,7 +119,7 @@ class SeedLimitPickerView : NSObject, UIPickerViewDelegate, UIPickerViewDataSour
 	}
 	
 	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        let theme = UserPreferences.themeNum.value
 		let titleFont:[NSAttributedString.Key : Any] = [ .foregroundColor : Themes.shared.theme[theme].mainText ]
 		if (component == 0 && row == 0) {
 			return NSAttributedString(string: NSLocalizedString("Unlimited", comment: ""), attributes: titleFont)

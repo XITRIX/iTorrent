@@ -45,7 +45,7 @@ class Themes {
 	}
 	
 	static func current() -> ColorPalett {
-		return shared.theme[UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)]
+        return shared.theme[UserPreferences.themeNum.value]
 	}
 	
 }

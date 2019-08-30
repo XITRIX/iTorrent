@@ -23,14 +23,7 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let data = UserDefaults.standard.value(forKey: UserDefaultsKeys.sectionsSortingOrder) as? [Int] {
-            self.data = data
-        }
-//        else {
-//            for s in Utils.torrentStates.allCases {
-//                self.data.append(s.rawValue)
-//            }
-//        }
+        data = UserPreferences.sectionsSortingOrder.value
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,7 +36,7 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        UserDefaults.standard.set(data, forKey: UserDefaultsKeys.sectionsSortingOrder)
+        UserPreferences.sectionsSortingOrder.value = data
     }
     
     @IBAction func revertAction(_ sender: UIBarButtonItem) {

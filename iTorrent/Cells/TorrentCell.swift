@@ -18,7 +18,7 @@ class TorrentCell: ThemedUITableViewCell {
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-		let theme = UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)
+        let theme = UserPreferences.themeNum.value
 		title?.textColor = Themes.shared.theme[theme].mainText
 		info?.textColor = Themes.shared.theme[theme].secondaryText
 		status?.textColor = Themes.shared.theme[theme].secondaryText
