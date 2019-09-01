@@ -118,11 +118,6 @@ class TorrentFilesController : ThemedUIViewController {
         super.viewWillDisappear(animated)
         runUpdate = false
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        Manager.saveTorrents()
-    }
 	
 	func initialize() {
 		let localFiles = get_files_of_torrent_by_hash(managerHash)

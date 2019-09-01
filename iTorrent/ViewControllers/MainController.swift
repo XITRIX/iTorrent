@@ -102,8 +102,6 @@ class MainController: ThemedUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 		
-		navigationController?.toolbar.tintColor = navigationController?.navigationBar.tintColor
-		
 		managers.removeAll()
         managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
         updateFilterQuery()
@@ -629,9 +627,6 @@ extension MainController: UITableViewDelegate {
             viewController.managerHash = managers[indexPath.section][indexPath.row].hash
             
             if (!(splitViewController?.isCollapsed)!) {
-                //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
-                //                if let fileController = nav.topViewController
-                //            }
                 let navController = ThemedUINavigationController(rootViewController: viewController)
                 navController.isToolbarHidden = false
                 navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor

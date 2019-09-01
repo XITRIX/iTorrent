@@ -30,6 +30,10 @@ class ThemedUINavigationController : UINavigationController, Themed {
         
         navigationBar.barStyle = theme.barStyle
         toolbar.barStyle = theme.barStyle
+        toolbar.tintColor = navigationBar.tintColor
+        
+        let f = toolbar.frame
+        toolbar.frame = CGRect(x: f.origin.x, y: f.origin.y, width: f.size.width, height: 44)
         
         setNeedsStatusBarAppearanceUpdate()
     }

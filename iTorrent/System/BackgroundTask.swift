@@ -55,9 +55,7 @@ class BackgroundTask {
 	}
 	
 	static func checkToStopBackground() {
-		if (!Manager.torrentStates.contains(where: { (status) -> Bool in
-			return getBackgroundConditions(status)
-		})) {
+		if (!Manager.torrentStates.contains(where: {getBackgroundConditions($0)})) {
 			if (backgrounding) {
 				Manager.saveTorrents()
 				stopBackgroundTask()

@@ -172,12 +172,12 @@ class TorrentDetailsController: ThemedUITableViewController {
             selectedLabel.text = Utils.getSizeText(size: manager.totalWanted) + " / " + Utils.getSizeText(size: manager.totalSize)
             completedLabel.text = Utils.getSizeText(size: manager.totalWantedDone)
             progressLabel.text = String(format: "%.2f", (manager.totalWanted == 0 ? 0 : Double(manager.totalWantedDone) / Double(manager.totalWanted) * 100)) + "% / " + String(format: "%.2f", totalDownloadProgress * 100) + "%"
-            downloadedLabel.text = Utils.getSizeText(size: manager.totalDownload)
-            uploadedLabel.text = Utils.getSizeText(size: manager.totalUpload)
+            downloadedLabel.text = Utils.getSizeText(size: Manager.managerSaves[managerHash]!.totalDownload + Manager.managerSaves[managerHash]!.totalDownloadSession)
+            uploadedLabel.text = Utils.getSizeText(size: Manager.managerSaves[managerHash]!.totalUpload + Manager.managerSaves[managerHash]!.totalUploadSession)
             seedersLabel.text = String(manager.numSeeds)
             peersLabel.text = String(manager.numPeers)
 			
-			switcher.setOn((Manager.managerSaves[managerHash]?.seedMode)! , animated: true)
+			switcher.setOn(Manager.managerSaves[managerHash]!.seedMode , animated: true)
 			
             if (manager.state == Utils.torrentStates.Hashing.rawValue ||
 				manager.state == Utils.torrentStates.Metadata.rawValue) {

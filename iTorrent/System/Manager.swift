@@ -123,6 +123,9 @@ class Manager {
 			status.addedDate = managerSaves[status.hash]?.addedDate
 			status.seedMode = (managerSaves[status.hash]?.seedMode)!
 			status.seedLimit = (managerSaves[status.hash]?.seedLimit)!
+            
+            managerSaves[status.hash]?.totalDownloadSession = status.totalDownload
+            managerSaves[status.hash]?.totalUploadSession = status.totalUpload
 			
             status.displayState = getDisplayState(manager: status)
 			//print(status.displayState)
@@ -252,7 +255,10 @@ class Manager {
         if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused && (managerSaves[manager.hash]?.seedMode)!) {
             return Utils.torrentStates.Seeding.rawValue
         }
-		if (manager.state == Utils.torrentStates.Seeding.rawValue && (manager.isPaused || !(managerSaves[manager.hash]?.seedMode)!)) {
+		if (manager.state == Utils.torrentStates.Seeding.rawValue && (manager.isPaused || !managerSaves[manager.hash]!.seedMode)) {
+            return Utils.torrentStates.Finished.rawValue
+        }
+        if (manager.state == Utils.torrentStates.Downloading.rawValue && manager.isFinished && !(managerSaves[manager.hash]?.seedMode)!) {
             return Utils.torrentStates.Finished.rawValue
         }
 		if (manager.state == Utils.torrentStates.Downloading.rawValue && !manager.isFinished && manager.isPaused) {
@@ -262,31 +268,22 @@ class Manager {
     }
 	
 	static func stateCorrector(manager: TorrentStatus) {
-		if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
-			!(managerSaves[manager.hash]?.seedMode)!) {
-			stop_torrent(manager.hash)
-		} else if (manager.displayState == Utils.torrentStates.Finished.rawValue &&
-			!manager.isPaused) {
-			stop_torrent(manager.hash)
-		} else if ((manager.state == Utils.torrentStates.Seeding.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
-			manager.isFinished &&
-			!manager.isPaused &&
-			!(managerSaves[manager.hash]?.seedMode)!) {
-			stop_torrent(manager.hash)
-		} else if (manager.state == Utils.torrentStates.Seeding.rawValue &&
-			!manager.isPaused &&
-			!(managerSaves[manager.hash]?.seedMode)!) {
-			stop_torrent(manager.hash)
-		} else if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
-			!manager.isPaused &&
-			(managerSaves[manager.hash]?.seedMode)! &&
-			manager.totalUpload >= (managerSaves[manager.hash]?.seedLimit)! &&
-			(managerSaves[manager.hash]?.seedLimit)! != 0) {
-			managerSaves[manager.hash]?.seedMode = false
-			stop_torrent(manager.hash)
-		} else if (manager.state == Utils.torrentStates.Hashing.rawValue && manager.isPaused) {
-			start_torrent(manager.hash)
-		}
+        if (manager.displayState == Utils.torrentStates.Finished.rawValue &&
+            !manager.isPaused)
+        {
+            stop_torrent(manager.hash)
+        }
+        else if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
+            manager.totalUpload >= (managerSaves[manager.hash]?.seedLimit)! &&
+            (managerSaves[manager.hash]?.seedLimit)! != 0)
+        {
+            managerSaves[manager.hash]?.seedMode = false
+            stop_torrent(manager.hash)
+        }
+        else if (manager.state == Utils.torrentStates.Hashing.rawValue && manager.isPaused)
+        {
+            start_torrent(manager.hash)
+        }
 	}
 	
 	static func stateChanges() {
