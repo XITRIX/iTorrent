@@ -26,6 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		
         Manager.InitManager()
         
+        if #available(iOS 12.0, *) {
+            Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
+        }
+        
         if let splitViewController = window?.rootViewController as? UISplitViewController {
             splitViewController.delegate = self
 			splitViewController.preferredDisplayMode = .allVisible
@@ -110,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
 		if let nav = primaryViewController as? UINavigationController {
-			if nav.topViewController is SettingsController || nav.topViewController is SettingsSortingController {
+			if nav.topViewController is PreferencesController || nav.topViewController is SettingsSortingController {
             	return Utils.createEmptyViewController()
 			}
         }
@@ -119,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         if let navController = controllers[controllers.count - 1] as? UINavigationController {
             var viewControllers : [UIViewController] = []
             while (!(navController.topViewController is MainController) &&
-                   !(navController.topViewController is SettingsController)) {
+                   !(navController.topViewController is PreferencesController)) {
                 let view = navController.topViewController
                 navController.popViewController(animated: false)
                 viewControllers.append(view!)
@@ -130,13 +134,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 return Utils.createEmptyViewController()
             }
 			
-            let theme = UserPreferences.themeNum.value
+            let theme = Themes.current()
             
             let detailNavController = ThemedUINavigationController()
             detailNavController.viewControllers = viewControllers
             detailNavController.setToolbarHidden(false, animated: false)
-			detailNavController.navigationBar.barStyle = Themes.shared.theme[theme].barStyle
-			detailNavController.toolbar.barStyle = Themes.shared.theme[theme].barStyle
+			detailNavController.navigationBar.barStyle = theme.barStyle
+			detailNavController.toolbar.barStyle = theme.barStyle
             detailNavController.navigationBar.tintColor = navController.navigationBar.tintColor
             detailNavController.toolbar.tintColor = navController.navigationBar.tintColor
             

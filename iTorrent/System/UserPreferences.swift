@@ -6,7 +6,7 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class UserPreferences {
     static var background = SettingProperty<Bool>("backgroundKey", true)
@@ -26,6 +26,12 @@ class UserPreferences {
     static let sortingType = SettingProperty<Int>("SortingType", 0)
     static let sortingSections = SettingProperty<Bool>("SortingSections", true)
     
+    static let autoTheme = SettingProperty<Bool>("autoTheme", true) { value in
+        if #available(iOS 13, *) {
+            return value
+        }
+        return false
+    }
     
     private static let localVersion = (try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)) ?? ""
     static let versionNews = SettingProperty<Bool>("versionNews" + localVersion, false)
@@ -33,14 +39,19 @@ class UserPreferences {
     class SettingProperty<T> {
         let key : String
         let defaultValue : T
+        let calculatedValue : ((T)->(T))?
         var value : T {
-            get { return UserDefaults.standard.value(forKey: key) as? T ?? defaultValue }
+            get {
+                let res = UserDefaults.standard.value(forKey: key) as? T ?? defaultValue
+                return calculatedValue?(res) ?? res
+            }
             set { UserDefaults.standard.set(newValue, forKey: key) }
         }
         
-        init(_ key: String, _ defaultValue: T) {
+        init(_ key: String, _ defaultValue: T, calculatedValue: ((T)->(T))? = nil) {
             self.key = key
             self.defaultValue = defaultValue
+            self.calculatedValue = calculatedValue
         }
     }
 }

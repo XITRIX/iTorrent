@@ -75,6 +75,31 @@
 "Trackers" = "Trackers";
 
 //Settings Controller
+"Settings.Order" = "Section order";
+"Settings.AutoTheme" = "Automatic theme";
+"Settings.Theme" = "Dark mode";
+"Settings.BackgroundEnable" = "Enable";
+"Settings.BackgroundSeeding" = "Allow seeding";
+"Settings.BackgroundHeader" = "Background downloading";
+"Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
+"Settings.DownLimit" = "Download Limit";
+"Settings.UpLimit" = "Upload Limit";
+"Settings.SpeedHeader" = "Speed limitation";
+"Settings.FTPEnable" = "Enable";
+"Settings.FTPBackground" = "Run in background";
+"Settings.FTPHeader" = "FTP Server (BETA)";
+"Settings.NotifyFinishLoad" = "On finish loading";
+"Settings.NotifyFinishSeed" = "On finish seeding";
+"Settings.NotifyBadge" = "Enable app's badge icon";
+"Settings.NotifyHeader" = "Notifications";
+"Settings.UpdateSite" = "Page on GitHub";
+"Settings.UpdateSite.Open" = "Open";
+"Settings.UpdateHeader" = "Updates";
+"Settings.DonateDisable" = "Disable ADS";
+"Settings.DonateCard" = "VISA CREDIT CARD NUMBER";
+"Settings.DonateCard.Copy" = "Copy";
+"Settings.DonateHeader" = "Donate for donuts";
+
 "Warning" = "Warning";
 "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 "Enable" = "Enable";

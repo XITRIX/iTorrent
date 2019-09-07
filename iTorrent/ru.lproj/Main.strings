@@ -116,6 +116,9 @@
 /* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "MGE-5Q-ZzR"; */
 "MGE-5Q-ZzR.title" = "Настройки";
 
+/* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "MGE-5Q-ZzR"; */
+"lAo-8g-vTZ.title" = "Настройки";
+
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "OGs-R9-Pih"; */
 "OGs-R9-Pih.title" = "Отмена";
 
@@ -264,7 +267,7 @@
 "tPP-KE-5PY.text" = "Разрешить раздачу";
 
 /* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "tSN-hF-er4"; */
-"tSN-hF-er4.title" = "Отменить Все";
+"tSN-hF-er4.title" = "Убрать Все";
 
 /* Class = "UITableViewSection"; headerTitle = "Downloading"; ObjectID = "Ji6-fS-SS9"; */
 "Ji6-fS-SS9.headerTitle" = "Загрузка";
@@ -275,8 +278,11 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "umK-F7-bUF"; */
 "umK-F7-bUF.text" = "Label";
 
-/* Class = "UILabel"; text = "Dark theme"; ObjectID = "veD-oa-Jz4"; */
-"veD-oa-Jz4.text" = "Тёмная тема";
+/* Class = "UILabel"; text = "Automatic theme"; ObjectID = "veD-oa-Jz4"; */
+"veD-oa-Jz4.text" = "Системная тема";
+
+/* Class = "UILabel"; text = "Dark theme"; ObjectID = "Mjf-ST-A2R"; */
+"Mjf-ST-A2R.text" = "Тёмный режим";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "w6E-Ia-pgc"; */
 "w6E-Ia-pgc.text" = "Title";

@@ -75,6 +75,31 @@
 "Trackers" = "Трекеры";
 
 //Settings Controller
+"Settings.Order" = "Порядок секций";
+"Settings.AutoTheme" = "Оформление системы";
+"Settings.Theme" = "Тёмная тема";
+"Settings.BackgroundEnable" = "Включить";
+"Settings.BackgroundSeeding" = "Разрешить раздачу";
+"Settings.BackgroundHeader" = "Фоновая загрузка";
+"Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
+"Settings.DownLimit" = "Лимит загрузки";
+"Settings.UpLimit" = "Лимит раздачи";
+"Settings.SpeedHeader" = "Ограничение скорости";
+"Settings.FTPEnable" = "Включить";
+"Settings.FTPBackground" = "Работа в фоне";
+"Settings.FTPHeader" = "FTP Сервер (Бета)";
+"Settings.NotifyFinishLoad" = "По окончании загрузки";
+"Settings.NotifyFinishSeed" = "По окончании раздачи";
+"Settings.NotifyBadge" = "Показывать бейджик";
+"Settings.NotifyHeader" = "Оповещения";
+"Settings.UpdateSite" = "Страница на GitHub";
+"Settings.UpdateSite.Open" = "Открыть";
+"Settings.UpdateHeader" = "Обновления";
+"Settings.DonateDisable" = "Отключить рекламу";
+"Settings.DonateCard" = "Номер карты VISA";
+"Settings.DonateCard.Copy" = "Скопировать";
+"Settings.DonateHeader" = "Донат на еду";
+
 "Warning" = "Внимание";
 "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 "Enable" = "Включить";

@@ -15,6 +15,7 @@ class Themes {
 	static let shared = Themes()
 	
 	var theme : [ColorPalett] = []
+    var currentUserTheme : Int!
 	
 	private init() {
 		let darkTheme = ColorPalett()
@@ -30,6 +31,7 @@ class Themes {
 		darkTheme.actionCancelButtonColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 28.0/255.0, alpha: 1.0)
         darkTheme.progressBarBackground = UIColor(red: 0.24, green: 0.24, blue: 0.25, alpha: 1)
 		darkTheme.actionButtonColor = .orange
+        darkTheme.tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
 		darkTheme.statusBarStyle = .lightContent
 		darkTheme.barStyle = .blackTranslucent
 		darkTheme.blurEffect = .dark
@@ -45,6 +47,11 @@ class Themes {
 	}
 	
 	static func current() -> ColorPalett {
+        if #available(iOS 12.0, *) {
+            if (UserPreferences.autoTheme.value) {
+                return shared.theme[UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark ? 1 : 0]
+            }
+        }
         return shared.theme[UserPreferences.themeNum.value]
 	}
 	
@@ -62,6 +69,7 @@ class ColorPalett {
 	var actionCancelButtonColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
     var progressBarBackground = UIColor(red: 0.85, green: 0.85, blue: 0.87, alpha: 1)
 	var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+    var tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
 	var statusBarStyle : UIStatusBarStyle = .default
 	var barStyle : UIBarStyle = .default
 	var blurEffect : UIBlurEffect.Style = .extraLight

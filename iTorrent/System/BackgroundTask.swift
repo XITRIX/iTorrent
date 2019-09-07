@@ -10,7 +10,7 @@ import AVFoundation
 
 class BackgroundTask {
 	
-	static var player = AVAudioPlayer()
+    static var player: AVAudioPlayer?
 	static var timer = Timer()
 	static var backgrounding = false
 	
@@ -24,7 +24,7 @@ class BackgroundTask {
 	static func stopBackgroundTask() {
 		if (backgrounding) {
 			backgrounding = false
-			player.stop()
+			player?.stop()
 		}
 	}
 
@@ -34,11 +34,11 @@ class BackgroundTask {
 			let alertSound = URL(fileURLWithPath: bundle!)
             try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
 			try AVAudioSession.sharedInstance().setActive(true)
-			try BackgroundTask.player = AVAudioPlayer(contentsOf: alertSound)
-			BackgroundTask.player.numberOfLoops = -1
-			BackgroundTask.player.volume = 0.01
-			BackgroundTask.player.prepareToPlay()
-			BackgroundTask.player.play()
+            BackgroundTask.player = try AVAudioPlayer(contentsOf: alertSound)
+			BackgroundTask.player?.numberOfLoops = -1
+			BackgroundTask.player?.volume = 0.01
+			BackgroundTask.player?.prepareToPlay()
+			BackgroundTask.player?.play()
 		} catch { print(error) }
 	}
 	

@@ -22,13 +22,13 @@ class FolderCell : ThemedUITableViewCell {
 	override func themeUpdate() {
 		super.themeUpdate()
 		
-        let theme = UserPreferences.themeNum.value
+        let theme = Themes.current()
 		
-		title?.textColor = Themes.shared.theme[theme].mainText
-		size?.textColor = Themes.shared.theme[theme].secondaryText
+		title?.textColor = theme.mainText
+		size?.textColor = theme.secondaryText
 		
 		let bgColorView = UIView()
-		bgColorView.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
+		bgColorView.backgroundColor = theme.backgroundSecondary
 		selectedBackgroundView = bgColorView
 	}
 	

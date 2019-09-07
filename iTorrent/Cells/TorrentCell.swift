@@ -18,13 +18,13 @@ class TorrentCell: ThemedUITableViewCell {
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-        let theme = UserPreferences.themeNum.value
-		title?.textColor = Themes.shared.theme[theme].mainText
-		info?.textColor = Themes.shared.theme[theme].secondaryText
-		status?.textColor = Themes.shared.theme[theme].secondaryText
+        let theme = Themes.current()
+		title?.textColor = theme.mainText
+		info?.textColor = theme.secondaryText
+		status?.textColor = theme.secondaryText
 		
 		let bgColorView = UIView()
-		bgColorView.backgroundColor = Themes.shared.theme[theme].backgroundSecondary
+		bgColorView.backgroundColor = theme.backgroundSecondary
 		selectedBackgroundView = bgColorView
 	}
     

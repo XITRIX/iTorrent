@@ -27,4 +27,18 @@ class ThemedUISplitViewController : UISplitViewController, Themed {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return Themes.current().statusBarStyle
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if #available(iOS 13.0, *) {
+            let hasUserInterfaceStyleChanged = previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? true
+            if (hasUserInterfaceStyleChanged) {
+                Themes.shared.currentUserTheme = traitCollection.userInterfaceStyle.rawValue
+                if (UserPreferences.autoTheme.value) {
+                    NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+                }
+            }
+        }
+    }
 }

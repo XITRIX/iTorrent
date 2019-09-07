@@ -145,3 +145,9 @@ class Utils {
         return body(cStrings)
     }
 }
+
+class Localize {
+    static func get(_ key: String) -> String {
+        return NSLocalizedString(key, comment: "")
+    }
+}
