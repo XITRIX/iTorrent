@@ -18,7 +18,7 @@ class Themes {
     var currentUserTheme : Int!
 	
 	private init() {
-		let darkTheme = ColorPalett()
+        var darkTheme = ColorPalett()
 		
 		darkTheme.mainText = UIColor.white
 		darkTheme.secondaryText = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
@@ -47,7 +47,7 @@ class Themes {
 	}
 	
 	static func current() -> ColorPalett {
-        if #available(iOS 12.0, *) {
+        if #available(iOS 13.0, *) {
             if (UserPreferences.autoTheme.value) {
                 return shared.theme[UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark ? 1 : 0]
             }
@@ -57,7 +57,7 @@ class Themes {
 	
 }
 
-class ColorPalett {
+struct ColorPalett: Equatable {
 	var mainText = UIColor.black
 	var secondaryText = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
 	var tertiaryText = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)

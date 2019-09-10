@@ -30,7 +30,7 @@ class PreferencesController : ThemedUIViewController {
         // APPEARENCE
         var appearence = [CellModelProtocol]()
         appearence.append(SegueCell.Model(title: "Settings.Order"))
-        appearence.append(SwitchCell.ModelProperty(title: "Settings.AutoTheme", property: UserPreferences.autoTheme,
+        appearence.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
                                                    hiddenCondition: {
                                                     if #available(iOS 13, *) {
                                                         return false
@@ -38,18 +38,22 @@ class PreferencesController : ThemedUIViewController {
                                                     return true
                                                    },
                                                    action: { switcher in
-                                                    UIView.transition(with: self.tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
+                                                    let oldTheme = Themes.current()
+                                                    UserPreferences.autoTheme.value = switcher.isOn
+                                                    let newTheme = Themes.current()
+                                                    
+                                                    if (oldTheme != newTheme) {
+                                                        CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
                                                         NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
-                                                        self.tableView.reloadData()
-                                                    })
+                                                    }
+                                                    self.tableView.reloadData()
         }))
         appearence.append(SwitchCell.Model(title: "Settings.Theme",
                                            defaultValue: { UserPreferences.themeNum.value == 1 },
                                            hiddenCondition: { UserPreferences.autoTheme.value }) { switcher in
                                             UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
-                                            UIView.animate(withDuration: 0.1) {
-                                                NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
-                                            }
+                                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
+                                            NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
         })
         data.append(PreferencesController.Section(rowModels: appearence))
         

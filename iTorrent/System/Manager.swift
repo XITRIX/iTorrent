@@ -252,13 +252,14 @@ class Manager {
 	}
     
     static func getDisplayState(manager: TorrentStatus) -> String {
-        if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused && (managerSaves[manager.hash]?.seedMode)!) {
+        if ((manager.state == Utils.torrentStates.Finished.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
+            manager.isFinished && !manager.isPaused && managerSaves[manager.hash]!.seedMode) {
             return Utils.torrentStates.Seeding.rawValue
         }
 		if (manager.state == Utils.torrentStates.Seeding.rawValue && (manager.isPaused || !managerSaves[manager.hash]!.seedMode)) {
             return Utils.torrentStates.Finished.rawValue
         }
-        if (manager.state == Utils.torrentStates.Downloading.rawValue && manager.isFinished && !(managerSaves[manager.hash]?.seedMode)!) {
+        if (manager.state == Utils.torrentStates.Downloading.rawValue && manager.isFinished && manager.isPaused) {
             return Utils.torrentStates.Finished.rawValue
         }
 		if (manager.state == Utils.torrentStates.Downloading.rawValue && !manager.isFinished && manager.isPaused) {
