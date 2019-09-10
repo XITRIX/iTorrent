@@ -24,12 +24,12 @@ class ThemedUIAlertController : UIAlertController, Themed {
 		
         if #available(iOS 13.0, *) {}
         else {
-            visualEffectView.forEach({$0.effect = UIBlurEffect(style: Themes.current().blurEffect)})
+            visualEffectView.forEach({$0.effect = UIBlurEffect(style: Themes.current.blurEffect)})
         }
 	}
 	
 	func themeUpdate() {
-        let theme = Themes.current()
+        let theme = Themes.current
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!

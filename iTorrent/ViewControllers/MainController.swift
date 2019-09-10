@@ -45,7 +45,7 @@ class MainController: ThemedUIViewController {
     override func themeUpdate() {
         super.themeUpdate()
         
-        let theme = Themes.current()
+        let theme = Themes.current
         tableView.backgroundColor = theme.backgroundMain
         searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
         searchController.searchBar.barStyle = theme.barStyle
@@ -211,7 +211,7 @@ class MainController: ThemedUIViewController {
             let addURLController = ThemedUIAlertController(title: NSLocalizedString("Add from URL", comment: ""), message: NSLocalizedString("Please enter the existing torrent's URL below", comment: ""), preferredStyle: .alert)
             addURLController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "https://"
-				let theme = Themes.current()
+				let theme = Themes.current
 				textField.keyboardAppearance = theme.keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
@@ -267,7 +267,7 @@ class MainController: ThemedUIViewController {
             let addMagnetController = ThemedUIAlertController(title: NSLocalizedString("Add from magnet", comment: ""), message: NSLocalizedString("Please enter the magnet link below", comment: ""), preferredStyle: .alert)
             addMagnetController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "magnet:"
-				let theme = Themes.current()
+				let theme = Themes.current
 				textField.keyboardAppearance = theme.keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
@@ -603,7 +603,7 @@ extension MainController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! TableHeaderView
-        let theme = Themes.current()
+        let theme = Themes.current
 
         cell.title.text = NSLocalizedString(headers[section], comment: "")
         cell.background.effect = UIBlurEffect(style: theme.blurEffect)

@@ -13,7 +13,7 @@ class DatasetPicker : PopupView, Themed {
     var action : ((String)->())!
     
     func themeUpdate() {
-        toolbar.tintColor = Themes.current().tintColor
+        toolbar.tintColor = Themes.current.tintColor
     }
     
     init(data : [[String]], dataSelected: @escaping (String)->()) {

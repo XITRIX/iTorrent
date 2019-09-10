@@ -21,7 +21,7 @@ class ButtonCell : ThemedUITableViewCell, PreferenceCellProtocol {
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-        let theme = Themes.current()
+        let theme = Themes.current
         title?.textColor = theme.mainText
 		button?.titleLabel?.textColor = theme.tintColor
 	}

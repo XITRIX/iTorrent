@@ -44,7 +44,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-		tableView.backgroundColor = Themes.current().backgroundMain
+		tableView.backgroundColor = Themes.current.backgroundMain
 	}
 	
 	override func viewDidLoad() {
@@ -141,7 +141,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		let controller = ThemedUIAlertController(title: NSLocalizedString("Add Tracker", comment: ""), message: NSLocalizedString("Enter the full tracker's URL", comment: ""), preferredStyle: .alert)
 		controller.addTextField(configurationHandler: { (textField) in
 			textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
-			textField.keyboardAppearance = Themes.current().keyboardAppearence
+			textField.keyboardAppearance = Themes.current.keyboardAppearence
 		})
 		let add = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { _ in
 			let textField = controller.textFields![0]

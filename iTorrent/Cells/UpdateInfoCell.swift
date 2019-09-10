@@ -16,7 +16,7 @@ class UpdateInfoCell : ThemedUITableViewCell, PreferenceCellProtocol {
     
     override func themeUpdate() {
         super.themeUpdate()
-        loader?.style = Themes.current().loadingIndicatorStyle
+        loader?.style = Themes.current.loadingIndicatorStyle
     }
     
     func setModel(_ model: CellModelProtocol) {

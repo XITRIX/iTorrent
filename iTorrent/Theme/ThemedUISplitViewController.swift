@@ -25,7 +25,7 @@ class ThemedUISplitViewController : UISplitViewController, Themed {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current().statusBarStyle
+        return Themes.current.statusBarStyle
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

@@ -52,7 +52,7 @@ class TorrentFilesController : ThemedUIViewController {
 	override func themeUpdate() {
 		super.themeUpdate()
         
-		let theme = Themes.current()
+		let theme = Themes.current
 		tableView.backgroundColor = theme.backgroundMain
 		editBarItems[2].tintColor = theme.tertiaryText
 	}

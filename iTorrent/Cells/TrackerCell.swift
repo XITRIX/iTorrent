@@ -18,7 +18,7 @@ class TrackerCell : ThemedUITableViewCell {
     
 	override func themeUpdate() {
 		super.themeUpdate()
-		let theme = Themes.current()
+		let theme = Themes.current
 		title?.textColor = theme.mainText
 		message?.textColor = theme.secondaryText
 		seeders?.textColor = theme.secondaryText

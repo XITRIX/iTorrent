@@ -38,9 +38,9 @@ class PreferencesController : ThemedUIViewController {
                                                     return true
                                                    },
                                                    action: { switcher in
-                                                    let oldTheme = Themes.current()
+                                                    let oldTheme = Themes.current
                                                     UserPreferences.autoTheme.value = switcher.isOn
-                                                    let newTheme = Themes.current()
+                                                    let newTheme = Themes.current
                                                     
                                                     if (oldTheme != newTheme) {
                                                         CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))

@@ -34,7 +34,7 @@ class SpeedPicker : PopupView, Themed {
     var sizes = ["KB/S", "MB/S"]
     
     @objc func themeUpdate() {
-        let theme = Themes.current()
+        let theme = Themes.current
         toolbar.tintColor = theme.tintColor
         fxView.effect = UIBlurEffect(style: theme.blurEffect)
         if #available(iOS 11, *) {} else {
@@ -100,7 +100,7 @@ extension SpeedPicker : UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let theme = Themes.current()
+        let theme = Themes.current
         let titleFont:[NSAttributedString.Key : Any] = [ .foregroundColor : theme.mainText ]
         if (component == 0 && row == 0) {
             return NSAttributedString(string: NSLocalizedString("Unlimited", comment: ""), attributes: titleFont)

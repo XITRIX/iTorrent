@@ -45,16 +45,17 @@ class Themes {
 		theme.append(ColorPalett())
 		theme.append(darkTheme)
 	}
-	
-	static func current() -> ColorPalett {
-        if #available(iOS 13.0, *) {
-            if (UserPreferences.autoTheme.value) {
-                return shared.theme[UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark ? 1 : 0]
+    
+    static var current : ColorPalett {
+        get {
+            if #available(iOS 13.0, *) {
+                if (UserPreferences.autoTheme.value) {
+                    return shared.theme[UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark ? 1 : 0]
+                }
             }
+            return shared.theme[UserPreferences.themeNum.value]
         }
-        return shared.theme[UserPreferences.themeNum.value]
-	}
-	
+    }
 }
 
 struct ColorPalett: Equatable {

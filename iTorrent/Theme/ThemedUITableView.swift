@@ -21,7 +21,7 @@ class ThemedUITableView : UITableView, Themed {
     }
     
     @objc func themeUpdate() {
-		backgroundColor = Themes.current().backgroundSecondary
+		backgroundColor = Themes.current.backgroundSecondary
 		reloadData()
 	}
 }

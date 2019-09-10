@@ -14,7 +14,7 @@ class AddTorrentController : ThemedUIViewController {
     @IBOutlet var tableView: UITableView!
 	@IBOutlet weak var weightLabel: UIBarButtonItem! {
 		didSet {
-			weightLabel.tintColor = Themes.current().secondaryText
+			weightLabel.tintColor = Themes.current.secondaryText
 		}
 	}
 	
@@ -32,7 +32,7 @@ class AddTorrentController : ThemedUIViewController {
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-		tableView.backgroundColor = Themes.current().backgroundMain
+		tableView.backgroundColor = Themes.current.backgroundMain
 	}
     
     deinit {

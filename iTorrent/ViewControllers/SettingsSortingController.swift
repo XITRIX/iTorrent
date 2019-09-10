@@ -17,7 +17,7 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     
     override func themeUpdate() {
         super.themeUpdate()
-        tableView.backgroundColor = Themes.current().backgroundMain
+        tableView.backgroundColor = Themes.current.backgroundMain
     }
     
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ extension SettingsSortingController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = NSLocalizedString(Utils.torrentStates.init(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
         
-        let theme = Themes.current()
+        let theme = Themes.current
         cell.textLabel?.textColor = theme.mainText
         cell.backgroundColor = theme.backgroundMain
         

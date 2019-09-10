@@ -21,7 +21,7 @@ class ThemedUINavigationController : UINavigationController, Themed {
     }
     
     @objc func themeUpdate() {
-        let theme = Themes.current()
+        let theme = Themes.current
         
         if #available(iOS 13.0, *) {
             let i = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
@@ -39,6 +39,6 @@ class ThemedUINavigationController : UINavigationController, Themed {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current().statusBarStyle
+        return Themes.current.statusBarStyle
     }
 }

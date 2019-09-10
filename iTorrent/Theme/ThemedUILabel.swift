@@ -21,6 +21,6 @@ class ThemedUILabel : UILabel, Themed {
     }
     
     @objc func themeUpdate() {
-		textColor = Themes.current().mainText
+		textColor = Themes.current.mainText
 	}
 }

@@ -59,7 +59,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 		super.themeUpdate()
 		
 		if let label = navigationItem.titleView as? UILabel {
-			let theme = Themes.current()
+			let theme = Themes.current
 			label.textColor = theme.mainText
 		}
 	}
@@ -96,7 +96,7 @@ class TorrentDetailsController: ThemedUITableViewController {
         filesButtonLabel.text = NSLocalizedString("Files", comment: "")
         
 		// MARQUEE LABEL
-		let theme = Themes.current()
+		let theme = Themes.current
 		let label = MarqueeLabel.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
 		label.font = UIFont.boldSystemFont(ofSize: 17)
 		label.textAlignment = NSTextAlignment.center

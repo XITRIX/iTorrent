@@ -134,7 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 return Utils.createEmptyViewController()
             }
 			
-            let theme = Themes.current()
+            let theme = Themes.current
             
             let detailNavController = ThemedUINavigationController()
             detailNavController.viewControllers = viewControllers

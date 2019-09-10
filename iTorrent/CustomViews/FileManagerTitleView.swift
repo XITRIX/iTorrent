@@ -47,7 +47,7 @@ class FileManagerTitleView : UIView, Themed {
 	}
 	
     @objc func themeUpdate() {
-		let theme = Themes.current()
+		let theme = Themes.current
 		title?.textColor = theme.mainText
 		subTitle?.textColor = theme.tertiaryText
 	}

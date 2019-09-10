@@ -31,7 +31,7 @@ class ThemedUITableViewCell : UITableViewCell, Themed {
     }
     
     @objc func themeUpdate() {
-		let theme = Themes.current()
+		let theme = Themes.current
 		
 		textLabel?.textColor = theme.mainText
 		backgroundColor = theme.backgroundMain

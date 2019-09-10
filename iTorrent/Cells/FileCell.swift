@@ -28,7 +28,7 @@ class FileCell: ThemedUITableViewCell {
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-        let theme = Themes.current()
+        let theme = Themes.current
 		title?.textColor = theme.mainText
 		size?.textColor = theme.secondaryText
 		
