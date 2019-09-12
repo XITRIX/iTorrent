@@ -30,24 +30,31 @@ class PreferencesController : ThemedUIViewController {
         // APPEARENCE
         var appearence = [CellModelProtocol]()
         appearence.append(SegueCell.Model(title: "Settings.Order"))
-        appearence.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
-                                                   hiddenCondition: {
-                                                    if #available(iOS 13, *) {
-                                                        return false
-                                                    }
-                                                    return true
-                                                   },
-                                                   action: { switcher in
-                                                    let oldTheme = Themes.current
-                                                    UserPreferences.autoTheme.value = switcher.isOn
-                                                    let newTheme = Themes.current
-                                                    
-                                                    if (oldTheme != newTheme) {
-                                                        CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                        NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
-                                                    }
-                                                    self.tableView.reloadData()
-        }))
+        if #available(iOS 13, *) {
+            appearence.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
+                                                       action: { switcher in
+                                                        let oldTheme = Themes.current
+                                                        UserPreferences.autoTheme.value = switcher.isOn
+                                                        Themes.shared.currentUserTheme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle.rawValue
+                                                        let newTheme = Themes.current
+                                                        
+                                                        if (oldTheme != newTheme) {
+                                                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
+                                                            NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+                                                            self.tableView.reloadData()
+                                                        } else {
+                                                            if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Themed {
+                                                                rvc.themeUpdate()
+                                                            }
+                                                            if (!switcher.isOn) {
+                                                                self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                                                            }
+                                                            else {
+                                                                self.tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                                                            }
+                                                        }
+            }))
+        }
         appearence.append(SwitchCell.Model(title: "Settings.Theme",
                                            defaultValue: { UserPreferences.themeNum.value == 1 },
                                            hiddenCondition: { UserPreferences.autoTheme.value }) { switcher in

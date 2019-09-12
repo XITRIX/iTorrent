@@ -50,7 +50,11 @@ class Themes {
         get {
             if #available(iOS 13.0, *) {
                 if (UserPreferences.autoTheme.value) {
-                    return shared.theme[UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark ? 1 : 0]
+                    if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark) {
+                        return shared.theme[1]
+                    } else if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light) {
+                        return shared.theme[0]
+                    }
                 }
             }
             return shared.theme[UserPreferences.themeNum.value]

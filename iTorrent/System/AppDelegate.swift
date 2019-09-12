@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 		
         Manager.InitManager()
         
-        if #available(iOS 12.0, *) {
+        if #available(iOS 13.0, *) {
             Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
         }
         
