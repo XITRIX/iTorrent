@@ -39,9 +39,13 @@ class PreferencesController : ThemedUIViewController {
                                                         let newTheme = Themes.current
                                                         
                                                         if (oldTheme != newTheme) {
-                                                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                            NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
-                                                            self.tableView.reloadData()
+                                                            self.navigationController?.view.isUserInteractionEnabled = false
+                                                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                                                                CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
+                                                                NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+                                                                self.tableView.reloadData()
+                                                                self.navigationController?.view.isUserInteractionEnabled = true
+                                                            }
                                                         } else {
                                                             if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Themed {
                                                                 rvc.themeUpdate()
@@ -58,9 +62,13 @@ class PreferencesController : ThemedUIViewController {
         appearence.append(SwitchCell.Model(title: "Settings.Theme",
                                            defaultValue: { UserPreferences.themeNum.value == 1 },
                                            hiddenCondition: { UserPreferences.autoTheme.value }) { switcher in
-                                            UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
-                                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                            NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+                                            self.navigationController?.view.isUserInteractionEnabled = false
+                                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                                                UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
+                                                CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
+                                                NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+                                                self.navigationController?.view.isUserInteractionEnabled = true
+                                            }
         })
         data.append(PreferencesController.Section(rowModels: appearence))
         

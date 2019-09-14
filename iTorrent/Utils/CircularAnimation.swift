@@ -9,28 +9,15 @@
 import UIKit
 
 class CircularAnimation {
-    private static var window: UIWindow?
-    
     public static func animate(startingPoint: CGPoint) {
         let view = UIApplication.shared.keyWindow!
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            return
-        }
-
-        view.layer.render(in: context)
-
-        let viewImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
         
-        let img = UIImageView(image: viewImage, highlightedImage: viewImage)
-        
+        let snapshot = view.snapshotView(afterScreenUpdates: true)!
         let imgVC = UIViewController()
-        imgVC.view.addSubview(img)
-        window = UIWindow(frame: view.bounds)
-        window?.windowLevel = UIWindow.Level.statusBar + 1
-        window?.rootViewController = imgVC
-        window?.isHidden = false
+        imgVC.modalPresentationStyle = .overFullScreen
+        imgVC.modalPresentationCapturesStatusBarAppearance = false
+        
+        imgVC.view.addSubview(snapshot)
         
         let circle = UIView()
         circle.frame = frameForCircle(withViewCenter: view.center, size: view.bounds.size, startPoint: startingPoint)
@@ -38,16 +25,15 @@ class CircularAnimation {
         circle.center = startingPoint
         circle.backgroundColor = .blue
         
-        img.mask = circle
+        snapshot.mask = circle
         
-        UIView.animate(withDuration: 0.3, animations: {
-//            window?.alpha = 0
-//            circle.transform = CGAffineTransform.identity
-            circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-        }) { _ in
-            window?.isHidden = true
-            window = nil
-        }
+        view.rootViewController?.present(imgVC, animated: false, completion: {
+            UIView.animate(withDuration: 0.3, animations: {
+                circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+            }) { _ in
+                imgVC.dismiss(animated: false)
+            }
+        })
     }
     
     private static func frameForCircle (withViewCenter viewCenter:CGPoint, size viewSize:CGSize, startPoint:CGPoint) -> CGRect {
