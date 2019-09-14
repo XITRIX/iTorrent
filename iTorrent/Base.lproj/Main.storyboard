@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,42 +21,37 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" focusStyle="custom" rowHeight="104" id="iuc-bp-cy2" customClass="TorrentCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="104"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" focusStyle="custom" rowHeight="96" id="Mmj-KY-1vJ" customClass="TorrentCell" customModule="iTorrent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iuc-bp-cy2" id="sD2-e9-Zfe">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="104"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mmj-KY-1vJ" id="E45-MS-7sZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpe-pW-UBv">
-                                                    <rect key="frame" x="16" y="11" width="0.0" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="bYH-yf-Nkj"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-Gs-bKt">
+                                                    <rect key="frame" x="14" y="11" width="360" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZ1-1X-iHv">
-                                                    <rect key="frame" x="14" y="39" width="12.5" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Ot9-7Q-io3"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8Y-ge-ZNc">
+                                                    <rect key="frame" x="14" y="32" width="358" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEd-Gu-c91">
-                                                    <rect key="frame" x="14" y="58" width="12.5" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="k0o-pQ-lXC"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2L-I1-5Ec">
+                                                    <rect key="frame" x="14" y="52" width="358" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gYa-03-otc">
-                                                    <rect key="frame" x="14" y="83.5" width="13.5" height="2"/>
+                                                <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nRg-CD-d0M">
+                                                    <rect key="frame" x="14" y="79" width="368" height="2"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -65,26 +60,12 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </progressView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="gYa-03-otc" secondAttribute="bottom" constant="18.5" id="0au-Fy-4Sr"/>
-                                                <constraint firstItem="KZ1-1X-iHv" firstAttribute="top" secondItem="Hpe-pW-UBv" secondAttribute="bottom" constant="8" id="3Kl-dH-xTz"/>
-                                                <constraint firstItem="dEd-Gu-c91" firstAttribute="top" secondItem="Hpe-pW-UBv" secondAttribute="bottom" constant="27" id="C3D-Ga-jcp"/>
-                                                <constraint firstItem="KZ1-1X-iHv" firstAttribute="leading" secondItem="sD2-e9-Zfe" secondAttribute="leading" constant="14" id="EYM-cm-10s"/>
-                                                <constraint firstItem="Hpe-pW-UBv" firstAttribute="leading" secondItem="sD2-e9-Zfe" secondAttribute="leadingMargin" id="GCj-Uz-FfO"/>
-                                                <constraint firstAttribute="trailing" secondItem="KZ1-1X-iHv" secondAttribute="trailing" constant="1" id="Rpl-8j-h3N"/>
-                                                <constraint firstItem="Hpe-pW-UBv" firstAttribute="top" secondItem="sD2-e9-Zfe" secondAttribute="topMargin" id="TgV-Zv-MJf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Hpe-pW-UBv" secondAttribute="trailing" id="WAx-CW-Hr1"/>
-                                                <constraint firstItem="gYa-03-otc" firstAttribute="leading" secondItem="sD2-e9-Zfe" secondAttribute="leading" constant="14" id="gcN-PK-oxi"/>
-                                                <constraint firstAttribute="trailing" secondItem="dEd-Gu-c91" secondAttribute="trailing" constant="1" id="go5-fT-eSc"/>
-                                                <constraint firstItem="dEd-Gu-c91" firstAttribute="leading" secondItem="sD2-e9-Zfe" secondAttribute="leading" constant="14" id="xKW-fu-JoW"/>
-                                                <constraint firstAttribute="trailing" secondItem="gYa-03-otc" secondAttribute="trailing" id="ygm-Xl-vgi"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="info" destination="KZ1-1X-iHv" id="VO0-wj-vI3"/>
-                                            <outlet property="progress" destination="gYa-03-otc" id="kUe-8w-Vyi"/>
-                                            <outlet property="status" destination="dEd-Gu-c91" id="Wct-es-A85"/>
-                                            <outlet property="title" destination="Hpe-pW-UBv" id="HKC-dR-nhj"/>
+                                            <outlet property="info" destination="V8Y-ge-ZNc" id="kqg-eI-ThB"/>
+                                            <outlet property="progress" destination="nRg-CD-d0M" id="Kzv-UQ-x2w"/>
+                                            <outlet property="status" destination="H2L-I1-5Ec" id="OEd-F9-0Ux"/>
+                                            <outlet property="title" destination="ypF-Gs-bKt" id="N4W-Ho-6ZF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -168,7 +149,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="DBB-0b-eSW"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eIm-ws-yru"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9X9-oB-kXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -951,7 +932,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="4es-eS-3GG" kind="show" identifier="Trackers" id="01Z-Cp-EqA"/>
+                                            <segue destination="chh-0Y-IcG" kind="show" identifier="Trackers" id="g2M-jx-TBe"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="2LQ-iM-Wa2" style="IBUITableViewCellStyleDefault" id="RsN-20-yfj" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
@@ -1680,123 +1661,122 @@
             <point key="canvasLocation" x="2733.5999999999999" y="116.49175412293854"/>
         </scene>
         <!--Trackers-->
-        <scene sceneID="nwu-5E-Gsb">
+        <scene sceneID="Az8-xH-WhJ">
             <objects>
-                <viewController id="4es-eS-3GG" customClass="TrackersListController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cPt-Kn-KER">
+                <viewController id="chh-0Y-IcG" customClass="TrackersListController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Mn-mc-Vk6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="27h-ly-MCo" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KSI-Pp-j7J" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" focusStyle="custom" rowHeight="88" id="Jun-79-x53" customClass="TrackerCell" customModule="iTorrent" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="88" id="wjR-Jn-hKa" customClass="TrackerCell" customModule="iTorrent" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jun-79-x53" id="NOy-Im-oa9">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wjR-Jn-hKa" id="tdS-Ab-BgC">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYR-lv-IF5" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="8" width="0.0" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="bLJ-xW-Vjm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3E-zY-93P" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="36.5" width="0.0" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="YH2-pJ-mLr"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="G10-XS-xfS">
-                                                    <rect key="frame" x="16" y="64" width="0.0" height="16"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6dz-7f-U5v">
+                                                    <rect key="frame" x="16" y="8" width="382" height="72"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtb-QR-qoJ" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gY-6c-JgS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3q-Rb-9Cx">
+                                                            <rect key="frame" x="0.0" y="30" width="382" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNi-AY-9uK" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                            <rect key="frame" x="8" y="0.0" width="0.0" height="16"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2j-dw-08R" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eug-BP-UkO">
+                                                            <rect key="frame" x="0.0" y="56" width="382" height="16"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f7-B9-PJf" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="127.5" height="16"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGp-f9-hrr" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                                    <rect key="frame" x="127.5" y="0.0" width="127" height="16"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzQ-xz-c6A" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                                    <rect key="frame" x="254.5" y="0.0" width="127.5" height="16"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="G10-XS-xfS" secondAttribute="trailing" constant="16" id="2Jk-8M-xWq"/>
-                                                <constraint firstAttribute="trailing" secondItem="W3E-zY-93P" secondAttribute="trailing" constant="16" id="7Qu-3k-LDz"/>
-                                                <constraint firstItem="W3E-zY-93P" firstAttribute="leading" secondItem="NOy-Im-oa9" secondAttribute="leading" constant="16" id="GMm-UU-81y"/>
-                                                <constraint firstItem="UYR-lv-IF5" firstAttribute="leading" secondItem="NOy-Im-oa9" secondAttribute="leading" constant="16" id="Mf9-FR-K1T"/>
-                                                <constraint firstItem="G10-XS-xfS" firstAttribute="leading" secondItem="NOy-Im-oa9" secondAttribute="leading" constant="16" id="NyF-7h-V5k"/>
-                                                <constraint firstAttribute="trailing" secondItem="UYR-lv-IF5" secondAttribute="trailing" constant="16" id="RnH-Cl-93Y"/>
-                                                <constraint firstItem="UYR-lv-IF5" firstAttribute="top" secondItem="NOy-Im-oa9" secondAttribute="top" constant="8" id="bdq-ht-uVL"/>
-                                                <constraint firstItem="G10-XS-xfS" firstAttribute="top" secondItem="W3E-zY-93P" secondAttribute="bottom" constant="7.5" id="fTg-nN-oZR"/>
-                                                <constraint firstItem="W3E-zY-93P" firstAttribute="top" secondItem="UYR-lv-IF5" secondAttribute="bottom" constant="8.5" id="uaS-U1-PSC"/>
+                                                <constraint firstAttribute="bottom" secondItem="6dz-7f-U5v" secondAttribute="bottom" constant="8" id="6n8-px-m1K"/>
+                                                <constraint firstAttribute="trailing" secondItem="6dz-7f-U5v" secondAttribute="trailing" constant="16" id="k55-FT-qGc"/>
+                                                <constraint firstItem="6dz-7f-U5v" firstAttribute="top" secondItem="tdS-Ab-BgC" secondAttribute="top" constant="8" id="oNE-sp-aFe"/>
+                                                <constraint firstItem="6dz-7f-U5v" firstAttribute="leading" secondItem="tdS-Ab-BgC" secondAttribute="leading" constant="16" id="v3W-3d-bTl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="leechers" destination="W2j-dw-08R" id="bUy-Tq-NHG"/>
-                                            <outlet property="message" destination="W3E-zY-93P" id="7rm-F7-ueK"/>
-                                            <outlet property="peers" destination="LNi-AY-9uK" id="LLS-9J-pMH"/>
-                                            <outlet property="seeders" destination="gtb-QR-qoJ" id="mGx-sE-UUa"/>
-                                            <outlet property="title" destination="UYR-lv-IF5" id="IjV-th-HQK"/>
+                                            <outlet property="leechers" destination="AzQ-xz-c6A" id="fxw-OY-Mts"/>
+                                            <outlet property="message" destination="j3q-Rb-9Cx" id="4UT-eS-5rI"/>
+                                            <outlet property="peers" destination="fGp-f9-hrr" id="BVq-gk-BRK"/>
+                                            <outlet property="seeders" destination="6f7-B9-PJf" id="n2i-ET-5yf"/>
+                                            <outlet property="title" destination="7gY-6c-JgS" id="7mb-zy-Zv2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="8dA-Rk-I9e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="trailing" secondItem="ONr-lo-LOD" secondAttribute="trailing" id="MeZ-hu-YPK"/>
+                            <constraint firstAttribute="bottom" secondItem="KSI-Pp-j7J" secondAttribute="bottom" id="QlS-dk-U5V"/>
+                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="top" secondItem="5Mn-mc-Vk6" secondAttribute="top" id="mWb-nJ-Qea"/>
+                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="leading" secondItem="ONr-lo-LOD" secondAttribute="leading" id="zfN-WE-sw2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ONr-lo-LOD"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem systemItem="flexibleSpace" id="gXh-p3-M5s"/>
-                        <barButtonItem enabled="NO" systemItem="add" id="VIO-M1-7nY">
+                        <barButtonItem systemItem="flexibleSpace" id="umY-4f-Tqv"/>
+                        <barButtonItem enabled="NO" systemItem="add" id="qyv-y8-VGh">
                             <connections>
-                                <action selector="addAction:" destination="4es-eS-3GG" id="Epq-Qs-e3z"/>
+                                <action selector="addAction:" destination="chh-0Y-IcG" id="G4F-lU-G1z"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="5Ep-iW-Qj5"/>
-                        <barButtonItem enabled="NO" systemItem="trash" id="VvP-CB-LSd">
+                        <barButtonItem systemItem="flexibleSpace" id="lKu-BJ-mck"/>
+                        <barButtonItem enabled="NO" systemItem="trash" id="gAb-wd-cSq">
                             <connections>
-                                <action selector="removeAction:" destination="4es-eS-3GG" id="pSj-oK-mWA"/>
+                                <action selector="removeAction:" destination="chh-0Y-IcG" id="r25-EP-7CW"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="l2h-1r-Xq2"/>
+                        <barButtonItem systemItem="flexibleSpace" id="Tbf-AB-o29"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Trackers" id="sOp-Cs-bgM">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="pIK-sG-MTR">
+                    <navigationItem key="navigationItem" title="Trackers" id="X5q-UI-XPz">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="RIR-e3-idC">
                             <connections>
-                                <action selector="editAction:" destination="4es-eS-3GG" id="VmW-Se-beu"/>
+                                <action selector="editAction:" destination="chh-0Y-IcG" id="VHK-2L-wpm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addButton" destination="VIO-M1-7nY" id="MLP-G0-plf"/>
-                        <outlet property="removeButton" destination="VvP-CB-LSd" id="pWb-xZ-P7k"/>
-                        <outlet property="tableView" destination="27h-ly-MCo" id="aNf-cW-Pvy"/>
+                        <outlet property="addButton" destination="qyv-y8-VGh" id="vY2-oL-tAU"/>
+                        <outlet property="removeButton" destination="gAb-wd-cSq" id="PVB-v4-DAr"/>
+                        <outlet property="tableView" destination="KSI-Pp-j7J" id="gSU-KC-jmz"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kbI-hs-YPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5PK-xO-Ppv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2733" y="-654"/>
         </scene>
