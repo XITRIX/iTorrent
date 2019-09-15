@@ -54,6 +54,7 @@ class MainController: ThemedUIViewController {
             searchController.searchBar.barTintColor = theme.backgroundMain
             searchController.searchBar.layer.borderWidth = 1
             searchController.searchBar.layer.borderColor = theme.backgroundMain.cgColor
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = theme.backgroundSecondary
             
             let back = tableView.backgroundView ?? UIView()
             back.backgroundColor = theme.backgroundMain
