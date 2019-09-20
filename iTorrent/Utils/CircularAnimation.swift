@@ -9,6 +9,7 @@
 import UIKit
 
 class CircularAnimation {
+    private static var window: UIWindow?
     public static func animate(startingPoint: CGPoint) {
         let view = UIApplication.shared.keyWindow!
         
@@ -27,13 +28,41 @@ class CircularAnimation {
         
         snapshot.mask = circle
         
-        view.rootViewController?.present(imgVC, animated: false, completion: {
-            UIView.animate(withDuration: 0.3, animations: {
-                circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-            }) { _ in
-                imgVC.dismiss(animated: false)
+//        view.rootViewController?.present(imgVC, animated: false, completion: {
+//            NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+//            UIView.animate(withDuration: 0.3, animations: {
+//                circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+//            }) { _ in
+//                imgVC.dismiss(animated: false)
+//            }
+//        })
+        
+        if #available(iOS 13.0, *) {
+            let windowScene = UIApplication.shared
+                .connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first
+
+            if let windowScene = windowScene as? UIWindowScene {
+                window = UIWindow(windowScene: windowScene)
             }
-        })
+        } else {
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
+        
+        window?.windowLevel = .statusBar + 1
+        window?.backgroundColor = .clear
+        window?.rootViewController = imgVC
+        window?.isHidden = false
+        
+        NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
+        UIView.animate(withDuration: 0.3, animations: {
+            circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+        }) { _ in
+//            imgVC.dismiss(animated: false)
+            window?.isHidden = true
+            window = nil
+        }
     }
     
     private static func frameForCircle (withViewCenter viewCenter:CGPoint, size viewSize:CGSize, startPoint:CGPoint) -> CGRect {

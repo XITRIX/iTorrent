@@ -42,7 +42,6 @@ class PreferencesController : ThemedUIViewController {
                                                             self.navigationController?.view.isUserInteractionEnabled = false
                                                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                                                                 CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                                NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
                                                                 self.tableView.reloadData()
                                                                 self.navigationController?.view.isUserInteractionEnabled = true
                                                             }
@@ -66,7 +65,6 @@ class PreferencesController : ThemedUIViewController {
                                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                                                 UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
                                                 CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
                                                 self.navigationController?.view.isUserInteractionEnabled = true
                                             }
         })
