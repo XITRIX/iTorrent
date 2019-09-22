@@ -23,6 +23,7 @@ class PopupView : UIView {
     
     private let bottomOffset: CGFloat = 44
     private var bottomConstraint: NSLayoutConstraint?
+    private var initViewPos: CGRect!
     
     var contentView: UIView!
     var contentHeight: CGFloat!
@@ -104,6 +105,7 @@ class PopupView : UIView {
                        animations: {
                         self.bottomConstraint?.constant = self.bottomOffset
                         vc.view.layoutIfNeeded()
+                        self.initViewPos = self.frame
         })
     }
     
@@ -131,7 +133,7 @@ class PopupView : UIView {
                                    initialSpringVelocity: 0,
                                    options: .curveEaseInOut,
                                    animations: {
-                                    self.frame.origin.y = vc.view.frame.height - self.contentView.frame.height - self.headerView.frame.height
+                                    self.frame.origin.y = self.initViewPos.origin.y
                                        self.bottomConstraint?.constant = self.bottomOffset
                                        vc.view.layoutIfNeeded()
                     })

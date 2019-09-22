@@ -248,11 +248,14 @@
 /* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "pIK-sG-MTR"; */
 "pIK-sG-MTR.title" = "Изменить";
 
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "RIR-e3-idC"; */
+"RIR-e3-idC.title" = "Изменить";
+
 /* Class = "UILabel"; text = "Downloaded"; ObjectID = "r47-w0-OZ2"; */
 "r47-w0-OZ2.text" = "Скачано";
 
 /* Class = "UINavigationItem"; title = "Trackers"; ObjectID = "sOp-Cs-bgM"; */
-"sOp-Cs-bgM.title" = "Трекеры";
+"X5q-UI-XPz.title" = "Трекеры";
 
 /* Class = "UILabel"; text = "Seed Limit"; ObjectID = "sj4-t0-u6i"; */
 "sj4-t0-u6i.text" = "Лимит Раздачи";

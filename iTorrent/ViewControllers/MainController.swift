@@ -317,10 +317,8 @@ class MainController: ThemedUIViewController {
     @IBAction func editAction(_ sender: UIBarButtonItem) {
 		if (!tableView.isEditing) {
 			tableViewEditMode = true
-			
 		} else {
 			tableViewEditMode = false
-			
 		}
 		
         tableView.setEditing(tableViewEditMode, animated: true)
@@ -513,9 +511,6 @@ class MainController: ThemedUIViewController {
 			present(removeController, animated: true)
 			
 		}
-		
-		//let message = managers[indexPath.section][indexPath.row].hasMetadata ? "Are you sure to remove " + managers[indexPath.section][indexPath.row].title + " torrent?" : "Are you sure to remove this magnet torrent?"
-		
 	}
 }
 

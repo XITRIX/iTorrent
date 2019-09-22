@@ -47,18 +47,16 @@ class Themes {
 	}
     
     static var current : ColorPalett {
-        get {
-            if #available(iOS 13.0, *) {
-                if (UserPreferences.autoTheme.value) {
-                    if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark) {
-                        return shared.theme[1]
-                    } else if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light) {
-                        return shared.theme[0]
-                    }
+        if #available(iOS 13.0, *) {
+            if (UserPreferences.autoTheme.value) {
+                if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark) {
+                    return shared.theme[1]
+                } else if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light) {
+                    return shared.theme[0]
                 }
             }
-            return shared.theme[UserPreferences.themeNum.value]
         }
+        return shared.theme[UserPreferences.themeNum.value]
     }
 }
 
