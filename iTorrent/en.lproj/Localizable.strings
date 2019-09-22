@@ -167,5 +167,5 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n- Income call crash fixed\n- Minor improvements";
+"UpdateText" = "----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed";
 
