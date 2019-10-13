@@ -29,7 +29,7 @@ class PreferencesController : ThemedUIViewController {
         
         // APPEARENCE
         var appearence = [CellModelProtocol]()
-        appearence.append(SegueCell.Model(title: "Settings.Order"))
+        appearence.append(SegueCell.Model(self, title: "Settings.Order", segueViewId: "SettingsSortingController"))
         if #available(iOS 13, *) {
             appearence.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
                                                        action: { switcher in
@@ -176,37 +176,54 @@ class PreferencesController : ThemedUIViewController {
         
         //DONATES
         var donates = [CellModelProtocol]()
-        donates.append(ButtonCell.Model(title: "Settings.DonateCard", buttonTitle: "Settings.DonateCard.Copy") { button in
-            DispatchQueue.global(qos: .background).async {
-                if let url = URL(string: "https://raw.githubusercontent.com/XITRIX/iTorrent/master/iTorrent/Credit.card") {
-                    var card = ""
-                    do {
-                        card = try String(contentsOf: url)
-                    } catch {
-                        card = "4817760222220562"
-                    }
-                    
-                    DispatchQueue.main.async {
-                        UIPasteboard.general.string = card
-                        let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
-                        self.present(alert, animated: true, completion: nil)
-                        // change alert timer to 2 seconds, then dismiss
-                        let when = DispatchTime.now() + 2
-                        DispatchQueue.main.asyncAfter(deadline: when){
-                            alert.dismiss(animated: true, completion: nil)
+        donates.append(SegueCell.Model(title: "Settings.DonateCard.DonatePlatforms") {
+            let alert = ThemedUIAlertController(title: Localize.get("Settings.DonateCard.DonatePlatforms.Title"), message: "", preferredStyle: .alert)
+            
+            let card = UIAlertAction(title: Localize.get("Settings.DonateCard"), style: .default) { _ in
+                DispatchQueue.global(qos: .background).async {
+                    if let url = URL(string: "https://raw.githubusercontent.com/XITRIX/iTorrent/master/iTorrent/Credit.card") {
+                        var card = ""
+                        do {
+                            card = try String(contentsOf: url)
+                        } catch {
+                            card = "4817760222220562"
+                        }
+                        
+                        DispatchQueue.main.async {
+                            UIPasteboard.general.string = card
+                            let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
+                            self.present(alert, animated: true, completion: nil)
+                            // change alert timer to 2 seconds, then dismiss
+                            let when = DispatchTime.now() + 2
+                            DispatchQueue.main.asyncAfter(deadline: when){
+                                alert.dismiss(animated: true, completion: nil)
+                            }
                         }
                     }
                 }
             }
-        })
-        donates.append(ButtonCell.Model(title: "PayPal", buttonTitle: Localize.get("Settings.DonateCard.Open")) { button in
-            Utils.openUrl("https://paypal.me/xitrix")
-        })
-        donates.append(ButtonCell.Model(title: "Patreon", buttonTitle: Localize.get("Settings.DonateCard.Open")) { button in
-            Utils.openUrl("https://www.patreon.com/xitrix")
-        })
-        donates.append(ButtonCell.Model(title: "Liberapay", buttonTitle: Localize.get("Settings.DonateCard.Open")) { button in
-            Utils.openUrl("https://liberapay.com/XITRIX")
+            let paypal = UIAlertAction(title: "PayPal", style: .default) { _ in
+                Utils.openUrl("https://paypal.me/xitrix")
+            }
+            let patreon = UIAlertAction(title: "Patreon", style: .default) { _ in
+                Utils.openUrl("https://www.patreon.com/xitrix")
+            }
+            let liberapay = UIAlertAction(title: "Liberapay", style: .default) { _ in
+                Utils.openUrl("https://liberapay.com/XITRIX")
+            }
+            let kofi = UIAlertAction(title: "Ko-fi", style: .default) { _ in
+                Utils.openUrl("https://ko-fi.com/xitrix")
+            }
+            let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
+            
+            alert.addAction(card)
+            alert.addAction(paypal)
+            alert.addAction(patreon)
+            alert.addAction(liberapay)
+            alert.addAction(kofi)
+            alert.addAction(cancel)
+            
+            self.present(alert, animated: true)
         })
         donates.append(SwitchCell.Model(title: "Settings.DonateDisable", defaultValue: { UserPreferences.disableAds.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
             if (switcher.isOn) {

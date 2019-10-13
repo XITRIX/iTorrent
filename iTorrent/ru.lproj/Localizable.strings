@@ -99,6 +99,8 @@
 "Settings.DonateCard" = "Номер карты VISA";
 "Settings.DonateCard.Copy" = "Скопировать";
 "Settings.DonateCard.Open" = "Открыть";
+"Settings.DonateCard.DonatePlatforms" = "Задонатить";
+"Settings.DonateCard.DonatePlatforms.Title" = "Выберите платформу для пожертвований:";
 "Settings.DonateHeader" = "Донат на еду";
 
 "Warning" = "Внимание";

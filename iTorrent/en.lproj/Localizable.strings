@@ -99,6 +99,8 @@
 "Settings.DonateCard" = "VISA CREDIT CARD NUMBER";
 "Settings.DonateCard.Copy" = "Copy";
 "Settings.DonateCard.Open" = "Open";
+"Settings.DonateCard.DonatePlatforms" = "Donate";
+"Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
 "Settings.DonateHeader" = "Donate for donuts";
 
 "Warning" = "Warning";
