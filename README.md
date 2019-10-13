@@ -59,8 +59,10 @@ This repo contains iTorrent framework which was compiled only for real devices s
 
 ## Donate for donuts
 
-- VISA CARD - 4817 7602 2223 0736
+- [PayPal](https://paypal.me/xitrix)
+- [Patreon](https://www.patreon.com/xitrix)
 - [QIWI Moneybox](https://qiwi.me/c5ec30ff-21d6-428b-9a10-29a1d18242db)
+- VISA CARD - 4817 7601 3631 7520
 
 ## Important information
 

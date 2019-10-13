@@ -35,6 +35,9 @@ class UserPreferences {
     
     private static let localVersion = (try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)) ?? ""
     static let versionNews = SettingProperty<Bool>("versionNews" + localVersion, false)
+    static func alertDialog(code: String) -> SettingProperty<Bool> {
+        return SettingProperty<Bool>("alertDialog" + code, false)
+    }
     
     class SettingProperty<T> {
         let key : String

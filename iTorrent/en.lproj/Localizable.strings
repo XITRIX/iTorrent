@@ -98,6 +98,7 @@
 "Settings.DonateDisable" = "Disable ADS";
 "Settings.DonateCard" = "VISA CREDIT CARD NUMBER";
 "Settings.DonateCard.Copy" = "Copy";
+"Settings.DonateCard.Open" = "Open";
 "Settings.DonateHeader" = "Donate for donuts";
 
 "Warning" = "Warning";
@@ -164,6 +165,10 @@
 " finished seeding" = " finished seeding";
 
 "This action will recheck the state of all downloaded files for torrents:" = "This action will recheck the state of all downloaded files for torrents:";
+
+//News Alerts
+"Dialogs.News.Title" = "Warning!";
+"Dialogs.News.Message" = "In iOS 13, if app was resigned (i.e. by Impactor) app will refuse opening torrent files using \"share\" menu.\nAs workaround, you can add torrents by url or add torrent file directly into \"_Config\" folder using Files.\nAlso you can build this app by your self using XCode, so file sharing will work.";
 
 //Version Info
 "info" = " Update info";

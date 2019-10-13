@@ -51,7 +51,7 @@
 		7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */; };
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
 		7C802CFF212B3B630031C19F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C802D01212B3B630031C19F /* Localizable.strings */; };
-		7C802D07212C6D060031C19F /* UpdatesDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* UpdatesDialog.swift */; };
+		7C802D07212C6D060031C19F /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* Dialogs.swift */; };
 		7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */; };
 		7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082A20AA28F200F76931 /* TorrentStatus.swift */; };
 		7CB8083220AADA8300F76931 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
@@ -137,7 +137,7 @@
 		7C802CFB212B328D0031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		7C802D02212B3B860031C19F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C802D03212B3D240031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7C802D06212C6D060031C19F /* UpdatesDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesDialog.swift; sourceTree = "<group>"; };
+		7C802D06212C6D060031C19F /* Dialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogs.swift; sourceTree = "<group>"; };
 		7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUISplitViewController.swift; sourceTree = "<group>"; };
 		7CB8082A20AA28F200F76931 /* TorrentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentStatus.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 				7CF522E520AE1F5000D319E6 /* SortingManager.swift */,
 				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
 				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
-				7C802D06212C6D060031C19F /* UpdatesDialog.swift */,
+				7C802D06212C6D060031C19F /* Dialogs.swift */,
 				7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */,
 			);
 			path = Utils;
@@ -531,7 +531,7 @@
 				7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */,
 				7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */,
 				7C4B109D20DFF12300440E74 /* ThemedUIViewController.swift in Sources */,
-				7C802D07212C6D060031C19F /* UpdatesDialog.swift in Sources */,
+				7C802D07212C6D060031C19F /* Dialogs.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
 				7C4B109920DFDEEC00440E74 /* ColorPalett.swift in Sources */,
 				7C0D2F1F20F77F9B00B7FBC6 /* FileManagerTitleView.swift in Sources */,

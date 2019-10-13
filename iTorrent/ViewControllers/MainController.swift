@@ -83,7 +83,11 @@ class MainController: ThemedUIViewController {
 		adsView.delegate = self
 		
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-			if let dialog = UpdatesDialog.summon() {
+            if let dialog = Dialogs.crateUpdateDialog(finishAction: {
+                if let dialog = Dialogs.createNewsDialog() {
+                    self.present(dialog, animated: true)
+                }
+            }) {
 				self.present(dialog, animated: true)
 			}
 		}

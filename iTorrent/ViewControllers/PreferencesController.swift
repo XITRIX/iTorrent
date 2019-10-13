@@ -163,45 +163,19 @@ class PreferencesController : ThemedUIViewController {
         notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge", property: UserPreferences.badgeKey, disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
         data.append(PreferencesController.Section(rowModels: notifications, header: "Settings.NotifyHeader"))
         
-        //UPDATED
+        //UPDATES
         var updates = [CellModelProtocol]()
         updates.append(ButtonCell.Model(title: "Settings.UpdateSite", buttonTitle: "Settings.UpdateSite.Open") { button in
-            func open (scheme: String) {
-                if let url = URL(string: scheme) {
-                    if #available(iOS 10, *) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                    else {
-                        UIApplication.shared.openURL(url)
-                    }
-                }
-            }
-            open(scheme: "https://github.com/XITRIX/iTorrent")
+            Utils.openUrl("https://github.com/XITRIX/iTorrent")
         })
         updates.append(UpdateInfoCell.Model {
-            self.present(UpdatesDialog.summon(forced: true)!, animated: true)
+            self.present(Dialogs.crateUpdateDialog(forced: true)!, animated: true)
         })
         let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
         data.append(PreferencesController.Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + version))
         
         //DONATES
         var donates = [CellModelProtocol]()
-        donates.append(SwitchCell.Model(title: "Settings.DonateDisable", defaultValue: { UserPreferences.disableAds.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
-            if (switcher.isOn) {
-                let controller = ThemedUIAlertController(title: NSLocalizedString("Supplication", comment: ""), message: NSLocalizedString("If you enjoy this app, consider supporting the developer by keeping the ads on.", comment: ""), preferredStyle: .alert)
-                let enable = UIAlertAction(title: NSLocalizedString("Disable Anyway", comment: ""), style: .destructive) { _ in
-                    UserPreferences.disableAds.value = switcher.isOn
-                }
-                let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                    switcher.setOn(false, animated: true)
-                }
-                controller.addAction(enable)
-                controller.addAction(close)
-                self.present(controller, animated: true)
-            } else {
-                UserPreferences.disableAds.value = switcher.isOn
-            }
-        })
         donates.append(ButtonCell.Model(title: "Settings.DonateCard", buttonTitle: "Settings.DonateCard.Copy") { button in
             DispatchQueue.global(qos: .background).async {
                 if let url = URL(string: "https://raw.githubusercontent.com/XITRIX/iTorrent/master/iTorrent/Credit.card") {
@@ -223,6 +197,31 @@ class PreferencesController : ThemedUIViewController {
                         }
                     }
                 }
+            }
+        })
+        donates.append(ButtonCell.Model(title: "PayPal", buttonTitle: Localize.get("Settings.DonateCard.Open")) { button in
+            Utils.openUrl("https://paypal.me/xitrix")
+        })
+        donates.append(ButtonCell.Model(title: "Patreon", buttonTitle: Localize.get("Settings.DonateCard.Open")) { button in
+            Utils.openUrl("https://www.patreon.com/xitrix")
+        })
+        donates.append(ButtonCell.Model(title: "Liberapay", buttonTitle: Localize.get("Settings.DonateCard.Open")) { button in
+            Utils.openUrl("https://liberapay.com/XITRIX")
+        })
+        donates.append(SwitchCell.Model(title: "Settings.DonateDisable", defaultValue: { UserPreferences.disableAds.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
+            if (switcher.isOn) {
+                let controller = ThemedUIAlertController(title: NSLocalizedString("Supplication", comment: ""), message: NSLocalizedString("If you enjoy this app, consider supporting the developer by keeping the ads on.", comment: ""), preferredStyle: .alert)
+                let enable = UIAlertAction(title: NSLocalizedString("Disable Anyway", comment: ""), style: .destructive) { _ in
+                    UserPreferences.disableAds.value = switcher.isOn
+                }
+                let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                    switcher.setOn(false, animated: true)
+                }
+                controller.addAction(enable)
+                controller.addAction(close)
+                self.present(controller, animated: true)
+            } else {
+                UserPreferences.disableAds.value = switcher.isOn
             }
         })
         data.append(PreferencesController.Section(rowModels: donates, header: "Settings.DonateHeader"))

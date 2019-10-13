@@ -98,6 +98,7 @@
 "Settings.DonateDisable" = "Отключить рекламу";
 "Settings.DonateCard" = "Номер карты VISA";
 "Settings.DonateCard.Copy" = "Скопировать";
+"Settings.DonateCard.Open" = "Открыть";
 "Settings.DonateHeader" = "Донат на еду";
 
 "Warning" = "Внимание";
@@ -171,6 +172,10 @@
 " finished seeding" = " закончил раздачу";
 
 "This action will recheck the state of all downloaded files for torrents:" = "Это перепроверит состояние всех скачанных файлов для этих торрентов:";
+
+//News Alerts
+"Dialogs.News.Title" = "Внимание!";
+"Dialogs.News.Message" = "В iOS 13, если приложение было переподписано (например через Impactor), приложение откажется открывать torrent файлы через меню \"Поделиться\".\nВы можете добавлять торренты через URL (ссылку на файл), либо положите torrent файл непосредственно в папку \"_Config\" через приложение Файлы.\nТак же вы можете собрать приложение самостоятельно через XCode, тогда открытие файлов будет работать.";
 
 //Version Info
 "info" = " Изменения";
