@@ -45,7 +45,7 @@ class MainController: ThemedUIViewController {
     override func themeUpdate() {
         super.themeUpdate()
         
-        let theme = Themes.current()
+        let theme = Themes.current
         tableView.backgroundColor = theme.backgroundMain
         searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
         searchController.searchBar.barStyle = theme.barStyle
@@ -54,6 +54,7 @@ class MainController: ThemedUIViewController {
             searchController.searchBar.barTintColor = theme.backgroundMain
             searchController.searchBar.layer.borderWidth = 1
             searchController.searchBar.layer.borderColor = theme.backgroundMain.cgColor
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = theme.backgroundSecondary
             
             let back = tableView.backgroundView ?? UIView()
             back.backgroundColor = theme.backgroundMain
@@ -82,7 +83,11 @@ class MainController: ThemedUIViewController {
 		adsView.delegate = self
 		
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-			if let dialog = UpdatesDialog.summon() {
+            if let dialog = Dialogs.crateUpdateDialog(finishAction: {
+                if let dialog = Dialogs.createNewsDialog() {
+                    self.present(dialog, animated: true)
+                }
+            }) {
 				self.present(dialog, animated: true)
 			}
 		}
@@ -102,8 +107,6 @@ class MainController: ThemedUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 		
-		navigationController?.toolbar.tintColor = navigationController?.navigationBar.tintColor
-		
 		managers.removeAll()
         managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &headers))
         updateFilterQuery()
@@ -115,7 +118,7 @@ class MainController: ThemedUIViewController {
     
         navigationController?.isToolbarHidden = false
 		
-		if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds) && adsLoaded) {
+        if (!UserPreferences.disableAds.value && adsLoaded) {
 			adsView.isHidden = false
 			tableView.contentInset.bottom = adsView.frame.height
 			tableView.scrollIndicatorInsets.bottom = adsView.frame.height
@@ -213,7 +216,7 @@ class MainController: ThemedUIViewController {
             let addURLController = ThemedUIAlertController(title: NSLocalizedString("Add from URL", comment: ""), message: NSLocalizedString("Please enter the existing torrent's URL below", comment: ""), preferredStyle: .alert)
             addURLController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "https://"
-				let theme = Themes.current()
+				let theme = Themes.current
 				textField.keyboardAppearance = theme.keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
@@ -269,7 +272,7 @@ class MainController: ThemedUIViewController {
             let addMagnetController = ThemedUIAlertController(title: NSLocalizedString("Add from magnet", comment: ""), message: NSLocalizedString("Please enter the magnet link below", comment: ""), preferredStyle: .alert)
             addMagnetController.addTextField(configurationHandler: { (textField) in
                 textField.placeholder = "magnet:"
-				let theme = Themes.current()
+				let theme = Themes.current
 				textField.keyboardAppearance = theme.keyboardAppearence
             })
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
@@ -318,10 +321,8 @@ class MainController: ThemedUIViewController {
     @IBAction func editAction(_ sender: UIBarButtonItem) {
 		if (!tableView.isEditing) {
 			tableViewEditMode = true
-			
 		} else {
 			tableViewEditMode = false
-			
 		}
 		
         tableView.setEditing(tableViewEditMode, animated: true)
@@ -514,9 +515,6 @@ class MainController: ThemedUIViewController {
 			present(removeController, animated: true)
 			
 		}
-		
-		//let message = managers[indexPath.section][indexPath.row].hasMetadata ? "Are you sure to remove " + managers[indexPath.section][indexPath.row].title + " torrent?" : "Are you sure to remove this magnet torrent?"
-		
 	}
 }
 
@@ -605,7 +603,7 @@ extension MainController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as! TableHeaderView
-        let theme = Themes.current()
+        let theme = Themes.current
 
         cell.title.text = NSLocalizedString(headers[section], comment: "")
         cell.background.effect = UIBlurEffect(style: theme.blurEffect)
@@ -629,9 +627,6 @@ extension MainController: UITableViewDelegate {
             viewController.managerHash = managers[indexPath.section][indexPath.row].hash
             
             if (!(splitViewController?.isCollapsed)!) {
-                //            if (splitViewController?.viewControllers.count)! > 1, let nav = splitViewController?.viewControllers[1] as? UINavigationController {
-                //                if let fileController = nav.topViewController
-                //            }
                 let navController = ThemedUINavigationController(rootViewController: viewController)
                 navController.isToolbarHidden = false
                 navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
@@ -671,7 +666,7 @@ extension MainController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         // Add banner to view and add constraints as above.
         adsLoaded = true
-        if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.disableAds)) {
+        if (!UserPreferences.disableAds.value) {
             bannerView.isHidden = false
             tableView.contentInset.bottom = bannerView.frame.height
             tableView.scrollIndicatorInsets.bottom = bannerView.frame.height

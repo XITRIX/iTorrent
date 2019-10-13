@@ -52,7 +52,7 @@ class TorrentFilesController : ThemedUIViewController {
 	override func themeUpdate() {
 		super.themeUpdate()
         
-		let theme = Themes.current()
+		let theme = Themes.current
 		tableView.backgroundColor = theme.backgroundMain
 		editBarItems[2].tintColor = theme.tertiaryText
 	}
@@ -117,11 +117,6 @@ class TorrentFilesController : ThemedUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         runUpdate = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        Manager.saveTorrents()
     }
 	
 	func initialize() {

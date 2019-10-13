@@ -21,7 +21,7 @@ class ThemedUITableViewController : UITableViewController, Themed {
     }
     
     @objc func themeUpdate() {
-        let theme = Themes.current();
+        let theme = Themes.current
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
@@ -34,21 +34,21 @@ class ThemedUITableViewController : UITableViewController, Themed {
 	}
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let theme = Themes.current()
+        let theme = Themes.current
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.textColor = theme.secondaryText
         }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        let theme = Themes.current()
+        let theme = Themes.current
         if let footer = view as? UITableViewHeaderFooterView {
             footer.textLabel?.textColor = theme.secondaryText
         }
     }
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
-		return Themes.current().statusBarStyle
+		return Themes.current.statusBarStyle
 	}
 	
 }

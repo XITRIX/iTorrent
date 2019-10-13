@@ -11,7 +11,6 @@ import UIKit
 import UserNotifications
 
 class Manager {
-	
 	public static var previousTorrentStates : [TorrentStatus] = []
     public static var torrentStates : [TorrentStatus] = []
     public static let rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
@@ -27,10 +26,10 @@ class Manager {
 			engineInited = true
             restoreAllTorrents()
 			
-			let down = UserDefaults.standard.value(forKey: UserDefaultsKeys.downloadLimit) as! Int64
+            let down = UserPreferences.downloadLimit.value
 			set_download_limit(Int32(down))
 			
-			let up = UserDefaults.standard.value(forKey: UserDefaultsKeys.uploadLimit) as! Int64
+			let up = UserPreferences.uploadLimit.value
 			set_upload_limit(Int32(up))
 			
             while(true) {
@@ -74,10 +73,10 @@ class Manager {
     }
 	
 	static func removeTorrentFile(hash: String) {
-		let files = try! FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
-		for file in files {
+		let files = try? FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({$0.hasSuffix(".torrent")})
+		for file in files ?? [] {
 			if (hash == String(cString: get_torrent_file_hash(configFolder + "/" + file))) {
-				try! FileManager.default.removeItem(atPath: configFolder + "/" + file)
+				try? FileManager.default.removeItem(atPath: configFolder + "/" + file)
 				break
 			}
 		}
@@ -89,46 +88,9 @@ class Manager {
         torrentStates.removeAll()
         let torrents = Array(UnsafeBufferPointer(start: res.torrents, count: Int(res.count)))
         for i in 0 ..< Int(res.count) {
-            let status = TorrentStatus()
-            
-            status.state = String(validatingUTF8: torrents[i].state) ?? "ERROR"
-            status.title = status.state == Utils.torrentStates.Metadata.rawValue ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: torrents[i].name) ?? "ERROR"
-            status.hash = String(validatingUTF8: torrents[i].hash) ?? "ERROR"
-            status.creator = String(validatingUTF8: torrents[i].creator) ?? "ERROR"
-			status.comment = String(validatingUTF8: torrents[i].comment) ?? "ERROR"
-            status.progress = torrents[i].progress
-            status.totalWanted = torrents[i].total_wanted
-            status.totalWantedDone = torrents[i].total_wanted_done
-            status.downloadRate = Int(torrents[i].download_rate)
-            status.uploadRate = Int(torrents[i].upload_rate)
-            status.totalDownload = torrents[i].total_download
-            status.totalUpload = torrents[i].total_upload
-            status.numSeeds = Int(torrents[i].num_seeds)
-            status.numPeers = Int(torrents[i].num_peers)
-            status.totalSize = torrents[i].total_size
-            status.totalDone = torrents[i].total_done
-            status.creationDate = Date(timeIntervalSince1970: TimeInterval(torrents[i].creation_date))
-            status.isPaused = torrents[i].is_paused == 1
-            status.isFinished = torrents[i].is_finished == 1
-            status.isSeed = torrents[i].is_seed == 1
-			status.hasMetadata = torrents[i].has_metadata == 1
-            
-            status.sequentialDownload = torrents[i].sequential_download == 1
-            status.numPieces = Int(torrents[i].num_pieces)
-            status.pieces = Array(UnsafeBufferPointer(start: torrents[i].pieces, count: status.numPieces))
-            
-			if (managerSaves[status.hash] == nil) {
-				managerSaves[status.hash] = UserManagerSettings()
-			}
-			status.addedDate = managerSaves[status.hash]?.addedDate
-			status.seedMode = (managerSaves[status.hash]?.seedMode)!
-			status.seedLimit = (managerSaves[status.hash]?.seedLimit)!
-			
-            status.displayState = getDisplayState(manager: status)
-			//print(status.displayState)
-			
+            let status = TorrentStatus(torrents[i])
             Manager.torrentStates.append(status)
-			stateCorrector(manager: status)
+            status.stateCorrector()
         }
         
         DispatchQueue.main.async {
@@ -247,47 +209,6 @@ class Manager {
 	static func isManagerExists(hash: String) -> Bool {
 		return torrentStates.contains(where: {$0.hash == hash})
 	}
-    
-    static func getDisplayState(manager: TorrentStatus) -> String {
-        if (manager.state == Utils.torrentStates.Finished.rawValue && !manager.isPaused && (managerSaves[manager.hash]?.seedMode)!) {
-            return Utils.torrentStates.Seeding.rawValue
-        }
-		if (manager.state == Utils.torrentStates.Seeding.rawValue && (manager.isPaused || !(managerSaves[manager.hash]?.seedMode)!)) {
-            return Utils.torrentStates.Finished.rawValue
-        }
-		if (manager.state == Utils.torrentStates.Downloading.rawValue && !manager.isFinished && manager.isPaused) {
-			return Utils.torrentStates.Paused.rawValue
-		}
-        return manager.state
-    }
-	
-	static func stateCorrector(manager: TorrentStatus) {
-		if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
-			!(managerSaves[manager.hash]?.seedMode)!) {
-			stop_torrent(manager.hash)
-		} else if (manager.displayState == Utils.torrentStates.Finished.rawValue &&
-			!manager.isPaused) {
-			stop_torrent(manager.hash)
-		} else if ((manager.state == Utils.torrentStates.Seeding.rawValue || manager.state == Utils.torrentStates.Downloading.rawValue) &&
-			manager.isFinished &&
-			!manager.isPaused &&
-			!(managerSaves[manager.hash]?.seedMode)!) {
-			stop_torrent(manager.hash)
-		} else if (manager.state == Utils.torrentStates.Seeding.rawValue &&
-			!manager.isPaused &&
-			!(managerSaves[manager.hash]?.seedMode)!) {
-			stop_torrent(manager.hash)
-		} else if (manager.displayState == Utils.torrentStates.Seeding.rawValue &&
-			!manager.isPaused &&
-			(managerSaves[manager.hash]?.seedMode)! &&
-			manager.totalUpload >= (managerSaves[manager.hash]?.seedLimit)! &&
-			(managerSaves[manager.hash]?.seedLimit)! != 0) {
-			managerSaves[manager.hash]?.seedMode = false
-			stop_torrent(manager.hash)
-		} else if (manager.state == Utils.torrentStates.Hashing.rawValue && manager.isPaused) {
-			start_torrent(manager.hash)
-		}
-	}
 	
 	static func stateChanges() {
 		for t in torrentStates {
@@ -311,7 +232,7 @@ class Manager {
 		if (oldState == Utils.torrentStates.Metadata.rawValue) {
 			save_magnet_to_file(manager.hash)
 		}
-        if UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsKey) &&
+        if UserPreferences.notificationsKey.value &&
 			(oldState == Utils.torrentStates.Downloading.rawValue && (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue)) {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
@@ -336,13 +257,13 @@ class Manager {
                 UIApplication.shared.scheduleLocalNotification(notification)
             }
 			
-			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey) && AppDelegate.backgrounded) {
+            if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
 				UIApplication.shared.applicationIconBadgeNumber += 1
 			}
 			
 			BackgroundTask.checkToStopBackground()
 		}
-		if UserDefaults.standard.bool(forKey: UserDefaultsKeys.notificationsSeedKey) &&
+        if UserPreferences.notificationsSeedKey.value &&
 			(oldState == Utils.torrentStates.Seeding.rawValue && (newState == Utils.torrentStates.Finished.rawValue)) {
 			if #available(iOS 10.0, *) {
 				let content = UNMutableNotificationContent()
@@ -367,7 +288,7 @@ class Manager {
 				UIApplication.shared.scheduleLocalNotification(notification)
 			}
 			
-			if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.badgeKey) && AppDelegate.backgrounded) {
+            if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
 				UIApplication.shared.applicationIconBadgeNumber += 1
 			}
 			

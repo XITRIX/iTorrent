@@ -50,22 +50,22 @@ class SortingManager {
 	
 	private static func createAlertButton(_ buttonName: String, _ sortingType: SortingTypes, _ applyChanges: @escaping ()->() = {}) -> UIAlertAction {
 		return UIAlertAction(title: buttonName, style: .default) { _ in
-			UserDefaults.standard.set(sortingType.rawValue, forKey: "SortingType")
+            UserPreferences.sortingType.value = sortingType.rawValue
 			applyChanges()
 		}
 	}
 	
 	private static func createSectionsAlertButton(_ applyChanges: @escaping ()->() = {}) -> UIAlertAction {
-		let sections = UserDefaults.standard.bool(forKey: "SortingSections")
+        let sections = UserPreferences.sortingSections.value
 		let name = sections ? NSLocalizedString("Disable state sections", comment: "") : NSLocalizedString("Enable state sections", comment: "")
 		return UIAlertAction(title: name, style: sections ? .destructive : .default) { _ in
-			UserDefaults.standard.set(!sections, forKey: "SortingSections")
+			UserPreferences.sortingSections.value = !sections
 			applyChanges()
 		}
 	}
 	
 	private static func checkConditionToAddButtonToList(_ sortAlertController: inout ThemedUIAlertController, _ message: inout String, _ alertAction: UIAlertAction, _ sortingType: SortingTypes) {
-		if (SortingTypes(rawValue: UserDefaults.standard.integer(forKey: "SortingType")) != sortingType) {
+        if (SortingTypes(rawValue: UserPreferences.sortingType.value) != sortingType) {
 			sortAlertController.addAction(alertAction)
 		} else {
 			message.append(alertAction.title!)
@@ -77,11 +77,7 @@ class SortingManager {
 		var localManagers = [TorrentStatus](managers)
 		headers = [String]()
 		
-		if (UserDefaults.standard.value(forKey: "SortingSections") == nil) {
-			UserDefaults.standard.set(true, forKey: "SortingSections");
-		}
-		
-		if (UserDefaults.standard.bool(forKey: "SortingSections")) {
+		if (UserPreferences.sortingSections.value) {
 			
 			var allocatingManagers = [TorrentStatus]();
 			var checkingFastresumeManagers = [TorrentStatus]();
@@ -127,7 +123,7 @@ class SortingManager {
 				}
 			}
             
-            let sortingOrder = UserDefaults.standard.value(forKey: UserDefaultsKeys.sectionsSortingOrder) as! [Int]
+            let sortingOrder = UserPreferences.sectionsSortingOrder.value
             for id in sortingOrder {
                 let state = Utils.torrentStates.init(id: id)!
                 switch (state) {
@@ -175,7 +171,7 @@ class SortingManager {
 	}
 	
 	private static func simpleSort(_ list: inout [TorrentStatus]) {
-		switch (SortingTypes(rawValue: UserDefaults.standard.integer(forKey: "SortingType"))!) {
+        switch (SortingTypes(rawValue: UserPreferences.sortingType.value)!) {
 			case SortingTypes.Name:
 				list.sort { (t1, t2) -> Bool in
 					t1.title < t2.title

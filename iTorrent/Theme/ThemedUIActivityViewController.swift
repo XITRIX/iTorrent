@@ -16,7 +16,7 @@ class ThemedUIActivityViewController : UIActivityViewController, Themed {
     
     func themeUpdate() {
         if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current().overrideUserInterfaceStyle!)!
+            overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!
         }
     }
 }

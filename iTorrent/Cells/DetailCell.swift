@@ -17,7 +17,7 @@ class DetailCell: ThemedUITableViewCell {
 	override func themeUpdate() {
 		super.themeUpdate()
         
-		let theme = Themes.current()
+		let theme = Themes.current
         details?.textColor = theme.selectedText
 	}
 }

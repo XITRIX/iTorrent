@@ -8,8 +8,8 @@ target 'iTorrent' do
   # Pods for iTorrent
   pod 'Firebase/Core'
   pod 'Firebase/Performance'
-  pod 'Fabric', '~> 1.7.7'
-  pod 'Crashlytics', '~> 3.10.2'
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'MarqueeLabel'
   pod 'Google-Mobile-Ads-SDK'
 

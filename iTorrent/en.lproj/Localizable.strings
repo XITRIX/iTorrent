@@ -75,6 +75,34 @@
 "Trackers" = "Trackers";
 
 //Settings Controller
+"Settings.Order" = "Section order";
+"Settings.AutoTheme" = "Automatic theme";
+"Settings.Theme" = "Dark mode";
+"Settings.BackgroundEnable" = "Enable";
+"Settings.BackgroundSeeding" = "Allow seeding";
+"Settings.BackgroundHeader" = "Background downloading";
+"Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
+"Settings.DownLimit" = "Download Limit";
+"Settings.UpLimit" = "Upload Limit";
+"Settings.SpeedHeader" = "Speed limitation";
+"Settings.FTPEnable" = "Enable";
+"Settings.FTPBackground" = "Run in background";
+"Settings.FTPHeader" = "FTP Server (BETA)";
+"Settings.NotifyFinishLoad" = "On finish loading";
+"Settings.NotifyFinishSeed" = "On finish seeding";
+"Settings.NotifyBadge" = "Enable app's badge icon";
+"Settings.NotifyHeader" = "Notifications";
+"Settings.UpdateSite" = "Page on GitHub";
+"Settings.UpdateSite.Open" = "Open";
+"Settings.UpdateHeader" = "Updates";
+"Settings.DonateDisable" = "Disable ADS";
+"Settings.DonateCard" = "VISA CREDIT CARD NUMBER";
+"Settings.DonateCard.Copy" = "Copy";
+"Settings.DonateCard.Open" = "Open";
+"Settings.DonateCard.DonatePlatforms" = "Donate";
+"Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
+"Settings.DonateHeader" = "Donate for donuts";
+
 "Warning" = "Warning";
 "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 "Enable" = "Enable";
@@ -140,7 +168,11 @@
 
 "This action will recheck the state of all downloaded files for torrents:" = "This action will recheck the state of all downloaded files for torrents:";
 
+//News Alerts
+"Dialogs.News.Title" = "Warning!";
+"Dialogs.News.Message" = "In iOS 13, if app was resigned (i.e. by Impactor) app will refuse opening torrent files using \"share\" menu from apps for iOS 13. Use Chrome or Telegram to download and open torrent files, cause they still builds for previous ios versions. You can add torrents by url too.\nAs workaround, you can add torrent file directly into \"_Config\" folder using Files.\nAlso you can build this app by your self using XCode, so file sharing will work from any app.";
+
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n- Income call crash fixed\n- Minor improvements";
+"UpdateText" = "----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed";
 

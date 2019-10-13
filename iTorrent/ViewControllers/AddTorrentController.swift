@@ -14,7 +14,7 @@ class AddTorrentController : ThemedUIViewController {
     @IBOutlet var tableView: UITableView!
 	@IBOutlet weak var weightLabel: UIBarButtonItem! {
 		didSet {
-			weightLabel.tintColor = Themes.current().secondaryText
+			weightLabel.tintColor = Themes.current.secondaryText
 		}
 	}
 	
@@ -32,7 +32,7 @@ class AddTorrentController : ThemedUIViewController {
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-		tableView.backgroundColor = Themes.current().backgroundMain
+		tableView.backgroundColor = Themes.current.backgroundMain
 	}
     
     deinit {
@@ -273,6 +273,7 @@ extension AddTorrentController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
             cell.file = showFiles[index]
             cell.index = index
+            cell.adding = true
             cell.update()
             cell.switcher.setOn(showFiles[index].isDownloading != 0, animated: false)
             if (showFiles[index].size != 0 && showFiles[index].size == showFiles[index].downloaded) {

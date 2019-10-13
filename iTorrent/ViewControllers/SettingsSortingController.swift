@@ -17,20 +17,13 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     
     override func themeUpdate() {
         super.themeUpdate()
-        tableView.backgroundColor = Themes.current().backgroundMain
+        tableView.backgroundColor = Themes.current.backgroundMain
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let data = UserDefaults.standard.value(forKey: UserDefaultsKeys.sectionsSortingOrder) as? [Int] {
-            self.data = data
-        }
-//        else {
-//            for s in Utils.torrentStates.allCases {
-//                self.data.append(s.rawValue)
-//            }
-//        }
+        data = UserPreferences.sectionsSortingOrder.value
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,7 +36,7 @@ class SettingsSortingController : ThemedUIViewController, UITableViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        UserDefaults.standard.set(data, forKey: UserDefaultsKeys.sectionsSortingOrder)
+        UserPreferences.sectionsSortingOrder.value = data
     }
     
     @IBAction func revertAction(_ sender: UIBarButtonItem) {
@@ -70,7 +63,7 @@ extension SettingsSortingController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = NSLocalizedString(Utils.torrentStates.init(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
         
-        let theme = Themes.current()
+        let theme = Themes.current
         cell.textLabel?.textColor = theme.mainText
         cell.backgroundColor = theme.backgroundMain
         

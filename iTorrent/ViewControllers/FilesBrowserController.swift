@@ -15,7 +15,7 @@ class FilesBrowserController : UIDocumentPickerViewController, Themed {
     }
     
     @objc func themeUpdate() {
-        let theme = Themes.current()
+        let theme = Themes.current
         
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!

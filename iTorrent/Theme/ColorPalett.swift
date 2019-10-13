@@ -15,9 +15,10 @@ class Themes {
 	static let shared = Themes()
 	
 	var theme : [ColorPalett] = []
+    var currentUserTheme : Int!
 	
 	private init() {
-		let darkTheme = ColorPalett()
+        var darkTheme = ColorPalett()
 		
 		darkTheme.mainText = UIColor.white
 		darkTheme.secondaryText = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
@@ -30,6 +31,7 @@ class Themes {
 		darkTheme.actionCancelButtonColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 28.0/255.0, alpha: 1.0)
         darkTheme.progressBarBackground = UIColor(red: 0.24, green: 0.24, blue: 0.25, alpha: 1)
 		darkTheme.actionButtonColor = .orange
+        darkTheme.tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
 		darkTheme.statusBarStyle = .lightContent
 		darkTheme.barStyle = .blackTranslucent
 		darkTheme.blurEffect = .dark
@@ -43,14 +45,22 @@ class Themes {
 		theme.append(ColorPalett())
 		theme.append(darkTheme)
 	}
-	
-	static func current() -> ColorPalett {
-		return shared.theme[UserDefaults.standard.integer(forKey: UserDefaultsKeys.themeNum)]
-	}
-	
+    
+    static var current : ColorPalett {
+        if #available(iOS 13.0, *) {
+            if (UserPreferences.autoTheme.value) {
+                if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark) {
+                    return shared.theme[1]
+                } else if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light) {
+                    return shared.theme[0]
+                }
+            }
+        }
+        return shared.theme[UserPreferences.themeNum.value]
+    }
 }
 
-class ColorPalett {
+struct ColorPalett: Equatable {
 	var mainText = UIColor.black
 	var secondaryText = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
 	var tertiaryText = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
@@ -62,6 +72,7 @@ class ColorPalett {
 	var actionCancelButtonColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
     var progressBarBackground = UIColor(red: 0.85, green: 0.85, blue: 0.87, alpha: 1)
 	var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+    var tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
 	var statusBarStyle : UIStatusBarStyle = .default
 	var barStyle : UIBarStyle = .default
 	var blurEffect : UIBlurEffect.Style = .extraLight

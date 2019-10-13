@@ -144,4 +144,21 @@ class Utils {
         }
         return body(cStrings)
     }
+    
+    public static func openUrl(_ url: String) {
+        if let url = URL(string: url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+}
+
+class Localize {
+    static func get(_ key: String) -> String {
+        return NSLocalizedString(key, comment: "")
+    }
 }

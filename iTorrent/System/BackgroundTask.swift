@@ -10,7 +10,7 @@ import AVFoundation
 
 class BackgroundTask {
 	
-	static var player = AVAudioPlayer()
+    static var player: AVAudioPlayer?
 	static var timer = Timer()
 	static var backgrounding = false
 	
@@ -24,7 +24,7 @@ class BackgroundTask {
 	static func stopBackgroundTask() {
 		if (backgrounding) {
 			backgrounding = false
-			player.stop()
+			player?.stop()
 		}
 	}
 
@@ -34,16 +34,16 @@ class BackgroundTask {
 			let alertSound = URL(fileURLWithPath: bundle!)
             try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
 			try AVAudioSession.sharedInstance().setActive(true)
-			try BackgroundTask.player = AVAudioPlayer(contentsOf: alertSound)
-			BackgroundTask.player.numberOfLoops = -1
-			BackgroundTask.player.volume = 0.01
-			BackgroundTask.player.prepareToPlay()
-			BackgroundTask.player.play()
+            BackgroundTask.player = try AVAudioPlayer(contentsOf: alertSound)
+			BackgroundTask.player?.numberOfLoops = -1
+			BackgroundTask.player?.volume = 0.01
+			BackgroundTask.player?.prepareToPlay()
+			BackgroundTask.player?.play()
 		} catch { print(error) }
 	}
 	
 	static func startBackground() -> Bool {
-		if (UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundKey)) {
+        if (UserPreferences.background.value) {
 			if (Manager.torrentStates.contains(where: { (status) -> Bool in
 				return getBackgroundConditions(status)
 			})) {
@@ -55,9 +55,7 @@ class BackgroundTask {
 	}
 	
 	static func checkToStopBackground() {
-		if (!Manager.torrentStates.contains(where: { (status) -> Bool in
-			return getBackgroundConditions(status)
-		})) {
+		if (!Manager.torrentStates.contains(where: {getBackgroundConditions($0)})) {
 			if (backgrounding) {
 				Manager.saveTorrents()
 				stopBackgroundTask()
@@ -70,9 +68,9 @@ class BackgroundTask {
 			status.displayState == Utils.torrentStates.Metadata.rawValue ||
 			status.displayState == Utils.torrentStates.Hashing.rawValue ||
 			(status.displayState == Utils.torrentStates.Seeding.rawValue &&
-				UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
+                UserPreferences.backgroundSeedKey.value &&
 				status.seedMode) ||
-			(UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpKey) &&
-			UserDefaults.standard.bool(forKey: UserDefaultsKeys.ftpBackgroundKey))
+            (UserPreferences.ftpKey.value &&
+                UserPreferences.ftpBackgroundKey.value)
 	}
 }

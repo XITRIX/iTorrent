@@ -27,7 +27,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		var localTrackers : [Tracker] = []
 		let trackersRaw = get_trackers_by_hash(managerHash)
 		for i in 0 ..< Int(trackersRaw.size) {
-			let tracker = Tracker()
+			var tracker = Tracker()
             tracker.url = String(validatingUTF8: trackersRaw.tracker_url[i]) ?? "ERROR"
 			var msg = trackersRaw.working[i] == 1 ? NSLocalizedString("Working", comment: "") : NSLocalizedString("Inactive", comment: "")
 			if (trackersRaw.verified[i] == 1) {
@@ -44,7 +44,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 	
 	override func themeUpdate() {
 		super.themeUpdate()
-		tableView.backgroundColor = Themes.current().backgroundMain
+		tableView.backgroundColor = Themes.current.backgroundMain
 	}
 	
 	override func viewDidLoad() {
@@ -53,20 +53,19 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
         scrape_tracker(managerHash)
 		DispatchQueue.global(qos: .background).async {
 			while(self.runUpdate) {
-				let previousCount = self.trackers.count
+                let oldDataset = self.trackers
 				self.update()
 				DispatchQueue.main.async {
-					if (previousCount == self.trackers.count) {
-						for cell in self.tableView.visibleCells {
-							if let cell = cell as? TrackerCell {
-								let index = (self.tableView.indexPath(for: cell)?.row)!
-								cell.title.text = self.trackers[index].url
-								cell.message.text = self.trackers[index].message
-                                cell.peers.text = "\(NSLocalizedString("Peers", comment: "")): \(self.trackers[index].peers)"
-                                cell.seeders.text = "\(NSLocalizedString("Seeds", comment: "")): \(self.trackers[index].seeders)"
-                                cell.leechers.text = "\(NSLocalizedString("Leechers", comment: "")): \(self.trackers[index].leechs)"
-							}
-						}
+                    if (oldDataset.count == self.trackers.count) {
+                        var reloadIndexes = [IndexPath]()
+                        for i in 0 ..< self.trackers.count {
+                            if (oldDataset[i] != self.trackers[i]) {
+                                reloadIndexes.append(IndexPath(row: i, section: 0))
+                            }
+                        }
+                        if (reloadIndexes.count > 0) {
+                            self.tableView.reloadRows(at: reloadIndexes, with: .automatic)
+                        }
 					} else {
 						self.tableView.reloadData()
 					}
@@ -84,11 +83,6 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		
 		runUpdate = false
 	}
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let tracker = trackers[indexPath.row]
-        return tracker.leechs == -1 && tracker.seeders == -1 && tracker.peers == -1 ? 64 : 88
-    }
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return trackers.count
@@ -96,11 +90,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TrackerCell
-		cell.title.text = trackers[indexPath.row].url
-		cell.message.text = trackers[indexPath.row].message
-		cell.peers.text = "\(NSLocalizedString("Peers", comment: "")): \(trackers[indexPath.row].peers)"
-		cell.seeders.text = "\(NSLocalizedString("Seeds", comment: "")): \(trackers[indexPath.row].seeders)"
-        cell.leechers.text = "\(NSLocalizedString("Leechers", comment: "")): \(trackers[indexPath.row].leechs)"
+        cell.setModel(tracker: trackers[indexPath.row])
 		return cell
 	}
 	
@@ -141,7 +131,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 		let controller = ThemedUIAlertController(title: NSLocalizedString("Add Tracker", comment: ""), message: NSLocalizedString("Enter the full tracker's URL", comment: ""), preferredStyle: .alert)
 		controller.addTextField(configurationHandler: { (textField) in
 			textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
-			textField.keyboardAppearance = Themes.current().keyboardAppearence
+			textField.keyboardAppearance = Themes.current.keyboardAppearence
 		})
 		let add = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { _ in
 			let textField = controller.textFields![0]
@@ -189,7 +179,7 @@ class TrackersListController : ThemedUIViewController, UITableViewDataSource, UI
 	}
 }
 
-class Tracker {
+struct Tracker: Equatable {
 	var url = ""
 	var message = ""
 	var seeders = 0

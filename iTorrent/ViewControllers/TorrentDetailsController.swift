@@ -46,7 +46,7 @@ class TorrentDetailsController: ThemedUITableViewController {
     
     var managerHash : String!
 	
-	var seedLimitPickerView : SeedLimitPickerView!
+	var seedLimitPickerView : SizePicker?
 	var myPickerView : UIPickerView!
     
     var sortedFilesData : [FilePieceData]!
@@ -59,7 +59,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 		super.themeUpdate()
 		
 		if let label = navigationItem.titleView as? UILabel {
-			let theme = Themes.current()
+			let theme = Themes.current
 			label.textColor = theme.mainText
 		}
 	}
@@ -96,7 +96,7 @@ class TorrentDetailsController: ThemedUITableViewController {
         filesButtonLabel.text = NSLocalizedString("Files", comment: "")
         
 		// MARQUEE LABEL
-		let theme = Themes.current()
+		let theme = Themes.current
 		let label = MarqueeLabel.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
 		label.font = UIFont.boldSystemFont(ofSize: 17)
 		label.textAlignment = NSTextAlignment.center
@@ -115,19 +115,14 @@ class TorrentDetailsController: ThemedUITableViewController {
         managerUpdated()
 		NotificationCenter.default.addObserver(self, selector: #selector(managerUpdated), name: .torrentsUpdated, object: nil)
     }
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		
-		if (seedLimitPickerView != nil) {
-			seedLimitPickerView.dismiss()
-			seedLimitPickerView = nil
-		}
-	}
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        seedLimitPickerView?.dismiss()
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-		
 		NotificationCenter.default.removeObserver(self, name: .torrentsUpdated, object: nil)
     }
 	
@@ -139,10 +134,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 	}
 	
 	override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-		if (seedLimitPickerView != nil) {
-			seedLimitPickerView.dismiss()
-			seedLimitPickerView = nil
-		}
+        seedLimitPickerView?.dismiss()
 	}
     
     @objc func managerUpdated() {
@@ -177,7 +169,7 @@ class TorrentDetailsController: ThemedUITableViewController {
             seedersLabel.text = String(manager.numSeeds)
             peersLabel.text = String(manager.numPeers)
 			
-			switcher.setOn((Manager.managerSaves[managerHash]?.seedMode)! , animated: true)
+			switcher.setOn(Manager.managerSaves[managerHash]!.seedMode , animated: true)
 			
             if (manager.state == Utils.torrentStates.Hashing.rawValue ||
 				manager.state == Utils.torrentStates.Metadata.rawValue) {
@@ -262,19 +254,21 @@ class TorrentDetailsController: ThemedUITableViewController {
 	@IBAction func seedingStateChanged(_ sender: UISwitch) {
 		Manager.managerSaves[managerHash]?.seedMode = sender.isOn
 		if let manager = Manager.getManagerByHash(hash: managerHash) {
+            if manager.isPaused {
+                start_torrent(self.managerHash)
+            }
+            
 			if sender.isOn {
-				if manager.isPaused {
-					start_torrent(managerHash)
-				}
-				if (!UserDefaults.standard.bool(forKey: UserDefaultsKeys.backgroundSeedKey) &&
-					!UserDefaults.standard.bool(forKey: UserDefaultsKeys.seedBackgroundWarning)) {
+                if (UserPreferences.background.value &&
+                    !UserPreferences.backgroundSeedKey.value &&
+                    !UserPreferences.seedBackgroundWarning.value) {
+                    UserPreferences.seedBackgroundWarning.value = true
+                    
 					let controller = ThemedUIAlertController(title: NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.", comment: ""), preferredStyle: .alert)
 					let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
-						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.backgroundSeedKey)
+                        UserPreferences.backgroundSeedKey.value = true
 					}
-					let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-						UserDefaults.standard.set(true, forKey: UserDefaultsKeys.seedBackgroundWarning)
-					}
+					let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 					
 					controller.addAction(enable)
 					controller.addAction(cancel)
@@ -291,16 +285,16 @@ class TorrentDetailsController: ThemedUITableViewController {
 	}
 	
 	@IBAction func seedLimitAction(_ sender: UIButton) {
-		if (seedLimitPickerView == nil || seedLimitPickerView.dismissed) {
-			seedLimitPickerView = SeedLimitPickerView(self, defaultValue: (Manager.managerSaves[self.managerHash]?.seedLimit)!, onStateChange: { res in
-				Manager.managerSaves[self.managerHash]?.seedLimit = res
-				if (res == 0) {
-					sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
-				} else {
-					sender.setTitle(Utils.getSizeText(size: res, decimals: true), for: .normal)
-				}
-			})
-		}
+        seedLimitPickerView?.dismiss()
+        seedLimitPickerView = SizePicker(defaultValue: Manager.managerSaves[self.managerHash]!.seedLimit, dataSelected: { res in
+            Manager.managerSaves[self.managerHash]?.seedLimit = res
+            if (res == 0) {
+                sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
+            } else {
+                sender.setTitle(Utils.getSizeText(size: res, decimals: true), for: .normal)
+            }
+        })
+        seedLimitPickerView?.show(navigationController!)
 	}
 	
 	@IBAction func sendTorrent(_ sender: UIBarButtonItem) {
@@ -406,7 +400,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 			
 			if (removeData) {
 				if (FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title)) {
-					try! FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
+					try? FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
 				}
 			}
 		}
