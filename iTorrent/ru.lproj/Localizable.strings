@@ -146,6 +146,11 @@
 "Medium" = "Средний";
 "Low" = "Низкий";
 
+//Torrent Files Controller
+"TorrentFilesController.Select" = "Выбрать";
+"TorrentFilesController.SelectAll" = "Отметить все";
+"TorrentFilesController.DeselectAll" = "Убрать все";
+
 //Trackers List Controller
 "Working" = "Работает";
 "Inactive" = "Неактивен";
@@ -174,6 +179,10 @@
 " finished seeding" = " закончил раздачу";
 
 "This action will recheck the state of all downloaded files for torrents:" = "Это перепроверит состояние всех скачанных файлов для этих торрентов:";
+
+//Background Task
+"BackgroundTask.LowSpeed.Title" = "Маленькая скорость загрузки ";
+"BackgroundTask.LowSpeed.Message" = " прекратит фоновую загрузку для предотвращения разрядки аккумулятора";
 
 //News Alerts
 "Dialogs.News.Title" = "Внимание!";

@@ -18,7 +18,6 @@ class FileCell: ThemedUITableViewCell {
     
     weak var actionDelegate : FileCellActionDelegate?
 	var name : String!
-	var index : Int!
     var adding = false
 	weak var file : File!
 	
@@ -47,9 +46,9 @@ class FileCell: ThemedUITableViewCell {
 		if (hideUI) {
 			shareButton.isHidden = true
 			switcher.isHidden = true
-			titleConstraint?.constant = 12
+			titleConstraint?.constant = 13
 		} else {
-			titleConstraint?.constant = 74
+			titleConstraint?.constant = 70
 			if (percent >= 100 && !adding) {
 				shareButton.isHidden = false
 				switcher.isHidden = true
@@ -87,7 +86,7 @@ class FileCell: ThemedUITableViewCell {
 	
     @IBAction func switcherAction(_ sender: UISwitch) {
         if (actionDelegate != nil) {
-            actionDelegate?.fileCellAction(sender, index: index)
+            actionDelegate?.fileCellAction(sender, file: file)
         }
     }
 	

@@ -35,10 +35,10 @@ class FolderCell : ThemedUITableViewCell {
 	func update() {
 		if isEditing {
 			moreButton.isHidden = true
-			titleConstraint.constant = 12
+			titleConstraint?.constant = 13
 		} else {
 			moreButton.isHidden = false
-			titleConstraint.constant = 38
+			titleConstraint?.constant = 36
 		}
 	}
     

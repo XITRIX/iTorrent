@@ -272,7 +272,6 @@ extension AddTorrentController: UITableViewDataSource {
             let index = indexPath.row - showFolders.keys.count
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
             cell.file = showFiles[index]
-            cell.index = index
             cell.adding = true
             cell.update()
             cell.switcher.setOn(showFiles[index].isDownloading != 0, animated: false)
@@ -365,7 +364,7 @@ extension AddTorrentController: UITableViewDelegate {
             let cell = tableView.cellForRow(at: indexPath) as! FileCell
             cell.switcher.setOn(!cell.switcher.isOn, animated: true)
             if (cell.actionDelegate != nil) {
-                cell.actionDelegate?.fileCellAction(cell.switcher, index: index)
+                cell.actionDelegate?.fileCellAction(cell.switcher, file: showFiles[index])
             }
         }
     }
@@ -408,8 +407,8 @@ extension AddTorrentController: FolderCellActionDelegate {
 }
 
 extension AddTorrentController: FileCellActionDelegate {
-    func fileCellAction(_ sender: UISwitch, index: Int) {
-        showFiles[index].isDownloading = sender.isOn ? 4 : 0
+    func fileCellAction(_ sender: UISwitch, file: File) {
+        Utils.getFileByName(showFiles, file: file)!.isDownloading = sender.isOn ? 4 : 0
         updateWeightLabel()
     }
 }

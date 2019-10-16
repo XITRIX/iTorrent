@@ -155,6 +155,15 @@ class Utils {
             }
         }
     }
+    
+    public static func getFileByName(_ array: [File], file: File) -> File? {
+        for f in array {
+            if f.name == file.name {
+                return f
+            }
+        }
+        return nil
+    }
 }
 
 class Localize {

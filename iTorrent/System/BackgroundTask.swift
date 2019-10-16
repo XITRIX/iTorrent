@@ -9,10 +9,12 @@
 import AVFoundation
 
 class BackgroundTask {
-	
+    static let zeroSpeedLimit = 5
+    
     static var player: AVAudioPlayer?
 	static var timer = Timer()
 	static var backgrounding = false
+    
 	
 	static func startBackgroundTask() {
 		if (!backgrounding) {
@@ -64,13 +66,14 @@ class BackgroundTask {
 	}
 	
 	static func getBackgroundConditions(_ status: TorrentStatus) -> Bool {
-		return status.displayState == Utils.torrentStates.Downloading.rawValue ||
+		return (status.displayState == Utils.torrentStates.Downloading.rawValue ||
 			status.displayState == Utils.torrentStates.Metadata.rawValue ||
 			status.displayState == Utils.torrentStates.Hashing.rawValue ||
 			(status.displayState == Utils.torrentStates.Seeding.rawValue &&
                 UserPreferences.backgroundSeedKey.value &&
 				status.seedMode) ||
             (UserPreferences.ftpKey.value &&
-                UserPreferences.ftpBackgroundKey.value)
+                UserPreferences.ftpBackgroundKey.value)) &&
+            Manager.managerSaves[status.hash]?.zeroSpeedTimeCounter ?? 0 < BackgroundTask.zeroSpeedLimit
 	}
 }

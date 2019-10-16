@@ -139,6 +139,11 @@
 "Don't Download" = "Don't Download";
 "Share" = "Share";
 
+//Torrent Files Controller
+"TorrentFilesController.Select" = "Select";
+"TorrentFilesController.SelectAll" = "Select All";
+"TorrentFilesController.DeselectAll" = "Deselect All";
+
 //Trackers List Controller
 "Working" = "Working";
 "Inactive" = "Inactive";
@@ -167,6 +172,10 @@
 " finished seeding" = " finished seeding";
 
 "This action will recheck the state of all downloaded files for torrents:" = "This action will recheck the state of all downloaded files for torrents:";
+
+//Background Task
+"BackgroundTask.LowSpeed.Title" = "Download speed is low ";
+"BackgroundTask.LowSpeed.Message" = " will stop background downloading to prevent battery drain";
 
 //News Alerts
 "Dialogs.News.Title" = "Warning!";

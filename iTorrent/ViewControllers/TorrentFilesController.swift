@@ -12,6 +12,10 @@ import UIKit
 class TorrentFilesController : ThemedUIViewController {
     @IBOutlet weak var tableView: ThemedUITableView!
     
+    @IBOutlet var selectButton: UIBarButtonItem!
+    @IBOutlet var selectAllButton: UIBarButtonItem!
+    @IBOutlet var deselectAllButton: UIBarButtonItem!
+    
     var managerHash : String!
     var name : String!
 	
@@ -47,8 +51,6 @@ class TorrentFilesController : ThemedUIViewController {
 		return res
 	}()
 	
-	@IBOutlet weak var selectButton: ThemedUITableView!
-	
 	override func themeUpdate() {
 		super.themeUpdate()
         
@@ -61,9 +63,16 @@ class TorrentFilesController : ThemedUIViewController {
 		print("Files DEINIT!!")
 	}
     
+    func localize() {
+        selectButton.title = Localize.get("TorrentFilesController.Select")
+        selectAllButton.title = Localize.get("TorrentFilesController.SelectAll")
+        deselectAllButton.title = Localize.get("TorrentFilesController.DeselectAll")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		localize()
+        
 		defaultToolBarItems = toolbarItems
 		
 		if (root.starts(with: "/")) { root.removeFirst() }
@@ -103,7 +112,7 @@ class TorrentFilesController : ThemedUIViewController {
                 DispatchQueue.main.async {
                     for cell in self.tableView.visibleCells {
                         if let cell = cell as? FileCell {
-							cell.file = self.tableViewEditMode ? self.downloadedFiles[cell.index] : self.showFiles[cell.index]
+                            cell.file = Utils.getFileByName(self.tableViewEditMode ? self.downloadedFiles : self.showFiles, file: cell.file)
                             cell.update()
                         }
                     }
@@ -235,6 +244,15 @@ class TorrentFilesController : ThemedUIViewController {
 	}
 	
 	@IBAction func selectButtonItem(_ sender: UIBarButtonItem) {
+        downloadedFiles = showFiles.filter({$0.downloaded == $0.size})
+
+        var indexPaths = [IndexPath]()
+        for i in 0 ..< showFiles.count {
+            if showFiles[i].downloaded != showFiles[i].size {
+                indexPaths.append(IndexPath(row: showFolders.keys.count + i, section: 0))
+            }
+        }
+        
 		if (!tableView.isEditing) {
 			tableView.setEditing(true, animated: true)
 			tableViewEditMode = true
@@ -245,6 +263,8 @@ class TorrentFilesController : ThemedUIViewController {
 			
 			editBarItems[4].isEnabled = false
 			setToolbarItems(editBarItems, animated: true)
+            
+            tableView.deleteRows(at: indexPaths, with: .automatic)
 		} else {
 			tableView.setEditing(false, animated: true)
 			tableViewEditMode = false
@@ -254,9 +274,10 @@ class TorrentFilesController : ThemedUIViewController {
 			navigationItem.rightBarButtonItem?.style = .plain
 			
 			setToolbarItems(defaultToolBarItems, animated: true)
+
+            tableView.insertRows(at: indexPaths, with: .automatic)
 		}
 		
-		tableView.reloadSections([0], with: .automatic)
 		for cell in tableView.visibleCells {
 			if let cell = cell as? FileCell {
 				cell.hideUI = tableViewEditMode
@@ -352,7 +373,6 @@ extension TorrentFilesController: UITableViewDataSource {
                 let index = indexPath.row - showFolders.keys.count
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
                 cell.file = downloadedFiles[index]
-                cell.index = index
                 cell.hideUI = true
                 cell.update()
                 cell.switcher.setOn(downloadedFiles[index].isDownloading != 0, animated: false)
@@ -371,7 +391,6 @@ extension TorrentFilesController: UITableViewDataSource {
                 let index = indexPath.row - showFolders.keys.count
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FileCell
                 cell.file = showFiles[index]
-                cell.index = index
                 cell.hideUI = false
                 cell.update()
                 cell.switcher.setOn(showFiles[index].isDownloading != 0, animated: false)
@@ -470,7 +489,7 @@ extension TorrentFilesController: UITableViewDelegate {
                     let cell = tableView.cellForRow(at: indexPath) as! FileCell
                     cell.switcher.setOn(!cell.switcher.isOn, animated: true)
                     if (cell.actionDelegate != nil) {
-                        cell.actionDelegate?.fileCellAction(cell.switcher, index: index)
+                        cell.actionDelegate?.fileCellAction(cell.switcher, file: showFiles[index])
                     }
                 } else {
                     let cell = tableView.cellForRow(at: indexPath) as! FileCell
@@ -525,8 +544,9 @@ extension TorrentFilesController: FolderCellActionDelegate {
 }
 
 extension TorrentFilesController: FileCellActionDelegate {
-    func fileCellAction(_ sender: UISwitch, index: Int) {
-        showFiles[index].isDownloading = sender.isOn ? 4 : 0
-        set_torrent_file_priority(managerHash, Int32(showFiles[index].number), sender.isOn ? 4 : 0)
+    func fileCellAction(_ sender: UISwitch, file: File) {
+        let file = Utils.getFileByName(showFiles, file: file)!
+        file.isDownloading = sender.isOn ? 4 : 0
+        set_torrent_file_priority(managerHash, Int32(file.number), sender.isOn ? 4 : 0)
     }
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import UserNotifications
 
@@ -91,6 +90,11 @@ class Manager {
             let status = TorrentStatus(torrents[i])
             Manager.torrentStates.append(status)
             status.stateCorrector()
+        }
+        
+        // check torrents speed to stop if == 0
+        for status in Manager.torrentStates {
+            status.checkSpeed()
         }
         
         DispatchQueue.main.async {
@@ -240,6 +244,7 @@ class Manager {
 				content.title = NSLocalizedString("Download finished", comment: "")
 				content.body = manager.title + NSLocalizedString(" finished downloading", comment: "")
 				content.sound = UNNotificationSound.default
+                content.userInfo = ["hash" : manager.hash]
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
 				let identifier = manager.hash;
@@ -253,6 +258,7 @@ class Manager {
                 notification.alertTitle = NSLocalizedString("Download finished", comment: "")
                 notification.alertBody = manager.title + NSLocalizedString(" finished downloading", comment: "")
                 notification.soundName = UILocalNotificationDefaultSoundName
+                notification.userInfo = ["hash" : manager.hash]
 				
                 UIApplication.shared.scheduleLocalNotification(notification)
             }
@@ -271,6 +277,7 @@ class Manager {
 				content.title = NSLocalizedString("Seeding finished", comment: "")
 				content.body = manager.title + NSLocalizedString(" finished seeding", comment: "")
 				content.sound = UNNotificationSound.default
+                content.userInfo = ["hash" : manager.hash]
 				
 				let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
 				let identifier = manager.hash;
@@ -284,6 +291,7 @@ class Manager {
 				notification.alertTitle = NSLocalizedString("Seeding finished", comment: "")
 				notification.alertBody = manager.title + NSLocalizedString(" finished seeding", comment: "")
 				notification.soundName = UILocalNotificationDefaultSoundName
+                notification.userInfo = ["hash" : manager.hash]
 				
 				UIApplication.shared.scheduleLocalNotification(notification)
 			}

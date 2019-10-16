@@ -149,19 +149,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return nil
     }
     
-//	fileprivate func setupNotifications() {
-//		let nc = NotificationCenter.default
-//		nc.addObserver(forName: NSLocale.currentLocaleDidChangeNotification, object: nil, queue: OperationQueue.main) {
-//			[weak self] notification in
-//			guard let `self` = self else { return }
-//
-//			//	this is the only way I know of to force-reload storyboard-based stuff
-//			//	limitations like this is one of the main reason why I avoid basing entire app on them
-//			//	since doing this essentialy resets the app and all user-generated context and data
-//			let sb = UIStoryboard(name: "Main", bundle: nil)
-//			let vc = sb.instantiateInitialViewController()
-//			self.window?.rootViewController = vc
-//		}
-//	}
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        if (!AppDelegate.backgrounded) { return }
+
+        if let hash = notification.userInfo?["hash"] as? String,
+            let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
+            let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as! TorrentDetailsController
+            viewController.managerHash = hash
+            if (!splitViewController.isCollapsed) {
+                if splitViewController.viewControllers.count > 1,
+                    let nvc = splitViewController.viewControllers[1] as? UINavigationController {
+                    nvc.show(viewController, sender: self)
+                } else {
+                    let navController = ThemedUINavigationController(rootViewController: viewController)
+                    navController.isToolbarHidden = false
+                    splitViewController.showDetailViewController(navController, sender: self)
+                }
+            } else {
+                splitViewController.showDetailViewController(viewController, sender: self)
+            }
+        }
+    }
 }
 

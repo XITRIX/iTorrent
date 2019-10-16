@@ -17,6 +17,7 @@ class UserManagerSettings : NSObject, NSCoding  {
 	var addedDate : Date!
     var totalDownloadSession : Int64 = 0
     var totalUploadSession : Int64 = 0
+    var zeroSpeedTimeCounter : Int = 0
     
     var totalDownload : Int64 {
        return _totalDownload + totalDownloadSession

@@ -6,7 +6,8 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import UserNotifications
 
 class TorrentStatus {
     var title : String = ""
@@ -120,6 +121,42 @@ class TorrentStatus {
         else if (state == Utils.torrentStates.Hashing.rawValue && isPaused)
         {
             start_torrent(hash)
+        }
+    }
+    
+    func checkSpeed() {
+        if (displayState == Utils.torrentStates.Downloading.rawValue && downloadRate <= 25000 && BackgroundTask.backgrounding) {
+            Manager.managerSaves[hash]?.zeroSpeedTimeCounter += 1
+        } else {
+            Manager.managerSaves[hash]?.zeroSpeedTimeCounter = 0
+        }
+        
+        if (Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == BackgroundTask.zeroSpeedLimit) {
+            if #available(iOS 10.0, *) {
+                let content = UNMutableNotificationContent()
+                
+                content.title = Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)"
+                content.body = title + Localize.get("BackgroundTask.LowSpeed.Message")
+                content.sound = UNNotificationSound.default
+                content.userInfo = ["hash" : hash]
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                let identifier = hash;
+                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request)
+            } else {
+                let notification = UILocalNotification()
+                
+                notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
+                notification.alertTitle = Localize.get("Download speed is low")
+                notification.alertBody = title + Localize.get(" will stop background downloading to prevent battery drain")
+                notification.soundName = UILocalNotificationDefaultSoundName
+                notification.userInfo = ["hash" : hash]
+                
+                UIApplication.shared.scheduleLocalNotification(notification)
+            }
+            BackgroundTask.checkToStopBackground()
         }
     }
 }
