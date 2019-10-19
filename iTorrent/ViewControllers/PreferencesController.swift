@@ -9,23 +9,13 @@
 import UIKit
 
 class PreferencesController : ThemedUIViewController {
-    @IBOutlet var tableView: UITableView!
-    
-    var data : [Section] = []
+    @IBOutlet var tableView: StaticTableView!
     var onScreenPopup : PopupView?
-    
-    var _presentableData : [Section]?
-    var presentableData : [Section] {
-        get {
-            if (_presentableData == nil) { _presentableData = [Section]() }
-            _presentableData?.removeAll()
-            data.forEach { _presentableData?.append(Section(rowModels: $0.rowModels.filter({ !($0.hiddenCondition?() ?? false)}), header: $0.header, footer: $0.footer)) }
-            return _presentableData!
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var data = [StaticTableView.Section]()
         
         // APPEARENCE
         var appearence = [CellModelProtocol]()
@@ -37,7 +27,7 @@ class PreferencesController : ThemedUIViewController {
                                                         UserPreferences.autoTheme.value = switcher.isOn
                                                         Themes.shared.currentUserTheme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle.rawValue
                                                         let newTheme = Themes.current
-                                                        
+
                                                         if (oldTheme != newTheme) {
                                                             self.navigationController?.view.isUserInteractionEnabled = false
                                                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
@@ -68,7 +58,7 @@ class PreferencesController : ThemedUIViewController {
                                                 self.navigationController?.view.isUserInteractionEnabled = true
                                             }
         })
-        data.append(PreferencesController.Section(rowModels: appearence))
+        data.append(StaticTableView.Section(rowModels: appearence))
         
         //BACKGROUND
         var background = [CellModelProtocol]()
@@ -90,8 +80,8 @@ class PreferencesController : ThemedUIViewController {
                 UserPreferences.backgroundSeedKey.value = false
             }
         })
-        data.append(PreferencesController.Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
-        
+        data.append(StaticTableView.Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
+
         //SPEED LIMITATION
         var speed = [CellModelProtocol]()
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
@@ -130,8 +120,8 @@ class PreferencesController : ThemedUIViewController {
             })
             self.onScreenPopup?.show(self)
         })
-        data.append(PreferencesController.Section(rowModels: speed, header: "Settings.SpeedHeader"))
-        
+        data.append(StaticTableView.Section(rowModels: speed, header: "Settings.SpeedHeader"))
+
         //FTP
         var ftp = [CellModelProtocol]()
         ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey) { switcher in
@@ -154,15 +144,23 @@ class PreferencesController : ThemedUIViewController {
                 UserPreferences.ftpBackgroundKey.value = switcher.isOn
             }
         })
-        data.append(PreferencesController.Section(rowModels: ftp, header: "Settings.FTPHeader"))
-        
+        data.append(StaticTableView.Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
+            let addr = Utils.getWiFiAddress()
+            if let addr = addr {
+                let b = UserPreferences.ftpKey.value
+                return b ? NSLocalizedString("Connect to: ftp://", comment: "") + addr + ":21" : ""
+            } else {
+                return NSLocalizedString("Connect to WIFI to use FTP", comment: "")
+            }
+        }))
+
         //NOTIFICATIONS
         var notifications = [CellModelProtocol]()
         notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishLoad", property: UserPreferences.notificationsKey) { _ in self.tableView.reloadData() })
         notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishSeed", property: UserPreferences.notificationsSeedKey) { _ in self.tableView.reloadData() })
         notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge", property: UserPreferences.badgeKey, disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
-        data.append(PreferencesController.Section(rowModels: notifications, header: "Settings.NotifyHeader"))
-        
+        data.append(StaticTableView.Section(rowModels: notifications, header: "Settings.NotifyHeader"))
+
         //UPDATES
         var updates = [CellModelProtocol]()
         updates.append(ButtonCell.Model(title: "Settings.UpdateSite", buttonTitle: "Settings.UpdateSite.Open") { button in
@@ -172,13 +170,13 @@ class PreferencesController : ThemedUIViewController {
             self.present(Dialogs.crateUpdateDialog(forced: true)!, animated: true)
         })
         let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
-        data.append(PreferencesController.Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + version))
-        
+        data.append(StaticTableView.Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + version))
+
         //DONATES
         var donates = [CellModelProtocol]()
         donates.append(SegueCell.Model(title: "Settings.DonateCard.DonatePlatforms") {
             let alert = ThemedUIAlertController(title: Localize.get("Settings.DonateCard.DonatePlatforms.Title"), message: "", preferredStyle: .alert)
-            
+
             let card = UIAlertAction(title: Localize.get("Settings.DonateCard"), style: .default) { _ in
                 DispatchQueue.global(qos: .background).async {
                     if let url = URL(string: "https://raw.githubusercontent.com/XITRIX/iTorrent/master/iTorrent/Credit.card") {
@@ -188,7 +186,7 @@ class PreferencesController : ThemedUIViewController {
                         } catch {
                             card = "4817760222220562"
                         }
-                        
+
                         DispatchQueue.main.async {
                             UIPasteboard.general.string = card
                             let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
@@ -215,14 +213,14 @@ class PreferencesController : ThemedUIViewController {
                 Utils.openUrl("https://ko-fi.com/xitrix")
             }
             let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
-            
+
             alert.addAction(card)
             alert.addAction(paypal)
             alert.addAction(patreon)
             alert.addAction(liberapay)
             alert.addAction(kofi)
             alert.addAction(cancel)
-            
+
             self.present(alert, animated: true)
         })
         donates.append(SwitchCell.Model(title: "Settings.DonateDisable", defaultValue: { UserPreferences.disableAds.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
@@ -241,10 +239,9 @@ class PreferencesController : ThemedUIViewController {
                 UserPreferences.disableAds.value = switcher.isOn
             }
         })
-        data.append(PreferencesController.Section(rowModels: donates, header: "Settings.DonateHeader"))
+        data.append(StaticTableView.Section(rowModels: donates, header: "Settings.DonateHeader"))
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.data = data
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -255,41 +252,5 @@ class PreferencesController : ThemedUIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         onScreenPopup?.dismiss()
-    }
-    
-    struct Section {
-        var rowModels : [CellModelProtocol] = []
-        var header : String = ""
-        var footer : String = ""
-    }
-}
-
-extension PreferencesController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return presentableData.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presentableData[section].rowModels.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Localize.get(presentableData[section].header)
-    }
-    
-    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return Localize.get(presentableData[section].footer)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = presentableData[indexPath.section].rowModels[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: model.reuseCellIdentifier, for: indexPath)
-        (cell as? PreferenceCellProtocol)?.setModel(model)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = presentableData[indexPath.section].rowModels[indexPath.row]
-        model.tapAction?()
     }
 }

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class ButtonCell : ThemedUITableViewCell, PreferenceCellProtocol {
+    static let id = "ButtonCell"
+    static let nib = UINib.init(nibName: id, bundle: nil)
+    static let name = id
+    
 	@IBOutlet weak var title: ThemedUILabel!
 	@IBOutlet weak var button: UIButton! {
         didSet {
@@ -38,7 +42,7 @@ class ButtonCell : ThemedUITableViewCell, PreferenceCellProtocol {
     }
     
     struct Model : CellModelProtocol {
-        var reuseCellIdentifier: String = "ButtonCell"
+        var reuseCellIdentifier: String = id
         var title: String
         var buttonTitle: String
         var hiddenCondition: (() -> Bool)? = nil

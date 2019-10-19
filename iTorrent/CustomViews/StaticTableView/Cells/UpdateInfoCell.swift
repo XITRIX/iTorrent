@@ -9,6 +9,10 @@
 import UIKit
 
 class UpdateInfoCell : ThemedUITableViewCell, PreferenceCellProtocol {
+    static let id = "UpdateInfoCell"
+    static let nib = UINib.init(nibName: id, bundle: nil)
+    static let name = id
+    
     @IBOutlet var title: UILabel!
     @IBOutlet var loader: UIActivityIndicatorView!
     
@@ -66,7 +70,7 @@ class UpdateInfoCell : ThemedUITableViewCell, PreferenceCellProtocol {
     }
     
     struct Model : CellModelProtocol {
-        var reuseCellIdentifier: String = "UpdateInfoCell"
+        var reuseCellIdentifier: String = id
         var hiddenCondition: (() -> Bool)? = nil
         var tapAction : (()->())? = nil
     }

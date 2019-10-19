@@ -10,13 +10,16 @@ import Foundation
 import UIKit
 
 class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
+    static let id = "SwitchCell"
+    static let nib = UINib.init(nibName: id, bundle: nil)
+    static let name = id
+    
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var switcher: UISwitch! {
         didSet {
             switcher.addTarget(self, action: #selector(executeAction), for: .valueChanged)
         }
     }
-    
-    @IBOutlet weak var title: UILabel!
     
     var action: ((UISwitch)->())?
 	
@@ -65,7 +68,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
     
     struct Model : CellModelProtocol {
-        var reuseCellIdentifier: String = "SwitchCell"
+        var reuseCellIdentifier: String = id
         var title: String
         var defaultValue: ()->Bool
         var switchColor: UIColor? = nil
@@ -76,7 +79,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
     
     struct ModelProperty : CellModelProtocol {
-        var reuseCellIdentifier: String = "SwitchCell"
+        var reuseCellIdentifier: String = id
         var title: String
         var property: UserPreferences.SettingProperty<Bool>
         var switchColor: UIColor? = nil

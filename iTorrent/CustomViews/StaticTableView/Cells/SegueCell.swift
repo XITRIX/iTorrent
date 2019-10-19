@@ -9,6 +9,10 @@
 import UIKit
 
 class SegueCell : ThemedUITableViewCell, PreferenceCellProtocol {
+    static let id = "SegueCell"
+    static let nib = UINib.init(nibName: id, bundle: Bundle.main)
+    static let name = id
+    
     @IBOutlet var title: ThemedUILabel!
     
     func setModel(_ model: CellModelProtocol) {
@@ -17,7 +21,7 @@ class SegueCell : ThemedUITableViewCell, PreferenceCellProtocol {
     }
     
     struct Model : CellModelProtocol {
-        var reuseCellIdentifier: String = "SegueCell"
+        var reuseCellIdentifier: String = id
         var title: String
         var segueViewId: String? = nil
         var hiddenCondition: (() -> Bool)? = nil
