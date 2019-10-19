@@ -205,6 +205,20 @@ class TorrentDetailsController: ThemedUITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 4 && (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4)
+    }
+    
+    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return action == #selector(UIResponderStandardEditActions.copy(_:))
+    }
+    
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        if let cell = tableView.cellForRow(at: indexPath) as? DetailCell {
+            UIPasteboard.general.string = cell.details?.text ?? ""
+        }
+    }
+    
     func setupPiecesFilter() {
         if (sortedFilesData != nil) { return }
         let filesRaw = get_files_of_torrent_by_hash(managerHash)
