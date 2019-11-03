@@ -12,6 +12,8 @@ target 'iTorrent' do
   pod 'Crashlytics'
   pod 'MarqueeLabel'
   pod 'Google-Mobile-Ads-SDK'
+  pod "GCDWebServer/WebUploader", "~> 3.0"
+  pod "GCDWebServer/WebDAV", "~> 3.0"
 
 end
 

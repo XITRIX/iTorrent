@@ -89,7 +89,9 @@
 "Settings.FTPEnable" = "Включить";
 "Settings.FTPBackground" = "Работа в фоне";
 "Settings.FTPBackground.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
-"Settings.FTPHeader" = "FTP Сервер (Бета)";
+"Settings.FTP.Message.NoNetwork" = "Подключитесь к WIFI чтобы поделиться файлами";
+"Settings.FTP.Message" = "Подключитесь к: http://";
+"Settings.FTPHeader" = "Обмен файлами";
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
 "Settings.NotifyBadge" = "Показывать бейджик";
@@ -112,7 +114,6 @@
 "Rehash" = "Старт";
 
 "Connect to: ftp://" = "Подключитесь к: ftp://";
-"Connect to WIFI to use FTP" = "Подключитесь к WIFI чтобы использовать FTP";
 "Current app version: " = "Версия приложения: ";
 "New version " = "Доступна новая версия: ";
 " available" = "";

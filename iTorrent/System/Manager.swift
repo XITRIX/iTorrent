@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import GCDWebServer
 
 class Manager {
     public static var previousTorrentStates: [TorrentStatus] = []
@@ -18,6 +19,9 @@ class Manager {
     public static var managerSaves: [String: UserManagerSettings] = [:]
     public static var engineInited: Bool = false
     public static var torrentsRestored: Bool = false
+
+    public static var webUploadServer = GCDWebUploader(uploadDirectory: Manager.rootFolder)
+    public static var webDAVServer = GCDWebDAVServer(uploadDirectory: Manager.rootFolder)
 
     public static func InitManager() {
         DispatchQueue.global(qos: .background).async {
@@ -314,18 +318,20 @@ class Manager {
 
     static func getManagerByHash(hash: String) -> TorrentStatus? {
         let localStates = torrentStates
-        return localStates.filter({ $0.hash == hash }).first //TODO: can crach (Out of Index) - localStates.count == 0
+        return localStates.filter({ $0.hash == hash }).first //TODO: can crash (Out of Index) - localStates.count == 0
     }
 
-    static func startFTP() {
-        DispatchQueue.global(qos: .background).async {
-            ftp_start(21, rootFolder)
+    static func startFileSharing() {
+        webUploadServer.start()
+        webDAVServer.start()
+    }
+
+    static func stopFileSharing() {
+        if (webDAVServer.isRunning) {
+            webDAVServer.stop()
         }
-    }
-
-    static func stopFTP() {
-        DispatchQueue.global(qos: .background).async {
-            ftp_stop()
+        if (webUploadServer.isRunning) {
+            webUploadServer.stop()
         }
     }
 }

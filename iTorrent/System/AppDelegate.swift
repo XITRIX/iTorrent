@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
 
         if (UserPreferences.ftpKey.value) {
-            Manager.startFTP()
+            Manager.startFileSharing()
         }
 
         return true

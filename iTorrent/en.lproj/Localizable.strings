@@ -89,7 +89,9 @@
 "Settings.FTPEnable" = "Enable";
 "Settings.FTPBackground" = "Run in background";
 "Settings.FTPBackground.Warning" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
-"Settings.FTPHeader" = "FTP Server (BETA)";
+"Settings.FTP.Message.NoNetwork" = "Connect to WIFI to use file sharing";
+"Settings.FTP.Message" = "Connect to: http://";
+"Settings.FTPHeader" = "File sharing";
 "Settings.NotifyFinishLoad" = "On finish loading";
 "Settings.NotifyFinishSeed" = "On finish seeding";
 "Settings.NotifyBadge" = "Enable app's badge icon";
@@ -112,8 +114,6 @@
 "This action will recheck the state of all downloaded files" = "This action will recheck the state of all downloaded files";
 "Rehash" = "Rehash";
 
-"Connect to: ftp://" = "Connect to: ftp://";
-"Connect to WIFI to use FTP" = "Connect to WIFI to use FTP";
 "Current app version: " = "Current app version: ";
 "New version " = "New version ";
 " available" = " available";

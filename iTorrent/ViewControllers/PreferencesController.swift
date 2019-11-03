@@ -124,7 +124,7 @@ class PreferencesController: ThemedUIViewController {
         //FTP
         var ftp = [CellModelProtocol]()
         ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey) { switcher in
-            switcher.isOn ? Manager.startFTP() : Manager.stopFTP()
+            switcher.isOn ? Manager.startFileSharing() : Manager.stopFileSharing()
             self.tableView.reloadData()
         })
         ftp.append(SwitchCell.Model(title: "Settings.FTPBackground", defaultValue: { UserPreferences.ftpBackgroundKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
@@ -147,9 +147,9 @@ class PreferencesController: ThemedUIViewController {
             let addr = Utils.getWiFiAddress()
             if let addr = addr {
                 let b = UserPreferences.ftpKey.value
-                return b ? NSLocalizedString("Connect to: ftp://", comment: "") + addr + ":21" : ""
+                return b ? Localize.get("Settings.FTP.Message") + addr: ""
             } else {
-                return NSLocalizedString("Connect to WIFI to use FTP", comment: "")
+                return Localize.get("Settings.FTP.Message.NoNetwork")
             }
         }))
 
