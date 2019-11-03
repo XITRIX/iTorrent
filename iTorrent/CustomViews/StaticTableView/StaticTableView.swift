@@ -23,7 +23,11 @@ class StaticTableView: ThemedUITableView {
             }
             _presentableData?.removeAll()
             data.forEach {
-                _presentableData?.append(Section(rowModels: $0.rowModels.filter({ !($0.hiddenCondition?() ?? false) }), header: $0.header, footer: $0.footer))
+                _presentableData?.append(Section(rowModels: $0.rowModels.filter({ !($0.hiddenCondition?() ?? false) }),
+                    header: $0.header,
+                    footer: $0.footer,
+                    headerFunc: $0.headerFunc,
+                    footerFunc: $0.footerFunc))
             }
             return _presentableData!
         }
