@@ -8,39 +8,43 @@
 
 import UIKit
 
-class UpdateInfoCell : ThemedUITableViewCell, PreferenceCellProtocol {
+class UpdateInfoCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "UpdateInfoCell"
     static let nib = UINib.init(nibName: id, bundle: nil)
     static let name = id
-    
+
     @IBOutlet var title: UILabel!
     @IBOutlet var loader: UIActivityIndicatorView!
-    
+
     var checked = false
-    
+
     override func themeUpdate() {
         super.themeUpdate()
         loader?.style = Themes.current.loadingIndicatorStyle
     }
-    
+
     func setModel(_ model: CellModelProtocol) {
-        guard model is Model else { return }
-        if (!checked) { checkUpdates() }
+        guard model is Model else {
+            return
+        }
+        if (!checked) {
+            checkUpdates()
+        }
     }
-    
+
     func checkUpdates() {
         title.isHidden = true
         loader.isHidden = false
         loader.startAnimating()
-        
+
         DispatchQueue.global(qos: .background).async {
             if let url = URL(string: "https://raw.githubusercontent.com/XITRIX/iTorrent/master/iTorrent/Version.ver") {
                 do {
                     let remoteVersion = try String(contentsOf: url)
-                    
+
                     let localurl = Bundle.main.url(forResource: "Version", withExtension: "ver")
                     let localVersion = try String(contentsOf: localurl!)
-                    
+
                     DispatchQueue.main.async {
                         if (remoteVersion > localVersion) {
                             self.title.text = NSLocalizedString("New version ", comment: "") + remoteVersion + NSLocalizedString(" available", comment: "")
@@ -54,7 +58,7 @@ class UpdateInfoCell : ThemedUITableViewCell, PreferenceCellProtocol {
                         self.title.isHidden = false
                         self.loader.isHidden = true
                         self.loader.stopAnimating()
-                        
+
                         self.checked = true
                     }
                 } catch {
@@ -68,10 +72,10 @@ class UpdateInfoCell : ThemedUITableViewCell, PreferenceCellProtocol {
             }
         }
     }
-    
-    struct Model : CellModelProtocol {
+
+    struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var hiddenCondition: (() -> Bool)? = nil
-        var tapAction : (()->())? = nil
+        var tapAction: (() -> ())? = nil
     }
 }

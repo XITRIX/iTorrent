@@ -13,45 +13,45 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "SwitchCell"
     static let nib = UINib.init(nibName: id, bundle: nil)
     static let name = id
-    
+
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var switcher: UISwitch! {
         didSet {
             switcher.addTarget(self, action: #selector(executeAction), for: .valueChanged)
         }
     }
-    
-    var action: ((UISwitch)->())?
-	
-	override func themeUpdate() {
-		super.themeUpdate()
+
+    var action: ((UISwitch) -> ())?
+
+    override func themeUpdate() {
+        super.themeUpdate()
         let theme = Themes.current
-		title?.textColor = theme.mainText
-	}
-    
+        title?.textColor = theme.mainText
+    }
+
     override func prepareForReuse() {
         switcher.onTintColor = nil
     }
-    
+
     func setModel(_ model: CellModelProtocol) {
         if let model = model as? Model {
             setModel(model)
-        }
-        else if let model = model as? ModelProperty {
+        } else if let model = model as? ModelProperty {
             setModel(model)
+        } else {
+            return
         }
-        else { return }
     }
-    
+
     func setModel(_ model: Model) {
-        self.title.text = Localize.get(model.title) 
+        self.title.text = Localize.get(model.title)
         self.action = model.action
-        
+
         switcher.onTintColor = model.switchColor
         switcher.isEnabled = !(model.disableCondition?() ?? false)
         switcher.setOn(model.defaultValue(), animated: false)
     }
-    
+
     func setModel(_ model: ModelProperty) {
         self.title.text = Localize.get(model.title)
         self.action = { switcher in
@@ -62,30 +62,30 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         switcher.isEnabled = !(model.disableCondition?() ?? false)
         switcher.setOn(model.property.value, animated: false)
     }
-    
+
     @objc private func executeAction() {
         action?(switcher)
     }
-    
-    struct Model : CellModelProtocol {
+
+    struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var defaultValue: ()->Bool
+        var defaultValue: () -> Bool
         var switchColor: UIColor? = nil
         var hiddenCondition: (() -> Bool)? = nil
         var disableCondition: (() -> Bool)? = nil
-        var tapAction : (()->())? = nil
-        var action: ((UISwitch)->())
+        var tapAction: (() -> ())? = nil
+        var action: ((UISwitch) -> ())
     }
-    
-    struct ModelProperty : CellModelProtocol {
+
+    struct ModelProperty: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var property: UserPreferences.SettingProperty<Bool>
         var switchColor: UIColor? = nil
         var hiddenCondition: (() -> Bool)? = nil
         var disableCondition: (() -> Bool)? = nil
-        var tapAction : (()->())? = nil
-        var action: ((UISwitch)->())? = nil
+        var tapAction: (() -> ())? = nil
+        var action: ((UISwitch) -> ())? = nil
     }
 }

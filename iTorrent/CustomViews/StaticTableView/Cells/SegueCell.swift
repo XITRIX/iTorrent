@@ -8,34 +8,36 @@
 
 import UIKit
 
-class SegueCell : ThemedUITableViewCell, PreferenceCellProtocol {
+class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "SegueCell"
     static let nib = UINib.init(nibName: id, bundle: Bundle.main)
     static let name = id
-    
+
     @IBOutlet var title: ThemedUILabel!
-    
+
     func setModel(_ model: CellModelProtocol) {
-        guard let model = model as? Model else { return }
+        guard let model = model as? Model else {
+            return
+        }
         title?.text = Localize.get(model.title)
     }
-    
-    struct Model : CellModelProtocol {
+
+    struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var segueViewId: String? = nil
         var hiddenCondition: (() -> Bool)? = nil
-        var tapAction : (()->())? = nil
-        
-        init(title: String, tapAction: @escaping ()->()) {
+        var tapAction: (() -> ())? = nil
+
+        init(title: String, tapAction: @escaping () -> ()) {
             self.title = title
             self.tapAction = tapAction
         }
-        
+
         init(_ vc: UIViewController, title: String, segueViewId: String, isModal: Bool = false) {
             self.title = title
             self.segueViewId = segueViewId
-            
+
             tapAction = {
                 if let tvc = vc.storyboard?.instantiateViewController(withIdentifier: segueViewId) {
                     if isModal {

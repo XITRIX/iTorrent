@@ -10,24 +10,24 @@ import Foundation
 import UIKit
 
 class Dialogs {
-    static func crateUpdateDialog(forced: Bool = false, finishAction: (()->())? = nil) -> ThemedUIAlertController? {
-		let localurl = Bundle.main.url(forResource: "Version", withExtension: "ver")
-		if let localVersion = try? String(contentsOf: localurl!) {
+    static func crateUpdateDialog(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
+        let localUrl = Bundle.main.url(forResource: "Version", withExtension: "ver")
+        if let localVersion = try? String(contentsOf: localUrl!) {
             if (!UserPreferences.versionNews.value || forced) {
-				let title = localVersion + NSLocalizedString("info", comment: "")
-				let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: NSLocalizedString("UpdateText", comment: ""), preferredStyle: .alert)
-				let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel) { _ in
-					UserPreferences.versionNews.value = true
+                let title = localVersion + NSLocalizedString("info", comment: "")
+                let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: NSLocalizedString("UpdateText", comment: ""), preferredStyle: .alert)
+                let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel) { _ in
+                    UserPreferences.versionNews.value = true
                     finishAction?()
-				}
-				newsController.addAction(close)
-				return newsController
-			}
-		}
+                }
+                newsController.addAction(close)
+                return newsController
+            }
+        }
         finishAction?()
-		return nil
-	}
-    
+        return nil
+    }
+
     static func createNewsDialog() -> ThemedUIAlertController? {
         if #available(iOS 13, *) {
             let code = "0"

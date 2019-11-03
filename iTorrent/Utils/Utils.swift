@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Utils {
-	public enum torrentStates : String {
+    public enum torrentStates: String {
         case Queued = "Queued"
         case Hashing = "Hashing"
         case Metadata = "Metadata"
@@ -19,9 +19,9 @@ class Utils {
         case Seeding = "Seeding"
         case Allocating = "Allocating"
         case CheckingFastresume = "Checking fastresume"
-		case Paused = "Paused"
-        
-        init?(id : Int) {
+        case Paused = "Paused"
+
+        init?(id: Int) {
             switch id {
             case 1: self = .Queued
             case 2: self = .Hashing
@@ -36,7 +36,7 @@ class Utils {
             }
         }
     }
-    
+
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
         if (speedInBytes == 0) {
             return NSLocalizedString("eternity", comment: "")
@@ -44,15 +44,15 @@ class Utils {
         let seconds = (fileSize - downloadedSize) / speedInBytes
         return secondsToTimeText(seconds: seconds)
     }
-    
+
     public static func secondsToTimeText(seconds: Int64) -> String {
         let sec = seconds % 60
         let min = (seconds / 60) % 60
         let hour = (seconds / 60 / 60) % 24
         let day = (seconds / 60 / 60 / 24)
-        
+
         var res = ""
-        
+
         if (day > 0) {
             res.append(String(day) + "d ")
         }
@@ -65,15 +65,15 @@ class Utils {
         if (day > 0 || hour > 0 || min > 0 || sec > 0) {
             res.append(String(sec) + "s")
         }
-        
+
         return res
     }
-    
-	public static func getSizeText(size: Int64, decimals: Bool = false) -> String {
+
+    public static func getSizeText(size: Int64, decimals: Bool = false) -> String {
         var size = size
         let names = ["B", "KB", "MB", "GB"]
         var count = 0
-        var fRes : Double = 0
+        var fRes: Double = 0
         while (count < 3 && size > 1024) {
             size /= 1024
             if (count == 0) {
@@ -81,81 +81,88 @@ class Utils {
             } else {
                 fRes /= 1024
             }
-            count+=1;
+            count += 1;
         }
-		let format = decimals ? "%.0f" : "%.2f"
+        let format = decimals ? "%.0f" : "%.2f"
         let res = count > 1 ? String(format: format, fRes) : String(size)
         return res + " " + names[count]
     }
-    
+
     public static func checkFolderExist(path: String) {
         if (!FileManager.default.fileExists(atPath: path)) {
             try! FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
     }
-    
+
     public static func createEmptyViewController() -> UIViewController {
         let view = ThemedUIViewController()
-		return view
+        return view
     }
-	
-	public static func getWiFiAddress() -> String? {
-		var address : String?
-		
-		// Get list of all interfaces on the local machine:
-		var ifaddr : UnsafeMutablePointer<ifaddrs>?
-		guard getifaddrs(&ifaddr) == 0 else { return nil }
-		guard let firstAddr = ifaddr else { return nil }
-		
-		// For each interface ...
-		for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-			let interface = ifptr.pointee
-			
-			// Check for IPv4 or IPv6 interface:
-			let addrFamily = interface.ifa_addr.pointee.sa_family
-			if addrFamily == UInt8(AF_INET) {//} || addrFamily == UInt8(AF_INET6) {
-				
-				// Check interface name:
-				let name = String(cString: interface.ifa_name)
-				if  name == "en0" {
-					
-					// Convert interface address to a human readable string:
-					var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-					getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
-								&hostname, socklen_t(hostname.count),
-								nil, socklen_t(0), NI_NUMERICHOST)
-					address = String(cString: hostname)
-				}
-			}
-		}
-		freeifaddrs(ifaddr)
-		
-		return address
-	}
-    
+
+    public static func getWiFiAddress() -> String? {
+        var address: String?
+
+        // Get list of all interfaces on the local machine:
+        var ifaddr: UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&ifaddr) == 0 else {
+            return nil
+        }
+        guard let firstAddr = ifaddr else {
+            return nil
+        }
+
+        // For each interface ...
+        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+            let interface = ifptr.pointee
+
+            // Check for IPv4 or IPv6 interface:
+            let addrFamily = interface.ifa_addr.pointee.sa_family
+            if addrFamily == UInt8(AF_INET) {//} || addrFamily == UInt8(AF_INET6) {
+
+                // Check interface name:
+                let name = String(cString: interface.ifa_name)
+                if name == "en0" {
+
+                    // Convert interface address to a human readable string:
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                        &hostname, socklen_t(hostname.count),
+                        nil, socklen_t(0), NI_NUMERICHOST)
+                    address = String(cString: hostname)
+                }
+            }
+        }
+        freeifaddrs(ifaddr)
+
+        return address
+    }
+
     public static func withArrayOfCStrings<R>(
         _ args: [String],
         _ body: ([UnsafeMutablePointer<CChar>?]) -> R
-        ) -> R {
-        var cStrings = args.map { strdup($0) }
+    ) -> R {
+        var cStrings = args.map {
+            strdup($0)
+        }
         cStrings.append(nil)
         defer {
-            cStrings.forEach { free($0) }
+            cStrings.forEach {
+                free($0)
+            }
         }
         return body(cStrings)
     }
-    
+
     public static func openUrl(_ url: String) {
         if let url = URL(string: url) {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-            else {
+            } else {
                 UIApplication.shared.openURL(url)
             }
         }
     }
-    
+
     public static func getFileByName(_ array: [File], file: File) -> File? {
         for f in array {
             if f.name == file.name {
@@ -168,6 +175,6 @@ class Utils {
 
 class Localize {
     static func get(_ key: String) -> String {
-        return NSLocalizedString(key, comment: "")
+        NSLocalizedString(key, comment: "")
     }
 }

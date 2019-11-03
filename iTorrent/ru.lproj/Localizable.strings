@@ -80,6 +80,7 @@
 "Settings.Theme" = "Тёмная тема";
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
+"Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";
 "Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
 "Settings.DownLimit" = "Лимит загрузки";
@@ -87,6 +88,7 @@
 "Settings.SpeedHeader" = "Ограничение скорости";
 "Settings.FTPEnable" = "Включить";
 "Settings.FTPBackground" = "Работа в фоне";
+"Settings.FTPBackground.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 "Settings.FTPHeader" = "FTP Сервер (Бета)";
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
@@ -97,14 +99,12 @@
 "Settings.UpdateHeader" = "Обновления";
 "Settings.DonateDisable" = "Отключить рекламу";
 "Settings.DonateCard" = "Номер карты VISA";
-"Settings.DonateCard.Copy" = "Скопировать";
 "Settings.DonateCard.Open" = "Открыть";
 "Settings.DonateCard.DonatePlatforms" = "Задонатить";
 "Settings.DonateCard.DonatePlatforms.Title" = "Выберите платформу для пожертвований:";
 "Settings.DonateHeader" = "Донат на еду";
 
 "Warning" = "Внимание";
-"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 "Enable" = "Включить";
 "Unlimited" = "Без ограничений";
 "Torrent rehash" = "Перепроверка хэша";
@@ -120,8 +120,6 @@
 "Latest version installed" = "Установлена последняя версия";
 "Update check failed" = "Ошибка проверки обновлений";
 "WARNING" = "ВНИМАНИЕ";
-"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
-"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Это позволит iTorrent работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Copied CC # to clipboard!" = "Номер карты скопирован!";
 
 "Supplication" = "Просьба";
@@ -155,8 +153,6 @@
 "Working" = "Работает";
 "Inactive" = "Неактивен";
 "Verified" = "Проверен";
-"Sorry" = "Извините";
-"This action will be available in future updates" = "Это действие будет доступно в будущих обновлениях";
 "Add Tracker" = "Добавить Трекер";
 "Enter the full tracker's URL" = "Введите подный URL трекера";
 "Tracker's URL" = "Введите URL трекера";

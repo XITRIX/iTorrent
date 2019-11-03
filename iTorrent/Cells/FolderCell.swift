@@ -9,43 +9,43 @@
 import Foundation
 import UIKit
 
-class FolderCell : ThemedUITableViewCell {
-    
+class FolderCell: ThemedUITableViewCell {
+
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var size: UILabel!
-	
-	@IBOutlet weak var moreButton: UIButton!
-	@IBOutlet weak var titleConstraint: NSLayoutConstraint!
-	
-    weak var actionDelegate : FolderCellActionDelegate?
-	
-	override func themeUpdate() {
-		super.themeUpdate()
-		
+
+    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var titleConstraint: NSLayoutConstraint!
+
+    weak var actionDelegate: FolderCellActionDelegate?
+
+    override func themeUpdate() {
+        super.themeUpdate()
+
         let theme = Themes.current
-		
-		title?.textColor = theme.mainText
-		size?.textColor = theme.secondaryText
-		
-		let bgColorView = UIView()
-		bgColorView.backgroundColor = theme.backgroundSecondary
-		selectedBackgroundView = bgColorView
-	}
-	
-	func update() {
-		if isEditing {
-			moreButton.isHidden = true
-			titleConstraint?.constant = 13
-		} else {
-			moreButton.isHidden = false
-			titleConstraint?.constant = 36
-		}
-	}
-    
+
+        title?.textColor = theme.mainText
+        size?.textColor = theme.secondaryText
+
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = theme.backgroundSecondary
+        selectedBackgroundView = bgColorView
+    }
+
+    func update() {
+        if isEditing {
+            moreButton.isHidden = true
+            titleConstraint?.constant = 13
+        } else {
+            moreButton.isHidden = false
+            titleConstraint?.constant = 36
+        }
+    }
+
     @IBAction func more(_ sender: UIButton) {
         if (actionDelegate != nil) {
             actionDelegate?.folderCellAction(title.text!, sender: sender)
         }
     }
-    
+
 }

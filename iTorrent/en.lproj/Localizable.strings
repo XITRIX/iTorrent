@@ -15,7 +15,7 @@
 "Finished" = "Finished";
 "Seeding" = "Seeding";
 "Allocating" = "Allocating";
-"CheckingFastresume" = "Checking fastresume";
+"Checking fastresume" = "Checking fastresume";
 "Paused" = "Paused";
 
 //Main Controller
@@ -80,6 +80,7 @@
 "Settings.Theme" = "Dark mode";
 "Settings.BackgroundEnable" = "Enable";
 "Settings.BackgroundSeeding" = "Allow seeding";
+"Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.BackgroundHeader" = "Background downloading";
 "Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
 "Settings.DownLimit" = "Download Limit";
@@ -87,6 +88,7 @@
 "Settings.SpeedHeader" = "Speed limitation";
 "Settings.FTPEnable" = "Enable";
 "Settings.FTPBackground" = "Run in background";
+"Settings.FTPBackground.Warning" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.FTPHeader" = "FTP Server (BETA)";
 "Settings.NotifyFinishLoad" = "On finish loading";
 "Settings.NotifyFinishSeed" = "On finish seeding";
@@ -97,7 +99,6 @@
 "Settings.UpdateHeader" = "Updates";
 "Settings.DonateDisable" = "Disable ADS";
 "Settings.DonateCard" = "VISA CREDIT CARD NUMBER";
-"Settings.DonateCard.Copy" = "Copy";
 "Settings.DonateCard.Open" = "Open";
 "Settings.DonateCard.DonatePlatforms" = "Donate";
 "Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
@@ -120,8 +121,6 @@
 "Latest version installed" = "Latest version installed";
 "Update check failed" = "Update check failed";
 "WARNING" = "WARNING";
-"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
-"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Copied CC # to clipboard!" = "Copied CC # to clipboard!";
 
 "Supplication" = "Supplication";
@@ -148,8 +147,6 @@
 "Working" = "Working";
 "Inactive" = "Inactive";
 "Verified" = "Verified";
-"Sorry" = "Sorry";
-"This action will be available in future updates" = "This action will be available in future updates";
 "Add Tracker" = "Add Tracker";
 "Enter the full tracker's URL" = "Enter the full tracker URL";
 "Tracker's URL" = "Enter tracker URL";

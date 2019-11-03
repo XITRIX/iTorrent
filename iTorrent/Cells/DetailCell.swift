@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 class DetailCell: ThemedUITableViewCell {
-    
+
     @IBOutlet weak var title: ThemedUILabel!
     @IBOutlet weak var details: UILabel!
-	
-	override func themeUpdate() {
-		super.themeUpdate()
-        
-		let theme = Themes.current
+
+    override func themeUpdate() {
+        super.themeUpdate()
+
+        let theme = Themes.current
         details?.textColor = theme.selectedText
-	}
+    }
 }

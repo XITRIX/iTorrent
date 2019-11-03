@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ThemedUIActivityViewController : UIActivityViewController, Themed {
+class ThemedUIActivityViewController: UIActivityViewController, Themed {
     override func viewDidLoad() {
         super.viewDidLoad()
         themeUpdate()
     }
-    
+
     func themeUpdate() {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!

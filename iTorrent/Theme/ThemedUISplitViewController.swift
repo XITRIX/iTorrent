@@ -8,36 +8,36 @@
 
 import UIKit
 
-class ThemedUISplitViewController : UISplitViewController, Themed {
+class ThemedUISplitViewController: UISplitViewController, Themed {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         themeUpdate()
     }
-    
+
     @objc func themeUpdate() {
         let theme = Themes.current
-        
+
         if #available(iOS 13.0, *) {
             let i = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
             overrideUserInterfaceStyle = UserPreferences.autoTheme.value ? UIUserInterfaceStyle.unspecified : i
         }
-        
+
         setNeedsStatusBarAppearanceUpdate()
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Themes.current.statusBarStyle
+        Themes.current.statusBarStyle
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
+
         if #available(iOS 13.0, *) {
             let hasUserInterfaceStyleChanged = previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? true
             if (hasUserInterfaceStyleChanged) {

@@ -8,64 +8,65 @@
 
 import UIKit
 
-class PreferencesController : ThemedUIViewController {
+class PreferencesController: ThemedUIViewController {
     @IBOutlet var tableView: StaticTableView!
-    var onScreenPopup : PopupView?
-    
+    var onScreenPopup: PopupView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var data = [StaticTableView.Section]()
-        
-        // APPEARENCE
-        var appearence = [CellModelProtocol]()
-        appearence.append(SegueCell.Model(self, title: "Settings.Order", segueViewId: "SettingsSortingController"))
-        if #available(iOS 13, *) {
-            appearence.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
-                                                       action: { switcher in
-                                                        let oldTheme = Themes.current
-                                                        UserPreferences.autoTheme.value = switcher.isOn
-                                                        Themes.shared.currentUserTheme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle.rawValue
-                                                        let newTheme = Themes.current
 
-                                                        if (oldTheme != newTheme) {
-                                                            self.navigationController?.view.isUserInteractionEnabled = false
-                                                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                                                                CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                                self.tableView.reloadData()
-                                                                self.navigationController?.view.isUserInteractionEnabled = true
-                                                            }
-                                                        } else {
-                                                            if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Themed {
-                                                                rvc.themeUpdate()
-                                                            }
-                                                            if (!switcher.isOn) {
-                                                                self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                                                            }
-                                                            else {
-                                                                self.tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                                                            }
-                                                        }
-            }))
+        var data = [StaticTableView.Section]()
+
+        // APPEARANCE
+        var appearance = [CellModelProtocol]()
+        appearance.append(SegueCell.Model(self, title: "Settings.Order", segueViewId: "SettingsSortingController"))
+        if #available(iOS 13, *) {
+            appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
+                action: { switcher in
+                    let oldTheme = Themes.current
+                    UserPreferences.autoTheme.value = switcher.isOn
+                    Themes.shared.currentUserTheme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle.rawValue
+                    let newTheme = Themes.current
+
+                    if (oldTheme != newTheme) {
+                        self.navigationController?.view.isUserInteractionEnabled = false
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
+                            self.tableView.reloadData()
+                            self.navigationController?.view.isUserInteractionEnabled = true
+                        }
+                    } else {
+                        if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Themed {
+                            rvc.themeUpdate()
+                        }
+                        if (!switcher.isOn) {
+                            self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                        } else {
+                            self.tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
+                        }
+                    }
+                }))
         }
-        appearence.append(SwitchCell.Model(title: "Settings.Theme",
-                                           defaultValue: { UserPreferences.themeNum.value == 1 },
-                                           hiddenCondition: { UserPreferences.autoTheme.value }) { switcher in
-                                            self.navigationController?.view.isUserInteractionEnabled = false
-                                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                                                UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
-                                                CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                self.navigationController?.view.isUserInteractionEnabled = true
-                                            }
+        appearance.append(SwitchCell.Model(title: "Settings.Theme",
+            defaultValue: { UserPreferences.themeNum.value == 1 },
+            hiddenCondition: { UserPreferences.autoTheme.value }) { switcher in
+            self.navigationController?.view.isUserInteractionEnabled = false
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
+                CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
+                self.navigationController?.view.isUserInteractionEnabled = true
+            }
         })
-        data.append(StaticTableView.Section(rowModels: appearence))
-        
+        data.append(StaticTableView.Section(rowModels: appearance))
+
         //BACKGROUND
         var background = [CellModelProtocol]()
-        background.append(SwitchCell.ModelProperty(title: "Settings.BackgroundEnable", property: UserPreferences.background) { _ in self.tableView.reloadData() })
-        background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding", defaultValue: { UserPreferences.backgroundSeedKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1), disableCondition: { !UserPreferences.background.value }){ switcher in
+        background.append(SwitchCell.ModelProperty(title: "Settings.BackgroundEnable", property: UserPreferences.background) { _ in
+            self.tableView.reloadData()
+        })
+        background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding", defaultValue: { UserPreferences.backgroundSeedKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1), disableCondition: { !UserPreferences.background.value }) { switcher in
             if (switcher.isOn) {
-                let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", comment: ""), preferredStyle: .alert)
+                let controller = ThemedUIAlertController(title: Localize.get("WARNING"), message: Localize.get("Settings.BackgroundSeeding.Warning"), preferredStyle: .alert)
                 let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
                     UserPreferences.backgroundSeedKey.value = switcher.isOn
                 }
@@ -85,10 +86,9 @@ class PreferencesController : ThemedUIViewController {
         //SPEED LIMITATION
         var speed = [CellModelProtocol]()
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
-                                      buttonTitle: UserPreferences.downloadLimit.value == 0 ?
-                                        NSLocalizedString("Unlimited", comment: "") :
-                                        Utils.getSizeText(size: UserPreferences.downloadLimit.value, decimals: true) + "/S")
-        { button in
+            buttonTitle: UserPreferences.downloadLimit.value == 0 ?
+                NSLocalizedString("Unlimited", comment: "") :
+                Utils.getSizeText(size: UserPreferences.downloadLimit.value, decimals: true) + "/S") { button in
             self.onScreenPopup?.dismiss()
             self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.downloadLimit.value, dataSelected: { res in
                 if (res == 0) {
@@ -103,10 +103,9 @@ class PreferencesController : ThemedUIViewController {
             self.onScreenPopup?.show(self)
         })
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
-                                      buttonTitle: UserPreferences.uploadLimit.value == 0 ?
-                                        NSLocalizedString("Unlimited", comment: "") :
-                                        Utils.getSizeText(size: UserPreferences.uploadLimit.value, decimals: true) + "/S")
-        { button in
+            buttonTitle: UserPreferences.uploadLimit.value == 0 ?
+                NSLocalizedString("Unlimited", comment: "") :
+                Utils.getSizeText(size: UserPreferences.uploadLimit.value, decimals: true) + "/S") { button in
             self.onScreenPopup?.dismiss()
             self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.uploadLimit.value, dataSelected: { res in
                 if (res == 0) {
@@ -130,7 +129,7 @@ class PreferencesController : ThemedUIViewController {
         })
         ftp.append(SwitchCell.Model(title: "Settings.FTPBackground", defaultValue: { UserPreferences.ftpBackgroundKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
             if (switcher.isOn) {
-                let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: NSLocalizedString("This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!", comment: ""), preferredStyle: .alert)
+                let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: Localize.get("Settings.FTPBackground.Warning"), preferredStyle: .alert)
                 let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
                     UserPreferences.ftpBackgroundKey.value = switcher.isOn
                 }
@@ -156,8 +155,12 @@ class PreferencesController : ThemedUIViewController {
 
         //NOTIFICATIONS
         var notifications = [CellModelProtocol]()
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishLoad", property: UserPreferences.notificationsKey) { _ in self.tableView.reloadData() })
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishSeed", property: UserPreferences.notificationsSeedKey) { _ in self.tableView.reloadData() })
+        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishLoad", property: UserPreferences.notificationsKey) { _ in
+            self.tableView.reloadData()
+        })
+        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishSeed", property: UserPreferences.notificationsSeedKey) { _ in
+            self.tableView.reloadData()
+        })
         notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge", property: UserPreferences.badgeKey, disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
         data.append(StaticTableView.Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
@@ -193,7 +196,7 @@ class PreferencesController : ThemedUIViewController {
                             self.present(alert, animated: true, completion: nil)
                             // change alert timer to 2 seconds, then dismiss
                             let when = DispatchTime.now() + 2
-                            DispatchQueue.main.asyncAfter(deadline: when){
+                            DispatchQueue.main.asyncAfter(deadline: when) {
                                 alert.dismiss(animated: true, completion: nil)
                             }
                         }
@@ -240,15 +243,15 @@ class PreferencesController : ThemedUIViewController {
             }
         })
         data.append(StaticTableView.Section(rowModels: donates, header: "Settings.DonateHeader"))
-        
+
         tableView.data = data
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setToolbarHidden(true, animated: false)
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         onScreenPopup?.dismiss()
