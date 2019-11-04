@@ -70,7 +70,7 @@ class MainController: ThemedUIViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
 
         tableView.tableFooterView = UIView()
-        tableView.rowHeight = 104
+        tableView.rowHeight = 82
 
         tableView.dataSource = self
         tableView.delegate = self
