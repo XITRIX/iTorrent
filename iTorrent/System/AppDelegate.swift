@@ -154,6 +154,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             return
         }
 
+        while (!Manager.torrentsRestored) {
+            sleep(1)
+        }
         if let hash = notification.userInfo?["hash"] as? String,
            let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as! TorrentDetailsController
