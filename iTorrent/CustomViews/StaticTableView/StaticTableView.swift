@@ -15,7 +15,7 @@ class StaticTableView: ThemedUITableView {
         }
     }
 
-    var _presentableData: [Section]?
+    private var _presentableData: [Section]?
     var presentableData: [Section] {
         get {
             if (_presentableData == nil) {

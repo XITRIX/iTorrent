@@ -10,28 +10,28 @@ import Foundation
 import UIKit
 
 class Utils {
-    public enum torrentStates: String {
-        case Queued = "Queued"
-        case Hashing = "Hashing"
-        case Metadata = "Metadata"
-        case Downloading = "Downloading"
-        case Finished = "Finished"
-        case Seeding = "Seeding"
-        case Allocating = "Allocating"
-        case CheckingFastresume = "Checking fastresume"
-        case Paused = "Paused"
+    public enum TorrentStates: String {
+        case queued = "Queued"
+        case hashing = "Hashing"
+        case metadata = "Metadata"
+        case downloading = "Downloading"
+        case finished = "Finished"
+        case seeding = "Seeding"
+        case allocating = "Allocating"
+        case checkingFastresume = "Checking fastresume"
+        case paused = "Paused"
 
         init?(id: Int) {
             switch id {
-            case 1: self = .Queued
-            case 2: self = .Hashing
-            case 3: self = .Metadata
-            case 4: self = .Downloading
-            case 5: self = .Finished
-            case 6: self = .Seeding
-            case 7: self = .Allocating
-            case 8: self = .CheckingFastresume
-            case 9: self = .Paused
+            case 1: self = .queued
+            case 2: self = .hashing
+            case 3: self = .metadata
+            case 4: self = .downloading
+            case 5: self = .finished
+            case 6: self = .seeding
+            case 7: self = .allocating
+            case 8: self = .checkingFastresume
+            case 9: self = .paused
             default: return nil
             }
         }
@@ -90,7 +90,7 @@ class Utils {
 
     public static func checkFolderExist(path: String) {
         if (!FileManager.default.fileExists(atPath: path)) {
-            try! FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
     }
 
@@ -164,9 +164,9 @@ class Utils {
     }
 
     public static func getFileByName(_ array: [File], file: File) -> File? {
-        for f in array {
-            if f.name == file.name {
-                return f
+        for afile in array {
+            if afile.name == file.name {
+                return afile
             }
         }
         return nil

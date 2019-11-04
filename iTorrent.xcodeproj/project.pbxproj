@@ -413,7 +413,8 @@
 				7C3C692C20A754FB0023396C /* Frameworks */,
 				7C3C692D20A754FB0023396C /* Resources */,
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
-				7C05FC0A20BBFB2E006E5CFC /* ShellScript */,
+				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
+				7CD95E5E2370443200C21F81 /* Swiftlint */,
 				7C37071F20BD4F2000EE9F89 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -507,18 +508,37 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7C05FC0A20BBFB2E006E5CFC /* ShellScript */ = {
+		7C05FC0A20BBFB2E006E5CFC /* Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Firebase;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
+		7CD95E5E2370443200C21F81 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  #swiftlint\n  echo \"uncomment swiftlint to refactor\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		DBBCCBC72A898D1AC5BBD608 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

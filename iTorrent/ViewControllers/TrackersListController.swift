@@ -26,17 +26,17 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
     func update() {
         var localTrackers: [Tracker] = []
         let trackersRaw = get_trackers_by_hash(managerHash)
-        for i in 0..<Int(trackersRaw.size) {
+        for iter in 0..<Int(trackersRaw.size) {
             var tracker = Tracker()
-            tracker.url = String(validatingUTF8: trackersRaw.tracker_url[i]) ?? "ERROR"
-            var msg = trackersRaw.working[i] == 1 ? NSLocalizedString("Working", comment: "") : NSLocalizedString("Inactive", comment: "")
-            if (trackersRaw.verified[i] == 1) {
+            tracker.url = String(validatingUTF8: trackersRaw.tracker_url[iter]) ?? "ERROR"
+            var msg = trackersRaw.working[iter] == 1 ? NSLocalizedString("Working", comment: "") : NSLocalizedString("Inactive", comment: "")
+            if (trackersRaw.verified[iter] == 1) {
                 msg += ", " + NSLocalizedString("Verified", comment: "")
             }
             tracker.message = msg
-            tracker.peers = Int(trackersRaw.peers[i])
-            tracker.seeders = Int(trackersRaw.seeders[i])
-            tracker.leechs = Int(trackersRaw.leechs[i])
+            tracker.peers = Int(trackersRaw.peers[iter])
+            tracker.seeders = Int(trackersRaw.seeders[iter])
+            tracker.leechs = Int(trackersRaw.leechs[iter])
             localTrackers.append(tracker)
         }
         trackers = localTrackers
@@ -58,9 +58,9 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
                 DispatchQueue.main.async {
                     if (oldDataset.count == self.trackers.count) {
                         var reloadIndexes = [IndexPath]()
-                        for i in 0..<self.trackers.count {
-                            if (oldDataset[i] != self.trackers[i]) {
-                                reloadIndexes.append(IndexPath(row: i, section: 0))
+                        for iter in 0..<self.trackers.count {
+                            if (oldDataset[iter] != self.trackers[iter]) {
+                                reloadIndexes.append(IndexPath(row: iter, section: 0))
                             }
                         }
                         if (reloadIndexes.count > 0) {
@@ -89,9 +89,11 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TrackerCell
-        cell.setModel(tracker: trackers[indexPath.row])
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TrackerCell {
+            cell.setModel(tracker: trackers[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -141,7 +143,9 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
             if let _ = URL(string: textField.text!) {
                 print(add_tracker_to_torrent(self.managerHash, textField.text))
             } else {
-                let alertController = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Wrong link, check it and try again!", comment: ""), preferredStyle: .alert)
+                let alertController = ThemedUIAlertController(title: Localize.get("Error"),
+                    message: Localize.get("Wrong link, check it and try again!"),
+                    preferredStyle: .alert)
                 let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                 alertController.addAction(close)
                 self.present(alertController, animated: true)

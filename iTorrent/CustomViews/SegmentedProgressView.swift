@@ -79,19 +79,19 @@ class SegmentedProgressView: UIView, Themed {
         var end: CGFloat = 0
         var merged = false
 
-        for i in 0..<numPieces {
-            start = CGFloat(i) * bounds.width / CGFloat(numPieces)
+        for iter in 0..<numPieces {
+            start = CGFloat(iter) * bounds.width / CGFloat(numPieces)
 
             if (!merged) {
                 context?.move(to: CGPoint(x: start, y: bounds.midY))
             }
-            if (progress[i] == 1 && i != numPieces - 1) {
+            if (progress[iter] == 1 && iter != numPieces - 1) {
                 merged = true
                 continue
             }
             merged = false
 
-            end = start + progress[i] * pieceLength
+            end = start + progress[iter] * pieceLength
             context?.addLine(to: CGPoint(x: end, y: bounds.midY))
 
             context?.strokePath()

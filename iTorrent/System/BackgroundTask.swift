@@ -68,10 +68,10 @@ class BackgroundTask {
     }
 
     static func getBackgroundConditions(_ status: TorrentStatus) -> Bool {
-        (status.displayState == Utils.torrentStates.Downloading.rawValue ||
-            status.displayState == Utils.torrentStates.Metadata.rawValue ||
-            status.displayState == Utils.torrentStates.Hashing.rawValue ||
-            (status.displayState == Utils.torrentStates.Seeding.rawValue &&
+        (status.displayState == Utils.TorrentStates.downloading.rawValue ||
+            status.displayState == Utils.TorrentStates.metadata.rawValue ||
+            status.displayState == Utils.TorrentStates.hashing.rawValue ||
+            (status.displayState == Utils.TorrentStates.seeding.rawValue &&
                 UserPreferences.backgroundSeedKey.value &&
                 status.seedMode) ||
             (UserPreferences.ftpKey.value &&

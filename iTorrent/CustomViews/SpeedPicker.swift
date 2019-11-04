@@ -17,13 +17,13 @@ class SpeedPicker: PopupView, Themed {
 
     var size: [[Int]] = {
         var mbSize: [Int] = []
-        for i in 0...8 {
-            mbSize.append(i * 128)
+        for iter in 0...8 {
+            mbSize.append(iter * 128)
         }
 
         var gbSize: [Int] = []
-        for i in 0...8 {
-            gbSize.append(i)
+        for iter in 0...8 {
+            gbSize.append(iter)
         }
 
         var res = [[Int]]()

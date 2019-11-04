@@ -64,8 +64,11 @@ class PreferencesController: ThemedUIViewController {
         background.append(SwitchCell.ModelProperty(title: "Settings.BackgroundEnable", property: UserPreferences.background) { _ in
             self.tableView.reloadData()
         })
-        background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding", defaultValue: { UserPreferences.backgroundSeedKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1), disableCondition: { !UserPreferences.background.value }) { switcher in
-            if (switcher.isOn) {
+        background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding",
+            defaultValue: { UserPreferences.backgroundSeedKey.value },
+            switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1),
+            disableCondition: { !UserPreferences.background.value }) { switcher in
+            if switcher.isOn {
                 let controller = ThemedUIAlertController(title: Localize.get("WARNING"), message: Localize.get("Settings.BackgroundSeeding.Warning"), preferredStyle: .alert)
                 let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
                     UserPreferences.backgroundSeedKey.value = switcher.isOn
@@ -146,8 +149,7 @@ class PreferencesController: ThemedUIViewController {
         data.append(StaticTableView.Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             let addr = Utils.getWiFiAddress()
             if let addr = addr {
-                let b = UserPreferences.ftpKey.value
-                return b ? Localize.get("Settings.FTP.Message") + addr: ""
+                return UserPreferences.ftpKey.value ? Localize.get("Settings.FTP.Message") + addr : ""
             } else {
                 return Localize.get("Settings.FTP.Message.NoNetwork")
             }
@@ -155,13 +157,17 @@ class PreferencesController: ThemedUIViewController {
 
         //NOTIFICATIONS
         var notifications = [CellModelProtocol]()
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishLoad", property: UserPreferences.notificationsKey) { _ in
+        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishLoad",
+            property: UserPreferences.notificationsKey) { _ in
             self.tableView.reloadData()
         })
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishSeed", property: UserPreferences.notificationsSeedKey) { _ in
+        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishSeed",
+            property: UserPreferences.notificationsSeedKey) { _ in
             self.tableView.reloadData()
         })
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge", property: UserPreferences.badgeKey, disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
+        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge",
+            property: UserPreferences.badgeKey,
+            disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
         data.append(StaticTableView.Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
         //UPDATES
@@ -172,8 +178,8 @@ class PreferencesController: ThemedUIViewController {
         updates.append(UpdateInfoCell.Model {
             self.present(Dialogs.crateUpdateDialog(forced: true)!, animated: true)
         })
-        let version = try! String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
-        data.append(StaticTableView.Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + version))
+        let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
+        data.append(StaticTableView.Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
 
         //DONATES
         var donates = [CellModelProtocol]()
@@ -228,11 +234,13 @@ class PreferencesController: ThemedUIViewController {
         })
         donates.append(SwitchCell.Model(title: "Settings.DonateDisable", defaultValue: { UserPreferences.disableAds.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
             if (switcher.isOn) {
-                let controller = ThemedUIAlertController(title: NSLocalizedString("Supplication", comment: ""), message: NSLocalizedString("If you enjoy this app, consider supporting the developer by keeping the ads on.", comment: ""), preferredStyle: .alert)
-                let enable = UIAlertAction(title: NSLocalizedString("Disable Anyway", comment: ""), style: .destructive) { _ in
+                let controller = ThemedUIAlertController(title: Localize.get("Supplication"),
+                    message: Localize.get("If you enjoy this app, consider supporting the developer by keeping the ads on."),
+                    preferredStyle: .alert)
+                let enable = UIAlertAction(title: Localize.get("Disable Anyway"), style: .destructive) { _ in
                     UserPreferences.disableAds.value = switcher.isOn
                 }
-                let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                let close = UIAlertAction(title: Localize.get("Cancel"), style: .cancel) { _ in
                     switcher.setOn(false, animated: true)
                 }
                 controller.addAction(enable)

@@ -43,7 +43,7 @@ class FolderCell: ThemedUITableViewCell {
     }
 
     @IBAction func more(_ sender: UIButton) {
-        if (actionDelegate != nil) {
+        if actionDelegate != nil {
             actionDelegate?.folderCellAction(title.text!, sender: sender)
         }
     }

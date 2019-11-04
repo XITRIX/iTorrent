@@ -24,8 +24,8 @@ class ThemedUINavigationController: UINavigationController, Themed {
         let theme = Themes.current
 
         if #available(iOS 13.0, *) {
-            let i = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
-            overrideUserInterfaceStyle = i
+            let interface = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
+            overrideUserInterfaceStyle = interface
         }
 
         navigationBar.barStyle = theme.barStyle
@@ -33,8 +33,8 @@ class ThemedUINavigationController: UINavigationController, Themed {
         navigationBar.tintColor = theme.tintColor
         toolbar.tintColor = theme.tintColor
 
-        let f = toolbar.frame
-        toolbar.frame = CGRect(x: f.origin.x, y: f.origin.y, width: f.size.width, height: 44)
+        let frame = toolbar.frame
+        toolbar.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 44)
 
         setNeedsStatusBarAppearanceUpdate()
     }

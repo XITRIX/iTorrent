@@ -23,7 +23,7 @@ class Manager {
     public static var webUploadServer = GCDWebUploader(uploadDirectory: Manager.rootFolder)
     public static var webDAVServer = GCDWebDAVServer(uploadDirectory: Manager.rootFolder)
 
-    public static func InitManager() {
+    public static func initManager() {
         DispatchQueue.global(qos: .background).async {
             init_engine(Manager.rootFolder, Manager.configFolder)
             engineInited = true
@@ -92,8 +92,8 @@ class Manager {
         previousTorrentStates = torrentStates
         torrentStates.removeAll()
         let torrents = Array(UnsafeBufferPointer(start: res.torrents, count: Int(res.count)))
-        for i in 0..<Int(res.count) {
-            let status = TorrentStatus(torrents[i])
+        for iter in 0..<Int(res.count) {
+            let status = TorrentStatus(torrents[iter])
             Manager.torrentStates.append(status)
             status.stateCorrector()
         }
@@ -120,7 +120,9 @@ class Manager {
                     nav = presentedViewController
                 }
                 if nav is AddTorrentController {
-                    let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Finish the previous torrent adding before start the new one.", comment: ""), preferredStyle: .alert)
+                    let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""),
+                        message: Localize.get("Finish the previous torrent adding before start the new one."),
+                        preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     nav.present(controller, animated: true)
@@ -155,13 +157,17 @@ class Manager {
 
                 let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
                 if (hash == "-1") {
-                    let controller = ThemedUIAlertController(title: NSLocalizedString("Error on torrent reading", comment: ""), message: NSLocalizedString("Torrent file opening error has been occured", comment: ""), preferredStyle: .alert)
+                    let controller = ThemedUIAlertController(title: Localize.get("Error on torrent reading"),
+                        message: Localize.get("Torrent file opening error has been occured"),
+                        preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
                     return
                 } else if (torrentStates.contains(where: { $0.hash == hash })) {
-                    let controller = ThemedUIAlertController(title: NSLocalizedString("This torrent already exists", comment: ""), message: "\(NSLocalizedString("Torrent with hash:", comment: "")) \"" + hash + "\" \(NSLocalizedString("already exists in download queue", comment: ""))", preferredStyle: .alert)
+                    let controller = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
+                        message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
+                        preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -169,7 +175,7 @@ class Manager {
                 }
                 do {
                     let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
-                    ((controller as! UINavigationController).topViewController as! AddTorrentController).path = dest
+                    ((controller as? UINavigationController)?.topViewController as? AddTorrentController)?.path = dest
                     UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
                 }
             }
@@ -203,7 +209,9 @@ class Manager {
                 DispatchQueue.main.async {
                     let hash = String(validatingUTF8: get_magnet_hash(magnetLink))
                     if (Manager.torrentStates.contains(where: { $0.hash == hash })) {
-                        let alert = ThemedUIAlertController(title: NSLocalizedString("This torrent already exists", comment: ""), message: "\(NSLocalizedString("Torrent with hash:", comment: "")) \"" + hash! + "\" \(NSLocalizedString("already exists in download queue", comment: ""))", preferredStyle: .alert)
+                        let alert = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
+                            message: "\(Localize.get("Torrent with hash:")) \"\(hash ?? "UNKNOWN")\" \(Localize.get("already exists in download queue"))",
+                            preferredStyle: .alert)
                         let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                         alert.addAction(close)
                         UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
@@ -212,7 +220,9 @@ class Manager {
                         managerSaves[hash] = UserManagerSettings()
                         mainLoop()
                     } else {
-                        let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Wrong magnet link, check it and try again!", comment: ""), preferredStyle: .alert)
+                        let controller = ThemedUIAlertController(title: Localize.get("Error"),
+                            message: Localize.get("Wrong magnet link, check it and try again!"),
+                            preferredStyle: .alert)
                         let close = UIAlertAction(title: NSLocalizedString(NSLocalizedString("Close", comment: ""), comment: ""), style: .cancel)
                         controller.addAction(close)
                         UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -227,29 +237,35 @@ class Manager {
     }
 
     static func stateChanges() {
-        for t in torrentStates {
-            if let old = previousTorrentStates.filter({ $0.hash == t.hash }).first {
-                if (old.displayState != t.displayState) {
+        for torrentState in torrentStates {
+            if let old = previousTorrentStates.filter({ $0.hash == torrentState.hash }).first {
+                if (old.displayState != torrentState.displayState) {
                     DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .torrentsStateChanged, object: nil, userInfo: ["data": (manager: t, oldState: old.displayState, newState: t.displayState)])
-                        managersStateChanged(manager: t, oldState: old.displayState, newState: t.displayState)
+                        NotificationCenter.default.post(name: .torrentsStateChanged,
+                            object: nil,
+                            userInfo: ["data": (manager: torrentState, oldState: old.displayState, newState: torrentState.displayState)])
+                        managersStateChanged(manager: torrentState,
+                            oldState: old.displayState,
+                            newState: torrentState.displayState)
                     }
                 }
             } else {
                 DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .torrentsStateChanged, object: nil, userInfo: ["data": (manager: t, oldState: "NONE", newState: t.displayState)])
-                    managersStateChanged(manager: t, oldState: "NONE", newState: t.displayState)
+                    NotificationCenter.default.post(name: .torrentsStateChanged,
+                        object: nil,
+                        userInfo: ["data": (manager: torrentState, oldState: "NONE", newState: torrentState.displayState)])
+                    managersStateChanged(manager: torrentState, oldState: "NONE", newState: torrentState.displayState)
                 }
             }
         }
     }
 
     static func managersStateChanged(manager: TorrentStatus, oldState: String, newState: String) {
-        if (oldState == Utils.torrentStates.Metadata.rawValue) {
+        if (oldState == Utils.TorrentStates.metadata.rawValue) {
             save_magnet_to_file(manager.hash)
         }
         if UserPreferences.notificationsKey.value &&
-               (oldState == Utils.torrentStates.Downloading.rawValue && (newState == Utils.torrentStates.Finished.rawValue || newState == Utils.torrentStates.Seeding.rawValue)) {
+               (oldState == Utils.TorrentStates.downloading.rawValue && (newState == Utils.TorrentStates.finished.rawValue || newState == Utils.TorrentStates.seeding.rawValue)) {
             if #available(iOS 10.0, *) {
                 let content = UNMutableNotificationContent()
 
@@ -282,7 +298,7 @@ class Manager {
             BackgroundTask.checkToStopBackground()
         }
         if UserPreferences.notificationsSeedKey.value &&
-               (oldState == Utils.torrentStates.Seeding.rawValue && (newState == Utils.torrentStates.Finished.rawValue)) {
+               (oldState == Utils.TorrentStates.seeding.rawValue && (newState == Utils.TorrentStates.finished.rawValue)) {
             if #available(iOS 10.0, *) {
                 let content = UNMutableNotificationContent()
 

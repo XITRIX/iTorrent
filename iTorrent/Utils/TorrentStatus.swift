@@ -43,7 +43,7 @@ class TorrentStatus {
 
     init(_ torrentInfo: TorrentInfo) {
         state = String(validatingUTF8: torrentInfo.state) ?? "ERROR"
-        title = state == Utils.torrentStates.Metadata.rawValue ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: torrentInfo.name) ?? "ERROR"
+        title = state == Utils.TorrentStates.metadata.rawValue ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: torrentInfo.name) ?? "ERROR"
         hash = String(validatingUTF8: torrentInfo.hash) ?? "ERROR"
         creator = String(validatingUTF8: torrentInfo.creator) ?? "ERROR"
         comment = String(validatingUTF8: torrentInfo.comment) ?? "ERROR"
@@ -85,38 +85,38 @@ class TorrentStatus {
     }
 
     private func getDisplayState() -> String {
-        if ((state == Utils.torrentStates.Finished.rawValue || state == Utils.torrentStates.Downloading.rawValue) &&
+        if ((state == Utils.TorrentStates.finished.rawValue || state == Utils.TorrentStates.downloading.rawValue) &&
             isFinished && !isPaused && seedMode) {
-            return Utils.torrentStates.Seeding.rawValue
+            return Utils.TorrentStates.seeding.rawValue
         }
-        if (state == Utils.torrentStates.Seeding.rawValue && (isPaused || !seedMode)) {
-            return Utils.torrentStates.Finished.rawValue
+        if (state == Utils.TorrentStates.seeding.rawValue && (isPaused || !seedMode)) {
+            return Utils.TorrentStates.finished.rawValue
         }
-        if (state == Utils.torrentStates.Downloading.rawValue && isFinished) {
-            return Utils.torrentStates.Finished.rawValue
+        if (state == Utils.TorrentStates.downloading.rawValue && isFinished) {
+            return Utils.TorrentStates.finished.rawValue
         }
-        if (state == Utils.torrentStates.Downloading.rawValue && !isFinished && isPaused) {
-            return Utils.torrentStates.Paused.rawValue
+        if (state == Utils.TorrentStates.downloading.rawValue && !isFinished && isPaused) {
+            return Utils.TorrentStates.paused.rawValue
         }
         return state
     }
 
     func stateCorrector() {
-        if (displayState == Utils.torrentStates.Finished.rawValue &&
+        if (displayState == Utils.TorrentStates.finished.rawValue &&
             !isPaused) {
             stop_torrent(hash)
-        } else if (displayState == Utils.torrentStates.Seeding.rawValue &&
+        } else if (displayState == Utils.TorrentStates.seeding.rawValue &&
             totalUpload >= seedLimit &&
             seedLimit != 0) {
             seedMode = false
             stop_torrent(hash)
-        } else if (state == Utils.torrentStates.Hashing.rawValue && isPaused) {
+        } else if (state == Utils.TorrentStates.hashing.rawValue && isPaused) {
             start_torrent(hash)
         }
     }
 
     func checkSpeed() {
-        if (displayState == Utils.torrentStates.Downloading.rawValue && downloadRate <= 25000 && BackgroundTask.backgrounding) {
+        if (displayState == Utils.TorrentStates.downloading.rawValue && downloadRate <= 25000 && BackgroundTask.backgrounding) {
             Manager.managerSaves[hash]?.zeroSpeedTimeCounter += 1
         } else {
             Manager.managerSaves[hash]?.zeroSpeedTimeCounter = 0
