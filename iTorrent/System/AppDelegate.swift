@@ -49,6 +49,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         if (UserPreferences.ftpKey.value) {
             Manager.startFileSharing()
         }
+        
+        if let notification = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification {
+            if let hash = notification.userInfo?["hash"] as? String {
+                DispatchQueue.global(qos: .background).async {
+                    while (!Manager.torrentsRestored) {
+                        sleep(1)
+                    }
+                    DispatchQueue.main.async {
+                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
+                    }
+                }
+            }
+        }
 
         return true
     }
@@ -138,28 +151,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if (!AppDelegate.backgrounded) {
-            return
+            //return
         }
-
-        while (!Manager.torrentsRestored) {
-            sleep(1)
+        
+        if let hash = notification.userInfo?["hash"] as? String {
+            openTorrentDetailsViewController(withHash: hash, sender: self)
         }
-
-        if let hash = notification.userInfo?["hash"] as? String,
-           let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController,
-           let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
+    }
+    
+    func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
+        if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController,
+            let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
             viewController.managerHash = hash
             if (!splitViewController.isCollapsed) {
                 if splitViewController.viewControllers.count > 1,
-                   let nvc = splitViewController.viewControllers[1] as? UINavigationController {
-                    nvc.show(viewController, sender: self)
+                    let nvc = splitViewController.viewControllers[1] as? UINavigationController {
+                    nvc.show(viewController, sender: sender)
                 } else {
                     let navController = ThemedUINavigationController(rootViewController: viewController)
                     navController.isToolbarHidden = false
-                    splitViewController.showDetailViewController(navController, sender: self)
+                    splitViewController.showDetailViewController(navController, sender: sender)
                 }
             } else {
-                splitViewController.showDetailViewController(viewController, sender: self)
+                splitViewController.showDetailViewController(viewController, sender: sender)
             }
         }
     }
