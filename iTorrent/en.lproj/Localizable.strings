@@ -75,6 +75,7 @@
 "Trackers" = "Trackers";
 
 //Settings Controller
+"Settings.Title" = "Preferences";
 "Settings.Order" = "Section order";
 "Settings.AutoTheme" = "Automatic theme";
 "Settings.Theme" = "Dark mode";
@@ -87,6 +88,7 @@
 "Settings.UpLimit" = "Upload Limit";
 "Settings.SpeedHeader" = "Speed limitation";
 "Settings.FTPEnable" = "Enable";
+"Settings.FTP.Settings" = "Settings";
 "Settings.FTPBackground" = "Run in background";
 "Settings.FTPBackground.Warning" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.FTP.Message.NoNetwork" = "Connect to WIFI to use file sharing";

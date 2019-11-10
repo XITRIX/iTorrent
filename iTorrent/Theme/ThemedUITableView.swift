@@ -12,16 +12,23 @@ import UIKit
 class ThemedUITableView: UITableView, Themed {
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setup()
+    }
+    
+    func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
     }
 
     @objc func themeUpdate() {
-        backgroundColor = Themes.current.backgroundSecondary
+        let theme = Themes.current
+        backgroundColor = theme.backgroundSecondary
+        tintColor = theme.tintColor
         reloadData()
     }
 }

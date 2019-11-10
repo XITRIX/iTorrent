@@ -75,6 +75,7 @@
 "Trackers" = "Трекеры";
 
 //Settings Controller
+"Settings.Title" = "Настройки";
 "Settings.Order" = "Порядок секций";
 "Settings.AutoTheme" = "Оформление системы";
 "Settings.Theme" = "Тёмная тема";
@@ -87,6 +88,7 @@
 "Settings.UpLimit" = "Лимит раздачи";
 "Settings.SpeedHeader" = "Ограничение скорости";
 "Settings.FTPEnable" = "Включить";
+"Settings.FTP.Settings" = "Настройки";
 "Settings.FTPBackground" = "Работа в фоне";
 "Settings.FTPBackground.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 "Settings.FTP.Message.NoNetwork" = "Подключитесь к WIFI чтобы поделиться файлами";

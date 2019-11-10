@@ -338,6 +338,9 @@ class Manager {
     }
 
     static func startFileSharing() {
+        print(webUploadServer.serverURL)
+        print(webDAVServer.serverURL)
+        
         webUploadServer.start()
         webDAVServer.start()
     }

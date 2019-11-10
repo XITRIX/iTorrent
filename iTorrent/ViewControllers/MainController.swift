@@ -376,6 +376,10 @@ class MainController: ThemedUIViewController {
         present(sortingController, animated: true)
     }
 
+    @IBAction func preferencesAction(_ sender: UIBarButtonItem) {
+        show(PreferencesController(), sender: self)
+    }
+    
     @objc func selectAllItem(_ sender: UIBarButtonItem) {
         var allSelected = false
         if let count = tableView.indexPathsForSelectedRows?.count {

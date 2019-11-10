@@ -8,18 +8,17 @@
 
 import UIKit
 
-class PreferencesController: ThemedUIViewController {
-    @IBOutlet var tableView: StaticTableView!
+class PreferencesController: StaticTableViewController {
     var onScreenPopup: PopupView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var data = [StaticTableView.Section]()
+        
+        title = Localize.get("Settings.Title")
 
         // APPEARANCE
         var appearance = [CellModelProtocol]()
-        appearance.append(SegueCell.Model(self, title: "Settings.Order", segueViewId: "SettingsSortingController"))
+        appearance.append(SegueCell.Model(self, title: "Settings.Order", controller: SettingsSortingController()))
         if #available(iOS 13, *) {
             appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
                 action: { switcher in
@@ -57,7 +56,7 @@ class PreferencesController: ThemedUIViewController {
                 self.navigationController?.view.isUserInteractionEnabled = true
             }
         })
-        data.append(StaticTableView.Section(rowModels: appearance))
+        data.append(Section(rowModels: appearance))
 
         //BACKGROUND
         var background = [CellModelProtocol]()
@@ -84,7 +83,7 @@ class PreferencesController: ThemedUIViewController {
                 UserPreferences.backgroundSeedKey.value = false
             }
         })
-        data.append(StaticTableView.Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
+        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
 
         //SPEED LIMITATION
         var speed = [CellModelProtocol]()
@@ -122,7 +121,7 @@ class PreferencesController: ThemedUIViewController {
             })
             self.onScreenPopup?.show(self)
         })
-        data.append(StaticTableView.Section(rowModels: speed, header: "Settings.SpeedHeader"))
+        data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
 
         //FTP
         var ftp = [CellModelProtocol]()
@@ -130,23 +129,24 @@ class PreferencesController: ThemedUIViewController {
             switcher.isOn ? Manager.startFileSharing() : Manager.stopFileSharing()
             self.tableView.reloadData()
         })
-        ftp.append(SwitchCell.Model(title: "Settings.FTPBackground", defaultValue: { UserPreferences.ftpBackgroundKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
-            if (switcher.isOn) {
-                let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: Localize.get("Settings.FTPBackground.Warning"), preferredStyle: .alert)
-                let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
-                    UserPreferences.ftpBackgroundKey.value = switcher.isOn
-                }
-                let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                    switcher.setOn(false, animated: true)
-                }
-                controller.addAction(enable)
-                controller.addAction(close)
-                self.present(controller, animated: true)
-            } else {
-                UserPreferences.ftpBackgroundKey.value = switcher.isOn
-            }
-        })
-        data.append(StaticTableView.Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
+//        ftp.append(SwitchCell.Model(title: "Settings.FTPBackground", defaultValue: { UserPreferences.ftpBackgroundKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
+//            if (switcher.isOn) {
+//                let controller = ThemedUIAlertController(title: NSLocalizedString("WARNING", comment: ""), message: Localize.get("Settings.FTPBackground.Warning"), preferredStyle: .alert)
+//                let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
+//                    UserPreferences.ftpBackgroundKey.value = switcher.isOn
+//                }
+//                let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+//                    switcher.setOn(false, animated: true)
+//                }
+//                controller.addAction(enable)
+//                controller.addAction(close)
+//                self.present(controller, animated: true)
+//            } else {
+//                UserPreferences.ftpBackgroundKey.value = switcher.isOn
+//            }
+//        })
+        ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controller: PreferencesWebDavController()))
+        data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             let addr = Utils.getWiFiAddress()
             if let addr = addr {
                 return UserPreferences.ftpKey.value ? Localize.get("Settings.FTP.Message") + addr : ""
@@ -168,7 +168,7 @@ class PreferencesController: ThemedUIViewController {
         notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge",
             property: UserPreferences.badgeKey,
             disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
-        data.append(StaticTableView.Section(rowModels: notifications, header: "Settings.NotifyHeader"))
+        data.append(Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
         //UPDATES
         var updates = [CellModelProtocol]()
@@ -179,7 +179,7 @@ class PreferencesController: ThemedUIViewController {
             self.present(Dialogs.crateUpdateDialog(forced: true)!, animated: true)
         })
         let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
-        data.append(StaticTableView.Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
+        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
 
         //DONATES
         var donates = [CellModelProtocol]()
@@ -250,9 +250,7 @@ class PreferencesController: ThemedUIViewController {
                 UserPreferences.disableAds.value = switcher.isOn
             }
         })
-        data.append(StaticTableView.Section(rowModels: donates, header: "Settings.DonateHeader"))
-
-        tableView.data = data
+        data.append(Section(rowModels: donates, header: "Settings.DonateHeader"))
     }
 
     override func viewWillAppear(_ animated: Bool) {

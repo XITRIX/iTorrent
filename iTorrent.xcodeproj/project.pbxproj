@@ -58,6 +58,9 @@
 		7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083420AAF09F00F76931 /* Downloader.swift */; };
 		7CB8083720AAFFD200F76931 /* TorrentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */; };
 		7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083A20AB008700F76931 /* SwitchCell.swift */; };
+		7CB9BBAA23786C8A00C8F05E /* PreferencesWebDavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9BBA923786C8A00C8F05E /* PreferencesWebDavController.swift */; };
+		7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */; };
+		7CB9BBAF23786D8D00C8F05E /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9BBAE23786D8D00C8F05E /* Section.swift */; };
 		7CBB17DB232328D20043A9F6 /* SizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DA232328D20043A9F6 /* SizePicker.swift */; };
 		7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */; };
 		7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC7765231961C20075A685 /* UserPreferences.swift */; };
@@ -149,6 +152,9 @@
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsController.swift; sourceTree = "<group>"; };
 		7CB8083A20AB008700F76931 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		7CB9BBA923786C8A00C8F05E /* PreferencesWebDavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWebDavController.swift; sourceTree = "<group>"; };
+		7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
+		7CB9BBAE23786D8D00C8F05E /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		7CBB17DA232328D20043A9F6 /* SizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePicker.swift; sourceTree = "<group>"; };
 		7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CBC7765231961C20075A685 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -329,23 +335,42 @@
 		7CB8083320AAEDE200F76931 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CB9BBA82378680000C8F05E /* Preferences */,
 				7CF5F59320AC86F500A18C3E /* MainController.swift */,
 				7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */,
-				7C18DF00231D504400A14326 /* PreferencesController.swift */,
 				7C3E841E20AB695800577282 /* AddTorrentController.swift */,
 				7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */,
-				7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */,
 				7C4B10AC20EA278800440E74 /* TrackersListController.swift */,
 				7C5D7683230335A4002E1352 /* FilesBrowserController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		7CB9BBA82378680000C8F05E /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				7C18DF00231D504400A14326 /* PreferencesController.swift */,
+				7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */,
+				7CB9BBA923786C8A00C8F05E /* PreferencesWebDavController.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		7CB9BBAD23786D8200C8F05E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CB9BBAE23786D8D00C8F05E /* Section.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		7CE16049235B96C000E3F1D9 /* StaticTableView */ = {
 			isa = PBXGroup;
 			children = (
+				7CB9BBAD23786D8200C8F05E /* Models */,
 				7CE1604C235B9C0D00E3F1D9 /* Cells */,
 				7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */,
+				7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */,
 			);
 			path = StaticTableView;
 			sourceTree = "<group>";
@@ -583,6 +608,7 @@
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
 				7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */,
 				7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */,
+				7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */,
 				7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */,
 				7C18DF01231D504400A14326 /* PreferencesController.swift in Sources */,
 				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
@@ -609,9 +635,11 @@
 				7C4B10A320E0099300440E74 /* ThemedUILabel.swift in Sources */,
 				7C4DB4E122AD457A00D45494 /* SegmentedProgressView.swift in Sources */,
 				7C4B10A920E1565100440E74 /* Themed.swift in Sources */,
+				7CB9BBAF23786D8D00C8F05E /* Section.swift in Sources */,
 				7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
 				7C18DF03231D514F00A14326 /* CellModelProtocol.swift in Sources */,
+				7CB9BBAA23786C8A00C8F05E /* PreferencesWebDavController.swift in Sources */,
 				7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */,
 				7C18DF07231D5DDB00A14326 /* PreferenceCellProtocol.swift in Sources */,
 				7C1EBD0421E4B64B00EAAF55 /* TableHeaderView.swift in Sources */,

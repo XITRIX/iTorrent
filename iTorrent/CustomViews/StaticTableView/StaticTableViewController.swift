@@ -1,17 +1,18 @@
 //
-//  StaticTableView.swift
+//  StaticTableViewController.swift
 //  iTorrent
 //
-//  Created by Daniil Vinogradov on 19.10.2019.
+//  Created by Daniil Vinogradov on 10.11.2019.
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
 import UIKit
 
-class StaticTableView: ThemedUITableView {
+class StaticTableViewController: ThemedUIViewController, UITableViewDataSource, UITableViewDelegate {
+    var tableView: ThemedUITableView!
     var data: [Section] = [] {
         didSet {
-            reloadData()
+            tableView?.reloadData()
         }
     }
 
@@ -33,20 +34,30 @@ class StaticTableView: ThemedUITableView {
         }
     }
 
-    override func setup() {
-        super.setup()
-        
-        register(SegueCell.nib, forCellReuseIdentifier: SegueCell.name)
-        register(SwitchCell.nib, forCellReuseIdentifier: SwitchCell.name)
-        register(ButtonCell.nib, forCellReuseIdentifier: ButtonCell.name)
-        register(UpdateInfoCell.nib, forCellReuseIdentifier: UpdateInfoCell.name)
-
-        dataSource = self
-        delegate = self
+    init(style: UITableView.Style = .grouped) {
+        super.init(nibName: nil, bundle: Bundle.main)
+        setup(style: style)
     }
-}
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    func setup(style: UITableView.Style = .grouped) {
+        tableView = ThemedUITableView(frame: view.frame, style: style)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(tableView)
+        
+        tableView.register(SegueCell.nib, forCellReuseIdentifier: SegueCell.name)
+        tableView.register(SwitchCell.nib, forCellReuseIdentifier: SwitchCell.name)
+        tableView.register(ButtonCell.nib, forCellReuseIdentifier: ButtonCell.name)
+        tableView.register(UpdateInfoCell.nib, forCellReuseIdentifier: UpdateInfoCell.name)
 
-extension StaticTableView: UITableViewDataSource, UITableViewDelegate {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         presentableData.count
     }

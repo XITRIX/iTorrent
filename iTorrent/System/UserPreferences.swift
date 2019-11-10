@@ -16,6 +16,8 @@ class UserPreferences {
     static let badgeKey = SettingProperty<Bool>("badgeKey", true)
     static let ftpKey = SettingProperty<Bool>("ftpKey", false)
     static let ftpBackgroundKey = SettingProperty<Bool>("ftpBackgroundKey", false)
+    static let ftpWebKey = SettingProperty<Bool>("ftpWebKey", false)
+    static let ftpWebDavKey = SettingProperty<Bool>("ftpWebDavKey", false)
     static let sectionsSortingOrder = SettingProperty<[Int]>("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1])
     static let themeNum = SettingProperty<Int>("themeNum", 0)
     static let downloadLimit = SettingProperty<Int64>("downloadLimit", 0)
