@@ -13,7 +13,7 @@ import Firebase
 import GoogleMobileAds
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                 print("Granted: " + String(granted))
             }
             center.removeAllDeliveredNotifications()
+            center.delegate = self
         } else {
             application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
             UIApplication.shared.cancelAllLocalNotifications()
@@ -50,18 +51,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             Manager.startFileSharing()
         }
         
-        if let notification = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification {
-            if let hash = notification.userInfo?["hash"] as? String {
-                DispatchQueue.global(qos: .background).async {
-                    while (!Manager.torrentsRestored) {
-                        sleep(1)
-                    }
-                    DispatchQueue.main.async {
-                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
-                    }
-                }
-            }
-        }
+//        if let notification = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification {
+//            if let hash = notification.userInfo?["hash"] as? String {
+//                DispatchQueue.global(qos: .background).async {
+//                    while (!Manager.torrentsRestored) {
+//                        sleep(1)
+//                    }
+//                    DispatchQueue.main.async {
+//                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
+//                    }
+//                }
+//            }
+//        }
 
         return true
     }
@@ -148,15 +149,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return nil
     }
-
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        if (!AppDelegate.backgrounded) {
-            //return
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let hash = response.notification.request.content.userInfo["hash"] as? String {
+            if (!Manager.torrentsRestored) {
+                DispatchQueue.global(qos: .background).async {
+                    while (!Manager.torrentsRestored) {
+                        sleep(1)
+                    }
+                    DispatchQueue.main.async {
+                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
+                    }
+                }
+            } else {
+                self.openTorrentDetailsViewController(withHash: hash, sender: self)
+            }
         }
-        
-        if let hash = notification.userInfo?["hash"] as? String {
-            openTorrentDetailsViewController(withHash: hash, sender: self)
-        }
+        completionHandler()
     }
     
     func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
