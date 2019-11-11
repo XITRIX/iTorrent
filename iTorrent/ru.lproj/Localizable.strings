@@ -92,7 +92,15 @@
 "Settings.FTPBackground" = "Работа в фоне";
 "Settings.FTPBackground.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 "Settings.FTP.Message.NoNetwork" = "Подключитесь к WIFI чтобы поделиться файлами";
-"Settings.FTP.Message" = "Подключитесь к: http://";
+"Settings.FTP.Message" = "Подключитесь к: ";
+"Settings.FTP.WebDav.Username" = "Логин";
+"Settings.FTP.WebDav.Password" = "Пароль";
+"Settings.FTP.WebDav.PassText" = "Перезапустите сервер для применения настроек";
+"Settings.FTP.WebDav.WebTitle" = "Web Сервер";
+"Settings.FTP.WebDav.WebText" = "Используйте любой браузер для обмена файлами";
+"Settings.FTP.WebDav.WebDavTitle" = "WebDAV Сервер";
+"Settings.FTP.WebDav.WebDavPort" = "Порт";
+"Settings.FTP.WebDav.WebDavText" = "Используйте WebDAV клиент для соединения с iTorrent";
 "Settings.FTPHeader" = "Обмен файлами";
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";

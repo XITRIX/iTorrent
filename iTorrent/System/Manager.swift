@@ -334,23 +334,43 @@ class Manager {
 
     static func getManagerByHash(hash: String) -> TorrentStatus? {
         let localStates = torrentStates
-        return localStates.filter({ $0.hash == hash }).first //TODO: can crash (Out of Index) - localStates.count == 0
+        let filter = localStates.filter({ $0.hash == hash })
+        return filter.count > 0 ? filter.first : nil
     }
 
     static func startFileSharing() {
-        print(webUploadServer.serverURL)
-        print(webDAVServer.serverURL)
+        var options = [String : Any]()
         
-        webUploadServer.start()
-        webDAVServer.start()
+        if (!UserPreferences.webDavUsername.value.isEmpty) {
+            options[GCDWebServerOption_AuthenticationAccounts] = [UserPreferences.webDavUsername.value: UserPreferences.webDavPassword.value]
+            options[GCDWebServerOption_AuthenticationMethod] = GCDWebServerAuthenticationMethod_DigestAccess
+        }
+        
+        if UserPreferences.webDavWebServerEnabled.value {
+            options[GCDWebServerOption_Port] = 80
+            if !webUploadServer.isRunning {
+                if (try? webUploadServer.start(options: options)) == nil {
+                    repeat {
+                        options[GCDWebServerOption_Port] = Int.random(in: 49152 ..< 65535)
+                    } while (try? webUploadServer.start(options: options)) == nil
+                }
+            }
+        }
+        
+        if UserPreferences.webDavWebDavServerEnabled.value {
+            options[GCDWebServerOption_Port] = UserPreferences.webDavPort.value
+            if !webDAVServer.isRunning {
+                try? webDAVServer.start(options: options)
+            }
+        }
     }
 
     static func stopFileSharing() {
-        if (webDAVServer.isRunning) {
-            webDAVServer.stop()
-        }
         if (webUploadServer.isRunning) {
             webUploadServer.stop()
+        }
+        if (webDAVServer.isRunning) {
+            webDAVServer.stop()
         }
     }
 }

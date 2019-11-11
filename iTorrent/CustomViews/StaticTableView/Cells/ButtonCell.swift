@@ -35,7 +35,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
             return
         }
         self.title.text = Localize.get(model.title)
-        self.button.setTitle(Localize.get(model.buttonTitle), for: .normal)
+        self.button.setTitle(Localize.get(model.buttonTitleFunc?() ?? model.buttonTitle), for: .normal)
         self.action = model.action
     }
 
@@ -46,7 +46,8 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var buttonTitle: String
+        var buttonTitle: String = ""
+        var buttonTitleFunc: (() -> String)? = nil
         var hiddenCondition: (() -> Bool)? = nil
         var tapAction: (() -> ())? = nil
         var action: ((UIButton) -> ())

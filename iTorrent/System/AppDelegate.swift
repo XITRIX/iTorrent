@@ -50,19 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         if (UserPreferences.ftpKey.value) {
             Manager.startFileSharing()
         }
-        
-//        if let notification = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? UILocalNotification {
-//            if let hash = notification.userInfo?["hash"] as? String {
-//                DispatchQueue.global(qos: .background).async {
-//                    while (!Manager.torrentsRestored) {
-//                        sleep(1)
-//                    }
-//                    DispatchQueue.main.async {
-//                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
-//                    }
-//                }
-//            }
-//        }
 
         return true
     }
@@ -115,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController {
-            if nav.topViewController is PreferencesController || nav.topViewController is SettingsSortingController {
+            if nav.topViewController is PreferencesController || nav.topViewController is SettingsSortingController || nav.topViewController is PreferencesWebDavController {
                 return Utils.createEmptyViewController()
             }
         }

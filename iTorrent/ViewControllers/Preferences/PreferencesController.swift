@@ -10,6 +10,10 @@ import UIKit
 
 class PreferencesController: StaticTableViewController {
     var onScreenPopup: PopupView?
+    
+    deinit {
+        print("PreferencesController Deinit")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +22,7 @@ class PreferencesController: StaticTableViewController {
 
         // APPEARANCE
         var appearance = [CellModelProtocol]()
-        appearance.append(SegueCell.Model(self, title: "Settings.Order", controller: SettingsSortingController()))
+        appearance.append(SegueCell.Model(self, title: "Settings.Order", controllerType: SettingsSortingController.self))
         if #available(iOS 13, *) {
             appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
                 action: { switcher in
@@ -88,9 +92,9 @@ class PreferencesController: StaticTableViewController {
         //SPEED LIMITATION
         var speed = [CellModelProtocol]()
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
-            buttonTitle: UserPreferences.downloadLimit.value == 0 ?
+                buttonTitleFunc: {UserPreferences.downloadLimit.value == 0 ?
                 NSLocalizedString("Unlimited", comment: "") :
-                Utils.getSizeText(size: UserPreferences.downloadLimit.value, decimals: true) + "/S") { button in
+                Utils.getSizeText(size: UserPreferences.downloadLimit.value, decimals: true) + "/S"}) { button in
             self.onScreenPopup?.dismiss()
             self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.downloadLimit.value, dataSelected: { res in
                 if (res == 0) {
@@ -105,9 +109,9 @@ class PreferencesController: StaticTableViewController {
             self.onScreenPopup?.show(self)
         })
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
-            buttonTitle: UserPreferences.uploadLimit.value == 0 ?
+                buttonTitleFunc: {UserPreferences.uploadLimit.value == 0 ?
                 NSLocalizedString("Unlimited", comment: "") :
-                Utils.getSizeText(size: UserPreferences.uploadLimit.value, decimals: true) + "/S") { button in
+                Utils.getSizeText(size: UserPreferences.uploadLimit.value, decimals: true) + "/S"}) { button in
             self.onScreenPopup?.dismiss()
             self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.uploadLimit.value, dataSelected: { res in
                 if (res == 0) {
@@ -127,7 +131,7 @@ class PreferencesController: StaticTableViewController {
         var ftp = [CellModelProtocol]()
         ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey) { switcher in
             switcher.isOn ? Manager.startFileSharing() : Manager.stopFileSharing()
-            self.tableView.reloadData()
+            self.tableView.reloadSections([3], with: .automatic)
         })
 //        ftp.append(SwitchCell.Model(title: "Settings.FTPBackground", defaultValue: { UserPreferences.ftpBackgroundKey.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
 //            if (switcher.isOn) {
@@ -145,13 +149,18 @@ class PreferencesController: StaticTableViewController {
 //                UserPreferences.ftpBackgroundKey.value = switcher.isOn
 //            }
 //        })
-        ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controller: PreferencesWebDavController()))
+        ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: PreferencesWebDavController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
-            let addr = Utils.getWiFiAddress()
-            if let addr = addr {
-                return UserPreferences.ftpKey.value ? Localize.get("Settings.FTP.Message") + addr : ""
+            if UserPreferences.ftpKey.value,
+                UserPreferences.webDavWebServerEnabled.value{
+                let addr = Manager.webUploadServer.serverURL //Utils.getWiFiAddress()
+                if let addr = addr?.absoluteString {
+                    return UserPreferences.ftpKey.value ? Localize.get("Settings.FTP.Message") + addr : ""
+                } else {
+                    return Localize.get("Settings.FTP.Message.NoNetwork")
+                }
             } else {
-                return Localize.get("Settings.FTP.Message.NoNetwork")
+                return ""
             }
         }))
 

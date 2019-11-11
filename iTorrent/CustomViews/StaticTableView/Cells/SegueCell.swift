@@ -27,6 +27,7 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var title: String
         var segueViewId: String? = nil
         var controller: UIViewController? = nil
+        var controllerType: UIViewController.Type? = nil
         var hiddenCondition: (() -> Bool)? = nil
         var tapAction: (() -> ())? = nil
 
@@ -46,6 +47,19 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
                     } else {
                         vc.show(tvc, sender: vc)
                     }
+                }
+            }
+        }
+
+        init(_ vc: UIViewController, title: String, controllerType: UIViewController.Type, isModal: Bool = false) {
+            self.title = title
+            self.controllerType = controllerType
+
+            tapAction = {
+                if isModal {
+                    vc.present(controllerType.init(), animated: true)
+                } else {
+                    vc.show(controllerType.init(), sender: vc)
                 }
             }
         }

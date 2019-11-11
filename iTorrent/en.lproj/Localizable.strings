@@ -92,7 +92,15 @@
 "Settings.FTPBackground" = "Run in background";
 "Settings.FTPBackground.Warning" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.FTP.Message.NoNetwork" = "Connect to WIFI to use file sharing";
-"Settings.FTP.Message" = "Connect to: http://";
+"Settings.FTP.Message" = "Connect to: ";
+"Settings.FTP.WebDav.Username" = "Username";
+"Settings.FTP.WebDav.Password" = "Password";
+"Settings.FTP.WebDav.PassText" = "Restart server to apply settings";
+"Settings.FTP.WebDav.WebTitle" = "Web Server";
+"Settings.FTP.WebDav.WebText" = "Use any web browser to share files";
+"Settings.FTP.WebDav.WebDavTitle" = "WebDAV Server";
+"Settings.FTP.WebDav.WebDavPort" = "Port";
+"Settings.FTP.WebDav.WebDavText" = "Use WebDAV client to connect to iTorrent";
 "Settings.FTPHeader" = "File sharing";
 "Settings.NotifyFinishLoad" = "On finish loading";
 "Settings.NotifyFinishSeed" = "On finish seeding";

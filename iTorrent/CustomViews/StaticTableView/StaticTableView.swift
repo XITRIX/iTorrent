@@ -40,7 +40,10 @@ class StaticTableView: ThemedUITableView {
         register(SwitchCell.nib, forCellReuseIdentifier: SwitchCell.name)
         register(ButtonCell.nib, forCellReuseIdentifier: ButtonCell.name)
         register(UpdateInfoCell.nib, forCellReuseIdentifier: UpdateInfoCell.name)
+        register(TextFieldCell.nib, forCellReuseIdentifier: TextFieldCell.name)
 
+        keyboardDismissMode = .interactive
+        
         dataSource = self
         delegate = self
     }
