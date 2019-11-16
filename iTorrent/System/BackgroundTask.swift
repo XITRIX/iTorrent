@@ -9,7 +9,7 @@
 import AVFoundation
 
 class BackgroundTask {
-    static let zeroSpeedLimit = 5
+    static let zeroSpeedLimit = 60
 
     static var player: AVAudioPlayer?
     static var timer = Timer()

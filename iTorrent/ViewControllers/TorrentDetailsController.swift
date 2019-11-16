@@ -291,7 +291,7 @@ class TorrentDetailsController: ThemedUITableViewController {
                     UserPreferences.seedBackgroundWarning.value = true
 
                     let controller = ThemedUIAlertController(title: Localize.get("Warning"),
-                        message: Localize.get("Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain."),
+                        message: Localize.get("Details.BackgroundSeeding.Warning"),
                         preferredStyle: .alert)
                     let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
                         UserPreferences.backgroundSeedKey.value = true

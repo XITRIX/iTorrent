@@ -73,6 +73,7 @@
 "Magnet link copied to clipboard" = "Magnet link copied to clipboard";
 "Files" = "Files";
 "Trackers" = "Trackers";
+"Details.BackgroundSeeding.Warning" = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 
 //Settings Controller
 "Settings.Title" = "Preferences";
@@ -90,7 +91,6 @@
 "Settings.FTPEnable" = "Enable";
 "Settings.FTP.Settings" = "Settings";
 "Settings.FTPBackground" = "Run in background";
-"Settings.FTPBackground.Warning" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.FTP.Message.NoNetwork" = "Connect to WIFI to use file sharing";
 "Settings.FTP.Message" = "Connect to: ";
 "Settings.FTP.WebDav.Username" = "Username";
@@ -117,7 +117,6 @@
 "Settings.DonateHeader" = "Donate for donuts";
 
 "Warning" = "Warning";
-"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 "Enable" = "Enable";
 "Unlimited" = "Unlimited";
 "Torrent rehash" = "Torrent rehash";
@@ -190,5 +189,5 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed";
+"UpdateText" = "----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers";
 
