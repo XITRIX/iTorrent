@@ -116,6 +116,8 @@
 "Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
 "Settings.DonateHeader" = "Donate for donuts";
 
+"Settings.Sorting.Revert" = "Revert";
+
 "Warning" = "Warning";
 "Enable" = "Enable";
 "Unlimited" = "Unlimited";

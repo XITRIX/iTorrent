@@ -36,8 +36,13 @@ class SettingsSortingController: ThemedUITableViewController {
         tableView.delegate = self
 
         tableView.tableFooterView = UIView()
-
         tableView.isEditing = true
+        
+        navigationItem.setRightBarButton(UIBarButtonItem(title: Localize.get("Settings.Sorting.Revert"),
+                                                         style: .plain,
+                                                         target: self,
+                                                         action: #selector(revertAction)),
+                                         animated: false)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,7 +51,7 @@ class SettingsSortingController: ThemedUITableViewController {
         UserPreferences.sectionsSortingOrder.value = data
     }
 
-    @IBAction func revertAction(_ sender: UIBarButtonItem) {
+    @objc func revertAction(_ sender: UIBarButtonItem) {
         data = [3,
                 7,
                 8,

@@ -116,6 +116,8 @@
 "Settings.DonateCard.DonatePlatforms.Title" = "Выберите платформу для пожертвований:";
 "Settings.DonateHeader" = "Донат на еду";
 
+"Settings.Sorting.Revert" = "Сбросить";
+
 "Warning" = "Внимание";
 "Enable" = "Включить";
 "Unlimited" = "Без ограничений";
