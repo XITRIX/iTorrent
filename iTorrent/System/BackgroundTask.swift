@@ -9,8 +9,6 @@
 import AVFoundation
 
 class BackgroundTask {
-    static let zeroSpeedLimit = 60
-
     static var player: AVAudioPlayer?
     static var timer = Timer()
     static var backgrounding = false
@@ -76,6 +74,7 @@ class BackgroundTask {
                 status.seedMode) ||
             (UserPreferences.ftpKey.value &&
                 UserPreferences.ftpBackgroundKey.value)) &&
-            Manager.managerSaves[status.hash]?.zeroSpeedTimeCounter ?? 0 < BackgroundTask.zeroSpeedLimit
+            (UserPreferences.zeroSpeedLimit.value > 0 &&
+                Manager.managerSaves[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit.value)
     }
 }

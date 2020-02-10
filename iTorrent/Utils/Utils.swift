@@ -177,4 +177,28 @@ class Localize {
     static func get(_ key: String) -> String {
         NSLocalizedString(key, comment: "")
     }
+    
+    static func getTermination (_ key: String, _ number: Int) -> String
+    {
+        let termination: [String] = [":single", ":plural", ":parent"]
+        
+        var value = number % 100
+        var res: String
+         
+        if value > 10, value < 15
+        {
+            res = get(key+termination[2])
+        }
+        else
+        {
+            value = value % 10;
+             
+            if value == 0 {res = get(key+termination[2])}
+            else if value == 1 {res = get(key+termination[0])}
+            else if value > 1 {res = get(key+termination[1])}
+            else {res = get(key+termination[2])}
+        }
+        
+        return res
+    }
 }

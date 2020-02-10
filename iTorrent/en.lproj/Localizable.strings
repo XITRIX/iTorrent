@@ -85,8 +85,9 @@
 "Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.BackgroundHeader" = "Background downloading";
 "Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
-"Settings.DownLimit" = "Download Limit";
-"Settings.UpLimit" = "Upload Limit";
+"Settings.ZeroSpeedLimit" = "Zero speed limit";
+"Settings.DownLimit" = "Download limit";
+"Settings.UpLimit" = "Upload limit";
 "Settings.SpeedHeader" = "Speed limitation";
 "Settings.FTPEnable" = "Enable";
 "Settings.FTP.Settings" = "Settings";
@@ -95,6 +96,8 @@
 "Settings.FTP.Message" = "Connect to: ";
 "Settings.FTP.WebDav.Username" = "Username";
 "Settings.FTP.WebDav.Password" = "Password";
+"Settings.FTP.WebDav.Username.Placeholder" = "Username";
+"Settings.FTP.WebDav.Password.Placeholder" = "Password (optional)";
 "Settings.FTP.WebDav.PassText" = "Restart server to apply settings";
 "Settings.FTP.WebDav.WebTitle" = "Web Server";
 "Settings.FTP.WebDav.WebText" = "Use any web browser to share files";
@@ -187,9 +190,13 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Warning!";
-"Dialogs.News.Message" = "In iOS 13, if app was resigned (i.e. by Impactor) app will refuse opening torrent files using \"share\" menu from apps for iOS 13. Use Chrome or Telegram to download and open torrent files, cause they still builds for previous ios versions. You can add torrents by url too.\nAs workaround, you can add torrent file directly into \"_Config\" folder using Files.\nAlso you can build this app by your self using XCode, so file sharing will work from any app.";
+"Dialogs.News.Message" = "If app not opening .torrent files, use Google Chrome to download them!";
 
 //Version Info
 "info" = " Update info";
 "UpdateText" = "----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers";
 
+
+"minute:single" = "minute";
+"minute:plural" = "minutes";
+"minute:parent" = "minutes";

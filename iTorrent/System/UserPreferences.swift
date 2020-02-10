@@ -25,6 +25,7 @@ class UserPreferences {
     static let webDavPort = SettingProperty<Int>("webDavPort", 81)
     static let sectionsSortingOrder = SettingProperty<[Int]>("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1])
     static let themeNum = SettingProperty<Int>("themeNum", 0)
+    static let zeroSpeedLimit = SettingProperty<Int>("zeroSpeedLimit", 60)
     static let downloadLimit = SettingProperty<Int64>("downloadLimit", 0)
     static let uploadLimit = SettingProperty<Int64>("uploadLimit", 0)
     static let seedBackgroundWarning = SettingProperty<Bool>("seedBackgroundWarning", false)

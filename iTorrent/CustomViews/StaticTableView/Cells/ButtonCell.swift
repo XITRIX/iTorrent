@@ -15,6 +15,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let name = id
 
     @IBOutlet weak var title: ThemedUILabel!
+    @IBOutlet weak var hintButton: UIButton!
     @IBOutlet weak var button: UIButton! {
         didSet {
             button.addTarget(self, action: #selector(executeAction), for: .touchUpInside)
@@ -22,6 +23,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
 
     private var action: ((UIButton) -> ())?
+    private var hintText: String?
 
     override func themeUpdate() {
         super.themeUpdate()
@@ -37,16 +39,26 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
         self.title.text = Localize.get(model.title)
         self.button.setTitle(Localize.get(model.buttonTitleFunc?() ?? model.buttonTitle), for: .normal)
         self.action = model.action
+        
+        hintText = model.hint
+        hintButton.isHidden = hintText == nil
     }
 
     @objc private func executeAction() {
         action?(button)
     }
-
+    
+    @IBAction func hintButtonAction(_ sender: UIButton) {
+        let vc = ThemedUIAlertController(title: "Hint", message: hintText, preferredStyle: .alert)
+        vc.addAction(UIAlertAction(title: "OK", style: .cancel))
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true)
+    }
+    
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var buttonTitle: String = ""
+        var hint: String? = nil
         var buttonTitleFunc: (() -> String)? = nil
         var hiddenCondition: (() -> Bool)? = nil
         var tapAction: (() -> ())? = nil

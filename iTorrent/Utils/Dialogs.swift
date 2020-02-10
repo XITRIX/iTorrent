@@ -30,7 +30,7 @@ class Dialogs {
 
     static func createNewsDialog() -> ThemedUIAlertController? {
         if #available(iOS 13, *) {
-            let code = "0"
+            let code = "1"
             if (!UserPreferences.alertDialog(code: code).value) {
                 let newsController = ThemedUIAlertController(title: Localize.get("Dialogs.News.Title"), message: Localize.get("Dialogs.News.Message"), preferredStyle: .alert)
                 let close = UIAlertAction(title: Localize.get("Close"), style: .cancel) { _ in

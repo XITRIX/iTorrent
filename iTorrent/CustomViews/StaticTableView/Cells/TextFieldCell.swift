@@ -33,6 +33,7 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         self.textField.text = model.defaultValue()
         self.textEditAction = model.textEditAction
         
+        textField.placeholder = Localize.get(model.placeholder ?? "")
         textField.isSecureTextEntry = model.isPassword
         textField.keyboardType = model.keyboardType
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -54,6 +55,7 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
+        var placeholder: String?
         var defaultValue: () -> String
         var isPassword: Bool = false
         var keyboardType: UIKeyboardType = .default

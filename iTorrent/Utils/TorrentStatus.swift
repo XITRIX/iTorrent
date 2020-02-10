@@ -122,7 +122,7 @@ class TorrentStatus {
             Manager.managerSaves[hash]?.zeroSpeedTimeCounter = 0
         }
 
-        if (Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == BackgroundTask.zeroSpeedLimit) {
+        if (Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == UserPreferences.zeroSpeedLimit.value) {
             if #available(iOS 10.0, *) {
                 let content = UNMutableNotificationContent()
 

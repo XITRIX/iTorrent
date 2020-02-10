@@ -12,11 +12,13 @@ class PreferencesWebDavController : StaticTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = Localize.get("Settings.FTPHeader")
+        
         var pass = [CellModelProtocol]()
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", defaultValue: {UserPreferences.webDavUsername.value}) { username in
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: {UserPreferences.webDavUsername.value}) { username in
             UserPreferences.webDavUsername.value = username
         })
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", defaultValue: {UserPreferences.webDavPassword.value}, isPassword: true) { password in
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: {UserPreferences.webDavPassword.value}, isPassword: true) { password in
             UserPreferences.webDavPassword.value = password
         })
         data.append(Section(rowModels: pass, footer: "Settings.FTP.WebDav.PassText"))
@@ -49,9 +51,11 @@ class PreferencesWebDavController : StaticTableViewController {
             }
             self.tableView.reloadData()
         })
-        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", defaultValue: {String(UserPreferences.webDavPort.value)}, keyboardType: .numberPad) { port in
+        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: {String(UserPreferences.webDavPort.value)}, keyboardType: .numberPad) { port in
             if let intPort = Int(port) {
                 UserPreferences.webDavPort.value = intPort
+            } else {
+                UserPreferences.webDavPort.value = 81
             }
         })
         data.append(Section(rowModels: webDav, header: "Settings.FTP.WebDav.WebDavTitle", footerFunc: { () -> String in
