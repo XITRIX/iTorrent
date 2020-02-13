@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1398,8 +1398,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="C5K-Zn-7sd" firstAttribute="top" secondItem="H24-F4-Vq7" secondAttribute="top" id="FpU-tk-doc"/>
-                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="leading" secondItem="d2k-Fw-6oz" secondAttribute="leading" id="KDA-sF-3PU"/>
-                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="trailing" secondItem="d2k-Fw-6oz" secondAttribute="trailing" id="LAu-P4-dCp"/>
+                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="leading" secondItem="H24-F4-Vq7" secondAttribute="leading" id="KDA-sF-3PU"/>
+                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="trailing" secondItem="H24-F4-Vq7" secondAttribute="trailing" id="LAu-P4-dCp"/>
                             <constraint firstAttribute="bottom" secondItem="C5K-Zn-7sd" secondAttribute="bottom" id="oqR-7A-jVb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d2k-Fw-6oz"/>
@@ -1518,10 +1518,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="trailing" secondItem="ONr-lo-LOD" secondAttribute="trailing" id="MeZ-hu-YPK"/>
+                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="trailing" secondItem="5Mn-mc-Vk6" secondAttribute="trailing" id="MeZ-hu-YPK"/>
                             <constraint firstAttribute="bottom" secondItem="KSI-Pp-j7J" secondAttribute="bottom" id="QlS-dk-U5V"/>
                             <constraint firstItem="KSI-Pp-j7J" firstAttribute="top" secondItem="5Mn-mc-Vk6" secondAttribute="top" id="mWb-nJ-Qea"/>
-                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="leading" secondItem="ONr-lo-LOD" secondAttribute="leading" id="zfN-WE-sw2"/>
+                            <constraint firstItem="KSI-Pp-j7J" firstAttribute="leading" secondItem="5Mn-mc-Vk6" secondAttribute="leading" id="zfN-WE-sw2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ONr-lo-LOD"/>
                     </view>

@@ -50,6 +50,12 @@ class TorrentDetailsController: ThemedUITableViewController {
     var myPickerView: UIPickerView!
 
     var sortedFilesData: [FilePieceData]!
+    
+    var useInsertStyle: Bool {
+        get {
+            return !(splitViewController?.isCollapsed ?? true)
+        }
+    }
 
     deinit {
         print("Details DEINIT")
@@ -458,5 +464,30 @@ class TorrentDetailsController: ThemedUITableViewController {
         } else {
             navigationController?.popViewController(animated: true)
         }
+    }
+    
+    // LOGIC FOR TABLEVIEW INSET STYLE
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if (previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass) {
+            tableView.reloadData()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let res = super.tableView(tableView, titleForHeaderInSection: section) {
+            return "\(useInsertStyle ? "       " : "")\(res)"
+        }
+        return nil
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let res = super.tableView(tableView, cellForRowAt: indexPath) as! ThemedUITableViewCell
+        res.insetStyle = useInsertStyle
+        if useInsertStyle {
+            res.setInsetParams(tableView: tableView, indexPath: indexPath)
+        }
+        return res
     }
 }
