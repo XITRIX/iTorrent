@@ -88,15 +88,14 @@ class PreferencesController: StaticTableViewController {
             }
         })
         background.append(ButtonCell.Model(title: "Settings.ZeroSpeedLimit",
-                                           hint: "If download speed equals zero for a certain amount of time, application will stop background processing to prevent useless battery drain",
+                                           hint: Localize.get("Settings.ZeroSpeedLimit.Hint"),
                 buttonTitleFunc: {
                     UserPreferences.zeroSpeedLimit.value == 0 ?
                     NSLocalizedString("Disabled", comment: "") :
                     "\(UserPreferences.zeroSpeedLimit.value / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit.value / 60))"
                 }) { button in
             self.onScreenPopup?.dismiss()
-            var a = UserPreferences.zeroSpeedLimit.value
-            self.onScreenPopup = TimeLimitPicker(defaultValue: a / 60, dataSelected: { res in
+            self.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit.value / 60, dataSelected: { res in
                 if (res == 0) {
                     button.setTitle(NSLocalizedString("Disabled", comment: ""), for: .normal)
                 } else {

@@ -30,10 +30,10 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
             if insetStyle {
                 var rightSafeareaInset: CGFloat = 0
                 if #available(iOS 11, *) {
-                    rightSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.right ?? 0) > 0 ? 19 : 0
+                    rightSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.right ?? 0) > 0 ? 23 : 0
                 }
-                frame.origin.x += 25
-                frame.size.width -= (50 + rightSafeareaInset)
+                frame.origin.x += 21
+                frame.size.width -= (42 + rightSafeareaInset)
             }
             super.frame = frame
         }
@@ -73,7 +73,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     
     private func cutEdges(tableView: UITableView, indexPath: IndexPath) {
         let layer: CAShapeLayer = CAShapeLayer()
-        var path: CGMutablePath = CGMutablePath()
+        let path: CGMutablePath = CGMutablePath()
 
         if indexPath.row == 0 && indexPath.row == ( tableView.numberOfRows(inSection: indexPath.section) - 1) {
             addBothCorner(path)
@@ -92,25 +92,20 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     }
     
     private func addUpperCorner(_ path: CGMutablePath) {
-        let cornerRadius: CGFloat = 12.0
-        
-        path.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
-        path.addArc(tangent1End: CGPoint(x: bounds.minX, y: bounds.minY+1), tangent2End: CGPoint(x: bounds.midX, y: bounds.minY+1), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: bounds.maxX, y: bounds.minY+1), tangent2End: CGPoint(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)
-        path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
+        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY+1, width: bounds.width, height: bounds.height-1),
+                                  byRoundingCorners: [.topLeft, .topRight],
+            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
     }
     
     private func addBottonCorner(_ path: CGMutablePath) {
-        let cornerRadius: CGFloat = 12.0
-        
-        path.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
-        path.addArc(tangent1End: CGPoint(x: bounds.minX, y: bounds.maxY-1), tangent2End: CGPoint(x: bounds.midX, y: bounds.maxY-1), radius: cornerRadius)
-        path.addArc(tangent1End: CGPoint(x: bounds.maxX, y: bounds.maxY-1), tangent2End: CGPoint(x: bounds.maxX, y: bounds.midY), radius: cornerRadius)
-        path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height-1),
+                                  byRoundingCorners: [.bottomLeft, .bottomRight],
+            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
     }
     
     private func addBothCorner(_ path: CGMutablePath) {
-        
-        path.addPath(CGPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY+1, width: bounds.width, height: bounds.height-2), cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil))
+        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY+1, width: bounds.width, height: bounds.height-2),
+                                  byRoundingCorners: .allCorners,
+            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
     }
 }

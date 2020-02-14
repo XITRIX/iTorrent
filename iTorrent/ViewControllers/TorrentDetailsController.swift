@@ -477,7 +477,7 @@ class TorrentDetailsController: ThemedUITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let res = super.tableView(tableView, titleForHeaderInSection: section) {
-            return "\(useInsertStyle ? "       " : "")\(res)"
+            return "\(useInsertStyle ? "      " : "")\(res)"
         }
         return nil
     }

@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class ThemedUILabel: UILabel, Themed {
+    @IBInspectable
+    var secondaryColor : Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -21,6 +24,7 @@ class ThemedUILabel: UILabel, Themed {
     }
 
     @objc func themeUpdate() {
-        textColor = Themes.current.mainText
+        let theme = Themes.current
+        textColor = secondaryColor ? theme.secondaryText : theme.mainText
     }
 }

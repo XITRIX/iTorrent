@@ -66,6 +66,7 @@
 "Currently sorted by " = "Currently sorted by ";
 "Disable state sections" = "Disable state sections";
 "Enable state sections" = "Enable state sections";
+"MainController.Table.Placeholder.Text" = "Download list is empty!\nUse Google Chrome to download torrent files or add a direct link using the '+' button";
 
 //Torrent details
 "Torrent file" = "Torrent file";
@@ -86,6 +87,7 @@
 "Settings.BackgroundHeader" = "Background downloading";
 "Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
 "Settings.ZeroSpeedLimit" = "Zero speed limit";
+"Settings.ZeroSpeedLimit.Hint" = "If download speed equals zero for a certain amount of time, application will stop background processing to prevent useless battery drain";
 "Settings.DownLimit" = "Download limit";
 "Settings.UpLimit" = "Upload limit";
 "Settings.SpeedHeader" = "Speed limitation";
@@ -196,6 +198,9 @@
 "info" = " Update info";
 "UpdateText" = "----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers";
 
+
+"Disabled" = "Disabled";
+"Hint" = "Hint";
 
 "minute:single" = "minute";
 "minute:plural" = "minutes";

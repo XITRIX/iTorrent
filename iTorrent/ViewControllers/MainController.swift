@@ -12,7 +12,10 @@ import GoogleMobileAds
 class MainController: ThemedUIViewController {
     @IBOutlet weak var tableView: ThemedUITableView!
     @IBOutlet weak var adsView: GADBannerView!
-
+    @IBOutlet weak var tableviewPlaceholder: UIView!
+    @IBOutlet weak var tableviewPlaceholderImage: UIImageView!
+    @IBOutlet weak var tableviewPlaceholderText: UILabel!
+    
     lazy var searchControllerInsideNavigation: Bool = {
         if #available(iOS 11.0, *) {
             return true
@@ -47,6 +50,8 @@ class MainController: ThemedUIViewController {
 
         let theme = Themes.current
         tableView.backgroundColor = theme.backgroundMain
+        tableviewPlaceholderImage.tintColor = theme.secondaryText
+        tableviewPlaceholderText.textColor = theme.secondaryText
         searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
         searchController.searchBar.barStyle = theme.barStyle
         searchController.searchBar.tintColor = view.tintColor
@@ -70,6 +75,7 @@ class MainController: ThemedUIViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
 
         tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 82
         tableView.rowHeight = 82
 
         tableView.dataSource = self
@@ -102,6 +108,8 @@ class MainController: ThemedUIViewController {
             tableView.tableHeaderView = searchController.searchBar
         }
         definesPresentationContext = true
+        
+        tableviewPlaceholderText.text = Localize.get("MainController.Table.Placeholder.Text")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -533,20 +541,22 @@ class MainController: ThemedUIViewController {
             }
 
             present(removeController, animated: true)
-
         }
     }
 }
 
 extension MainController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        headers.count
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (tableView.isEditing) {
             navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
         }
+        
+        tableviewPlaceholder.isHidden = !(headers.count == 0 || managers[0].count == 0)
+        
+        return headers.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return managers[section].count
     }
 
