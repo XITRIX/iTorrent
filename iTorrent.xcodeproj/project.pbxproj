@@ -79,6 +79,7 @@
 		7CF522EE20AF7B0300D319E6 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CF522ED20AF7B0200D319E6 /* 3.wav */; };
 		7CF5F59220AC325100A18C3E /* TorrentFilesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */; };
 		7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59320AC86F500A18C3E /* MainController.swift */; };
+		7CFB6E9223F8914D00F5D210 /* SANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB6E9123F8914D00F5D210 /* SANavigationController.swift */; };
 		7CFDDCC9235B9F110008EBEA /* SegueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCC8235B9F110008EBEA /* SegueCell.xib */; };
 		7CFDDCCB235BA3940008EBEA /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCA235BA3940008EBEA /* SwitchCell.xib */; };
 		7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */; };
@@ -177,6 +178,7 @@
 		7CF522ED20AF7B0200D319E6 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
 		7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesController.swift; sourceTree = "<group>"; };
 		7CF5F59320AC86F500A18C3E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		7CFB6E9123F8914D00F5D210 /* SANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
 		7CFDDCC8235B9F110008EBEA /* SegueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegueCell.xib; sourceTree = "<group>"; };
 		7CFDDCCA235BA3940008EBEA /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -209,15 +211,13 @@
 		7C0D2F1B20F77F5200B7FBC6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				7CE16049235B96C000E3F1D9 /* StaticTableView */,
 				7C10D34A232188B200B5ED9A /* PopupView */,
+				7CFB6E9323F8983600F5D210 /* DataPickers */,
+				7CE16049235B96C000E3F1D9 /* StaticTableView */,
 				7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */,
 				7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */,
+				7CFB6E9123F8914D00F5D210 /* SANavigationController.swift */,
 				7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */,
-				7C10D34F232189C200B5ED9A /* DatasetPicker.swift */,
-				7CE3CEB22321C350005575D5 /* SpeedPicker.swift */,
-				7CBB17DA232328D20043A9F6 /* SizePicker.swift */,
-				7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -423,6 +423,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		7CFB6E9323F8983600F5D210 /* DataPickers */ = {
+			isa = PBXGroup;
+			children = (
+				7C10D34F232189C200B5ED9A /* DatasetPicker.swift */,
+				7CE3CEB22321C350005575D5 /* SpeedPicker.swift */,
+				7CBB17DA232328D20043A9F6 /* SizePicker.swift */,
+				7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */,
+			);
+			path = DataPickers;
+			sourceTree = "<group>";
+		};
 		7CFDDCC7235B9EF80008EBEA /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,6 +636,7 @@
 				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
 				7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */,
+				7CFB6E9223F8914D00F5D210 /* SANavigationController.swift in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
 				7C4B10AD20EA278900440E74 /* TrackersListController.swift in Sources */,
 				7CE3CEB32321C350005575D5 /* SpeedPicker.swift in Sources */,

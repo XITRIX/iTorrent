@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemedUINavigationController: UINavigationController, Themed {
+class ThemedUINavigationController: SANavigationController, Themed {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
