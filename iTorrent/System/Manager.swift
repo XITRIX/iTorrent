@@ -266,30 +266,10 @@ class Manager {
         }
         if UserPreferences.notificationsKey.value &&
                (oldState == Utils.TorrentStates.downloading.rawValue && (newState == Utils.TorrentStates.finished.rawValue || newState == Utils.TorrentStates.seeding.rawValue)) {
-            if #available(iOS 10.0, *) {
-                let content = UNMutableNotificationContent()
-
-                content.title = NSLocalizedString("Download finished", comment: "")
-                content.body = manager.title + NSLocalizedString(" finished downloading", comment: "")
-                content.sound = UNNotificationSound.default
-                content.userInfo = ["hash": manager.hash]
-
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let identifier = manager.hash;
-                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-
-                UNUserNotificationCenter.current().add(request)
-            } else {
-                let notification = UILocalNotification()
-
-                notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-                notification.alertTitle = NSLocalizedString("Download finished", comment: "")
-                notification.alertBody = manager.title + NSLocalizedString(" finished downloading", comment: "")
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.userInfo = ["hash": manager.hash]
-
-                UIApplication.shared.scheduleLocalNotification(notification)
-            }
+            NotificationHelper.showNotification(
+                title: Localize.get("Download finished"),
+                body: manager.title + Localize.get(" finished downloading"),
+                hash: manager.hash)
 
             if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
                 UIApplication.shared.applicationIconBadgeNumber += 1
@@ -299,30 +279,10 @@ class Manager {
         }
         if UserPreferences.notificationsSeedKey.value &&
                (oldState == Utils.TorrentStates.seeding.rawValue && (newState == Utils.TorrentStates.finished.rawValue)) {
-            if #available(iOS 10.0, *) {
-                let content = UNMutableNotificationContent()
-
-                content.title = NSLocalizedString("Seeding finished", comment: "")
-                content.body = manager.title + NSLocalizedString(" finished seeding", comment: "")
-                content.sound = UNNotificationSound.default
-                content.userInfo = ["hash": manager.hash]
-
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let identifier = manager.hash;
-                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-
-                UNUserNotificationCenter.current().add(request)
-            } else {
-                let notification = UILocalNotification()
-
-                notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-                notification.alertTitle = NSLocalizedString("Seeding finished", comment: "")
-                notification.alertBody = manager.title + NSLocalizedString(" finished seeding", comment: "")
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.userInfo = ["hash": manager.hash]
-
-                UIApplication.shared.scheduleLocalNotification(notification)
-            }
+            NotificationHelper.showNotification(
+                title: Localize.get("Seeding finished"),
+                body: manager.title + Localize.get(" finished seeding"),
+                hash: manager.hash)
 
             if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
                 UIApplication.shared.applicationIconBadgeNumber += 1

@@ -67,6 +67,7 @@
 		7CBB17DB232328D20043A9F6 /* SizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DA232328D20043A9F6 /* SizePicker.swift */; };
 		7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */; };
 		7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC7765231961C20075A685 /* UserPreferences.swift */; };
+		7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7662623F93F690072338B /* NotificationHelper.swift */; };
 		7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */; };
 		7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
 		7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */; };
@@ -165,6 +166,7 @@
 		7CBB17DA232328D20043A9F6 /* SizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePicker.swift; sourceTree = "<group>"; };
 		7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CBC7765231961C20075A685 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		7CC7662623F93F690072338B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUINavigationController.swift; sourceTree = "<group>"; };
 		7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUIActivityViewController.swift; sourceTree = "<group>"; };
 		7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
 				7C802D06212C6D060031C19F /* Dialogs.swift */,
 				7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */,
+				7CC7662623F93F690072338B /* NotificationHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */,
+				7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */,
 				7C3E842120AB6BB400577282 /* FileCell.swift in Sources */,
 				7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */,
 				7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */,

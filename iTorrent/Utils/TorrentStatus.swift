@@ -123,30 +123,10 @@ class TorrentStatus {
         }
 
         if (Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == UserPreferences.zeroSpeedLimit.value) {
-            if #available(iOS 10.0, *) {
-                let content = UNMutableNotificationContent()
-
-                content.title = Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)"
-                content.body = title + Localize.get("BackgroundTask.LowSpeed.Message")
-                content.sound = UNNotificationSound.default
-                content.userInfo = ["hash": hash]
-
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                let identifier = hash;
-                let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-
-                UNUserNotificationCenter.current().add(request)
-            } else {
-                let notification = UILocalNotification()
-
-                notification.fireDate = NSDate(timeIntervalSinceNow: 1) as Date
-                notification.alertTitle = Localize.get("Download speed is low")
-                notification.alertBody = title + Localize.get(" will stop background downloading to prevent battery drain")
-                notification.soundName = UILocalNotificationDefaultSoundName
-                notification.userInfo = ["hash": hash]
-
-                UIApplication.shared.scheduleLocalNotification(notification)
-            }
+            NotificationHelper.showNotification(
+                title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)",
+                body: title + Localize.get("BackgroundTask.LowSpeed.Message"),
+                hash: hash)
             BackgroundTask.checkToStopBackground()
         }
     }
