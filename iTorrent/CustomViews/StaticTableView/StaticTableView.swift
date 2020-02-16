@@ -17,25 +17,23 @@ class StaticTableView: ThemedUITableView {
 
     private var _presentableData: [Section]?
     var presentableData: [Section] {
-        get {
-            if (_presentableData == nil) {
-                _presentableData = [Section]()
-            }
-            _presentableData?.removeAll()
-            data.forEach {
-                _presentableData?.append(Section(rowModels: $0.rowModels.filter({ !($0.hiddenCondition?() ?? false) }),
-                    header: $0.header,
-                    footer: $0.footer,
-                    headerFunc: $0.headerFunc,
-                    footerFunc: $0.footerFunc))
-            }
-            return _presentableData!
+        if _presentableData == nil {
+            _presentableData = [Section]()
         }
+        _presentableData?.removeAll()
+        data.forEach {
+            _presentableData?.append(Section(rowModels: $0.rowModels.filter { !($0.hiddenCondition?() ?? false) },
+                                             header: $0.header,
+                                             footer: $0.footer,
+                                             headerFunc: $0.headerFunc,
+                                             footerFunc: $0.footerFunc))
+        }
+        return _presentableData!
     }
 
     override func setup() {
         super.setup()
-        
+
         register(SegueCell.nib, forCellReuseIdentifier: SegueCell.name)
         register(SwitchCell.nib, forCellReuseIdentifier: SwitchCell.name)
         register(ButtonCell.nib, forCellReuseIdentifier: ButtonCell.name)
@@ -43,7 +41,7 @@ class StaticTableView: ThemedUITableView {
         register(TextFieldCell.nib, forCellReuseIdentifier: TextFieldCell.name)
 
         keyboardDismissMode = .interactive
-        
+
         dataSource = self
         delegate = self
     }

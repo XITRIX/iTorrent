@@ -31,6 +31,7 @@ class SizePicker: PopupView, Themed {
         res.append(gbSize)
         return res
     }()
+
     var sizes = ["MB", "GB"]
 
     @objc func themeUpdate() {
@@ -45,7 +46,7 @@ class SizePicker: PopupView, Themed {
     }
 
     init(defaultValue: Int64, dataSelected: ((Int64) -> ())? = nil, dismissAction: ((Int64) -> ())? = nil) {
-        picker = UIPickerView()
+        self.picker = UIPickerView()
         super.init(contentView: picker, contentHeight: 180)
 
         self.action = dataSelected
@@ -89,8 +90,8 @@ extension SizePicker: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (component == 0) {
-            if (pickerView.numberOfComponents > 1 && pickerView.numberOfRows(inComponent: 1) > 1 && pickerView.selectedRow(inComponent: 1) == 1) {
+        if component == 0 {
+            if pickerView.numberOfComponents > 1, pickerView.numberOfRows(inComponent: 1) > 1, pickerView.selectedRow(inComponent: 1) == 1 {
                 return size[1].count
             }
             return size[0].count
@@ -101,11 +102,11 @@ extension SizePicker: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let theme = Themes.current
         let titleFont: [NSAttributedString.Key: Any] = [.foregroundColor: theme.mainText]
-        if (component == 0 && row == 0) {
+        if component == 0, row == 0 {
             return NSAttributedString(string: NSLocalizedString("Unlimited", comment: ""), attributes: titleFont)
         }
-        if (component == 0) {
-            if (pickerView.numberOfComponents > 1 && pickerView.numberOfRows(inComponent: 1) > 1 && pickerView.selectedRow(inComponent: 1) == 1) {
+        if component == 0 {
+            if pickerView.numberOfComponents > 1, pickerView.numberOfRows(inComponent: 1) > 1, pickerView.selectedRow(inComponent: 1) == 1 {
                 return NSAttributedString(string: String(size[1][row]), attributes: titleFont)
             }
             return NSAttributedString(string: String(size[0][row]), attributes: titleFont)
@@ -114,12 +115,12 @@ extension SizePicker: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (component == 1) {
+        if component == 1 {
             pickerView.reloadComponent(0)
         }
         let cmp0 = pickerView.selectedRow(inComponent: 0)
         let cmp1 = pickerView.selectedRow(inComponent: 1)
-        if (cmp1 == 0) {
+        if cmp1 == 0 {
             result = Int64(size[cmp1][cmp0]) * 1048576
         } else {
             result = Int64(size[cmp1][cmp0]) * 1073741824

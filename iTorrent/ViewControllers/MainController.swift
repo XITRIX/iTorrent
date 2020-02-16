@@ -6,16 +6,16 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import UIKit
 import GoogleMobileAds
+import UIKit
 
 class MainController: ThemedUIViewController {
-    @IBOutlet weak var tableView: ThemedUITableView!
-    @IBOutlet weak var adsView: GADBannerView!
-    @IBOutlet weak var tableviewPlaceholder: UIView!
-    @IBOutlet weak var tableviewPlaceholderImage: UIImageView!
-    @IBOutlet weak var tableviewPlaceholderText: UILabel!
-    
+    @IBOutlet var tableView: ThemedUITableView!
+    @IBOutlet var adsView: GADBannerView!
+    @IBOutlet var tableviewPlaceholder: UIView!
+    @IBOutlet var tableviewPlaceholderImage: UIImageView!
+    @IBOutlet var tableviewPlaceholderText: UILabel!
+
     lazy var searchControllerInsideNavigation: Bool = {
         if #available(iOS 11.0, *) {
             return true
@@ -102,13 +102,13 @@ class MainController: ThemedUIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = NSLocalizedString("Search", comment: "")
         if #available(iOS 11.0, *),
-           searchControllerInsideNavigation {
+            searchControllerInsideNavigation {
             navigationItem.searchController = searchController
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
         definesPresentationContext = true
-        
+
         tableviewPlaceholderText.text = Localize.get("MainController.Table.Placeholder.Text")
     }
 
@@ -126,7 +126,7 @@ class MainController: ThemedUIViewController {
 
         navigationController?.isToolbarHidden = false
 
-        if (!UserPreferences.disableAds.value && adsLoaded) {
+        if !UserPreferences.disableAds.value, adsLoaded {
             adsView.isHidden = false
             tableView.contentInset.bottom = adsView.frame.height
             tableView.scrollIndicatorInsets.bottom = adsView.frame.height
@@ -143,7 +143,7 @@ class MainController: ThemedUIViewController {
         NotificationCenter.default.removeObserver(self, name: .torrentsUpdated, object: nil)
         NotificationCenter.default.removeObserver(self, name: .torrentsStateChanged, object: nil)
 
-        if (tableView.isEditing) {
+        if tableView.isEditing {
             editAction(navigationItem.leftBarButtonItem!)
         }
     }
@@ -158,7 +158,7 @@ class MainController: ThemedUIViewController {
             changed = true
         } else {
             for iter in 0..<managers.count {
-                if (oldManagers[iter].count != managers[iter].count) {
+                if oldManagers[iter].count != managers[iter].count {
                     changed = true
                     break
                 }
@@ -169,7 +169,7 @@ class MainController: ThemedUIViewController {
         } else {
             for cell in tableView.visibleCells {
                 if let cell = cell as? TorrentCell,
-                   let manager = Manager.getManagerByHash(hash: cell.manager.hash) {
+                    let manager = Manager.getManagerByHash(hash: cell.manager.hash) {
                     cell.manager = manager
                     cell.update()
                 }
@@ -185,18 +185,18 @@ class MainController: ThemedUIViewController {
     }
 
     func removeTorrent(indexPath: IndexPath, isMagnet: Bool = false, removeData: Bool = false, visualOnly: Bool = false) {
-        if (!visualOnly) {
+        if !visualOnly {
             let manager = managers[indexPath.section][indexPath.row]
             remove_torrent(manager.hash, removeData ? 1 : 0)
 
-            if (!(splitViewController?.isCollapsed)!) {
+            if !(splitViewController?.isCollapsed)! {
                 splitViewController?.showDetailViewController(Utils.createEmptyViewController(), sender: self)
             }
 
-            if (!isMagnet) {
+            if !isMagnet {
                 Manager.removeTorrentFile(hash: manager.hash)
 
-                if (removeData) {
+                if removeData {
                     do {
                         try FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
                     } catch {
@@ -208,7 +208,7 @@ class MainController: ThemedUIViewController {
         }
 
         managers[indexPath.section].remove(at: indexPath.row)
-        if (managers[indexPath.section].count > 0) {
+        if managers[indexPath.section].count > 0 {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         } else {
             headers.remove(at: indexPath.section)
@@ -222,7 +222,7 @@ class MainController: ThemedUIViewController {
 
         let addURL = UIAlertAction(title: "URL", style: .default) { _ in
             let addURLController = ThemedUIAlertController(title: NSLocalizedString("Add from URL", comment: ""), message: NSLocalizedString("Please enter the existing torrent's URL below", comment: ""), preferredStyle: .alert)
-            addURLController.addTextField(configurationHandler: { (textField) in
+            addURLController.addTextField(configurationHandler: { textField in
                 textField.placeholder = "https://"
                 let theme = Themes.current
                 textField.keyboardAppearance = theme.keyboardAppearence
@@ -235,10 +235,10 @@ class MainController: ThemedUIViewController {
                 if let url = URL(string: textField.text!) {
                     Downloader.load(url: url, to: URL(fileURLWithPath: Manager.configFolder + "/_temp.torrent"), completion: {
                         let hash = String(validatingUTF8: get_torrent_file_hash(Manager.configFolder + "/_temp.torrent"))!
-                        if (hash == "-1") {
+                        if hash == "-1" {
                             let controller = ThemedUIAlertController(title: Localize.get("Error has been occured"),
-                                message: Localize.get("Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari"),
-                                preferredStyle: .alert)
+                                                                     message: Localize.get("Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari"),
+                                                                     preferredStyle: .alert)
                             let safari = UIAlertAction(title: NSLocalizedString("Open in Safari", comment: ""), style: .default) { _ in
                                 UIApplication.shared.openURL(url)
                             }
@@ -248,10 +248,10 @@ class MainController: ThemedUIViewController {
                             UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
                             return
                         }
-                        if (Manager.torrentStates.contains(where: { $0.hash == hash })) {
+                        if Manager.torrentStates.contains(where: { $0.hash == hash }) {
                             let controller = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                                message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
-                                preferredStyle: .alert)
+                                                                     message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
+                                                                     preferredStyle: .alert)
                             let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                             controller.addAction(close)
                             UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -262,16 +262,16 @@ class MainController: ThemedUIViewController {
                         self.present(controller, animated: true)
                     }, errorAction: {
                         let alertController = ThemedUIAlertController(title: Localize.get("Error has been occured"),
-                            message: Localize.get("Please, open this link in Safari, and send .torrent file from there"),
-                            preferredStyle: .alert)
+                                                                      message: Localize.get("Please, open this link in Safari, and send .torrent file from there"),
+                                                                      preferredStyle: .alert)
                         let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                         alertController.addAction(close)
                         self.present(alertController, animated: true)
                     })
                 } else {
                     let alertController = ThemedUIAlertController(title: Localize.get("Error"),
-                        message: Localize.get("Wrong link, check it and try again!"),
-                        preferredStyle: .alert)
+                                                                  message: Localize.get("Wrong link, check it and try again!"),
+                                                                  preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     alertController.addAction(close)
                     self.present(alertController, animated: true)
@@ -286,9 +286,9 @@ class MainController: ThemedUIViewController {
         }
         let addMagnet = UIAlertAction(title: "Magnet", style: .default) { _ in
             let addMagnetController = ThemedUIAlertController(title: Localize.get("Add from magnet"),
-                message: Localize.get("Please enter the magnet link below"),
-                preferredStyle: .alert)
-            addMagnetController.addTextField(configurationHandler: { (textField) in
+                                                              message: Localize.get("Please enter the magnet link below"),
+                                                              preferredStyle: .alert)
+            addMagnetController.addTextField(configurationHandler: { textField in
                 textField.placeholder = "magnet:"
                 let theme = Themes.current
                 textField.keyboardAppearance = theme.keyboardAppearence
@@ -298,10 +298,10 @@ class MainController: ThemedUIViewController {
 
                 Utils.checkFolderExist(path: Manager.configFolder)
                 let hash = String(validatingUTF8: get_magnet_hash(textField.text!))
-                if (Manager.torrentStates.contains(where: { $0.hash == hash })) {
+                if Manager.torrentStates.contains(where: { $0.hash == hash }) {
                     let alert = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                        message: "\(Localize.get("Torrent with hash:")) \"\(hash ?? "UNKNOWN")\" \(Localize.get("already exists in download queue"))",
-                        preferredStyle: .alert)
+                                                        message: "\(Localize.get("Torrent with hash:")) \"\(hash ?? "UNKNOWN")\" \(Localize.get("already exists in download queue"))",
+                                                        preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     alert.addAction(close)
                     self.present(alert, animated: true)
@@ -330,7 +330,7 @@ class MainController: ThemedUIViewController {
 
         addController.addAction(cancel)
 
-        if (addController.popoverPresentationController != nil) {
+        if addController.popoverPresentationController != nil {
             addController.popoverPresentationController?.barButtonItem = sender
             addController.popoverPresentationController?.permittedArrowDirections = .down
         }
@@ -339,7 +339,7 @@ class MainController: ThemedUIViewController {
     }
 
     @IBAction func editAction(_ sender: UIBarButtonItem) {
-        if (!tableView.isEditing) {
+        if !tableView.isEditing {
             tableViewEditMode = true
         } else {
             tableViewEditMode = false
@@ -349,8 +349,8 @@ class MainController: ThemedUIViewController {
         sender.title = tableViewEditMode ? NSLocalizedString("Done", comment: "") : NSLocalizedString("Edit", comment: "")
         sender.style = tableViewEditMode ? .done : .plain
 
-        //NavBarItems
-        if (tableViewEditMode) {
+        // NavBarItems
+        if tableViewEditMode {
             topRightItemsCopy = navigationItem.rightBarButtonItems
             let item = UIBarButtonItem(title: NSLocalizedString("Select All", comment: ""), style: .plain, target: self, action: #selector(selectAllItem(_:)))
             navigationItem.setRightBarButtonItems([item], animated: true)
@@ -358,15 +358,15 @@ class MainController: ThemedUIViewController {
             navigationItem.setRightBarButtonItems(topRightItemsCopy, animated: true)
         }
 
-        //ToolBarItems
-        if (tableViewEditMode) {
+        // ToolBarItems
+        if tableViewEditMode {
             bottomItemsCopy = toolbarItems
             setToolbarItems(bottomEditItems, animated: true)
         } else {
             setToolbarItems(bottomItemsCopy, animated: true)
         }
 
-        if (tableViewEditMode) {
+        if tableViewEditMode {
             navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
             for item in toolbarItems! {
                 item.isEnabled = false
@@ -379,7 +379,7 @@ class MainController: ThemedUIViewController {
             self.managers.removeAll()
             self.managers.append(contentsOf: SortingManager.sortTorrentManagers(managers: Manager.torrentStates, headers: &self.headers))
             self.updateFilterQuery()
-            self.tableView.reloadData();
+            self.tableView.reloadData()
         })
         present(sortingController, animated: true)
     }
@@ -387,13 +387,13 @@ class MainController: ThemedUIViewController {
     @IBAction func preferencesAction(_ sender: UIBarButtonItem) {
         show(PreferencesController(), sender: self)
     }
-    
+
     @objc func selectAllItem(_ sender: UIBarButtonItem) {
         var allSelected = false
         if let count = tableView.indexPathsForSelectedRows?.count {
             allSelected = count > 0
         }
-        if (!allSelected) {
+        if !allSelected {
             for section in 0..<tableView.numberOfSections {
                 for row in 0..<tableView.numberOfRows(inSection: section) {
                     tableView.selectRow(at: IndexPath(row: row, section: section), animated: true, scrollPosition: .none)
@@ -447,8 +447,8 @@ class MainController: ThemedUIViewController {
             message = message.trimmingCharacters(in: .whitespacesAndNewlines)
 
             let controller = ThemedUIAlertController(title: Localize.get("This action will recheck the state of all downloaded files for torrents:"),
-                message: message,
-                preferredStyle: .actionSheet)
+                                                     message: message,
+                                                     preferredStyle: .actionSheet)
             let hash = UIAlertAction(title: NSLocalizedString("Rehash", comment: ""), style: .destructive) { _ in
                 for hash in selectedHashes {
                     rehash_torrent(hash)
@@ -481,25 +481,25 @@ class MainController: ThemedUIViewController {
             message = message.trimmingCharacters(in: .whitespacesAndNewlines)
 
             let removeController = ThemedUIAlertController(title: "\(Localize.get("Are you sure to remove")) \(selected.count) \(Localize.get("torrents"))?",
-                message: message,
-                preferredStyle: .actionSheet)
+                                                           message: message,
+                                                           preferredStyle: .actionSheet)
             let removeAll = UIAlertAction(title: NSLocalizedString("Yes and remove data", comment: ""), style: .destructive) { _ in
                 for hash in selectedHashes {
                     var index: IndexPath!
                     findHash: for section in 0..<self.managers.count {
                         for row in 0..<self.managers[section].count {
-                            if (self.managers[section][row].hash == hash) {
+                            if self.managers[section][row].hash == hash {
                                 index = IndexPath(row: row, section: section)
                                 break findHash
                             }
                         }
                     }
-                    if (index == nil) {
+                    if index == nil {
                         print("Selected torrent does not exists")
                         continue
                     }
 
-                    if (!self.managers[index.section][index.row].hasMetadata) {
+                    if !self.managers[index.section][index.row].hasMetadata {
                         self.removeTorrent(indexPath: index, isMagnet: true)
                     } else {
                         self.removeTorrent(indexPath: index, removeData: true)
@@ -511,18 +511,18 @@ class MainController: ThemedUIViewController {
                     var index: IndexPath!
                     findHash: for section in 0..<self.managers.count {
                         for row in 0..<self.managers[section].count {
-                            if (self.managers[section][row].hash == hash) {
+                            if self.managers[section][row].hash == hash {
                                 index = IndexPath(row: row, section: section)
                                 break findHash
                             }
                         }
                     }
-                    if (index == nil) {
+                    if index == nil {
                         print("Selected torrent dows not exists")
                         continue
                     }
 
-                    if (!self.managers[index.section][index.row].hasMetadata) {
+                    if !self.managers[index.section][index.row].hasMetadata {
                         self.removeTorrent(indexPath: index, isMagnet: true)
                     } else {
                         self.removeTorrent(indexPath: index)
@@ -535,7 +535,7 @@ class MainController: ThemedUIViewController {
             removeController.addAction(removeTorrent)
             removeController.addAction(cancel)
 
-            if (removeController.popoverPresentationController != nil) {
+            if removeController.popoverPresentationController != nil {
                 removeController.popoverPresentationController?.barButtonItem = sender
                 removeController.popoverPresentationController?.permittedArrowDirections = .down
             }
@@ -547,12 +547,12 @@ class MainController: ThemedUIViewController {
 
 extension MainController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if (tableView.isEditing) {
+        if tableView.isEditing {
             navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select All", comment: "")
         }
-        
-        tableviewPlaceholder.isHidden = !(headers.count == 0 || managers[0].count == 0)
-        
+
+        tableviewPlaceholder.isHidden = managers.contains(where: {$0.count > 0})
+
         return headers.count
     }
 
@@ -574,17 +574,17 @@ extension MainController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
+        if editingStyle == .delete {
             let selectedHash = managers[indexPath.section][indexPath.row].hash
             let message = managers[indexPath.section][indexPath.row].hasMetadata ?
                 Localize.get("Are you sure to remove") + " " +
-                    managers[indexPath.section][indexPath.row].title + " \(Localize.get("torrent"))?" :
+                managers[indexPath.section][indexPath.row].title + " \(Localize.get("torrent"))?" :
                 Localize.get("Are you sure to remove this magnet torrent?")
             let removeController = ThemedUIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
             let removeAll = UIAlertAction(title: NSLocalizedString("Yes and remove data", comment: ""), style: .destructive) { _ in
                 findHash: for section in 0..<self.managers.count {
                     for row in 0..<self.managers[section].count {
-                        if (self.managers[section][row].hash == selectedHash) {
+                        if self.managers[section][row].hash == selectedHash {
                             self.removeTorrent(indexPath: IndexPath(row: row, section: section), removeData: true)
                             break findHash
                         }
@@ -594,7 +594,7 @@ extension MainController: UITableViewDataSource {
             let removeTorrent = UIAlertAction(title: NSLocalizedString("Yes but keep data", comment: ""), style: .default) { _ in
                 findHash: for section in 0..<self.managers.count {
                     for row in 0..<self.managers[section].count {
-                        if (self.managers[section][row].hash == selectedHash) {
+                        if self.managers[section][row].hash == selectedHash {
                             self.removeTorrent(indexPath: IndexPath(row: row, section: section))
                             break findHash
                         }
@@ -604,7 +604,7 @@ extension MainController: UITableViewDataSource {
             let removeMagnet = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
                 findHash: for section in 0..<self.managers.count {
                     for row in 0..<self.managers[section].count {
-                        if (self.managers[section][row].hash == selectedHash) {
+                        if self.managers[section][row].hash == selectedHash {
                             self.removeTorrent(indexPath: IndexPath(row: row, section: section), isMagnet: true)
                             break findHash
                         }
@@ -612,7 +612,7 @@ extension MainController: UITableViewDataSource {
                 }
             }
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-            if (!managers[indexPath.section][indexPath.row].hasMetadata) {
+            if !managers[indexPath.section][indexPath.row].hasMetadata {
                 removeController.addAction(removeMagnet)
             } else {
                 removeController.addAction(removeAll)
@@ -620,7 +620,7 @@ extension MainController: UITableViewDataSource {
             }
             removeController.addAction(cancel)
 
-            if (removeController.popoverPresentationController != nil) {
+            if removeController.popoverPresentationController != nil {
                 removeController.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
                 removeController.popoverPresentationController?.sourceRect = (tableView.cellForRow(at: indexPath)?.bounds)!
                 removeController.popoverPresentationController?.permittedArrowDirections = .left
@@ -660,7 +660,7 @@ extension MainController: UITableViewDelegate {
             }
 
         } else {
-            if let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
+            if let viewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
                 viewController.managerHash = managers[indexPath.section][indexPath.row].hash
 
                 if !splitViewController!.isCollapsed {
@@ -677,7 +677,7 @@ extension MainController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if (tableView.isEditing) {
+        if tableView.isEditing {
             var anySelected = false
             if let count = (tableView.indexPathsForSelectedRows?.count) {
                 anySelected = count > 0
@@ -716,7 +716,7 @@ extension MainController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterQuery = searchController.searchBar.text
         managerUpdated()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     func updateFilterQuery() {

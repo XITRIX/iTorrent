@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 
 class DetailCell: ThemedUITableViewCell {
-
-    @IBOutlet weak var title: ThemedUILabel!
-    @IBOutlet weak var details: UILabel!
+    @IBOutlet var title: ThemedUILabel!
+    @IBOutlet var details: UILabel!
 
     override func themeUpdate() {
         super.themeUpdate()

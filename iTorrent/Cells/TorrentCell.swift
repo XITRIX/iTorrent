@@ -9,10 +9,10 @@
 import UIKit
 
 class TorrentCell: ThemedUITableViewCell {
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var info: UILabel!
-    @IBOutlet weak var status: UILabel!
-    @IBOutlet weak var progress: UIProgressView!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var info: UILabel!
+    @IBOutlet var status: UILabel!
+    @IBOutlet var progress: UIProgressView!
 
     var manager: TorrentStatus!
 

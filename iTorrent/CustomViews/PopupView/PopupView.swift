@@ -70,13 +70,13 @@ class PopupView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed("PopupView", owner: self, options: nil)
         addSubview(mainView)
-        mainView.frame = self.bounds
+        mainView.frame = bounds
         translatesAutoresizingMaskIntoConstraints = false
 
         toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
         toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
 
-        let image = #imageLiteral(resourceName: "Close").withRenderingMode(.alwaysTemplate) //dismissButton.currentImage?.withRenderingMode(.alwaysTemplate)
+        let image = #imageLiteral(resourceName: "Close").withRenderingMode(.alwaysTemplate) // dismissButton.currentImage?.withRenderingMode(.alwaysTemplate)
         dismissButton.setImage(image, for: .normal)
 
         headerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panAction(_:))))
@@ -99,13 +99,13 @@ class PopupView: UIView {
         layer.shadowRadius = 5
 
         UIView.animate(withDuration: 0.4, delay: 0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0,
-            options: .curveEaseInOut,
-            animations: {
-                self.bottomConstraint?.constant = self.bottomOffset
-                vc.view.layoutIfNeeded()
-                self.initViewPos = self.frame
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+                           self.bottomConstraint?.constant = self.bottomOffset
+                           vc.view.layoutIfNeeded()
+                           self.initViewPos = self.frame
             })
     }
 
@@ -116,25 +116,25 @@ class PopupView: UIView {
     @objc func panAction(_ sender: UIPanGestureRecognizer) {
         if let vc = vc {
             let translation = sender.translation(in: self)
-            let newOrigin = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + translation.y)
-            if (newOrigin.y + self.frame.height - bottomOffset > vc.view.frame.height) {
-                self.frame.origin = newOrigin
+            let newOrigin = CGPoint(x: frame.origin.x, y: frame.origin.y + translation.y)
+            if newOrigin.y + frame.height - bottomOffset > vc.view.frame.height {
+                frame.origin = newOrigin
                 sender.setTranslation(CGPoint.zero, in: self)
             } else {
-                self.frame.origin.y = vc.view.frame.height - self.frame.height + bottomOffset
+                frame.origin.y = vc.view.frame.height - frame.height + bottomOffset
             }
             if sender.state == .ended {
-                if (sender.velocity(in: self).y > 0) {
+                if sender.velocity(in: self).y > 0 {
                     dismiss()
                 } else {
                     UIView.animate(withDuration: 0.4, delay: 0,
-                        usingSpringWithDamping: 0.5,
-                        initialSpringVelocity: 0,
-                        options: .curveEaseInOut,
-                        animations: {
-                            self.frame.origin.y = self.initViewPos.origin.y
-                            self.bottomConstraint?.constant = self.bottomOffset
-                            vc.view.layoutIfNeeded()
+                                   usingSpringWithDamping: 0.5,
+                                   initialSpringVelocity: 0,
+                                   options: .curveEaseInOut,
+                                   animations: {
+                                       self.frame.origin.y = self.initViewPos.origin.y
+                                       self.bottomConstraint?.constant = self.bottomOffset
+                                       vc.view.layoutIfNeeded()
                         })
                 }
             }

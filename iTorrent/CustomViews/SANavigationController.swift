@@ -12,7 +12,7 @@ import UIKit
 public class SANavigationController: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Glitchy behaviour on iOS less than 11
         if #available(iOS 11, *) {
             self.view.addGestureRecognizer(self.fullScreenPanGestureRecognizer)

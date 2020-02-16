@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class SortingManager {
-
     public enum SortingTypes: Int {
         case name = 0
         case dateAdded = 1
@@ -18,8 +17,7 @@ class SortingManager {
         case size = 3
     }
 
-    public static func createSortingController(buttonItem: UIBarButtonItem? = nil, applyChanges: @escaping () -> Void = {
-    }) -> ThemedUIAlertController {
+    public static func createSortingController(buttonItem: UIBarButtonItem? = nil, applyChanges: @escaping () -> Void = {}) -> ThemedUIAlertController {
         let alphabetAction = createAlertButton(NSLocalizedString("Name", comment: ""), SortingTypes.name, applyChanges)
         let dateAddedAction = createAlertButton(NSLocalizedString("Date Added", comment: ""), SortingTypes.dateAdded, applyChanges)
         let dateCreatedAction = createAlertButton(NSLocalizedString("Date Created", comment: ""), SortingTypes.dateCreated, applyChanges)
@@ -49,16 +47,14 @@ class SortingManager {
         return sortAlertController
     }
 
-    private static func createAlertButton(_ buttonName: String, _ sortingType: SortingTypes, _ applyChanges: @escaping () -> Void = {
-    }) -> UIAlertAction {
+    private static func createAlertButton(_ buttonName: String, _ sortingType: SortingTypes, _ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
         UIAlertAction(title: buttonName, style: .default) { _ in
             UserPreferences.sortingType.value = sortingType.rawValue
             applyChanges()
         }
     }
 
-    private static func createSectionsAlertButton(_ applyChanges: @escaping () -> Void = {
-    }) -> UIAlertAction {
+    private static func createSectionsAlertButton(_ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
         let sections = UserPreferences.sortingSections.value
         let name = sections ? NSLocalizedString("Disable state sections", comment: "") : NSLocalizedString("Enable state sections", comment: "")
         return UIAlertAction(title: name, style: sections ? .destructive : .default) { _ in
@@ -81,7 +77,6 @@ class SortingManager {
         headers = [String]()
 
         if UserPreferences.sortingSections.value {
-
             var collection = [String: [TorrentStatus]]()
             collection[Utils.TorrentStates.allocating.rawValue] = [TorrentStatus]()
             collection[Utils.TorrentStates.checkingFastresume.rawValue] = [TorrentStatus]()
@@ -99,7 +94,7 @@ class SortingManager {
 
             let sortingOrder = UserPreferences.sectionsSortingOrder.value
             for id in sortingOrder {
-                let state = Utils.TorrentStates.init(id: id)!
+                let state = Utils.TorrentStates(id: id)!
 
                 if var list = collection[state.rawValue] {
                     addManager(&res, &list, &headers, state.rawValue)
@@ -198,7 +193,7 @@ class SortingManager {
     }
 
     private static func simpleSort(_ list: inout [TorrentStatus]) {
-        switch (SortingTypes(rawValue: UserPreferences.sortingType.value)!) {
+        switch SortingTypes(rawValue: UserPreferences.sortingType.value)! {
         case SortingTypes.name:
             list.sort { (t1, t2) -> Bool in
                 t1.title < t2.title
@@ -217,5 +212,4 @@ class SortingManager {
             }
         }
     }
-
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "SegueCell"
-    static let nib = UINib.init(nibName: id, bundle: Bundle.main)
+    static let nib = UINib(nibName: id, bundle: Bundle.main)
     static let name = id
 
     @IBOutlet var title: ThemedUILabel!
@@ -25,11 +25,11 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var segueViewId: String? = nil
-        var controller: UIViewController? = nil
-        var controllerType: UIViewController.Type? = nil
-        var hiddenCondition: (() -> Bool)? = nil
-        var tapAction: (() -> ())? = nil
+        var segueViewId: String?
+        var controller: UIViewController?
+        var controllerType: UIViewController.Type?
+        var hiddenCondition: (() -> Bool)?
+        var tapAction: (() -> ())?
 
         init(title: String, tapAction: @escaping () -> ()) {
             self.title = title

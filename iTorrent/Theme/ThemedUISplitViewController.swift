@@ -40,9 +40,9 @@ class ThemedUISplitViewController: UISplitViewController, Themed {
 
         if #available(iOS 13.0, *) {
             let hasUserInterfaceStyleChanged = previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? true
-            if (hasUserInterfaceStyleChanged) {
+            if hasUserInterfaceStyleChanged {
                 Themes.shared.currentUserTheme = traitCollection.userInterfaceStyle.rawValue
-                if (UserPreferences.autoTheme.value) {
+                if UserPreferences.autoTheme.value {
                     NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
                 }
             }

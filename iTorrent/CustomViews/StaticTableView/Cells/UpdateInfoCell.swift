@@ -10,7 +10,7 @@ import UIKit
 
 class UpdateInfoCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "UpdateInfoCell"
-    static let nib = UINib.init(nibName: id, bundle: nil)
+    static let nib = UINib(nibName: id, bundle: nil)
     static let name = id
 
     @IBOutlet var title: UILabel!
@@ -27,7 +27,7 @@ class UpdateInfoCell: ThemedUITableViewCell, PreferenceCellProtocol {
         guard model is Model else {
             return
         }
-        if (!checked) {
+        if !checked {
             checkUpdates()
         }
     }
@@ -46,10 +46,10 @@ class UpdateInfoCell: ThemedUITableViewCell, PreferenceCellProtocol {
                     let localVersion = try String(contentsOf: localurl!)
 
                     DispatchQueue.main.async {
-                        if (remoteVersion > localVersion) {
+                        if remoteVersion > localVersion {
                             self.title.text = NSLocalizedString("New version ", comment: "") + remoteVersion + NSLocalizedString(" available", comment: "")
                             self.title.textColor = UIColor.red
-                        } else if (remoteVersion < localVersion) {
+                        } else if remoteVersion < localVersion {
                             self.title.text = NSLocalizedString("WOW, is it a new inDev build, huh?", comment: "")
                             self.title.textColor = UIColor.red
                         } else {
@@ -75,7 +75,7 @@ class UpdateInfoCell: ThemedUITableViewCell, PreferenceCellProtocol {
 
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
-        var hiddenCondition: (() -> Bool)? = nil
-        var tapAction: (() -> ())? = nil
+        var hiddenCondition: (() -> Bool)?
+        var tapAction: (() -> ())?
     }
 }

@@ -6,9 +6,9 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import GCDWebServer
 import UIKit
 import UserNotifications
-import GCDWebServer
 
 class Manager {
     public static var previousTorrentStates: [TorrentStatus] = []
@@ -35,12 +35,11 @@ class Manager {
             let up = UserPreferences.uploadLimit.value
             set_upload_limit(Int32(up))
 
-            while (true) {
+            while true {
                 mainLoop()
                 sleep(1)
             }
         }
-
     }
 
     public static func saveTorrents(filesStatesOnly: Bool = false) {
@@ -50,7 +49,7 @@ class Manager {
         } catch {
             print("Couldn't write file")
         }
-        if (!filesStatesOnly) {
+        if !filesStatesOnly {
             save_fast_resume()
         }
     }
@@ -66,21 +65,21 @@ class Manager {
 
         if let files = try? FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({ $0.hasSuffix(".torrent") }) {
             for file in files {
-                if (file == "_temp.torrent") {
+                if file == "_temp.torrent" {
                     continue
                 }
                 addTorrent(configFolder + "/" + file)
             }
         } else {
-            //TODO: Error handler
+            // TODO: Error handler
         }
         torrentsRestored = true
     }
 
     static func removeTorrentFile(hash: String) {
-        let files = try? FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter({ $0.hasSuffix(".torrent") })
+        let files = try? FileManager.default.contentsOfDirectory(atPath: Manager.configFolder).filter { $0.hasSuffix(".torrent") }
         for file in files ?? [] {
-            if (hash == String(cString: get_torrent_file_hash(configFolder + "/" + file))) {
+            if hash == String(cString: get_torrent_file_hash(configFolder + "/" + file)) {
                 try? FileManager.default.removeItem(atPath: configFolder + "/" + file)
                 break
             }
@@ -92,7 +91,7 @@ class Manager {
         previousTorrentStates = torrentStates
         torrentStates.removeAll()
         let torrents = Array(UnsafeBufferPointer(start: res.torrents, count: Int(res.count)))
-        for iter in 0..<Int(res.count) {
+        for iter in 0 ..< Int(res.count) {
             let status = TorrentStatus(torrents[iter])
             Manager.torrentStates.append(status)
             status.stateCorrector()
@@ -121,8 +120,8 @@ class Manager {
                 }
                 if nav is AddTorrentController {
                     let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""),
-                        message: Localize.get("Finish the previous torrent adding before start the new one."),
-                        preferredStyle: .alert)
+                                                             message: Localize.get("Finish the previous torrent adding before start the new one."),
+                                                             preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     nav.present(controller, animated: true)
@@ -133,14 +132,14 @@ class Manager {
         }
 
         DispatchQueue.global(qos: .background).async {
-            while (!torrentsRestored) {
+            while !torrentsRestored {
                 sleep(1)
             }
             DispatchQueue.main.async {
                 let dest = Manager.configFolder + "/_temp.torrent"
                 print(filePath.startAccessingSecurityScopedResource())
                 do {
-                    if (FileManager.default.fileExists(atPath: dest)) {
+                    if FileManager.default.fileExists(atPath: dest) {
                         try FileManager.default.removeItem(atPath: dest)
                     }
                     print(FileManager.default.fileExists(atPath: filePath.path))
@@ -156,18 +155,18 @@ class Manager {
                 filePath.stopAccessingSecurityScopedResource()
 
                 let hash = String(validatingUTF8: get_torrent_file_hash(dest))!
-                if (hash == "-1") {
+                if hash == "-1" {
                     let controller = ThemedUIAlertController(title: Localize.get("Error on torrent reading"),
-                        message: Localize.get("Torrent file opening error has been occured"),
-                        preferredStyle: .alert)
+                                                             message: Localize.get("Torrent file opening error has been occured"),
+                                                             preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
                     return
-                } else if (torrentStates.contains(where: { $0.hash == hash })) {
+                } else if torrentStates.contains(where: { $0.hash == hash }) {
                     let controller = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                        message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
-                        preferredStyle: .alert)
+                                                             message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
+                                                             preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -203,15 +202,15 @@ class Manager {
     static func addMagnet(_ magnetLink: String) {
         if magnetLink.starts(with: "magnet:") {
             DispatchQueue.global(qos: .background).async {
-                while (!torrentsRestored) {
+                while !torrentsRestored {
                     sleep(1)
                 }
                 DispatchQueue.main.async {
                     let hash = String(validatingUTF8: get_magnet_hash(magnetLink))
-                    if (Manager.torrentStates.contains(where: { $0.hash == hash })) {
+                    if Manager.torrentStates.contains(where: { $0.hash == hash }) {
                         let alert = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                            message: "\(Localize.get("Torrent with hash:")) \"\(hash ?? "UNKNOWN")\" \(Localize.get("already exists in download queue"))",
-                            preferredStyle: .alert)
+                                                            message: "\(Localize.get("Torrent with hash:")) \"\(hash ?? "UNKNOWN")\" \(Localize.get("already exists in download queue"))",
+                                                            preferredStyle: .alert)
                         let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                         alert.addAction(close)
                         UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
@@ -221,8 +220,8 @@ class Manager {
                         mainLoop()
                     } else {
                         let controller = ThemedUIAlertController(title: Localize.get("Error"),
-                            message: Localize.get("Wrong magnet link, check it and try again!"),
-                            preferredStyle: .alert)
+                                                                 message: Localize.get("Wrong magnet link, check it and try again!"),
+                                                                 preferredStyle: .alert)
                         let close = UIAlertAction(title: NSLocalizedString(NSLocalizedString("Close", comment: ""), comment: ""), style: .cancel)
                         controller.addAction(close)
                         UIApplication.shared.keyWindow?.rootViewController?.present(controller, animated: true)
@@ -239,21 +238,21 @@ class Manager {
     static func stateChanges() {
         for torrentState in torrentStates {
             if let old = previousTorrentStates.filter({ $0.hash == torrentState.hash }).first {
-                if (old.displayState != torrentState.displayState) {
+                if old.displayState != torrentState.displayState {
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: .torrentsStateChanged,
-                            object: nil,
-                            userInfo: ["data": (manager: torrentState, oldState: old.displayState, newState: torrentState.displayState)])
+                                                        object: nil,
+                                                        userInfo: ["data": (manager: torrentState, oldState: old.displayState, newState: torrentState.displayState)])
                         managersStateChanged(manager: torrentState,
-                            oldState: old.displayState,
-                            newState: torrentState.displayState)
+                                             oldState: old.displayState,
+                                             newState: torrentState.displayState)
                     }
                 }
             } else {
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .torrentsStateChanged,
-                        object: nil,
-                        userInfo: ["data": (manager: torrentState, oldState: "NONE", newState: torrentState.displayState)])
+                                                    object: nil,
+                                                    userInfo: ["data": (manager: torrentState, oldState: "NONE", newState: torrentState.displayState)])
                     managersStateChanged(manager: torrentState, oldState: "NONE", newState: torrentState.displayState)
                 }
             }
@@ -261,30 +260,28 @@ class Manager {
     }
 
     static func managersStateChanged(manager: TorrentStatus, oldState: String, newState: String) {
-        if (oldState == Utils.TorrentStates.metadata.rawValue) {
+        if oldState == Utils.TorrentStates.metadata.rawValue {
             save_magnet_to_file(manager.hash)
         }
         if UserPreferences.notificationsKey.value &&
-               (oldState == Utils.TorrentStates.downloading.rawValue && (newState == Utils.TorrentStates.finished.rawValue || newState == Utils.TorrentStates.seeding.rawValue)) {
-            NotificationHelper.showNotification(
-                title: Localize.get("Download finished"),
-                body: manager.title + Localize.get(" finished downloading"),
-                hash: manager.hash)
+            (oldState == Utils.TorrentStates.downloading.rawValue && (newState == Utils.TorrentStates.finished.rawValue || newState == Utils.TorrentStates.seeding.rawValue)) {
+            NotificationHelper.showNotification(title: Localize.get("Download finished"),
+                                                body: manager.title + Localize.get(" finished downloading"),
+                                                hash: manager.hash)
 
-            if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
+            if UserPreferences.badgeKey.value && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
 
             BackgroundTask.checkToStopBackground()
         }
         if UserPreferences.notificationsSeedKey.value &&
-               (oldState == Utils.TorrentStates.seeding.rawValue && (newState == Utils.TorrentStates.finished.rawValue)) {
-            NotificationHelper.showNotification(
-                title: Localize.get("Seeding finished"),
-                body: manager.title + Localize.get(" finished seeding"),
-                hash: manager.hash)
+            (oldState == Utils.TorrentStates.seeding.rawValue && (newState == Utils.TorrentStates.finished.rawValue)) {
+            NotificationHelper.showNotification(title: Localize.get("Seeding finished"),
+                                                body: manager.title + Localize.get(" finished seeding"),
+                                                hash: manager.hash)
 
-            if (UserPreferences.badgeKey.value && AppDelegate.backgrounded) {
+            if UserPreferences.badgeKey.value && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
 
@@ -294,18 +291,18 @@ class Manager {
 
     static func getManagerByHash(hash: String) -> TorrentStatus? {
         let localStates = torrentStates
-        let filter = localStates.filter({ $0.hash == hash })
+        let filter = localStates.filter { $0.hash == hash }
         return filter.count > 0 ? filter.first : nil
     }
 
     static func startFileSharing() {
-        var options = [String : Any]()
-        
-        if (!UserPreferences.webDavUsername.value.isEmpty) {
+        var options = [String: Any]()
+
+        if !UserPreferences.webDavUsername.value.isEmpty {
             options[GCDWebServerOption_AuthenticationAccounts] = [UserPreferences.webDavUsername.value: UserPreferences.webDavPassword.value]
             options[GCDWebServerOption_AuthenticationMethod] = GCDWebServerAuthenticationMethod_DigestAccess
         }
-        
+
         if UserPreferences.webDavWebServerEnabled.value {
             options[GCDWebServerOption_Port] = 80
             if !webUploadServer.isRunning {
@@ -316,7 +313,7 @@ class Manager {
                 }
             }
         }
-        
+
         if UserPreferences.webDavWebDavServerEnabled.value {
             options[GCDWebServerOption_Port] = UserPreferences.webDavPort.value
             if !webDAVServer.isRunning {
@@ -326,10 +323,10 @@ class Manager {
     }
 
     static func stopFileSharing() {
-        if (webUploadServer.isRunning) {
+        if webUploadServer.isRunning {
             webUploadServer.stop()
         }
-        if (webDAVServer.isRunning) {
+        if webDAVServer.isRunning {
             webDAVServer.stop()
         }
     }

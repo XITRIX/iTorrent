@@ -11,8 +11,8 @@ import UIKit
 
 class ThemedUILabel: UILabel, Themed {
     @IBInspectable
-    var secondaryColor : Bool = false
-    
+    var secondaryColor: Bool = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

@@ -14,7 +14,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     var insetStyle: Bool! = false
     private var tableView: UITableView!
     private var indexPath: IndexPath!
-    
+
     override var frame: CGRect {
         get {
             if insetStyle {
@@ -22,10 +22,10 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
             } else {
                 self.layer.mask = nil
             }
-            
+
             return super.frame
         }
-        set (newFrame) {
+        set(newFrame) {
             var frame = newFrame
             if insetStyle {
                 var rightSafeareaInset: CGFloat = 0
@@ -38,7 +38,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
             super.frame = frame
         }
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -65,19 +65,19 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         textLabel?.textColor = theme.mainText
         backgroundColor = theme.backgroundMain
     }
-    
+
     func setInsetParams(tableView: UITableView, indexPath: IndexPath) {
         self.tableView = tableView
         self.indexPath = indexPath
     }
-    
+
     private func cutEdges(tableView: UITableView, indexPath: IndexPath) {
         let layer: CAShapeLayer = CAShapeLayer()
         let path: CGMutablePath = CGMutablePath()
 
-        if indexPath.row == 0 && indexPath.row == ( tableView.numberOfRows(inSection: indexPath.section) - 1) {
+        if indexPath.row == 0, indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1) {
             addBothCorner(path)
-            
+
         } else if indexPath.row == 0 {
             addUpperCorner(path)
         } else if indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1) {
@@ -90,22 +90,22 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         layer.fillRule = .nonZero
         self.layer.mask = layer
     }
-    
+
     private func addUpperCorner(_ path: CGMutablePath) {
-        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY+1, width: bounds.width, height: bounds.height-1),
+        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY + 1, width: bounds.width, height: bounds.height - 1),
                                   byRoundingCorners: [.topLeft, .topRight],
-            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
+                                  cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
     }
-    
+
     private func addBottonCorner(_ path: CGMutablePath) {
-        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height-1),
+        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height - 1),
                                   byRoundingCorners: [.bottomLeft, .bottomRight],
-            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
+                                  cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
     }
-    
+
     private func addBothCorner(_ path: CGMutablePath) {
-        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY+1, width: bounds.width, height: bounds.height-2),
+        path.addPath(UIBezierPath(roundedRect: CGRect(x: bounds.minX, y: bounds.minY + 1, width: bounds.width, height: bounds.height - 2),
                                   byRoundingCorners: .allCorners,
-            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
+                                  cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath)
     }
 }

@@ -22,12 +22,13 @@ class UserManagerSettings: NSObject, NSCoding {
     var totalDownload: Int64 {
         _totalDownload + totalDownloadSession
     }
+
     var totalUpload: Int64 {
         _totalUpload + totalUploadSession
     }
 
     override init() {
-        addedDate = Date()
+        self.addedDate = Date()
     }
 
     required init(coder decoder: NSCoder) {

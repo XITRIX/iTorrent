@@ -14,7 +14,6 @@ import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, UNUserNotificationCenterDelegate {
-
     var window: UIWindow?
 
     static var backgrounded = false
@@ -37,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
                 print("Granted: " + String(granted))
             }
             center.removeAllDeliveredNotifications()
@@ -47,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             UIApplication.shared.cancelAllLocalNotifications()
         }
 
-        if (UserPreferences.ftpKey.value) {
+        if UserPreferences.ftpKey.value {
             Manager.startFileSharing()
         }
 
@@ -56,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         print("Path: " + url.path)
-        if (url.absoluteString.hasPrefix("magnet:")) {
+        if url.absoluteString.hasPrefix("magnet:") {
             Manager.addMagnet(url.absoluteString)
         } else {
             Manager.addTorrentFromFile(url)
@@ -90,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         let primaryNav = primaryViewController as? UINavigationController
         let secondNav = secondaryViewController as? UINavigationController
-        if (secondNav != nil) {
+        if secondNav != nil {
             var viewControllers: [UIViewController] = []
             viewControllers += (primaryNav?.viewControllers)!
             viewControllers += (secondNav?.viewControllers)!
@@ -110,15 +109,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let controllers = splitViewController.viewControllers
         if let navController = controllers[controllers.count - 1] as? UINavigationController {
             var viewControllers: [UIViewController] = []
-            while (!(navController.topViewController is MainController) &&
-                !(navController.topViewController is PreferencesController)) {
+            while !(navController.topViewController is MainController),
+                !(navController.topViewController is PreferencesController) {
                 let view = navController.topViewController
                 navController.popViewController(animated: false)
                 viewControllers.append(view!)
             }
             viewControllers.reverse()
 
-            if (viewControllers.count == 0) {
+            if viewControllers.count == 0 {
                 return Utils.createEmptyViewController()
             }
 
@@ -136,18 +135,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return nil
     }
-    
+
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
     }
-    
+
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let hash = response.notification.request.content.userInfo["hash"] as? String {
-            if (!Manager.torrentsRestored) {
+            if !Manager.torrentsRestored {
                 DispatchQueue.global(qos: .background).async {
-                    while (!Manager.torrentsRestored) {
+                    while !Manager.torrentsRestored {
                         sleep(1)
                     }
                     DispatchQueue.main.async {
@@ -160,12 +159,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         completionHandler()
     }
-    
+
     func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
         if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController,
-            let viewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
+            let viewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
             viewController.managerHash = hash
-            if (!splitViewController.isCollapsed) {
+            if !splitViewController.isCollapsed {
                 if splitViewController.viewControllers.count > 1,
                     let nvc = splitViewController.viewControllers[1] as? UINavigationController {
                     nvc.show(viewController, sender: sender)
@@ -180,4 +179,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
     }
 }
-

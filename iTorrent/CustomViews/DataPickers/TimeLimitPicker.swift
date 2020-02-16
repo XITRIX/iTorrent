@@ -27,7 +27,7 @@ class TimeLimitPicker: PopupView, Themed {
     }
 
     init(defaultValue: Int, dataSelected: ((Int) -> ())? = nil, dismissAction: ((Int) -> ())? = nil) {
-        picker = UIPickerView()
+        self.picker = UIPickerView()
         super.init(contentView: picker, contentHeight: 180)
 
         self.action = dataSelected
@@ -35,7 +35,7 @@ class TimeLimitPicker: PopupView, Themed {
 
         picker.dataSource = self
         picker.delegate = self
-        
+
         picker.selectRow(size.firstIndex(of: defaultValue) ?? 0, inComponent: 0, animated: true)
 
         setupView()
@@ -69,7 +69,7 @@ extension TimeLimitPicker: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let theme = Themes.current
         let titleFont: [NSAttributedString.Key: Any] = [.foregroundColor: theme.mainText]
-        if (component == 0 && row == 0) {
+        if component == 0, row == 0 {
             return NSAttributedString(string: NSLocalizedString("Disabled", comment: ""), attributes: titleFont)
         }
         return NSAttributedString(string: "\(size[row]) \(Localize.getTermination("minute", size[row]))", attributes: titleFont)
@@ -79,4 +79,3 @@ extension TimeLimitPicker: UIPickerViewDataSource, UIPickerViewDelegate {
         action?(size[row] * 60)
     }
 }
-

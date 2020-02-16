@@ -10,10 +10,9 @@ import Foundation
 import UIKit
 
 class TrackersListController: ThemedUIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet weak var tableView: ThemedUITableView!
-    @IBOutlet weak var addButton: UIBarButtonItem!
-    @IBOutlet weak var removeButton: UIBarButtonItem!
+    @IBOutlet var tableView: ThemedUITableView!
+    @IBOutlet var addButton: UIBarButtonItem!
+    @IBOutlet var removeButton: UIBarButtonItem!
 
     var managerHash: String!
     var trackers: [Tracker] = []
@@ -30,7 +29,7 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
             var tracker = Tracker()
             tracker.url = String(validatingUTF8: trackersRaw.tracker_url[iter]) ?? "ERROR"
             var msg = trackersRaw.working[iter] == 1 ? NSLocalizedString("Working", comment: "") : NSLocalizedString("Inactive", comment: "")
-            if (trackersRaw.verified[iter] == 1) {
+            if trackersRaw.verified[iter] == 1 {
                 msg += ", " + NSLocalizedString("Verified", comment: "")
             }
             tracker.message = msg
@@ -52,18 +51,18 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
 
         scrape_tracker(managerHash)
         DispatchQueue.global(qos: .background).async {
-            while (self.runUpdate) {
+            while self.runUpdate {
                 let oldDataset = self.trackers
                 self.update()
                 DispatchQueue.main.async {
-                    if (oldDataset.count == self.trackers.count) {
+                    if oldDataset.count == self.trackers.count {
                         var reloadIndexes = [IndexPath]()
                         for iter in 0..<self.trackers.count {
-                            if (oldDataset[iter] != self.trackers[iter]) {
+                            if oldDataset[iter] != self.trackers[iter] {
                                 reloadIndexes.append(IndexPath(row: iter, section: 0))
                             }
                         }
-                        if (reloadIndexes.count > 0) {
+                        if reloadIndexes.count > 0 {
                             self.tableView.reloadRows(at: reloadIndexes, with: .automatic)
                         }
                     } else {
@@ -98,7 +97,7 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let paths = tableView.indexPathsForSelectedRows,
-           paths.count > 0 {
+            paths.count > 0 {
             removeButton.isEnabled = true
         } else {
             removeButton.isEnabled = false
@@ -107,7 +106,7 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let paths = tableView.indexPathsForSelectedRows,
-           paths.count > 0 {
+            paths.count > 0 {
             removeButton.isEnabled = true
         } else {
             removeButton.isEnabled = false
@@ -118,7 +117,7 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
         let editing = !tableView.isEditing
         tableView.setEditing(editing, animated: true)
         if let toolbarItems = toolbarItems,
-           !editing {
+            !editing {
             for item in toolbarItems {
                 item.isEnabled = false
             }
@@ -131,7 +130,7 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
 
     @IBAction func addAction(_ sender: UIBarButtonItem) {
         let controller = ThemedUIAlertController(title: NSLocalizedString("Add Tracker", comment: ""), message: NSLocalizedString("Enter the full tracker's URL", comment: ""), preferredStyle: .alert)
-        controller.addTextField(configurationHandler: { (textField) in
+        controller.addTextField(configurationHandler: { textField in
             textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
             textField.keyboardAppearance = Themes.current.keyboardAppearence
         })
@@ -144,8 +143,8 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
                 print(add_tracker_to_torrent(self.managerHash, textField.text))
             } else {
                 let alertController = ThemedUIAlertController(title: Localize.get("Error"),
-                    message: Localize.get("Wrong link, check it and try again!"),
-                    preferredStyle: .alert)
+                                                              message: Localize.get("Wrong link, check it and try again!"),
+                                                              preferredStyle: .alert)
                 let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                 alertController.addAction(close)
                 self.present(alertController, animated: true)
@@ -161,12 +160,12 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
 
     @IBAction func removeAction(_ sender: UIBarButtonItem) {
         let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you shure to remove this trackers?", comment: ""), preferredStyle: .actionSheet)
-        let remove = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { (action) in
+        let remove = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
             let urls: [String] = self.tableView.indexPathsForSelectedRows!.map {
                 self.trackers[$0.row].url
             }
 
-            _ = Utils.withArrayOfCStrings(urls) { (args) in
+            _ = Utils.withArrayOfCStrings(urls) { args in
                 remove_tracker_from_torrent(self.managerHash, args, Int32(urls.count))
             }
         }
@@ -175,8 +174,7 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
         controller.addAction(remove)
         controller.addAction(cancel)
 
-
-        if (controller.popoverPresentationController != nil) {
+        if controller.popoverPresentationController != nil {
             controller.popoverPresentationController?.barButtonItem = sender
             controller.popoverPresentationController?.permittedArrowDirections = .down
         }

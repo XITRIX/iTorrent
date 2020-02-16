@@ -20,7 +20,7 @@ class NotificationHelper {
             content.userInfo = ["hash": hash]
 
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-            let identifier = hash;
+            let identifier = hash
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
             UNUserNotificationCenter.current().add(request)

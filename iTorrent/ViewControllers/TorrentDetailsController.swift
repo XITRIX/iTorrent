@@ -12,34 +12,34 @@ import UIKit
 import MarqueeLabel
 
 class TorrentDetailsController: ThemedUITableViewController {
-    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet var shareButton: UIBarButtonItem!
 
     @IBOutlet var segmentedProgressBar: SegmentedProgressView!
     @IBOutlet var progressBar: SegmentedProgressView!
     @IBOutlet var sequentialDownloadSwitcher: UISwitch!
 
-    @IBOutlet weak var start: UIBarButtonItem!
-    @IBOutlet weak var pause: UIBarButtonItem!
-    @IBOutlet weak var rehash: UIBarButtonItem!
-    @IBOutlet weak var switcher: UISwitch!
-    @IBOutlet weak var seedLimitButton: UIButton!
+    @IBOutlet var start: UIBarButtonItem!
+    @IBOutlet var pause: UIBarButtonItem!
+    @IBOutlet var rehash: UIBarButtonItem!
+    @IBOutlet var switcher: UISwitch!
+    @IBOutlet var seedLimitButton: UIButton!
 
-    @IBOutlet weak var stateLabel: UILabel!
-    @IBOutlet weak var downloadLabel: UILabel!
-    @IBOutlet weak var uploadLabel: UILabel!
-    @IBOutlet weak var timeRemainsLabel: UILabel!
-    @IBOutlet weak var hashLabel: UILabel!
-    @IBOutlet weak var creatorLabel: UILabel!
-    @IBOutlet weak var createdOnLabel: UILabel!
-    @IBOutlet weak var addedOnLabel: UILabel!
-    @IBOutlet weak var commentsLabel: UILabel!
-    @IBOutlet weak var selectedLabel: UILabel!
-    @IBOutlet weak var completedLabel: UILabel!
-    @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var downloadedLabel: UILabel!
-    @IBOutlet weak var uploadedLabel: UILabel!
-    @IBOutlet weak var seedersLabel: UILabel!
-    @IBOutlet weak var peersLabel: UILabel!
+    @IBOutlet var stateLabel: UILabel!
+    @IBOutlet var downloadLabel: UILabel!
+    @IBOutlet var uploadLabel: UILabel!
+    @IBOutlet var timeRemainsLabel: UILabel!
+    @IBOutlet var hashLabel: UILabel!
+    @IBOutlet var creatorLabel: UILabel!
+    @IBOutlet var createdOnLabel: UILabel!
+    @IBOutlet var addedOnLabel: UILabel!
+    @IBOutlet var commentsLabel: UILabel!
+    @IBOutlet var selectedLabel: UILabel!
+    @IBOutlet var completedLabel: UILabel!
+    @IBOutlet var progressLabel: UILabel!
+    @IBOutlet var downloadedLabel: UILabel!
+    @IBOutlet var uploadedLabel: UILabel!
+    @IBOutlet var seedersLabel: UILabel!
+    @IBOutlet var peersLabel: UILabel!
 
     @IBOutlet var trackersButtonLabel: UILabel!
     @IBOutlet var filesButtonLabel: UILabel!
@@ -50,11 +50,9 @@ class TorrentDetailsController: ThemedUITableViewController {
     var myPickerView: UIPickerView!
 
     var sortedFilesData: [FilePieceData]!
-    
+
     var useInsertStyle: Bool {
-        get {
-            return !(splitViewController?.isCollapsed ?? true)
-        }
+        return !(splitViewController?.isCollapsed ?? true)
     }
 
     deinit {
@@ -72,7 +70,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (managerHash == nil) {
+        if managerHash == nil {
             return
         }
 
@@ -80,7 +78,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 
         let calendar = Calendar.current
         var saves = Manager.managerSaves[managerHash]
-        if (saves == nil) {
+        if saves == nil {
             Manager.managerSaves[managerHash] = UserManagerSettings()
             saves = Manager.managerSaves[managerHash]
         }
@@ -88,8 +86,8 @@ class TorrentDetailsController: ThemedUITableViewController {
         let date = saves?.addedDate ?? Date()
         addedOnLabel.text = String(calendar.component(.day, from: date)) + "/" + String(calendar.component(.month, from: date)) + "/" + String(calendar.component(.year, from: date))
 
-        let limit = Manager.managerSaves[self.managerHash]?.seedLimit
-        if (limit == 0) {
+        let limit = Manager.managerSaves[managerHash]?.seedLimit
+        if limit == 0 {
             seedLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
         } else {
             seedLimitButton.setTitle(Utils.getSizeText(size: limit!, decimals: true), for: .normal)
@@ -103,7 +101,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 
         // MARQUEE LABEL
         let theme = Themes.current
-        let label = MarqueeLabel.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
+        let label = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textAlignment = NSTextAlignment.center
         label.textColor = theme.mainText
@@ -114,7 +112,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if (managerHash == nil) {
+        if managerHash == nil {
             return
         }
 
@@ -133,7 +131,7 @@ class TorrentDetailsController: ThemedUITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if (managerHash == nil) {
+        if managerHash == nil {
             return 0
         }
         return super.numberOfSections(in: tableView)
@@ -145,13 +143,13 @@ class TorrentDetailsController: ThemedUITableViewController {
 
     @objc func managerUpdated() {
         if managerHash != nil,
-           let manager = Manager.getManagerByHash(hash: managerHash) {
+            let manager = Manager.getManagerByHash(hash: managerHash) {
             let calendar = Calendar.current
 
             let totalDownloadProgress = manager.totalSize > 0 ? Float(manager.totalDone) / Float(manager.totalSize) : 0
             progressBar.setProgress([totalDownloadProgress])
 
-            if (manager.hasMetadata) {
+            if manager.hasMetadata {
                 setupPiecesFilter()
 
                 segmentedProgressBar.setProgress(sortPiecesByFilesName(manager.pieces))
@@ -173,8 +171,8 @@ class TorrentDetailsController: ThemedUITableViewController {
             commentsLabel.text = manager.comment
             selectedLabel.text = Utils.getSizeText(size: manager.totalWanted) + " / " + Utils.getSizeText(size: manager.totalSize)
             completedLabel.text = Utils.getSizeText(size: manager.totalWantedDone)
-            progressLabel.text = String(format: "%.2f", (manager.totalWanted == 0 ? 0 :
-                Double(manager.totalWantedDone) / Double(manager.totalWanted) * 100)) + "% / " +
+            progressLabel.text = String(format: "%.2f", manager.totalWanted == 0 ? 0 :
+                Double(manager.totalWantedDone) / Double(manager.totalWanted) * 100) + "% / " +
                 String(format: "%.2f", totalDownloadProgress * 100) + "%"
             downloadedLabel.text = Utils.getSizeText(size: manager.totalDownload)
             uploadedLabel.text = Utils.getSizeText(size: manager.totalUpload)
@@ -183,17 +181,17 @@ class TorrentDetailsController: ThemedUITableViewController {
 
             switcher.setOn(Manager.managerSaves[managerHash]!.seedMode, animated: true)
 
-            if (manager.state == Utils.TorrentStates.hashing.rawValue ||
-                manager.state == Utils.TorrentStates.metadata.rawValue) {
+            if manager.state == Utils.TorrentStates.hashing.rawValue ||
+                manager.state == Utils.TorrentStates.metadata.rawValue {
                 start.isEnabled = false
                 pause.isEnabled = false
                 rehash.isEnabled = false
             } else {
-                if (manager.isFinished && !switcher.isOn) {
+                if manager.isFinished, !switcher.isOn {
                     start.isEnabled = false
                     pause.isEnabled = false
                     rehash.isEnabled = true
-                } else if (manager.isPaused) {
+                } else if manager.isPaused {
                     start.isEnabled = true
                     pause.isEnabled = false
                     rehash.isEnabled = true
@@ -232,7 +230,7 @@ class TorrentDetailsController: ThemedUITableViewController {
     }
 
     func setupPiecesFilter() {
-        if (sortedFilesData != nil) {
+        if sortedFilesData != nil {
             return
         }
         let filesRaw = get_files_of_torrent_by_hash(managerHash)
@@ -258,23 +256,23 @@ class TorrentDetailsController: ThemedUITableViewController {
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if (identifier == "Files" &&
-            Manager.getManagerByHash(hash: managerHash)?.state != Utils.TorrentStates.metadata.rawValue) {
+        if identifier == "Files",
+            Manager.getManagerByHash(hash: managerHash)?.state != Utils.TorrentStates.metadata.rawValue {
             return true
         }
-        if (identifier == "Trackers" &&
-            Manager.getManagerByHash(hash: managerHash)?.state != Utils.TorrentStates.metadata.rawValue) {
+        if identifier == "Trackers",
+            Manager.getManagerByHash(hash: managerHash)?.state != Utils.TorrentStates.metadata.rawValue {
             return true
         }
         return false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "Files") {
+        if segue.identifier == "Files" {
             (segue.destination as? TorrentFilesController)?.managerHash = managerHash
             (segue.destination as? TorrentFilesController)?.name = title!
         }
-        if (segue.identifier == "Trackers") {
+        if segue.identifier == "Trackers" {
             (segue.destination as? TrackersListController)?.managerHash = managerHash
         }
     }
@@ -287,18 +285,18 @@ class TorrentDetailsController: ThemedUITableViewController {
         Manager.managerSaves[managerHash]?.seedMode = sender.isOn
         if let manager = Manager.getManagerByHash(hash: managerHash) {
             if manager.isPaused {
-                start_torrent(self.managerHash)
+                start_torrent(managerHash)
             }
 
             if sender.isOn {
-                if (UserPreferences.background.value &&
+                if UserPreferences.background.value &&
                     !UserPreferences.backgroundSeedKey.value &&
-                    !UserPreferences.seedBackgroundWarning.value) {
+                    !UserPreferences.seedBackgroundWarning.value {
                     UserPreferences.seedBackgroundWarning.value = true
 
                     let controller = ThemedUIAlertController(title: Localize.get("Warning"),
-                        message: Localize.get("Details.BackgroundSeeding.Warning"),
-                        preferredStyle: .alert)
+                                                             message: Localize.get("Details.BackgroundSeeding.Warning"),
+                                                             preferredStyle: .alert)
                     let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
                         UserPreferences.backgroundSeedKey.value = true
                     }
@@ -310,7 +308,7 @@ class TorrentDetailsController: ThemedUITableViewController {
                     present(controller, animated: true)
                 }
             } else if !sender.isOn,
-                      manager.isPaused {
+                manager.isPaused {
                 stop_torrent(managerHash)
             }
         }
@@ -320,9 +318,9 @@ class TorrentDetailsController: ThemedUITableViewController {
 
     @IBAction func seedLimitAction(_ sender: UIButton) {
         seedLimitPickerView?.dismiss()
-        seedLimitPickerView = SizePicker(defaultValue: Manager.managerSaves[self.managerHash]!.seedLimit, dataSelected: { res in
+        seedLimitPickerView = SizePicker(defaultValue: Manager.managerSaves[managerHash]!.seedLimit, dataSelected: { res in
             Manager.managerSaves[self.managerHash]?.seedLimit = res
-            if (res == 0) {
+            if res == 0 {
                 sender.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
             } else {
                 sender.setTitle(Utils.getSizeText(size: res, decimals: true), for: .normal)
@@ -334,19 +332,19 @@ class TorrentDetailsController: ThemedUITableViewController {
     @IBAction func sendTorrent(_ sender: UIBarButtonItem) {
         if let title = title {
             let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Share", comment: ""), preferredStyle: .actionSheet)
-            let file = UIAlertAction(title: NSLocalizedString("Torrent file", comment: ""), style: .default) { (action) in
+            let file = UIAlertAction(title: NSLocalizedString("Torrent file", comment: ""), style: .default) { _ in
                 let stringPath = Manager.configFolder + "/" + title + ".torrent"
-                if (FileManager.default.fileExists(atPath: stringPath)) {
+                if FileManager.default.fileExists(atPath: stringPath) {
                     let path = NSURL(fileURLWithPath: stringPath, isDirectory: false)
                     let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
-                    if (shareController.popoverPresentationController != nil) {
+                    if shareController.popoverPresentationController != nil {
                         shareController.popoverPresentationController?.barButtonItem = sender
                         shareController.popoverPresentationController?.permittedArrowDirections = .any
                     }
                     UIApplication.shared.keyWindow?.rootViewController?.present(shareController, animated: true)
                 }
             }
-            let magnet = UIAlertAction(title: NSLocalizedString("Magnet link", comment: ""), style: .default) { (action) in
+            let magnet = UIAlertAction(title: NSLocalizedString("Magnet link", comment: ""), style: .default) { _ in
                 UIPasteboard.general.string = String(validatingUTF8: get_torrent_magnet_link(self.managerHash))
                 let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Magnet link copied to clipboard", comment: ""), preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
@@ -362,7 +360,7 @@ class TorrentDetailsController: ThemedUITableViewController {
             controller.addAction(magnet)
             controller.addAction(cancel)
 
-            if (controller.popoverPresentationController != nil) {
+            if controller.popoverPresentationController != nil {
                 controller.popoverPresentationController?.barButtonItem = sender
                 controller.popoverPresentationController?.permittedArrowDirections = .up
             }
@@ -385,8 +383,8 @@ class TorrentDetailsController: ThemedUITableViewController {
 
     @IBAction func rehashAction(_ sender: UIBarButtonItem) {
         let controller = ThemedUIAlertController(title: Localize.get("Torrent rehash"),
-            message: Localize.get("This action will recheck the state of all downloaded files"),
-            preferredStyle: .alert)
+                                                 message: Localize.get("This action will recheck the state of all downloaded files"),
+                                                 preferredStyle: .alert)
         let hash = UIAlertAction(title: NSLocalizedString("Rehash", comment: ""), style: .destructive) { _ in
             rehash_torrent(self.managerHash)
         }
@@ -412,7 +410,7 @@ class TorrentDetailsController: ThemedUITableViewController {
             self.removeTorrent(manager: manager, isMagnet: true)
         }
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-        if (!manager.hasMetadata) {
+        if !manager.hasMetadata {
             removeController.addAction(removeMagnet)
         } else {
             removeController.addAction(removeAll)
@@ -420,7 +418,7 @@ class TorrentDetailsController: ThemedUITableViewController {
         }
         removeController.addAction(cancel)
 
-        if (removeController.popoverPresentationController != nil) {
+        if removeController.popoverPresentationController != nil {
             removeController.popoverPresentationController?.barButtonItem = sender
             removeController.popoverPresentationController?.permittedArrowDirections = .down
         }
@@ -428,36 +426,35 @@ class TorrentDetailsController: ThemedUITableViewController {
         present(removeController, animated: true)
     }
 
-
     func removeTorrent(manager: TorrentStatus, isMagnet: Bool = false, removeData: Bool = false) {
         remove_torrent(manager.hash, removeData ? 1 : 0)
 
-        if (!isMagnet) {
+        if !isMagnet {
             Manager.removeTorrentFile(hash: manager.hash)
 
-            if (removeData) {
-                if (FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title)) {
+            if removeData {
+                if FileManager.default.fileExists(atPath: Manager.rootFolder + "/" + manager.title) {
                     try? FileManager.default.removeItem(atPath: Manager.rootFolder + "/" + manager.title)
                 }
             }
         }
 
         if !splitViewController!.isCollapsed,
-           let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
+            let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             splitView.showDetailViewController(Utils.createEmptyViewController(), sender: self)
 
             print(splitView.viewControllers.count)
             if let nav = splitView.viewControllers.first as? UINavigationController,
-               let view = nav.topViewController as? MainController {
+                let view = nav.topViewController as? MainController {
                 var indexPath: IndexPath?
                 for section in 0..<view.managers.count {
                     for row in 0..<view.managers[section].count {
-                        if (view.managers[section][row].hash == manager.hash) {
+                        if view.managers[section][row].hash == manager.hash {
                             indexPath = IndexPath(row: row, section: section)
                         }
                     }
                 }
-                if (indexPath != nil) {
+                if indexPath != nil {
                     view.removeTorrent(indexPath: indexPath!, visualOnly: true)
                 }
             }
@@ -465,23 +462,23 @@ class TorrentDetailsController: ThemedUITableViewController {
             navigationController?.popViewController(animated: true)
         }
     }
-    
+
     // LOGIC FOR TABLEVIEW INSET STYLE
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
-        if (previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass) {
+
+        if previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
             tableView.reloadData()
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let res = super.tableView(tableView, titleForHeaderInSection: section) {
             return "\(useInsertStyle ? "      " : "")\(res)"
         }
         return nil
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let res = super.tableView(tableView, cellForRowAt: indexPath) as! ThemedUITableViewCell
         res.insetStyle = useInsertStyle

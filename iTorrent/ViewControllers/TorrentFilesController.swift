@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class TorrentFilesController: ThemedUIViewController {
-    @IBOutlet weak var tableView: ThemedUITableView!
+    @IBOutlet var tableView: ThemedUITableView!
 
     @IBOutlet var selectButton: UIBarButtonItem!
     @IBOutlet var selectAllButton: UIBarButtonItem!
@@ -43,7 +43,7 @@ class TorrentFilesController: ThemedUIViewController {
         res[0].width = (NSLocalizedString("All", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 21)], context: nil).width
         res[4].width = (NSLocalizedString("Selected", comment: "") as NSString).boundingRect(with: CGSize.zero, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 21)], context: nil).width
 
-        if (res[0].width < res[4].width) {
+        if res[0].width < res[4].width {
             res[0].width = res[4].width
         } else {
             res[4].width = res[0].width
@@ -75,11 +75,11 @@ class TorrentFilesController: ThemedUIViewController {
 
         defaultToolBarItems = toolbarItems
 
-        if (root.starts(with: "/")) {
+        if root.starts(with: "/") {
             root.removeFirst()
         }
 
-        if (root == "") {
+        if root == "" {
             let back = UIBarButtonItem()
             back.title = "Root"
             navigationItem.backBarButtonItem = back
@@ -89,7 +89,7 @@ class TorrentFilesController: ThemedUIViewController {
             let urlRoot = URL(string: root.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
             title = urlRoot?.lastPathComponent
 
-            let titleView = FileManagerTitleView.init(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+            let titleView = FileManagerTitleView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
             titleView.title.text = title
             titleView.subTitle.text = urlRoot?.deletingLastPathComponent().path
             navigationItem.titleView = titleView
@@ -109,7 +109,7 @@ class TorrentFilesController: ThemedUIViewController {
 
         runUpdate = true
         DispatchQueue.global(qos: .background).async {
-            while (self.runUpdate) {
+            while self.runUpdate {
                 self.update()
                 DispatchQueue.main.async {
                     for cell in self.tableView.visibleCells {
@@ -153,7 +153,7 @@ class TorrentFilesController: ThemedUIViewController {
 
             files.append(file)
 
-            if (iter == 0 && root == "" && rawName.starts(with: self.name + "/")) {
+            if iter == 0, root == "", rawName.starts(with: self.name + "/") {
                 root = self.name
             }
         }
@@ -166,21 +166,21 @@ class TorrentFilesController: ThemedUIViewController {
     func initFolder() {
         let rootPathParts = root.split(separator: "/")
         for file in files {
-            if (file.path == root) {
+            if file.path == root {
                 showFiles.append(file)
                 continue
             }
             let filePathParts = file.path.split(separator: "/")
-            if (file.path.starts(with: root + "/") && filePathParts.count > rootPathParts.count) {
+            if file.path.starts(with: root + "/"), filePathParts.count > rootPathParts.count {
                 let folderName = String(filePathParts[rootPathParts.count])
-                if (showFolders[folderName] == nil) {
+                if showFolders[folderName] == nil {
                     let folder = Folder()
                     folder.name = folderName
                     showFolders[folderName] = folder
                 }
                 let folder = showFolders[folderName]!
                 print("\(file.path) : \(root)/\(folderName)")
-                if (file.path.starts(with: ("\(root)/\(folderName)"))) {
+                if file.path.starts(with: "\(root)/\(folderName)") {
                     folder.files.append(file)
                 }
             }
@@ -218,7 +218,7 @@ class TorrentFilesController: ThemedUIViewController {
             }
         }
         for file in files {
-            if (file.size != 0 && file.downloaded / file.size == 1) {
+            if file.size != 0, file.downloaded / file.size == 1 {
                 file.isDownloading = 4
             } else {
                 file.isDownloading = 0
@@ -248,7 +248,7 @@ class TorrentFilesController: ThemedUIViewController {
     }
 
     @IBAction func selectButtonItem(_ sender: UIBarButtonItem) {
-        downloadedFiles = showFiles.filter({ $0.downloaded == $0.size })
+        downloadedFiles = showFiles.filter { $0.downloaded == $0.size }
 
         var indexPaths = [IndexPath]()
         for iter in 0..<showFiles.count {
@@ -257,7 +257,7 @@ class TorrentFilesController: ThemedUIViewController {
             }
         }
 
-        if (!tableView.isEditing) {
+        if !tableView.isEditing {
             tableView.setEditing(true, animated: true)
             tableViewEditMode = true
 
@@ -293,7 +293,7 @@ class TorrentFilesController: ThemedUIViewController {
     }
 
     @objc func selectAllOnEdit() {
-        if (tableView.indexPathsForSelectedRows?.count ?? 0 > 0) {
+        if tableView.indexPathsForSelectedRows?.count ?? 0 > 0 {
             for indexPath in tableView.indexPathsForSelectedRows! {
                 tableView.deselectRow(at: indexPath, animated: true)
             }
@@ -307,7 +307,7 @@ class TorrentFilesController: ThemedUIViewController {
 
     func updateLeftEditSelectionButton() {
         if tableView.isEditing {
-            if (tableView.indexPathsForSelectedRows?.count ?? 0 > 0) {
+            if tableView.indexPathsForSelectedRows?.count ?? 0 > 0 {
                 navigationItem.leftBarButtonItem?.title = "\(NSLocalizedString("Deselect", comment: "")) (\(tableView.indexPathsForSelectedRows!.count))"
                 editBarItems[4].isEnabled = true
             } else {
@@ -320,7 +320,7 @@ class TorrentFilesController: ThemedUIViewController {
     @objc func shareAll() {
         print(Manager.rootFolder + "/" + root)
         var path: NSURL
-        if (root.isEmpty) {
+        if root.isEmpty {
             if let file = showFiles.first {
                 path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + file.path + "/" + file.name, isDirectory: false)
             } else {
@@ -330,7 +330,7 @@ class TorrentFilesController: ThemedUIViewController {
             path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + root, isDirectory: true)
         }
         let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
-        if (shareController.popoverPresentationController != nil) {
+        if shareController.popoverPresentationController != nil {
             shareController.popoverPresentationController?.barButtonItem = editBarItems[0]
             shareController.popoverPresentationController?.permittedArrowDirections = .any
         }
@@ -349,7 +349,7 @@ class TorrentFilesController: ThemedUIViewController {
             }
         }
         let shareController = ThemedUIActivityViewController(activityItems: paths, applicationActivities: nil)
-        if (shareController.popoverPresentationController != nil) {
+        if shareController.popoverPresentationController != nil {
             shareController.popoverPresentationController?.barButtonItem = editBarItems[4]
             shareController.popoverPresentationController?.permittedArrowDirections = .any
         }
@@ -359,16 +359,16 @@ class TorrentFilesController: ThemedUIViewController {
 
 extension TorrentFilesController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableViewEditMode) {
-            downloadedFiles = showFiles.filter({ $0.downloaded == $0.size })
+        if tableViewEditMode {
+            downloadedFiles = showFiles.filter { $0.downloaded == $0.size }
             return showFolders.keys.count + downloadedFiles.count
         }
         return showFolders.keys.count + showFiles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (tableViewEditMode) {
-            if (indexPath.row < showFolders.keys.count) {
+        if tableViewEditMode {
+            if indexPath.row < showFolders.keys.count {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as? FolderCell {
                     let key = showFolders.keys.sorted()[indexPath.row]
                     cell.title.text = key
@@ -388,7 +388,7 @@ extension TorrentFilesController: UITableViewDataSource {
                 }
             }
         } else {
-            if (indexPath.row < showFolders.keys.count) {
+            if indexPath.row < showFolders.keys.count {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "FolderCell", for: indexPath) as? FolderCell {
                     let key = showFolders.keys.sorted()[indexPath.row]
                     cell.title.text = key
@@ -419,7 +419,7 @@ extension TorrentFilesController: UITableViewDataSource {
             return false
         } else {
             let file = showFiles[indexPath.row - showFolders.count]
-            if (file.downloaded == file.size) {
+            if file.downloaded == file.size {
                 return false
             }
         }
@@ -428,7 +428,7 @@ extension TorrentFilesController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let title = NSLocalizedString("Priority", comment: "")
-        let button = UITableViewRowAction(style: .default, title: title) { action, indexPath in
+        let button = UITableViewRowAction(style: .default, title: title) { _, indexPath in
             let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Priority", comment: ""), preferredStyle: .actionSheet)
 
             // "Normal"
@@ -465,7 +465,7 @@ extension TorrentFilesController: UITableViewDataSource {
             //            controller.addAction(min)
             controller.addAction(cancel)
 
-            if (controller.popoverPresentationController != nil) {
+            if controller.popoverPresentationController != nil {
                 controller.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
                 controller.popoverPresentationController?.sourceRect = (tableView.cellForRow(at: indexPath)?.bounds)!
                 controller.popoverPresentationController?.permittedArrowDirections = [.up, .down]
@@ -481,11 +481,11 @@ extension TorrentFilesController: UITableViewDataSource {
 
 extension TorrentFilesController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableViewEditMode) {
+        if tableViewEditMode {
             updateLeftEditSelectionButton()
         } else {
-            if (indexPath.row < showFolders.keys.count) {
-                if let controller = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Files") as? TorrentFilesController {
+            if indexPath.row < showFolders.keys.count {
+                if let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Files") as? TorrentFilesController {
                     controller.managerHash = managerHash
                     controller.name = name
                     controller.root = root + "/" + showFolders.keys.sorted()[indexPath.row]
@@ -497,10 +497,10 @@ extension TorrentFilesController: UITableViewDelegate {
                 let index = indexPath.row - showFolders.keys.count
                 let file = showFiles[index]
                 let percent = Float(file.downloaded) / Float(file.size) * 100
-                if (percent < 100) {
+                if percent < 100 {
                     if let cell = tableView.cellForRow(at: indexPath) as? FileCell {
                         cell.switcher.setOn(!cell.switcher.isOn, animated: true)
-                        if (cell.actionDelegate != nil) {
+                        if cell.actionDelegate != nil {
                             cell.actionDelegate?.fileCellAction(cell.switcher, file: showFiles[index])
                         }
                     }
@@ -515,7 +515,7 @@ extension TorrentFilesController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if (tableView.isEditing) {
+        if tableView.isEditing {
             updateLeftEditSelectionButton()
         }
     }
@@ -525,15 +525,15 @@ extension TorrentFilesController: FolderCellActionDelegate {
     func folderCellAction(_ key: String, sender: UIButton) {
         let controller = ThemedUIAlertController(title: NSLocalizedString("Download content of folder", comment: ""), message: key, preferredStyle: .actionSheet)
 
-        let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { alert in
+        let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { _ in
             for file in self.showFolders[key]!.files {
                 file.isDownloading = 4
             }
             self.setFilesPriority()
         }
-        let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { alert in
+        let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { _ in
             for file in self.showFolders[key]!.files {
-                if (file.size != 0 && file.downloaded / file.size == 1) {
+                if file.size != 0, file.downloaded / file.size == 1 {
                     file.isDownloading = 4
                 } else {
                     file.isDownloading = 0
@@ -547,13 +547,13 @@ extension TorrentFilesController: FolderCellActionDelegate {
         controller.addAction(notDownload)
         controller.addAction(cancel)
 
-        if (controller.popoverPresentationController != nil) {
-            controller.popoverPresentationController?.sourceView = sender;
-            controller.popoverPresentationController?.sourceRect = sender.bounds;
-            controller.popoverPresentationController?.permittedArrowDirections = .any;
+        if controller.popoverPresentationController != nil {
+            controller.popoverPresentationController?.sourceView = sender
+            controller.popoverPresentationController?.sourceRect = sender.bounds
+            controller.popoverPresentationController?.permittedArrowDirections = .any
         }
 
-        self.present(controller, animated: true)
+        present(controller, animated: true)
     }
 }
 

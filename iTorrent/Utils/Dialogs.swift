@@ -13,7 +13,7 @@ class Dialogs {
     static func crateUpdateDialog(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
         let localUrl = Bundle.main.url(forResource: "Version", withExtension: "ver")
         if let localVersion = try? String(contentsOf: localUrl!) {
-            if (!UserPreferences.versionNews.value || forced) {
+            if !UserPreferences.versionNews.value || forced {
                 let title = localVersion + NSLocalizedString("info", comment: "")
                 let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: NSLocalizedString("UpdateText", comment: ""), preferredStyle: .alert)
                 let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel) { _ in
@@ -31,7 +31,7 @@ class Dialogs {
     static func createNewsDialog() -> ThemedUIAlertController? {
         if #available(iOS 13, *) {
             let code = "1"
-            if (!UserPreferences.alertDialog(code: code).value) {
+            if !UserPreferences.alertDialog(code: code).value {
                 let newsController = ThemedUIAlertController(title: Localize.get("Dialogs.News.Title"), message: Localize.get("Dialogs.News.Message"), preferredStyle: .alert)
                 let close = UIAlertAction(title: Localize.get("Close"), style: .cancel) { _ in
                     UserPreferences.alertDialog(code: code).value = true

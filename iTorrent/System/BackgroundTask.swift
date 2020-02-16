@@ -13,22 +13,21 @@ class BackgroundTask {
     static var timer = Timer()
     static var backgrounding = false
 
-
     static func startBackgroundTask() {
-        if (!backgrounding) {
+        if !backgrounding {
             backgrounding = true
             BackgroundTask.playAudio()
         }
     }
 
     static func stopBackgroundTask() {
-        if (backgrounding) {
+        if backgrounding {
             backgrounding = false
             player?.stop()
         }
     }
 
-    static fileprivate func playAudio() {
+    fileprivate static func playAudio() {
         do {
             let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
             let alertSound = URL(fileURLWithPath: bundle!)
@@ -45,10 +44,10 @@ class BackgroundTask {
     }
 
     static func startBackground() -> Bool {
-        if (UserPreferences.background.value) {
-            if (Manager.torrentStates.contains(where: { (status) -> Bool in
+        if UserPreferences.background.value {
+            if Manager.torrentStates.contains(where: { (status) -> Bool in
                 getBackgroundConditions(status)
-            })) {
+            }) {
                 startBackgroundTask()
                 return true
             }
@@ -57,8 +56,8 @@ class BackgroundTask {
     }
 
     static func checkToStopBackground() {
-        if (!Manager.torrentStates.contains(where: { getBackgroundConditions($0) })) {
-            if (backgrounding) {
+        if !Manager.torrentStates.contains(where: { getBackgroundConditions($0) }) {
+            if backgrounding {
                 Manager.saveTorrents()
                 stopBackgroundTask()
             }

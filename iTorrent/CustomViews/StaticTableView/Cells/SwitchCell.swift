@@ -11,11 +11,11 @@ import UIKit
 
 class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "SwitchCell"
-    static let nib = UINib.init(nibName: id, bundle: nil)
+    static let nib = UINib(nibName: id, bundle: nil)
     static let name = id
 
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var switcher: UISwitch! {
+    @IBOutlet var title: UILabel!
+    @IBOutlet var switcher: UISwitch! {
         didSet {
             switcher.addTarget(self, action: #selector(executeAction), for: .valueChanged)
         }
@@ -44,8 +44,8 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
 
     func setModel(_ model: Model) {
-        self.title.text = Localize.get(model.title)
-        self.action = model.action
+        title.text = Localize.get(model.title)
+        action = model.action
 
         switcher.onTintColor = model.switchColor
         switcher.isEnabled = !(model.disableCondition?() ?? false)
@@ -53,8 +53,8 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
 
     func setModel(_ model: ModelProperty) {
-        self.title.text = Localize.get(model.title)
-        self.action = { switcher in
+        title.text = Localize.get(model.title)
+        action = { switcher in
             model.property.value = switcher.isOn
             model.action?(switcher)
         }
@@ -71,21 +71,21 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var defaultValue: () -> Bool
-        var switchColor: UIColor? = nil
-        var hiddenCondition: (() -> Bool)? = nil
-        var disableCondition: (() -> Bool)? = nil
-        var tapAction: (() -> ())? = nil
-        var action: ((UISwitch) -> ())
+        var switchColor: UIColor?
+        var hiddenCondition: (() -> Bool)?
+        var disableCondition: (() -> Bool)?
+        var tapAction: (() -> ())?
+        var action: (UISwitch) -> ()
     }
 
     struct ModelProperty: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var property: UserPreferences.SettingProperty<Bool>
-        var switchColor: UIColor? = nil
-        var hiddenCondition: (() -> Bool)? = nil
-        var disableCondition: (() -> Bool)? = nil
-        var tapAction: (() -> ())? = nil
-        var action: ((UISwitch) -> ())? = nil
+        var switchColor: UIColor?
+        var hiddenCondition: (() -> Bool)?
+        var disableCondition: (() -> Bool)?
+        var tapAction: (() -> ())?
+        var action: ((UISwitch) -> ())?
     }
 }

@@ -9,12 +9,11 @@
 import UIKit
 
 class TrackerCell: ThemedUITableViewCell {
-
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var message: UILabel!
-    @IBOutlet weak var seeders: UILabel!
-    @IBOutlet weak var peers: UILabel!
-    @IBOutlet weak var leechers: UILabel!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var message: UILabel!
+    @IBOutlet var seeders: UILabel!
+    @IBOutlet var peers: UILabel!
+    @IBOutlet var leechers: UILabel!
 
     override func themeUpdate() {
         super.themeUpdate()

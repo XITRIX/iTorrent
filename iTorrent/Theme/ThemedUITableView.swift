@@ -19,7 +19,7 @@ class ThemedUITableView: UITableView, Themed {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()

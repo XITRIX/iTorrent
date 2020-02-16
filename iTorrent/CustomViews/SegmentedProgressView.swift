@@ -15,7 +15,7 @@ class SegmentedProgressView: UIView, Themed {
     private var progress: [CGFloat] = []
 
     public func setNumberOfSections(_ sections: Int) {
-        if (numPiecesOld == sections) {
+        if numPiecesOld == sections {
             return
         }
 
@@ -30,7 +30,7 @@ class SegmentedProgressView: UIView, Themed {
     }
 
     public func setProgress(_ progress: [CGFloat]) {
-        if (self.progress == progress) {
+        if self.progress == progress {
             return
         }
 
@@ -82,10 +82,10 @@ class SegmentedProgressView: UIView, Themed {
         for iter in 0..<numPieces {
             start = CGFloat(iter) * bounds.width / CGFloat(numPieces)
 
-            if (!merged) {
+            if !merged {
                 context?.move(to: CGPoint(x: start, y: bounds.midY))
             }
-            if (progress[iter] == 1 && iter != numPieces - 1) {
+            if progress[iter] == 1, iter != numPieces - 1 {
                 merged = true
                 continue
             }

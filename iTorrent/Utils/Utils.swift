@@ -38,7 +38,7 @@ class Utils {
     }
 
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
-        if (speedInBytes == 0) {
+        if speedInBytes == 0 {
             return NSLocalizedString("eternity", comment: "")
         }
         let seconds = (fileSize - downloadedSize) / speedInBytes
@@ -53,16 +53,16 @@ class Utils {
 
         var res = ""
 
-        if (day > 0) {
+        if day > 0 {
             res.append(String(day) + "d ")
         }
-        if (day > 0 || hour > 0) {
+        if day > 0 || hour > 0 {
             res.append(String(hour) + "h ")
         }
-        if (day > 0 || hour > 0 || min > 0) {
+        if day > 0 || hour > 0 || min > 0 {
             res.append(String(min) + "m ")
         }
-        if (day > 0 || hour > 0 || min > 0 || sec > 0) {
+        if day > 0 || hour > 0 || min > 0 || sec > 0 {
             res.append(String(sec) + "s")
         }
 
@@ -74,14 +74,14 @@ class Utils {
         let names = ["B", "KB", "MB", "GB"]
         var count = 0
         var fRes: Double = 0
-        while (count < 3 && size > 1024) {
+        while count < 3, size > 1024 {
             size /= 1024
-            if (count == 0) {
+            if count == 0 {
                 fRes = Double(size)
             } else {
                 fRes /= 1024
             }
-            count += 1;
+            count += 1
         }
         let format = decimals ? "%.0f" : "%.2f"
         let res = count > 1 ? String(format: format, fRes) : String(size)
@@ -89,7 +89,7 @@ class Utils {
     }
 
     public static func checkFolderExist(path: String) {
-        if (!FileManager.default.fileExists(atPath: path)) {
+        if !FileManager.default.fileExists(atPath: path) {
             try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
     }
@@ -117,17 +117,15 @@ class Utils {
 
             // Check for IPv4 or IPv6 interface:
             let addrFamily = interface.ifa_addr.pointee.sa_family
-            if addrFamily == UInt8(AF_INET) {//} || addrFamily == UInt8(AF_INET6) {
-
+            if addrFamily == UInt8(AF_INET) { // } || addrFamily == UInt8(AF_INET6) {
                 // Check interface name:
                 let name = String(cString: interface.ifa_name)
                 if name == "en0" {
-
                     // Convert interface address to a human readable string:
                     var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
                     getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
-                        &hostname, socklen_t(hostname.count),
-                        nil, socklen_t(0), NI_NUMERICHOST)
+                                &hostname, socklen_t(hostname.count),
+                                nil, socklen_t(0), NI_NUMERICHOST)
                     address = String(cString: hostname)
                 }
             }
@@ -177,28 +175,24 @@ class Localize {
     static func get(_ key: String) -> String {
         NSLocalizedString(key, comment: "")
     }
-    
-    static func getTermination (_ key: String, _ number: Int) -> String
-    {
+
+    static func getTermination(_ key: String, _ number: Int) -> String {
         let termination: [String] = [":single", ":plural", ":parent"]
-        
+
         var value = number % 100
         var res: String
-         
-        if value > 10, value < 15
-        {
-            res = get(key+termination[2])
+
+        if value > 10, value < 15 {
+            res = get(key + termination[2])
+        } else {
+            value = value % 10
+
+            if value == 0 { res = get(key + termination[2]) }
+            else if value == 1 { res = get(key + termination[0]) }
+            else if value > 1 { res = get(key + termination[1]) }
+            else { res = get(key + termination[2]) }
         }
-        else
-        {
-            value = value % 10;
-             
-            if value == 0 {res = get(key+termination[2])}
-            else if value == 1 {res = get(key+termination[0])}
-            else if value > 1 {res = get(key+termination[1])}
-            else {res = get(key+termination[2])}
-        }
-        
+
         return res
     }
 }

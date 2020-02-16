@@ -13,10 +13,10 @@ class ThemedUIAlertController: UIAlertController, Themed {
     private var visualEffectView: [UIVisualEffectView] {
         // We're on an iPad and visual effect view is in a different place.
         if let presentationController = presentationController, presentationController.responds(to: Selector(("popoverView"))), let view = presentationController.value(forKey: "popoverView") as? UIView {
-            return view.recursiveSubviews.compactMap({ $0 as? UIVisualEffectView })
+            return view.recursiveSubviews.compactMap { $0 as? UIVisualEffectView }
         }
 
-        return view.recursiveSubviews.compactMap({ $0 as? UIVisualEffectView })
+        return view.recursiveSubviews.compactMap { $0 as? UIVisualEffectView }
     }
 
     open override func viewWillLayoutSubviews() {
@@ -24,7 +24,7 @@ class ThemedUIAlertController: UIAlertController, Themed {
 
         if #available(iOS 13.0, *) {
         } else {
-            visualEffectView.forEach({ $0.effect = UIBlurEffect(style: Themes.current.blurEffect) })
+            visualEffectView.forEach { $0.effect = UIBlurEffect(style: Themes.current.blurEffect) }
         }
     }
 
@@ -34,7 +34,7 @@ class ThemedUIAlertController: UIAlertController, Themed {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
         } else {
-            visualEffectView.forEach({ $0.effect = UIBlurEffect(style: theme.blurEffect) })
+            visualEffectView.forEach { $0.effect = UIBlurEffect(style: theme.blurEffect) }
 
             if let cancelBackgroundViewType = NSClassFromString("_UIAlertControlleriOSActionSheetCancelBackgroundView") as? UIView.Type {
                 cancelBackgroundViewType.appearance().subviewsBackgroundColor = theme.actionCancelButtonColor
@@ -62,7 +62,7 @@ class ThemedUIAlertController: UIAlertController, Themed {
     }
 }
 
-fileprivate extension UIView {
+private extension UIView {
     private struct AssociatedKey {
         static var subviewsBackgroundColor = "subviewsBackgroundColor"
     }
@@ -74,9 +74,9 @@ fileprivate extension UIView {
 
         set {
             objc_setAssociatedObject(self,
-                &AssociatedKey.subviewsBackgroundColor,
-                newValue,
-                .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                                     &AssociatedKey.subviewsBackgroundColor,
+                                     newValue,
+                                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             subviews.forEach {
                 $0.backgroundColor = newValue
             }
@@ -90,9 +90,9 @@ fileprivate extension UIView {
 
         set {
             objc_setAssociatedObject(self,
-                &AssociatedKey.subviewsBackgroundColor,
-                newValue,
-                .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                                     &AssociatedKey.subviewsBackgroundColor,
+                                     newValue,
+                                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             subviews.forEach {
                 if !($0 is UIVisualEffectView) {
                     $0.backgroundColor = newValue
@@ -104,7 +104,7 @@ fileprivate extension UIView {
 
 extension UIView {
     var recursiveSubviews: [UIView] {
-        var subviews = self.subviews.compactMap({ $0 })
+        var subviews = self.subviews.compactMap { $0 }
         subviews.forEach {
             subviews.append(contentsOf: $0.recursiveSubviews)
         }

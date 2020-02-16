@@ -11,11 +11,11 @@ import UIKit
 
 class SettingsSortingController: ThemedUITableViewController {
     var data: [Int]!
-    
+
     init() {
         super.init(style: .plain)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -29,7 +29,7 @@ class SettingsSortingController: ThemedUITableViewController {
         super.viewDidLoad()
 
         data = UserPreferences.sectionsSortingOrder.value
-        
+
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
         tableView.dataSource = self
@@ -37,7 +37,7 @@ class SettingsSortingController: ThemedUITableViewController {
 
         tableView.tableFooterView = UIView()
         tableView.isEditing = true
-        
+
         navigationItem.setRightBarButton(UIBarButtonItem(title: Localize.get("Settings.Sorting.Revert"),
                                                          style: .plain,
                                                          target: self,
@@ -73,7 +73,7 @@ extension SettingsSortingController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = NSLocalizedString(Utils.TorrentStates.init(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
+        cell.textLabel?.text = NSLocalizedString(Utils.TorrentStates(id: data[indexPath.row])?.rawValue ?? "NIL", comment: "")
 
         let theme = Themes.current
         cell.textLabel?.textColor = theme.mainText

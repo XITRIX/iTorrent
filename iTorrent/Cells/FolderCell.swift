@@ -10,12 +10,11 @@ import Foundation
 import UIKit
 
 class FolderCell: ThemedUITableViewCell {
+    @IBOutlet var title: UILabel!
+    @IBOutlet var size: UILabel!
 
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var size: UILabel!
-
-    @IBOutlet weak var moreButton: UIButton!
-    @IBOutlet weak var titleConstraint: NSLayoutConstraint!
+    @IBOutlet var moreButton: UIButton!
+    @IBOutlet var titleConstraint: NSLayoutConstraint!
 
     weak var actionDelegate: FolderCellActionDelegate?
 
@@ -47,5 +46,4 @@ class FolderCell: ThemedUITableViewCell {
             actionDelegate?.folderCellAction(title.text!, sender: sender)
         }
     }
-
 }

@@ -14,8 +14,8 @@ import MarqueeLabel
 @IBDesignable
 class FileManagerTitleView: UIView, Themed {
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var title: MarqueeLabel!
-    @IBOutlet weak var subTitle: MarqueeLabel!
+    @IBOutlet var title: MarqueeLabel!
+    @IBOutlet var subTitle: MarqueeLabel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ class FileManagerTitleView: UIView, Themed {
 
         Bundle.main.loadNibNamed("FileManagerTitleView", owner: self, options: nil)
         addSubview(contentView)
-        contentView.frame = self.bounds
+        contentView.frame = bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         themeUpdate()

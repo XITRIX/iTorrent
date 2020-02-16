@@ -8,17 +8,17 @@
 
 import UIKit
 
-class PreferencesWebDavController : StaticTableViewController {
+class PreferencesWebDavController: StaticTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = Localize.get("Settings.FTPHeader")
         
         var pass = [CellModelProtocol]()
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: {UserPreferences.webDavUsername.value}) { username in
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: { UserPreferences.webDavUsername.value }) { username in
             UserPreferences.webDavUsername.value = username
         })
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: {UserPreferences.webDavPassword.value}, isPassword: true) { password in
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: { UserPreferences.webDavPassword.value }, isPassword: true) { password in
             UserPreferences.webDavPassword.value = password
         })
         data.append(Section(rowModels: pass, footer: "Settings.FTP.WebDav.PassText"))
@@ -51,7 +51,7 @@ class PreferencesWebDavController : StaticTableViewController {
             }
             self.tableView.reloadData()
         })
-        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: {String(UserPreferences.webDavPort.value)}, keyboardType: .numberPad) { port in
+        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: { String(UserPreferences.webDavPort.value) }, keyboardType: .numberPad) { port in
             if let intPort = Int(port) {
                 UserPreferences.webDavPort.value = intPort
             } else {
@@ -82,12 +82,11 @@ class PreferencesWebDavController : StaticTableViewController {
     @objc func keyboardDidChangeFrame(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let animationDuration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue {
-        
             var loadingInset = tableView.contentInset
             loadingInset.bottom = keyboardSize.height
-
+            
             let contentOffset = tableView.contentOffset
-
+            
             UIView.animate(withDuration: animationDuration) {
                 self.tableView.contentInset = loadingInset
                 self.tableView.scrollIndicatorInsets = loadingInset

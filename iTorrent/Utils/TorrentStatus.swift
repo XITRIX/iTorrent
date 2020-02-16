@@ -68,7 +68,7 @@ class TorrentStatus {
         numPieces = Int(torrentInfo.num_pieces)
         pieces = Array(UnsafeBufferPointer(start: torrentInfo.pieces, count: numPieces))
 
-        if (Manager.managerSaves[hash] == nil) {
+        if Manager.managerSaves[hash] == nil {
             Manager.managerSaves[hash] = UserManagerSettings()
         }
         addedDate = Manager.managerSaves[hash]?.addedDate
@@ -85,44 +85,44 @@ class TorrentStatus {
     }
 
     private func getDisplayState() -> String {
-        if ((state == Utils.TorrentStates.finished.rawValue || state == Utils.TorrentStates.downloading.rawValue) &&
-            isFinished && !isPaused && seedMode) {
+        if state == Utils.TorrentStates.finished.rawValue || state == Utils.TorrentStates.downloading.rawValue,
+            isFinished, !isPaused, seedMode {
             return Utils.TorrentStates.seeding.rawValue
         }
-        if (state == Utils.TorrentStates.seeding.rawValue && (isPaused || !seedMode)) {
+        if state == Utils.TorrentStates.seeding.rawValue, isPaused || !seedMode {
             return Utils.TorrentStates.finished.rawValue
         }
-        if (state == Utils.TorrentStates.downloading.rawValue && isFinished) {
+        if state == Utils.TorrentStates.downloading.rawValue, isFinished {
             return Utils.TorrentStates.finished.rawValue
         }
-        if (state == Utils.TorrentStates.downloading.rawValue && !isFinished && isPaused) {
+        if state == Utils.TorrentStates.downloading.rawValue, !isFinished, isPaused {
             return Utils.TorrentStates.paused.rawValue
         }
         return state
     }
 
     func stateCorrector() {
-        if (displayState == Utils.TorrentStates.finished.rawValue &&
-            !isPaused) {
+        if displayState == Utils.TorrentStates.finished.rawValue,
+            !isPaused {
             stop_torrent(hash)
-        } else if (displayState == Utils.TorrentStates.seeding.rawValue &&
-            totalUpload >= seedLimit &&
-            seedLimit != 0) {
+        } else if displayState == Utils.TorrentStates.seeding.rawValue,
+            totalUpload >= seedLimit,
+            seedLimit != 0 {
             seedMode = false
             stop_torrent(hash)
-        } else if (state == Utils.TorrentStates.hashing.rawValue && isPaused) {
+        } else if state == Utils.TorrentStates.hashing.rawValue, isPaused {
             start_torrent(hash)
         }
     }
 
     func checkSpeed() {
-        if (displayState == Utils.TorrentStates.downloading.rawValue && downloadRate <= 25000 && BackgroundTask.backgrounding) {
+        if displayState == Utils.TorrentStates.downloading.rawValue && downloadRate <= 25000 && BackgroundTask.backgrounding {
             Manager.managerSaves[hash]?.zeroSpeedTimeCounter += 1
         } else {
             Manager.managerSaves[hash]?.zeroSpeedTimeCounter = 0
         }
 
-        if (Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == UserPreferences.zeroSpeedLimit.value) {
+        if Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == UserPreferences.zeroSpeedLimit.value {
             NotificationHelper.showNotification(
                 title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)",
                 body: title + Localize.get("BackgroundTask.LowSpeed.Message"),

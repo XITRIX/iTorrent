@@ -15,7 +15,7 @@ class StaticTableViewController: ThemedUIViewController {
             tableView?.data = data
         }
     }
-    
+
     init() {
         super.init(nibName: nil, bundle: Bundle.main)
         setup(style: .grouped)
@@ -25,19 +25,19 @@ class StaticTableViewController: ThemedUIViewController {
         super.init(nibName: nil, bundle: Bundle.main)
         setup(style: style)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     func setup(style: UITableView.Style = .grouped) {
         tableView = StaticTableView(frame: view.frame, style: style)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tableView)
         tableView.data = data
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()

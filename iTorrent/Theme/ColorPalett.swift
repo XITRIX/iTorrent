@@ -48,10 +48,10 @@ class Themes {
 
     static var current: ColorPalett {
         if #available(iOS 13.0, *) {
-            if (UserPreferences.autoTheme.value) {
-                if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark) {
+            if UserPreferences.autoTheme.value {
+                if UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark {
                     return shared.theme[1]
-                } else if (UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light) {
+                } else if UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light {
                     return shared.theme[0]
                 }
             }

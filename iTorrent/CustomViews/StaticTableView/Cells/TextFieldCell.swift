@@ -10,7 +10,7 @@ import UIKit
 
 class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let id = "TextFieldCell"
-    static let nib = UINib.init(nibName: id, bundle: nil)
+    static let nib = UINib(nibName: id, bundle: nil)
     static let name = id
     
     @IBOutlet var title: UILabel!
@@ -29,9 +29,9 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         guard let model = model as? Model else {
             return
         }
-        self.title.text = Localize.get(model.title)
-        self.textField.text = model.defaultValue()
-        self.textEditAction = model.textEditAction
+        title.text = Localize.get(model.title)
+        textField.text = model.defaultValue()
+        textEditAction = model.textEditAction
         
         textField.placeholder = Localize.get(model.placeholder ?? "")
         textField.isSecureTextEntry = model.isPassword
@@ -51,7 +51,7 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
             textEditAction?(text)
         }
     }
-
+    
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
@@ -59,8 +59,8 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var defaultValue: () -> String
         var isPassword: Bool = false
         var keyboardType: UIKeyboardType = .default
-        var hiddenCondition: (() -> Bool)? = nil
-        var tapAction: (() -> ())? = nil
-        var textEditAction: ((String) -> ())? = nil
+        var hiddenCondition: (() -> Bool)?
+        var tapAction: (() -> ())?
+        var textEditAction: ((String) -> ())?
     }
 }

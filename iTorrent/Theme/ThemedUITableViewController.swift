@@ -50,5 +50,4 @@ class ThemedUITableViewController: UITableViewController, Themed {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         Themes.current.statusBarStyle
     }
-
 }
