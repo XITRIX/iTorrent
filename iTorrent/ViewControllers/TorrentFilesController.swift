@@ -21,7 +21,9 @@ class TorrentFilesController: ThemedUIViewController {
 
     var files: [File] = []
     var notSortedFiles: [File] = []
-    var downloadedFiles: [File] = []
+    var downloadedFiles : [File] {
+        showFiles.filter { $0.downloaded == $0.size }
+    }
 
     var showFolders: [String: Folder] = [:]
     var showFiles: [File] = []
@@ -118,6 +120,11 @@ class TorrentFilesController: ThemedUIViewController {
                             cell.update()
                         }
                     }
+                    
+                    if self.tableViewEditMode,
+                        self.tableView.numberOfRows(inSection: 0) != self.downloadedFiles.count {
+                        self.tableView.reloadSections([0], with: .automatic)
+                    }
                 }
                 sleep(1)
             }
@@ -179,7 +186,6 @@ class TorrentFilesController: ThemedUIViewController {
                     showFolders[folderName] = folder
                 }
                 let folder = showFolders[folderName]!
-                print("\(file.path) : \(root)/\(folderName)")
                 if file.path.starts(with: "\(root)/\(folderName)") {
                     folder.files.append(file)
                 }
@@ -248,8 +254,6 @@ class TorrentFilesController: ThemedUIViewController {
     }
 
     @IBAction func selectButtonItem(_ sender: UIBarButtonItem) {
-        downloadedFiles = showFiles.filter { $0.downloaded == $0.size }
-
         var indexPaths = [IndexPath]()
         for iter in 0..<showFiles.count {
             if showFiles[iter].downloaded != showFiles[iter].size {
@@ -279,6 +283,7 @@ class TorrentFilesController: ThemedUIViewController {
 
             setToolbarItems(defaultToolBarItems, animated: true)
 
+            
             tableView.insertRows(at: indexPaths, with: .automatic)
         }
 
@@ -360,7 +365,6 @@ class TorrentFilesController: ThemedUIViewController {
 extension TorrentFilesController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableViewEditMode {
-            downloadedFiles = showFiles.filter { $0.downloaded == $0.size }
             return showFolders.keys.count + downloadedFiles.count
         }
         return showFolders.keys.count + showFiles.count

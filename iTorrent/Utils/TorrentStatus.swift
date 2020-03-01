@@ -116,13 +116,20 @@ class TorrentStatus {
     }
 
     func checkSpeed() {
-        if displayState == Utils.TorrentStates.downloading.rawValue && downloadRate <= 25000 && BackgroundTask.backgrounding {
-            Manager.managerSaves[hash]?.zeroSpeedTimeCounter += 1
-        } else {
-            Manager.managerSaves[hash]?.zeroSpeedTimeCounter = 0
+        guard let manager = Manager.managerSaves[hash] else {
+            return
         }
 
-        if Manager.managerSaves[hash]?.zeroSpeedTimeCounter ?? 0 == UserPreferences.zeroSpeedLimit.value {
+        if displayState == Utils.TorrentStates.downloading.rawValue,
+            downloadRate <= 25000,
+            BackgroundTask.backgrounding {
+            manager.zeroSpeedTimeCounter += 1
+        } else {
+            manager.zeroSpeedTimeCounter = 0
+        }
+
+        if manager.zeroSpeedTimeCounter == UserPreferences.zeroSpeedLimit.value,
+            manager.zeroSpeedTimeCounter != 0 {
             NotificationHelper.showNotification(
                 title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)",
                 body: title + Localize.get("BackgroundTask.LowSpeed.Message"),
