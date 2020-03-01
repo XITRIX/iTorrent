@@ -690,6 +690,14 @@ extension MainController: UITableViewDelegate {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        return tableView.isEditing
+    }
+
+    func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        self.setEditing(true, animated: true)
+    }
 }
 
 extension MainController: GADBannerViewDelegate {

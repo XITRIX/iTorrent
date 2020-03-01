@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TrackersListController: ThemedUIViewController, UITableViewDataSource, UITableViewDelegate {
+class TrackersListController: ThemedUIViewController {
     @IBOutlet var tableView: ThemedUITableView!
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var removeButton: UIBarButtonItem!
@@ -66,13 +66,14 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
                             self.tableView.reloadRows(at: reloadIndexes, with: .automatic)
                         }
                     } else {
-                        self.tableView.reloadData()
+                        self.tableView.reloadSections([0], with: .automatic)
                     }
                 }
                 sleep(1)
             }
         }
-
+        
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -81,36 +82,6 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
         super.viewDidDisappear(animated)
 
         runUpdate = false
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        trackers.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TrackerCell {
-            cell.setModel(tracker: trackers[indexPath.row])
-            return cell
-        }
-        return UITableViewCell()
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let paths = tableView.indexPathsForSelectedRows,
-            paths.count > 0 {
-            removeButton.isEnabled = true
-        } else {
-            removeButton.isEnabled = false
-        }
-    }
-
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let paths = tableView.indexPathsForSelectedRows,
-            paths.count > 0 {
-            removeButton.isEnabled = true
-        } else {
-            removeButton.isEnabled = false
-        }
     }
 
     @IBAction func editAction(_ sender: UIBarButtonItem) {
@@ -180,6 +151,48 @@ class TrackersListController: ThemedUIViewController, UITableViewDataSource, UIT
         }
 
         present(controller, animated: true)
+    }
+}
+
+extension TrackersListController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        trackers.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TrackerCell {
+            cell.setModel(tracker: trackers[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
+    }
+}
+
+extension TrackersListController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let paths = tableView.indexPathsForSelectedRows,
+            paths.count > 0 {
+            removeButton.isEnabled = true
+        } else {
+            removeButton.isEnabled = false
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let paths = tableView.indexPathsForSelectedRows,
+            paths.count > 0 {
+            removeButton.isEnabled = true
+        } else {
+            removeButton.isEnabled = false
+        }
+    }
+
+    func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        return tableView.isEditing
+    }
+
+    func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        setEditing(true, animated: true)
     }
 }
 
