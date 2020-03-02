@@ -84,7 +84,7 @@ class TorrentDetailsController: ThemedUITableViewController {
         }
         switcher.setOn((saves?.seedMode)!, animated: false)
         let date = saves?.addedDate ?? Date()
-        addedOnLabel.text = String(calendar.component(.day, from: date)) + "/" + String(calendar.component(.month, from: date)) + "/" + String(calendar.component(.year, from: date))
+        addedOnLabel.textWithFit = String(calendar.component(.day, from: date)) + "/" + String(calendar.component(.month, from: date)) + "/" + String(calendar.component(.year, from: date))
 
         let limit = Manager.managerSaves[managerHash]?.seedLimit
         if limit == 0 {
@@ -96,8 +96,8 @@ class TorrentDetailsController: ThemedUITableViewController {
         view.isUserInteractionEnabled = true
         tableView.isUserInteractionEnabled = true
 
-        trackersButtonLabel.text = NSLocalizedString("Trackers", comment: "")
-        filesButtonLabel.text = NSLocalizedString("Files", comment: "")
+        trackersButtonLabel.textWithFit = NSLocalizedString("Trackers", comment: "")
+        filesButtonLabel.textWithFit = NSLocalizedString("Files", comment: "")
 
         // MARQUEE LABEL
         let theme = Themes.current
@@ -152,32 +152,41 @@ class TorrentDetailsController: ThemedUITableViewController {
             if manager.hasMetadata {
                 setupPiecesFilter()
 
-                segmentedProgressBar.setProgress(sortPiecesByFilesName(manager.pieces))
+                // Very large torrents cause "ladder" effect while scrolling on running in main thread
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    let pieces = self?.sortPiecesByFilesName(manager.pieces)
+                    DispatchQueue.main.async {
+                        if let self = self,
+                            let pieces = pieces{
+                            self.segmentedProgressBar.setProgress(pieces)
+                        }
+                    }
+                }
                 sequentialDownloadSwitcher.setOn(manager.sequentialDownload, animated: false)
             }
 
             title = manager.title
-            stateLabel.text = NSLocalizedString(manager.displayState, comment: "")
-            downloadLabel.text = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
-            uploadLabel.text = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
-            timeRemainsLabel.text = manager.displayState == Utils.TorrentStates.downloading.rawValue ?
+            stateLabel.textWithFit = NSLocalizedString(manager.displayState, comment: "")
+            downloadLabel.textWithFit = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
+            uploadLabel.textWithFit = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
+            timeRemainsLabel.textWithFit = manager.displayState == Utils.TorrentStates.downloading.rawValue ?
                 Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone) :
                 "---"
-            hashLabel.text = manager.hash.uppercased()
-            creatorLabel.text = manager.creator
-            createdOnLabel.text = String(calendar.component(.day, from: manager.creationDate!)) + "/" +
+            hashLabel.textWithFit = manager.hash.uppercased()
+            creatorLabel.textWithFit = manager.creator
+            createdOnLabel.textWithFit = String(calendar.component(.day, from: manager.creationDate!)) + "/" +
                 String(calendar.component(.month, from: manager.creationDate!)) + "/" +
                 String(calendar.component(.year, from: manager.creationDate!))
-            commentsLabel.text = manager.comment
-            selectedLabel.text = Utils.getSizeText(size: manager.totalWanted) + " / " + Utils.getSizeText(size: manager.totalSize)
-            completedLabel.text = Utils.getSizeText(size: manager.totalWantedDone)
-            progressLabel.text = String(format: "%.2f", manager.totalWanted == 0 ? 0 :
+            commentsLabel.textWithFit = manager.comment
+            selectedLabel.textWithFit = Utils.getSizeText(size: manager.totalWanted) + " / " + Utils.getSizeText(size: manager.totalSize)
+            completedLabel.textWithFit = Utils.getSizeText(size: manager.totalWantedDone)
+            progressLabel.textWithFit = String(format: "%.2f", manager.totalWanted == 0 ? 0 :
                 Double(manager.totalWantedDone) / Double(manager.totalWanted) * 100) + "% / " +
                 String(format: "%.2f", totalDownloadProgress * 100) + "%"
-            downloadedLabel.text = Utils.getSizeText(size: manager.totalDownload)
-            uploadedLabel.text = Utils.getSizeText(size: manager.totalUpload)
-            seedersLabel.text = String(manager.numSeeds)
-            peersLabel.text = String(manager.numPeers)
+            downloadedLabel.textWithFit = Utils.getSizeText(size: manager.totalDownload)
+            uploadedLabel.textWithFit = Utils.getSizeText(size: manager.totalUpload)
+            seedersLabel.textWithFit = String(manager.numSeeds)
+            peersLabel.textWithFit = String(manager.numPeers)
 
             switcher.setOn(Manager.managerSaves[managerHash]!.seedMode, animated: true)
 

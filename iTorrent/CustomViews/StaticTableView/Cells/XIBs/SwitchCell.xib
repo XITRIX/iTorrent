@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,29 +16,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZC-tY-QYG" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="16" y="11.5" width="319" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-Bq-ekh">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-Bq-ekh">
                         <rect key="frame" x="349" y="6.5" width="51" height="31"/>
                     </switch>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ICT-g1-GwA">
+                        <rect key="frame" x="16" y="8" width="67.5" height="28.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-De-cAy">
+                                <rect key="frame" x="0.0" y="0.0" width="26" height="28.5"/>
+                                <state key="normal" image="Info">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="hintButtonAction:" destination="rjc-t4-Qdp" eventType="touchUpInside" id="4Gi-4m-0VS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZC-tY-QYG" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                <rect key="frame" x="34" y="0.0" width="33.5" height="28.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zDO-Bq-ekh" firstAttribute="leading" secondItem="cZC-tY-QYG" secondAttribute="trailing" constant="14" id="Dmx-Ly-R4Z"/>
+                    <constraint firstItem="ICT-g1-GwA" firstAttribute="leading" secondItem="FIf-GJ-8tD" secondAttribute="leading" constant="16" id="JMn-vn-A0p"/>
                     <constraint firstItem="zDO-Bq-ekh" firstAttribute="centerY" secondItem="FIf-GJ-8tD" secondAttribute="centerY" id="M0i-Bb-m5P"/>
-                    <constraint firstItem="cZC-tY-QYG" firstAttribute="leading" secondItem="FIf-GJ-8tD" secondAttribute="leading" constant="16" id="QK9-2j-yyW"/>
+                    <constraint firstItem="ICT-g1-GwA" firstAttribute="centerY" secondItem="FIf-GJ-8tD" secondAttribute="centerY" id="Yf3-qk-Ihw"/>
+                    <constraint firstItem="zDO-Bq-ekh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ICT-g1-GwA" secondAttribute="trailing" constant="8" id="Zki-Qt-6lI"/>
                     <constraint firstAttribute="trailing" secondItem="zDO-Bq-ekh" secondAttribute="trailing" constant="16" id="g5u-Pl-cbg"/>
-                    <constraint firstItem="cZC-tY-QYG" firstAttribute="centerY" secondItem="FIf-GJ-8tD" secondAttribute="centerY" id="rwt-Ie-8Zg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="hintButton" destination="kDw-De-cAy" id="XTw-LW-nac"/>
                 <outlet property="switcher" destination="zDO-Bq-ekh" id="wvo-vY-13i"/>
                 <outlet property="title" destination="cZC-tY-QYG" id="LgK-ke-TbA"/>
             </connections>
             <point key="canvasLocation" x="91" y="64"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Info" width="26" height="28.5"/>
+    </resources>
 </document>

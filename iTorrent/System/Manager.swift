@@ -25,7 +25,8 @@ class Manager {
 
     public static func initManager() {
         DispatchQueue.global(qos: .background).async {
-            init_engine(Manager.rootFolder, Manager.configFolder)
+            let appName = "\(Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String) \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)"
+            init_engine(appName, Manager.rootFolder, Manager.configFolder)
             engineInited = true
             restoreAllTorrents()
 

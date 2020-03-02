@@ -122,7 +122,7 @@ class TorrentFilesController: ThemedUIViewController {
                     }
                     
                     if self.tableViewEditMode,
-                        self.tableView.numberOfRows(inSection: 0) != self.downloadedFiles.count {
+                        self.tableView.numberOfRows(inSection: 0) != self.showFolders.keys.count + self.downloadedFiles.count {
                         self.tableView.reloadSections([0], with: .automatic)
                     }
                 }
@@ -378,6 +378,7 @@ extension TorrentFilesController: UITableViewDataSource {
                     cell.title.text = key
                     cell.size.text = Utils.getSizeText(size: showFolders[key]!.size)
                     cell.actionDelegate = self
+                    cell.update()
                     return cell
                 }
             } else {
@@ -398,6 +399,7 @@ extension TorrentFilesController: UITableViewDataSource {
                     cell.title.text = key
                     cell.size.text = Utils.getSizeText(size: showFolders[key]!.size)
                     cell.actionDelegate = self
+                    cell.update()
                     return cell
                 }
             } else {
@@ -573,6 +575,7 @@ extension TorrentFilesController: FileCellActionDelegate {
     func fileCellAction(_ sender: UISwitch, file: File) {
         let file = Utils.getFileByName(showFiles, file: file)!
         file.isDownloading = sender.isOn ? 4 : 0
-        set_torrent_file_priority(managerHash, Int32(file.number), sender.isOn ? 4 : 0)
+        //set_torrent_file_priority(managerHash, Int32(file.number), sender.isOn ? 4 : 0)
+        setFilesPriority()
     }
 }

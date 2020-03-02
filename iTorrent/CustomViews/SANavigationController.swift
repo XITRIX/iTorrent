@@ -43,9 +43,24 @@ extension SANavigationController: UINavigationControllerDelegate {
 
 extension SANavigationController: UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if viewControllers.last?.navigationItem.leftBarButtonItem != nil {
+            return false
+        }
+        
+        var isLeftToRight = true
+        if #available(iOS 10.0, *) {
+            isLeftToRight = view.effectiveUserInterfaceLayoutDirection == .leftToRight
+        }
+        
         if let pan = gestureRecognizer as? UIPanGestureRecognizer {
             let velocity = pan.velocity(in: view)
-            return abs(velocity.x) > abs(velocity.y) && velocity.x > 0
+            if abs(velocity.x) > abs(velocity.y) {
+                if isLeftToRight {
+                    return  velocity.x > 0
+                } else {
+                    return velocity.x < 0
+                }
+            }
         }
         return false
     }

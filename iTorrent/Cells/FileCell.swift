@@ -46,16 +46,16 @@ class FileCell: ThemedUITableViewCell {
         })
 
         if hideUI {
-            shareButton.isHidden = true
+            shareButton?.isHidden = true
             switcher.isHidden = true
             titleConstraint?.constant = 13
         } else {
             titleConstraint?.constant = 70
             if percent >= 100, !adding {
-                shareButton.isHidden = false
+                shareButton?.isHidden = false
                 switcher.isHidden = true
             } else {
-                shareButton.isHidden = true
+                shareButton?.isHidden = true
                 switcher.isHidden = false
             }
         }

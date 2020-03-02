@@ -150,7 +150,7 @@ class PreferencesController: StaticTableViewController {
 
         // FTP
         var ftp = [CellModelProtocol]()
-        ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey) { switcher in
+        ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
             switcher.isOn ? Manager.startFileSharing() : Manager.stopFileSharing()
             self.tableView.reloadSections([3], with: .automatic)
         })

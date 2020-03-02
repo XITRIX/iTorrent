@@ -92,6 +92,7 @@
 "Settings.UpLimit" = "Лимит раздачи";
 "Settings.SpeedHeader" = "Ограничение скорости";
 "Settings.FTPEnable" = "Включить";
+"Settings.FTPEnable.Hint" = "При помощи данной настройки вы можете включить файловый вервер, к которому можно подключиться с помощью обычного веб-браузера, либо WebDav клиента";
 "Settings.FTP.Settings" = "Настройки";
 "Settings.FTPBackground" = "Работа в фоне";
 "Settings.FTP.Message.NoNetwork" = "Подключитесь к WIFI чтобы поделиться файлами";

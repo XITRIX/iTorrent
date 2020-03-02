@@ -92,6 +92,7 @@
 "Settings.UpLimit" = "Upload limit";
 "Settings.SpeedHeader" = "Speed limitation";
 "Settings.FTPEnable" = "Enable";
+"Settings.FTPEnable.Hint" = "Using this setting, you can enable the file server, which you can connect to by a regular Web browser, or WebDav client";
 "Settings.FTP.Settings" = "Settings";
 "Settings.FTPBackground" = "Run in background";
 "Settings.FTP.Message.NoNetwork" = "Connect to WIFI to use file sharing";

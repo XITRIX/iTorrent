@@ -15,13 +15,15 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     static let name = id
 
     @IBOutlet var title: UILabel!
+    @IBOutlet var hintButton: UIButton!
     @IBOutlet var switcher: UISwitch! {
         didSet {
             switcher.addTarget(self, action: #selector(executeAction), for: .valueChanged)
         }
     }
 
-    var action: ((UISwitch) -> ())?
+    private var action: ((UISwitch) -> ())?
+    private var hintText: String?
 
     override func themeUpdate() {
         super.themeUpdate()
@@ -50,6 +52,9 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         switcher.onTintColor = model.switchColor
         switcher.isEnabled = !(model.disableCondition?() ?? false)
         switcher.setOn(model.defaultValue(), animated: false)
+
+        hintText = model.hint
+        hintButton.isHidden = hintText == nil
     }
 
     func setModel(_ model: ModelProperty) {
@@ -61,16 +66,26 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         switcher.onTintColor = model.switchColor
         switcher.isEnabled = !(model.disableCondition?() ?? false)
         switcher.setOn(model.property.value, animated: false)
+
+        hintText = model.hint
+        hintButton.isHidden = hintText == nil
     }
 
     @objc private func executeAction() {
         action?(switcher)
     }
 
+    @IBAction func hintButtonAction(_ sender: UIButton) {
+        let vc = ThemedUIAlertController(title: Localize.get("Hint"), message: hintText, preferredStyle: .alert)
+        vc.addAction(UIAlertAction(title: "OK", style: .cancel))
+        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true)
+    }
+
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var defaultValue: () -> Bool
+        var hint: String?
         var switchColor: UIColor?
         var hiddenCondition: (() -> Bool)?
         var disableCondition: (() -> Bool)?
@@ -82,6 +97,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var reuseCellIdentifier: String = id
         var title: String
         var property: UserPreferences.SettingProperty<Bool>
+        var hint: String?
         var switchColor: UIColor?
         var hiddenCondition: (() -> Bool)?
         var disableCondition: (() -> Bool)?
