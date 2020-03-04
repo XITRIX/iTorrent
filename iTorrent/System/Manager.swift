@@ -291,8 +291,7 @@ class Manager {
     }
 
     static func getManagerByHash(hash: String) -> TorrentStatus? {
-        let localStates = torrentStates
-        let filter = localStates.filter { $0.hash == hash }
+        let filter = torrentStates.filter { $0.hash == hash }
         return filter.count > 0 ? filter.first : nil
     }
 

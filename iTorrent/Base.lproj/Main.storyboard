@@ -1463,6 +1463,63 @@
             </objects>
             <point key="canvasLocation" x="2732" y="116"/>
         </scene>
+        <!--google.ru-->
+        <scene sceneID="tbR-BD-4p4">
+            <objects>
+                <viewController storyboardIdentifier="WebView" modalPresentationStyle="fullScreen" id="ESe-e4-HWc" customClass="WebViewController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8RK-qB-3hv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wgb-nd-v6i"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" image="chevron.left" catalog="system" id="LI9-gV-Pxo">
+                            <connections>
+                                <action selector="backAction:" destination="ESe-e4-HWc" id="DZT-SU-yiX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="Tpu-mq-cZR"/>
+                        <barButtonItem title="Item" image="chevron.right" catalog="system" id="ySf-OK-NDV">
+                            <connections>
+                                <action selector="forwardAction:" destination="ESe-e4-HWc" id="cT5-GH-ga6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="Tfp-SH-2HW"/>
+                        <barButtonItem systemItem="action" id="lK1-ql-6Yl">
+                            <connections>
+                                <action selector="shareAction:" destination="ESe-e4-HWc" id="HKJ-L5-p3o"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="2CI-9M-Yvu"/>
+                        <barButtonItem image="safari" catalog="system" id="uPQ-44-87X">
+                            <connections>
+                                <action selector="openInSafari:" destination="ESe-e4-HWc" id="9ed-Wv-ibP"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="google.ru" id="MTv-80-dIa">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="Up4-7x-R1f">
+                            <connections>
+                                <action selector="closeAction:" destination="ESe-e4-HWc" id="zYJ-tH-J3f"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="refresh" id="g5a-h1-ys4">
+                            <connections>
+                                <action selector="refreshAction:" destination="ESe-e4-HWc" id="8zh-XH-ScQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backButton" destination="LI9-gV-Pxo" id="wZt-Cs-oyB"/>
+                        <outlet property="forwardButton" destination="ySf-OK-NDV" id="16i-E5-9vT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cdH-J0-Rce" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1830" y="-655"/>
+        </scene>
         <!--Trackers-->
         <scene sceneID="Az8-xH-WhJ">
             <objects>
@@ -1581,7 +1638,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5PK-xO-Ppv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2733" y="-654"/>
+            <point key="canvasLocation" x="2732" y="-655"/>
         </scene>
     </scenes>
     <resources>
@@ -1591,6 +1648,9 @@
         <image name="Settings" width="25" height="25"/>
         <image name="Share" width="25" height="25"/>
         <image name="Sort" width="25" height="25"/>
+        <image name="chevron.left" catalog="system" width="48" height="64"/>
+        <image name="chevron.right" catalog="system" width="48" height="64"/>
+        <image name="safari" catalog="system" width="64" height="60"/>
     </resources>
     <color key="tintColor" red="1" green="0.29803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

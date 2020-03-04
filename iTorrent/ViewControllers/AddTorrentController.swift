@@ -40,6 +40,8 @@ class AddTorrentController: ThemedUIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presentationController?.delegate = self
 
         if root.starts(with: "/") {
             root.removeFirst()
@@ -183,6 +185,7 @@ class AddTorrentController: ThemedUIViewController {
         if FileManager.default.fileExists(atPath: Manager.configFolder + "/_temp.torrent") {
             try? FileManager.default.removeItem(atPath: Manager.configFolder + "/_temp.torrent")
         }
+        FullscreenAd.shared.load()
         dismiss(animated: true)
     }
 
@@ -248,6 +251,7 @@ class AddTorrentController: ThemedUIViewController {
             controller.addAction(close)
             present(controller, animated: true)
         }
+        FullscreenAd.shared.load()
     }
 
     func updateWeightLabel() {
@@ -258,6 +262,15 @@ class AddTorrentController: ThemedUIViewController {
             }
         }
         weightLabel.title = Utils.getSizeText(size: weight)
+    }
+}
+
+extension AddTorrentController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        if FileManager.default.fileExists(atPath: Manager.configFolder + "/_temp.torrent") {
+            try? FileManager.default.removeItem(atPath: Manager.configFolder + "/_temp.torrent")
+        }
+        FullscreenAd.shared.load()
     }
 }
 

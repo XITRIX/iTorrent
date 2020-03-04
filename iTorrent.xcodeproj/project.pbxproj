@@ -56,6 +56,7 @@
 		7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */; };
 		7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */; };
 		7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */; };
+		7CB3A5072418034100CE44A2 /* FullscreenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3A5062418034100CE44A2 /* FullscreenAd.swift */; };
 		7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082A20AA28F200F76931 /* TorrentStatus.swift */; };
 		7CB8083220AADA8300F76931 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
 		7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083420AAF09F00F76931 /* Downloader.swift */; };
@@ -68,6 +69,7 @@
 		7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */; };
 		7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC7765231961C20075A685 /* UserPreferences.swift */; };
 		7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */; };
+		7CBEFCF12413039400FEEA05 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEFCF02413039400FEEA05 /* WebViewController.swift */; };
 		7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7662623F93F690072338B /* NotificationHelper.swift */; };
 		7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */; };
 		7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
@@ -156,6 +158,7 @@
 		7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLimitPicker.swift; sourceTree = "<group>"; };
 		7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUISplitViewController.swift; sourceTree = "<group>"; };
+		7CB3A5062418034100CE44A2 /* FullscreenAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenAd.swift; sourceTree = "<group>"; };
 		7CB8082A20AA28F200F76931 /* TorrentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentStatus.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 		7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CBC7765231961C20075A685 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtentions.swift; sourceTree = "<group>"; };
+		7CBEFCF02413039400FEEA05 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7CC7662623F93F690072338B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUINavigationController.swift; sourceTree = "<group>"; };
 		7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUIActivityViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 				7CB8083420AAF09F00F76931 /* Downloader.swift */,
 				7CF522EB20AF78B100D319E6 /* BackgroundTask.swift */,
 				7CBC7765231961C20075A685 /* UserPreferences.swift */,
+				7CB3A5062418034100CE44A2 /* FullscreenAd.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */,
 				7C4B10AC20EA278800440E74 /* TrackersListController.swift */,
 				7C5D7683230335A4002E1352 /* FilesBrowserController.swift */,
+				7CBEFCF02413039400FEEA05 /* WebViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -660,6 +666,7 @@
 				7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */,
 				7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */,
 				7C4B109D20DFF12300440E74 /* ThemedUIViewController.swift in Sources */,
+				7CB3A5072418034100CE44A2 /* FullscreenAd.swift in Sources */,
 				7C802D07212C6D060031C19F /* Dialogs.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
 				7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */,
@@ -670,6 +677,7 @@
 				7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */,
 				7C7D0ABA20D911EB001B08E5 /* SettingsSortingController.swift in Sources */,
 				7C18DF05231D52E500A14326 /* SegueCell.swift in Sources */,
+				7CBEFCF12413039400FEEA05 /* WebViewController.swift in Sources */,
 				7C4B10AF20EA30C500440E74 /* TrackerCell.swift in Sources */,
 				7C7D0AB620D8EA50001B08E5 /* Manager.swift in Sources */,
 				7C4B10A320E0099300440E74 /* ThemedUILabel.swift in Sources */,

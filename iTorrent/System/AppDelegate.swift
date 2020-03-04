@@ -17,11 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
 
     static var backgrounded = false
+    var openedByFile = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        DispatchQueue.global(qos: .utility).async {
+            sleep(1)
+            if !self.openedByFile {
+                FullscreenAd.shared.load()
+            }
+        }
 
         Manager.initManager()
 
@@ -58,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         if url.absoluteString.hasPrefix("magnet:") {
             Manager.addMagnet(url.absoluteString)
         } else {
+            openedByFile = true
             Manager.addTorrentFromFile(url)
         }
 
