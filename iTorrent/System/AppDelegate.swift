@@ -12,6 +12,10 @@ import UserNotifications
 import Firebase
 import GoogleMobileAds
 
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
@@ -23,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Override point for customization after application launch.
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices:[
+          MSAnalytics.self,
+          MSCrashes.self
+        ])
         
         DispatchQueue.global(qos: .utility).async {
             sleep(1)

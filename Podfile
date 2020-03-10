@@ -14,6 +14,7 @@ target 'iTorrent' do
   pod 'Google-Mobile-Ads-SDK'
   pod "GCDWebServer/WebUploader", "~> 3.0"
   pod "GCDWebServer/WebDAV", "~> 3.0"
+  pod 'AppCenter'
 
 end
 
