@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,17 +31,17 @@
                             <constraint firstAttribute="bottom" secondItem="ic8-8p-hEU" secondAttribute="bottom" id="2Hc-In-f9N"/>
                             <constraint firstItem="ic8-8p-hEU" firstAttribute="top" secondItem="eSa-wO-0Ie" secondAttribute="top" id="b4a-26-ctv"/>
                             <constraint firstAttribute="trailing" secondItem="ic8-8p-hEU" secondAttribute="trailing" constant="16" id="hYl-a3-f5D"/>
-                            <constraint firstItem="ic8-8p-hEU" firstAttribute="leading" secondItem="eSa-wO-0Ie" secondAttribute="leading" constant="16" id="xQw-iR-Tzh"/>
                         </constraints>
                     </view>
                     <blurEffect style="extraLight"/>
                 </visualEffectView>
             </subviews>
             <constraints>
+                <constraint firstItem="ic8-8p-hEU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="HRh-uF-9GA"/>
                 <constraint firstItem="xZ5-5z-75L" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="UBM-en-p5D"/>
                 <constraint firstItem="xZ5-5z-75L" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="d5T-nt-PbX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="xZ5-5z-75L" secondAttribute="bottom" id="gui-hO-yVu"/>
-                <constraint firstItem="xZ5-5z-75L" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rBi-GN-eGK"/>
+                <constraint firstItem="xZ5-5z-75L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rBi-GN-eGK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -51,6 +49,7 @@
                 <outlet property="background" destination="xZ5-5z-75L" id="XLn-BK-V05"/>
                 <outlet property="title" destination="ic8-8p-hEU" id="sCk-J4-0Nt"/>
             </connections>
+            <point key="canvasLocation" x="138" y="155"/>
         </view>
     </objects>
 </document>

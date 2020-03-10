@@ -66,6 +66,7 @@
 "Currently sorted by " = "Сейчас отсортеровано по ";
 "Disable state sections" = "Отключить разделение на секции";
 "Enable state sections" = "Включить разделение на секции";
+"MainController.Table.Placeholder.Text" = "Список загрузок пуст!\nИспользуйте Google Chrome для загрузки торент файлов или добавьте прямую ссылку с помощью кнопки '+'";
 
 //Torrent details
 "Torrent file" = "Torrent файл";
@@ -73,21 +74,40 @@
 "Magnet link copied to clipboard" = "Magnet ссылка скопирована";
 "Files" = "Файлы";
 "Trackers" = "Трекеры";
+"Details.BackgroundSeeding.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 
 //Settings Controller
+"Settings.Title" = "Настройки";
 "Settings.Order" = "Порядок секций";
 "Settings.AutoTheme" = "Оформление системы";
 "Settings.Theme" = "Тёмная тема";
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
+"Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";
 "Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
+"Settings.ZeroSpeedLimit" = "Нулевая скорость";
+"Settings.ZeroSpeedLimit.Hint" = "Если в течение некоторого времени скорость загрузки равна нулю, приложение остановит работу в фоне, чтобы предотвратить бесполезную разрядку батареи";
 "Settings.DownLimit" = "Лимит загрузки";
 "Settings.UpLimit" = "Лимит раздачи";
 "Settings.SpeedHeader" = "Ограничение скорости";
 "Settings.FTPEnable" = "Включить";
+"Settings.FTPEnable.Hint" = "При помощи данной настройки вы можете включить файловый вервер, к которому можно подключиться с помощью обычного веб-браузера, либо WebDav клиента";
+"Settings.FTP.Settings" = "Настройки";
 "Settings.FTPBackground" = "Работа в фоне";
-"Settings.FTPHeader" = "FTP Сервер (Бета)";
+"Settings.FTP.Message.NoNetwork" = "Подключитесь к WIFI чтобы поделиться файлами";
+"Settings.FTP.Message" = "Подключитесь к: ";
+"Settings.FTP.WebDav.Username" = "Логин";
+"Settings.FTP.WebDav.Password" = "Пароль";
+"Settings.FTP.WebDav.Username.Placeholder" = "Логин";
+"Settings.FTP.WebDav.Password.Placeholder" = "Пароль (опционально)";
+"Settings.FTP.WebDav.PassText" = "Перезапустите сервер для применения настроек";
+"Settings.FTP.WebDav.WebTitle" = "Web Сервер";
+"Settings.FTP.WebDav.WebText" = "Используйте любой браузер для обмена файлами";
+"Settings.FTP.WebDav.WebDavTitle" = "WebDAV Сервер";
+"Settings.FTP.WebDav.WebDavPort" = "Порт";
+"Settings.FTP.WebDav.WebDavText" = "Используйте WebDAV клиент для соединения с iTorrent";
+"Settings.FTPHeader" = "Обмен файлами";
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
 "Settings.NotifyBadge" = "Показывать бейджик";
@@ -97,14 +117,14 @@
 "Settings.UpdateHeader" = "Обновления";
 "Settings.DonateDisable" = "Отключить рекламу";
 "Settings.DonateCard" = "Номер карты VISA";
-"Settings.DonateCard.Copy" = "Скопировать";
 "Settings.DonateCard.Open" = "Открыть";
 "Settings.DonateCard.DonatePlatforms" = "Задонатить";
 "Settings.DonateCard.DonatePlatforms.Title" = "Выберите платформу для пожертвований:";
 "Settings.DonateHeader" = "Донат на еду";
 
+"Settings.Sorting.Revert" = "Сбросить";
+
 "Warning" = "Внимание";
-"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 "Enable" = "Включить";
 "Unlimited" = "Без ограничений";
 "Torrent rehash" = "Перепроверка хэша";
@@ -112,7 +132,6 @@
 "Rehash" = "Старт";
 
 "Connect to: ftp://" = "Подключитесь к: ftp://";
-"Connect to WIFI to use FTP" = "Подключитесь к WIFI чтобы использовать FTP";
 "Current app version: " = "Версия приложения: ";
 "New version " = "Доступна новая версия: ";
 " available" = "";
@@ -120,8 +139,6 @@
 "Latest version installed" = "Установлена последняя версия";
 "Update check failed" = "Ошибка проверки обновлений";
 "WARNING" = "ВНИМАНИЕ";
-"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
-"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "Это позволит iTorrent работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Copied CC # to clipboard!" = "Номер карты скопирован!";
 
 "Supplication" = "Просьба";
@@ -146,12 +163,15 @@
 "Medium" = "Средний";
 "Low" = "Низкий";
 
+//Torrent Files Controller
+"TorrentFilesController.Select" = "Выбрать";
+"TorrentFilesController.SelectAll" = "Отметить все";
+"TorrentFilesController.DeselectAll" = "Убрать все";
+
 //Trackers List Controller
 "Working" = "Работает";
 "Inactive" = "Неактивен";
 "Verified" = "Проверен";
-"Sorry" = "Извините";
-"This action will be available in future updates" = "Это действие будет доступно в будущих обновлениях";
 "Add Tracker" = "Добавить Трекер";
 "Enter the full tracker's URL" = "Введите подный URL трекера";
 "Tracker's URL" = "Введите URL трекера";
@@ -175,11 +195,21 @@
 
 "This action will recheck the state of all downloaded files for torrents:" = "Это перепроверит состояние всех скачанных файлов для этих торрентов:";
 
+//Background Task
+"BackgroundTask.LowSpeed.Title" = "Маленькая скорость загрузки ";
+"BackgroundTask.LowSpeed.Message" = " прекратит фоновую загрузку для предотвращения разрядки аккумулятора";
+
 //News Alerts
 "Dialogs.News.Title" = "Внимание!";
-"Dialogs.News.Message" = "В iOS 13, если приложение было переподписано (например через Impactor), приложение откажется открывать torrent файлы через меню \"Поделиться\" если оно собрано для iOS 13. Используйте Chrome или Telegram для загрузки и открытия torrent файлов (они всё ещё собираются под старые версии iOS) или добавляйте их через URL.\nТак же вы можете положить torrent файл непосредственно в папку \"_Config\" через приложение Файлы.\Либо соберите приложение самостоятельно через XCode, тогда открытие файлов будет работать.";
+"Dialogs.News.Message" = "Если приложение не открывает .torrent файлы, используйте для их загрузки Google Chorome!";
+
+"Disabled" = "Отключено";
+"Hint" = "Подсказка";
+
+"minute:single" = "минута";
+"minute:plural" = "минуты";
+"minute:parent" = "минут";
 
 //Version Info
 "info" = " Изменения";
-"UpdateText" = "----- 1.7 -----\n- Добавлена поддержка iOS 13\n- Добавлена последовательная загрузка файлов\n- Добавлена возможность изменять трекеры\n----- 1.7.1 -----\n- Добавлен поиск по торрентам\n- Исправления в локализации\n- Исправления в теме\n----- 1.7.2 -----\n- Исправлен краш при входящем звонке\n- Небольшие улучшения\n----- 1.7.3 -----\n- Все основные библиотеки обновлены до последних версий\n- Добавлен стартовый экран\n- Автопереключение темы из iOS 13\n- Исправлено множество ошибок";
-
+"UpdateText" = "- Добавлена поддержка протокола https для трекеров!\n- FTP сервер был заменён на WebDAV, теперь обмен файлами возможен через браузер\n- Добавлена остановка фонового режима при скачивании с нулевой скоростью\n- Нажатие на оповещение теперь открывает конкретное окно\n- Улучшения в интерфейсе";

@@ -15,7 +15,7 @@
 "Finished" = "Finished";
 "Seeding" = "Seeding";
 "Allocating" = "Allocating";
-"CheckingFastresume" = "Checking fastresume";
+"Checking fastresume" = "Checking fastresume";
 "Paused" = "Paused";
 
 //Main Controller
@@ -66,6 +66,7 @@
 "Currently sorted by " = "Currently sorted by ";
 "Disable state sections" = "Disable state sections";
 "Enable state sections" = "Enable state sections";
+"MainController.Table.Placeholder.Text" = "Download list is empty!\nUse Google Chrome to download torrent files or add a direct link using the '+' button";
 
 //Torrent details
 "Torrent file" = "Torrent file";
@@ -73,21 +74,40 @@
 "Magnet link copied to clipboard" = "Magnet link copied to clipboard";
 "Files" = "Files";
 "Trackers" = "Trackers";
+"Details.BackgroundSeeding.Warning" = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 
 //Settings Controller
+"Settings.Title" = "Preferences";
 "Settings.Order" = "Section order";
 "Settings.AutoTheme" = "Automatic theme";
 "Settings.Theme" = "Dark mode";
 "Settings.BackgroundEnable" = "Enable";
 "Settings.BackgroundSeeding" = "Allow seeding";
+"Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.BackgroundHeader" = "Background downloading";
 "Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
-"Settings.DownLimit" = "Download Limit";
-"Settings.UpLimit" = "Upload Limit";
+"Settings.ZeroSpeedLimit" = "Zero speed limit";
+"Settings.ZeroSpeedLimit.Hint" = "If download speed equals zero for a certain amount of time, application will stop background processing to prevent useless battery drain";
+"Settings.DownLimit" = "Download limit";
+"Settings.UpLimit" = "Upload limit";
 "Settings.SpeedHeader" = "Speed limitation";
 "Settings.FTPEnable" = "Enable";
+"Settings.FTPEnable.Hint" = "Using this setting, you can enable the file server to which you can connect via a regular Web browser, or WebDav client";
+"Settings.FTP.Settings" = "Settings";
 "Settings.FTPBackground" = "Run in background";
-"Settings.FTPHeader" = "FTP Server (BETA)";
+"Settings.FTP.Message.NoNetwork" = "Connect to WIFI to use file sharing";
+"Settings.FTP.Message" = "Connect to: ";
+"Settings.FTP.WebDav.Username" = "Username";
+"Settings.FTP.WebDav.Password" = "Password";
+"Settings.FTP.WebDav.Username.Placeholder" = "Username";
+"Settings.FTP.WebDav.Password.Placeholder" = "Password (optional)";
+"Settings.FTP.WebDav.PassText" = "Restart server to apply settings";
+"Settings.FTP.WebDav.WebTitle" = "Web Server";
+"Settings.FTP.WebDav.WebText" = "Use any web browser to share files";
+"Settings.FTP.WebDav.WebDavTitle" = "WebDAV Server";
+"Settings.FTP.WebDav.WebDavPort" = "Port";
+"Settings.FTP.WebDav.WebDavText" = "Use WebDAV client to connect to iTorrent";
+"Settings.FTPHeader" = "File sharing";
 "Settings.NotifyFinishLoad" = "On finish loading";
 "Settings.NotifyFinishSeed" = "On finish seeding";
 "Settings.NotifyBadge" = "Enable app's badge icon";
@@ -97,22 +117,20 @@
 "Settings.UpdateHeader" = "Updates";
 "Settings.DonateDisable" = "Disable ADS";
 "Settings.DonateCard" = "VISA CREDIT CARD NUMBER";
-"Settings.DonateCard.Copy" = "Copy";
 "Settings.DonateCard.Open" = "Open";
 "Settings.DonateCard.DonatePlatforms" = "Donate";
 "Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
 "Settings.DonateHeader" = "Donate for donuts";
 
+"Settings.Sorting.Revert" = "Revert";
+
 "Warning" = "Warning";
-"Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain." = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 "Enable" = "Enable";
 "Unlimited" = "Unlimited";
 "Torrent rehash" = "Torrent rehash";
 "This action will recheck the state of all downloaded files" = "This action will recheck the state of all downloaded files";
 "Rehash" = "Rehash";
 
-"Connect to: ftp://" = "Connect to: ftp://";
-"Connect to WIFI to use FTP" = "Connect to WIFI to use FTP";
 "Current app version: " = "Current app version: ";
 "New version " = "New version ";
 " available" = " available";
@@ -120,8 +138,6 @@
 "Latest version installed" = "Latest version installed";
 "Update check failed" = "Update check failed";
 "WARNING" = "WARNING";
-"This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
-"This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!" = "This will let iTorrent run in the background indefinitely, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Copied CC # to clipboard!" = "Copied CC # to clipboard!";
 
 "Supplication" = "Supplication";
@@ -139,12 +155,15 @@
 "Don't Download" = "Don't Download";
 "Share" = "Share";
 
+//Torrent Files Controller
+"TorrentFilesController.Select" = "Select";
+"TorrentFilesController.SelectAll" = "Select All";
+"TorrentFilesController.DeselectAll" = "Deselect All";
+
 //Trackers List Controller
 "Working" = "Working";
 "Inactive" = "Inactive";
 "Verified" = "Verified";
-"Sorry" = "Sorry";
-"This action will be available in future updates" = "This action will be available in future updates";
 "Add Tracker" = "Add Tracker";
 "Enter the full tracker's URL" = "Enter the full tracker URL";
 "Tracker's URL" = "Enter tracker URL";
@@ -168,11 +187,21 @@
 
 "This action will recheck the state of all downloaded files for torrents:" = "This action will recheck the state of all downloaded files for torrents:";
 
+//Background Task
+"BackgroundTask.LowSpeed.Title" = "Download speed is low ";
+"BackgroundTask.LowSpeed.Message" = " will stop background downloading to prevent battery drain";
+
 //News Alerts
 "Dialogs.News.Title" = "Warning!";
-"Dialogs.News.Message" = "In iOS 13, if app was resigned (i.e. by Impactor) app will refuse opening torrent files using \"share\" menu from apps for iOS 13. Use Chrome or Telegram to download and open torrent files, cause they still builds for previous ios versions. You can add torrents by url too.\nAs workaround, you can add torrent file directly into \"_Config\" folder using Files.\nAlso you can build this app by your self using XCode, so file sharing will work from any app.";
+"Dialogs.News.Message" = "If app not opening .torrent files, use Google Chrome to download them!";
+
+"Disabled" = "Disabled";
+"Hint" = "Hint";
+
+"minute:single" = "minute";
+"minute:plural" = "minutes";
+"minute:parent" = "minutes";
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "----- 1.7 -----\n- Added iOS 13 support\n- Added sequential files download\n- Added an ability to change trackers\n----- 1.7.1 -----\n- Added search by your torrents\n- Localization fixes\n- Theme fixes\n----- 1.7.2 -----\n- Income call crash fixed\n- Minor improvements\n----- 1.7.3 -----\n- All core libraries updated to the latest versions\n- Added launch screen\n- iOS 13 automatic theme switcher\n- Huge code refactoring\n- Tons of bugs fixed";
-
+"UpdateText" = "- Added https protocol support for trackers!\n- FTP server replaced by WebDAV, file sharing is now possible through a web browser\n- Added background stop when downloading at zero speed\n- Clicking on a notification now opens a specific window\n- UI improvements";

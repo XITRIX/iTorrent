@@ -52,17 +52,28 @@
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
 		7C802CFF212B3B630031C19F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C802D01212B3B630031C19F /* Localizable.strings */; };
 		7C802D07212C6D060031C19F /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* Dialogs.swift */; };
+		7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C99E363237B3CB900FB66F0 /* TextFieldCell.swift */; };
+		7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */; };
+		7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */; };
 		7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */; };
+		7CB3A5072418034100CE44A2 /* FullscreenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3A5062418034100CE44A2 /* FullscreenAd.swift */; };
 		7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8082A20AA28F200F76931 /* TorrentStatus.swift */; };
 		7CB8083220AADA8300F76931 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
 		7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083420AAF09F00F76931 /* Downloader.swift */; };
 		7CB8083720AAFFD200F76931 /* TorrentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */; };
 		7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083A20AB008700F76931 /* SwitchCell.swift */; };
+		7CB9BBAA23786C8A00C8F05E /* PreferencesWebDavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9BBA923786C8A00C8F05E /* PreferencesWebDavController.swift */; };
+		7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */; };
+		7CB9BBAF23786D8D00C8F05E /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9BBAE23786D8D00C8F05E /* Section.swift */; };
 		7CBB17DB232328D20043A9F6 /* SizePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DA232328D20043A9F6 /* SizePicker.swift */; };
 		7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */; };
 		7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC7765231961C20075A685 /* UserPreferences.swift */; };
+		7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */; };
+		7CBEFCF12413039400FEEA05 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEFCF02413039400FEEA05 /* WebViewController.swift */; };
+		7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7662623F93F690072338B /* NotificationHelper.swift */; };
 		7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */; };
 		7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
+		7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */; };
 		7CE3CEB32321C350005575D5 /* SpeedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3CEB22321C350005575D5 /* SpeedPicker.swift */; };
 		7CE3CEB52321E14B005575D5 /* UpdateInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */; };
 		7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */; };
@@ -72,6 +83,11 @@
 		7CF522EE20AF7B0300D319E6 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CF522ED20AF7B0200D319E6 /* 3.wav */; };
 		7CF5F59220AC325100A18C3E /* TorrentFilesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */; };
 		7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF5F59320AC86F500A18C3E /* MainController.swift */; };
+		7CFB6E9223F8914D00F5D210 /* SANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB6E9123F8914D00F5D210 /* SANavigationController.swift */; };
+		7CFDDCC9235B9F110008EBEA /* SegueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCC8235B9F110008EBEA /* SegueCell.xib */; };
+		7CFDDCCB235BA3940008EBEA /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCA235BA3940008EBEA /* SwitchCell.xib */; };
+		7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */; };
+		7CFDDCCF235BA4BE0008EBEA /* UpdateInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,17 +154,28 @@
 		7C802D02212B3B860031C19F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C802D03212B3D240031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C802D06212C6D060031C19F /* Dialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogs.swift; sourceTree = "<group>"; };
+		7C99E363237B3CB900FB66F0 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLimitPicker.swift; sourceTree = "<group>"; };
 		7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUISplitViewController.swift; sourceTree = "<group>"; };
+		7CB3A5062418034100CE44A2 /* FullscreenAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenAd.swift; sourceTree = "<group>"; };
 		7CB8082A20AA28F200F76931 /* TorrentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentStatus.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7CB8083420AAF09F00F76931 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsController.swift; sourceTree = "<group>"; };
 		7CB8083A20AB008700F76931 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		7CB9BBA923786C8A00C8F05E /* PreferencesWebDavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWebDavController.swift; sourceTree = "<group>"; };
+		7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
+		7CB9BBAE23786D8D00C8F05E /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		7CBB17DA232328D20043A9F6 /* SizePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePicker.swift; sourceTree = "<group>"; };
 		7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CBC7765231961C20075A685 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtentions.swift; sourceTree = "<group>"; };
+		7CBEFCF02413039400FEEA05 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		7CC7662623F93F690072338B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUINavigationController.swift; sourceTree = "<group>"; };
 		7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUIActivityViewController.swift; sourceTree = "<group>"; };
+		7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		7CE3CEB22321C350005575D5 /* SpeedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPicker.swift; sourceTree = "<group>"; };
 		7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoCell.swift; sourceTree = "<group>"; };
 		7CE9EA4B231C4D9300D50753 /* iTorrent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iTorrent.entitlements; sourceTree = "<group>"; };
@@ -159,6 +186,11 @@
 		7CF522ED20AF7B0200D319E6 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
 		7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesController.swift; sourceTree = "<group>"; };
 		7CF5F59320AC86F500A18C3E /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		7CFB6E9123F8914D00F5D210 /* SANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
+		7CFDDCC8235B9F110008EBEA /* SegueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegueCell.xib; sourceTree = "<group>"; };
+		7CFDDCCA235BA3940008EBEA /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateInfoCell.xib; sourceTree = "<group>"; };
 		F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,12 +220,12 @@
 			isa = PBXGroup;
 			children = (
 				7C10D34A232188B200B5ED9A /* PopupView */,
+				7CFB6E9323F8983600F5D210 /* DataPickers */,
+				7CE16049235B96C000E3F1D9 /* StaticTableView */,
 				7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */,
 				7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */,
+				7CFB6E9123F8914D00F5D210 /* SANavigationController.swift */,
 				7C4DB4E022AD457A00D45494 /* SegmentedProgressView.swift */,
-				7C10D34F232189C200B5ED9A /* DatasetPicker.swift */,
-				7CE3CEB22321C350005575D5 /* SpeedPicker.swift */,
-				7CBB17DA232328D20043A9F6 /* SizePicker.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -284,18 +316,12 @@
 		7C80257320A9B15300673A4F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7C18DF04231D52E500A14326 /* SegueCell.swift */,
 				7C3E841A20AB054C00577282 /* DetailCell.swift */,
 				7C80257420A9B17C00673A4F /* TorrentCell.swift */,
-				7CB8083A20AB008700F76931 /* SwitchCell.swift */,
 				7C3E842020AB6BB400577282 /* FileCell.swift */,
 				7C7D0AB120D82AA0001B08E5 /* FolderCell.swift */,
-				7C4B10AA20E18B8500440E74 /* ButtonCell.swift */,
 				7C4B10AE20EA30C500440E74 /* TrackerCell.swift */,
-				7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */,
 				7C1EBD0521E4BA5300EAAF55 /* TableHeaderView */,
-				7C18DF02231D514F00A14326 /* CellModelProtocol.swift */,
-				7C18DF06231D5DDB00A14326 /* PreferenceCellProtocol.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -308,6 +334,7 @@
 				7CB8083420AAF09F00F76931 /* Downloader.swift */,
 				7CF522EB20AF78B100D319E6 /* BackgroundTask.swift */,
 				7CBC7765231961C20075A685 /* UserPreferences.swift */,
+				7CB3A5062418034100CE44A2 /* FullscreenAd.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -324,29 +351,83 @@
 		7CB8083320AAEDE200F76931 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CB9BBA82378680000C8F05E /* Preferences */,
 				7CF5F59320AC86F500A18C3E /* MainController.swift */,
 				7CB8083620AAFFD200F76931 /* TorrentDetailsController.swift */,
-				7C18DF00231D504400A14326 /* PreferencesController.swift */,
 				7C3E841E20AB695800577282 /* AddTorrentController.swift */,
 				7CF5F59120AC325100A18C3E /* TorrentFilesController.swift */,
-				7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */,
 				7C4B10AC20EA278800440E74 /* TrackersListController.swift */,
 				7C5D7683230335A4002E1352 /* FilesBrowserController.swift */,
+				7CBEFCF02413039400FEEA05 /* WebViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7CB9BBA82378680000C8F05E /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				7C18DF00231D504400A14326 /* PreferencesController.swift */,
+				7C7D0AB920D911EB001B08E5 /* SettingsSortingController.swift */,
+				7CB9BBA923786C8A00C8F05E /* PreferencesWebDavController.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		7CB9BBAD23786D8200C8F05E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CB9BBAE23786D8D00C8F05E /* Section.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7CBEFA5E240D68BA00FEEA05 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
+				7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		7CE16049235B96C000E3F1D9 /* StaticTableView */ = {
+			isa = PBXGroup;
+			children = (
+				7CB9BBAD23786D8200C8F05E /* Models */,
+				7CE1604C235B9C0D00E3F1D9 /* Cells */,
+				7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */,
+				7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */,
+			);
+			path = StaticTableView;
+			sourceTree = "<group>";
+		};
+		7CE1604C235B9C0D00E3F1D9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7CFDDCC7235B9EF80008EBEA /* XIBs */,
+				7C18DF04231D52E500A14326 /* SegueCell.swift */,
+				7CB8083A20AB008700F76931 /* SwitchCell.swift */,
+				7C4B10AA20E18B8500440E74 /* ButtonCell.swift */,
+				7C99E363237B3CB900FB66F0 /* TextFieldCell.swift */,
+				7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */,
+				7C18DF06231D5DDB00A14326 /* PreferenceCellProtocol.swift */,
+				7C18DF02231D514F00A14326 /* CellModelProtocol.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7CF522E420AE1F2C00D319E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7CBEFA5E240D68BA00FEEA05 /* Extentions */,
 				7CB8082A20AA28F200F76931 /* TorrentStatus.swift */,
 				7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */,
 				7CB8083120AADA8300F76931 /* Utils.swift */,
 				7CF522E520AE1F5000D319E6 /* SortingManager.swift */,
 				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
-				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
 				7C802D06212C6D060031C19F /* Dialogs.swift */,
 				7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */,
+				7CC7662623F93F690072338B /* NotificationHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -362,6 +443,29 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		7CFB6E9323F8983600F5D210 /* DataPickers */ = {
+			isa = PBXGroup;
+			children = (
+				7C10D34F232189C200B5ED9A /* DatasetPicker.swift */,
+				7CE3CEB22321C350005575D5 /* SpeedPicker.swift */,
+				7CBB17DA232328D20043A9F6 /* SizePicker.swift */,
+				7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */,
+			);
+			path = DataPickers;
+			sourceTree = "<group>";
+		};
+		7CFDDCC7235B9EF80008EBEA /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				7CFDDCC8235B9F110008EBEA /* SegueCell.xib */,
+				7CFDDCCA235BA3940008EBEA /* SwitchCell.xib */,
+				7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */,
+				7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */,
+				7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -374,7 +478,8 @@
 				7C3C692C20A754FB0023396C /* Frameworks */,
 				7C3C692D20A754FB0023396C /* Resources */,
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
-				7C05FC0A20BBFB2E006E5CFC /* ShellScript */,
+				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
+				7CD95E5E2370443200C21F81 /* Swiftlint */,
 				7C37071F20BD4F2000EE9F89 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -432,9 +537,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CF522EE20AF7B0300D319E6 /* 3.wav in Resources */,
+				7CFDDCC9235B9F110008EBEA /* SegueCell.xib in Resources */,
+				7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */,
+				7CFDDCCF235BA4BE0008EBEA /* UpdateInfoCell.xib in Resources */,
+				7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */,
 				7C1EBD0721E4BA6000EAAF55 /* TableHeaderView.xib in Resources */,
 				7C27A1A420B223630065238C /* GoogleService-Info.plist in Resources */,
 				7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */,
+				7CFDDCCB235BA3940008EBEA /* SwitchCell.xib in Resources */,
 				7C27A16820B0B9040065238C /* Version.ver in Resources */,
 				7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */,
 				7C802CFF212B3B630031C19F /* Localizable.strings in Resources */,
@@ -464,18 +574,37 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7C05FC0A20BBFB2E006E5CFC /* ShellScript */ = {
+		7C05FC0A20BBFB2E006E5CFC /* Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Firebase;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
+		7CD95E5E2370443200C21F81 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  #swiftlint\n  echo \"uncomment swiftlint to refactor\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		DBBCCBC72A898D1AC5BBD608 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -503,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */,
+				7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */,
 				7C3E842120AB6BB400577282 /* FileCell.swift in Sources */,
 				7CF5F59420AC86F600A18C3E /* MainController.swift in Sources */,
 				7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */,
@@ -513,6 +643,8 @@
 				7CF522EC20AF78B100D319E6 /* BackgroundTask.swift in Sources */,
 				7C4B10A720E02A4900440E74 /* ThemedUIAlertController.swift in Sources */,
 				7CE3CEB52321E14B005575D5 /* UpdateInfoCell.swift in Sources */,
+				7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */,
+				7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */,
 				7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */,
 				7C4B109F20DFF32B00440E74 /* ThemedUITableView.swift in Sources */,
 				7CBB17DB232328D20043A9F6 /* SizePicker.swift in Sources */,
@@ -520,10 +652,13 @@
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
 				7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */,
 				7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */,
+				7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */,
 				7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */,
 				7C18DF01231D504400A14326 /* PreferencesController.swift in Sources */,
 				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
+				7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */,
+				7CFB6E9223F8914D00F5D210 /* SANavigationController.swift in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
 				7C4B10AD20EA278900440E74 /* TrackersListController.swift in Sources */,
 				7CE3CEB32321C350005575D5 /* SpeedPicker.swift in Sources */,
@@ -531,8 +666,10 @@
 				7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */,
 				7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */,
 				7C4B109D20DFF12300440E74 /* ThemedUIViewController.swift in Sources */,
+				7CB3A5072418034100CE44A2 /* FullscreenAd.swift in Sources */,
 				7C802D07212C6D060031C19F /* Dialogs.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
+				7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */,
 				7C4B109920DFDEEC00440E74 /* ColorPalett.swift in Sources */,
 				7C0D2F1F20F77F9B00B7FBC6 /* FileManagerTitleView.swift in Sources */,
 				7C4B10A120E0019100440E74 /* ThemedUITableViewController.swift in Sources */,
@@ -540,14 +677,17 @@
 				7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */,
 				7C7D0ABA20D911EB001B08E5 /* SettingsSortingController.swift in Sources */,
 				7C18DF05231D52E500A14326 /* SegueCell.swift in Sources */,
+				7CBEFCF12413039400FEEA05 /* WebViewController.swift in Sources */,
 				7C4B10AF20EA30C500440E74 /* TrackerCell.swift in Sources */,
 				7C7D0AB620D8EA50001B08E5 /* Manager.swift in Sources */,
 				7C4B10A320E0099300440E74 /* ThemedUILabel.swift in Sources */,
 				7C4DB4E122AD457A00D45494 /* SegmentedProgressView.swift in Sources */,
 				7C4B10A920E1565100440E74 /* Themed.swift in Sources */,
+				7CB9BBAF23786D8D00C8F05E /* Section.swift in Sources */,
 				7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
 				7C18DF03231D514F00A14326 /* CellModelProtocol.swift in Sources */,
+				7CB9BBAA23786C8A00C8F05E /* PreferencesWebDavController.swift in Sources */,
 				7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */,
 				7C18DF07231D5DDB00A14326 /* PreferenceCellProtocol.swift in Sources */,
 				7C1EBD0421E4B64B00EAAF55 /* TableHeaderView.swift in Sources */,
@@ -717,7 +857,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14.0;
+				CURRENT_PROJECT_VERSION = 15.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
@@ -745,13 +885,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.7.4;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "VS: WildCard Development";
+				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent.framework/Headers/iTorrent-Bridging-Header.h";
@@ -774,7 +914,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14.0;
+				CURRENT_PROJECT_VERSION = 15.0;
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -801,12 +941,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.7.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "VS: WildCard Development";
+				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent.framework/Headers/iTorrent-Bridging-Header.h";

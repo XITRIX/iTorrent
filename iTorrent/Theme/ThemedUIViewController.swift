@@ -8,25 +8,33 @@
 
 import UIKit
 
-class ThemedUIViewController : UIViewController, Themed {
+class ThemedUIViewController: UIViewController, Themed {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         themeUpdate()
     }
-    
+
     @objc func themeUpdate() {
         let theme = Themes.current
-        
+
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
         }
-        
-		view.backgroundColor = theme.backgroundSecondary
-	}
+
+        view.backgroundColor = theme.backgroundSecondary
+    }
 }

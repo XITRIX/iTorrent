@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-protocol FolderCellActionDelegate : class {
-    func folderCellAction (_ key: String, sender : UIButton)
+protocol FolderCellActionDelegate: class {
+    func folderCellAction(_ key: String, sender: UIButton)
 }

@@ -9,18 +9,22 @@
 import Foundation
 import UIKit
 
-class ThemedUILabel : UILabel, Themed {
+class ThemedUILabel: UILabel, Themed {
+    @IBInspectable
+    var secondaryColor: Bool = false
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
     }
-    
+
     @objc func themeUpdate() {
-		textColor = Themes.current.mainText
-	}
+        let theme = Themes.current
+        textColor = secondaryColor ? theme.secondaryText : theme.mainText
+    }
 }

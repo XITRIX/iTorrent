@@ -11,8 +11,8 @@ import UIKit
 class TableHeaderView: UITableViewHeaderFooterView {
     @IBOutlet var title: ThemedUILabel!
     @IBOutlet var background: UIVisualEffectView!
-    
+
     static func uiNib() -> UINib {
-        return UINib(nibName: "TableHeaderView", bundle: nil)
+        UINib(nibName: "TableHeaderView", bundle: nil)
     }
 }

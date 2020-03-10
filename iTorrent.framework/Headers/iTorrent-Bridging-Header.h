@@ -7,7 +7,7 @@
 #include "file_struct.h"
 
 //TORRENT
-int init_engine(const char* download_path, const char* config_path);
+int init_engine(const char* client_name, const char* download_path, const char* config_path);
 Result getTorrentInfo();
 char* add_torrent(const char* torrent_path);
 void add_torrent_with_states(const char* torrent_path, int* states);
@@ -35,7 +35,3 @@ void set_upload_limit(int limit_in_bytes);
 
 void set_torrent_files_sequental(const char* torrent_hash, int sequental);
 int get_torrent_files_sequental(const char* torrent_hash);
-
-//FTP
-void ftp_start(int port, const char* path);
-void ftp_stop();

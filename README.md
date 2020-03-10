@@ -7,7 +7,11 @@
 
 ![itorrent](https://user-images.githubusercontent.com/9553519/42249216-da6f6190-7f32-11e8-9126-e559be69ebf5.png)
 
-**Download .ipa:** ([Google Drive](https://goo.gl/j2WRbv))
+## Download
+
+**Latest stable build:** ([GitHub Release](https://github.com/XITRIX/iTorrent/releases/latest))
+
+**Latest dev build:** ([AppCenter](https://install.appcenter.ms/users/x1trix/apps/itorrent/distribution_groups/public)) 
 
 ## Info
 
