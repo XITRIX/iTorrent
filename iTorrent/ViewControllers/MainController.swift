@@ -322,19 +322,19 @@ class MainController: ThemedUIViewController {
         addController.addAction(addMagnet)
         addController.addAction(addURL)
 
-        let safari = UIAlertAction(title: "Web", style: .default) { _ in
-            let safariAlert = ThemedUIAlertController(title: Localize.get("Open in Web View"),
+        let webview = UIAlertAction(title: "Web", style: .default) { _ in
+            let webviewAlert = ThemedUIAlertController(title: Localize.get("Open in Web View"),
                                                       message: nil,
                                                       preferredStyle: .alert)
 
-            safariAlert.addTextField(configurationHandler: { textField in
+            webviewAlert.addTextField(configurationHandler: { textField in
                 textField.placeholder = "https://google.com/"
                 let theme = Themes.current
                 textField.keyboardAppearance = theme.keyboardAppearence
             })
 
             let ok = UIAlertAction(title: "OK", style: .default) { _ in
-                let textField = safariAlert.textFields![0]
+                let textField = webviewAlert.textFields![0]
                 if !textField.text!.isEmpty {
                     if let url = URL(string: textField.text!),
                         UIApplication.shared.canOpenURL(url) {
@@ -347,12 +347,12 @@ class MainController: ThemedUIViewController {
                 }
             }
 
-            safariAlert.addAction(ok)
-            safariAlert.addAction(UIAlertAction(title: Localize.get("Cancel"), style: .cancel))
+            webviewAlert.addAction(ok)
+            webviewAlert.addAction(UIAlertAction(title: Localize.get("Cancel"), style: .cancel))
 
-            self.present(safariAlert, animated: true)
+            self.present(webviewAlert, animated: true)
         }
-        addController.addAction(safari)
+        //addController.addAction(webview)
 
         if #available(iOS 11.0, *) {
             let files = UIAlertAction(title: NSLocalizedString("Files", comment: ""), style: .default) { _ in
