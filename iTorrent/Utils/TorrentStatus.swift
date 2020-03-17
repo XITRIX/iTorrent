@@ -129,7 +129,7 @@ class TorrentStatus {
         }
 
         if manager.zeroSpeedTimeCounter == UserPreferences.zeroSpeedLimit.value,
-            manager.zeroSpeedTimeCounter != 0 {
+            UserPreferences.zeroSpeedLimit.value != 0 {
             NotificationHelper.showNotification(
                 title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)",
                 body: title + Localize.get("BackgroundTask.LowSpeed.Message"),

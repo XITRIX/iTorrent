@@ -65,6 +65,7 @@ class BackgroundTask {
     }
 
     static func getBackgroundConditions(_ status: TorrentStatus) -> Bool {
+        // state conditions
         (status.displayState == Utils.TorrentStates.downloading.rawValue ||
             status.displayState == Utils.TorrentStates.metadata.rawValue ||
             status.displayState == Utils.TorrentStates.hashing.rawValue ||
@@ -73,7 +74,9 @@ class BackgroundTask {
                 status.seedMode) ||
             (UserPreferences.ftpKey.value &&
                 UserPreferences.ftpBackgroundKey.value)) &&
-            (UserPreferences.zeroSpeedLimit.value > 0 &&
-                Manager.managerSaves[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit.value)
+            // zero speed limit conditions
+            ((UserPreferences.zeroSpeedLimit.value > 0 &&
+                    Manager.managerSaves[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit.value) ||
+                UserPreferences.zeroSpeedLimit.value == 0)
     }
 }

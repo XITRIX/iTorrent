@@ -857,7 +857,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15.0;
+				CURRENT_PROJECT_VERSION = 16.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
@@ -885,7 +885,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.4.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -914,7 +914,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 15.0;
+				CURRENT_PROJECT_VERSION = 16.0;
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -941,7 +941,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.4.1;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;

@@ -278,7 +278,7 @@ class TorrentFilesController: ThemedUIViewController {
             tableViewEditMode = false
 
             navigationItem.setLeftBarButton(nil, animated: true)
-            navigationItem.rightBarButtonItem?.title = NSLocalizedString("Select", comment: "")
+            navigationItem.rightBarButtonItem?.title = Localize.get("TorrentFilesController.Select")
             navigationItem.rightBarButtonItem?.style = .plain
 
             setToolbarItems(defaultToolBarItems, animated: true)

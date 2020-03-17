@@ -204,4 +204,4 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added https protocol support for trackers!\n- FTP server replaced by WebDAV, file sharing is now possible through a web browser\n- Added background stop when downloading at zero speed\n- Clicking on a notification now opens a specific window\n- UI improvements";
+"UpdateText" = "- Zero speed limit disable state fixed\n----- 1.7.4 -----\n- Added https protocol support for trackers!\n- FTP server replaced by WebDAV, file sharing is now possible through a web browser\n- Added background stop when downloading at zero speed\n- Clicking on a notification now opens a specific window\n- UI improvements";
