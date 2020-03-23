@@ -61,6 +61,11 @@ class PreferencesController: StaticTableViewController {
                 }
         })
         data.append(Section(rowModels: appearance))
+        
+        // STORAGE
+        var storage = [CellModelProtocol]()
+        storage.append(StoragePropertyCell.Model())
+        data.append(Section(rowModels: storage, header: "Storage"))
 
         // BACKGROUND
         var background = [CellModelProtocol]()

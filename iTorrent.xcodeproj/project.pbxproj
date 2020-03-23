@@ -76,6 +76,12 @@
 		7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */; };
 		7CE3CEB32321C350005575D5 /* SpeedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3CEB22321C350005575D5 /* SpeedPicker.swift */; };
 		7CE3CEB52321E14B005575D5 /* UpdateInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */; };
+		7CE61CAB242696D70038717C /* StoragePropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CA9242696D70038717C /* StoragePropertyCell.swift */; };
+		7CE61CAC242696D70038717C /* StoragePropertyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE61CAA242696D70038717C /* StoragePropertyCell.xib */; };
+		7CE61CAF24269A200038717C /* ColoredProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CAE24269A200038717C /* ColoredProgressBarView.swift */; };
+		7CE61CB12426B75B0038717C /* UIColorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CB02426B75B0038717C /* UIColorExtentions.swift */; };
+		7CE61CB32426D0370038717C /* MemorySpaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CB22426D0370038717C /* MemorySpaceManager.swift */; };
+		7CE61CB9242915E20038717C /* PortionBarLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CB8242915E20038717C /* PortionBarLabels.swift */; };
 		7CF522E320AE05F200D319E6 /* UserManagerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */; };
 		7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E520AE1F5000D319E6 /* SortingManager.swift */; };
 		7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E720AEF3DB00D319E6 /* FileInfo.swift */; };
@@ -178,6 +184,12 @@
 		7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		7CE3CEB22321C350005575D5 /* SpeedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPicker.swift; sourceTree = "<group>"; };
 		7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoCell.swift; sourceTree = "<group>"; };
+		7CE61CA9242696D70038717C /* StoragePropertyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePropertyCell.swift; sourceTree = "<group>"; };
+		7CE61CAA242696D70038717C /* StoragePropertyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoragePropertyCell.xib; sourceTree = "<group>"; };
+		7CE61CAE24269A200038717C /* ColoredProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredProgressBarView.swift; sourceTree = "<group>"; };
+		7CE61CB02426B75B0038717C /* UIColorExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtentions.swift; sourceTree = "<group>"; };
+		7CE61CB22426D0370038717C /* MemorySpaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorySpaceManager.swift; sourceTree = "<group>"; };
+		7CE61CB8242915E20038717C /* PortionBarLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortionBarLabels.swift; sourceTree = "<group>"; };
 		7CE9EA4B231C4D9300D50753 /* iTorrent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iTorrent.entitlements; sourceTree = "<group>"; };
 		7CF522E220AE05F200D319E6 /* UserManagerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerSettings.swift; sourceTree = "<group>"; };
 		7CF522E520AE1F5000D319E6 /* SortingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingManager.swift; sourceTree = "<group>"; };
@@ -219,6 +231,7 @@
 		7C0D2F1B20F77F5200B7FBC6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7CE61CAD2426977D0038717C /* ColoredProgressBar */,
 				7C10D34A232188B200B5ED9A /* PopupView */,
 				7CFB6E9323F8983600F5D210 /* DataPickers */,
 				7CE16049235B96C000E3F1D9 /* StaticTableView */,
@@ -386,6 +399,7 @@
 			children = (
 				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
 				7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */,
+				7CE61CB02426B75B0038717C /* UIColorExtentions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -412,8 +426,18 @@
 				7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */,
 				7C18DF06231D5DDB00A14326 /* PreferenceCellProtocol.swift */,
 				7C18DF02231D514F00A14326 /* CellModelProtocol.swift */,
+				7CE61CA9242696D70038717C /* StoragePropertyCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7CE61CAD2426977D0038717C /* ColoredProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				7CE61CB8242915E20038717C /* PortionBarLabels.swift */,
+				7CE61CAE24269A200038717C /* ColoredProgressBarView.swift */,
+			);
+			path = ColoredProgressBar;
 			sourceTree = "<group>";
 		};
 		7CF522E420AE1F2C00D319E6 /* Utils */ = {
@@ -428,6 +452,7 @@
 				7C802D06212C6D060031C19F /* Dialogs.swift */,
 				7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */,
 				7CC7662623F93F690072338B /* NotificationHelper.swift */,
+				7CE61CB22426D0370038717C /* MemorySpaceManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -462,6 +487,7 @@
 				7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */,
 				7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */,
 				7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */,
+				7CE61CAA242696D70038717C /* StoragePropertyCell.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -538,6 +564,7 @@
 			files = (
 				7CF522EE20AF7B0300D319E6 /* 3.wav in Resources */,
 				7CFDDCC9235B9F110008EBEA /* SegueCell.xib in Resources */,
+				7CE61CAC242696D70038717C /* StoragePropertyCell.xib in Resources */,
 				7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */,
 				7CFDDCCF235BA4BE0008EBEA /* UpdateInfoCell.xib in Resources */,
 				7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */,
@@ -643,20 +670,24 @@
 				7CF522EC20AF78B100D319E6 /* BackgroundTask.swift in Sources */,
 				7C4B10A720E02A4900440E74 /* ThemedUIAlertController.swift in Sources */,
 				7CE3CEB52321E14B005575D5 /* UpdateInfoCell.swift in Sources */,
+				7CE61CB12426B75B0038717C /* UIColorExtentions.swift in Sources */,
 				7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */,
 				7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */,
 				7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */,
 				7C4B109F20DFF32B00440E74 /* ThemedUITableView.swift in Sources */,
+				7CE61CB32426D0370038717C /* MemorySpaceManager.swift in Sources */,
 				7CBB17DB232328D20043A9F6 /* SizePicker.swift in Sources */,
 				7C4B10A520E00CA600440E74 /* ThemedUITableViewCell.swift in Sources */,
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
 				7CB8082B20AA28F200F76931 /* TorrentStatus.swift in Sources */,
 				7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */,
 				7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */,
+				7CE61CB9242915E20038717C /* PortionBarLabels.swift in Sources */,
 				7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */,
 				7C18DF01231D504400A14326 /* PreferencesController.swift in Sources */,
 				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
+				7CE61CAF24269A200038717C /* ColoredProgressBarView.swift in Sources */,
 				7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */,
 				7CFB6E9223F8914D00F5D210 /* SANavigationController.swift in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
@@ -677,6 +708,7 @@
 				7C3E841F20AB695800577282 /* AddTorrentController.swift in Sources */,
 				7C7D0ABA20D911EB001B08E5 /* SettingsSortingController.swift in Sources */,
 				7C18DF05231D52E500A14326 /* SegueCell.swift in Sources */,
+				7CE61CAB242696D70038717C /* StoragePropertyCell.swift in Sources */,
 				7CBEFCF12413039400FEEA05 /* WebViewController.swift in Sources */,
 				7C4B10AF20EA30C500440E74 /* TrackerCell.swift in Sources */,
 				7C7D0AB620D8EA50001B08E5 /* Manager.swift in Sources */,

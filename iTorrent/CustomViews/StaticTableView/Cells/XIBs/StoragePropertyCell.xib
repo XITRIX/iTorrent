@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="StoragePropertyCell" customModule="iTorrent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etY-vc-RxX" customClass="ColoredProgressBarView" customModule="iTorrent" customModuleProvider="target">
+                        <rect key="frame" x="12" y="51" width="296" height="21"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="9tR-0S-NF5"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iTorrent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0u-7G-3ck">
+                        <rect key="frame" x="16" y="10" width="59" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,55 GB Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcV-sP-hYm" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                        <rect key="frame" x="173" y="10" width="131" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftA-Jo-Gyv" customClass="PortionBarLabels" customModule="iTorrent" customModuleProvider="target">
+                        <rect key="frame" x="12" y="84" width="320" height="14"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="cln-Ze-J2A"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="size" keyPath="colorIndicatorSize">
+                                <size key="value" width="8" height="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="colorIndicatorPaddings">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ftA-Jo-Gyv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="0kl-MT-Yie"/>
+                    <constraint firstAttribute="trailing" secondItem="etY-vc-RxX" secondAttribute="trailing" constant="12" id="0sl-iF-kcl"/>
+                    <constraint firstAttribute="bottom" secondItem="ftA-Jo-Gyv" secondAttribute="bottom" constant="12" id="2g2-BS-m6P"/>
+                    <constraint firstItem="etY-vc-RxX" firstAttribute="top" secondItem="FcV-sP-hYm" secondAttribute="bottom" constant="10" id="4g3-Jk-2vN"/>
+                    <constraint firstItem="ftA-Jo-Gyv" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="12" id="6Vi-7Q-Kvf"/>
+                    <constraint firstItem="ftA-Jo-Gyv" firstAttribute="top" secondItem="etY-vc-RxX" secondAttribute="bottom" constant="12" id="DZG-bu-7AL"/>
+                    <constraint firstItem="etY-vc-RxX" firstAttribute="top" secondItem="c0u-7G-3ck" secondAttribute="bottom" constant="10" id="Gi2-gH-jiI"/>
+                    <constraint firstItem="c0u-7G-3ck" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="PY9-Oz-BIe"/>
+                    <constraint firstItem="etY-vc-RxX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="PkD-nf-HmP"/>
+                    <constraint firstItem="FcV-sP-hYm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="YxG-rv-kUE"/>
+                    <constraint firstAttribute="trailing" secondItem="FcV-sP-hYm" secondAttribute="trailing" constant="16" id="goX-Cg-7xb"/>
+                    <constraint firstItem="c0u-7G-3ck" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="gob-cd-fCb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="freeSpaceText" destination="FcV-sP-hYm" id="XOp-Dz-c3o"/>
+                <outlet property="labels" destination="ftA-Jo-Gyv" id="O8R-cU-yCe"/>
+                <outlet property="progressBarView" destination="etY-vc-RxX" id="hTQ-lT-JWX"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="103.125"/>
+        </tableViewCell>
+    </objects>
+</document>
