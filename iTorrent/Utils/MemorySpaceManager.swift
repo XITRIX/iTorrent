@@ -21,6 +21,7 @@ class MemorySpaceManager {
         case image = "mime.image"
         case documents = "mime.documents"
         case other = "mime.other"
+        case calculating = "mime.calculating"
         case free = "mime.free"
         
         var title: String {
@@ -37,7 +38,7 @@ class MemorySpaceManager {
                 return UIColor(hex: "#e4bf0a")!
             case .documents:
                 return UIColor(hex: "#aa50d8")!
-            case .other:
+            case .other, .calculating:
                 return Themes.current.storageBarOther
             case .free:
                 return Themes.current.storageBarEmpty
@@ -78,14 +79,21 @@ class MemorySpaceManager {
         let usedSpacePecentage = usedSpace / overallSpace
         
         storage = []
-        storage.append(MemorySpaceManager.StorageSegment(mime: "other", size: usedSpace, percentage: usedSpacePecentage))
+        storage.append(MemorySpaceManager.StorageSegment(mime: "calculating", size: usedSpace, percentage: usedSpacePecentage))
         storage.append(MemorySpaceManager.StorageSegment(mime: "free", size: freeSpace, percentage: freeSpacePercentage))
         
         storageCategories = []
         storageCategories.append(contentsOf: storage.map { StorageCategory(category: categoryFrom($0.mime), segments: [$0]) })
     }
     
+    private var completionAction: (([StorageCategory]) -> ())?
+    private var inProgress = false
     func calculateDetailedSections(completion: (([StorageCategory]) -> ())? = nil) {
+        completionAction = completion
+        
+        if inProgress { return }
+        inProgress = true
+        
         DispatchQueue.global(qos: .background).async {
             let freeSpace = Float(MemorySpaceManager.freeDiskSpaceInBytes)
             
@@ -122,7 +130,8 @@ class MemorySpaceManager {
             self.storageCategories = self.storageCategories.filter { $0.percentage > 0.005 }
             
             DispatchQueue.main.async {
-                completion?(self.storageCategories)
+                self.completionAction?(self.storageCategories)
+                self.inProgress = false
             }
         }
     }
@@ -141,6 +150,8 @@ class MemorySpaceManager {
             return .documents
         case "free":
             return .free
+        case "calculating":
+            return .calculating
         default:
             return .other
         }

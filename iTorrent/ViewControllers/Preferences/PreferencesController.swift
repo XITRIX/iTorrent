@@ -65,7 +65,10 @@ class PreferencesController: StaticTableViewController {
         // STORAGE
         var storage = [CellModelProtocol]()
         storage.append(StoragePropertyCell.Model())
-        data.append(Section(rowModels: storage, header: "Storage"))
+        storage.append(SwitchCell.ModelProperty(title: "Settings.Storage.Allocate", property: UserPreferences.storagePreallocation, hint: "Settings.Storage.Allocate.Hint") { switcher in
+            set_storage_preallocation(switcher.isOn ? 1 : 0)
+        })
+        data.append(Section(rowModels: storage, header: "Settings.Storage.Header"))
 
         // BACKGROUND
         var background = [CellModelProtocol]()
@@ -78,10 +81,10 @@ class PreferencesController: StaticTableViewController {
                                            disableCondition: { !UserPreferences.background.value }) { switcher in
                 if switcher.isOn {
                     let controller = ThemedUIAlertController(title: Localize.get("WARNING"), message: Localize.get("Settings.BackgroundSeeding.Warning"), preferredStyle: .alert)
-                    let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
+                    let enable = UIAlertAction(title: Localize.get("Enable"), style: .destructive) { _ in
                         UserPreferences.backgroundSeedKey.value = switcher.isOn
                     }
-                    let close = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                    let close = UIAlertAction(title: Localize.get("Cancel"), style: .cancel) { _ in
                         switcher.setOn(false, animated: true)
                     }
                     controller.addAction(enable)

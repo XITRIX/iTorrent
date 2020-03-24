@@ -81,6 +81,10 @@
 "Settings.Order" = "Section order";
 "Settings.AutoTheme" = "Automatic theme";
 "Settings.Theme" = "Dark mode";
+"Settings.Storage.Header" = "Storage";
+"Settings.Storage.Available" = "Available";
+"Settings.Storage.Allocate" = "Allocate storage";
+"Settings.Storage.Allocate.Hint" = "If enabled, iTorrent will pre-reserve memory for downloaded files";
 "Settings.BackgroundEnable" = "Enable";
 "Settings.BackgroundSeeding" = "Allow seeding";
 "Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
@@ -154,6 +158,9 @@
 "Download" = "Download";
 "Don't Download" = "Don't Download";
 "Share" = "Share";
+"AddTorrentController.MemoryWarning.Title" = "Warning";
+"AddTorrentController.MemoryWarning.Message" = "Not enough free space on disk to download all files, free up disk space to continue";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Add anyway";
 
 //Torrent Files Controller
 "TorrentFilesController.Select" = "Select";
@@ -209,6 +216,7 @@
 "mime.documents" = "Documents";
 "mime.free" = "Free";
 "mime.other" = "Other";
+"mime.calculating" = "Calculating...";
 
 //Version Info
 "info" = " Update info";

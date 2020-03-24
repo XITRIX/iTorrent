@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 class TorrentFilesController: ThemedUIViewController {
+    enum TorrentDownloadPriority: Int32 {
+        case dontDownload = 0
+        case lowPriority = 1
+        case mediumPriority = 4
+        case normalPriority = 7
+    }
+
     @IBOutlet var tableView: ThemedUITableView!
 
     @IBOutlet var selectButton: UIBarButtonItem!
@@ -21,7 +28,7 @@ class TorrentFilesController: ThemedUIViewController {
 
     var files: [File] = []
     var notSortedFiles: [File] = []
-    var downloadedFiles : [File] {
+    var downloadedFiles: [File] {
         showFiles.filter { $0.downloaded == $0.size }
     }
 
@@ -120,7 +127,7 @@ class TorrentFilesController: ThemedUIViewController {
                             cell.update()
                         }
                     }
-                    
+
                     if self.tableViewEditMode,
                         self.tableView.numberOfRows(inSection: 0) != self.showFolders.keys.count + self.downloadedFiles.count {
                         self.tableView.reloadSections([0], with: .automatic)
@@ -225,9 +232,9 @@ class TorrentFilesController: ThemedUIViewController {
         }
         for file in files {
             if file.size != 0, file.downloaded / file.size == 1 {
-                file.isDownloading = 4
+                file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
             } else {
-                file.isDownloading = 0
+                file.isDownloading = TorrentDownloadPriority.dontDownload.rawValue
             }
         }
         setFilesPriority()
@@ -240,7 +247,7 @@ class TorrentFilesController: ThemedUIViewController {
             }
         }
         for file in files {
-            file.isDownloading = 4
+            file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
         }
         setFilesPriority()
     }
@@ -283,7 +290,6 @@ class TorrentFilesController: ThemedUIViewController {
 
             setToolbarItems(defaultToolBarItems, animated: true)
 
-            
             tableView.insertRows(at: indexPaths, with: .automatic)
         }
 
@@ -440,19 +446,19 @@ extension TorrentFilesController: UITableViewDataSource {
             // "Normal"
             let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in
                 let index = indexPath.row - self.showFolders.count
-                self.showFiles[index].isDownloading = 4
+                self.showFiles[index].isDownloading = TorrentDownloadPriority.normalPriority.rawValue
                 (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
                 set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 4)
             })
             let high = UIAlertAction(title: NSLocalizedString("Medium", comment: ""), style: .default, handler: { _ in
                 let index = indexPath.row - self.showFolders.count
-                self.showFiles[index].isDownloading = 3
+                self.showFiles[index].isDownloading = TorrentDownloadPriority.mediumPriority.rawValue
                 (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
                 set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 3)
             })
             let norm = UIAlertAction(title: NSLocalizedString("Low", comment: ""), style: .default, handler: { _ in
                 let index = indexPath.row - self.showFolders.count
-                self.showFiles[index].isDownloading = 2
+                self.showFiles[index].isDownloading = TorrentDownloadPriority.lowPriority.rawValue
                 (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
                 set_torrent_file_priority(self.managerHash, Int32(self.showFiles[index].number), 2)
             })
@@ -525,13 +531,13 @@ extension TorrentFilesController: UITableViewDelegate {
             updateLeftEditSelectionButton()
         }
     }
-    
+
     func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
         return tableView.isEditing
     }
 
     func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
-        self.setEditing(true, animated: true)
+        setEditing(true, animated: true)
     }
 }
 
@@ -541,16 +547,16 @@ extension TorrentFilesController: FolderCellActionDelegate {
 
         let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { _ in
             for file in self.showFolders[key]!.files {
-                file.isDownloading = 4
+                file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
             }
             self.setFilesPriority()
         }
         let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { _ in
             for file in self.showFolders[key]!.files {
                 if file.size != 0, file.downloaded / file.size == 1 {
-                    file.isDownloading = 4
+                    file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
                 } else {
-                    file.isDownloading = 0
+                    file.isDownloading = TorrentDownloadPriority.dontDownload.rawValue
                 }
             }
             self.setFilesPriority()
@@ -574,8 +580,9 @@ extension TorrentFilesController: FolderCellActionDelegate {
 extension TorrentFilesController: FileCellActionDelegate {
     func fileCellAction(_ sender: UISwitch, file: File) {
         let file = Utils.getFileByName(showFiles, file: file)!
-        file.isDownloading = sender.isOn ? 4 : 0
-        //set_torrent_file_priority(managerHash, Int32(file.number), sender.isOn ? 4 : 0)
+        file.isDownloading = sender.isOn ?
+            TorrentDownloadPriority.normalPriority.rawValue :
+            TorrentDownloadPriority.dontDownload.rawValue
         setFilesPriority()
     }
 }

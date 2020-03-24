@@ -76,7 +76,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
 
     @IBAction func hintButtonAction(_ sender: UIButton) {
-        let vc = ThemedUIAlertController(title: Localize.get("Hint"), message: hintText, preferredStyle: .alert)
+        let vc = ThemedUIAlertController(title: Localize.get("Hint"), message: Localize.get(hintText ?? ""), preferredStyle: .alert)
         vc.addAction(UIAlertAction(title: "OK", style: .cancel))
         UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true)
     }

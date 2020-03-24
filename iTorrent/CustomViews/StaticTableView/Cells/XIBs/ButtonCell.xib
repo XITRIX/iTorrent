@@ -21,7 +21,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="Button"/>
                     </button>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgi-DS-jwq">
+                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tgi-DS-jwq">
                         <rect key="frame" x="16" y="8" width="67.5" height="28.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0Y-Sw-e7A">

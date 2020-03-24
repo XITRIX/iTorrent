@@ -33,7 +33,7 @@ class StoragePropertyCell: ThemedUITableViewCell, PreferenceCellProtocol {
             self?.updateBarData()
         }
         
-        freeSpaceText.text = "\(MemorySpaceManager.freeDiskSpace) Available"
+        freeSpaceText.text = "\(MemorySpaceManager.freeDiskSpace) \(Localize.get("Settings.Storage.Available"))"
     }
     
     func updateBarData() {

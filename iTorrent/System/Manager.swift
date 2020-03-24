@@ -35,6 +35,9 @@ class Manager {
 
             let up = UserPreferences.uploadLimit.value
             set_upload_limit(Int32(up))
+            
+            let allocateStorage = UserPreferences.storagePreallocation.value ? 1 : 0
+            set_storage_preallocation(Int32(allocateStorage))
 
             while true {
                 mainLoop()

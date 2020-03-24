@@ -30,6 +30,7 @@ class UserPreferences {
     static let uploadLimit = SettingProperty<Int64>("uploadLimit", 0)
     static let seedBackgroundWarning = SettingProperty<Bool>("seedBackgroundWarning", false)
     static let disableAds = SettingProperty<Bool>("disableAds", false)
+    static let storagePreallocation = SettingProperty<Bool>("storagePreallocation", false)
 
     static let sortingType = SettingProperty<Int>("SortingType", 0)
     static let sortingSections = SettingProperty<Bool>("SortingSections", true)

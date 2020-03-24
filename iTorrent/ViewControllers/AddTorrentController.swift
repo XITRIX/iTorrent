@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 class AddTorrentController: ThemedUIViewController {
+    enum TorrentDownloadPriority: Int32 {
+        case dontDownload = 0
+        case lowPriority = 1
+        case mediumPriority = 4
+        case normalPriority = 7
+    }
+
     @IBOutlet var tableView: UITableView!
     @IBOutlet var weightLabel: UIBarButtonItem! {
         didSet {
@@ -40,7 +47,7 @@ class AddTorrentController: ThemedUIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         presentationController?.delegate = self
 
         if root.starts(with: "/") {
@@ -137,7 +144,7 @@ class AddTorrentController: ThemedUIViewController {
             file.name = name.lastPathComponent
             file.path = name.deletingLastPathComponent().path == "." ? "" : name.deletingLastPathComponent().path
             file.size = localFiles.files[iter].file_size
-            file.isDownloading = 4
+            file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
             file.number = iter
 
             files.append(file)
@@ -192,9 +199,9 @@ class AddTorrentController: ThemedUIViewController {
     @IBAction func deselectAction(_ sender: UIBarButtonItem) {
         for file in files {
             if file.size != 0, file.size == file.downloaded {
-                file.isDownloading = 4
+                file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
             } else {
-                file.isDownloading = 0
+                file.isDownloading = TorrentDownloadPriority.dontDownload.rawValue
             }
         }
         for cell in tableView.visibleCells {
@@ -209,7 +216,7 @@ class AddTorrentController: ThemedUIViewController {
 
     @IBAction func selectAction(_ sender: UIBarButtonItem) {
         for file in files {
-            file.isDownloading = 4
+            file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
         }
         for cell in tableView.visibleCells {
             if let cell = cell as? FileCell {
@@ -220,6 +227,28 @@ class AddTorrentController: ThemedUIViewController {
     }
 
     @IBAction func downloadAction(_ sender: UIBarButtonItem) {
+        if downloadingWeight() >= MemorySpaceManager.freeDiskSpaceInBytes {
+            let alert = ThemedUIAlertController(title: Localize.get("AddTorrentController.MemoryWarning.Title"),
+                                                message: Localize.get("AddTorrentController.MemoryWarning.Message"),
+                                                preferredStyle: .alert)
+            
+            let addAnyway = UIAlertAction(title: Localize.get("AddTorrentController.MemoryWarning.AddAnyway"), style: .destructive) { _ in
+                self.addTorrentToDownload()
+            }
+            let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
+            
+            alert.addAction(addAnyway)
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+
+            return
+        }
+
+        addTorrentToDownload()
+    }
+
+    func addTorrentToDownload() {
         let urlPath = URL(fileURLWithPath: path)
         let urlRes = urlPath.deletingLastPathComponent().appendingPathComponent(name + ".torrent")
         if FileManager.default.fileExists(atPath: urlRes.path) {
@@ -255,13 +284,17 @@ class AddTorrentController: ThemedUIViewController {
     }
 
     func updateWeightLabel() {
+        weightLabel.title = Utils.getSizeText(size: downloadingWeight())
+    }
+
+    func downloadingWeight() -> Int64 {
         var weight: Int64 = 0
         for file in notSortedFiles {
-            if file.isDownloading != 0 {
+            if file.isDownloading != TorrentDownloadPriority.dontDownload.rawValue {
                 weight += file.size
             }
         }
-        weightLabel.title = Utils.getSizeText(size: weight)
+        return weight
     }
 }
 
@@ -294,7 +327,7 @@ extension AddTorrentController: UITableViewDataSource {
                 cell.file = showFiles[index]
                 cell.adding = true
                 cell.update()
-                cell.switcher.setOn(showFiles[index].isDownloading != 0, animated: false)
+                cell.switcher.setOn(showFiles[index].isDownloading != TorrentDownloadPriority.dontDownload.rawValue, animated: false)
                 if showFiles[index].size != 0, showFiles[index].size == showFiles[index].downloaded {
                     cell.switcher.isEnabled = false
                 }
@@ -320,21 +353,21 @@ extension AddTorrentController: UITableViewDataSource {
             // "Normal"
             let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in
                 let index = indexPath.row - self.showFolders.count
-                self.showFiles[index].isDownloading = 4
+                self.showFiles[index].isDownloading = TorrentDownloadPriority.normalPriority.rawValue
                 (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
 
                 self.updateWeightLabel()
             })
             let high = UIAlertAction(title: NSLocalizedString("Medium", comment: ""), style: .default, handler: { _ in
                 let index = indexPath.row - self.showFolders.count
-                self.showFiles[index].isDownloading = 3
+                self.showFiles[index].isDownloading = TorrentDownloadPriority.mediumPriority.rawValue
                 (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
 
                 self.updateWeightLabel()
             })
             let norm = UIAlertAction(title: NSLocalizedString("Low", comment: ""), style: .default, handler: { _ in
                 let index = indexPath.row - self.showFolders.count
-                self.showFiles[index].isDownloading = 2
+                self.showFiles[index].isDownloading = TorrentDownloadPriority.lowPriority.rawValue
                 (self.tableView.cellForRow(at: indexPath) as? FileCell)?.update()
 
                 self.updateWeightLabel()
@@ -400,16 +433,16 @@ extension AddTorrentController: FolderCellActionDelegate {
 
         let download = UIAlertAction(title: NSLocalizedString("Download", comment: ""), style: .default) { _ in
             for file in self.showFolders[key]!.files {
-                file.isDownloading = 4
+                file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
             }
             self.updateWeightLabel()
         }
         let notDownload = UIAlertAction(title: NSLocalizedString("Don't Download", comment: ""), style: .destructive) { _ in
             for file in self.showFolders[key]!.files {
                 if file.size != 0, file.size == file.downloaded {
-                    file.isDownloading = 4
+                    file.isDownloading = TorrentDownloadPriority.normalPriority.rawValue
                 } else {
-                    file.isDownloading = 0
+                    file.isDownloading = TorrentDownloadPriority.dontDownload.rawValue
                 }
             }
             self.updateWeightLabel()
@@ -432,7 +465,9 @@ extension AddTorrentController: FolderCellActionDelegate {
 
 extension AddTorrentController: FileCellActionDelegate {
     func fileCellAction(_ sender: UISwitch, file: File) {
-        Utils.getFileByName(showFiles, file: file)!.isDownloading = sender.isOn ? 4 : 0
+        Utils.getFileByName(showFiles, file: file)!.isDownloading = sender.isOn ?
+            TorrentDownloadPriority.normalPriority.rawValue :
+            TorrentDownloadPriority.dontDownload.rawValue
         updateWeightLabel()
     }
 }

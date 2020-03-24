@@ -81,6 +81,10 @@
 "Settings.Order" = "Порядок секций";
 "Settings.AutoTheme" = "Оформление системы";
 "Settings.Theme" = "Тёмная тема";
+"Settings.Storage.Header" = "Память";
+"Settings.Storage.Available" = "Доступно";
+"Settings.Storage.Allocate" = "Выделять память";
+"Settings.Storage.Allocate.Hint" = "Если включено, iTorrent будет предварительно резервировать память под скачиваемые файлы";
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
@@ -162,6 +166,9 @@
 "High" = "Высокий";
 "Medium" = "Средний";
 "Low" = "Низкий";
+"AddTorrentController.MemoryWarning.Title" = "Внимание";
+"AddTorrentController.MemoryWarning.Message" = "Не достаточно свободного места на диске для загрузки файлов, освободите место на диске, что бы продолжить";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Продолжить всё равно";
 
 //Torrent Files Controller
 "TorrentFilesController.Select" = "Выбрать";
@@ -217,6 +224,7 @@
 "mime.documents" = "Документы";
 "mime.free" = "Свободно";
 "mime.other" = "Другое";
+"mime.calculating" = "Вычисление...";
 
 //Version Info
 "info" = " Изменения";
