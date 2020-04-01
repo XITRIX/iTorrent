@@ -14,6 +14,10 @@ class ThemedUINavigationController: SANavigationController, Themed {
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

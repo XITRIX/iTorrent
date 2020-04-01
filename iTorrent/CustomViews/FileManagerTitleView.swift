@@ -26,6 +26,10 @@ class FileManagerTitleView: UIView, Themed {
         super.init(coder: aDecoder)
         setup()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)

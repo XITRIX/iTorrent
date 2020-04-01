@@ -27,11 +27,11 @@ class PreferencesWebDavController: StaticTableViewController {
         web.append(SwitchCell.ModelProperty(title: "Enable", property: UserPreferences.webDavWebServerEnabled) { switcher in
             if switcher.isOn {
                 if UserPreferences.ftpKey.value {
-                    Manager.startFileSharing()
+                    Core.shared.startFileSharing()
                 }
             } else {
-                if Manager.webUploadServer.isRunning {
-                    Manager.webUploadServer.stop()
+                if Core.shared.webUploadServer.isRunning {
+                    Core.shared.webUploadServer.stop()
                 }
             }
             self.view.endEditing(true)
@@ -42,11 +42,11 @@ class PreferencesWebDavController: StaticTableViewController {
         webDav.append(SwitchCell.ModelProperty(title: "Enable", property: UserPreferences.webDavWebDavServerEnabled) { switcher in
             if switcher.isOn {
                 if UserPreferences.ftpKey.value {
-                    Manager.startFileSharing()
+                    Core.shared.startFileSharing()
                 }
             } else {
-                if Manager.webDAVServer.isRunning {
-                    Manager.webDAVServer.stop()
+                if Core.shared.webDAVServer.isRunning {
+                    Core.shared.webDAVServer.stop()
                 }
             }
             self.tableView.reloadData()
@@ -59,7 +59,7 @@ class PreferencesWebDavController: StaticTableViewController {
             }
         })
         data.append(Section(rowModels: webDav, header: "Settings.FTP.WebDav.WebDavTitle", footerFunc: { () -> String in
-            let addr = Manager.webDAVServer.serverURL?.absoluteString
+            let addr = Core.shared.webDAVServer.serverURL?.absoluteString
             let res = addr != nil ? ": \(addr!)" : ""
             return "\(Localize.get("Settings.FTP.WebDav.WebDavText"))\(res)"
         }))
@@ -67,6 +67,11 @@ class PreferencesWebDavController: StaticTableViewController {
     
     deinit {
         print("PreferencesWebDavController Deinit")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isToolbarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

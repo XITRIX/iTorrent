@@ -9,6 +9,10 @@
 import UIKit
 
 class ThemedUISplitViewController: UISplitViewController, Themed {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)

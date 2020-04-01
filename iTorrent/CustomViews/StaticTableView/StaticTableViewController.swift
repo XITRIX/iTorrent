@@ -34,6 +34,7 @@ class StaticTableViewController: ThemedUIViewController {
     func setup(style: UITableView.Style = .grouped) {
         tableView = StaticTableView(frame: view.frame, style: style)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.colorType = .secondary
         view.addSubview(tableView)
         tableView.data = data
     }

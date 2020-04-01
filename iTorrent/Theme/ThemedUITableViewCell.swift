@@ -12,16 +12,11 @@ import UIKit
 class ThemedUITableViewCell: UITableViewCell, Themed {
     private let cornerRadius: CGFloat = 12.0
     var insetStyle: Bool! = false
-    private var tableView: UITableView!
+    private weak var tableView: UITableView?
     private var indexPath: IndexPath!
 
     override var frame: CGRect {
         get {
-            if insetStyle {
-                cutEdges(tableView: tableView, indexPath: indexPath)
-            } else {
-                self.layer.mask = nil
-            }
 
             return super.frame
         }
@@ -36,6 +31,12 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
                 frame.size.width -= (42 + rightSafeareaInset)
             }
             super.frame = frame
+            
+            if insetStyle {
+                cutEdges(tableView: tableView, indexPath: indexPath)
+            } else {
+                self.layer.mask = nil
+            }
         }
     }
 
@@ -47,6 +48,10 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func awakeFromNib() {
@@ -64,6 +69,10 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
         textLabel?.textColor = theme.mainText
         backgroundColor = theme.backgroundMain
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = theme.backgroundSecondary
+        selectedBackgroundView = bgColorView
     }
 
     func setInsetParams(tableView: UITableView, indexPath: IndexPath) {
@@ -71,7 +80,9 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         self.indexPath = indexPath
     }
 
-    private func cutEdges(tableView: UITableView, indexPath: IndexPath) {
+    private func cutEdges(tableView: UITableView?, indexPath: IndexPath) {
+        guard let tableView = tableView else { return }
+        
         let layer: CAShapeLayer = CAShapeLayer()
         let path: CGMutablePath = CGMutablePath()
 

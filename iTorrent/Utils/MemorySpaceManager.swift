@@ -209,7 +209,7 @@ class MemorySpaceManager {
     
     class var usedDiskSpaceByAppInBytes: Int64 {
         do {
-            return try findSizeInBytes(path: Manager.rootFolder)
+            return try findSizeInBytes(path: Core.rootFolder)
         } catch {
             return 0
         }
@@ -217,7 +217,7 @@ class MemorySpaceManager {
     
     class var usedDiskSpaceByAppInBytesWithMime: (overallSize: Int64, mime: [String: Int64]) {
         do {
-            return try findSizeInBytesWithMime(path: Manager.rootFolder)
+            return try findSizeInBytesWithMime(path: Core.rootFolder)
         } catch {
             return (0, [:])
         }

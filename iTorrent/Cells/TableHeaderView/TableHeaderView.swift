@@ -8,11 +8,20 @@
 
 import UIKit
 
-class TableHeaderView: UITableViewHeaderFooterView {
+class TableHeaderView: UITableViewHeaderFooterView, Themed {
+    static let id = "TableHeaderView"
+    static let nib = UINib(nibName: id, bundle: Bundle.main)
+    
     @IBOutlet var title: ThemedUILabel!
     @IBOutlet var background: UIVisualEffectView!
-
-    static func uiNib() -> UINib {
-        UINib(nibName: "TableHeaderView", bundle: nil)
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+        themeUpdate()
+    }
+    
+    @objc func themeUpdate() {
+        background.effect = UIBlurEffect(style: Themes.current.blurEffect)
     }
 }

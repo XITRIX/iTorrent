@@ -18,6 +18,10 @@ class ThemedUIAlertController: UIAlertController, Themed {
 
         return view.recursiveSubviews.compactMap { $0 as? UIVisualEffectView }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

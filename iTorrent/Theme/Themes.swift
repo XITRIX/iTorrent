@@ -6,8 +6,11 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
 import UIKit
+
+protocol Themed {
+    func themeUpdate()
+}
 
 class Themes {
     public static let updateNotification = NSNotification.Name("ThemeUpdated")

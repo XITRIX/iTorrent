@@ -17,7 +17,7 @@ class PreferencesController: StaticTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = Localize.get("Settings.Title")
 
         // APPEARANCE
@@ -159,14 +159,14 @@ class PreferencesController: StaticTableViewController {
         // FTP
         var ftp = [CellModelProtocol]()
         ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
-            switcher.isOn ? Manager.startFileSharing() : Manager.stopFileSharing()
-            self.tableView.reloadSections([3], with: .automatic)
+            switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
+            self.tableView.reloadSections([4], with: .automatic)
         })
         ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: PreferencesWebDavController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             if UserPreferences.ftpKey.value,
                 UserPreferences.webDavWebServerEnabled.value {
-                let addr = Manager.webUploadServer.serverURL // Utils.getWiFiAddress()
+                let addr = Core.shared.webUploadServer.serverURL // Utils.getWiFiAddress()
                 if let addr = addr?.absoluteString {
                     return UserPreferences.ftpKey.value ? Localize.get("Settings.FTP.Message") + addr : ""
                 } else {
@@ -220,13 +220,7 @@ class PreferencesController: StaticTableViewController {
 
                         DispatchQueue.main.async {
                             UIPasteboard.general.string = card
-                            let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
-                            self.present(alert, animated: true, completion: nil)
-                            // change alert timer to 2 seconds, then dismiss
-                            let when = DispatchTime.now() + 2
-                            DispatchQueue.main.asyncAfter(deadline: when) {
-                                alert.dismiss(animated: true, completion: nil)
-                            }
+                            Dialogs.withTimer(self, title: nil, message: Localize.get("Copied CC # to clipboard!"))
                         }
                     }
                 }

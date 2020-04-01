@@ -9,6 +9,8 @@
 #ifndef result_struct_h
 #define result_struct_h
 
+#include <time.h>
+
 typedef struct TorrentInfo {
     char * _Nonnull name;
     char * _Nonnull state;

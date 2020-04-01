@@ -45,7 +45,7 @@ class BackgroundTask {
 
     static func startBackground() -> Bool {
         if UserPreferences.background.value {
-            if Manager.torrentStates.contains(where: { (status) -> Bool in
+            if Core.shared.torrents.values.contains(where: { (status) -> Bool in
                 getBackgroundConditions(status)
             }) {
                 startBackgroundTask()
@@ -56,27 +56,27 @@ class BackgroundTask {
     }
 
     static func checkToStopBackground() {
-        if !Manager.torrentStates.contains(where: { getBackgroundConditions($0) }) {
+        if !Core.shared.torrents.values.contains(where: { getBackgroundConditions($0) }) {
             if backgrounding {
-                Manager.saveTorrents()
+                Core.shared.saveTorrents()
                 stopBackgroundTask()
             }
         }
     }
 
-    static func getBackgroundConditions(_ status: TorrentStatus) -> Bool {
+    static func getBackgroundConditions(_ status: TorrentModel) -> Bool {
         // state conditions
-        (status.displayState == Utils.TorrentStates.downloading.rawValue ||
-            status.displayState == Utils.TorrentStates.metadata.rawValue ||
-            status.displayState == Utils.TorrentStates.hashing.rawValue ||
-            (status.displayState == Utils.TorrentStates.seeding.rawValue &&
+        (status.displayState == .downloading ||
+            status.displayState == .metadata ||
+            status.displayState == .hashing ||
+            (status.displayState == .seeding &&
                 UserPreferences.backgroundSeedKey.value &&
                 status.seedMode) ||
             (UserPreferences.ftpKey.value &&
                 UserPreferences.ftpBackgroundKey.value)) &&
             // zero speed limit conditions
             ((UserPreferences.zeroSpeedLimit.value > 0 &&
-                    Manager.managerSaves[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit.value) ||
+                    Core.shared.torrentsUserData[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit.value) ||
                 UserPreferences.zeroSpeedLimit.value == 0)
     }
 }
