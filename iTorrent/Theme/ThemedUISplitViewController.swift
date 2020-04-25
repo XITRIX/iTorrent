@@ -9,6 +9,10 @@
 import UIKit
 
 class ThemedUISplitViewController: UISplitViewController, Themed {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
@@ -25,7 +29,7 @@ class ThemedUISplitViewController: UISplitViewController, Themed {
 
         if #available(iOS 13.0, *) {
             let interface = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
-            overrideUserInterfaceStyle = UserPreferences.autoTheme.value ? UIUserInterfaceStyle.unspecified : interface
+            overrideUserInterfaceStyle = UserPreferences.autoTheme ? UIUserInterfaceStyle.unspecified : interface
         }
 
         setNeedsStatusBarAppearanceUpdate()
@@ -42,7 +46,7 @@ class ThemedUISplitViewController: UISplitViewController, Themed {
             let hasUserInterfaceStyleChanged = previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? true
             if hasUserInterfaceStyleChanged {
                 Themes.shared.currentUserTheme = traitCollection.userInterfaceStyle.rawValue
-                if UserPreferences.autoTheme.value {
+                if UserPreferences.autoTheme {
                     NotificationCenter.default.post(name: Themes.updateNotification, object: nil)
                 }
             }

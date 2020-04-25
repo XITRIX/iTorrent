@@ -10,6 +10,24 @@ import Foundation
 import UIKit
 
 class ThemedUITableView: UITableView, Themed {
+    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'colorType' instead.")
+    @IBInspectable var colorTypeAdapter: Int {
+        get {
+            return colorType.rawValue
+        }
+        set {
+            if let newColorType = ColorType(rawValue: newValue) {
+                colorType = newColorType
+            }
+        }
+    }
+
+    var colorType: ColorType = .primary {
+        didSet {
+            themeUpdate()
+        }
+    }
+
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         setup()
@@ -19,6 +37,10 @@ class ThemedUITableView: UITableView, Themed {
         super.init(coder: aDecoder)
         setup()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
@@ -27,8 +49,20 @@ class ThemedUITableView: UITableView, Themed {
 
     @objc func themeUpdate() {
         let theme = Themes.current
-        backgroundColor = theme.backgroundSecondary
         tintColor = theme.tintColor
-        reloadData()
+        
+        switch colorType {
+        case .primary:
+            backgroundColor = theme.backgroundMain
+        case .secondary:
+            backgroundColor = theme.backgroundSecondary
+        }
+        
+        //reloadData()
+    }
+
+    enum ColorType: Int {
+        case primary
+        case secondary
     }
 }

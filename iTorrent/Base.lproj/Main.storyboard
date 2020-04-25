@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--iTorrent-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TorrentListController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,7 +80,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-3O-T4A">
+                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-3O-T4A">
                                 <rect key="frame" x="57.666666666666657" y="340.66666666666669" width="260" height="130.66666666666669"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyBox" translatesAutoresizingMaskIntoConstraints="NO" id="uJ0-T4-0KI">
@@ -93,7 +94,7 @@
                                             <constraint firstAttribute="width" constant="82" id="qv9-LC-Xb7"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty, go and download something!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-OU-dJk">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty, go and download something!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-OU-dJk" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="90" width="260" height="40.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="260" id="H4L-GH-hXj"/>
@@ -101,6 +102,11 @@
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,13 +130,18 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-3833820876743264/1345533898"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BKM-Z7-QMV">
+                                <rect key="frame" x="169" y="387.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxi-gq-Num" secondAttribute="bottom" id="9yD-lu-xvj"/>
+                            <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IOs-1r-zKT"/>
                             <constraint firstItem="nxi-gq-Num" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M23-SY-liw"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R2A-HJ-SSf"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SWS-Ke-a9L"/>
+                            <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tf6-pG-lDm"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Za2-qq-lXh"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aPx-jZ-Piy"/>
                             <constraint firstAttribute="bottom" secondItem="KYM-MO-AoK" secondAttribute="bottom" id="mVJ-2H-IOE"/>
@@ -142,35 +153,36 @@
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="7vm-eg-YZO">
                             <connections>
-                                <action selector="addTorrentAction:" destination="BYZ-38-t0r" id="Lol-x4-WqO"/>
+                                <action selector="addTorrentAction:" destination="BYZ-38-t0r" id="7YB-0d-FF6"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="BAb-jw-orU"/>
                         <barButtonItem title="Item" image="Settings" id="XRX-cN-tcN">
                             <connections>
-                                <action selector="preferencesAction:" destination="BYZ-38-t0r" id="Oae-ba-Oqv"/>
+                                <action selector="preferencesAction:" destination="BYZ-38-t0r" id="TG5-1I-YkE"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="iTorrent" id="JmO-fx-ysb">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="k0l-PX-752">
                             <connections>
-                                <action selector="editAction:" destination="BYZ-38-t0r" id="Do6-Ew-jwT"/>
+                                <action selector="editAction:" destination="BYZ-38-t0r" id="vRr-r8-Grn"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Sort" id="mrM-F3-05V">
                             <connections>
-                                <action selector="sortAction:" destination="BYZ-38-t0r" id="WIp-Kf-R0x"/>
+                                <action selector="sortAction:" destination="BYZ-38-t0r" id="xhk-n6-4dy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="adsView" destination="nxi-gq-Num" id="3iM-3Z-I4p"/>
-                        <outlet property="tableView" destination="KYM-MO-AoK" id="aEg-67-tut"/>
-                        <outlet property="tableviewPlaceholder" destination="E7j-3O-T4A" id="nUF-Tk-YYy"/>
-                        <outlet property="tableviewPlaceholderImage" destination="uJ0-T4-0KI" id="ZHb-2r-Rdf"/>
-                        <outlet property="tableviewPlaceholderText" destination="KnE-OU-dJk" id="KhX-Q0-Hiy"/>
+                        <outlet property="adsView" destination="nxi-gq-Num" id="j3U-eP-Jt3"/>
+                        <outlet property="loadingIndicator" destination="BKM-Z7-QMV" id="qIk-wH-5TV"/>
+                        <outlet property="tableView" destination="KYM-MO-AoK" id="cR8-c4-Yl1"/>
+                        <outlet property="tableviewPlaceholder" destination="E7j-3O-T4A" id="ULs-dD-aKv"/>
+                        <outlet property="tableviewPlaceholderImage" destination="uJ0-T4-0KI" id="s4i-gM-pYC"/>
+                        <outlet property="tableviewPlaceholderText" destination="KnE-OU-dJk" id="0VU-h9-tPw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -193,13 +205,17 @@
         <!--ThemedUI Navigation Controller-->
         <scene sceneID="P44-pq-Goa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kdr-xF-frR" customClass="ThemedUINavigationController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Kdr-xF-frR" customClass="ThemedUINavigationController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zGP-J0-9B9">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mlC-u3-W8y">
+                        <rect key="frame" x="0.0" y="729" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eIm-ws-yru"/>
                     </connections>
@@ -793,13 +809,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Progress Selected/Total" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wg-im-gUC" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="293" height="21"/>
+                                                    <rect key="frame" x="16" y="12" width="292.66666666666669" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-jb-8Sc">
-                                                    <rect key="frame" x="317.33333333333331" y="12" width="41.666666666666686" height="21"/>
+                                                    <rect key="frame" x="317" y="12" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1040,7 +1056,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Detail" id="eBT-x9-uyn">
+                    <navigationItem key="navigationItem" title="Detail" largeTitleDisplayMode="never" id="eBT-x9-uyn">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="Share" id="rFq-3W-50x">
                             <connections>
                                 <action selector="sendTorrent:" destination="0I4-Ms-eK9" id="DIS-e9-gy7"/>
@@ -1102,7 +1118,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ve-qf-2V6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117" y="888"/>
+            <point key="canvasLocation" x="74" y="887"/>
         </scene>
         <!--Add .torrent-->
         <scene sceneID="jWy-3c-F9q">
@@ -1151,7 +1167,7 @@
                                         <constraint firstAttribute="bottom" secondItem="hFU-bT-S6s" secondAttribute="bottom" constant="22.5" id="hCE-2S-fBv"/>
                                         <constraint firstAttribute="trailing" secondItem="Ngl-gk-0zB" secondAttribute="trailing" constant="16" id="lSJ-lz-0QD"/>
                                         <constraint firstItem="hFU-bT-S6s" firstAttribute="top" secondItem="oAn-fP-M3d" secondAttribute="top" constant="8" id="snW-hF-TeL"/>
-                                        <constraint firstAttribute="bottom" secondItem="hrV-Dx-Iw2" secondAttribute="bottom" constant="4.5" id="yWL-lz-Ha5"/>
+                                        <constraint firstItem="hrV-Dx-Iw2" firstAttribute="top" secondItem="hFU-bT-S6s" secondAttribute="bottom" constant="-7" id="yfi-CT-rnT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1229,7 +1245,7 @@
                         <barButtonItem title="Deselect All" width="122" id="tSN-hF-er4">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="deselectAction:" destination="cd9-5h-p1Q" id="qfA-gM-IlR"/>
+                                <action selector="deselectAllAction:" destination="cd9-5h-p1Q" id="RRi-UZ-JU5"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="424-Pj-0ZN"/>
@@ -1240,26 +1256,26 @@
                         <barButtonItem title="Select All" width="122" id="yiV-n5-Akv">
                             <color key="tintColor" red="0.0" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="selectAction:" destination="cd9-5h-p1Q" id="aBE-pM-Et7"/>
+                                <action selector="selectAllAction:" destination="cd9-5h-p1Q" id="xqW-QV-N7B"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Add .torrent" id="zRk-TY-ISC">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="OGs-R9-Pih">
                             <connections>
-                                <action selector="cancelAction:" destination="cd9-5h-p1Q" id="ihx-zS-QET"/>
+                                <action selector="cancelAction:" destination="cd9-5h-p1Q" id="chj-k1-hrh"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Download" style="done" id="R7C-MG-vsY">
                             <connections>
-                                <action selector="downloadAction:" destination="cd9-5h-p1Q" id="uBx-Wh-Vvd"/>
+                                <action selector="downloadAction:" destination="cd9-5h-p1Q" id="MQb-PX-8Qc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="QYe-2S-Q0w" id="TU6-Hy-dvg"/>
-                        <outlet property="weightLabel" destination="1se-sH-P4I" id="y5Z-ID-u89"/>
+                        <outlet property="tableView" destination="QYe-2S-Q0w" id="Fsy-Je-a3L"/>
+                        <outlet property="weightLabel" destination="1se-sH-P4I" id="Lft-wb-fif"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yo2-8K-PtG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1269,7 +1285,7 @@
         <!--Torrent Files Controller-->
         <scene sceneID="FcV-Je-ocf">
             <objects>
-                <viewController storyboardIdentifier="Files" id="PqW-Wq-2I9" customClass="TorrentFilesController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TorrentFilesController" id="PqW-Wq-2I9" customClass="TorrentFilesController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H24-F4-Vq7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1430,35 +1446,52 @@
                         <barButtonItem title="Deselect All" width="122" id="2py-j7-yiW">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="deselectAction:" destination="PqW-Wq-2I9" id="fG2-Dl-EJO"/>
+                                <action selector="deselectAllAction:" destination="PqW-Wq-2I9" id="S6u-m2-ovw"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zeW-qt-jt6"/>
                         <barButtonItem title="Select All" width="122" id="X7M-vF-Xn1">
                             <color key="tintColor" red="0.0" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="selectAction:" destination="PqW-Wq-2I9" id="bF1-Dk-Ej0"/>
+                                <action selector="selectAllAction:" destination="PqW-Wq-2I9" id="d1D-5f-CiF"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="0tB-Gm-J5e">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="w04-lv-fHA">
                             <connections>
-                                <action selector="selectButtonItem:" destination="PqW-Wq-2I9" id="AUD-hE-PjU"/>
+                                <action selector="editAction:" destination="PqW-Wq-2I9" id="chP-wb-Xcs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="deselectAllButton" destination="2py-j7-yiW" id="djT-Gw-fWG"/>
-                        <outlet property="selectAllButton" destination="X7M-vF-Xn1" id="YRI-Di-0gv"/>
-                        <outlet property="selectButton" destination="w04-lv-fHA" id="u7N-xf-BfX"/>
-                        <outlet property="tableView" destination="C5K-Zn-7sd" id="DN9-dO-h1c"/>
+                        <outlet property="deselectAllButton" destination="2py-j7-yiW" id="H3P-8D-8X0"/>
+                        <outlet property="editButton" destination="w04-lv-fHA" id="Udl-F4-9Kk"/>
+                        <outlet property="selectAllButton" destination="X7M-vF-Xn1" id="5Yt-ay-iYj"/>
+                        <outlet property="tableView" destination="C5K-Zn-7sd" id="bgx-BQ-5It"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ouC-Cn-gua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2732" y="116"/>
+        </scene>
+        <!--ThemedUI Navigation Controller-->
+        <scene sceneID="tzt-yz-VMU">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationController" toolbarHidden="NO" id="Xbv-vm-Jxy" customClass="ThemedUINavigationController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="wfe-CB-Byd">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="USp-Cq-iSZ">
+                        <rect key="frame" x="0.0" y="729" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yG7-qI-KnR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1830" y="887"/>
         </scene>
         <!--google.ru-->
         <scene sceneID="tbR-BD-4p4">

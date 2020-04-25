@@ -49,54 +49,73 @@ class SortingManager {
 
     private static func createAlertButton(_ buttonName: String, _ sortingType: SortingTypes, _ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
         UIAlertAction(title: buttonName, style: .default) { _ in
-            UserPreferences.sortingType.value = sortingType.rawValue
+            UserPreferences.sortingType = sortingType.rawValue
             applyChanges()
         }
     }
 
     private static func createSectionsAlertButton(_ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
-        let sections = UserPreferences.sortingSections.value
+        let sections = UserPreferences.sortingSections
         let name = sections ? NSLocalizedString("Disable state sections", comment: "") : NSLocalizedString("Enable state sections", comment: "")
         return UIAlertAction(title: name, style: sections ? .destructive : .default) { _ in
-            UserPreferences.sortingSections.value = !sections
+            UserPreferences.sortingSections = !sections
             applyChanges()
         }
     }
 
     private static func checkConditionToAddButtonToList(_ sortAlertController: inout ThemedUIAlertController, _ message: inout String, _ alertAction: UIAlertAction, _ sortingType: SortingTypes) {
-        if SortingTypes(rawValue: UserPreferences.sortingType.value) != sortingType {
+        if SortingTypes(rawValue: UserPreferences.sortingType) != sortingType {
             sortAlertController.addAction(alertAction)
         } else {
             message.append(alertAction.title!)
         }
     }
 
-    public static func sortTorrentManagers(managers: [TorrentStatus], headers: inout [String]) -> [[TorrentStatus]] {
-        var res = [[TorrentStatus]]()
-        var localManagers = [TorrentStatus](managers)
+    public static func sortTorrentManagers(managers: [TorrentModel]) -> [ReloadableSection<TorrentModel>] {
+        var titles = [String]()
+        let resOld = sortTorrentManagersOld(managers: managers, headers: &titles)
+
+        var res = [ReloadableSection<TorrentModel>]()
+        for idxSection in 0 ..< resOld.count {
+            var attr = ReloadableSection<TorrentModel>(title: titles[idxSection],
+            value: [],
+            index: idxSection)
+            for idxItem in 0 ..< resOld[idxSection].count {
+                attr.value.append(ReloadableCell<TorrentModel>(key: resOld[idxSection][idxItem].hash,
+                                                               value: resOld[idxSection][idxItem],
+                                                               index: idxItem))
+            }
+            res.append(attr)
+        }
+        return res
+    }
+
+    public static func sortTorrentManagersOld(managers: [TorrentModel], headers: inout [String]) -> [[TorrentModel]] {
+        var res = [[TorrentModel]]()
+        var localManagers = [TorrentModel](managers)
         headers = [String]()
 
-        if UserPreferences.sortingSections.value {
-            var collection = [String: [TorrentStatus]]()
-            collection[Utils.TorrentStates.allocating.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.checkingFastresume.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.downloading.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.finished.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.hashing.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.metadata.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.paused.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.queued.rawValue] = [TorrentStatus]()
-            collection[Utils.TorrentStates.seeding.rawValue] = [TorrentStatus]()
+        if UserPreferences.sortingSections {
+            var collection = [TorrentState: [TorrentModel]]()
+            collection[.allocating] = [TorrentModel]()
+            collection[.checkingFastresume] = [TorrentModel]()
+            collection[.downloading] = [TorrentModel]()
+            collection[.finished] = [TorrentModel]()
+            collection[.hashing] = [TorrentModel]()
+            collection[.metadata] = [TorrentModel]()
+            collection[.paused] = [TorrentModel]()
+            collection[.queued] = [TorrentModel]()
+            collection[.seeding] = [TorrentModel]()
 
             for manager in localManagers {
                 collection[manager.displayState]?.append(manager)
             }
 
-            let sortingOrder = UserPreferences.sectionsSortingOrder.value
+            let sortingOrder = UserPreferences.sectionsSortingOrder
             for id in sortingOrder {
-                let state = Utils.TorrentStates(id: id)!
+                let state = TorrentState(id: id)!
 
-                if var list = collection[state.rawValue] {
+                if var list = collection[state] {
                     addManager(&res, &list, &headers, state.rawValue)
                 }
             }
@@ -109,82 +128,7 @@ class SortingManager {
         return res
     }
 
-//    public static func sortTorrentManagers2(managers: [TorrentStatus], headers: inout [String]) -> [[TorrentStatus]] {
-//        var res = [[TorrentStatus]]()
-//        var localManagers = [TorrentStatus](managers)
-//        headers = [String]()
-//
-//        if (UserPreferences.sortingSections.value) {
-//
-//            var allocatingManagers = [TorrentStatus]()
-//            var checkingFastresumeManagers = [TorrentStatus]()
-//            var downloadingManagers = [TorrentStatus]()
-//            var finishedManagers = [TorrentStatus]()
-//            var hashingManagers = [TorrentStatus]()
-//            var metadataManagers = [TorrentStatus]()
-//            var pausedManagers = [TorrentStatus]()
-//            var queuedManagers = [TorrentStatus]()
-//            var seedingManagers = [TorrentStatus]()
-//
-//            for manager in localManagers {
-//                switch (manager.displayState) {
-//                case Utils.torrentStates.Allocating.rawValue:
-//                    allocatingManagers.append(manager)
-//                case Utils.torrentStates.CheckingFastresume.rawValue:
-//                    checkingFastresumeManagers.append(manager)
-//                case Utils.torrentStates.Downloading.rawValue:
-//                    downloadingManagers.append(manager)
-//                case Utils.torrentStates.Finished.rawValue:
-//                    finishedManagers.append(manager)
-//                case Utils.torrentStates.Hashing.rawValue:
-//                    hashingManagers.append(manager)
-//                case Utils.torrentStates.Metadata.rawValue:
-//                    metadataManagers.append(manager)
-//                case Utils.torrentStates.Paused.rawValue:
-//                    pausedManagers.append(manager)
-//                case Utils.torrentStates.Queued.rawValue:
-//                    queuedManagers.append(manager)
-//                case Utils.torrentStates.Seeding.rawValue:
-//                    seedingManagers.append(manager)
-//                default:
-//                    break
-//                }
-//            }
-//
-//            let sortingOrder = UserPreferences.sectionsSortingOrder.value
-//            for id in sortingOrder {
-//                let state = Utils.torrentStates.init(id: id)!
-//                switch (state) {
-//                case .Allocating:
-//                    addManager(&res, &allocatingManagers, &headers, Utils.torrentStates.Allocating.rawValue)
-//                case .CheckingFastresume:
-//                    addManager(&res, &checkingFastresumeManagers, &headers, Utils.torrentStates.CheckingFastresume.rawValue)
-//                case .Downloading:
-//                    addManager(&res, &downloadingManagers, &headers, Utils.torrentStates.Downloading.rawValue)
-//                case .Finished:
-//                    addManager(&res, &finishedManagers, &headers, Utils.torrentStates.Finished.rawValue)
-//                case .Hashing:
-//                    addManager(&res, &hashingManagers, &headers, Utils.torrentStates.Hashing.rawValue)
-//                case .Metadata:
-//                    addManager(&res, &metadataManagers, &headers, Utils.torrentStates.Metadata.rawValue)
-//                case .Paused:
-//                    addManager(&res, &pausedManagers, &headers, Utils.torrentStates.Paused.rawValue)
-//                case .Queued:
-//                    addManager(&res, &queuedManagers, &headers, Utils.torrentStates.Queued.rawValue)
-//                case .Seeding:
-//                    addManager(&res, &seedingManagers, &headers, Utils.torrentStates.Seeding.rawValue)
-//                }
-//            }
-//        } else {
-//            headers.append("")
-//            simpleSort(&localManagers)
-//            res.append(localManagers)
-//        }
-//
-//        return res
-//    }
-
-    private static func addManager(_ res: inout [[TorrentStatus]], _ list: inout [TorrentStatus], _ headers: inout [String], _ header: String) {
+    private static func addManager(_ res: inout [[TorrentModel]], _ list: inout [TorrentModel], _ headers: inout [String], _ header: String) {
         if list.count > 0 {
             simpleSort(&list)
             headers.append(header)
@@ -192,8 +136,8 @@ class SortingManager {
         }
     }
 
-    private static func simpleSort(_ list: inout [TorrentStatus]) {
-        switch SortingTypes(rawValue: UserPreferences.sortingType.value)! {
+    private static func simpleSort(_ list: inout [TorrentModel]) {
+        switch SortingTypes(rawValue: UserPreferences.sortingType)! {
         case SortingTypes.name:
             list.sort { (t1, t2) -> Bool in
                 t1.title < t2.title

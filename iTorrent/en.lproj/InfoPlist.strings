@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 09.04.2020.
+  Copyright © 2020  XITRIX. All rights reserved.
+*/
+
+"NSPhotoLibraryAddUsageDescription" = "Allow, if you want to be able to save files to Photos app";

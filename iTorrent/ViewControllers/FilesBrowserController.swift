@@ -43,6 +43,6 @@ class FilesBrowserController: UIDocumentPickerViewController, Themed {
 extension FilesBrowserController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         dismiss(animated: true)
-        Manager.addTorrentFromFile(url)
+        Core.shared.addTorrentFromFile(url)
     }
 }

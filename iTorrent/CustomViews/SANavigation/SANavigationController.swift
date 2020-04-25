@@ -10,6 +10,8 @@ import UIKit
 
 /// Swipe Anywhere - to close view controller
 public class SANavigationController: UINavigationController {
+    var locker = true
+
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +35,11 @@ public class SANavigationController: UINavigationController {
 
         return gestureRecognizer
     }()
+
+    public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        locker = true
+    }
 }
 
 extension SANavigationController: UINavigationControllerDelegate {
@@ -47,16 +54,20 @@ extension SANavigationController: UIGestureRecognizerDelegate {
             return false
         }
         
+        if locker {
+            return false
+        }
+
         var isLeftToRight = true
         if #available(iOS 10.0, *) {
             isLeftToRight = view.effectiveUserInterfaceLayoutDirection == .leftToRight
         }
-        
+
         if let pan = gestureRecognizer as? UIPanGestureRecognizer {
             let velocity = pan.velocity(in: view)
             if abs(velocity.x) > abs(velocity.y) {
                 if isLeftToRight {
-                    return  velocity.x > 0
+                    return velocity.x > 0
                 } else {
                     return velocity.x < 0
                 }

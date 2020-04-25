@@ -15,30 +15,26 @@ class TrackersListController: ThemedUIViewController {
     @IBOutlet var removeButton: UIBarButtonItem!
 
     var managerHash: String!
-    var trackers: [Tracker] = []
-    var runUpdate = true
+    var trackers: ReloadableSection<TrackerModel>!
 
     deinit {
         print("Trackers DEINIT!!")
     }
 
-    func update() {
-        var localTrackers: [Tracker] = []
-        let trackersRaw = get_trackers_by_hash(managerHash)
-        for iter in 0..<Int(trackersRaw.size) {
-            var tracker = Tracker()
-            tracker.url = String(validatingUTF8: trackersRaw.tracker_url[iter]) ?? "ERROR"
-            var msg = trackersRaw.working[iter] == 1 ? NSLocalizedString("Working", comment: "") : NSLocalizedString("Inactive", comment: "")
-            if trackersRaw.verified[iter] == 1 {
-                msg += ", " + NSLocalizedString("Verified", comment: "")
-            }
-            tracker.message = msg
-            tracker.peers = Int(trackersRaw.peers[iter])
-            tracker.seeders = Int(trackersRaw.seeders[iter])
-            tracker.leechs = Int(trackersRaw.leechs[iter])
-            localTrackers.append(tracker)
+    @objc func update() {
+        let raw = TorrentSdk.getTrackersByHash(hash: managerHash)
+        let new = ReloadableSection<TrackerModel>(title: "", value: raw.enumerated().map { ReloadableCell<TrackerModel>(key: $1.url, value: $1, index: $0) }, index: 0)
+        let diff = DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
+        trackers = new
+
+        if diff.hasChanges() {
+            tableView.beginUpdates()
+            tableView.insertRows(at: diff.updates.inserts, with: .fade)
+            tableView.deleteRows(at: diff.updates.deletes, with: .fade)
+            tableView.endUpdates()
         }
-        trackers = localTrackers
+
+        diff.updates.reloads.forEach { (tableView.cellForRow(at: $0) as! TrackerCell).setModel(tracker: new.value[$0.row].value) }
     }
 
     override func themeUpdate() {
@@ -49,39 +45,37 @@ class TrackersListController: ThemedUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scrape_tracker(managerHash)
-        DispatchQueue.global(qos: .background).async {
-            while self.runUpdate {
-                let oldDataset = self.trackers
-                self.update()
-                DispatchQueue.main.async {
-                    if oldDataset.count == self.trackers.count {
-                        var reloadIndexes = [IndexPath]()
-                        for iter in 0..<self.trackers.count {
-                            if oldDataset[iter] != self.trackers[iter] {
-                                reloadIndexes.append(IndexPath(row: iter, section: 0))
-                            }
-                        }
-                        if reloadIndexes.count > 0 {
-                            self.tableView.reloadRows(at: reloadIndexes, with: .automatic)
-                        }
-                    } else {
-                        self.tableView.reloadSections([0], with: .automatic)
-                    }
-                }
-                sleep(1)
-            }
-        }
-        
+        TorrentSdk.scrapeTracker(hash: managerHash)
+
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self
+
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(longPressGestureRecognizer:)))
+        view.addGestureRecognizer(longPressRecognizer)
+
+        trackers = ReloadableSection<TrackerModel>(title: "", value: [], index: 0)
+        update()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(update), name: .mainLoopTick, object: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .mainLoopTick, object: nil)
+    }
 
-        runUpdate = false
+    @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == .began {
+            let touchPoint = longPressGestureRecognizer.location(in: tableView)
+            if let index = tableView.indexPathForRow(at: touchPoint) {
+                UIPasteboard.general.string = trackers.value[index.row].value.url
+                Dialogs.withTimer(self, title: nil, message: Localize.get("Tracker URL copied to clipboard!"))
+            }
+        }
     }
 
     @IBAction func editAction(_ sender: UIBarButtonItem) {
@@ -108,10 +102,11 @@ class TrackersListController: ThemedUIViewController {
         let add = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { _ in
             let textField = controller.textFields![0]
 
-            Utils.checkFolderExist(path: Manager.configFolder)
+            Utils.checkFolderExist(path: Core.configFolder)
 
             if let _ = URL(string: textField.text!) {
-                print(add_tracker_to_torrent(self.managerHash, textField.text))
+                print(TorrentSdk.addTrackerToTorrent(hash: self.managerHash, trackerUrl: textField.text!))
+                self.update()
             } else {
                 let alertController = ThemedUIAlertController(title: Localize.get("Error"),
                                                               message: Localize.get("Wrong link, check it and try again!"),
@@ -133,12 +128,11 @@ class TrackersListController: ThemedUIViewController {
         let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you shure to remove this trackers?", comment: ""), preferredStyle: .actionSheet)
         let remove = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
             let urls: [String] = self.tableView.indexPathsForSelectedRows!.map {
-                self.trackers[$0.row].url
+                self.trackers.value[$0.row].value.url
             }
 
-            _ = Utils.withArrayOfCStrings(urls) { args in
-                remove_tracker_from_torrent(self.managerHash, args, Int32(urls.count))
-            }
+            _ = TorrentSdk.removeTrackersFromTorrent(hash: self.managerHash, trackerUrls: urls)
+            self.update()
         }
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 
@@ -156,12 +150,12 @@ class TrackersListController: ThemedUIViewController {
 
 extension TrackersListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        trackers.count
+        trackers.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TrackerCell {
-            cell.setModel(tracker: trackers[indexPath.row])
+            cell.setModel(tracker: trackers.value[indexPath.row].value)
             return cell
         }
         return UITableViewCell()
@@ -194,12 +188,4 @@ extension TrackersListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         setEditing(true, animated: true)
     }
-}
-
-struct Tracker: Equatable {
-    var url = ""
-    var message = ""
-    var seeders = 0
-    var peers = 0
-    var leechs = 0
 }

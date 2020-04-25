@@ -9,6 +9,10 @@
 import UIKit
 
 class ThemedUIActivityViewController: UIActivityViewController, Themed {
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         themeUpdate()

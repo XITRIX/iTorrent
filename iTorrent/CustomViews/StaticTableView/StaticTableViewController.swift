@@ -32,8 +32,13 @@ class StaticTableViewController: ThemedUIViewController {
     }
 
     func setup(style: UITableView.Style = .grouped) {
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
+        
         tableView = StaticTableView(frame: view.frame, style: style)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tableView.colorType = .secondary
         view.addSubview(tableView)
         tableView.data = data
     }

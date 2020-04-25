@@ -163,7 +163,7 @@
 "AddTorrentController.MemoryWarning.AddAnyway" = "Add anyway";
 
 //Torrent Files Controller
-"TorrentFilesController.Select" = "Select";
+"TorrentFilesController.Edit" = "Edit";
 "TorrentFilesController.SelectAll" = "Select All";
 "TorrentFilesController.DeselectAll" = "Deselect All";
 

@@ -13,7 +13,7 @@ class FullscreenAd: NSObject {
     var interstitial: GADInterstitial!
     static let shared = FullscreenAd(id: "ca-app-pub-3833820876743264/8966239009")
 
-    var showed = false
+    var showed = UserPreferences.disableAds
 
     init(id: String) {
         super.init()

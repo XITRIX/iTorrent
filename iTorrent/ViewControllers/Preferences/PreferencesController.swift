@@ -24,10 +24,10 @@ class PreferencesController: StaticTableViewController {
         var appearance = [CellModelProtocol]()
         appearance.append(SegueCell.Model(self, title: "Settings.Order", controllerType: SettingsSortingController.self))
         if #available(iOS 13, *) {
-            appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme.value },
+            appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme },
                                                action: { switcher in
                                                    let oldTheme = Themes.current
-                                                   UserPreferences.autoTheme.value = switcher.isOn
+                                                   UserPreferences.autoTheme = switcher.isOn
                                                    Themes.shared.currentUserTheme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle.rawValue
                                                    let newTheme = Themes.current
 
@@ -51,38 +51,40 @@ class PreferencesController: StaticTableViewController {
                 }))
         }
         appearance.append(SwitchCell.Model(title: "Settings.Theme",
-                                           defaultValue: { UserPreferences.themeNum.value == 1 },
-                                           hiddenCondition: { UserPreferences.autoTheme.value }) { switcher in
+                                           defaultValue: { UserPreferences.themeNum == 1 },
+                                           hiddenCondition: { UserPreferences.autoTheme }) { switcher in
                 self.navigationController?.view.isUserInteractionEnabled = false
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                    UserPreferences.themeNum.value = switcher.isOn ? 1 : 0
+                    UserPreferences.themeNum = switcher.isOn ? 1 : 0
                     CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
                     self.navigationController?.view.isUserInteractionEnabled = true
                 }
         })
         data.append(Section(rowModels: appearance))
-        
+
         // STORAGE
         var storage = [CellModelProtocol]()
         storage.append(StoragePropertyCell.Model())
-        storage.append(SwitchCell.ModelProperty(title: "Settings.Storage.Allocate", property: UserPreferences.storagePreallocation, hint: "Settings.Storage.Allocate.Hint") { switcher in
+        storage.append(SwitchCell.Model(title: "Settings.Storage.Allocate", defaultValue: { UserPreferences.storagePreallocation }, hint: "Settings.Storage.Allocate.Hint") { switcher in
+            UserPreferences.storagePreallocation = switcher.isOn
             set_storage_preallocation(switcher.isOn ? 1 : 0)
         })
         data.append(Section(rowModels: storage, header: "Settings.Storage.Header"))
 
         // BACKGROUND
         var background = [CellModelProtocol]()
-        background.append(SwitchCell.ModelProperty(title: "Settings.BackgroundEnable", property: UserPreferences.background) { _ in
+        background.append(SwitchCell.Model(title: "Settings.BackgroundEnable", defaultValue: { UserPreferences.background }) { switcher in
+            UserPreferences.background = switcher.isOn
             self.tableView.reloadData()
         })
         background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding",
-                                           defaultValue: { UserPreferences.backgroundSeedKey.value },
+                                           defaultValue: { UserPreferences.backgroundSeedKey },
                                            switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1),
-                                           disableCondition: { !UserPreferences.background.value }) { switcher in
+                                           disableCondition: { !UserPreferences.background }) { switcher in
                 if switcher.isOn {
                     let controller = ThemedUIAlertController(title: Localize.get("WARNING"), message: Localize.get("Settings.BackgroundSeeding.Warning"), preferredStyle: .alert)
                     let enable = UIAlertAction(title: Localize.get("Enable"), style: .destructive) { _ in
-                        UserPreferences.backgroundSeedKey.value = switcher.isOn
+                        UserPreferences.backgroundSeedKey = switcher.isOn
                     }
                     let close = UIAlertAction(title: Localize.get("Cancel"), style: .cancel) { _ in
                         switcher.setOn(false, animated: true)
@@ -91,26 +93,26 @@ class PreferencesController: StaticTableViewController {
                     controller.addAction(close)
                     self.present(controller, animated: true)
                 } else {
-                    UserPreferences.seedBackgroundWarning.value = false
-                    UserPreferences.backgroundSeedKey.value = false
+                    UserPreferences.seedBackgroundWarning = false
+                    UserPreferences.backgroundSeedKey = false
                 }
         })
         background.append(ButtonCell.Model(title: "Settings.ZeroSpeedLimit",
                                            hint: Localize.get("Settings.ZeroSpeedLimit.Hint"),
                                            buttonTitleFunc: {
-                                               UserPreferences.zeroSpeedLimit.value == 0 ?
+                                               UserPreferences.zeroSpeedLimit == 0 ?
                                                    NSLocalizedString("Disabled", comment: "") :
-                                                   "\(UserPreferences.zeroSpeedLimit.value / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit.value / 60))"
+                                                   "\(UserPreferences.zeroSpeedLimit / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit / 60))"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                self.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit.value / 60, dataSelected: { res in
+                self.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Disabled", comment: ""), for: .normal)
                     } else {
                         button.setTitle("\(res / 60) \(Localize.getTermination("minute", res / 60))", for: .normal)
                     }
                 }, dismissAction: { res in
-                    UserPreferences.zeroSpeedLimit.value = res
+                    UserPreferences.zeroSpeedLimit = res
             })
                 self.onScreenPopup?.show(self)
         })
@@ -119,37 +121,37 @@ class PreferencesController: StaticTableViewController {
         // SPEED LIMITATION
         var speed = [CellModelProtocol]()
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
-                                      buttonTitleFunc: { UserPreferences.downloadLimit.value == 0 ?
+                                      buttonTitleFunc: { UserPreferences.downloadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
-                                          Utils.getSizeText(size: UserPreferences.downloadLimit.value, decimals: true) + "/S"
+                                          Utils.getSizeText(size: UserPreferences.downloadLimit, decimals: true) + "/S"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.downloadLimit.value, dataSelected: { res in
+                self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.downloadLimit, dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
                         button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
                     }
                 }, dismissAction: { res in
-                    UserPreferences.downloadLimit.value = res
+                    UserPreferences.downloadLimit = res
                     set_download_limit(Int32(res))
             })
                 self.onScreenPopup?.show(self)
         })
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
-                                      buttonTitleFunc: { UserPreferences.uploadLimit.value == 0 ?
+                                      buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
-                                          Utils.getSizeText(size: UserPreferences.uploadLimit.value, decimals: true) + "/S"
+                                          Utils.getSizeText(size: UserPreferences.uploadLimit, decimals: true) + "/S"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.uploadLimit.value, dataSelected: { res in
+                self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.uploadLimit, dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
                         button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
                     }
                 }, dismissAction: { res in
-                    UserPreferences.uploadLimit.value = res
+                    UserPreferences.uploadLimit = res
                     set_upload_limit(Int32(res))
             })
                 self.onScreenPopup?.show(self)
@@ -158,17 +160,18 @@ class PreferencesController: StaticTableViewController {
 
         // FTP
         var ftp = [CellModelProtocol]()
-        ftp.append(SwitchCell.ModelProperty(title: "Settings.FTPEnable", property: UserPreferences.ftpKey, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
-            switcher.isOn ? Manager.startFileSharing() : Manager.stopFileSharing()
-            self.tableView.reloadSections([3], with: .automatic)
+        ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
+            UserPreferences.ftpKey = switcher.isOn
+            switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
+            self.tableView.reloadSections([4], with: .automatic)
         })
         ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: PreferencesWebDavController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
-            if UserPreferences.ftpKey.value,
-                UserPreferences.webDavWebServerEnabled.value {
-                let addr = Manager.webUploadServer.serverURL // Utils.getWiFiAddress()
+            if UserPreferences.ftpKey,
+                UserPreferences.webDavWebServerEnabled {
+                let addr = Core.shared.webUploadServer.serverURL // Utils.getWiFiAddress()
                 if let addr = addr?.absoluteString {
-                    return UserPreferences.ftpKey.value ? Localize.get("Settings.FTP.Message") + addr : ""
+                    return UserPreferences.ftpKey ? Localize.get("Settings.FTP.Message") + addr : ""
                 } else {
                     return Localize.get("Settings.FTP.Message.NoNetwork")
                 }
@@ -179,17 +182,18 @@ class PreferencesController: StaticTableViewController {
 
         // NOTIFICATIONS
         var notifications = [CellModelProtocol]()
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishLoad",
-                                                      property: UserPreferences.notificationsKey) { _ in
-                self.tableView.reloadData()
+        notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishLoad", defaultValue: { UserPreferences.notificationsKey }) { switcher in
+            UserPreferences.notificationsKey = switcher.isOn
+            self.tableView.reloadData()
         })
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyFinishSeed",
-                                                      property: UserPreferences.notificationsSeedKey) { _ in
-                self.tableView.reloadData()
-        })
-        notifications.append(SwitchCell.ModelProperty(title: "Settings.NotifyBadge",
-                                                      property: UserPreferences.badgeKey,
-                                                      disableCondition: { !UserPreferences.notificationsKey.value && !UserPreferences.notificationsSeedKey.value }))
+        notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishSeed", defaultValue: { UserPreferences.notificationsSeedKey }) { switcher in
+            UserPreferences.notificationsSeedKey = switcher.isOn
+            self.tableView.reloadData()
+               })
+        notifications.append(SwitchCell.Model(title: "Settings.NotifyBadge", defaultValue: { UserPreferences.badgeKey }, disableCondition: { !UserPreferences.notificationsKey && !UserPreferences.notificationsSeedKey }) { switcher in
+            UserPreferences.badgeKey = switcher.isOn
+            self.tableView.reloadData()
+                      })
         data.append(Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
         // UPDATES
@@ -220,22 +224,13 @@ class PreferencesController: StaticTableViewController {
 
                         DispatchQueue.main.async {
                             UIPasteboard.general.string = card
-                            let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Copied CC # to clipboard!", comment: ""), preferredStyle: .alert)
-                            self.present(alert, animated: true, completion: nil)
-                            // change alert timer to 2 seconds, then dismiss
-                            let when = DispatchTime.now() + 2
-                            DispatchQueue.main.asyncAfter(deadline: when) {
-                                alert.dismiss(animated: true, completion: nil)
-                            }
+                            Dialogs.withTimer(self, title: nil, message: Localize.get("Copied CC # to clipboard!"))
                         }
                     }
                 }
             }
             let paypal = UIAlertAction(title: "PayPal", style: .default) { _ in
                 Utils.openUrl("https://paypal.me/xitrix")
-            }
-            let patreon = UIAlertAction(title: "Patreon", style: .default) { _ in
-                Utils.openUrl("https://www.patreon.com/xitrix")
             }
             let liberapay = UIAlertAction(title: "Liberapay", style: .default) { _ in
                 Utils.openUrl("https://liberapay.com/XITRIX")
@@ -247,7 +242,6 @@ class PreferencesController: StaticTableViewController {
 
             alert.addAction(card)
             alert.addAction(paypal)
-            alert.addAction(patreon)
             alert.addAction(liberapay)
             alert.addAction(kofi)
             alert.addAction(cancel)

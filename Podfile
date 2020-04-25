@@ -15,7 +15,6 @@ target 'iTorrent' do
   pod "GCDWebServer/WebUploader", "~> 3.0"
   pod "GCDWebServer/WebDAV", "~> 3.0"
   pod 'AppCenter'
-
 end
 
 post_install do |installer|

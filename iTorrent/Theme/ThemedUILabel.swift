@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ThemedUILabel: UILabel, Themed {
-    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'secondaryColor' instead.")
+    @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'colorType' instead.")
     @IBInspectable var colorTypeAdapter: Int {
         get {
             return colorType.rawValue
@@ -26,6 +26,10 @@ class ThemedUILabel: UILabel, Themed {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -9,6 +9,8 @@
 #ifndef result_struct_h
 #define result_struct_h
 
+#include <time.h>
+
 typedef struct TorrentInfo {
     char * _Nonnull name;
     char * _Nonnull state;
@@ -36,9 +38,9 @@ typedef struct TorrentInfo {
     int * _Nonnull pieces;
 } TorrentInfo;
 
-typedef struct Result {
+typedef struct TorrentResult {
     int count;
     TorrentInfo * _Nonnull torrents;
-} Result;
+} TorrentResult;
 
 #endif /* result_struct_h */

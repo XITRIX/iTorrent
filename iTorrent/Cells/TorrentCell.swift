@@ -8,13 +8,13 @@
 
 import UIKit
 
-class TorrentCell: ThemedUITableViewCell {
+class TorrentCell: ThemedUITableViewCell, UpdatableModel {
     @IBOutlet var title: UILabel!
     @IBOutlet var info: UILabel!
     @IBOutlet var status: UILabel!
     @IBOutlet var progress: UIProgressView!
 
-    var manager: TorrentStatus!
+    var model: TorrentModel!
 
     override func themeUpdate() {
         super.themeUpdate()
@@ -28,24 +28,28 @@ class TorrentCell: ThemedUITableViewCell {
         selectedBackgroundView = bgColorView
     }
 
-    func update() {
-        themeUpdate()
-        title.text = manager.title
-        progress.progress = manager.progress
-        info.text = Utils.getSizeText(size: manager.totalWantedDone) +
+    func updateModel() {
+        title.text = model.title
+        progress.progress = model.progress
+        info.text = Utils.getSizeText(size: model.totalWantedDone) +
             " \(NSLocalizedString("of", comment: "")) " +
-            Utils.getSizeText(size: manager.totalWanted) +
-            " (" + String(format: "%.2f", manager.progress * 100) + "%)"
-        if manager.displayState == Utils.TorrentStates.downloading.rawValue {
-            status.text = NSLocalizedString(manager.displayState, comment: "") +
-                " - DL:" + Utils.getSizeText(size: Int64(manager.downloadRate)) +
+            Utils.getSizeText(size: model.totalWanted) +
+            " (" + String(format: "%.2f", model.progress * 100) + "%)"
+        if model.displayState == .downloading {
+            status.text = NSLocalizedString(model.displayState.rawValue, comment: "") +
+                " - DL:" + Utils.getSizeText(size: Int64(model.downloadRate)) +
                 "/s - \(NSLocalizedString("time remains", comment: "")): " +
-                Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone)
-        } else if manager.displayState == Utils.TorrentStates.seeding.rawValue {
-            status.text = NSLocalizedString(manager.displayState, comment: "") +
-                " - UL:" + Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
+                Utils.downloadingTimeRemainText(speedInBytes: Int64(model.downloadRate), fileSize: model.totalWanted, downloadedSize: model.totalWantedDone)
+        } else if model.displayState == .seeding {
+            status.text = NSLocalizedString(model.displayState.rawValue, comment: "") +
+                " - UL:" + Utils.getSizeText(size: Int64(model.uploadRate)) + "/s"
         } else {
-            status.text = NSLocalizedString(manager.displayState, comment: "")
+            status.text = NSLocalizedString(model.displayState.rawValue, comment: "")
         }
+    }
+    
+    func setModel(_ model: TorrentModel) {
+        self.model = model
+        updateModel()
     }
 }

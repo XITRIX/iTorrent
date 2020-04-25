@@ -10,33 +10,18 @@ import Foundation
 import UIKit
 
 class Utils {
-    public enum TorrentStates: String {
-        case queued = "Queued"
-        case hashing = "Hashing"
-        case metadata = "Metadata"
-        case downloading = "Downloading"
-        case finished = "Finished"
-        case seeding = "Seeding"
-        case allocating = "Allocating"
-        case checkingFastresume = "Checking fastresume"
-        case paused = "Paused"
-
-        init?(id: Int) {
-            switch id {
-            case 1: self = .queued
-            case 2: self = .hashing
-            case 3: self = .metadata
-            case 4: self = .downloading
-            case 5: self = .finished
-            case 6: self = .seeding
-            case 7: self = .allocating
-            case 8: self = .checkingFastresume
-            case 9: self = .paused
-            default: return nil
-            }
+    public static var topViewController: UIViewController? {
+        var vc = UIApplication.shared.keyWindow?.rootViewController
+        while vc?.presentedViewController != nil {
+            vc = vc?.presentedViewController
         }
+        return vc
     }
-
+    
+    public static var rootViewController: UIViewController {
+        UIApplication.shared.keyWindow!.rootViewController!
+    }
+    
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
         if speedInBytes == 0 {
             return NSLocalizedString("eternity", comment: "")
@@ -161,7 +146,7 @@ class Utils {
         }
     }
 
-    public static func getFileByName(_ array: [File], file: File) -> File? {
+    public static func getFileByName(_ array: [FileModel], file: FileModel) -> FileModel? {
         for afile in array {
             if afile.name == file.name {
                 return afile

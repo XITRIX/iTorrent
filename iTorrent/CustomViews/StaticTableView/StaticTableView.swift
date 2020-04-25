@@ -33,7 +33,7 @@ class StaticTableView: ThemedUITableView {
 
     override func setup() {
         super.setup()
-
+        
         register(SegueCell.nib, forCellReuseIdentifier: SegueCell.name)
         register(SwitchCell.nib, forCellReuseIdentifier: SwitchCell.name)
         register(ButtonCell.nib, forCellReuseIdentifier: ButtonCell.name)
@@ -75,5 +75,6 @@ extension StaticTableView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = presentableData[indexPath.section].rowModels[indexPath.row]
         model.tapAction?()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

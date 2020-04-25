@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FileCell: ThemedUITableViewCell {
+class FileCellOld: ThemedUITableViewCell {
     @IBOutlet var title: UILabel!
     @IBOutlet var size: UILabel!
     @IBOutlet var switcher: UISwitch!
@@ -19,7 +19,7 @@ class FileCell: ThemedUITableViewCell {
     weak var actionDelegate: FileCellActionDelegate?
     var name: String!
     var adding = false
-    weak var file: File!
+    weak var file: FileModel!
 
     var hideUI: Bool = false
 
@@ -38,9 +38,9 @@ class FileCell: ThemedUITableViewCell {
 
     func update() {
         title.text = file?.name
-        let progressValue = Float(file.downloaded) / Float(file.size)
+        let progressValue = Float(file.downloadedBytes) / Float(file.size)
         let percent = progressValue * 100
-        size.text = adding ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloaded) + " (" + String(format: "%.2f", percent) + "%)"
+        size.text = adding ? Utils.getSizeText(size: file.size) : Utils.getSizeText(size: file.size) + " / " + Utils.getSizeText(size: file.downloadedBytes) + " (" + String(format: "%.2f", percent) + "%)"
         progress?.setProgress(progressValue == 1 ? [1] : file.pieces.map {
             CGFloat($0)
         })
@@ -60,29 +60,24 @@ class FileCell: ThemedUITableViewCell {
             }
         }
 
-        switch file.isDownloading {
-        case 0:
+        switch file.priority {
+        case .dontDownload:
             switcher.setOn(false, animated: true)
             switcher.onTintColor = nil
-        case 1:
-            switcher.setOn(true, animated: true)
-            switcher.onTintColor = UIColor.gray
-        case 2:
+        case .lowPriority:
             switcher.setOn(true, animated: true)
             switcher.onTintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
-        case 3:
+        case .mediumPriority:
             switcher.setOn(true, animated: true)
             switcher.onTintColor = UIColor.orange
-        case 4:
+        case .normalPriority:
             switcher.setOn(true, animated: true)
             switcher.onTintColor = nil
-        default:
-            break
         }
     }
 
     func canShare() -> Bool {
-        let percent = Float(file.downloaded) / Float(file.size) * 100
+        let percent = Float(file.downloadedBytes) / Float(file.size) * 100
         return percent >= 100 && !adding
     }
 
@@ -95,7 +90,7 @@ class FileCell: ThemedUITableViewCell {
     @IBAction func shareAction(_ sender: UIButton) {
         let controller = ThemedUIAlertController(title: nil, message: file.name, preferredStyle: .actionSheet)
         let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
-            let path = NSURL(fileURLWithPath: Manager.rootFolder + "/" + self.file.path + "/" + self.file.name, isDirectory: false)
+            let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.file.path.path + "/" + self.file.name, isDirectory: false)
             let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
             if shareController.popoverPresentationController != nil {
                 shareController.popoverPresentationController?.sourceView = sender

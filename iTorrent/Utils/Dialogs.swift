@@ -10,14 +10,24 @@ import Foundation
 import UIKit
 
 class Dialogs {
+    static func withTimer(_ presenter: UIViewController,title: String?, message: String?) {
+        let alert = ThemedUIAlertController(title:title, message: message, preferredStyle: .alert)
+        presenter.present(alert, animated: true, completion: nil)
+        // change alert timer to 2 seconds, then dismiss
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            alert.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     static func crateUpdateDialog(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
         let localUrl = Bundle.main.url(forResource: "Version", withExtension: "ver")
         if let localVersion = try? String(contentsOf: localUrl!) {
-            if !UserPreferences.versionNews.value || forced {
+            if !UserPreferences.versionNews || forced {
                 let title = localVersion + NSLocalizedString("info", comment: "")
                 let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: NSLocalizedString("UpdateText", comment: ""), preferredStyle: .alert)
                 let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel) { _ in
-                    UserPreferences.versionNews.value = true
+                    UserPreferences.versionNews = true
                     finishAction?()
                 }
                 newsController.addAction(close)
