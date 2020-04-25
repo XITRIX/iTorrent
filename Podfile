@@ -1,11 +1,12 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+#plugin 'cocoapods-binary'
+
+platform :ios, '9.3'
+#enable_bitcode_for_prebuilt_frameworks!
+#keep_source_code_for_prebuilt_frameworks!
+#all_binary!
 
 target 'iTorrent' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for iTorrent
   pod 'Firebase/Core'
   pod 'Firebase/Performance'
   pod 'Fabric'

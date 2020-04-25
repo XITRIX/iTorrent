@@ -125,6 +125,20 @@
 "Settings.DonateCard.DonatePlatforms" = "Задонатить";
 "Settings.DonateCard.DonatePlatforms.Title" = "Выберите платформу для пожертвований:";
 "Settings.DonateHeader" = "Донат на еду";
+"Settings.DonateFooter" = "Привяжите Patreon для отключения рекламы";
+
+"Settings.Patreon.Name" = "XITRIX (Даниил Виноградов)";
+"Settings.Patreon.Creator" = "Создатель iTorrent";
+"Settings.Patreon.Welcome" = "Привет всем,\n\nВы можете поддержать дальнейшую разработку iTorrent задонатив мне на Patreon. Взамен, вы получите доступ к версии приложения iTorrent без рекламы.\n\nСпасибо за вашу поддержку!";
+"Settings.Patreon.Patron" = "Вы патрон";
+"Settings.Patreon.Full" = "У вас полная версия";
+"Settings.Patreon.Reward" = "Реклама отключена!";
+"Settings.Patreon.PatronButton" = "Стать патроном";
+"Settings.Patreon.LinkButton" = "Привязать Patreon аккаунт";
+"Settings.Patreon.UnlinkButton" = "Отвязать";
+"Settings.Patreon.UnlinkButton.Text" = "Вы уверены, что хотите отвязать ваш Patreon аккаунт?";
+"Settings.Patreon.UnlinkButton.Action" = "Отвязать Patreon аккаунт";
+"Settings.Patreon.Thanks" = "Отдельное спасибо:";
 
 "Settings.Sorting.Revert" = "Сбросить";
 

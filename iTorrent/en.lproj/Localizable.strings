@@ -125,6 +125,20 @@
 "Settings.DonateCard.DonatePlatforms" = "Donate";
 "Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
 "Settings.DonateHeader" = "Donate for donuts";
+"Settings.DonateFooter" = "Link with patreon to disable ADS";
+
+"Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
+"Settings.Patreon.Creator" = "Creator of iTorrent";
+"Settings.Patreon.Welcome" = "Hi there,\n\nYou can support future development of iTorrent by donating me on Patreon. In return, you'll receive access to the ads-free version of iTorrent app.\n\nThanks for all your support!";
+"Settings.Patreon.Patron" = "You are a patron";
+"Settings.Patreon.Full" = "You have full version";
+"Settings.Patreon.Reward" = "Ads-free enabled, have fun!";
+"Settings.Patreon.PatronButton" = "Become a patron";
+"Settings.Patreon.LinkButton" = "Link Patreon account";
+"Settings.Patreon.UnlinkButton" = "Unlink";
+"Settings.Patreon.UnlinkButton.Text" = "Are you sure you want to unlink your Patreon account?";
+"Settings.Patreon.UnlinkButton.Action" = "Unlink Patreon Account";
+"Settings.Patreon.Thanks" = "Special thanks to:";
 
 "Settings.Sorting.Revert" = "Revert";
 

@@ -50,6 +50,7 @@ class UserPreferences {
     @PreferenceData("patreonRefreshToken", "") static var patreonRefreshToken: String?
     
     @PreferenceData("patreonAccount") static var patreonAccount: PatreonAccount?
+    @PreferenceData("patreonCredentials") static var patreonCredentials: PatreonCredentials?
     
     static func alertDialog(code: String) -> SettingProperty<Bool> {
         SettingProperty<Bool>("alertDialog" + code, false)

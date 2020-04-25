@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
 
@@ -33,7 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             MSAnalytics.self,
             MSCrashes.self
         ])
-
+        
+        PatreonAPI.configure()
+        
         DispatchQueue.global(qos: .utility).async {
             sleep(1)
             if !self.openedByFile {
@@ -120,7 +122,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController {
-            if nav.topViewController is PreferencesController || nav.topViewController is SettingsSortingController || nav.topViewController is PreferencesWebDavController {
+            if nav.topViewController is PreferencesController ||
+                nav.topViewController is SettingsSortingController ||
+                nav.topViewController is PreferencesWebDavController ||
+                nav.topViewController is PatreonViewController {
                 return Utils.createEmptyViewController()
             }
         }

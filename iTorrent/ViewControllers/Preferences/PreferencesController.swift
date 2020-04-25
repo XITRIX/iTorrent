@@ -248,25 +248,8 @@ class PreferencesController: StaticTableViewController {
 
             self.present(alert, animated: true)
         })
-        donates.append(SwitchCell.Model(title: "Settings.DonateDisable", defaultValue: { UserPreferences.disableAds.value }, switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)) { switcher in
-            if switcher.isOn {
-                let controller = ThemedUIAlertController(title: Localize.get("Supplication"),
-                                                         message: Localize.get("If you enjoy this app, consider supporting the developer by keeping the ads on."),
-                                                         preferredStyle: .alert)
-                let enable = UIAlertAction(title: Localize.get("Disable Anyway"), style: .destructive) { _ in
-                    UserPreferences.disableAds.value = switcher.isOn
-                }
-                let close = UIAlertAction(title: Localize.get("Cancel"), style: .cancel) { _ in
-                    switcher.setOn(false, animated: true)
-                }
-                controller.addAction(enable)
-                controller.addAction(close)
-                self.present(controller, animated: true)
-            } else {
-                UserPreferences.disableAds.value = switcher.isOn
-            }
-        })
-        data.append(Section(rowModels: donates, header: "Settings.DonateHeader"))
+        donates.append(SegueCell.Model(self, title: "Patreon", segueViewId: "PatreonViewController"))
+        data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
     }
 
     override func viewWillAppear(_ animated: Bool) {

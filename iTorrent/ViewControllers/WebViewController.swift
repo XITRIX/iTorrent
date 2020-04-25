@@ -30,7 +30,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         web.url = url
         
         let nav = ThemedUINavigationController(rootViewController: web)
-        nav.modalPresentationStyle = .fullScreen
+        //nav.modalPresentationStyle = .fullScreen
         controller.present(nav, animated: true)
     }
     
