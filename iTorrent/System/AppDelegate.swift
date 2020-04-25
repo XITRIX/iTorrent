@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         }
 
-        _ = Core.shared
+        Core.configure()
 
         if #available(iOS 13.0, *) {
             Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             UIApplication.shared.cancelAllLocalNotifications()
         }
 
-        if UserPreferences.ftpKey.value {
+        if UserPreferences.ftpKey {
             Core.shared.startFileSharing()
         }
 

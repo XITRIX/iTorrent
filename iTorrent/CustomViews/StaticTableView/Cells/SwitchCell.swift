@@ -38,9 +38,11 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     func setModel(_ model: CellModelProtocol) {
         if let model = model as? Model {
             setModel(model)
-        } else if let model = model as? ModelProperty {
-            setModel(model)
-        } else {
+        }
+//        else if let model = model as? ModelProperty {
+//            setModel(model)
+//        }
+        else {
             return
         }
     }
@@ -54,22 +56,22 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         switcher.setOn(model.defaultValue(), animated: false)
 
         hintText = model.hint
-        hintButton.isHidden = hintText == nil
+        hintButton.isHiddenInStackView = hintText == nil
     }
 
-    func setModel(_ model: ModelProperty) {
-        title.text = Localize.get(model.title)
-        action = { switcher in
-            model.property.value = switcher.isOn
-            model.action?(switcher)
-        }
-        switcher.onTintColor = model.switchColor
-        switcher.isEnabled = !(model.disableCondition?() ?? false)
-        switcher.setOn(model.property.value, animated: false)
-
-        hintText = model.hint
-        hintButton.isHidden = hintText == nil
-    }
+//    func setModel(_ model: ModelProperty) {
+//        title.text = Localize.get(model.title)
+//        action = { switcher in
+//            model.property.wrappedValue = switcher.isOn
+//            model.action?(switcher)
+//        }
+//        switcher.onTintColor = model.switchColor
+//        switcher.isEnabled = !(model.disableCondition?() ?? false)
+//        switcher.setOn(model.property.wrappedValue, animated: false)
+//
+//        hintText = model.hint
+//        hintButton.isHiddenInStackView = hintText == nil
+//    }
 
     @objc private func executeAction() {
         action?(switcher)
@@ -93,15 +95,15 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var action: (UISwitch) -> ()
     }
 
-    struct ModelProperty: CellModelProtocol {
-        var reuseCellIdentifier: String = id
-        var title: String
-        var property: UserPreferences.SettingProperty<Bool>
-        var hint: String?
-        var switchColor: UIColor?
-        var hiddenCondition: (() -> Bool)?
-        var disableCondition: (() -> Bool)?
-        var tapAction: (() -> ())?
-        var action: ((UISwitch) -> ())?
-    }
+//    struct ModelProperty: CellModelProtocol {
+//        var reuseCellIdentifier: String = id
+//        var title: String
+//        var property: PreferenceItem<Bool>
+//        var hint: String?
+//        var switchColor: UIColor?
+//        var hiddenCondition: (() -> Bool)?
+//        var disableCondition: (() -> Bool)?
+//        var tapAction: (() -> ())?
+//        var action: ((UISwitch) -> ())?
+//    }
 }

@@ -75,9 +75,10 @@ class TorrentListController: ThemedUIViewController {
             let searchFiltered = Array(Core.shared.torrents.values).filter { self.searchFilter($0) }
             let tempBuf = SortingManager.sortTorrentManagers(managers: searchFiltered)
             let changes = DiffCalculator.calculate(oldSectionItems: self.torrentSections, newSectionItems: tempBuf)
-            self.torrentSections = tempBuf
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [changes] in
                 if changes.hasChanges() {
+                    self.torrentSections = tempBuf
+                    
                     let animation: UITableView.RowAnimation = animated ? .fade : .none
                     
                     self.tableView.beginUpdates()

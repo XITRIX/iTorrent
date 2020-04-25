@@ -10,7 +10,12 @@ import Foundation
 import GCDWebServer
 
 class Core {
-    public static let shared = Core()
+    private(set) static var shared: Core!
+    
+    public static func configure() {
+        if shared != nil { return }
+        shared = Core()
+    }
     
     var state: CoreState = .Initializing
     
@@ -27,13 +32,13 @@ class Core {
             TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder)
             self.restoreAllTorrents()
 
-            let down = UserPreferences.downloadLimit.value
+            let down = UserPreferences.downloadLimit
             TorrentSdk.setDownloadLimit(limitBytes: Int(down))
 
-            let up = UserPreferences.uploadLimit.value
+            let up = UserPreferences.uploadLimit
             TorrentSdk.setUploadLimits(limitBytes: Int(up))
             
-            let allocateStorage = UserPreferences.storagePreallocation.value
+            let allocateStorage = UserPreferences.storagePreallocation
             TorrentSdk.setStoragePreallocation(allocate: allocateStorage)
             
             self.state = .InProgress

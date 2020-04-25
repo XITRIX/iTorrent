@@ -44,7 +44,7 @@ class BackgroundTask {
     }
 
     static func startBackground() -> Bool {
-        if UserPreferences.background.value {
+        if UserPreferences.background {
             if Core.shared.torrents.values.contains(where: { (status) -> Bool in
                 getBackgroundConditions(status)
             }) {
@@ -70,13 +70,13 @@ class BackgroundTask {
             status.displayState == .metadata ||
             status.displayState == .hashing ||
             (status.displayState == .seeding &&
-                UserPreferences.backgroundSeedKey.value &&
+                UserPreferences.backgroundSeedKey &&
                 status.seedMode) ||
-            (UserPreferences.ftpKey.value &&
-                UserPreferences.ftpBackgroundKey.value)) &&
+            (UserPreferences.ftpKey &&
+                UserPreferences.ftpBackgroundKey)) &&
             // zero speed limit conditions
-            ((UserPreferences.zeroSpeedLimit.value > 0 &&
-                    Core.shared.torrentsUserData[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit.value) ||
-                UserPreferences.zeroSpeedLimit.value == 0)
+            ((UserPreferences.zeroSpeedLimit > 0 &&
+                    Core.shared.torrentsUserData[status.hash]?.zeroSpeedTimeCounter ?? 0 < UserPreferences.zeroSpeedLimit) ||
+                UserPreferences.zeroSpeedLimit == 0)
     }
 }

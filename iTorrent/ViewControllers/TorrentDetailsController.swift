@@ -293,16 +293,16 @@ class TorrentDetailsController: ThemedUITableViewController {
             }
 
             if sender.isOn {
-                if UserPreferences.background.value &&
-                    !UserPreferences.backgroundSeedKey.value &&
-                    !UserPreferences.seedBackgroundWarning.value {
-                    UserPreferences.seedBackgroundWarning.value = true
+                if UserPreferences.background &&
+                    !UserPreferences.backgroundSeedKey &&
+                    !UserPreferences.seedBackgroundWarning {
+                    UserPreferences.seedBackgroundWarning = true
 
                     let controller = ThemedUIAlertController(title: Localize.get("Warning"),
                                                              message: Localize.get("Details.BackgroundSeeding.Warning"),
                                                              preferredStyle: .alert)
                     let enable = UIAlertAction(title: NSLocalizedString("Enable", comment: ""), style: .destructive) { _ in
-                        UserPreferences.backgroundSeedKey.value = true
+                        UserPreferences.backgroundSeedKey = true
                     }
                     let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 

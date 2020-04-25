@@ -15,18 +15,19 @@ class PreferencesWebDavController: StaticTableViewController {
         title = Localize.get("Settings.FTPHeader")
         
         var pass = [CellModelProtocol]()
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: { UserPreferences.webDavUsername.value }) { username in
-            UserPreferences.webDavUsername.value = username
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: { UserPreferences.webDavUsername }) { username in
+            UserPreferences.webDavUsername = username
         })
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: { UserPreferences.webDavPassword.value }, isPassword: true) { password in
-            UserPreferences.webDavPassword.value = password
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: { UserPreferences.webDavPassword }, isPassword: true) { password in
+            UserPreferences.webDavPassword = password
         })
         data.append(Section(rowModels: pass, footer: "Settings.FTP.WebDav.PassText"))
         
         var web = [CellModelProtocol]()
-        web.append(SwitchCell.ModelProperty(title: "Enable", property: UserPreferences.webDavWebServerEnabled) { switcher in
+        web.append(SwitchCell.Model(title: "Enable", defaultValue: {UserPreferences.webDavWebServerEnabled}) { switcher in
+            UserPreferences.webDavWebServerEnabled = switcher.isOn
             if switcher.isOn {
-                if UserPreferences.ftpKey.value {
+                if UserPreferences.ftpKey {
                     Core.shared.startFileSharing()
                 }
             } else {
@@ -39,9 +40,10 @@ class PreferencesWebDavController: StaticTableViewController {
         data.append(Section(rowModels: web, header: "Settings.FTP.WebDav.WebTitle", footer: "Settings.FTP.WebDav.WebText"))
         
         var webDav = [CellModelProtocol]()
-        webDav.append(SwitchCell.ModelProperty(title: "Enable", property: UserPreferences.webDavWebDavServerEnabled) { switcher in
+        webDav.append(SwitchCell.Model(title: "Enable", defaultValue: {UserPreferences.webDavWebDavServerEnabled}) { switcher in
+            UserPreferences.webDavWebServerEnabled = switcher.isOn
             if switcher.isOn {
-                if UserPreferences.ftpKey.value {
+                if UserPreferences.ftpKey {
                     Core.shared.startFileSharing()
                 }
             } else {
@@ -51,11 +53,11 @@ class PreferencesWebDavController: StaticTableViewController {
             }
             self.tableView.reloadData()
         })
-        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: { String(UserPreferences.webDavPort.value) }, keyboardType: .numberPad) { port in
+        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: { String(UserPreferences.webDavPort) }, keyboardType: .numberPad) { port in
             if let intPort = Int(port) {
-                UserPreferences.webDavPort.value = intPort
+                UserPreferences.webDavPort = intPort
             } else {
-                UserPreferences.webDavPort.value = 81
+                UserPreferences.webDavPort = 81
             }
         })
         data.append(Section(rowModels: webDav, header: "Settings.FTP.WebDav.WebDavTitle", footerFunc: { () -> String in

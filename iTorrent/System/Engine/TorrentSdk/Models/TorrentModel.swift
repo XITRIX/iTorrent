@@ -175,8 +175,8 @@ class TorrentModel: Equatable {
             userData.zeroSpeedTimeCounter = 0
         }
 
-        if userData.zeroSpeedTimeCounter == UserPreferences.zeroSpeedLimit.value,
-            UserPreferences.zeroSpeedLimit.value != 0 {
+        if userData.zeroSpeedTimeCounter == UserPreferences.zeroSpeedLimit,
+            UserPreferences.zeroSpeedLimit != 0 {
             NotificationHelper.showNotification(
                 title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(downloadRate)))/s)",
                 body: title + Localize.get("BackgroundTask.LowSpeed.Message"),

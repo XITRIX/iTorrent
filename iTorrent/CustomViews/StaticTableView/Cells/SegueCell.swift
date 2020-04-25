@@ -41,7 +41,7 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
             self.segueViewId = segueViewId
 
             tapAction = {
-                if let tvc = vc.storyboard?.instantiateViewController(withIdentifier: segueViewId) {
+                if let tvc = UIApplication.shared.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: segueViewId) {
                     if isModal {
                         vc.present(tvc, animated: true)
                     } else {

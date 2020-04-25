@@ -49,22 +49,22 @@ class SortingManager {
 
     private static func createAlertButton(_ buttonName: String, _ sortingType: SortingTypes, _ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
         UIAlertAction(title: buttonName, style: .default) { _ in
-            UserPreferences.sortingType.value = sortingType.rawValue
+            UserPreferences.sortingType = sortingType.rawValue
             applyChanges()
         }
     }
 
     private static func createSectionsAlertButton(_ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
-        let sections = UserPreferences.sortingSections.value
+        let sections = UserPreferences.sortingSections
         let name = sections ? NSLocalizedString("Disable state sections", comment: "") : NSLocalizedString("Enable state sections", comment: "")
         return UIAlertAction(title: name, style: sections ? .destructive : .default) { _ in
-            UserPreferences.sortingSections.value = !sections
+            UserPreferences.sortingSections = !sections
             applyChanges()
         }
     }
 
     private static func checkConditionToAddButtonToList(_ sortAlertController: inout ThemedUIAlertController, _ message: inout String, _ alertAction: UIAlertAction, _ sortingType: SortingTypes) {
-        if SortingTypes(rawValue: UserPreferences.sortingType.value) != sortingType {
+        if SortingTypes(rawValue: UserPreferences.sortingType) != sortingType {
             sortAlertController.addAction(alertAction)
         } else {
             message.append(alertAction.title!)
@@ -95,7 +95,7 @@ class SortingManager {
         var localManagers = [TorrentModel](managers)
         headers = [String]()
 
-        if UserPreferences.sortingSections.value {
+        if UserPreferences.sortingSections {
             var collection = [TorrentState: [TorrentModel]]()
             collection[.allocating] = [TorrentModel]()
             collection[.checkingFastresume] = [TorrentModel]()
@@ -111,7 +111,7 @@ class SortingManager {
                 collection[manager.displayState]?.append(manager)
             }
 
-            let sortingOrder = UserPreferences.sectionsSortingOrder.value
+            let sortingOrder = UserPreferences.sectionsSortingOrder
             for id in sortingOrder {
                 let state = TorrentState(id: id)!
 
@@ -137,7 +137,7 @@ class SortingManager {
     }
 
     private static func simpleSort(_ list: inout [TorrentModel]) {
-        switch SortingTypes(rawValue: UserPreferences.sortingType.value)! {
+        switch SortingTypes(rawValue: UserPreferences.sortingType)! {
         case SortingTypes.name:
             list.sort { (t1, t2) -> Bool in
                 t1.title < t2.title

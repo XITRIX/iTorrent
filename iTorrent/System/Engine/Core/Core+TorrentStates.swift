@@ -19,25 +19,25 @@ extension Core {
         if oldState == .metadata {
             save_magnet_to_file(manager.hash)
         }
-        if UserPreferences.notificationsKey.value &&
+        if UserPreferences.notificationsKey &&
             (oldState == .downloading && (newState == .finished || newState == .seeding)) {
             NotificationHelper.showNotification(title: Localize.get("Download finished"),
                                                 body: manager.title + Localize.get(" finished downloading"),
                                                 hash: manager.hash)
 
-            if UserPreferences.badgeKey.value && AppDelegate.backgrounded {
+            if UserPreferences.badgeKey && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
 
             BackgroundTask.checkToStopBackground()
         }
-        if UserPreferences.notificationsSeedKey.value &&
+        if UserPreferences.notificationsSeedKey &&
             (oldState == .seeding && (newState == .finished)) {
             NotificationHelper.showNotification(title: Localize.get("Seeding finished"),
                                                 body: manager.title + Localize.get(" finished seeding"),
                                                 hash: manager.hash)
 
-            if UserPreferences.badgeKey.value && AppDelegate.backgrounded {
+            if UserPreferences.badgeKey && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
 

@@ -41,7 +41,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
         action = model.action
 
         hintText = model.hint
-        hintButton.isHidden = hintText == nil
+        hintButton.isHiddenInStackView = hintText == nil
     }
 
     @objc private func executeAction() {

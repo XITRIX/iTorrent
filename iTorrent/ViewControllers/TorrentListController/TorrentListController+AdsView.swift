@@ -17,9 +17,9 @@ extension TorrentListController {
     }
 
     func viewWillAppearAds() {
-        if !UserPreferences.disableAds.value, !adsLoaded {
+        if !UserPreferences.disableAds, !adsLoaded {
             adsView.load(GADRequest())
-        } else if !UserPreferences.disableAds.value, adsLoaded {
+        } else if !UserPreferences.disableAds, adsLoaded {
             adsView.isHidden = false
             tableView.contentInset.bottom = adsView.frame.height
             tableView.scrollIndicatorInsets.bottom = adsView.frame.height
@@ -43,7 +43,7 @@ extension TorrentListController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         // Add banner to view and add constraints as above.
         adsLoaded = true
-        if !UserPreferences.disableAds.value {
+        if !UserPreferences.disableAds {
             bannerView.isHidden = false
             tableView.contentInset.bottom = bannerView.frame.height
             tableView.scrollIndicatorInsets.bottom = bannerView.frame.height

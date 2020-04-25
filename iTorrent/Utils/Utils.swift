@@ -18,6 +18,10 @@ class Utils {
         return vc
     }
     
+    public static var rootViewController: UIViewController {
+        UIApplication.shared.keyWindow!.rootViewController!
+    }
+    
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
         if speedInBytes == 0 {
             return NSLocalizedString("eternity", comment: "")

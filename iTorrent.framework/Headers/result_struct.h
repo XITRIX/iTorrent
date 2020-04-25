@@ -38,9 +38,9 @@ typedef struct TorrentInfo {
     int * _Nonnull pieces;
 } TorrentInfo;
 
-typedef struct Result {
+typedef struct TorrentResult {
     int count;
     TorrentInfo * _Nonnull torrents;
-} Result;
+} TorrentResult;
 
 #endif /* result_struct_h */

@@ -28,7 +28,7 @@ class SettingsSortingController: ThemedUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        data = UserPreferences.sectionsSortingOrder.value
+        data = UserPreferences.sectionsSortingOrder
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
@@ -53,7 +53,7 @@ class SettingsSortingController: ThemedUITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        UserPreferences.sectionsSortingOrder.value = data
+        UserPreferences.sectionsSortingOrder = data
     }
 
     @objc func revertAction(_ sender: UIBarButtonItem) {

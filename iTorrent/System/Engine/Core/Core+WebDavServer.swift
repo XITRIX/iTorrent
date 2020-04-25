@@ -13,12 +13,12 @@ extension Core {
     func startFileSharing() {
         var options = [String: Any]()
 
-        if !UserPreferences.webDavUsername.value.isEmpty {
-            options[GCDWebServerOption_AuthenticationAccounts] = [UserPreferences.webDavUsername.value: UserPreferences.webDavPassword.value]
+        if !UserPreferences.webDavUsername.isEmpty {
+            options[GCDWebServerOption_AuthenticationAccounts] = [UserPreferences.webDavUsername: UserPreferences.webDavPassword]
             options[GCDWebServerOption_AuthenticationMethod] = GCDWebServerAuthenticationMethod_DigestAccess
         }
 
-        if UserPreferences.webDavWebServerEnabled.value {
+        if UserPreferences.webDavWebServerEnabled {
             options[GCDWebServerOption_Port] = 80
             if !webUploadServer.isRunning {
                 if (try? webUploadServer.start(options: options)) == nil {
@@ -29,8 +29,8 @@ extension Core {
             }
         }
 
-        if UserPreferences.webDavWebDavServerEnabled.value {
-            options[GCDWebServerOption_Port] = UserPreferences.webDavPort.value
+        if UserPreferences.webDavWebDavServerEnabled {
+            options[GCDWebServerOption_Port] = UserPreferences.webDavPort
             if !webDAVServer.isRunning {
                 try? webDAVServer.start(options: options)
             }
