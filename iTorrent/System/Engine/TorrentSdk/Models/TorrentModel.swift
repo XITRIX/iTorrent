@@ -122,7 +122,7 @@ class TorrentModel: Equatable {
 
         displayState = getDisplayState()
         
-        if displayState != model.displayState {
+        if oldState != model.displayState {
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: .torrentsStateChanged,
                                                 object: nil,
