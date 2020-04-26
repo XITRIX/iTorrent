@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class AddTorrentController: ThemedUIViewController {
     @IBOutlet var tableView: UITableView!
@@ -23,9 +24,10 @@ class AddTorrentController: ThemedUIViewController {
     var files: [FileModel]!
     var name: String = ""
 
-    func initialize(filePath: String, path: URL = URL(string: "/")!, files: [FileModel]! = nil) {
+    func initialize(filePath: String, path: URL = URL(string: "/")!, name: String = "", files: [FileModel]! = nil) {
         self.filePath = filePath
         self.files = files
+        self.name = name
         self.path = path
     }
 
@@ -33,6 +35,11 @@ class AddTorrentController: ThemedUIViewController {
         super.themeUpdate()
         tableView.backgroundColor = Themes.current.backgroundMain
         weightLabel.tintColor = Themes.current.secondaryText
+
+        if let label = navigationItem.titleView as? UILabel {
+            let theme = Themes.current
+            label.textColor = theme.mainText
+        }
     }
 
     override func viewDidLoad() {
@@ -43,6 +50,15 @@ class AddTorrentController: ThemedUIViewController {
             files = temp.files
             name = temp.title
             files.forEach({$0.priority = .normalPriority})
+            
+            // MARQUEE LABEL
+            let theme = Themes.current
+            let label = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
+            label.font = UIFont.boldSystemFont(ofSize: 17)
+            label.textAlignment = NSTextAlignment.center
+            label.textColor = theme.mainText
+            label.text = name + "        "
+            navigationItem.titleView = label
 
             navigationController?.presentationController?.delegate = self
         } else {
@@ -192,7 +208,7 @@ extension AddTorrentController: FileProviderDelegate {
 
     func folderSelected(folder: FolderModel) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddTorrentView") as! AddTorrentController
-        vc.initialize(filePath: filePath, path: folder.path, files: files)
+        vc.initialize(filePath: filePath, path: folder.path, name: name, files: files)
         show(vc, sender: self)
     }
 
