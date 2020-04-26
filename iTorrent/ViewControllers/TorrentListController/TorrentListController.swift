@@ -67,34 +67,43 @@ class TorrentListController: ThemedUIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    let updateSemaphore = DispatchSemaphore(value: 1)
     @objc func update(animated: Bool = true) {
         if Core.shared.state == .Initializing { return }
         else { loadingIndicator.stopAnimating() }
         
         DispatchQueue.global(qos: .userInteractive).async {
+            self.updateSemaphore.wait()
             let searchFiltered = Array(Core.shared.torrents.values).filter { self.searchFilter($0) }
             let tempBuf = SortingManager.sortTorrentManagers(managers: searchFiltered)
             let changes = DiffCalculator.calculate(oldSectionItems: self.torrentSections, newSectionItems: tempBuf)
+            self.torrentSections = tempBuf
             DispatchQueue.main.async { [changes] in
                 if changes.hasChanges() {
-                    self.torrentSections = tempBuf
-                    
                     let animation: UITableView.RowAnimation = animated ? .fade : .none
                     
-                    self.tableView.beginUpdates()
-                    if changes.deletes.count > 0 { self.tableView.deleteSections(changes.deletes, with: animation) }
-                    if changes.inserts.count > 0 { self.tableView.insertSections(changes.inserts, with: animation) }
-                    if changes.updates.reloads.count > 0 { self.tableView.reloadRows(at: changes.updates.reloads, with: animation) }
-                    if changes.updates.inserts.count > 0 { self.tableView.insertRows(at: changes.updates.inserts, with: animation) }
-                    if changes.updates.deletes.count > 0 { self.tableView.deleteRows(at: changes.updates.deletes, with: animation) }
-                    if changes.updates.moves.count > 0 { changes.updates.moves.forEach { self.tableView.moveRow(at: $0.from, to: $0.to) } }
-                    if changes.moves.count > 0 { changes.moves.forEach { self.tableView.moveSection($0.from, toSection: $0.to) } }
-                    self.tableView.endUpdates()
+                    do {
+                        try ObjC.catchException({
+                            self.tableView.beginUpdates()
+                            if changes.deletes.count > 0 { self.tableView.deleteSections(changes.deletes, with: animation) }
+                            if changes.inserts.count > 0 { self.tableView.insertSections(changes.inserts, with: animation) }
+                            if changes.updates.reloads.count > 0 { self.tableView.reloadRows(at: changes.updates.reloads, with: animation) }
+                            if changes.updates.inserts.count > 0 { self.tableView.insertRows(at: changes.updates.inserts, with: animation) }
+                            if changes.updates.deletes.count > 0 { self.tableView.deleteRows(at: changes.updates.deletes, with: animation) }
+                            if changes.updates.moves.count > 0 { changes.updates.moves.forEach { self.tableView.moveRow(at: $0.from, to: $0.to) } }
+                            if changes.moves.count > 0 { changes.moves.forEach { self.tableView.moveSection($0.from, toSection: $0.to) } }
+                            self.tableView.endUpdates()
+                        })
+                    } catch {
+                        self.tableView.reloadData()
+                    }
+                    
                 }
                 
                 self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
                 
                 self.tableviewPlaceholder.isHidden = self.torrentSections.contains(where: { $0.value.count > 0 })
+                self.updateSemaphore.signal()
             }
         }
     }

@@ -41,6 +41,9 @@ class StaticTableView: ThemedUITableView {
         register(TextFieldCell.nib, forCellReuseIdentifier: TextFieldCell.name)
         register(StoragePropertyCell.nib, forCellReuseIdentifier: StoragePropertyCell.name)
 
+        estimatedRowHeight = 44
+        rowHeight = UITableView.automaticDimension
+        
         keyboardDismissMode = .interactive
 
         dataSource = self

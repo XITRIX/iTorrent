@@ -153,7 +153,7 @@ class TorrentDetailsController: ThemedUITableViewController {
             if manager.hasMetadata {
                 setupPiecesFilter()
 
-                // Very large torrents cause "ladder" effect while scrolling on running in main thread
+                // Very large torrents cause "ladder" effect (lags) while scrolling on running in main thread
                 DispatchQueue.global(qos: .background).async { [weak self] in
                     let pieces = self?.sortPiecesByFilesName(manager.pieces)
                     DispatchQueue.main.async {

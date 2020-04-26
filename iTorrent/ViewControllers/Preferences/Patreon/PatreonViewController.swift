@@ -26,6 +26,7 @@ class PatreonViewController: ThemedUIViewController {
     
     @IBOutlet var thanksLabel: ThemedUILabel!
     @IBOutlet var patronsSection: UIStackView!
+    @IBOutlet var patronsLoading: UIActivityIndicatorView!
     @IBOutlet var patronsCollectionView: UICollectionView!
     @IBOutlet var patronsCollectionViewHeight: NSLayoutConstraint!
     
@@ -47,6 +48,7 @@ class PatreonViewController: ThemedUIViewController {
         view.backgroundColor = theme.backgroundMain
         chatPin.tintColor = theme.backgroundSecondary
         backplates.forEach { $0.backgroundColor = theme.backgroundSecondary }
+        patronsLoading.style = theme.loadingIndicatorStyle
     }
     
     override func viewDidLoad() {
@@ -76,8 +78,12 @@ class PatreonViewController: ThemedUIViewController {
                     if normalCount & 1 != 0 { normalCount += 1 }
                     let height = normalCount * 14
                     DispatchQueue.main.async {
-                        self.patronsCollectionViewHeight.constant = CGFloat(height)
                         self.patronsCollectionView.reloadData()
+                        UIView.animate(withDuration: 0.3) {
+                            self.patronsLoading.isHiddenInStackView = true
+                            self.patronsCollectionViewHeight.constant = CGFloat(height)
+                            self.view.layoutIfNeeded()
+                        }
                     }
                 } catch {
                     print("Failed to fetch patrons:", error)
@@ -97,6 +103,11 @@ class PatreonViewController: ThemedUIViewController {
                 }
             } catch {}
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        patronsCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     func updateButtonsState(animated: Bool = true) {
@@ -140,13 +151,14 @@ class PatreonViewController: ThemedUIViewController {
     
     @IBAction func patronButtonAction(_ sender: UIButton) {
         let safari = SFSafariViewController(url: URL(string: "https://patreon.com/xitrix")!)
+        safari.modalPresentationStyle = .pageSheet
         if #available(iOS 10.0, *) {
             safari.preferredControlTintColor = Themes.current.tintColor
         }
         if #available(iOS 13.0, *) {
             safari.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!
         }
-        Utils.rootViewController.show(safari, sender: self)
+        Utils.rootViewController.present(safari, animated: true)
     }
     
     @IBAction func connectButtonAction(_ sender: UIButton) {

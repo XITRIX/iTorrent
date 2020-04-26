@@ -42,7 +42,9 @@ class StoragePropertyCell: ThemedUITableViewCell, PreferenceCellProtocol {
             let storage = MemorySpaceManager.shared.storageCategories.map { ($0.category.color, $0.percentage) }
             progressBarView.setProgress(storage)
             var res = MemorySpaceManager.shared.storageCategories.map { ($0.category.title, $0.category.color) }
-            res.removeLast()
+            if res.count > 1 {
+                res.removeLast()
+            }
             labels.labels = res
         }
     }

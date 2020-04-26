@@ -16,6 +16,7 @@ extension UIView {
         set {
             if self.isHidden != newValue {
                 self.isHidden = newValue
+                self.alpha = newValue ? 0 : 1
             }
         }
     }

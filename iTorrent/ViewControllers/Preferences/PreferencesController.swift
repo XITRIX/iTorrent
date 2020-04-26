@@ -49,6 +49,8 @@ class PreferencesController: StaticTableViewController {
                                                        }
                                                    }
                 }))
+        } else {
+            UserPreferences.autoTheme = false
         }
         appearance.append(SwitchCell.Model(title: "Settings.Theme",
                                            defaultValue: { UserPreferences.themeNum == 1 },
