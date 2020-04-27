@@ -1305,7 +1305,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mg6-oK-UES">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="52"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xitrix" translatesAutoresizingMaskIntoConstraints="NO" id="c8m-At-4gr">
+                                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Xitrix" translatesAutoresizingMaskIntoConstraints="NO" id="c8m-At-4gr">
                                                                         <rect key="frame" x="8" y="0.0" width="52" height="52"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>

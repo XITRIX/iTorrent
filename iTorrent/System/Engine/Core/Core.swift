@@ -41,6 +41,8 @@ class Core {
             let allocateStorage = UserPreferences.storagePreallocation
             TorrentSdk.setStoragePreallocation(allocate: allocateStorage)
             
+            FileManager.default.clearTmpDirectory()
+            
             self.state = .InProgress
 
             while true {

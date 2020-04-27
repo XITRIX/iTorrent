@@ -139,6 +139,7 @@
 "Settings.Patreon.UnlinkButton.Text" = "Are you sure you want to unlink your Patreon account?";
 "Settings.Patreon.UnlinkButton.Action" = "Unlink Patreon Account";
 "Settings.Patreon.Thanks" = "Special thanks to:";
+"Settings.Patreon.CopiedID" = "Your Patreon ID copied into clipboard";
 
 "Settings.Sorting.Revert" = "Revert";
 

@@ -81,6 +81,7 @@
 		7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */; };
 		7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */; };
 		7CB175FA2454F144005CEEA6 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB175F92454F143005CEEA6 /* ObjC.m */; };
+		7CB1769324564289005CEEA6 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB1769224564289005CEEA6 /* FileManagerExtensions.swift */; };
 		7CB39E74244A502400FA3E20 /* PatreonWebServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB39E73244A502400FA3E20 /* PatreonWebServer.swift */; };
 		7CB3A5072418034100CE44A2 /* FullscreenAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB3A5062418034100CE44A2 /* FullscreenAd.swift */; };
 		7CB8083220AADA8300F76931 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
@@ -234,6 +235,7 @@
 		7CB175FB2454F184005CEEA6 /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
 		7CB175FC2454F2CF005CEEA6 /* iTorrent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTorrent-Bridging-Header.h"; sourceTree = "<group>"; };
 		7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_iTorrent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CB1769224564289005CEEA6 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		7CB39E73244A502400FA3E20 /* PatreonWebServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonWebServer.swift; sourceTree = "<group>"; };
 		7CB3A5062418034100CE44A2 /* FullscreenAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenAd.swift; sourceTree = "<group>"; };
 		7CB8083120AADA8300F76931 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 				7CCD02C62438962B00B1669F /* ArrayExtentions.swift */,
 				7CCD02CE243A7EF400B1669F /* UIViewControllerExtentions.swift */,
 				7C495526244E4B3B0057648A /* UIViewExtensions.swift */,
+				7CB1769224564289005CEEA6 /* FileManagerExtensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -919,6 +922,7 @@
 				7CE61CB12426B75B0038717C /* UIColorExtentions.swift in Sources */,
 				7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */,
 				7CF75F21244B42EE00F5C089 /* PatreonAPI.swift in Sources */,
+				7CB1769324564289005CEEA6 /* FileManagerExtensions.swift in Sources */,
 				7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */,
 				7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */,
 				7C4B109F20DFF32B00440E74 /* ThemedUITableView.swift in Sources */,

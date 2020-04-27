@@ -139,6 +139,7 @@
 "Settings.Patreon.UnlinkButton.Text" = "Вы уверены, что хотите отвязать ваш Patreon аккаунт?";
 "Settings.Patreon.UnlinkButton.Action" = "Отвязать Patreon аккаунт";
 "Settings.Patreon.Thanks" = "Отдельное спасибо:";
+"Settings.Patreon.CopiedID" = "Ваш Patreon ID скопирован";
 
 "Settings.Sorting.Revert" = "Сбросить";
 

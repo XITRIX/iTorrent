@@ -64,6 +64,21 @@ class PatreonViewController: ThemedUIViewController {
         patronsCollectionView.dataSource = self
         patronsCollectionView.delegate = self
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(iconTapRecognizer))
+        tapRecognizer.numberOfTapsRequired = 7
+        icon.addGestureRecognizer(tapRecognizer)
+        
+        updateData()
+    }
+    
+    @objc func iconTapRecognizer() {
+        if let account = UserPreferences.patreonAccount {
+            UIPasteboard.general.string = account.identifier
+            Dialogs.withTimer(self, title: nil, message: Localize.get("Settings.Patreon.CopiedID"))
+        }
+    }
+    
+    func updateData() {
         PatreonAPI.shared.fetchCredentials { _ in
             PatreonAPI.shared.fetchPatrons { [weak self] result in
                 do {
