@@ -117,6 +117,9 @@ class TorrentListController: ThemedUIViewController {
     }
     
     @IBAction func preferencesAction(_ sender: UIBarButtonItem) {
+        let back = UIBarButtonItem()
+        back.title = title
+        navigationItem.backBarButtonItem = back
         show(PreferencesController(), sender: self)
     }
     

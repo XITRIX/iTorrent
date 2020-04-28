@@ -28,7 +28,7 @@ class PreferencesController: StaticTableViewController {
                                                action: { switcher in
                                                    let oldTheme = Themes.current
                                                    UserPreferences.autoTheme = switcher.isOn
-                                                   Themes.shared.currentUserTheme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle.rawValue
+                                                   Themes.shared.currentUserTheme = UIScreen.main.traitCollection.userInterfaceStyle.rawValue
                                                    let newTheme = Themes.current
 
                                                    if oldTheme != newTheme {

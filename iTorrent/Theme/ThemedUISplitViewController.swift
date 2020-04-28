@@ -29,7 +29,7 @@ class ThemedUISplitViewController: UISplitViewController, Themed {
 
         if #available(iOS 13.0, *) {
             let interface = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
-            overrideUserInterfaceStyle = UserPreferences.autoTheme ? UIUserInterfaceStyle.unspecified : interface
+            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = UserPreferences.autoTheme ? UIUserInterfaceStyle.unspecified : interface
         }
 
         setNeedsStatusBarAppearanceUpdate()

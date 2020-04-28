@@ -38,7 +38,12 @@ class FolderCell: ThemedUITableViewCell, UpdatableModel {
     
     func updateModel() {
         title.text = model.name
-        size.text = Utils.getSizeText(size: model.size)
+        if model.isPreview {
+            size.text = Utils.getSizeText(size: model.size)
+        } else {
+            let percent = Float(model.downloadedSize) / Float(model.size) * 100
+            size.text = "\(Utils.getSizeText(size: model.downloadedSize)) / \(Utils.getSizeText(size: model.size)) (\(String(format: "%.2f", percent))%)"
+        }
     }
     
     @IBAction func more(_ sender: UIButton) {

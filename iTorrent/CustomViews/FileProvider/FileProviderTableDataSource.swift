@@ -59,10 +59,16 @@ class FileProviderTableDataSource: NSObject {
         
         for folder in foldersDict.values {
             var size: Int64 = 0
+            var downloaded: Int64 = 0
             for file in folder.files {
                 size += file.size
+                if file.downloadedBytes != nil {
+                    downloaded += file.downloadedBytes
+                }
             }
             folder.size = size
+            folder.downloadedSize = downloaded
+            folder.isPreview = folder.files.first?.isPreview ?? true
         }
         
         return Array(foldersDict.values).sorted { $0.name < $1.name }

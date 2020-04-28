@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,54 +20,45 @@
             <rect key="frame" x="0.0" y="0.0" width="372" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCL-su-1B3" customClass="MarqueeLabel" customModule="iTorrent">
-                    <rect key="frame" x="0.0" y="0.0" width="372" height="22"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
-                            <real key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hky-lJ-eHc" userLabel="Center">
-                    <rect key="frame" x="186" y="22" width="0.0" height="0.0"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" id="0nk-qV-kg6"/>
-                        <constraint firstAttribute="width" id="aY9-FO-rnG"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TestFolderText/ABC123" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bb-xh-YZz">
-                    <rect key="frame" x="0.0" y="22" width="372" height="22"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
-                            <real key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-Rg-s2B">
+                    <rect key="frame" x="0.0" y="0.0" width="334" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCL-su-1B3" customClass="MarqueeLabel" customModule="iTorrent">
+                            <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TestFolderText/ABC123" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bb-xh-YZz">
+                            <rect key="frame" x="0.0" y="22" width="334" height="22"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fadeLength">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="uCL-su-1B3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1ul-b9-7XB"/>
-                <constraint firstItem="hky-lJ-eHc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="7vB-TU-IDC"/>
-                <constraint firstItem="hky-lJ-eHc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NFh-Ym-VgC"/>
-                <constraint firstItem="uCL-su-1B3" firstAttribute="bottom" secondItem="hky-lJ-eHc" secondAttribute="bottom" id="T5n-gJ-PVp"/>
-                <constraint firstItem="uCL-su-1B3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="dcM-bU-DpK"/>
-                <constraint firstItem="1Bb-xh-YZz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gjp-7F-hrm"/>
-                <constraint firstItem="1Bb-xh-YZz" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="lSW-Pp-GmT"/>
-                <constraint firstItem="uCL-su-1B3" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="okp-ej-JjJ"/>
-                <constraint firstItem="1Bb-xh-YZz" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="tke-9w-Bq5"/>
-                <constraint firstItem="1Bb-xh-YZz" firstAttribute="top" secondItem="hky-lJ-eHc" secondAttribute="top" id="zsD-tP-ZGD"/>
+                <constraint firstItem="0fA-Rg-s2B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-19" id="PGO-sw-RuX"/>
+                <constraint firstItem="0fA-Rg-s2B" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TTV-pk-hGp"/>
+                <constraint firstItem="0fA-Rg-s2B" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Uvr-87-FwF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0fA-Rg-s2B" secondAttribute="bottom" id="zGl-E7-GlO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

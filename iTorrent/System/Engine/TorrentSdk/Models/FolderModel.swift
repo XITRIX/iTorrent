@@ -12,5 +12,7 @@ class FolderModel {
     var name: String = ""
     var path: URL!
     var size: Int64 = 0
+    var downloadedSize: Int64 = 0
+    var isPreview: Bool = true
     var files: [FileModel] = []
 }
