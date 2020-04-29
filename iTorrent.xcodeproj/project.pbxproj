@@ -64,7 +64,7 @@
 		7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */; };
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
 		7C802CFF212B3B630031C19F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C802D01212B3B630031C19F /* Localizable.strings */; };
-		7C802D07212C6D060031C19F /* Dialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* Dialogs.swift */; };
+		7C802D07212C6D060031C19F /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* Dialog.swift */; };
 		7C80F74524334AC2005C4050 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80F74324334AC2005C4050 /* FileCell.swift */; };
 		7C80F74624334AC2005C4050 /* FileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C80F74424334AC2005C4050 /* FileCell.xib */; };
 		7C80F748243356B9005C4050 /* AddTorrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80F747243356B9005C4050 /* AddTorrentController.swift */; };
@@ -215,7 +215,7 @@
 		7C802CFB212B328D0031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		7C802D02212B3B860031C19F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C802D03212B3D240031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7C802D06212C6D060031C19F /* Dialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogs.swift; sourceTree = "<group>"; };
+		7C802D06212C6D060031C19F /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		7C80F74324334AC2005C4050 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		7C80F74424334AC2005C4050 /* FileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCell.xib; sourceTree = "<group>"; };
 		7C80F747243356B9005C4050 /* AddTorrentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTorrentController.swift; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 				7CB8083120AADA8300F76931 /* Utils.swift */,
 				7CF522E520AE1F5000D319E6 /* SortingManager.swift */,
 				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
-				7C802D06212C6D060031C19F /* Dialogs.swift */,
+				7C802D06212C6D060031C19F /* Dialog.swift */,
 				7CBB17DE2324FE650043A9F6 /* CircularAnimation.swift */,
 				7CC7662623F93F690072338B /* NotificationHelper.swift */,
 				7CE61CB22426D0370038717C /* MemorySpaceManager.swift */,
@@ -961,7 +961,7 @@
 				7CCD02D3243B849600B1669F /* TorrentListController+EditMode.swift in Sources */,
 				7CF75F20244B42EE00F5C089 /* Tier.swift in Sources */,
 				7C26E344243263C80012D455 /* TrackerModel.swift in Sources */,
-				7C802D07212C6D060031C19F /* Dialogs.swift in Sources */,
+				7C802D07212C6D060031C19F /* Dialog.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
 				7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */,
 				7CBD074A244CFACA00F0BCC8 /* PatronNameCell.swift in Sources */,
@@ -1173,7 +1173,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16.0;
+				CURRENT_PROJECT_VERSION = 17.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
@@ -1201,7 +1201,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.7.5;
+				MARKETING_VERSION = 1.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1230,7 +1230,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16.0;
+				CURRENT_PROJECT_VERSION = 17.0;
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1257,7 +1257,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.7.5;
+				MARKETING_VERSION = 1.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;

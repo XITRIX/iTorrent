@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
         BackgroundTask.stopBackgroundTask()
-        resume_to_app()
+        TorrentSdk.resumeToApp()
         AppDelegate.backgrounded = false
     }
 

@@ -74,7 +74,7 @@ class PatreonViewController: ThemedUIViewController {
     @objc func iconTapRecognizer() {
         if let account = UserPreferences.patreonAccount {
             UIPasteboard.general.string = account.identifier
-            Dialogs.withTimer(self, title: nil, message: Localize.get("Settings.Patreon.CopiedID"))
+            Dialog.withTimer(self, title: nil, message: Localize.get("Settings.Patreon.CopiedID"))
         }
     }
     

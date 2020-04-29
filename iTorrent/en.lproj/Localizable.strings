@@ -239,4 +239,4 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Most of the application was rewritten from scratch, no more memory leaks\n- Significantly improved stability of the app\n- allocate memory for loading in advance to avoid problems while downloading\n- UI improvements, noticeable and not so\n- Added integration with Patreon";
+"UpdateText" = "- Most of the application was rewritten from scratch, no more memory leaks\n- Significantly improved stability of the app\n- Memory management implemented\n- Memory allocation for files before downloading\n- Libtorrent updated to 1.2.6\n- UI improvements, noticeable and not so much\n- Added integration with Patreon";

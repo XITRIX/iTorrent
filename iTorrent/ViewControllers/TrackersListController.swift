@@ -34,7 +34,11 @@ class TrackersListController: ThemedUIViewController {
             tableView.endUpdates()
         }
 
-        diff.updates.reloads.forEach { (tableView.cellForRow(at: $0) as! TrackerCell).setModel(tracker: new.value[$0.row].value) }
+        diff.updates.reloads.forEach { indexPath in
+            if let cell = tableView.cellForRow(at: indexPath) as? TrackerCell {
+                cell.setModel(tracker: new.value[indexPath.row].value)
+            }
+        }
     }
 
     override func themeUpdate() {
@@ -73,7 +77,7 @@ class TrackersListController: ThemedUIViewController {
             let touchPoint = longPressGestureRecognizer.location(in: tableView)
             if let index = tableView.indexPathForRow(at: touchPoint) {
                 UIPasteboard.general.string = trackers.value[index.row].value.url
-                Dialogs.withTimer(self, title: nil, message: Localize.get("Tracker URL copied to clipboard!"))
+                Dialog.withTimer(self, title: nil, message: Localize.get("Tracker URL copied to clipboard!"))
             }
         }
     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Dialogs {
+class Dialog {
     static func withTimer(_ presenter: UIViewController,title: String?, message: String?) {
         let alert = ThemedUIAlertController(title:title, message: message, preferredStyle: .alert)
         presenter.present(alert, animated: true, completion: nil)
@@ -20,7 +20,7 @@ class Dialogs {
         }
     }
     
-    static func crateUpdateDialog(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
+    static func createUpdateLogs(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
         let localUrl = Bundle.main.url(forResource: "Version", withExtension: "ver")
         if let localVersion = try? String(contentsOf: localUrl!) {
             if !UserPreferences.versionNews || forced {
@@ -38,7 +38,7 @@ class Dialogs {
         return nil
     }
 
-    static func createNewsDialog() -> ThemedUIAlertController? {
+    static func createNewsAlert() -> ThemedUIAlertController? {
         if #available(iOS 13, *) {
             let code = "1"
             if !UserPreferences.alertDialog(code: code).value {

@@ -33,6 +33,18 @@ class TorrentListController: ThemedUIViewController {
         tableviewPlaceholderText.text = Localize.get("MainController.Table.Placeholder.Text")
     }
     
+    func showUpdateLog() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+            if let updateDialog = Dialog.createUpdateLogs(finishAction: {
+                if let newsDialog = Dialog.createNewsAlert() {
+                    self.present(newsDialog, animated: true)
+                }
+            }) {
+                self.present(updateDialog, animated: true)
+            }
+        }
+    }
+    
     override func themeUpdate() {
         super.themeUpdate()
         
@@ -51,6 +63,7 @@ class TorrentListController: ThemedUIViewController {
         initializeAds()
         initializeSearchView()
         initializeEditMode()
+        showUpdateLog()
     }
     
     override func viewWillAppear(_ animated: Bool) {

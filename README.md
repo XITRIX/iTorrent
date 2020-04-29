@@ -1,11 +1,23 @@
+<img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/9553519/80646366-3d271680-8a75-11ea-8b60-9c5edd4ffd60.png">
+
 # iTorrent - iOS Torrent client App
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
 ![](https://app.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
 
 ## Screenshots
+<details>
+<summary>iPhone Screenshots</summary>
+  
+![iPhone screenshots](https://user-images.githubusercontent.com/9553519/80644526-7316cb80-8a72-11ea-95b5-e63531d81f35.png)
 
-![itorrent](https://user-images.githubusercontent.com/9553519/42249216-da6f6190-7f32-11e8-9126-e559be69ebf5.png)
+</details>
+<details>
+<summary>iPad Screenshots</summary>
+
+![iPad screenshots](https://user-images.githubusercontent.com/9553519/80646848-27feb780-8a76-11ea-8c91-f76d25c0b862.png)
+
+</details>
 
 ## Download
 
@@ -27,7 +39,7 @@ What can this app do:
 - Download torrent by link
 - Download torrent by magnet
 - Send notification on torrent downloaded
-- FTP Server (unstable)
+- WebDav Server
 - Select files to download or not
 - Change UI to dark theme
 - ??? 
@@ -58,16 +70,12 @@ This repo contains iTorrent framework which was compiled only for real devices s
 
 - [LibTorrent](https://github.com/arvidn/libtorrent)
 - [BackgroundTask](https://github.com/yarodevuci/backgroundTask)
-- [Orianne-FTP-Server (My fork)](https://github.com/XITRIX/Orianne-FTP-Server)
 - [MarqueeLabel](https://github.com/cbpowell/MarqueeLabel)
 
 ## Donate for donuts
 
-- [PayPal](https://paypal.me/xitrix)
 - [Patreon](https://www.patreon.com/xitrix)
-- [Liberapay](https://liberapay.com/XITRIX)
-- [Ko-fi](https://ko-fi.com/xitrix)
-- [QIWI Moneybox](https://qiwi.me/c5ec30ff-21d6-428b-9a10-29a1d18242db)
+- [PayPal](https://paypal.me/xitrix)
 - VISA CARD - 4817 7601 3631 7520
 
 ## Important information

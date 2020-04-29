@@ -204,7 +204,7 @@ class PreferencesController: StaticTableViewController {
             Utils.openUrl("https://github.com/XITRIX/iTorrent")
         })
         updates.append(UpdateInfoCell.Model {
-            self.present(Dialogs.crateUpdateDialog(forced: true)!, animated: true)
+            self.present(Dialog.createUpdateLogs(forced: true)!, animated: true)
         })
         let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
         data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
@@ -226,7 +226,7 @@ class PreferencesController: StaticTableViewController {
 
                         DispatchQueue.main.async {
                             UIPasteboard.general.string = card
-                            Dialogs.withTimer(self, title: nil, message: Localize.get("Copied CC # to clipboard!"))
+                            Dialog.withTimer(self, title: nil, message: Localize.get("Copied CC # to clipboard!"))
                         }
                     }
                 }
