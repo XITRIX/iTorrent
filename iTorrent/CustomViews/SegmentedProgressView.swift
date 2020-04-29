@@ -23,6 +23,12 @@ class SegmentedProgressView: UIView, Themed {
         progress = [CGFloat].init(repeating: 0, count: numPieces)
     }
 
+    public func setProgress(_ progress: [Int]) {
+        setProgress(progress.map {
+            CGFloat($0)
+        })
+    }
+
     public func setProgress(_ progress: [Float]) {
         setProgress(progress.map {
             CGFloat($0)

@@ -41,7 +41,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
         action = model.action
 
         hintText = model.hint
-        hintButton.isHidden = hintText == nil
+        hintButton.isHiddenInStackView = hintText == nil
     }
 
     @objc private func executeAction() {
@@ -51,7 +51,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
     @IBAction func hintButtonAction(_ sender: UIButton) {
         let vc = ThemedUIAlertController(title: Localize.get("Hint"), message: hintText, preferredStyle: .alert)
         vc.addAction(UIAlertAction(title: "OK", style: .cancel))
-        UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true)
+        Utils.topViewController?.present(vc, animated: true)
     }
 
     struct Model: CellModelProtocol {

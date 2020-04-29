@@ -29,6 +29,10 @@
 
 "Search" = "Search";
 
+"Start" = "Start";
+"Pause" = "Pause";
+"Delete" = "Delete";
+
 "time remains" = "time remains";
 "eternity" = "eternity";
 
@@ -81,6 +85,10 @@
 "Settings.Order" = "Section order";
 "Settings.AutoTheme" = "Automatic theme";
 "Settings.Theme" = "Dark mode";
+"Settings.Storage.Header" = "Storage";
+"Settings.Storage.Available" = "Available";
+"Settings.Storage.Allocate" = "Allocate storage";
+"Settings.Storage.Allocate.Hint" = "If enabled, iTorrent will pre-reserve memory for downloaded files";
 "Settings.BackgroundEnable" = "Enable";
 "Settings.BackgroundSeeding" = "Allow seeding";
 "Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
@@ -121,6 +129,21 @@
 "Settings.DonateCard.DonatePlatforms" = "Donate";
 "Settings.DonateCard.DonatePlatforms.Title" = "Select donation platform:";
 "Settings.DonateHeader" = "Donate for donuts";
+"Settings.DonateFooter" = "Link with patreon to disable ADS";
+
+"Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
+"Settings.Patreon.Creator" = "Creator of iTorrent";
+"Settings.Patreon.Welcome" = "Hi there,\n\nYou can support future development of iTorrent by donating me on Patreon. In return, you'll receive access to the ads-free version of iTorrent app.\n\nThanks for all your support!";
+"Settings.Patreon.Patron" = "You are a patron";
+"Settings.Patreon.Full" = "You have full version";
+"Settings.Patreon.Reward" = "Ads-free enabled, have fun!";
+"Settings.Patreon.PatronButton" = "Become a patron";
+"Settings.Patreon.LinkButton" = "Link Patreon account";
+"Settings.Patreon.UnlinkButton" = "Unlink";
+"Settings.Patreon.UnlinkButton.Text" = "Are you sure you want to unlink your Patreon account?";
+"Settings.Patreon.UnlinkButton.Action" = "Unlink Patreon Account";
+"Settings.Patreon.Thanks" = "Special thanks to:";
+"Settings.Patreon.CopiedID" = "Your Patreon ID copied into clipboard";
 
 "Settings.Sorting.Revert" = "Revert";
 
@@ -154,9 +177,12 @@
 "Download" = "Download";
 "Don't Download" = "Don't Download";
 "Share" = "Share";
+"AddTorrentController.MemoryWarning.Title" = "Warning";
+"AddTorrentController.MemoryWarning.Message" = "Not enough free space on disk to download all files, free up disk space to continue";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Add anyway";
 
 //Torrent Files Controller
-"TorrentFilesController.Select" = "Select";
+"TorrentFilesController.Edit" = "Edit";
 "TorrentFilesController.SelectAll" = "Select All";
 "TorrentFilesController.DeselectAll" = "Deselect All";
 
@@ -202,6 +228,15 @@
 "minute:plural" = "minutes";
 "minute:parent" = "minutes";
 
+// mime
+"mime.video" = "Video";
+"mime.audio" = "Audio";
+"mime.image" = "Photo";
+"mime.documents" = "Documents";
+"mime.free" = "Free";
+"mime.other" = "Other";
+"mime.calculating" = "Calculating...";
+
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Zero speed limit disable state fixed\n----- 1.7.4 -----\n- Added https protocol support for trackers!\n- FTP server replaced by WebDAV, file sharing is now possible through a web browser\n- Added background stop when downloading at zero speed\n- Clicking on a notification now opens a specific window\n- UI improvements";
+"UpdateText" = "- Most of the application was rewritten from scratch, no more memory leaks\n- Significantly improved stability of the app\n- Memory management implemented\n- Memory allocation for files before downloading\n- Libtorrent updated to 1.2.6\n- UI improvements, noticeable and not so much\n- Added integration with Patreon";

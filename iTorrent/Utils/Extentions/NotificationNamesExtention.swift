@@ -9,6 +9,9 @@
 import Foundation
 
 extension Notification.Name {
-    static let torrentsUpdated = Notification.Name("torrentsUpdated")
+    static let mainLoopTick = Notification.Name("mainLoopTick")
     static let torrentsStateChanged = Notification.Name("torrentsStateChanged")
+    
+    static let torrentAdded = Notification.Name("torrentAdded")
+    static let torrentRemoved = Notification.Name("torrentRemoved")
 }

@@ -29,7 +29,7 @@ class TrackerCell: ThemedUITableViewCell {
         selectedBackgroundView = bgColorView
     }
 
-    func setModel(tracker: Tracker) {
+    func setModel(tracker: TrackerModel) {
         title.text = tracker.url
         message.text = tracker.message
         peers.text = "\(NSLocalizedString("Peers", comment: "")): \(tracker.peers)"

@@ -25,13 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        
-        MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices:[
-          MSAnalytics.self,
-          MSCrashes.self
+
+        MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices: [
+            MSAnalytics.self,
+            MSCrashes.self
         ])
+        
+        PatreonAPI.configure()
         
         DispatchQueue.global(qos: .utility).async {
             sleep(1)
@@ -40,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         }
 
-        Manager.initManager()
+        Core.configure()
 
         if #available(iOS 13.0, *) {
             Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
@@ -63,8 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             UIApplication.shared.cancelAllLocalNotifications()
         }
 
-        if UserPreferences.ftpKey.value {
-            Manager.startFileSharing()
+        if UserPreferences.ftpKey {
+            Core.shared.startFileSharing()
         }
 
         return true
@@ -73,10 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         print("Path: " + url.path)
         if url.absoluteString.hasPrefix("magnet:") {
-            Manager.addMagnet(url.absoluteString)
+            Core.shared.addMagnet(url.absoluteString)
         } else {
             openedByFile = true
-            Manager.addTorrentFromFile(url)
+            Core.shared.addTorrentFromFile(url)
         }
 
         return true
@@ -84,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
-        Manager.saveTorrents(filesStatesOnly: BackgroundTask.startBackground())
+        Core.shared.saveTorrents(filesStatesOnly: BackgroundTask.startBackground())
         AppDelegate.backgrounded = true
     }
 
@@ -96,12 +99,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
         BackgroundTask.stopBackgroundTask()
-        resume_to_app()
+        TorrentSdk.resumeToApp()
         AppDelegate.backgrounded = false
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        Manager.saveTorrents()
+        Core.shared.saveTorrents()
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
@@ -119,7 +122,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController {
-            if nav.topViewController is PreferencesController || nav.topViewController is SettingsSortingController || nav.topViewController is PreferencesWebDavController {
+            if nav.topViewController is PreferencesController ||
+                nav.topViewController is SettingsSortingController ||
+                nav.topViewController is PreferencesWebDavController ||
+                nav.topViewController is PatreonViewController {
                 return Utils.createEmptyViewController()
             }
         }
@@ -127,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let controllers = splitViewController.viewControllers
         if let navController = controllers[controllers.count - 1] as? UINavigationController {
             var viewControllers: [UIViewController] = []
-            while !(navController.topViewController is MainController),
+            while !(navController.topViewController is TorrentListController),
                 !(navController.topViewController is PreferencesController) {
                 let view = navController.topViewController
                 navController.popViewController(animated: false)
@@ -141,7 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
             let theme = Themes.current
 
-            let detailNavController = ThemedUINavigationController()
+            let detailNavController = splitViewController.storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
             detailNavController.viewControllers = viewControllers
             detailNavController.setToolbarHidden(false, animated: false)
             detailNavController.navigationBar.barStyle = theme.barStyle
@@ -162,9 +168,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let hash = response.notification.request.content.userInfo["hash"] as? String {
-            if !Manager.torrentsRestored {
+            if Core.shared.state != .InProgress {
                 DispatchQueue.global(qos: .background).async {
-                    while !Manager.torrentsRestored {
+                    while Core.shared.state != .InProgress {
                         sleep(1)
                     }
                     DispatchQueue.main.async {
@@ -172,7 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                     }
                 }
             } else {
-                self.openTorrentDetailsViewController(withHash: hash, sender: self)
+                openTorrentDetailsViewController(withHash: hash, sender: self)
             }
         }
         completionHandler()
@@ -187,7 +193,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
                     let nvc = splitViewController.viewControllers[1] as? UINavigationController {
                     nvc.show(viewController, sender: sender)
                 } else {
-                    let navController = ThemedUINavigationController(rootViewController: viewController)
+                    let navController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+                    navController.viewControllers.append(viewController)
                     navController.isToolbarHidden = false
                     splitViewController.showDetailViewController(navController, sender: sender)
                 }

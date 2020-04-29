@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sTv-ZB-4Dn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sTv-ZB-4Dn">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="92R-qq-5KW" firstAttribute="top" secondItem="jhP-4p-gRD" secondAttribute="top" id="2VG-DU-bEj"/>
                             <constraint firstItem="92R-qq-5KW" firstAttribute="leading" secondItem="jhP-4p-gRD" secondAttribute="leading" id="Xfe-sq-NXa"/>
@@ -61,12 +61,17 @@
                                     <barButtonItem image="Settings" id="1l3-eW-mJE"/>
                                 </items>
                             </toolbar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="hz9-wB-biS">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="9xf-T1-IaV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0hh-wx-u2o"/>
                             <constraint firstItem="9xf-T1-IaV" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="6GC-Pf-WO9"/>
+                            <constraint firstItem="hz9-wB-biS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="gE6-CR-RgL"/>
                             <constraint firstItem="9xf-T1-IaV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="lhU-mp-XSm"/>
+                            <constraint firstItem="hz9-wB-biS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ruW-Zt-nTP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -84,8 +89,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WIg-R6-dOP" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tcn-zb-pVq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Tcn-zb-pVq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -98,9 +103,9 @@
             <point key="canvasLocation" x="1186" y="812"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="1" green="0.29803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="Settings" width="25" height="25"/>
         <image name="Sort" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="1" green="0.29803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

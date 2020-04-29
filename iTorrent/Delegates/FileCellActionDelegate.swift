@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol FileCellActionDelegate: class {
-    func fileCellAction(_ sender: UISwitch, file: File)
+    func fileCellAction(_ sender: UISwitch, file: FileModel)
 }

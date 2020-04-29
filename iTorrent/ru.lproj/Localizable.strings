@@ -29,6 +29,10 @@
 
 "Search" = "Поиск";
 
+"Start" = "Запустить";
+"Pause" = "Остановить";
+"Delete" = "Удалить";
+
 "time remains" = "время осталось";
 "eternity" = "вечность";
 
@@ -81,6 +85,10 @@
 "Settings.Order" = "Порядок секций";
 "Settings.AutoTheme" = "Оформление системы";
 "Settings.Theme" = "Тёмная тема";
+"Settings.Storage.Header" = "Память";
+"Settings.Storage.Available" = "Доступно";
+"Settings.Storage.Allocate" = "Выделять память";
+"Settings.Storage.Allocate.Hint" = "Если включено, iTorrent будет предварительно резервировать память под скачиваемые файлы";
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
@@ -121,6 +129,21 @@
 "Settings.DonateCard.DonatePlatforms" = "Задонатить";
 "Settings.DonateCard.DonatePlatforms.Title" = "Выберите платформу для пожертвований:";
 "Settings.DonateHeader" = "Донат на еду";
+"Settings.DonateFooter" = "Привяжите Patreon для отключения рекламы";
+
+"Settings.Patreon.Name" = "XITRIX (Даниил Виноградов)";
+"Settings.Patreon.Creator" = "Создатель iTorrent";
+"Settings.Patreon.Welcome" = "Привет всем,\n\nВы можете поддержать дальнейшую разработку iTorrent задонатив мне на Patreon. Взамен, вы получите доступ к версии приложения iTorrent без рекламы.\n\nСпасибо за вашу поддержку!";
+"Settings.Patreon.Patron" = "Вы патрон";
+"Settings.Patreon.Full" = "У вас полная версия";
+"Settings.Patreon.Reward" = "Реклама отключена!";
+"Settings.Patreon.PatronButton" = "Стать патроном";
+"Settings.Patreon.LinkButton" = "Привязать Patreon аккаунт";
+"Settings.Patreon.UnlinkButton" = "Отвязать";
+"Settings.Patreon.UnlinkButton.Text" = "Вы уверены, что хотите отвязать ваш Patreon аккаунт?";
+"Settings.Patreon.UnlinkButton.Action" = "Отвязать Patreon аккаунт";
+"Settings.Patreon.Thanks" = "Отдельное спасибо:";
+"Settings.Patreon.CopiedID" = "Ваш Patreon ID скопирован";
 
 "Settings.Sorting.Revert" = "Сбросить";
 
@@ -162,9 +185,12 @@
 "High" = "Высокий";
 "Medium" = "Средний";
 "Low" = "Низкий";
+"AddTorrentController.MemoryWarning.Title" = "Внимание";
+"AddTorrentController.MemoryWarning.Message" = "Не достаточно свободного места на диске для загрузки файлов, освободите место на диске, что бы продолжить";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Продолжить всё равно";
 
 //Torrent Files Controller
-"TorrentFilesController.Select" = "Выбрать";
+"TorrentFilesController.Edit" = "Изменить";
 "TorrentFilesController.SelectAll" = "Отметить все";
 "TorrentFilesController.DeselectAll" = "Убрать все";
 
@@ -173,7 +199,7 @@
 "Inactive" = "Неактивен";
 "Verified" = "Проверен";
 "Add Tracker" = "Добавить Трекер";
-"Enter the full tracker's URL" = "Введите подный URL трекера";
+"Enter the full tracker's URL" = "Введите полный URL трекера";
 "Tracker's URL" = "Введите URL трекера";
 "Add" = "Добавить";
 "Peers" = "Пиры";
@@ -210,6 +236,15 @@
 "minute:plural" = "минуты";
 "minute:parent" = "минут";
 
+// mime
+"mime.video" = "Видео";
+"mime.audio" = "Аудио";
+"mime.image" = "Фото";
+"mime.documents" = "Документы";
+"mime.free" = "Свободно";
+"mime.other" = "Другое";
+"mime.calculating" = "Вычисление...";
+
 //Version Info
 "info" = " Изменения";
-"UpdateText" = "- Исправлено отключение лимита нулевой скорости\n----- 1.7.4 -----\n- Добавлена поддержка протокола https для трекеров!\n- FTP сервер был заменён на WebDAV, теперь обмен файлами возможен через браузер\n- Добавлена остановка фонового режима при скачивании с нулевой скоростью\n- Нажатие на оповещение теперь открывает конкретное окно\n- Улучшения в интерфейсе";
+"UpdateText" = "- Большая часть приложения переписана с нуля\n- Исправлены утечки памяти\n- Значительно улучшена стабильность приложения\n- Добавлен менеджмент памяти\n- Выделение памяти под файлы до начала загрузки\n- Libtorrent обновлён до 1.2.6\n- Улучшения интерфейса, заметные и не очень\n- Добавлена интеграция с Patreon";
