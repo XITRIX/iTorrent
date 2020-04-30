@@ -29,7 +29,6 @@ class UserPreferences {
     @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int64
     @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int64 
     @PreferenceItem("seedBackgroundWarning", false) static var seedBackgroundWarning: Bool
-    @PreferenceItem("disableAds", false, { _ in UserPreferences.patreonAccount?.hideAds ?? false }) static var disableAds: Bool
     @PreferenceItem("storagePreallocation", false) static var storagePreallocation: Bool
 
     @PreferenceItem("SortingType", 0) static var sortingType: Int
@@ -54,6 +53,10 @@ class UserPreferences {
     
     static func alertDialog(code: String) -> SettingProperty<Bool> {
         SettingProperty<Bool>("alertDialog" + code, false)
+    }
+    
+    static var disableAds: Bool {
+        UserPreferences.patreonAccount?.hideAds ?? false
     }
 }
 
