@@ -129,7 +129,7 @@ class PatreonViewController: ThemedUIViewController {
         if let account = UserPreferences.patreonAccount {
             if account.isPatron || account.fullVersion {
                 setViewHidden(patronInfo, hidden: false, animated: animated)
-
+                
                 if account.fullVersion {
                     patronLabel.text = Localize.get("Settings.Patreon.Full")
                 } else if account.isPatron {
@@ -202,13 +202,14 @@ class PatreonViewController: ThemedUIViewController {
             
         } else {
             PatreonAPI.shared.authenticate { [weak self] result in
-                do {
-                    _ = try result.get()
-                    
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success:
                         self?.updateButtonsState()
+                    case .failure(let error):
+                        Dialog.show(self, title: "Error", message: error.localizedDescription)
                     }
-                } catch {}
+                }
             }
         }
     }

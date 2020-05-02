@@ -20,13 +20,20 @@ class Dialog {
         }
     }
     
+    static func show(_ presenter: UIViewController?, title: String?, message: String?) {
+        let dialog = ThemedUIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: Localize.get("Close"), style: .cancel)
+        dialog.addAction(ok)
+        presenter?.present(dialog, animated: true)
+    }
+    
     static func createUpdateLogs(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
         let localUrl = Bundle.main.url(forResource: "Version", withExtension: "ver")
         if let localVersion = try? String(contentsOf: localUrl!) {
             if !UserPreferences.versionNews || forced {
                 let title = localVersion + NSLocalizedString("info", comment: "")
                 let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: NSLocalizedString("UpdateText", comment: ""), preferredStyle: .alert)
-                let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel) { _ in
+                let close = UIAlertAction(title: Localize.get("Close"), style: .cancel) { _ in
                     UserPreferences.versionNews = true
                     finishAction?()
                 }
