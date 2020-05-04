@@ -151,14 +151,14 @@ class TorrentModel: Equatable {
     func stateCorrector() {
         if displayState == .finished,
             !isPaused {
-            stop_torrent(hash)
+            TorrentSdk.stopTorrent(hash: hash)
         } else if displayState == .seeding,
             totalUpload >= seedLimit,
             seedLimit != 0 {
             seedMode = false
-            stop_torrent(hash)
+            TorrentSdk.stopTorrent(hash: hash)
         } else if state == .hashing, isPaused {
-            start_torrent(hash)
+            TorrentSdk.startTorrent(hash: hash)
         }
     }
 

@@ -69,7 +69,7 @@ class PreferencesController: StaticTableViewController {
         storage.append(StoragePropertyCell.Model())
         storage.append(SwitchCell.Model(title: "Settings.Storage.Allocate", defaultValue: { UserPreferences.storagePreallocation }, hint: "Settings.Storage.Allocate.Hint") { switcher in
             UserPreferences.storagePreallocation = switcher.isOn
-            set_storage_preallocation(switcher.isOn ? 1 : 0)
+            TorrentSdk.setStoragePreallocation(allocate: switcher.isOn)
         })
         data.append(Section(rowModels: storage, header: "Settings.Storage.Header"))
 
@@ -136,7 +136,7 @@ class PreferencesController: StaticTableViewController {
                     }
                 }, dismissAction: { res in
                     UserPreferences.downloadLimit = res
-                    set_download_limit(Int32(res))
+                    TorrentSdk.setDownloadLimit(limitBytes: Int(res))
             })
                 self.onScreenPopup?.show(self)
         })
@@ -154,7 +154,7 @@ class PreferencesController: StaticTableViewController {
                     }
                 }, dismissAction: { res in
                     UserPreferences.uploadLimit = res
-                    set_upload_limit(Int32(res))
+                    TorrentSdk.setUploadLimits(limitBytes: Int(res))
             })
                 self.onScreenPopup?.show(self)
         })

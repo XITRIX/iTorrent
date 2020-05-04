@@ -17,7 +17,7 @@ extension Core {
     
     func managersStateChanged(manager: TorrentModel, oldState: TorrentState, newState: TorrentState) {
         if oldState == .metadata {
-            save_magnet_to_file(manager.hash)
+            TorrentSdk.saveMagnetToFile(hash: manager.hash)
         }
         if UserPreferences.notificationsKey &&
             (oldState == .downloading && (newState == .finished || newState == .seeding)) {

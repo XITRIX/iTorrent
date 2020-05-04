@@ -31,22 +31,28 @@ extension PatreonAPI {
     {
         let request = URLRequest(url: URL(string: credentialsUrl)!)
         send(request, authorizationType: .none) { (result: Result<PatreonCredentials, Swift.Error>) in
-            do {
+            do
+            {
                 let credentials = try result.get()
                 UserPreferences.patreonCredentials = credentials
                 completion?(.success(credentials))
-            } catch {
+            }
+            catch
+            {
                 completion?(.failure(error))
             }
         }
     }
     
-    static func configure() {
+    static func configure()
+    {
         PatreonAPI.shared.fetchCredentials { result in
-            do {
+            do
+            {
                 _ = try result.get()
                 PatreonAPI.shared.refreshPatreonAccount()
-            } catch {}
+            }
+            catch {}
         }
     }
 }
@@ -157,22 +163,19 @@ extension PatreonAPI
                 else { throw Error.unknown }
                 
                 self?.fetchAccessToken(oauthCode: code) { result in
-                    switch result
+                    do
                     {
-                    case .failure(let error): completion(.failure(error))
-                    case .success(let accessToken, let refreshToken):
+                        let (accessToken, refreshToken) = try result.get()
                         print(accessToken)
                         UserPreferences.patreonAccessToken = accessToken
                         UserPreferences.patreonRefreshToken = refreshToken
                         
                         self?.fetchAccount(completion: completion)
                     }
+                    catch { completion(.failure(error)) }
                 }
             }
-            catch
-            {
-                completion(.failure(error))
-            }
+            catch { completion(.failure(error)) }
         }
         
         Utils.topViewController?.present(self.authenticationSession!, animated: true)

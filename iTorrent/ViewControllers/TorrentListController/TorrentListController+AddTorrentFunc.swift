@@ -129,36 +129,36 @@ extension TorrentListController {
         addController.addAction(addMagnet)
         addController.addAction(addURL)
 
-        let webview = UIAlertAction(title: "Web", style: .default) { _ in
-            let webviewAlert = ThemedUIAlertController(title: Localize.get("Open in Web View"),
-                                                       message: nil,
-                                                       preferredStyle: .alert)
-
-            webviewAlert.addTextField(configurationHandler: { textField in
-                textField.placeholder = "https://google.com/"
-                let theme = Themes.current
-                textField.keyboardAppearance = theme.keyboardAppearence
-            })
-
-            let ok = UIAlertAction(title: "OK", style: .default) { _ in
-                let textField = webviewAlert.textFields![0]
-                if !textField.text!.isEmpty {
-                    if let url = URL(string: textField.text!),
-                        UIApplication.shared.canOpenURL(url) {
-                        WebViewController.present(in: self.splitViewController!, with: url)
-                    } else {
-                        WebViewController.present(in: self.splitViewController!, with: URL(string: "http://google.com/search?q=\(textField.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")")!)
-                    }
-                } else {
-                    WebViewController.present(in: self.splitViewController!, with: URL(string: "http://google.com/")!)
-                }
-            }
-
-            webviewAlert.addAction(ok)
-            webviewAlert.addAction(UIAlertAction(title: Localize.get("Cancel"), style: .cancel))
-
-            self.present(webviewAlert, animated: true)
-        }
+//        let webview = UIAlertAction(title: "Web", style: .default) { _ in
+//            let webviewAlert = ThemedUIAlertController(title: Localize.get("Open in Web View"),
+//                                                       message: nil,
+//                                                       preferredStyle: .alert)
+//
+//            webviewAlert.addTextField(configurationHandler: { textField in
+//                textField.placeholder = "https://google.com/"
+//                let theme = Themes.current
+//                textField.keyboardAppearance = theme.keyboardAppearence
+//            })
+//
+//            let ok = UIAlertAction(title: "OK", style: .default) { _ in
+//                let textField = webviewAlert.textFields![0]
+//                if !textField.text!.isEmpty {
+//                    if let url = URL(string: textField.text!),
+//                        UIApplication.shared.canOpenURL(url) {
+//                        WebViewController.present(in: self.splitViewController!, with: url)
+//                    } else {
+//                        WebViewController.present(in: self.splitViewController!, with: URL(string: "http://google.com/search?q=\(textField.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")")!)
+//                    }
+//                } else {
+//                    WebViewController.present(in: self.splitViewController!, with: URL(string: "http://google.com/")!)
+//                }
+//            }
+//
+//            webviewAlert.addAction(ok)
+//            webviewAlert.addAction(UIAlertAction(title: Localize.get("Cancel"), style: .cancel))
+//
+//            self.present(webviewAlert, animated: true)
+//        }
         // addController.addAction(webview)
 
         if #available(iOS 11.0, *) {
