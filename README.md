@@ -49,6 +49,7 @@ What can this app do:
 Now iTorrent supports the following languages:
 - English
 - Russian
+- Turkish
 
 If you are fluent in the languages not listed above and want to help with translation, you are welcome!
 
