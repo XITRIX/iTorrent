@@ -154,6 +154,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1BF91A082471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
+		1BF91A092471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		1BF91A0A2471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1BF91A0B2471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
 		65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTorrent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C06249620BD676500C7466C /* iTorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent.framework; sourceTree = "<group>"; };
@@ -778,6 +782,7 @@
 				en,
 				Base,
 				ru,
+				tr,
 			);
 			mainGroup = 7C3C692620A754FB0023396C;
 			productRefGroup = 7C3C693020A754FB0023396C /* Products */;
@@ -1012,6 +1017,7 @@
 			children = (
 				7C3C693720A754FB0023396C /* Base */,
 				7C802CFB212B328D0031C19F /* ru */,
+				1BF91A082471780E00788BE5 /* tr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1020,6 +1026,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7C3C693C20A754FD0023396C /* Base */,
+				1BF91A092471780E00788BE5 /* tr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1029,6 +1036,7 @@
 			children = (
 				7C802D02212B3B860031C19F /* en */,
 				7C802D03212B3D240031C19F /* ru */,
+				1BF91A0A2471780E00788BE5 /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1038,6 +1046,7 @@
 			children = (
 				7CCD02E5243E7D2B00B1669F /* ru */,
 				7CCD02E7243E7D3100B1669F /* en */,
+				1BF91A0B2471780E00788BE5 /* tr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 09.04.2020.
+  Copyright © 2020  XITRIX. All rights reserved.
+  Translated by @ygzo
+*/
+
+"NSPhotoLibraryAddUsageDescription" = "Uygulamanın, galeriye kaydetmesine izin ver.";

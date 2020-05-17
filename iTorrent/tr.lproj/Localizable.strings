@@ -1,0 +1,243 @@
+/* 
+  Localizable.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 20/08/2018.
+  Copyright © 2018  XITRIX. All rights reserved.
+  Translated by @ygzo
+*/
+
+
+// Torrent States
+"Queued" = "Sıraya ekleniyor";
+"Hashing" = "Hashleniyor";
+"Metadata" = "Metadata";
+"Downloading" = "İndiriliyor";
+"Finished" = "Bitti";
+"Seeding" = "Seedleniyor";
+"Allocating" = "Alan ayrılıyor";
+"Checking fastresume" = "Kontrol ediliyor";
+"Paused" = "Durduruldu";
+
+//Main Controller
+"of" = "of";
+
+"Done" = "Bitti";
+"Edit" = "Düzenle";
+"Select" = "Seç";
+"Select All" = "Hepsini Seç";
+"Deselect" = "Seçimi Bırak";
+
+"Search" = "Ara";
+
+"Start" = "Başlat";
+"Pause" = "Durdur";
+"Delete" = "Sil";
+
+"time remains" = "kalan";
+"eternity" = "sonsuzluk";
+
+"Add from..." = "Buradan ekle...";
+"Add from URL" = "URL'den ekle";
+"Please enter the existing torrent's URL below" = "Lütfen aşağıya varolan torrent'in URL'sini ekleyin";
+"Error has been occured" = "Bir hata oluştu";
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Torrent dosyası bozuk ya da bu URL bir DDOS korumasına sahip, linki Safari ile açmayı deneyebilirsiniz";
+"Open in Safari" = "Safari ile aç";
+"This torrent already exists" = "Bu torrent zaten eklenmiş.";
+"Torrent with hash:" = "Hash ile torrent:";
+"already exists in download queue" = "halihazırda indirme sırasında bulunuyor";
+"Please, open this link in Safari, and send .torrent file from there" = "Lütfen bu linki Safari ile açın ve .torrent dosyasını oradan gönderin.";
+"Wrong link, check it and try again!" = "Yanlış link, kontrol edip tekrardan deneyin.";
+"Add from magnet" = "Magnet ile ekle";
+"Please enter the magnet link below" = "Lütfen aşağıya magnet bağlantısını girin";
+"Close" = "Kapat";
+"Cancel" = "İptal";
+"Error" = "Hata";
+
+"Are you sure to remove" = "Kaldırmak istediğinize emin misiniz";
+"torrents" = "torrentler";
+"Yes and remove data" = "Veri ile birlikte kaldır";
+"Yes but keep data" = "Kaldır ama veriyi tut";
+
+"torrent" = "torrent";
+"Are you sure to remove this magnet torrent?" = "Bu magnet torrent'i kaldırmak istediğinize emin misiniz?";
+"Remove" = "Kaldır";
+
+"Name" = "İsim";
+"Date Added" = "Eklenen Tarih";
+"Date Created" = "Yaratılan Tarih";
+"Size" = "Boyut";
+"Sort Torrents By:" = "Torrentleri şu şekilde sırala:";
+"Currently sorted by " = "Şu an kullanılan sıralama şekli: ";
+"Disable state sections" = "Sıralamayı devre dışı bırak";
+"Enable state sections" = "Sıralamayı aktifleştir"; 
+"MainController.Table.Placeholder.Text" = "İndirme listesi boş!\nTorrent dosyalarını indirmek için Google Chrome kullanın ya da '+' butonuna basarak direkt olarak bir link ekleyin.";
+
+//Torrent details
+"Torrent file" = "Torrent dosyası";
+"Magnet link" = "Magnet bağlantısı";
+"Magnet link copied to clipboard" = "Magnet bağlantısı kopyalandı.";
+"Files" = "Dosyalar";
+"Trackers" = "Takipçiler";
+"Details.BackgroundSeeding.Warning" = "Arkaplanda seedleme devre dışı, eğer uygulamayı kapatırsanız seedleme duracaktır. Arkaplanda seedlemeyi aktif hale getirmek ister misiniz?\nEğer bir seed sınırı belirlemezseniz, uygulama sürekli olarak arkaplanda çalışmaya devam edecektir, bu durum yüksek pil kullanımına sebebiyet verebilir.";
+
+//Settings Controller
+"Settings.Title" = "Tercihler";
+"Settings.Order" = "Sıralama düzeni";
+"Settings.AutoTheme" = "Otomatik tema";
+"Settings.Theme" = "Koyu mod";
+"Settings.Storage.Header" = "Depolama";
+"Settings.Storage.Available" = "Mevcut";
+"Settings.Storage.Allocate" = "Depolama ayır";
+"Settings.Storage.Allocate.Hint" = "Eğer bu seçenek açıksa, iTorrent indirdiğiniz dosyalar için önbellek ayıracaktır.";
+"Settings.BackgroundEnable" = "Aktifleştir";
+"Settings.BackgroundSeeding" = "Seedlemeye izin ver";
+"Settings.BackgroundSeeding.Warning" = "Bu seçenek iTorrent'in süresiz olarak arkaplanda çalışmasına izin verecektir, bu durumda torrent bir sınırsız bir şekilde seedler, bu durum yüksek pil kullanımına sebebiyet verebilir. \n\nBunu durdurmak için uygulamayı tamamen kapatmanız gerekir!";
+"Settings.BackgroundHeader" = "Arkaplanda indirme";
+"Settings.BackgroundFooter" = "Multimedya işlevleri vasıtasıyla arkaplanda indirmeye izin ver";
+"Settings.ZeroSpeedLimit" = "Hızı sıfırla";
+"Settings.ZeroSpeedLimit.Hint" = "Eğer indirme hızı belli bir süre boyunca sıfırlanırsa, uygulama gereksiz pil kullanımını engellemek için arkaplanda işlem yapmayı durduracaktır.";
+"Settings.DownLimit" = "İndirme sınırı";
+"Settings.UpLimit" = "Yükleme sınırı";
+"Settings.SpeedHeader" = "Hız sınırı";
+"Settings.FTPEnable" = "Aktifleştir";
+"Settings.FTPEnable.Hint" = "Bu ayarı kullanarak, normal bir İnternet tarayıcısı ya da WebDAV istemcisi yoluyla bağlanabileceğiniz bir dosya sunucusu oluşturabilirsiniz.";
+"Settings.FTP.Settings" = "Ayarlar";
+"Settings.FTPBackground" = "Arkaplanda çalış";
+"Settings.FTP.Message.NoNetwork" = "Dosya paylaşımını kullanmak için WiFi ile bağlan";
+"Settings.FTP.Message" = "Şuraya bağlan: ";
+"Settings.FTP.WebDav.Username" = "Kullanıcı adı";
+"Settings.FTP.WebDav.Password" = "Şifre";
+"Settings.FTP.WebDav.Username.Placeholder" = "Kullanıcı adı";
+"Settings.FTP.WebDav.Password.Placeholder" = "Şifre (isteğe bağlı)";
+"Settings.FTP.WebDav.PassText" = "Ayarları uygulamak için sunucuyu yeniden başlat";
+"Settings.FTP.WebDav.WebTitle" = "Ağ Sunucusu";
+"Settings.FTP.WebDav.WebText" = "Dosya paylaşmak için herhangi bir İnternet tarayıcısı kullan";
+"Settings.FTP.WebDav.WebDavTitle" = "WebDAV Sunucusu";
+"Settings.FTP.WebDav.WebDavPort" = "Port";
+"Settings.FTP.WebDav.WebDavText" = "iTorrent'e bağlanmak için bir WebDAV istemcisi kullan";
+"Settings.FTPHeader" = "Dosya paylaşımı";
+"Settings.NotifyFinishLoad" = "İndirme bittiğinde";
+"Settings.NotifyFinishSeed" = "Seedleme bittiğinde";
+"Settings.NotifyBadge" = "Uygulama rozetini aktifleştir";
+"Settings.NotifyHeader" = "Bildirimler";
+"Settings.UpdateSite" = "GitHub Sayfası";
+"Settings.UpdateSite.Open" = "Aç";
+"Settings.UpdateHeader" = "Güncellemeler";
+"Settings.DonateDisable" = "Reklamları devre dışı bırak";
+"Settings.DonateCard" = "VISA KREDİ KARTI NUMARASI";
+"Settings.DonateCard.Open" = "Aç";
+"Settings.DonateCard.DonatePlatforms" = "Bağış yap";
+"Settings.DonateCard.DonatePlatforms.Title" = "Bağış platformu seç:";
+"Settings.DonateHeader" = "Bağış yap";
+"Settings.DonateFooter" = "Reklamları devre dışı bırakmak için Patreon'a bağlan";
+
+"Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
+"Settings.Patreon.Creator" = "iTorrent'in Yaratıcısı";
+"Settings.Patreon.Welcome" = "Merhaba,\n\niTorrent'in gelecekte de geliştirilmesini bana Patreon üzerinden bağış yaparak sağlayabilirsiniz. Bağış yaparak iTorrent uygulamasının reklamsız versiyonunu elde edebilirsiniz.\n\nDesteğiniz için teşekkür ederim!";
+"Settings.Patreon.Patron" = "Sen bir patrosun";
+"Settings.Patreon.Full" = "Tam versiyona sahipsin";
+"Settings.Patreon.Reward" = "Reklamlar kapalı, tadını çıkar!";
+"Settings.Patreon.PatronButton" = "Bir patron ol";
+"Settings.Patreon.LinkButton" = "Patreon hesabını bağla";
+"Settings.Patreon.UnlinkButton" = "Bağı kaldır";
+"Settings.Patreon.UnlinkButton.Text" = "Patreon hesabının bağını kaldırmak istediğine emin misin?";
+"Settings.Patreon.UnlinkButton.Action" = "Patreon hesabının bağını kaldır";
+"Settings.Patreon.Thanks" = "Özel teşekkürler:";
+"Settings.Patreon.CopiedID" = "Patreon ID'niz kopyalandı";
+
+"Settings.Sorting.Revert" = "Sıfırla";
+
+"Warning" = "Uyarı";
+"Enable" = "Aktifleştir";
+"Unlimited" = "Sınırsız";
+"Torrent rehash" = "Torrent'i test et";
+"This action will recheck the state of all downloaded files" = "Bu eylem indirilmiş bütün dosyaların durumunu test edecektir.";
+"Rehash" = "Test et";
+
+"Current app version: " = "Şimdiki uygulama sürümü: ";
+"New version " = "Yeni sürüm ";
+" available" = " indirilebilir";
+"WOW, is it a new inDev build, huh?" = "WOW, bu yeni bir inDev build'i, değil mi?";
+"Latest version installed" = "En son sürüm yüklü";
+"Update check failed" = "Güncelleme kontrol edilemedi.";
+"WARNING" = "UYARI";
+"Copied CC # to clipboard!" = "Kredi kartı numarası kopyalandı!";
+
+"Supplication" = "Rica";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "Eğer bu uygulamayı kullanmayı seviyorsanız, reklamları açık bırakarak geliştiriciye destek olabilirsiniz.\nTeşekkürler!";
+"Disable Anyway" = "Devredışı bırak.";
+
+//Add Torrent Controller
+"Back" = "Geri";
+"Torrent update detected" = "Torrent güncellemesi tespit edildi";
+"Torrent with name" = "Şu isimli torrent";
+"already exists, do you want to apply previous files selection settings to this torrent" = "zaten var, önceki dosya seçim ayarlarını bu torrente de uygulamak ister misiniz";
+"Apply" = "Uygula";
+"Download content of folder" = "Dosya içeriğini indir";
+"Download" = "İndir";
+"Don't Download" = "İndirme";
+"Share" = "Paylaş";
+"AddTorrentController.MemoryWarning.Title" = "Uyarı";
+"AddTorrentController.MemoryWarning.Message" = "Bütün dosyaları indirmek için yeterli disk alanınız bulunmamaktadır, devam etmeden önce diskinizi boşaltın.";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Yine de ekle";
+
+//Torrent Files Controller
+"TorrentFilesController.Edit" = "Düzenle";
+"TorrentFilesController.SelectAll" = "Hepsini Seç";
+"TorrentFilesController.DeselectAll" = "Seçimi Bırak";
+
+//Trackers List Controller
+"Working" = "Çalışıyor";
+"Inactive" = "Aktif değil";
+"Verified" = "Onaylı";
+"Add Tracker" = "Takipçi ekle";
+"Enter the full tracker's URL" = "Tam takipçi URL'si ekle";
+"Tracker's URL" = "Takipçi URL'si ekle";
+"Add" = "Ekle";
+"Peers" = "Eşler";
+"Seeds" = "Seedler";
+"Leechers" = "Leechler";
+"Are you shure to remove this trackers?" = "Bu takipçileri kaldırmak istediğinizden emin misiniz?";
+
+//AppDelegate
+"Obtaining Metadata" = "Metadata elde ediliyor.";
+"Finish the previous torrent adding before start the new one." = "Yeni torrent eklemeden önce, önceki torrentlerin bitmesini bekleyin";
+"Error on torrent opening" = "Torrentin açılmasında hata oluştu";
+"Error on torrent reading" = "Torrentin okunmasında hata oluştu";
+"Torrent file opening error has been occured" = "Torrent dosyasının açılmasında bir hata oluştu";
+"Wrong magnet link, check it and try again!" = "Yanlış magnet bağlantısı, kontrol edip tekrardan deneyin!";
+"Download finished" = "İndirme bitti";
+" finished downloading" = " indirmesi bitti";
+"Seeding finished" = "Seedleme bitti";
+" finished seeding" = " seedlemesi bitti";
+
+"This action will recheck the state of all downloaded files for torrents:" = "Bu eylem şu torrentler için indirilmiş bütün dosyaların durumunu test edecektir:";
+
+//Background Task
+"BackgroundTask.LowSpeed.Title" = "İndirme hızı yavaş ";
+"BackgroundTask.LowSpeed.Message" = " pil kullanımını azaltmak için arkaplanda indirme durdurulacaktır";
+
+//News Alerts
+"Dialogs.News.Title" = "Uyarı!";
+"Dialogs.News.Message" = "Eğer uygulama .torrent dosyalarını açmıyorsa, indirmek için Google Chrome kullanın.";
+
+"Disabled" = "Devre dışı";
+"Hint" = "İpucu";
+
+"minute:single" = "dakika";
+"minute:plural" = "dakika";
+"minute:parent" = "dakika";
+
+// mime
+"mime.video" = "Video";
+"mime.audio" = "Ses";
+"mime.image" = "Fotoğraf";
+"mime.documents" = "Belge";
+"mime.free" = "Boş Alan";
+"mime.other" = "Diğer";
+"mime.calculating" = "Hesaplanıyor...";
+
+//Version Info
+"info" = " Güncelleme bilgisi";
+"UpdateText" = "- Uygulamanın çoğu, bellek sızıntısı oluşmaması için tekrardan yazıldı\n- Uygulamanın kararlılığı farkedilebilir bir şekilde artırıldı\n- Hafıza yönetimi ekledi\n- Dosyaları indirmeden önce hafıza ayırma eklendi\n- Libtorrent 1.2.6 sürümüne güncellendi\n- Kullanıcı arayüzünde geliştirmeler\n- Patreon ile bağlanma eklendi";
