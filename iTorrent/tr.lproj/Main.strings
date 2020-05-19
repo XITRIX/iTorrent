@@ -121,7 +121,7 @@
 "OGs-R9-Pih.title" = "İptal";
 
 /* Class = "UILabel"; text = "Download"; ObjectID = "OU6-UE-wsR"; */
-"OU6-UE-wsR.text" = "İndir";
+"OU6-UE-wsR.text" = "İndirme hızı";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "OYW-fm-8a9"; */
 "OYW-fm-8a9.text" = "Etiket";
@@ -133,7 +133,7 @@
 "R5z-6T-zyy.text" = "İlerleme";
 
 /* Class = "UIBarButtonItem"; title = "Download"; ObjectID = "R7C-MG-vsY"; */
-"R7C-MG-vsY.title" = "İndirme hızı";
+"R7C-MG-vsY.title" = "İndir";
 
 /* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "RIR-e3-idC"; */
 "RIR-e3-idC.title" = "Düzenle";

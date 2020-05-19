@@ -43,8 +43,8 @@
 "Error has been occured" = "Bir hata oluştu";
 "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Torrent dosyası bozuk ya da bu URL bir DDOS korumasına sahip, linki Safari ile açmayı deneyebilirsiniz";
 "Open in Safari" = "Safari ile aç";
-"This torrent already exists" = "Bu torrent zaten eklenmiş.";
-"Torrent with hash:" = "Hash ile torrent:";
+"This torrent already exists" = "Bu torrent zaten eklenmiş";
+"Torrent with hash:" = "Şu hash numaralı torrent:";
 "already exists in download queue" = "halihazırda indirme sırasında bulunuyor";
 "Please, open this link in Safari, and send .torrent file from there" = "Lütfen bu linki Safari ile açın ve .torrent dosyasını oradan gönderin.";
 "Wrong link, check it and try again!" = "Yanlış link, kontrol edip tekrardan deneyin.";
@@ -84,7 +84,7 @@
 //Settings Controller
 "Settings.Title" = "Tercihler";
 "Settings.Order" = "Sıralama düzeni";
-"Settings.AutoTheme" = "Otomatik tema";
+"Settings.AutoTheme" = "Oto-tema ayarlama";
 "Settings.Theme" = "Koyu mod";
 "Settings.Storage.Header" = "Depolama";
 "Settings.Storage.Available" = "Mevcut";
