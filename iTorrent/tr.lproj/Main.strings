@@ -121,7 +121,7 @@
 "OGs-R9-Pih.title" = "İptal";
 
 /* Class = "UILabel"; text = "Download"; ObjectID = "OU6-UE-wsR"; */
-"OU6-UE-wsR.text" = "İndirme hızı";
+"OU6-UE-wsR.text" = "İndir";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "OYW-fm-8a9"; */
 "OYW-fm-8a9.text" = "Etiket";
@@ -187,7 +187,7 @@
 "eWp-mz-EXS.text" = "Özel teşekkür:";
 
 /* Class = "UILabel"; text = "Seeders"; ObjectID = "ekS-WN-Tu8"; */
-"ekS-WN-Tu8.text" = "Seederler";
+"ekS-WN-Tu8.text" = "Seederlar";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fGp-f9-hrr"; */
 "fGp-f9-hrr.text" = "Etiket";
