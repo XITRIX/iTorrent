@@ -1,0 +1,277 @@
+/* translated by @ygzo */
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i uwihr jfoiejr flerf "; ObjectID = "1iF-vg-9ry"; */
+"1iF-vg-9ry.text" = "Etiketfalanfilan falanfilan falanfil filan falanfila n falanfilafalan nfian";
+
+/* Class = "UIBarButtonItem"; title = "1024 MB"; ObjectID = "1se-sH-P4I"; */
+"1se-sH-P4I.title" = "1024 MB";
+
+/* Class = "UILabel"; text = "Upload"; ObjectID = "26s-y7-Ys8"; */
+"26s-y7-Ys8.text" = "Yükleme hızı";
+
+/* Class = "UILabel"; text = "Files"; ObjectID = "2LQ-iM-Wa2"; */
+"2LQ-iM-Wa2.text" = "Dosyalar";
+
+/* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "2py-j7-yiW"; */
+"2py-j7-yiW.title" = "Seçimi Bırak";
+
+/* Class = "UILabel"; text = "Added On"; ObjectID = "3AM-iO-VGS"; */
+"3AM-iO-VGS.text" = "Eklendiği Tarih";
+
+/* Class = "UILabel"; text = "Ads-free enabled, have fun!"; ObjectID = "3dp-Er-tz0"; */
+"3dp-Er-tz0.text" = "Reklamlar kapalı, tadını çıkar!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3ha-jb-8Sc"; */
+"3ha-jb-8Sc.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Patron name"; ObjectID = "3uA-Gc-fcG"; */
+"3uA-Gc-fcG.text" = "Patron adı";
+
+/* Class = "UIButton"; normalTitle = "1024 GB"; ObjectID = "4VX-R4-Jbh"; */
+"4VX-R4-Jbh.normalTitle" = "1024 GB";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4iO-T2-sWR"; */
+"4iO-T2-sWR.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Trackers"; ObjectID = "4sl-7t-NS3"; */
+"4sl-7t-NS3.text" = "Takipçiler";
+
+/* Class = "UILabel"; text = "Merhaba,\n\niTorrent'in gelecekte de geliştirilmesini bana Patreon üzerinden bağış yaparak sağlayabilirsiniz. Bağış yaparak iTorrent uygulamasının reklamsız versiyonunu elde edebilirsiniz.\n\nDesteğiniz için teşekkür ederim!"; ObjectID = "5Z2-0s-Hte"; */
+"5Z2-0s-Hte.text" = "Merhaba,\n\niTorrent'in gelecekte de geliştirilmesini bana Patreon üzerinden bağış yaparak sağlayabilirsiniz. Bağış yaparak iTorrent uygulamasının reklamsız versiyonunu elde edebilirsiniz.\n\nDesteğiniz için teşekkür ederim!";
+
+/* Class = "UILabel"; text = "Progress Selected/Total"; ObjectID = "5wg-im-gUC"; */
+"5wg-im-gUC.text" = "İndirme durumu";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6f7-B9-PJf"; */
+"6f7-B9-PJf.text" = "Etiket";
+
+/* Class = "UINavigationItem"; title = "Patreon"; ObjectID = "7Iq-VD-EJR"; */
+"7Iq-VD-EJR.title" = "Patreon";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7gY-6c-JgS"; */
+"7gY-6c-JgS.text" = "Etiket";
+
+/* Class = "UILabel"; text = "You are a patron"; ObjectID = "80q-Ae-sAf"; */
+"80q-Ae-sAf.text" = "Sen bir patronsun";
+
+/* Class = "UILabel"; text = "Comment"; ObjectID = "93F-Tf-9hD"; */
+"93F-Tf-9hD.text" = "Yorum";
+
+/* Class = "UILabel"; text = "Time remains"; ObjectID = "9mc-qX-nuW"; */
+"9mc-qX-nuW.text" = "Kalan zaman";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "ANF-Z7-e4l"; */
+"ANF-Z7-e4l.text" = "1024 MB";
+
+/* Class = "UITableViewSection"; headerTitle = "Transfer"; ObjectID = "And-Ph-abv"; */
+"And-Ph-abv.headerTitle" = "Aktarım";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "AzQ-xz-c6A"; */
+"AzQ-xz-c6A.text" = "Etiket";
+
+/* Class = "UIViewController"; title = "iTorrent"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "iTorrent";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Bur-uj-G4e"; */
+"Bur-uj-G4e.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Cnu-Ng-Rik"; */
+"Cnu-Ng-Rik.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EBO-my-IxI"; */
+"EBO-my-IxI.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EH3-LO-4n7"; */
+"EH3-LO-4n7.text" = "Etiket";
+
+/* Class = "UITableViewSection"; headerTitle = "Speed"; ObjectID = "GNL-HM-equ"; */
+"GNL-HM-equ.headerTitle" = "Hız";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "J01-de-z4J"; */
+"J01-de-z4J.text" = "Etiket";
+
+/* Class = "UITableViewSection"; headerTitle = "Downloading"; ObjectID = "Ji6-fS-SS9"; */
+"Ji6-fS-SS9.headerTitle" = "İndiriliyor";
+
+/* Class = "UINavigationItem"; title = "iTorrent"; ObjectID = "JmO-fx-ysb"; */
+"JmO-fx-ysb.title" = "iTorrent";
+
+/* Class = "UILabel"; text = "Completed"; ObjectID = "KEg-ok-zwa"; */
+"KEg-ok-zwa.text" = "Tamamlandı";
+
+/* Class = "UILabel"; text = "List is empty, go and download something!"; ObjectID = "KnE-OU-dJk"; */
+"KnE-OU-dJk.text" = "Liste boş, git ve bir şeyler indir!";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "LI9-gV-Pxo"; */
+"LI9-gV-Pxo.title" = "Item";
+
+/* Class = "UILabel"; text = "Hash"; ObjectID = "LN8-EP-fZn"; */
+"LN8-EP-fZn.text" = "Hash";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "M9E-Gr-y4g"; */
+"M9E-Gr-y4g.text" = "1024 MB";
+
+/* Class = "UINavigationItem"; title = "google.ru"; ObjectID = "MTv-80-dIa"; */
+"MTv-80-dIa.title" = "google.ru";
+
+/* Class = "UILabel"; text = "XITRIX (Daniil Vinogradov)"; ObjectID = "Nu1-d1-rOs"; */
+"Nu1-d1-rOs.text" = "XITRIX (Daniil Vinogradov)";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "OGs-R9-Pih"; */
+"OGs-R9-Pih.title" = "İptal";
+
+/* Class = "UILabel"; text = "Download"; ObjectID = "OU6-UE-wsR"; */
+"OU6-UE-wsR.text" = "İndirme hızı";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OYW-fm-8a9"; */
+"OYW-fm-8a9.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OjG-Q1-0VO"; */
+"OjG-Q1-0VO.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Progress"; ObjectID = "R5z-6T-zyy"; */
+"R5z-6T-zyy.text" = "İlerleme";
+
+/* Class = "UIBarButtonItem"; title = "Download"; ObjectID = "R7C-MG-vsY"; */
+"R7C-MG-vsY.title" = "İndir";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "RIR-e3-idC"; */
+"RIR-e3-idC.title" = "Düzenle";
+
+/* Class = "UILabel"; text = "Uploaded"; ObjectID = "RYF-JU-Unw"; */
+"RYF-JU-Unw.text" = "Yüklenmiş";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SxL-CI-RZv"; */
+"SxL-CI-RZv.text" = "Etiket";
+
+/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "TmW-3z-2fD"; */
+"TmW-3z-2fD.headerTitle" = "Daha Fazla";
+
+/* Class = "UILabel"; text = "Created On"; ObjectID = "Wd4-dg-QKP"; */
+"Wd4-dg-QKP.text" = "Yaratıldığı Tarih";
+
+/* Class = "UINavigationItem"; title = "Trackers"; ObjectID = "X5q-UI-XPz"; */
+"X5q-UI-XPz.title" = "Takipçiler";
+
+/* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "X7M-vF-Xn1"; */
+"X7M-vF-Xn1.title" = "Hepsini Seç";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "XRX-cN-tcN"; */
+"XRX-cN-tcN.title" = "Item";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YV6-CV-Q4f"; */
+"YV6-CV-Q4f.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Peers"; ObjectID = "aOB-UI-7bk"; */
+"aOB-UI-7bk.text" = "Eşler";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bpL-bK-a73"; */
+"bpL-bK-a73.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Labelioejrofn "; ObjectID = "cUd-im-L5z"; */
+"cUd-im-L5z.text" = "Etiketfalanfilan ";
+
+/* Class = "UIButton"; normalTitle = "Connect with patreon"; ObjectID = "d6S-dq-bAa"; */
+"d6S-dq-bAa.normalTitle" = "Patreon ile bağlan";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dGO-ld-VzN"; */
+"dGO-ld-VzN.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Creator of iTorrent"; ObjectID = "dYD-Lc-wfy"; */
+"dYD-Lc-wfy.text" = "iTorrent'in Yaratıcısı";
+
+/* Class = "UINavigationItem"; title = "Detail"; ObjectID = "eBT-x9-uyn"; */
+"eBT-x9-uyn.title" = "Detaylar";
+
+/* Class = "UILabel"; text = "Special thanks to:"; ObjectID = "eWp-mz-EXS"; */
+"eWp-mz-EXS.text" = "Özel teşekkür:";
+
+/* Class = "UILabel"; text = "Seeders"; ObjectID = "ekS-WN-Tu8"; */
+"ekS-WN-Tu8.text" = "Seederlar";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fGp-f9-hrr"; */
+"fGp-f9-hrr.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gcE-G8-T43"; */
+"gcE-G8-T43.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i"; ObjectID = "hFU-bT-S6s"; */
+"hFU-bT-S6s.text" = "Etiketfalanfilan falanfilan falanfil filan falanfila n";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "hrV-Dx-Iw2"; */
+"hrV-Dx-Iw2.text" = "1024 MB";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "j3q-Rb-9Cx"; */
+"j3q-Rb-9Cx.text" = "Etiket";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "k0l-PX-752"; */
+"k0l-PX-752.title" = "Edit";
+
+/* Class = "UILabel"; text = "State"; ObjectID = "ktb-TS-ZZd"; */
+"ktb-TS-ZZd.text" = "Durum";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lUK-y0-kWO"; */
+"lUK-y0-kWO.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "m24-h1-ojE"; */
+"m24-h1-ojE.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Sequential download"; ObjectID = "oeR-dU-Ejk"; */
+"oeR-dU-Ejk.text" = "Sıralı indirme";
+
+/* Class = "UITableViewSection"; headerTitle = "General information"; ObjectID = "ou1-dL-PNj"; */
+"ou1-dL-PNj.headerTitle" = "Genel bilgi";
+
+/* Class = "UILabel"; text = "Downloaded"; ObjectID = "r47-w0-OZ2"; */
+"r47-w0-OZ2.text" = "İndirildi";
+
+/* Class = "UILabel"; text = "Seed Limit"; ObjectID = "sj4-t0-u6i"; */
+"sj4-t0-u6i.text" = "Seed Sınırı";
+
+/* Class = "UILabel"; text = "Allow seeding"; ObjectID = "tPP-KE-5PY"; */
+"tPP-KE-5PY.text" = "Seedlemeyi aktifleştir";
+
+/* Class = "UIBarButtonItem"; title = "Deselect All"; ObjectID = "tSN-hF-er4"; */
+"tSN-hF-er4.title" = "Seçimi Bırak";
+
+/* Class = "UITableViewSection"; headerTitle = "Seeding"; ObjectID = "ue2-iG-c31"; */
+"ue2-iG-c31.headerTitle" = "Seedleniyor";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "umK-F7-bUF"; */
+"umK-F7-bUF.text" = "Etiket";
+
+/* Class = "UIViewController"; title = "Patreon"; ObjectID = "vUk-uz-zSp"; */
+"vUk-uz-zSp.title" = "Patreon";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "w04-lv-fHA"; */
+"w04-lv-fHA.title" = "Düzenle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "w2E-cl-SK6"; */
+"w2E-cl-SK6.text" = "Etiket";
+
+/* Class = "UILabel"; text = "Creator"; ObjectID = "wBl-l3-0QI"; */
+"wBl-l3-0QI.text" = "Yaratıcı";
+
+/* Class = "UILabel"; text = "1024 MB"; ObjectID = "wEQ-q3-Ck2"; */
+"wEQ-q3-Ck2.text" = "1024 MB";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wZM-Mw-hAO"; */
+"wZM-Mw-hAO.text" = "Etiket";
+
+/* Class = "UIButton"; normalTitle = "Become a patron"; ObjectID = "wop-la-tvj"; */
+"wop-la-tvj.normalTitle" = "Bir patron ol";
+
+/* Class = "UILabel"; text = "Selected/Total"; ObjectID = "wtJ-YQ-1f8"; */
+"wtJ-YQ-1f8.text" = "Seçili/Tamamı";
+
+/* Class = "UILabel"; text = "Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i"; ObjectID = "xmh-iG-mwT"; */
+"xmh-iG-mwT.text" = "Etiketfalanfilan falanfilan falanfil falan falanfila n";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "ySf-OK-NDV"; */
+"ySf-OK-NDV.title" = "Item";
+
+/* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "yiV-n5-Akv"; */
+"yiV-n5-Akv.title" = "Hepsini Seç";
+
+/* Class = "UINavigationItem"; title = "Add .torrent"; ObjectID = "zRk-TY-ISC"; */
+"zRk-TY-ISC.title" = ".torrent Dosyası Ekle";
