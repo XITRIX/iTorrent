@@ -65,6 +65,9 @@ class Core {
             torrent.stateCorrector()
         }
         
+        /// call engine's alerts loop method
+        TorrentSdk.popAlerts()
+        
         /// remove removed torrents
         let removed = torrents.values.filter {!res.contains($0)}
         for file in removed {

@@ -59,6 +59,11 @@ class SegmentedProgressView: UIView, Themed {
         super.init(coder: coder)
         setup()
     }
+    
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        setNeedsDisplay()
+    }
 
     func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)

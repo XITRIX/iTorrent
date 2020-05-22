@@ -322,6 +322,11 @@ extension PatreonAPI
     
     func signOut(completion: @escaping (Result<Void, Swift.Error>) -> Void)
     {
+        if UserPreferences.patreonAccount?.fixedAccount ?? false {
+            completion(.failure(Error.notAuthenticated))
+            return
+        }
+        
         UserPreferences.patreonAccount = nil
         UserPreferences.patreonAccessToken = nil
         UserPreferences.patreonRefreshToken = nil

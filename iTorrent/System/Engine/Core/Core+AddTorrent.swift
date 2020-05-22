@@ -11,17 +11,15 @@ import UIKit
 extension Core {
     func addTorrent(_ filePath: String) {
         if let hash = TorrentSdk.addTorrent(torrentPath: filePath) {
-            if hash != "-1" {
-                if torrentsUserData[hash] == nil {
-                    print(hash)
-                    torrentsUserData[hash] = UserManagerSettings()
-                }
-            } else {
-                do {
-                    try FileManager.default.removeItem(atPath: filePath)
-                } catch {
-                    print(error.localizedDescription)
-                }
+            if torrentsUserData[hash] == nil {
+                print(hash)
+                torrentsUserData[hash] = UserManagerSettings()
+            }
+        } else {
+            do {
+                try FileManager.default.removeItem(atPath: filePath)
+            } catch {
+                print(error.localizedDescription)
             }
         }
         mainLoop()

@@ -87,7 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
-        Core.shared.saveTorrents(filesStatesOnly: BackgroundTask.startBackground())
+        Core.shared.saveTorrents()
+        _=BackgroundTask.startBackground()
         AppDelegate.backgrounded = true
     }
 
@@ -104,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        Core.shared.saveTorrents()
+        Core.shared.saveTorrents(filesStatesOnly: false)
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {

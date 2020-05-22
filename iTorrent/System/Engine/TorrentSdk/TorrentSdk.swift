@@ -40,6 +40,7 @@ class TorrentSdk {
         let rawRes = add_torrent(torrentPath)!
         let res = String(validatingUTF8: rawRes)
         free(rawRes)
+        if res == "-1" { return nil }
         return res
     }
     
@@ -207,6 +208,7 @@ class TorrentSdk {
     - Parameter hash: torrent's hash.
     */
     public static func rehashTorrent(hash: String) {
+        TorrentSdk.stopTorrent(hash: hash)
         rehash_torrent(hash)
     }
     
@@ -292,6 +294,13 @@ class TorrentSdk {
     */
     public static func setStoragePreallocation(allocate: Bool) {
         set_storage_preallocation(allocate ? 1 : 0)
+    }
+    
+    /**
+    Call alerts processing loop method for Engine which run updates of Engine states.
+    */
+    public static func popAlerts() {
+        pop_alerts()
     }
     
     /**

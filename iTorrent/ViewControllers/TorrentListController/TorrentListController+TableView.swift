@@ -70,7 +70,8 @@ extension TorrentListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        torrentSections[section].value.isEmpty || torrentSections[section].title.isEmpty ? CGFloat.leastNonzeroMagnitude : 28
+        torrentSections.count <= section || torrentSections[section].value.isEmpty || torrentSections[section].title.isEmpty ?
+            CGFloat.leastNonzeroMagnitude : 28
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -115,7 +116,6 @@ extension TorrentListController: UITableViewDelegate {
             return nil
         }) { _ -> UIMenu? in
             if let torrent = Core.shared.torrents[hash] {
-                
                 var canStart, canPause: Bool
                 if torrent.state == .hashing ||
                     torrent.state == .metadata {

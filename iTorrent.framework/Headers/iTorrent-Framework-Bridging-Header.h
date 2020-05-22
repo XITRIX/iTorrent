@@ -32,6 +32,7 @@ int add_tracker_to_torrent(const char* torrent_hash, const char* tracker_url);
 int remove_tracker_from_torrent(const char* torrent_hash, char *const tracker_url[], int count);
 void set_download_limit(int limit_in_bytes);
 void set_upload_limit(int limit_in_bytes);
+void pop_alerts();
 
 void set_torrent_files_sequental(const char* torrent_hash, int sequental);
 int get_torrent_files_sequental(const char* torrent_hash);
