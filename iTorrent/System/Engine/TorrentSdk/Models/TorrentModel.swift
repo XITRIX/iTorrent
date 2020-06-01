@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import DeepDiff
 
-class TorrentModel: Equatable {
+class TorrentModel: Hashable, DiffAware {
     var title: String = ""
     var state: TorrentState = .null
     var displayState: TorrentState = .null
@@ -183,6 +184,10 @@ class TorrentModel: Equatable {
                 hash: hash)
             BackgroundTask.checkToStopBackground()
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(hash)
     }
     
     static func == (lhs: TorrentModel, rhs: TorrentModel) -> Bool {

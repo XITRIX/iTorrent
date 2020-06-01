@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import DeepDiff
 
 class TrackersListController: ThemedUIViewController {
     @IBOutlet var tableView: ThemedUITableView!
@@ -15,28 +16,27 @@ class TrackersListController: ThemedUIViewController {
     @IBOutlet var removeButton: UIBarButtonItem!
 
     var managerHash: String!
-    var trackers: ReloadableSection<TrackerModel>!
+    var trackers: [TrackerModel] = []
 
     deinit {
         print("Trackers DEINIT!!")
     }
 
     @objc func update() {
-        let raw = TorrentSdk.getTrackersByHash(hash: managerHash)
-        let new = ReloadableSection<TrackerModel>(title: "", value: raw.enumerated().map { ReloadableCell<TrackerModel>(key: $1.url, value: $1, index: $0) }, index: 0)
-        let diff = DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
+        let new = TorrentSdk.getTrackersByHash(hash: managerHash)
+        let changes = diff(old: trackers, new: new) //DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
         trackers = new
 
-        if diff.hasChanges() {
-            tableView.beginUpdates()
-            tableView.insertRows(at: diff.updates.inserts, with: .fade)
-            tableView.deleteRows(at: diff.updates.deletes, with: .fade)
-            tableView.endUpdates()
-        }
+        let res = IndexPathConverter().convert(changes: changes, section: 0)
+        
+        tableView.beginUpdates()
+        if res.inserts.count > 0 { tableView.insertRows(at: res.inserts, with: .fade) }
+        if res.deletes.count > 0 { tableView.deleteRows(at: res.deletes, with: .fade) }
+        tableView.endUpdates()
 
-        diff.updates.reloads.forEach { indexPath in
+        res.replaces.forEach { indexPath in
             if let cell = tableView.cellForRow(at: indexPath) as? TrackerCell {
-                cell.setModel(tracker: new.value[indexPath.row].value)
+                cell.setModel(tracker: new[indexPath.row])
             }
         }
     }
@@ -58,7 +58,6 @@ class TrackersListController: ThemedUIViewController {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(longPressGestureRecognizer:)))
         view.addGestureRecognizer(longPressRecognizer)
 
-        trackers = ReloadableSection<TrackerModel>(title: "", value: [], index: 0)
         update()
     }
 
@@ -76,8 +75,8 @@ class TrackersListController: ThemedUIViewController {
         if longPressGestureRecognizer.state == .began {
             let touchPoint = longPressGestureRecognizer.location(in: tableView)
             if let index = tableView.indexPathForRow(at: touchPoint) {
-                UIPasteboard.general.string = trackers.value[index.row].value.url
-                Dialog.withTimer(self, title: nil, message: Localize.get("Tracker URL copied to clipboard!"))
+                UIPasteboard.general.string = trackers[index.row].url
+                Dialog.withTimer(self, title: nil, message: Localize.get("Tracker's URL copied to clipboard!"))
             }
         }
     }
@@ -132,7 +131,7 @@ class TrackersListController: ThemedUIViewController {
         let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you shure to remove this trackers?", comment: ""), preferredStyle: .actionSheet)
         let remove = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
             let urls: [String] = self.tableView.indexPathsForSelectedRows!.map {
-                self.trackers.value[$0.row].value.url
+                self.trackers[$0.row].url
             }
 
             _ = TorrentSdk.removeTrackersFromTorrent(hash: self.managerHash, trackerUrls: urls)
@@ -154,12 +153,12 @@ class TrackersListController: ThemedUIViewController {
 
 extension TrackersListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        trackers.value.count
+        trackers.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TrackerCell {
-            cell.setModel(tracker: trackers.value[indexPath.row].value)
+            cell.setModel(tracker: trackers[indexPath.row])
             return cell
         }
         return UITableViewCell()

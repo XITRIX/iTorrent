@@ -160,6 +160,11 @@ class Localize {
     static func get(_ key: String) -> String {
         NSLocalizedString(key, comment: "")
     }
+    
+    static func get(key: String?) -> String? {
+        guard let key = key else { return nil }
+        return get(key)
+    }
 
     static func getTermination(_ key: String, _ number: Int) -> String {
         let termination: [String] = [":single", ":plural", ":parent"]

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import DeepDiff
 
-public enum TorrentState: String {
+public enum TorrentState: String, DiffAware {
     case queued = "Queued"
     case hashing = "Hashing"
     case metadata = "Metadata"

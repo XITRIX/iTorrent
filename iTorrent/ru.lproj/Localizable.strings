@@ -206,6 +206,7 @@
 "Seeds" = "Сиды";
 "Leechers" = "Личеры";
 "Are you shure to remove this trackers?" = "Вы уверены что хотите удалить эти трекеры?";
+"Tracker's URL copied to clipboard!" = "URL трекера скопирован!";
 
 //AppDelegate
 "Obtaining Metadata" = "Получение Метадаты";

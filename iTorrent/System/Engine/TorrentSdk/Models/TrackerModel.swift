@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import DeepDiff
 
-struct TrackerModel: Equatable {
+struct TrackerModel: Hashable, DiffAware {
     var url: String
     var message: String
     var seeders: Int32
@@ -26,5 +27,9 @@ struct TrackerModel: Equatable {
         verified = tracker.verified == 1
         message = working ? Localize.get("Working") : Localize.get("Inactive")
         if verified { message += ", \(Localize.get("Verified"))" }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(url)
     }
 }

@@ -198,6 +198,7 @@
 "Seeds" = "Seeds";
 "Leechers" = "Leechers";
 "Are you shure to remove this trackers?" = "Are you shure to remove this trackers?";
+"Tracker's URL copied to clipboard!" = "Tracker's URL copied to clipboard!";
 
 //AppDelegate
 "Obtaining Metadata" = "Obtaining Metadata";
