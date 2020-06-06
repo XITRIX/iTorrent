@@ -170,7 +170,7 @@ class PreferencesController: StaticTableViewController {
         ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: PreferencesWebDavController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             if UserPreferences.ftpKey,
-                UserPreferences.webDavWebServerEnabled {
+                UserPreferences.webServerEnabled {
                 let addr = Core.shared.webUploadServer.serverURL // Utils.getWiFiAddress()
                 if let addr = addr?.absoluteString {
                     return UserPreferences.ftpKey ? Localize.get("Settings.FTP.Message") + addr : ""

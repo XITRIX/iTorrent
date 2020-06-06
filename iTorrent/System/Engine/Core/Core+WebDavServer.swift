@@ -18,7 +18,7 @@ extension Core {
             options[GCDWebServerOption_AuthenticationMethod] = GCDWebServerAuthenticationMethod_DigestAccess
         }
 
-        if UserPreferences.webDavWebServerEnabled {
+        if UserPreferences.webServerEnabled {
             options[GCDWebServerOption_Port] = 80
             if !webUploadServer.isRunning {
                 if (try? webUploadServer.start(options: options)) == nil {
@@ -29,7 +29,7 @@ extension Core {
             }
         }
 
-        if UserPreferences.webDavWebDavServerEnabled {
+        if UserPreferences.webDavServerEnabled {
             options[GCDWebServerOption_Port] = UserPreferences.webDavPort
             if !webDAVServer.isRunning {
                 try? webDAVServer.start(options: options)

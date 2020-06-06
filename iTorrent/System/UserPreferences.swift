@@ -20,8 +20,8 @@ class UserPreferences {
     @PreferenceItem("ftpWebDavKey", false) static var ftpWebDavKey: Bool
     @PreferenceItem("webDavUsername", "") static var webDavUsername: String
     @PreferenceItem("webDavPassword", "") static var webDavPassword: String
-    @PreferenceItem("webDavWebServerEnabled", true) static var webDavWebServerEnabled: Bool
-    @PreferenceItem("webDavWebDavServerEnabled", false) static var webDavWebDavServerEnabled: Bool
+    @PreferenceItem("webDavWebServerEnabled", true) static var webServerEnabled: Bool
+    @PreferenceItem("webDavWebDavServerEnabled", false) static var webDavServerEnabled: Bool
     @PreferenceItem("webDavPort", 81) static var webDavPort: Int
     @PreferenceItem("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1]) static var sectionsSortingOrder: [Int]
     @PreferenceItem("themeNum", 0) static var themeNum: Int

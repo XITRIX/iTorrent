@@ -24,8 +24,8 @@ class PreferencesWebDavController: StaticTableViewController {
         data.append(Section(rowModels: pass, footer: "Settings.FTP.WebDav.PassText"))
         
         var web = [CellModelProtocol]()
-        web.append(SwitchCell.Model(title: "Enable", defaultValue: {UserPreferences.webDavWebServerEnabled}) { switcher in
-            UserPreferences.webDavWebServerEnabled = switcher.isOn
+        web.append(SwitchCell.Model(title: "Enable", defaultValue: {UserPreferences.webServerEnabled}) { switcher in
+            UserPreferences.webServerEnabled = switcher.isOn
             if switcher.isOn {
                 if UserPreferences.ftpKey {
                     Core.shared.startFileSharing()
@@ -40,8 +40,8 @@ class PreferencesWebDavController: StaticTableViewController {
         data.append(Section(rowModels: web, header: "Settings.FTP.WebDav.WebTitle", footer: "Settings.FTP.WebDav.WebText"))
         
         var webDav = [CellModelProtocol]()
-        webDav.append(SwitchCell.Model(title: "Enable", defaultValue: {UserPreferences.webDavWebDavServerEnabled}) { switcher in
-            UserPreferences.webDavWebServerEnabled = switcher.isOn
+        webDav.append(SwitchCell.Model(title: "Enable", defaultValue: {UserPreferences.webDavServerEnabled}) { switcher in
+            UserPreferences.webDavServerEnabled = switcher.isOn
             if switcher.isOn {
                 if UserPreferences.ftpKey {
                     Core.shared.startFileSharing()
