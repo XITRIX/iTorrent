@@ -40,6 +40,16 @@
 		7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693B20A754FD0023396C /* LaunchScreen.storyboard */; };
 		7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E841A20AB054C00577282 /* DetailCell.swift */; };
 		7C3E842120AB6BB400577282 /* FileCellOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E842020AB6BB400577282 /* FileCellOld.swift */; };
+		7C46747F24883F0000ABC838 /* TorrentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */; };
+		7C46748224883F4000ABC838 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748124883F4000ABC838 /* ViewModel.swift */; };
+		7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748324883F5900ABC838 /* MvvmViewController.swift */; };
+		7C46749124884DB000ABC838 /* UIButtonBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748824884DB000ABC838 /* UIButtonBinding.swift */; };
+		7C46749224884DB000ABC838 /* UIBarButtonItemBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748924884DB000ABC838 /* UIBarButtonItemBinding.swift */; };
+		7C46749324884DB000ABC838 /* BindableUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748B24884DB000ABC838 /* BindableUITableViewCell.swift */; };
+		7C46749424884DB000ABC838 /* DisposalBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748C24884DB000ABC838 /* DisposalBag.swift */; };
+		7C46749524884DB000ABC838 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748E24884DB000ABC838 /* Box.swift */; };
+		7C46749624884DB000ABC838 /* BoxCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748F24884DB000ABC838 /* BoxCombiner.swift */; };
+		7C46749724884DB000ABC838 /* Disposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46749024884DB000ABC838 /* Disposal.swift */; };
 		7C495525244E40680057648A /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C495524244E40680057648A /* AlignedCollectionViewFlowLayout.swift */; };
 		7C495527244E4B3B0057648A /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C495526244E4B3B0057648A /* UIViewExtensions.swift */; };
 		7C49598A2437C2E300FF3BB2 /* Core+RemoveTorrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4959892437C2E300FF3BB2 /* Core+RemoveTorrent.swift */; };
@@ -112,6 +122,8 @@
 		7CCD02E4243E7D2B00B1669F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD02E6243E7D2B00B1669F /* InfoPlist.strings */; };
 		7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */; };
 		7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
+		7CD43AE92488519B00EA531E /* UIViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AE82488519B00EA531E /* UIViewBinding.swift */; };
+		7CD43AEB24895DF600EA531E /* UIActivityIndicatorViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */; };
 		7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */; };
 		7CE3CEB32321C350005575D5 /* SpeedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3CEB22321C350005575D5 /* SpeedPicker.swift */; };
 		7CE3CEB52321E14B005575D5 /* UpdateInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */; };
@@ -197,6 +209,16 @@
 		7C3C693E20A754FD0023396C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C3E841A20AB054C00577282 /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		7C3E842020AB6BB400577282 /* FileCellOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCellOld.swift; sourceTree = "<group>"; };
+		7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListViewModel.swift; sourceTree = "<group>"; };
+		7C46748124883F4000ABC838 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		7C46748324883F5900ABC838 /* MvvmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmViewController.swift; sourceTree = "<group>"; };
+		7C46748824884DB000ABC838 /* UIButtonBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonBinding.swift; sourceTree = "<group>"; };
+		7C46748924884DB000ABC838 /* UIBarButtonItemBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemBinding.swift; sourceTree = "<group>"; };
+		7C46748B24884DB000ABC838 /* BindableUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindableUITableViewCell.swift; sourceTree = "<group>"; };
+		7C46748C24884DB000ABC838 /* DisposalBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposalBag.swift; sourceTree = "<group>"; };
+		7C46748E24884DB000ABC838 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		7C46748F24884DB000ABC838 /* BoxCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxCombiner.swift; sourceTree = "<group>"; };
+		7C46749024884DB000ABC838 /* Disposal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposal.swift; sourceTree = "<group>"; };
 		7C495524244E40680057648A /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		7C495526244E4B3B0057648A /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		7C4959892437C2E300FF3BB2 /* Core+RemoveTorrent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+RemoveTorrent.swift"; sourceTree = "<group>"; };
@@ -274,6 +296,8 @@
 		7CCD02E7243E7D3100B1669F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUINavigationController.swift; sourceTree = "<group>"; };
 		7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUIActivityViewController.swift; sourceTree = "<group>"; };
+		7CD43AE82488519B00EA531E /* UIViewBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBinding.swift; sourceTree = "<group>"; };
+		7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewBinding.swift; sourceTree = "<group>"; };
 		7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		7CE3CEB22321C350005575D5 /* SpeedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPicker.swift; sourceTree = "<group>"; };
 		7CE3CEB42321E14B005575D5 /* UpdateInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoCell.swift; sourceTree = "<group>"; };
@@ -456,6 +480,72 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7C46748024883F3100ABC838 /* Mvvm */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748524884DB000ABC838 /* Binding */,
+				7C46748124883F4000ABC838 /* ViewModel.swift */,
+				7C46748324883F5900ABC838 /* MvvmViewController.swift */,
+			);
+			path = Mvvm;
+			sourceTree = "<group>";
+		};
+		7C46748524884DB000ABC838 /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748624884DB000ABC838 /* UI */,
+				7C46748D24884DB000ABC838 /* Containers */,
+				7C46749824884DC600ABC838 /* Disposing */,
+			);
+			path = Binding;
+			sourceTree = "<group>";
+		};
+		7C46748624884DB000ABC838 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748724884DB000ABC838 /* Extensions */,
+				7C46748A24884DB000ABC838 /* BindableElements */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7C46748724884DB000ABC838 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748824884DB000ABC838 /* UIButtonBinding.swift */,
+				7C46748924884DB000ABC838 /* UIBarButtonItemBinding.swift */,
+				7CD43AE82488519B00EA531E /* UIViewBinding.swift */,
+				7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7C46748A24884DB000ABC838 /* BindableElements */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748B24884DB000ABC838 /* BindableUITableViewCell.swift */,
+			);
+			path = BindableElements;
+			sourceTree = "<group>";
+		};
+		7C46748D24884DB000ABC838 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748E24884DB000ABC838 /* Box.swift */,
+				7C46748F24884DB000ABC838 /* BoxCombiner.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		7C46749824884DC600ABC838 /* Disposing */ = {
+			isa = PBXGroup;
+			children = (
+				7C46748C24884DB000ABC838 /* DisposalBag.swift */,
+				7C46749024884DB000ABC838 /* Disposal.swift */,
+			);
+			path = Disposing;
+			sourceTree = "<group>";
+		};
 		7C4B109720DFDECA00440E74 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +611,7 @@
 		7C97E5022436991C004923D8 /* TorrentListController */ = {
 			isa = PBXGroup;
 			children = (
+				7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */,
 				7C97E50024367199004923D8 /* TorrentListController.swift */,
 				7C97E50324369950004923D8 /* TorrentListController+AddTorrentFunc.swift */,
 				7CCD02CA2439F2C600B1669F /* TorrentListController+SearchView.swift */,
@@ -674,6 +765,7 @@
 		7CF522E420AE1F2C00D319E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7C46748024883F3100ABC838 /* Mvvm */,
 				7CAF077C2485917C00AAB4FB /* DiffableDataSource */,
 				7CB175F82454F0FB005CEEA6 /* Native */,
 				7CB39E72244A500A00FA3E20 /* Patreon */,
@@ -920,6 +1012,7 @@
 				7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */,
 				7C26E34224325D230012D455 /* FileModel.swift in Sources */,
 				7C26E3572432838C0012D455 /* CoreState.swift in Sources */,
+				7C46748224883F4000ABC838 /* ViewModel.swift in Sources */,
 				7C26E34A243272F60012D455 /* Core+GlobalVars.swift in Sources */,
 				7CAF07802485B97D00AAB4FB /* TorrentListDataSource.swift in Sources */,
 				7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */,
@@ -927,6 +1020,7 @@
 				7C97E50124367199004923D8 /* TorrentListController.swift in Sources */,
 				7CCD02CF243A7EF400B1669F /* UIViewControllerExtentions.swift in Sources */,
 				7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */,
+				7C46749424884DB000ABC838 /* DisposalBag.swift in Sources */,
 				7C7D0ABC20D97B3A001B08E5 /* FileCellActionDelegate.swift in Sources */,
 				7CCD02C924389A4F00B1669F /* DiffCalculator.swift in Sources */,
 				7CB175FA2454F144005CEEA6 /* ObjC.m in Sources */,
@@ -944,6 +1038,7 @@
 				7CE61CB12426B75B0038717C /* UIColorExtentions.swift in Sources */,
 				7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */,
 				7CF75F21244B42EE00F5C089 /* PatreonAPI.swift in Sources */,
+				7C46749724884DB000ABC838 /* Disposal.swift in Sources */,
 				7CB1769324564289005CEEA6 /* FileManagerExtensions.swift in Sources */,
 				7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */,
 				7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */,
@@ -958,6 +1053,7 @@
 				7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */,
 				7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */,
 				7CE61CB9242915E20038717C /* PortionBarLabels.swift in Sources */,
+				7C46749624884DB000ABC838 /* BoxCombiner.swift in Sources */,
 				7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */,
 				7C18DF01231D504400A14326 /* PreferencesController.swift in Sources */,
 				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
@@ -979,6 +1075,7 @@
 				7CBB17DF2324FE650043A9F6 /* CircularAnimation.swift in Sources */,
 				7C4B109D20DFF12300440E74 /* ThemedUIViewController.swift in Sources */,
 				7CF75F1E244B42EE00F5C089 /* Patron.swift in Sources */,
+				7C46749324884DB000ABC838 /* BindableUITableViewCell.swift in Sources */,
 				7CB3A5072418034100CE44A2 /* FullscreenAd.swift in Sources */,
 				7CCD02D5243CD2A300B1669F /* TorrentListController+AdsView.swift in Sources */,
 				7CCD02D3243B849600B1669F /* TorrentListController+EditMode.swift in Sources */,
@@ -986,6 +1083,7 @@
 				7C26E344243263C80012D455 /* TrackerModel.swift in Sources */,
 				7C802D07212C6D060031C19F /* Dialog.swift in Sources */,
 				7CB8083B20AB008700F76931 /* SwitchCell.swift in Sources */,
+				7C46749124884DB000ABC838 /* UIButtonBinding.swift in Sources */,
 				7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */,
 				7CBD074A244CFACA00F0BCC8 /* PatronNameCell.swift in Sources */,
 				7C26E33B2432457B0012D455 /* TorrentSdk.swift in Sources */,
@@ -1012,18 +1110,24 @@
 				7CB9BBAF23786D8D00C8F05E /* Section.swift in Sources */,
 				7C3E841B20AB054C00577282 /* DetailCell.swift in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
+				7C46749224884DB000ABC838 /* UIBarButtonItemBinding.swift in Sources */,
+				7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */,
 				7C18DF03231D514F00A14326 /* CellModelProtocol.swift in Sources */,
 				7CB9BBAA23786C8A00C8F05E /* PreferencesWebDavController.swift in Sources */,
 				7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */,
 				7C495527244E4B3B0057648A /* UIViewExtensions.swift in Sources */,
 				7C18DF07231D5DDB00A14326 /* PreferenceCellProtocol.swift in Sources */,
+				7CD43AE92488519B00EA531E /* UIViewBinding.swift in Sources */,
 				7CF75F1F244B42EE00F5C089 /* Benefit.swift in Sources */,
 				7C1EBD0421E4B64B00EAAF55 /* TableHeaderView.swift in Sources */,
 				7CF5F59220AC325100A18C3E /* TorrentFilesControllerOld.swift in Sources */,
+				7CD43AEB24895DF600EA531E /* UIActivityIndicatorViewBinding.swift in Sources */,
 				7C97E4FF2434E76A004923D8 /* SAViewControllers.swift in Sources */,
 				7C10D350232189C200B5ED9A /* DatasetPicker.swift in Sources */,
 				7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */,
+				7C46749524884DB000ABC838 /* Box.swift in Sources */,
 				7C97E4F62433A783004923D8 /* FileProviderDelegate.swift in Sources */,
+				7C46747F24883F0000ABC838 /* TorrentListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,7 +1336,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.xitrix.iTorrent;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1287,7 +1391,7 @@
 				MARKETING_VERSION = 1.8;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.xitrix.iTorrent;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";

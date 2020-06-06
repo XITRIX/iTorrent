@@ -39,12 +39,17 @@ class Themes {
         darkTheme.tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
         darkTheme.statusBarStyle = .lightContent
         darkTheme.barStyle = .blackTranslucent
-        darkTheme.blurEffect = .dark
         darkTheme.keyboardAppearence = .dark
         darkTheme.loadingIndicatorStyle = .white
 
         if #available(iOS 12.0, *) {
             darkTheme.overrideUserInterfaceStyle = UIUserInterfaceStyle.dark.rawValue
+        }
+        
+        if #available(iOS 13.0, *) {
+            darkTheme.blurEffect = .systemChromeMaterialDark
+        } else {
+            darkTheme.blurEffect = .dark
         }
 
         theme.append(ColorPalett())
@@ -82,7 +87,7 @@ struct ColorPalett: Equatable {
     var tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
     var statusBarStyle: UIStatusBarStyle = .default
     var barStyle: UIBarStyle = .default
-    var blurEffect: UIBlurEffect.Style = .extraLight
+    var blurEffect: UIBlurEffect.Style
     var keyboardAppearence: UIKeyboardAppearance = .default
     var loadingIndicatorStyle: UIActivityIndicatorView.Style = .gray
     var overrideUserInterfaceStyle: Int!
@@ -90,6 +95,12 @@ struct ColorPalett: Equatable {
     init() {
         if #available(iOS 12.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle.light.rawValue
+        }
+        
+        if #available(iOS 13.0, *) {
+            blurEffect = .systemChromeMaterialLight
+        } else {
+            blurEffect = .extraLight
         }
     }
 }

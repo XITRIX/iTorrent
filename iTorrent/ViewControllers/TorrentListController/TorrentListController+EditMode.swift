@@ -96,7 +96,7 @@ extension TorrentListController {
         if let torrents = tableView.indexPathsForSelectedRows?.compactMap({ torrentListDataSource.snapshot?.getItem(from: $0) }) {
             Core.shared.removeTorrentsUI(hashes: torrents.map { $0.hash }, sender: sender, direction: .down) {
                 self.tableView.indexPathsForSelectedRows?.forEach({self.tableView.deselectRow(at: $0, animated: true)})
-                self.update()
+                self.viewModel.update()
                 self.updateEditStatus()
             }
         }

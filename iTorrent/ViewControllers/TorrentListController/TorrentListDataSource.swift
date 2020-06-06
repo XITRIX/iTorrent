@@ -25,7 +25,7 @@ class TorrentListDataSource: DiffableDataSource<String, TorrentModel> {
         let hashes = [hash]
 
         Core.shared.removeTorrentsUI(hashes: hashes, sender: tableView.cellForRow(at: indexPath)!, direction: .left) {
-            self.controller.update()
+            self.controller.viewModel.update()
 
             // if detail view opens with deleted hash, close it
             if let splitViewController = self.controller.splitViewController,

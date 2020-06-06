@@ -115,7 +115,7 @@ extension TorrentListController: UITableViewDelegate {
                 }
                 let delete = UIAction(title: Localize.get("Delete"), image: UIImage(systemName: "trash.fill"), identifier: nil, discoverabilityTitle: nil, attributes: .destructive, state: .off) { _ in
                     Core.shared.removeTorrentsUI(hashes: [hash], sender: tableView.cellForRow(at: indexPath)!, direction: .left) {
-                        self.update()
+                        self.viewModel.update()
                     }
                 }
                 let actionsMenu = UIMenu(title: "",

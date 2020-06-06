@@ -9,7 +9,7 @@
 import GoogleMobileAds
 import UIKit
 
-class TorrentListController: ThemedUIViewController {
+class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var tableView: ThemedUITableView!
     @IBOutlet var adsView: GADBannerView!
     
@@ -23,8 +23,6 @@ class TorrentListController: ThemedUIViewController {
     var editmodeBarButtonItems: [UIBarButtonItem] = []
     
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
-    var searchFilter: String?
-    
     var adsLoaded = false
     
     var torrentListDataSource: TorrentListDataSource!
@@ -55,8 +53,7 @@ class TorrentListController: ThemedUIViewController {
         searchbarUpdateTheme(theme)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setupViews() {
         localize()
         
         initializeTableView()
@@ -66,36 +63,29 @@ class TorrentListController: ThemedUIViewController {
         showUpdateLog()
     }
     
+    override func binding() {
+        /// TableView Binding
+        viewModel.tableViewData.bind { torrents in
+            var snapshot = DataSnapshot<String, TorrentModel>()
+            snapshot.appendSections(torrents.map{$0.title})
+            torrents.enumerated().forEach { snapshot.appendItems($0.element.items, toSection: $0.element.title) }
+            self.torrentListDataSource.apply(snapshot)
+            
+            self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
+        }.dispose(with: disposalBag)
+        
+        /// Binding Loading Indicator
+        loadingIndicator.isAnimatingBox.bindTo(viewModel.loadingIndicatiorHidden).dispose(with: disposalBag)
+        
+        /// Binding TableView Placeholder
+        tableviewPlaceholder.isHiddenBox.bindTo(viewModel.tableviewPlaceholderHidden).dispose(with: disposalBag)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(update), name: .mainLoopTick, object: nil)
         navigationController?.isToolbarHidden = false
         smoothlyDeselectRows(in: tableView)
         viewWillAppearAds()
-        update()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    let updateSemaphore = DispatchSemaphore(value: 1)
-    @objc func update(animated: Bool = true) {
-        if Core.shared.state == .Initializing { return }
-        else { loadingIndicator.stopAnimating() }
-        
-        let searchFiltered = Array(Core.shared.torrents.values).filter { self.searchFilter($0) }
-        let tempBuf = SortingManager.sort(managers: searchFiltered)
-        
-        var snapshot = DataSnapshot<String, TorrentModel>()
-        snapshot.appendSections(tempBuf.map{$0.title})
-        tempBuf.enumerated().forEach { snapshot.appendItems($0.element.items, toSection: $0.element.title) }
-        
-        self.torrentListDataSource.apply(snapshot)
-
-        self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
-        self.tableviewPlaceholder.isHidden = tempBuf.contains(where: { $0.items.count > 0 })
     }
     
     @IBAction func addTorrentAction(_ sender: UIBarButtonItem) {
@@ -115,7 +105,7 @@ class TorrentListController: ThemedUIViewController {
     
     @IBAction func sortAction(_ sender: UIBarButtonItem) {
         let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
-            self.update()
+            self.viewModel.update()
         })
         present(sortingController, animated: true)
     }
