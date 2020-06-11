@@ -9,6 +9,10 @@
 import UIKit
 
 class PreferencesWebDavController: StaticTableViewController {
+    override var toolBarIsHidden: Bool? {
+        true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

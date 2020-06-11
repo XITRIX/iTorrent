@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Dialog {
-    static func withTimer(_ presenter: UIViewController,title: String?, message: String?) {
+    static func withTimer(_ presenter: UIViewController,title: String? = nil, message: String? = nil) {
         let alert = ThemedUIAlertController(title:title, message: message, preferredStyle: .alert)
         presenter.present(alert, animated: true, completion: nil)
         // change alert timer to 2 seconds, then dismiss
@@ -18,6 +18,25 @@ class Dialog {
         DispatchQueue.main.asyncAfter(deadline: when) {
             alert.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    static func withTextField(_ presenter: UIViewController?, title: String? = nil, message: String? = nil, textFieldConfiguration: ((UITextField) -> ())?, okAction: @escaping (UITextField) -> ()) {
+        let dialog = ThemedUIAlertController(title: title, message: message, preferredStyle: .alert)
+        dialog.addTextField { textField in
+            let theme = Themes.current
+            textField.keyboardAppearance = theme.keyboardAppearence
+            textFieldConfiguration?(textField)
+        }
+        
+        let cancel = UIAlertAction(title: Localize.get("Close"), style: .cancel)
+        let ok = UIAlertAction(title: Localize.get("OK"), style: .default) { _ in
+            okAction(dialog.textFields![0])
+        }
+        
+        dialog.addAction(cancel)
+        dialog.addAction(ok)
+        
+        presenter?.present(dialog, animated: true)
     }
     
     static func show(_ presenter: UIViewController?, title: String?, message: String?) {

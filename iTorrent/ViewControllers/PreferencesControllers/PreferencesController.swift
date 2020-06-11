@@ -9,8 +9,12 @@
 import UIKit
 
 class PreferencesController: StaticTableViewController {
-    var onScreenPopup: PopupView?
+    override var toolBarIsHidden: Bool? {
+        true
+    }
 
+    var onScreenPopup: PopupView?
+    
     deinit {
         print("PreferencesController Deinit")
     }
@@ -252,11 +256,6 @@ class PreferencesController: StaticTableViewController {
         })
         donates.append(SegueCell.Model(self, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setToolbarHidden(true, animated: false)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

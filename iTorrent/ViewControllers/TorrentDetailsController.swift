@@ -105,6 +105,7 @@ class TorrentDetailsController: ThemedUITableViewController {
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textAlignment = NSTextAlignment.center
         label.textColor = theme.mainText
+        label.trailingBuffer = 44
         navigationItem.titleView = label
 
         managerUpdated()
@@ -217,7 +218,7 @@ class TorrentDetailsController: ThemedUITableViewController {
                     shareButton.isEnabled = true
                 }
                 if let label = navigationItem.titleView as? UILabel {
-                    label.text = title + "        "
+                    label.text = title
                 }
             } else {
                 shareButton.isEnabled = false

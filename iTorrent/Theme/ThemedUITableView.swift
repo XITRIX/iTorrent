@@ -57,8 +57,6 @@ class ThemedUITableView: UITableView, Themed {
         case .secondary:
             backgroundColor = theme.backgroundSecondary
         }
-        
-        //reloadData()
     }
 
     enum ColorType: Int {

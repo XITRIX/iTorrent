@@ -6,11 +6,15 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import DeepDiff
 import Foundation
 import UIKit
-import DeepDiff
 
 class TrackersListController: ThemedUIViewController {
+    override var toolBarIsHidden: Bool? {
+        !tableView.isEditing
+    }
+
     @IBOutlet var tableView: ThemedUITableView!
     @IBOutlet var addButton: UIBarButtonItem!
     @IBOutlet var removeButton: UIBarButtonItem!
@@ -24,15 +28,17 @@ class TrackersListController: ThemedUIViewController {
 
     @objc func update() {
         let new = TorrentSdk.getTrackersByHash(hash: managerHash)
-        let changes = diff(old: trackers, new: new) //DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
+        let changes = diff(old: trackers, new: new) // DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
         trackers = new
 
         let res = IndexPathConverter().convert(changes: changes, section: 0)
-        
-        tableView.beginUpdates()
-        if res.inserts.count > 0 { tableView.insertRows(at: res.inserts, with: .fade) }
-        if res.deletes.count > 0 { tableView.deleteRows(at: res.deletes, with: .fade) }
-        tableView.endUpdates()
+
+        if changes.count > 0 {
+            tableView.beginUpdates()
+            if res.inserts.count > 0 { tableView.insertRows(at: res.inserts, with: .fade) }
+            if res.deletes.count > 0 { tableView.deleteRows(at: res.deletes, with: .fade) }
+            tableView.endUpdates()
+        }
 
         res.replaces.forEach { indexPath in
             if let cell = tableView.cellForRow(at: indexPath) as? TrackerCell {
@@ -84,6 +90,7 @@ class TrackersListController: ThemedUIViewController {
     @IBAction func editAction(_ sender: UIBarButtonItem) {
         let editing = !tableView.isEditing
         tableView.setEditing(editing, animated: true)
+        navigationController?.setToolbarHidden(toolBarIsHidden ?? false, animated: true)
         if let toolbarItems = toolbarItems,
             !editing {
             for item in toolbarItems {
@@ -190,5 +197,6 @@ extension TrackersListController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         setEditing(true, animated: true)
+        navigationController?.setToolbarHidden(toolBarIsHidden ?? false, animated: true)
     }
 }

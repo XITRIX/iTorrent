@@ -23,13 +23,15 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
     
     let updateSemaphore = DispatchSemaphore(value: 1)
     func apply(_ snapshot: DataSnapshot<SectionIdentifierType, ItemIdentifierType>,
+               animateInitial: Bool = true,
                animatingDifferences: Bool = true,
                sectionDeleteAnimation: UITableView.RowAnimation = .fade,
                sectionInsetAnimation: UITableView.RowAnimation = .fade,
                rowDeletionAnimation: UITableView.RowAnimation = .fade,
                rowInsetAnimation: UITableView.RowAnimation = .fade,
                completion: (() -> Void)? = nil) {
-        if !animatingDifferences {
+        if !animatingDifferences ||
+            (!animateInitial && self.snapshot == nil) {
             self.snapshot = snapshot
             tableView?.reloadData()
             completion?()
@@ -83,7 +85,6 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
                 
                 if deletesInts.count > 0 || insertsInts.count > 0 || moves.count > 0 ||
                     cellChanges.contains(where: { $0.deletes.count > 0 || $0.inserts.count > 0 || $0.moves.count > 0 }) {
-                  
                     self.tableView?.beginUpdates()
                     if deletesInts.count > 0 { self.tableView?.deleteSections(IndexSet(deletesInts), with: sectionDeleteAnimation) }
                     if insertsInts.count > 0 { self.tableView?.insertSections(IndexSet(insertsInts), with: sectionInsetAnimation) }
@@ -111,7 +112,7 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
             return 0
         }
         
-        return snapshot.sectionIdentifiers.count
+        return snapshot.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,19 +126,23 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
         return cellProvider(tableView, indexPath, snapshot!.getItem(from: indexPath)!)
     }
     
-    @objc open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { nil }
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { nil }
     
-    @objc open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? { nil }
+    open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? { nil }
     
-    @objc open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { false }
+    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { true }
     
-    @objc open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {}
+    open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {}
     
-    @objc open func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool { false }
+    open func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool { false }
     
-    @objc open func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {}
+    open func sectionIndexTitles(for tableView: UITableView) -> [String]? { nil }
     
-    @objc open func sectionIndexTitles(for tableView: UITableView) -> [String]? { nil }
+    open func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard snapshot != nil else { return }
+        
+        snapshot!.moveItem(moveRowAt: sourceIndexPath, to: destinationIndexPath)
+    }
 }
 
 struct DataSnapshot<SectionIdentifierType, ItemIdentifierType> where SectionIdentifierType: DiffAware & Hashable, ItemIdentifierType: DiffAware & Hashable {
@@ -207,10 +212,51 @@ struct DataSnapshot<SectionIdentifierType, ItemIdentifierType> where SectionIden
         }
         itemIdentifiers.append(contentsOf: identifiers)
     }
+    
+//    public mutating func removeItem() -> ItemIdentifierType {
+//        NSDiffableDataSourceSnapshot
+//    }
+
+    public mutating func moveItem(moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if let item = itemsDictionary[sectionIdentifiers[sourceIndexPath.section]]?.remove(at: sourceIndexPath.row) {
+            itemsDictionary[sectionIdentifiers[destinationIndexPath.section]]?.insert(item, at: destinationIndexPath.row)
+        }
+    }
+    
+    public mutating func moveItem(_ identifier: ItemIdentifierType, beforeItem toIdentifier: ItemIdentifierType) {
+        moveItem(identifier, item: toIdentifier, after: false)
+    }
+    
+    public mutating func moveItem(_ identifier: ItemIdentifierType, afterItem toIdentifier: ItemIdentifierType) {
+        moveItem(identifier, item: toIdentifier, after: true)
+    }
+    
+    private mutating func moveItem(_ identifier: ItemIdentifierType, item toIdentifier: ItemIdentifierType, after: Bool = false) {
+        var indexFrom: Int?
+        for section in sectionIdentifiers {
+            if let index = itemsDictionary[section]?.firstIndex(of: identifier) {
+                indexFrom = index
+                itemsDictionary[section]?.remove(at: index)
+                break
+            }
+        }
+        
+        if indexFrom == nil {
+            return
+        }
+        
+        for section in sectionIdentifiers {
+            if var index = itemsDictionary[section]?.firstIndex(of: toIdentifier) {
+                if after { index += 1 }
+                itemsDictionary[section]?.insert(identifier, at: index)
+                break
+            }
+        }
+    }
 }
 
-extension Int {
-    fileprivate func toIndexPath(section: Int) -> IndexPath {
+fileprivate extension Int {
+    func toIndexPath(section: Int) -> IndexPath {
         return IndexPath(item: self, section: section)
     }
 }

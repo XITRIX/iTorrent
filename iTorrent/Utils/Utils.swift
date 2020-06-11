@@ -22,6 +22,22 @@ class Utils {
         UIApplication.shared.keyWindow!.rootViewController!
     }
     
+    public static var mainStoryboard: UIStoryboard {
+        rootViewController.storyboard!
+    }
+    
+    public static func instantiate<T: UIViewController>(_ viewController: String) -> T {
+        mainStoryboard.instantiateViewController(withIdentifier: viewController) as! T
+    }
+    
+    public static func instantiateNavigationController(_ rootViewController: UIViewController? = nil) -> UINavigationController {
+        let nvc = instantiate("NavigationController") as UINavigationController
+        if let vc = rootViewController {
+            nvc.viewControllers = [vc]
+        }
+        return nvc
+    }
+    
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
         if speedInBytes == 0 {
             return NSLocalizedString("eternity", comment: "")

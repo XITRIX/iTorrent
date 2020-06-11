@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class SettingsSortingController: ThemedUITableViewController {
+    override var toolBarIsHidden: Bool? {
+        true
+    }
+    
     var data: [Int]!
 
     init() {
@@ -43,11 +47,6 @@ class SettingsSortingController: ThemedUITableViewController {
                                                          target: self,
                                                          action: #selector(revertAction)),
                                          animated: false)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isToolbarHidden = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {

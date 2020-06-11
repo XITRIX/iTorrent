@@ -10,7 +10,7 @@ import UIKit
 
 extension TorrentListController {
     func initializeEditMode() {
-        initialBarButtonItems.append(navigationItem.rightBarButtonItem!)
+        initialBarButtonItems.append(contentsOf: navigationItem.rightBarButtonItems!)
         initialBarButtonItems.append(contentsOf: toolbarItems!)
 
         editmodeBarButtonItems.append(UIBarButtonItem(title: NSLocalizedString("Select All", comment: ""), style: .plain, target: self, action: #selector(selectAllItem(_:))))
@@ -31,12 +31,12 @@ extension TorrentListController {
         navigationItem.leftBarButtonItem!.title = edit ? Localize.get("Done") : Localize.get("Edit")
 
         if edit {
-            navigationItem.setRightBarButton(editmodeBarButtonItems[0], animated: true)
+            navigationItem.setRightBarButtonItems([editmodeBarButtonItems[0]], animated: true)
             setToolbarItems(Array(editmodeBarButtonItems.dropFirst(1)), animated: true)
             updateEditStatus() 
         } else {
-            navigationItem.setRightBarButton(initialBarButtonItems[0], animated: true)
-            setToolbarItems(Array(initialBarButtonItems.dropFirst(1)), animated: true)
+            navigationItem.setRightBarButtonItems([initialBarButtonItems[0], initialBarButtonItems[1]], animated: true)
+            setToolbarItems(Array(initialBarButtonItems.dropFirst(2)), animated: true)
         }
     }
     

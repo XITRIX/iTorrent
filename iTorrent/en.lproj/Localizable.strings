@@ -21,6 +21,7 @@
 //Main Controller
 "of" = "of";
 
+"Add" = "Add";
 "Done" = "Done";
 "Edit" = "Edit";
 "Select" = "Select";
@@ -193,7 +194,6 @@
 "Add Tracker" = "Add Tracker";
 "Enter the full tracker's URL" = "Enter the full tracker URL";
 "Tracker's URL" = "Enter tracker URL";
-"Add" = "Add";
 "Peers" = "Peers";
 "Seeds" = "Seeds";
 "Leechers" = "Leechers";
@@ -237,6 +237,26 @@
 "mime.free" = "Free";
 "mime.other" = "Other";
 "mime.calculating" = "Calculating...";
+
+// RSS Feed Provider
+"RssFeedProvider.Notification.Title" = "RSS Update:";
+"RssFeedProvider.Error.Unknown" = "An unknown error occurred";
+"RssFeedProvider.Error.NotValid" = "URL is not valid";
+"RssFeedProvider.Error.Exists" = "This RSS Feed is already exists";
+
+// RSS Feed Controller
+"RssFeedController.AddTitle" = "Add RSS Channel";
+"RssFeedController.RemoveTitle" = "Are you sure to remove this feeds:";
+
+// RSS Channel Setup Controller
+"RssChannelSetup.UrlCopied" = "Chanel's URL copied to clipboard!";
+"RssChannelSetup.Title" = "Title";
+"RssChannelSetup.Description" = "Description";
+"RssChannelSetup.Notify" = "Notify on update";
+
+// RSS Channel Controller
+"RssChannelController.Seen" = "Seen";
+"RssChannelController.Unseen" = "Unseen";
 
 //Version Info
 "info" = " Update info";

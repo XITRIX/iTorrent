@@ -22,10 +22,7 @@ open class Box<T> {
     
     public var variable: T {
         didSet {
-            if stopNotifing { return }
-            DispatchQueue.main.async {
-                self.notifyUpdate(old: oldValue, new: self.variable)
-            }
+            notifyUpdate(old: oldValue, new: variable)
         }
     }
     
@@ -91,6 +88,13 @@ open class Box<T> {
         notifyUpdate(old: old, new: variable)
     }
     
+    public func updateWithoutNotify(_ updateAction: () -> ()) {
+        stopNotifing = true
+        updateAction()
+        stopNotifing = false
+        
+    }
+    
 //    func convert<U>(_ convertion: (T) -> (U)) -> Box<U> {
 //        Box<U>(convertion(variable))
 //    }
@@ -98,8 +102,11 @@ open class Box<T> {
 
 extension Box {
     private func notifyUpdate(old: T, new: T, without: [String] = []) {
-        listeners.values.forEach { $0(old, new) }
-        boxBindingListeners.filter { !without.contains($0.key) }.values.forEach { $0(old, new) }
+        DispatchQueue.main.async {
+            self.boxBindingListeners.filter { !without.contains($0.key) }.values.forEach { $0(old, new) }
+            if self.stopNotifing { return }
+            self.listeners.values.forEach { $0(old, new) }
+        }
     }
     
     private func internalBind(hash: String, updateOnBind: Bool = true, _ listener: @escaping ListenerNew) -> Disposal {

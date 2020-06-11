@@ -50,8 +50,11 @@ class TorrentSdk {
     - Parameter states: array of priorities for each file in torrent.
     */
     public static func addTorrent(torrentPath: String, states: [FileModel.TorrentDownloadPriority]) {
-        let st = states.map { Int32($0.rawValue) }
-        add_torrent_with_states(torrentPath, UnsafeMutablePointer(mutating: st))
+        var st = states.map { Int32($0.rawValue) }
+        
+        st.withUnsafeMutableBufferPointer { buffer in
+            add_torrent_with_states(torrentPath, buffer.baseAddress)
+        }
     }
     
     /**
@@ -163,9 +166,11 @@ class TorrentSdk {
     public static func setTorrentFilesPriority(hash: String, states: [FileModel.TorrentDownloadPriority]) {
         if states.allSatisfy({$0 == .dontDownload}) { TorrentSdk.stopTorrent(hash: hash) }
         
-        let st = states.map { Int32($0.rawValue) }
-        let mutablePointer = UnsafeMutablePointer(mutating: st)
-        set_torrent_files_priority(hash, mutablePointer)
+        var st = states.map { Int32($0.rawValue) }
+        
+        st.withUnsafeMutableBufferPointer { buffer in
+            set_torrent_files_priority(hash, buffer.baseAddress)
+        }
     }
     
     // DO NOT USE IT!!!

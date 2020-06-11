@@ -230,6 +230,26 @@
 "minute:plural" = "dakika";
 "minute:parent" = "dakika";
 
+// RSS Feed Provider
+"RssFeedProvider.Notification.Title" = "RSS Update:";
+"RssFeedProvider.Error.Unknown" = "An unknown error occurred";
+"RssFeedProvider.Error.NotValid" = "URL is not valid";
+"RssFeedProvider.Error.Exists" = "This RSS Feed is already exists";
+
+// RSS Feed Controller
+"RssFeedController.AddTitle" = "Add RSS Channel";
+"RssFeedController.RemoveTitle" = "Are you sure to remove this feeds:";
+
+// RSS Channel Setup Controller
+"RssChannelSetup.UrlCopied" = "Chanel's URL copied to clipboard!";
+"RssChannelSetup.Title" = "Title";
+"RssChannelSetup.Description" = "Description";
+"RssChannelSetup.Notify" = "Notify on update";
+
+// RSS Channel Controller
+"RssChannelController.Seen" = "Seen";
+"RssChannelController.Unseen" = "Unseen";
+
 // mime
 "mime.video" = "Video";
 "mime.audio" = "Ses";

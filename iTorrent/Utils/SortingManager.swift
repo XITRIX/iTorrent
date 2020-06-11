@@ -70,21 +70,28 @@ class SortingManager {
             message.append(alertAction.title!)
         }
     }
-    
+
     public static func sort(managers: [TorrentModel]) -> [SectionModel<TorrentModel>] {
         var res = [SectionModel<TorrentModel>]()
-        let dict = Dictionary(grouping: managers, by: {$0.displayState})
 
-        let sortingOrder = UserPreferences.sectionsSortingOrder
-        for id in sortingOrder {
-            let state = TorrentState(id: id)!
-            if var items = dict[state] {
-                simpleSort(&items)
-                let section = SectionModel(title: state.rawValue, items: items)
-                res.append(section)
+        if UserPreferences.sortingSections {
+            let dict = Dictionary(grouping: managers, by: { $0.displayState })
+            let sortingOrder = UserPreferences.sectionsSortingOrder
+            for id in sortingOrder {
+                let state = TorrentState(id: id)!
+                if var items = dict[state] {
+                    simpleSort(&items)
+                    let section = SectionModel(title: state.rawValue, items: items)
+                    res.append(section)
+                }
             }
+        } else {
+            var items = managers
+            simpleSort(&items)
+            let section = SectionModel(title: "", items: items)
+            res.append(section)
         }
-        
+
         return res
     }
 

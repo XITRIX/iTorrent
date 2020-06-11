@@ -21,15 +21,15 @@ extension Array where Element: Collection,
 }
 
 extension Array where Element: Hashable {
-    /// Remove duplicates from the array, preserving the items order
-    func filterDuplicates() -> [Element] {
-        var set = Set<Element>()
-        var filteredArray = [Element]()
-        for item in self {
-            if set.insert(item).inserted {
-                filteredArray.append(item)
-            }
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
         }
-        return filteredArray
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
     }
 }

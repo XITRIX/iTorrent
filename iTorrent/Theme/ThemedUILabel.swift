@@ -22,7 +22,11 @@ class ThemedUILabel: UILabel, Themed {
         }
     }
 
-    var colorType: TextType = .primary
+    var colorType: TextType = .primary {
+        didSet {
+            themeUpdate()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

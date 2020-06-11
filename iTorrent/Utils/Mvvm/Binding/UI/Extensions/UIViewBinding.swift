@@ -12,7 +12,9 @@ extension UIView {
     var isHiddenBox: Box<Bool> {
         let box = Box<Bool>(self.isHidden)
         box.bind { value in
-            self.isHidden = value
+            if self.isHidden != value {
+                self.isHidden = value
+            }
         }.dispose(with: box.disposalBag)
         return box
     }

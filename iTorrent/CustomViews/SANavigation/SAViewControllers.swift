@@ -8,7 +8,15 @@
 
 import UIKit
 
-class SAViewController: UIViewController {
+protocol NavigationProtocol {
+    var toolBarIsHidden: Bool? { get }
+}
+
+class SAViewController: UIViewController, NavigationProtocol {
+    var toolBarIsHidden: Bool? {
+        nil
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let nav = navigationController as? SANavigationController,
@@ -16,14 +24,34 @@ class SAViewController: UIViewController {
             nav.locker = false
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let toolBarIsHidden = toolBarIsHidden {
+            navigationController?.setToolbarHidden(toolBarIsHidden, animated: false)
+        }
+    }
 }
 
-class SATableViewController: UITableViewController {
+class SATableViewController: UITableViewController, NavigationProtocol {
+    var toolBarIsHidden: Bool? {
+        nil
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let nav = navigationController as? SANavigationController,
             nav.viewControllers.last == self {
             nav.locker = false
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let toolBarIsHidden = toolBarIsHidden {
+            navigationController?.setToolbarHidden(toolBarIsHidden, animated: false)
         }
     }
 }

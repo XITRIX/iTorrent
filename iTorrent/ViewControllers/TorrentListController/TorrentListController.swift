@@ -18,6 +18,7 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var tableviewPlaceholderText: UILabel!
     
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var rssButton: UIBarButtonItem!
     
     var initialBarButtonItems: [UIBarButtonItem] = []
     var editmodeBarButtonItems: [UIBarButtonItem] = []
@@ -26,6 +27,10 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     var adsLoaded = false
     
     var torrentListDataSource: TorrentListDataSource!
+    
+    override var toolBarIsHidden: Bool? {
+        return false
+    }
     
     func localize() {
         tableviewPlaceholderText.text = Localize.get("MainController.Table.Placeholder.Text")
@@ -68,22 +73,36 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         viewModel.tableViewData.bind { torrents in
             var snapshot = DataSnapshot<String, TorrentModel>()
             snapshot.appendSections(torrents.map{$0.title})
-            torrents.enumerated().forEach { snapshot.appendItems($0.element.items, toSection: $0.element.title) }
+            torrents.forEach { snapshot.appendItems($0.items, toSection: $0.title) }
             self.torrentListDataSource.apply(snapshot)
             
             self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
         }.dispose(with: disposalBag)
         
         /// Binding Loading Indicator
-        loadingIndicator.isAnimatingBox.bindTo(viewModel.loadingIndicatiorHidden).dispose(with: disposalBag)
+//        loadingIndicator.isAnimatingBox.bindTo(viewModel.loadingIndicatiorHidden).dispose(with: disposalBag)
+        viewModel.loadingIndicatiorHidden.bind { [weak self] hidden in
+            if hidden {
+                self?.loadingIndicator.stopAnimating()
+            } else {
+                self?.loadingIndicator.startAnimating()
+            }
+        }.dispose(with: disposalBag)
+        
+        /// Binding RSS Indicator
+        RssFeedProvider.shared.isRssUpdates.bind { [weak self] updates in
+            self?.rssButton.image = UIImage(named: updates ? "RssNews" : "Rss")
+        }.dispose(with: disposalBag)
         
         /// Binding TableView Placeholder
-        tableviewPlaceholder.isHiddenBox.bindTo(viewModel.tableviewPlaceholderHidden).dispose(with: disposalBag)
+//        tableviewPlaceholder.isHiddenBox.bindTo(viewModel.tableviewPlaceholderHidden).dispose(with: disposalBag)
+        viewModel.tableviewPlaceholderHidden.bind { [weak self] hidden in
+            self?.tableviewPlaceholder.isHidden = hidden
+        }.dispose(with: disposalBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isToolbarHidden = false
         smoothlyDeselectRows(in: tableView)
         viewWillAppearAds()
     }
@@ -101,6 +120,13 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         back.title = title
         navigationItem.backBarButtonItem = back
         show(PreferencesController(), sender: self)
+    }
+    
+    @IBAction func rssAction(_ sender: UIBarButtonItem) {
+        let back = UIBarButtonItem()
+        back.title = title
+        navigationItem.backBarButtonItem = back
+        show(RssFeedController(), sender: self)
     }
     
     @IBAction func sortAction(_ sender: UIBarButtonItem) {

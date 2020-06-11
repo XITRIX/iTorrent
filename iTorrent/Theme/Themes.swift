@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Style: Int {
+    case light = 0
+    case dark = 1
+}
+
 protocol Themed {
     func themeUpdate()
 }
@@ -16,6 +21,26 @@ class Themes {
     public static let updateNotification = NSNotification.Name("ThemeUpdated")
 
     static let shared = Themes()
+    
+    static var currentTheme: Style {
+        if #available(iOS 13.0, *) {
+            if UserPreferences.autoTheme {
+                var theme: UIUserInterfaceStyle!
+                if let current = Themes.shared.currentUserTheme {
+                    theme = UIUserInterfaceStyle(rawValue: current)
+                } else {
+                    theme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle
+                }
+                
+                if theme == .dark {
+                    return .dark
+                } else if theme == .light {
+                    return .light
+                }
+            }
+        }
+        return Style(rawValue: UserPreferences.themeNum)!
+    }
 
     var theme: [ColorPalett] = []
     var currentUserTheme: Int!
@@ -57,16 +82,7 @@ class Themes {
     }
 
     static var current: ColorPalett {
-        if #available(iOS 13.0, *) {
-            if UserPreferences.autoTheme {
-                if UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark {
-                    return shared.theme[1]
-                } else if UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light {
-                    return shared.theme[0]
-                }
-            }
-        }
-        return shared.theme[UserPreferences.themeNum]
+        return shared.theme[currentTheme.rawValue]
     }
 }
 

@@ -12,7 +12,7 @@ class TorrentListViewModel: ViewModel {
     var tableViewData = Box<[SectionModel<TorrentModel>]>([])
     var searchFilter = Box<String?>("")
     var tableviewPlaceholderHidden = Box<Bool>(true)
-    var loadingIndicatiorHidden = Box<Bool>(true)
+    var loadingIndicatiorHidden = Box<Bool>(false)
     
     override func viewWillAppear() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: .mainLoopTick, object: nil)

@@ -12,7 +12,6 @@ class PopupView: UIView {
     @IBOutlet var mainView: UIView!
     @IBOutlet var containerView: UIView!
     @IBOutlet var headerView: UIView!
-    @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var fxView: UIVisualEffectView!
     @IBOutlet var dismissButton: UIButton!
     @IBOutlet var bottomOffsetConstraint: NSLayoutConstraint! {
@@ -72,9 +71,6 @@ class PopupView: UIView {
         addSubview(mainView)
         mainView.frame = bounds
         translatesAutoresizingMaskIntoConstraints = false
-
-        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
 
         let image = #imageLiteral(resourceName: "Close").withRenderingMode(.alwaysTemplate) // dismissButton.currentImage?.withRenderingMode(.alwaysTemplate)
         dismissButton.setImage(image, for: .normal)
@@ -140,13 +136,21 @@ class PopupView: UIView {
             }
         }
     }
-
+    
     @objc func dismiss() {
+        dismiss(animationOnly: false)
+    }
+
+    @objc func dismiss(animationOnly: Bool = false) {
+        if !(superview?.subviews.contains(self) ?? false) { return }
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.bottomConstraint?.constant += self.frame.height
             self.vc?.view.layoutIfNeeded()
         }) { _ in
-            self.dismissAction?()
+            if !animationOnly {
+                self.dismissAction?()
+            }
             self.removeFromSuperview()
         }
     }
