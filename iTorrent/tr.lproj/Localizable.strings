@@ -250,6 +250,10 @@
 "RssChannelController.Seen" = "Seen";
 "RssChannelController.Unseen" = "Unseen";
 
+// RSS Item Controller
+"RssItemController.PinTorrent" = "Torrent file is attached to this post";
+"RssItemController.PinMagnet" = "Magnet link is attached to this post";
+
 // mime
 "mime.video" = "Video";
 "mime.audio" = "Ses";

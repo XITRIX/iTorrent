@@ -266,6 +266,10 @@
 "RssChannelController.Seen" = "Просмотрено";
 "RssChannelController.Unseen" = "Не просмотрено";
 
+// RSS Item Controller
+"RssItemController.PinTorrent" = "Пост содержит Torrent файл";
+"RssItemController.PinMagnet" = "Пост содержит Magnet ссылку";
+
 //Version Info
 "info" = " Изменения";
 "UpdateText" = "- Большая часть приложения переписана с нуля\n- Исправлены утечки памяти\n- Значительно улучшена стабильность приложения\n- Добавлен менеджмент памяти\n- Выделение памяти под файлы до начала загрузки\n- Libtorrent обновлён до 1.2.6\n- Улучшения интерфейса, заметные и не очень\n- Добавлена интеграция с Patreon";

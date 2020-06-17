@@ -6,9 +6,9 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import MarqueeLabel
 import UIKit
 import WebKit
-import MarqueeLabel
 
 class RssItemController: ThemedUIViewController {
     override var toolBarIsHidden: Bool? {
@@ -96,6 +96,16 @@ class RssItemController: ThemedUIViewController {
         
         webView.navigationDelegate = self
         loadHtml()
+        
+        if model.link.absoluteString.hasSuffix(".torrent") {
+            Dialog.withButton(self, title: "RssItemController.PinTorrent", okTitle: "Download") {
+                Core.shared.addFromUrl(self.model.link.absoluteString, presenter: self)
+            }
+        } else if TorrentSdk.getMagnetHash(magnetUrl: model.link.absoluteString) != nil {
+            Dialog.withButton(self, title: "RssItemController.PinMagnet", okTitle: "Download") {
+                TorrentSdk.addMagnet(magnetUrl: self.model.link.absoluteString)
+            }
+        }
     }
     
     func loadHtml() {
@@ -107,6 +117,7 @@ class RssItemController: ThemedUIViewController {
     
     @objc func openLink() {
         let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
         let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
             UIApplication.shared.openURL(self.model.link)

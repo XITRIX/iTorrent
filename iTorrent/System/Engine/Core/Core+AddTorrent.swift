@@ -65,16 +65,17 @@ extension Core {
                 }
                 filePath.stopAccessingSecurityScopedResource()
 
-                let hash = TorrentSdk.getTorrentFileHash(torrentPath: dest)!
-                if hash == "-1" {
-                    let controller = ThemedUIAlertController(title: Localize.get("Error on torrent reading"),
+                guard let hash = TorrentSdk.getTorrentFileHash(torrentPath: dest) else {
+                    let controller = ThemedUIAlertController(title: Localize.get("Error"),
                                                              message: Localize.get("Torrent file opening error has been occured"),
                                                              preferredStyle: .alert)
                     let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
                     controller.addAction(close)
                     Utils.topViewController?.present(controller, animated: true)
                     return
-                } else if self.torrents[hash] != nil {
+                }
+
+                if self.torrents[hash] != nil {
                     let controller = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
                                                              message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
                                                              preferredStyle: .alert)
@@ -83,11 +84,10 @@ extension Core {
                     Utils.topViewController?.present(controller, animated: true)
                     return
                 }
-                do {
-                    if let controller = UIApplication.shared.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "AddTorrent") as? UINavigationController {
-                        (controller.topViewController as? AddTorrentController)?.initialize(filePath: dest)
-                        Utils.topViewController?.present(controller, animated: true)
-                    }
+
+                if let controller = UIApplication.shared.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "AddTorrent") as? UINavigationController {
+                    (controller.topViewController as? AddTorrentController)?.initialize(filePath: dest)
+                    Utils.topViewController?.present(controller, animated: true)
                 }
             }
         }
@@ -124,7 +124,7 @@ extension Core {
             }
         }
     }
-    
+
     func addFromUrl(_ url: String, presenter: UIViewController) {
         Utils.checkFolderExist(path: Core.configFolder)
 

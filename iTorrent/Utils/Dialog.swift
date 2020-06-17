@@ -39,6 +39,22 @@ class Dialog {
         presenter?.present(dialog, animated: true)
     }
     
+    static func withButton(_ presenter: UIViewController?, title: String? = nil, message: String? = nil, okTitle: String, action: @escaping ()->()) {
+        let dialog = ThemedUIAlertController(title: Localize.get(key: title),
+                                             message: Localize.get(key: message),
+                                             preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: Localize.get("Close"), style: .cancel)
+        let ok = UIAlertAction(title: Localize.get(okTitle), style: .default) { _ in
+            action()
+        }
+        
+        dialog.addAction(cancel)
+        dialog.addAction(ok)
+        
+        presenter?.present(dialog, animated: true)
+    }
+    
     static func show(_ presenter: UIViewController?, title: String?, message: String?) {
         let dialog = ThemedUIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: Localize.get("Close"), style: .cancel)

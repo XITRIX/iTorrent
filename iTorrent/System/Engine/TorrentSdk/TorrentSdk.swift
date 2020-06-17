@@ -62,6 +62,7 @@ class TorrentSdk {
     - Parameter magnetUrl: magnet url.
     - Returns: Hash of torrent file `magnetUrl`, nil if failed.
     */
+    @discardableResult
     public static func addMagnet(magnetUrl: String) -> String? {
         let rawRes = add_magnet(magnetUrl)!
         let res = String(validatingUTF8: rawRes)
@@ -110,6 +111,7 @@ class TorrentSdk {
         let res = String(validatingUTF8: rawRes)
         free(rawRes)
         if res == "-1" { return nil }
+        if res == "0000000000000000000000000000000000000000" { return nil }
         return res
     }
     

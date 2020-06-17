@@ -52,6 +52,7 @@ class RssChannelController: ThemedUITableViewController {
     
     @objc func openLink() {
         let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
         let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
             UIApplication.shared.openURL(self.model.link)

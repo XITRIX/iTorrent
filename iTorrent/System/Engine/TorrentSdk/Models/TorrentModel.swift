@@ -43,7 +43,7 @@ class TorrentModel: Hashable, DiffAware {
 
     init(_ torrentInfo: TorrentInfo) {
         state = TorrentState(rawValue: String(validatingUTF8: torrentInfo.state) ?? "") ?? .null
-        title = state == .metadata ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: torrentInfo.name) ?? "ERROR"
+        title = String(validatingUTF8: torrentInfo.name) ?? (state == .metadata ? NSLocalizedString("Obtaining Metadata", comment: "") : "ERROR")
         hash = String(validatingUTF8: torrentInfo.hash) ?? "ERROR"
         creator = String(validatingUTF8: torrentInfo.creator) ?? "ERROR"
         comment = String(validatingUTF8: torrentInfo.comment) ?? "ERROR"
