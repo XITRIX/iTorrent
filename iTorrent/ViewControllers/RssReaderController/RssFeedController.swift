@@ -125,24 +125,20 @@ class RssFeedController: ThemedUIViewController {
     }
     
     @objc func addRss() {
-        let alert = ThemedUIAlertController(title: Localize.get("RssFeedController.AddTitle"), message: nil, preferredStyle: .alert)
-        alert.addTextField { textField in
-            textField.placeholder = "https://"
-            
-            if #available(iOS 10.0, *),
-                UIPasteboard.general.hasStrings,
-                let text = UIPasteboard.general.string,
-                text.starts(with: "https://") ||
-                text.starts(with: "http://") {
-                textField.text = UIPasteboard.general.string
-            }
-            
-            let theme = Themes.current
-            textField.keyboardAppearance = theme.keyboardAppearence
-        }
-        
-        let add = UIAlertAction(title: Localize.get("Add"), style: .default) { _ in
-            RssFeedProvider.shared.addFeed(alert.textFields![0].text!) { result in
+        Dialog.withTextField(self,
+                             title: "RssFeedController.AddTitle",
+                             textFieldConfiguration: { textField in
+                                 textField.placeholder = "https://"
+                                 
+                                 if #available(iOS 10.0, *),
+                                     UIPasteboard.general.hasStrings,
+                                     let text = UIPasteboard.general.string,
+                                     text.starts(with: "https://") ||
+                                     text.starts(with: "http://") {
+                                     textField.text = UIPasteboard.general.string
+                                 }
+        }, okText: "Add") { textField in
+            RssFeedProvider.shared.addFeed(textField.text!) { result in
                 switch result {
                 case .success:
                     break
@@ -151,12 +147,6 @@ class RssFeedController: ThemedUIViewController {
                 }
             }
         }
-        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
-        
-        alert.addAction(add)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true)
     }
     
     @objc func removeRss() {

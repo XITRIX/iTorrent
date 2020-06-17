@@ -11,7 +11,7 @@ import UIKit
 
 class Dialog {
     static func withTimer(_ presenter: UIViewController,title: String? = nil, message: String? = nil) {
-        let alert = ThemedUIAlertController(title:title, message: message, preferredStyle: .alert)
+        let alert = ThemedUIAlertController(title: Localize.get(key: title), message: Localize.get(key: message), preferredStyle: .alert)
         presenter.present(alert, animated: true, completion: nil)
         // change alert timer to 2 seconds, then dismiss
         let when = DispatchTime.now() + 2
@@ -20,16 +20,16 @@ class Dialog {
         }
     }
     
-    static func withTextField(_ presenter: UIViewController?, title: String? = nil, message: String? = nil, textFieldConfiguration: ((UITextField) -> ())?, okAction: @escaping (UITextField) -> ()) {
-        let dialog = ThemedUIAlertController(title: title, message: message, preferredStyle: .alert)
+    static func withTextField(_ presenter: UIViewController?, title: String? = nil, message: String? = nil, textFieldConfiguration: ((UITextField) -> ())?, cancelText: String = "Close", okText: String = "OK", okAction: @escaping (UITextField) -> ()) {
+        let dialog = ThemedUIAlertController(title: Localize.get(key: title), message: Localize.get(key: message), preferredStyle: .alert)
         dialog.addTextField { textField in
             let theme = Themes.current
             textField.keyboardAppearance = theme.keyboardAppearence
             textFieldConfiguration?(textField)
         }
         
-        let cancel = UIAlertAction(title: Localize.get("Close"), style: .cancel)
-        let ok = UIAlertAction(title: Localize.get("OK"), style: .default) { _ in
+        let cancel = UIAlertAction(title: Localize.get(cancelText), style: .cancel)
+        let ok = UIAlertAction(title: Localize.get(okText), style: .default) { _ in
             okAction(dialog.textFields![0])
         }
         
@@ -39,12 +39,12 @@ class Dialog {
         presenter?.present(dialog, animated: true)
     }
     
-    static func withButton(_ presenter: UIViewController?, title: String? = nil, message: String? = nil, okTitle: String, action: @escaping ()->()) {
+    static func withButton(_ presenter: UIViewController? = Utils.topViewController, title: String? = nil, message: String? = nil, okTitle: String, action: @escaping ()->()) {
         let dialog = ThemedUIAlertController(title: Localize.get(key: title),
                                              message: Localize.get(key: message),
                                              preferredStyle: .alert)
         
-        let cancel = UIAlertAction(title: Localize.get("Close"), style: .cancel)
+        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
         let ok = UIAlertAction(title: Localize.get(okTitle), style: .default) { _ in
             action()
         }
@@ -55,9 +55,9 @@ class Dialog {
         presenter?.present(dialog, animated: true)
     }
     
-    static func show(_ presenter: UIViewController?, title: String?, message: String?) {
-        let dialog = ThemedUIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: Localize.get("Close"), style: .cancel)
+    static func show(_ presenter: UIViewController? = Utils.topViewController, title: String?, message: String?, closeText: String = "Close") {
+        let dialog = ThemedUIAlertController(title: Localize.get(key: title), message: Localize.get(key: message), preferredStyle: .alert)
+        let ok = UIAlertAction(title: Localize.get(closeText), style: .cancel)
         dialog.addAction(ok)
         presenter?.present(dialog, animated: true)
     }

@@ -351,13 +351,7 @@ class TorrentDetailsController: ThemedUITableViewController {
             }
             let magnet = UIAlertAction(title: NSLocalizedString("Magnet link", comment: ""), style: .default) { _ in
                 UIPasteboard.general.string = TorrentSdk.getTorrentMagnetLink(hash: self.managerHash)
-                let alert = ThemedUIAlertController(title: nil, message: NSLocalizedString("Magnet link copied to clipboard", comment: ""), preferredStyle: .alert)
-                self.present(alert, animated: true, completion: nil)
-                // change alert timer to 2 seconds, then dismiss
-                let when = DispatchTime.now() + 2
-                DispatchQueue.main.asyncAfter(deadline: when) {
-                    alert.dismiss(animated: true, completion: nil)
-                }
+                Dialog.withTimer(self, message: "Magnet link copied to clipboard")
             }
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 

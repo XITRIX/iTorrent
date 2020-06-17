@@ -104,34 +104,19 @@ class TrackersListController: ThemedUIViewController {
     }
 
     @IBAction func addAction(_ sender: UIBarButtonItem) {
-        let controller = ThemedUIAlertController(title: NSLocalizedString("Add Tracker", comment: ""), message: NSLocalizedString("Enter the full tracker's URL", comment: ""), preferredStyle: .alert)
-        controller.addTextField(configurationHandler: { textField in
-            textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
-            textField.keyboardAppearance = Themes.current.keyboardAppearence
-        })
-        let add = UIAlertAction(title: NSLocalizedString("Add", comment: ""), style: .default) { _ in
-            let textField = controller.textFields![0]
-
+        Dialog.withTextField(self, title: "Add Tracker", message: "Enter the full tracker's URL",
+                             textFieldConfiguration: { textField in
+                                 textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
+        }, okText: "Add") { textField in
             Utils.checkFolderExist(path: Core.configFolder)
 
             if let _ = URL(string: textField.text!) {
                 print(TorrentSdk.addTrackerToTorrent(hash: self.managerHash, trackerUrl: textField.text!))
                 self.update()
             } else {
-                let alertController = ThemedUIAlertController(title: Localize.get("Error"),
-                                                              message: Localize.get("Wrong link, check it and try again!"),
-                                                              preferredStyle: .alert)
-                let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                alertController.addAction(close)
-                self.present(alertController, animated: true)
+                Dialog.show(self, title: "Error", message: "Wrong link, check it and try again!")
             }
         }
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-
-        controller.addAction(add)
-        controller.addAction(cancel)
-
-        present(controller, animated: true)
     }
 
     @IBAction func removeAction(_ sender: UIBarButtonItem) {

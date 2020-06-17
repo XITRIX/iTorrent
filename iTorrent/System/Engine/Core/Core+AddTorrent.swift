@@ -31,13 +31,9 @@ extension Core {
                 nav = presentedViewController
             }
             if nav is AddTorrentController {
-                let controller = ThemedUIAlertController(title: NSLocalizedString("Error", comment: ""),
-                                                         message: Localize.get("Finish the previous torrent adding before start the new one."),
-                                                         preferredStyle: .alert)
-                let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                controller.addAction(close)
-                nav.present(controller, animated: true)
-
+                Dialog.show(nav,
+                            title: "Error",
+                            message: "Finish the previous torrent adding before start the new one.")
                 return
             }
         }
@@ -56,32 +52,21 @@ extension Core {
                     print(FileManager.default.fileExists(atPath: filePath.path))
                     try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
                 } catch {
-                    let controller = ThemedUIAlertController(title: NSLocalizedString("Error on torrent opening", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
-                    let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                    controller.addAction(close)
-                    Utils.topViewController?.present(controller, animated: true)
-
+                    Dialog.show(title: "Error on torrent opening",
+                                message: "error.localizedDescription")
                     return
                 }
                 filePath.stopAccessingSecurityScopedResource()
 
                 guard let hash = TorrentSdk.getTorrentFileHash(torrentPath: dest) else {
-                    let controller = ThemedUIAlertController(title: Localize.get("Error"),
-                                                             message: Localize.get("Torrent file opening error has been occured"),
-                                                             preferredStyle: .alert)
-                    let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                    controller.addAction(close)
-                    Utils.topViewController?.present(controller, animated: true)
+                    Dialog.show(title: "Error",
+                                message: "Torrent file opening error has been occured")
                     return
                 }
 
                 if self.torrents[hash] != nil {
-                    let controller = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                                                             message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
-                                                             preferredStyle: .alert)
-                    let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                    controller.addAction(close)
-                    Utils.topViewController?.present(controller, animated: true)
+                    Dialog.show(title: "This torrent already exists",
+                                message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))")
                     return
                 }
 
@@ -102,23 +87,15 @@ extension Core {
                 DispatchQueue.main.async {
                     if let hash = TorrentSdk.getMagnetHash(magnetUrl: magnetLink),
                         self.torrents[hash] != nil {
-                        let alert = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                                                            message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))",
-                                                            preferredStyle: .alert)
-                        let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                        alert.addAction(close)
-                        Utils.topViewController?.present(alert, animated: true)
+                        Dialog.show(title: "This torrent already exists",
+                                    message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))")
                     } else if let hash = TorrentSdk.addMagnet(magnetUrl: magnetLink) {
                         print(hash)
                         self.torrentsUserData[hash] = UserManagerSettings()
                         self.mainLoop()
                     } else {
-                        let controller = ThemedUIAlertController(title: Localize.get("Error"),
-                                                                 message: Localize.get("Wrong magnet link, check it and try again!"),
-                                                                 preferredStyle: .alert)
-                        let close = UIAlertAction(title: NSLocalizedString(NSLocalizedString("Close", comment: ""), comment: ""), style: .cancel)
-                        controller.addAction(close)
-                        Utils.topViewController?.present(controller, animated: true)
+                        Dialog.show(title: "Error",
+                                    message: "Wrong magnet link, check it and try again!")
                     }
                 }
             }
@@ -132,45 +109,30 @@ extension Core {
             Downloader.load(url: url, to: URL(fileURLWithPath: Core.configFolder + "/_temp.torrent"), completion: {
                 let hash = TorrentSdk.getTorrentFileHash(torrentPath: Core.configFolder + "/_temp.torrent")
                 if hash == nil || hash == "-1" {
-                    let controller = ThemedUIAlertController(title: Localize.get("Error has been occured"),
-                                                             message: Localize.get("Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari"),
-                                                             preferredStyle: .alert)
-                    let safari = UIAlertAction(title: NSLocalizedString("Open in Safari", comment: ""), style: .default) { _ in
-                        UIApplication.shared.openURL(url)
+                    Dialog.withButton(title: "Error has been occured",
+                                      message: "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari",
+                                      okTitle: "Open in Safari") {
+                                        UIApplication.shared.openURL(url)
                     }
-                    let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                    controller.addAction(safari)
-                    controller.addAction(close)
-                    Utils.topViewController?.present(controller, animated: true)
                     return
                 }
                 if Core.shared.torrents[hash!] != nil {
-                    let controller = ThemedUIAlertController(title: Localize.get("This torrent already exists"),
-                                                             message: "\(Localize.get("Torrent with hash:")) \"\(hash!)\" \(Localize.get("already exists in download queue"))",
-                                                             preferredStyle: .alert)
-                    let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                    controller.addAction(close)
-                    Utils.topViewController?.present(controller, animated: true)
+                    Dialog.show(title: "This torrent already exists",
+                                message: "\(Localize.get("Torrent with hash:")) \"\(hash!)\" \(Localize.get("already exists in download queue"))")
                     return
                 }
                 let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
                 ((controller as? UINavigationController)?.topViewController as? AddTorrentController)?.initialize(filePath: Core.configFolder + "/_temp.torrent")
                 presenter.present(controller, animated: true)
             }, errorAction: {
-                let alertController = ThemedUIAlertController(title: Localize.get("Error has been occured"),
-                                                              message: Localize.get("Please, open this link in Safari, and send .torrent file from there"),
-                                                              preferredStyle: .alert)
-                let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-                alertController.addAction(close)
-                presenter.present(alertController, animated: true)
+                Dialog.show(presenter,
+                            title: "Error has been occured",
+                            message: "Please, open this link in Safari, and send .torrent file from there")
             })
         } else {
-            let alertController = ThemedUIAlertController(title: Localize.get("Error"),
-                                                          message: Localize.get("Wrong link, check it and try again!"),
-                                                          preferredStyle: .alert)
-            let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-            alertController.addAction(close)
-            presenter.present(alertController, animated: true)
+            Dialog.show(presenter,
+                        title: "Error",
+                        message: "Wrong link, check it and try again!")
         }
     }
 }

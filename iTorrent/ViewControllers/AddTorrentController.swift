@@ -6,13 +6,13 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
-import UIKit
 import MarqueeLabel
+import UIKit
 
 class AddTorrentController: ThemedUIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var weightLabel: UIBarButtonItem!
-    
+
     deinit {
         print("AddTorrentController: deinit")
     }
@@ -49,8 +49,8 @@ class AddTorrentController: ThemedUIViewController {
             let temp = TorrentSdk.getFilesOfTorrentByPath(path: filePath)!
             files = temp.files
             name = temp.title
-            files.forEach({$0.priority = .normalPriority})
-            
+            files.forEach { $0.priority = .normalPriority }
+
             // MARQUEE LABEL
             let theme = Themes.current
             let label = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
@@ -66,11 +66,11 @@ class AddTorrentController: ThemedUIViewController {
         }
 
         if let oldManager = Core.shared.torrents.values.filter({ $0.title == name }).first {
-            let controller = ThemedUIAlertController(title: Localize.get("Torrent update detected"),
-                                                     message: "\(Localize.get("Torrent with name")) \(name)" +
-                                                         "\(Localize.get("already exists, do you want to apply previous files selection settings to this torrent"))?",
-                                                     preferredStyle: .alert)
-            let apply = UIAlertAction(title: NSLocalizedString("Apply", comment: ""), style: .default) { _ in
+            Dialog.withButton(self,
+                              title: "Torrent update detected",
+                              message: "\(Localize.get("Torrent with name")) \(name)" +
+                                  "\(Localize.get("already exists, do you want to apply previous files selection settings to this torrent"))?",
+                              okTitle: "Apply") {
                 let oldFiles = TorrentSdk.getFilesOfTorrentByHash(hash: oldManager.hash)!
 
                 for file in self.files {
@@ -81,12 +81,6 @@ class AddTorrentController: ThemedUIViewController {
 
                 self.tableView.reloadData()
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-
-            controller.addAction(apply)
-            controller.addAction(cancel)
-
-            present(controller, animated: true)
         }
 
         if path.pathComponents.count > 1 {
@@ -109,7 +103,7 @@ class AddTorrentController: ThemedUIViewController {
         super.viewWillAppear(animated)
         updateWeightLabel()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
@@ -175,10 +169,7 @@ class AddTorrentController: ThemedUIViewController {
                 Core.shared.torrentsUserData[hash] = UserManagerSettings()
             }
         } catch {
-            let controller = ThemedUIAlertController(title: NSLocalizedString("Error has been occured", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
-            let close = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .cancel)
-            controller.addAction(close)
-            present(controller, animated: true)
+            Dialog.show(self, title: "Error has been occured", message: error.localizedDescription)
         }
         FullscreenAd.shared.load()
     }
