@@ -68,8 +68,14 @@ class StaticTableViewController: ThemedUIViewController {
         updateData()
         
         KeyboardHelper.shared.visibleHeight.bind { [weak self] height in
-            self?.tableView.contentInset.bottom = height
-            self?.tableView.scrollIndicatorInsets.bottom = height
+            guard let self = self else { return }
+            
+            if self.tableView.contentSize.height > self.view.frame.height - height {
+                UIView.animate(withDuration: 0.3) {
+                    self.tableView.contentInset.bottom = height
+                    self.tableView.scrollIndicatorInsets.bottom = height
+                }
+            }
         }.dispose(with: disposalBag)
     }
 

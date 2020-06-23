@@ -861,8 +861,8 @@
 				7CE1604C235B9C0D00E3F1D9 /* Cells */,
 				7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */,
 				7CB9BBAB23786CF500C8F05E /* StaticTableViewController.swift */,
-				7C005A19249E55EB0093C926 /* StaticTableViewController1.swift */,
 				7C005A1A249E55EB0093C926 /* StaticTableViewController.xib */,
+				7C005A19249E55EB0093C926 /* StaticTableViewController1.swift */,
 			);
 			path = StaticTableView;
 			sourceTree = "<group>";

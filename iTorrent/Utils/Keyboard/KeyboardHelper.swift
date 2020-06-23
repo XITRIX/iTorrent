@@ -11,10 +11,12 @@ import UIKit
 class KeyboardHelper: NSObject {
     static let shared = KeyboardHelper()
     
+    let animationDuration = Box<Double>(0)
+    
     let frame = Box<CGRect>(.zero)
     let visibleHeight = Box<CGFloat>(0)
-//    let willShowVisibleHeight = Box<CGFloat>(0)
     let isHidden = Box<Bool>(true)
+//    let willShowVisibleHeight = Box<CGFloat>(0)
     
     private let disposalBag = DisposalBag()
     private let panRecognizer: UIPanGestureRecognizer
@@ -51,6 +53,9 @@ class KeyboardHelper: NSObject {
     }
     
     @objc private func frameChanged(_ notification: Notification) {
+        let time = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+        animationDuration.variable = time?.doubleValue ?? 0
+        
         let rectValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let frame = rectValue?.cgRectValue ?? defaultFrame
         if frame.origin.y < 0 { // if went to wrong frame
@@ -62,6 +67,9 @@ class KeyboardHelper: NSObject {
     }
     
     @objc private func frameHide(_ notification: Notification) {
+        let time = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+        animationDuration.variable = time?.doubleValue ?? 0
+        
         let rectValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let frame = rectValue?.cgRectValue ?? defaultFrame
         if frame.origin.y < 0 { // if went to wrong frame
