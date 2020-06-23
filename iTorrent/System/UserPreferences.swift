@@ -33,6 +33,22 @@ class UserPreferences {
 
     @PreferenceItem("SortingType", 0) static var sortingType: Int
     @PreferenceItem("SortingSections", true) static var sortingSections: Bool
+    
+    //network
+    @PreferenceItem("enableDht", true) static var enableDht: Bool
+    @PreferenceItem("enableLsd", true) static var enableLsd: Bool
+    @PreferenceItem("enableUtp", true) static var enableUtp: Bool
+    @PreferenceItem("enableUpnp", true) static var enableUpnp: Bool
+    @PreferenceItem("enableNatpmp", true) static var enableNatpmp: Bool
+    
+    //proxy
+    @PreferenceData("proxyType", ProxyType.none) static var proxyType: ProxyType!
+    @PreferenceItem("proxyRequiresAuth", false) static var proxyRequiresAuth: Bool
+    @PreferenceItem("proxyHostname", "") static var proxyHostname: String
+    @PreferenceItem("proxyPort", 8080) static var proxyPort: Int
+    @PreferenceItem("proxyUsername", "") static var proxyUsername: String
+    @PreferenceItem("proxyPassword", "") static var proxyPassword: String
+    @PreferenceItem("proxyPeerConnections", true) static var proxyPeerConnections: Bool
 
     @PreferenceItem("autoTheme", true, { value in
         if #available(iOS 13, *) {
@@ -48,8 +64,8 @@ class UserPreferences {
     @PreferenceData("patreonAccessToken", "") static var patreonAccessToken: String?
     @PreferenceData("patreonRefreshToken", "") static var patreonRefreshToken: String?
     
-    @PreferenceData("patreonAccount") static var patreonAccount: PatreonAccount?
-    @PreferenceData("patreonCredentials") static var patreonCredentials: PatreonCredentials?
+    @PreferenceData("patreonAccount", nil) static var patreonAccount: PatreonAccount?
+    @PreferenceData("patreonCredentials", nil) static var patreonCredentials: PatreonCredentials?
     
     static func alertDialog(code: String) -> SettingProperty<Bool> {
         SettingProperty<Bool>("alertDialog" + code, false)
@@ -107,17 +123,17 @@ struct PreferenceItem<T> {
 @propertyWrapper
 struct PreferenceData<T: Codable> {
     let key: String
-    let defaultValue: T?
+    let defaultValue: T
     let calculatedValue: ((T) -> (T))?
 
-    var wrappedValue: T? {
+    var wrappedValue: T {
         get {
             guard let decoded = UserDefaults.standard.data(forKey: key)
-            else { return nil }
+            else { return defaultValue }
 
             let decoder = JSONDecoder()
             guard let res = try? decoder.decode(T.self, from: decoded)
-            else { return nil }
+            else { return defaultValue }
             
             return calculatedValue?(res) ?? res
         }
@@ -125,8 +141,7 @@ struct PreferenceData<T: Codable> {
             let userDefaults = UserDefaults.standard
             let encoder = JSONEncoder()
 
-            if let newValue = newValue,
-                let encodedData: Data = try? encoder.encode(newValue) {
+            if let encodedData: Data = try? encoder.encode(newValue) {
                 userDefaults.set(encodedData, forKey: key)
             } else {
                 userDefaults.set(nil, forKey: key)
@@ -134,7 +149,7 @@ struct PreferenceData<T: Codable> {
         }
     }
 
-    init(_ key: String, _ defaultValue: T? = nil, calculatedValue: ((T) -> (T))? = nil) {
+    init(_ key: String, _ defaultValue: T, calculatedValue: ((T) -> (T))? = nil) {
         self.key = key
         self.defaultValue = defaultValue
         self.calculatedValue = calculatedValue

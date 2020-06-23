@@ -144,13 +144,14 @@ class PopupView: UIView {
     @objc func dismiss(animationOnly: Bool = false) {
         if !(superview?.subviews.contains(self) ?? false) { return }
         
+        if !animationOnly {
+            dismissAction?()
+        }
+
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.bottomConstraint?.constant += self.frame.height
             self.vc?.view.layoutIfNeeded()
         }) { _ in
-            if !animationOnly {
-                self.dismissAction?()
-            }
             self.removeFromSuperview()
         }
     }

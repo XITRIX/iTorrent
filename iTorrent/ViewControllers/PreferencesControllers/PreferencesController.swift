@@ -19,14 +19,12 @@ class PreferencesController: StaticTableViewController {
         print("PreferencesController Deinit")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func initSections() {
         title = Localize.get("Settings.Title")
 
         // APPEARANCE
         var appearance = [CellModelProtocol]()
-        appearance.append(SegueCell.Model(self, title: "Settings.Order", controllerType: SettingsSortingController.self))
+        appearance.append(SegueCell.Model(self, title: "Settings.Order", controllerType: SortingPreferencesController.self))
         if #available(iOS 13, *) {
             appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme },
                                                action: { switcher in
@@ -39,18 +37,14 @@ class PreferencesController: StaticTableViewController {
                                                        self.navigationController?.view.isUserInteractionEnabled = false
                                                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                                                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                           self.tableView.reloadData()
+                                                           self.updateData(animated: false)
                                                            self.navigationController?.view.isUserInteractionEnabled = true
                                                        }
                                                    } else {
                                                        if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Themed {
                                                            rvc.themeUpdate()
                                                        }
-                                                       if !switcher.isOn {
-                                                           self.tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                                                       } else {
-                                                           self.tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .automatic)
-                                                       }
+                                                       self.updateData()
                                                    }
                 }))
         } else {
@@ -66,7 +60,7 @@ class PreferencesController: StaticTableViewController {
                     self.navigationController?.view.isUserInteractionEnabled = true
                 }
         })
-        data.append(Section(rowModels: appearance))
+        data.append(Section(rowModels: appearance, header: "Settings.Appearance.Header"))
 
         // STORAGE
         var storage = [CellModelProtocol]()
@@ -81,7 +75,7 @@ class PreferencesController: StaticTableViewController {
         var background = [CellModelProtocol]()
         background.append(SwitchCell.Model(title: "Settings.BackgroundEnable", defaultValue: { UserPreferences.background }) { switcher in
             UserPreferences.background = switcher.isOn
-            self.tableView.reloadData()
+            self.updateData()
         })
         background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding",
                                            defaultValue: { UserPreferences.backgroundSeedKey },
@@ -119,7 +113,7 @@ class PreferencesController: StaticTableViewController {
                     }
                 }, dismissAction: { res in
                     UserPreferences.zeroSpeedLimit = res
-            })
+                })
                 self.onScreenPopup?.show(self)
         })
         data.append(Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
@@ -169,9 +163,9 @@ class PreferencesController: StaticTableViewController {
         ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
             UserPreferences.ftpKey = switcher.isOn
             switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
-            self.tableView.reloadSections([4], with: .automatic)
+            self.updateData()
         })
-        ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: PreferencesWebDavController.self))
+        ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             if UserPreferences.ftpKey,
                 UserPreferences.webServerEnabled {
@@ -186,20 +180,27 @@ class PreferencesController: StaticTableViewController {
             }
         }))
 
+        // NETWORK
+
+        var network = [CellModelProtocol]()
+        network.append(SegueCell.Model(self, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
+        network.append(SegueCell.Model(self, title: "Settings.Network.Protocols", controllerType: NetworkPreferencesController.self))
+        data.append(Section(rowModels: network, header: "Settings.Network.Header"))
+
         // NOTIFICATIONS
         var notifications = [CellModelProtocol]()
         notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishLoad", defaultValue: { UserPreferences.notificationsKey }) { switcher in
             UserPreferences.notificationsKey = switcher.isOn
-            self.tableView.reloadData()
+            self.updateData()
         })
         notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishSeed", defaultValue: { UserPreferences.notificationsSeedKey }) { switcher in
             UserPreferences.notificationsSeedKey = switcher.isOn
-            self.tableView.reloadData()
-               })
+            self.updateData()
+        })
         notifications.append(SwitchCell.Model(title: "Settings.NotifyBadge", defaultValue: { UserPreferences.badgeKey }, disableCondition: { !UserPreferences.notificationsKey && !UserPreferences.notificationsSeedKey }) { switcher in
             UserPreferences.badgeKey = switcher.isOn
-            self.tableView.reloadData()
-                      })
+            self.updateData()
+        })
         data.append(Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
         // UPDATES

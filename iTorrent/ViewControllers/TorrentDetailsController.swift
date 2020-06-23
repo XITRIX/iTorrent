@@ -167,7 +167,7 @@ class TorrentDetailsController: ThemedUITableViewController {
                 sequentialDownloadSwitcher.setOn(manager.sequentialDownload, animated: false)
             }
 
-            title = manager.title
+            title = Localize.get("Back")
             stateLabel.textWithFit = NSLocalizedString(manager.displayState.rawValue, comment: "")
             downloadLabel.textWithFit = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
             uploadLabel.textWithFit = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
@@ -213,16 +213,16 @@ class TorrentDetailsController: ThemedUITableViewController {
                 }
             }
 
-            if let title = title {
-                if FileManager.default.fileExists(atPath: Core.configFolder + "/" + title + ".torrent") {
+            //if let title = title {
+                if FileManager.default.fileExists(atPath: Core.configFolder + "/" + manager.title + ".torrent") {
                     shareButton.isEnabled = true
                 }
                 if let label = navigationItem.titleView as? UILabel {
-                    label.text = title
+                    label.text = manager.title
                 }
-            } else {
-                shareButton.isEnabled = false
-            }
+//            } else {
+//                shareButton.isEnabled = false
+//            }
         }
     }
 
@@ -281,6 +281,8 @@ class TorrentDetailsController: ThemedUITableViewController {
             (segue.destination as? TrackersListController)?.managerHash = managerHash
         }
     }
+    
+    
 
     @IBAction func sequentialSwitcherChanged(_ sender: UISwitch) {
         TorrentSdk.setTorrentFilesSequential(hash: managerHash, sequential: sender.isOn)

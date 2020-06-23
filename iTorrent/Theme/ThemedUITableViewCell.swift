@@ -17,7 +17,6 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
     override var frame: CGRect {
         get {
-
             return super.frame
         }
         set(newFrame) {
@@ -31,12 +30,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
                 frame.size.width -= (42 + rightSafeareaInset)
             }
             super.frame = frame
-            
-            if insetStyle {
-                cutEdges(tableView: tableView, indexPath: indexPath)
-            } else {
-                self.layer.mask = nil
-            }
+            self.layer.mask = cutEdgesMask(tableView: tableView, indexPath: indexPath)
         }
     }
 
@@ -80,8 +74,10 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         self.indexPath = indexPath
     }
 
-    private func cutEdges(tableView: UITableView?, indexPath: IndexPath) {
-        guard let tableView = tableView else { return }
+    private func cutEdgesMask(tableView: UITableView?, indexPath: IndexPath?) -> CALayer? {
+        guard let tableView = tableView,
+            let indexPath = indexPath,
+            insetStyle else { return nil }
         
         let layer: CAShapeLayer = CAShapeLayer()
         let path: CGMutablePath = CGMutablePath()
@@ -99,7 +95,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
         layer.path = path
         layer.fillRule = .nonZero
-        self.layer.mask = layer
+        return layer
     }
 
     private func addUpperCorner(_ path: CGMutablePath) {

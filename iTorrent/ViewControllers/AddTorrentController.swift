@@ -23,6 +23,10 @@ class AddTorrentController: ThemedUIViewController {
     var fileProvider: FileProviderTableDataSource!
     var files: [FileModel]!
     var name: String = ""
+    
+    override var toolBarIsHidden: Bool? {
+        false
+    }
 
     func initialize(filePath: String, path: URL = URL(string: "/")!, name: String = "", files: [FileModel]! = nil) {
         self.filePath = filePath
@@ -109,8 +113,8 @@ class AddTorrentController: ThemedUIViewController {
     }
 
     @IBAction func cancelAction(_ sender: Any) {
-        if FileManager.default.fileExists(atPath: Core.configFolder + "/_temp.torrent") {
-            try? FileManager.default.removeItem(atPath: Core.configFolder + "/_temp.torrent")
+        if FileManager.default.fileExists(atPath: Core.tempFile) {
+            try? FileManager.default.removeItem(atPath: Core.tempFile)
         }
         FullscreenAd.shared.load()
         dismiss(animated: true)
@@ -161,7 +165,7 @@ class AddTorrentController: ThemedUIViewController {
         do {
             try FileManager.default.copyItem(at: urlPath, to: urlRes)
             if filePath.hasSuffix("_temp.torrent") {
-                try FileManager.default.removeItem(atPath: Core.configFolder + "/_temp.torrent")
+                try FileManager.default.removeItem(atPath: Core.tempFile)
             }
             dismiss(animated: true)
             if let hash = TorrentSdk.getTorrentFileHash(torrentPath: urlRes.path) {
@@ -185,8 +189,8 @@ class AddTorrentController: ThemedUIViewController {
 
 extension AddTorrentController: UIAdaptivePresentationControllerDelegate {
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        if FileManager.default.fileExists(atPath: Core.configFolder + "/_temp.torrent") {
-            try? FileManager.default.removeItem(atPath: Core.configFolder + "/_temp.torrent")
+        if FileManager.default.fileExists(atPath: Core.tempFile) {
+            try? FileManager.default.removeItem(atPath: Core.tempFile)
         }
         FullscreenAd.shared.load()
     }
@@ -198,7 +202,7 @@ extension AddTorrentController: FileProviderDelegate {
     }
 
     func folderSelected(folder: FolderModel) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AddTorrentView") as! AddTorrentController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AddTorrent") as! AddTorrentController
         vc.initialize(filePath: filePath, path: folder.path, name: name, files: files)
         show(vc, sender: self)
     }

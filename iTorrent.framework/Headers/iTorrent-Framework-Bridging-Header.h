@@ -5,9 +5,11 @@
 #include <stdlib.h>
 #include "result_struct.h"
 #include "file_struct.h"
+#include "settings_pack_struct.h"
 
 //TORRENT
-int init_engine(const char* client_name, const char* download_path, const char* config_path);
+int init_engine(const char* client_name, const char* download_path, const char* config_path, settings_pack_struct settings_pack);
+void apply_settings_pack(settings_pack_struct settings_pack);
 TorrentResult get_torrent_info();
 char* add_torrent(const char* torrent_path);
 void add_torrent_with_states(const char* torrent_path, int* states);

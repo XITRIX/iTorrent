@@ -25,11 +25,13 @@ extension AppDelegate: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController {
             if nav.topViewController is PreferencesController ||
-                nav.topViewController is SettingsSortingController ||
-                nav.topViewController is PreferencesWebDavController ||
+                nav.topViewController is SortingPreferencesController ||
+                nav.topViewController is WebDavPreferencesController ||
                 nav.topViewController is PatreonViewController ||
                 nav.topViewController is RssFeedController ||
-                nav.topViewController is RssChannelController {
+                nav.topViewController is RssChannelController ||
+                nav.topViewController is NetworkPreferencesController ||
+                nav.topViewController is ProxyPreferencesController {
                 return Utils.createEmptyViewController()
             }
         }
@@ -39,11 +41,13 @@ extension AppDelegate: UISplitViewControllerDelegate {
             var viewControllers: [UIViewController] = []
             while !(navController.topViewController is TorrentListController),
                 !(navController.topViewController is PreferencesController),
-                !(navController.topViewController is SettingsSortingController),
-                !(navController.topViewController is PreferencesWebDavController),
+                !(navController.topViewController is SortingPreferencesController),
+                !(navController.topViewController is WebDavPreferencesController),
                 !(navController.topViewController is PatreonViewController),
                 !(navController.topViewController is RssFeedController),
-                !(navController.topViewController is RssChannelController) {
+                !(navController.topViewController is RssChannelController),
+                !(navController.topViewController is NetworkPreferencesController),
+                !(navController.topViewController is ProxyPreferencesController) {
                 let view = navController.topViewController
                 navController.popViewController(animated: false)
                 viewControllers.append(view!)
@@ -69,4 +73,3 @@ extension AppDelegate: UISplitViewControllerDelegate {
         return nil
     }
 }
-

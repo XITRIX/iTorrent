@@ -43,7 +43,7 @@ extension Core {
                 sleep(1)
             }
             DispatchQueue.main.async {
-                let dest = Core.configFolder + "/_temp.torrent"
+                let dest = Core.tempFile
                 print(filePath.startAccessingSecurityScopedResource())
                 do {
                     if FileManager.default.fileExists(atPath: dest) {
@@ -70,9 +70,9 @@ extension Core {
                     return
                 }
 
-                if let controller = UIApplication.shared.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: "AddTorrent") as? UINavigationController {
-                    (controller.topViewController as? AddTorrentController)?.initialize(filePath: dest)
-                    Utils.topViewController?.present(controller, animated: true)
+                if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
+                    controller.initialize(filePath: dest)
+                    Utils.topViewController?.present(controller.embedInNavController(), animated: true)
                 }
             }
         }
@@ -106,13 +106,13 @@ extension Core {
         Utils.checkFolderExist(path: Core.configFolder)
 
         if let url = URL(string: url) {
-            Downloader.load(url: url, to: URL(fileURLWithPath: Core.configFolder + "/_temp.torrent"), completion: {
-                let hash = TorrentSdk.getTorrentFileHash(torrentPath: Core.configFolder + "/_temp.torrent")
+            Downloader.load(url: url, to: URL(fileURLWithPath: Core.tempFile), completion: {
+                let hash = TorrentSdk.getTorrentFileHash(torrentPath: Core.tempFile)
                 if hash == nil || hash == "-1" {
                     Dialog.withButton(title: "Error has been occured",
                                       message: "Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari",
                                       okTitle: "Open in Safari") {
-                                        UIApplication.shared.openURL(url)
+                        UIApplication.shared.openURL(url)
                     }
                     return
                 }
@@ -121,9 +121,10 @@ extension Core {
                                 message: "\(Localize.get("Torrent with hash:")) \"\(hash!)\" \(Localize.get("already exists in download queue"))")
                     return
                 }
-                let controller = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddTorrent")
-                ((controller as? UINavigationController)?.topViewController as? AddTorrentController)?.initialize(filePath: Core.configFolder + "/_temp.torrent")
-                presenter.present(controller, animated: true)
+                if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
+                    controller.initialize(filePath: Core.tempFile)
+                    presenter.present(controller.embedInNavController(), animated: true)
+                }
             }, errorAction: {
                 Dialog.show(presenter,
                             title: "Error has been occured",

@@ -202,6 +202,10 @@ extension RssFeedController: UITableViewDelegate {
 }
 
 class RssFeedDataSource: DiffableDataSource<String, RssModel> {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        tableView.isEditing
+    }
+    
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         true
     }

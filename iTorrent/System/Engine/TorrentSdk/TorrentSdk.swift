@@ -16,7 +16,14 @@ class TorrentSdk {
     */
     public static func initEngine(downloadFolder: String, configFolder: String) {
         let appName = "\(Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String) \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String)"
-        init_engine(appName, downloadFolder, configFolder)
+        init_engine(appName, downloadFolder, configFolder, SettingsPack.userPrefered.asNative())
+    }
+    
+    /**
+    Apply settings pack to Torrent engine.
+    */
+    public static func applySettingsPack() {
+        apply_settings_pack(SettingsPack.userPrefered.asNative())
     }
     
     /**

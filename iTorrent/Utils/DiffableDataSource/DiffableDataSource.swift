@@ -43,10 +43,13 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
             self.updateSemaphore.wait()
             
             /// Find difference between sections
-            let sectionDiff = diff(old: self.snapshot?.sectionIdentifiers ?? [], new: snapshot.sectionIdentifiers)
+            let old = self.snapshot?.sectionIdentifiers ?? []
+            let new = snapshot.sectionIdentifiers
+            let sectionDiff = diff(old: old, new: new)
             
             let insertsInts = sectionDiff.compactMap { $0.insert }.map { $0.index }
             let deletesInts = sectionDiff.compactMap { $0.delete }.map { $0.index }
+            let replaceInts = sectionDiff.compactMap { $0.replace }.map { $0.index }
             let moves = sectionDiff.compactMap { $0.move }.map {
                 (
                     from: $0.fromIndex,
@@ -57,7 +60,9 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
             /// Find difference between cells
             var cellChanges = [ChangeWithIndexPath]()
             for section in snapshot.sectionIdentifiers.enumerated().filter({ item in !insertsInts.contains(item.offset) && !moves.map { $0.to }.contains(item.offset) }) {
-                let changes = diff(old: self.snapshot?.itemIdentifiers(inSection: section.element) ?? [], new: snapshot.itemIdentifiers(inSection: section.element))
+                let old = self.snapshot?.itemIdentifiers(inSection: section.element) ?? []
+                let new = snapshot.itemIdentifiers(inSection: section.element)
+                let changes = diff(old: old, new: new)
                 
                 /// Deletion index must be from previous snapshot, find it, or use latest
                 let deletes = changes.compactMap { $0.delete }.map { $0.index.toIndexPath(section: self.snapshot?.itemSection($0.item) ?? section.offset) }
@@ -83,11 +88,12 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
             DispatchQueue.main.async {
                 self.snapshot = snapshot
                 
-                if deletesInts.count > 0 || insertsInts.count > 0 || moves.count > 0 ||
+                if deletesInts.count > 0 || insertsInts.count > 0 || replaceInts.count > 0 || moves.count > 0 ||
                     cellChanges.contains(where: { $0.deletes.count > 0 || $0.inserts.count > 0 || $0.moves.count > 0 }) {
                     self.tableView?.beginUpdates()
                     if deletesInts.count > 0 { self.tableView?.deleteSections(IndexSet(deletesInts), with: sectionDeleteAnimation) }
                     if insertsInts.count > 0 { self.tableView?.insertSections(IndexSet(insertsInts), with: sectionInsetAnimation) }
+                    if replaceInts.count > 0 { self.tableView?.reloadSections(IndexSet(replaceInts), with: .fade) }
                     moves.forEach { self.tableView?.moveSection($0.from, toSection: $0.to) }
                     
                     cellChanges.forEach { changes in
@@ -130,7 +136,7 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
     
     open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? { nil }
     
-    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { true }
+    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { false }
     
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {}
     
