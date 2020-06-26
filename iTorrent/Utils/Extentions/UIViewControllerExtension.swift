@@ -12,4 +12,11 @@ extension UIViewController {
     func embedInNavController() -> UINavigationController {
         Utils.instantiateNavigationController(self)
     }
+    
+    func contentInsets() -> UIEdgeInsets {
+        var insets = UIEdgeInsets()
+        insets.top += min(navigationController?.navigationBar.frame.height ?? 0, 44) 
+        insets.top += UIApplication.shared.statusBarFrame.height 
+        return insets
+    }
 }

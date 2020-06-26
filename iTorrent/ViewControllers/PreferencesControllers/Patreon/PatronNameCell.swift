@@ -10,4 +10,9 @@ import UIKit
 
 class PatronNameCell: ThemedUICollectionViewCell {
     @IBOutlet var title: ThemedUILabel!
+    
+    override func themeUpdate() {
+        let theme = Themes.current
+        backgroundColor = theme.backgroundMain
+    }
 }

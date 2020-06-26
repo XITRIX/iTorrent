@@ -19,7 +19,7 @@ public enum TorrentState: String, DiffAware {
     case allocating = "Allocating"
     case checkingFastresume = "Checking fastresume"
     case paused = "Paused"
-    case null = "NULL"
+    case null = "State.All"
 
     init?(id: Int) {
         switch id {

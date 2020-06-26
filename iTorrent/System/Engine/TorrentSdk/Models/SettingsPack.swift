@@ -52,6 +52,8 @@ struct SettingsPack {
                              enable_utp: enableUtp,
                              enable_upnp: enableUpnp,
                              enable_natpmp: enableNatpmp,
+                             portRangeFirst: 6881,
+                             portRangeSecond: 6891,
                              proxy_type: proxy_type_t(rawValue: UInt32(proxyType.rawValue)),
                              proxy_requires_auth: proxyRequiresAuth,
                              proxy_hostname: proxyHostname.cString(),

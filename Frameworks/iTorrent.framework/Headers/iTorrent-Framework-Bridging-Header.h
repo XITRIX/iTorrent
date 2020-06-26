@@ -47,3 +47,4 @@ int get_storage_preallocation();
 void free_result(TorrentResult res);
 void free_files(Files files);
 void free_trackers(Trackers trackers);
+void free_settings_pack(settings_pack_struct settings_pack);

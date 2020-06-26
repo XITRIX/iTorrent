@@ -18,7 +18,7 @@ class ThemedUICollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -33,8 +33,5 @@ class ThemedUICollectionViewCell: UICollectionViewCell {
         themeUpdate()
     }
 
-    @objc func themeUpdate() {
-        let theme = Themes.current
-        backgroundColor = theme.backgroundMain
-    }
+    @objc func themeUpdate() {}
 }

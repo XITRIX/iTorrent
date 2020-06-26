@@ -11,6 +11,7 @@ import Foundation
 class TorrentListViewModel: ViewModel {
     var tableViewData = Box<[SectionModel<TorrentModel>]>([])
     var searchFilter = Box<String?>("")
+    var stateFilter = Box<TorrentState>(.null)
     var tableviewPlaceholderHidden = Box<Bool>(true)
     var loadingIndicatiorHidden = Box<Bool>(false)
     
@@ -27,8 +28,12 @@ class TorrentListViewModel: ViewModel {
         if Core.shared.state == .Initializing { return }
         else { loadingIndicatiorHidden.variable = true }
         
-        let searchFiltered = Array(Core.shared.torrents.values).filter { self.searchFilter($0, filter: searchFilter.variable) }
-        tableViewData.variable = SortingManager.sort(managers: searchFiltered)
+        var data = Array(Core.shared.torrents.values)
+        if !UserPreferences.sortingSections {
+            data = data.filter { stateFilter.variable == .null || $0.displayState == stateFilter.variable }
+        }
+        data = data.filter { self.searchFilter($0, filter: searchFilter.variable) }
+        tableViewData.variable = SortingManager.sort(managers: data)
         
         tableviewPlaceholderHidden.variable = tableViewData.variable.contains(where: { $0.items.count > 0 })
     }

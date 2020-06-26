@@ -9,6 +9,7 @@
 
 
 // Torrent States
+"State.All" = "All";
 "Queued" = "Sıraya ekleniyor";
 "Hashing" = "Hashleniyor";
 "Metadata" = "Metadata";

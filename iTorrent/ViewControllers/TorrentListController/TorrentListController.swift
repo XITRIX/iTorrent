@@ -20,6 +20,8 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var rssButton: UIBarButtonItem!
     
+    @IBOutlet var tabBarView: TabBarView!
+    
     var initialBarButtonItems: [UIBarButtonItem] = []
     var editmodeBarButtonItems: [UIBarButtonItem] = []
     
@@ -61,6 +63,7 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     override func setupViews() {
         localize()
         
+//        tabBarView.initialize(self)
         initializeTableView()
         initializeAds()
         initializeSearchView()
@@ -72,10 +75,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         /// TableView Binding
         viewModel.tableViewData.bind { torrents in
             var snapshot = DataSnapshot<String, TorrentModel>()
-            snapshot.appendSections(torrents.map{$0.title})
+            snapshot.appendSections(torrents.map { $0.title })
             torrents.forEach { snapshot.appendItems($0.items, toSection: $0.title) }
             self.torrentListDataSource.apply(snapshot)
-            
             self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
         }.dispose(with: disposalBag)
         
@@ -132,7 +134,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBAction func sortAction(_ sender: UIBarButtonItem) {
         let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
             self.viewModel.update()
+            self.updateScrollInset()
         })
         present(sortingController, animated: true)
     }
 }
+ 

@@ -8,6 +8,7 @@
 
 
 //Torrent States
+"State.All" = "Все";
 "Queued" = "В очереди";
 "Hashing" = "Хэширование";
 "Metadata" = "Метадата";

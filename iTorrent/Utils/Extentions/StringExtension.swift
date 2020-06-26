@@ -16,6 +16,5 @@ extension String {
             result.initialize(from: baseAddress, count: count)
         }
         return result
-
     }
 }

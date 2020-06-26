@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TintView: UIView, Themed {
-    @objc func themeUpdate() {
+class TintView: TabBarView {
+    override func themeUpdate() {
+        super.themeUpdate()
         tintColor = Themes.current.tintColor
         setNeedsDisplay()
     }
@@ -18,28 +19,14 @@ class TintView: UIView, Themed {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
+    
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         context?.setFillColor(tintColor.cgColor)
         context?.fill(rect)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
-        themeUpdate()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        themeUpdate()
     }
 }

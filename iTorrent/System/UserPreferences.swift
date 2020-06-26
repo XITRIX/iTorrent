@@ -32,7 +32,7 @@ class UserPreferences {
     @PreferenceItem("storagePreallocation", false) static var storagePreallocation: Bool
 
     @PreferenceItem("SortingType", 0) static var sortingType: Int
-    @PreferenceItem("SortingSections", true) static var sortingSections: Bool
+    @PreferenceItem("SortingSections2", false) static var sortingSections: Bool
     
     //network
     @PreferenceItem("enableDht", true) static var enableDht: Bool
