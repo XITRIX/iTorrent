@@ -127,6 +127,7 @@
 
 "Settings.Network.Header" = "Network";
 "Settings.Network.Proxy" = "Proxy";
+"Settings.Network.Connection" = "Connection settings";
 "Settings.Network.Proxy.Type.Header" = "Host";
 "Settings.Network.Proxy.Type" = "Proxy type";
 "Settings.Network.Proxy.SelectType" = "Select proxy type:";
@@ -145,6 +146,11 @@
 "Settings.Network.uTP.Hint" = "It's intended to mitigate poor latency and other congestion control issues found in conventional BitTorrent over TCP, while providing reliable, ordered delivery";
 "Settings.Network.UPnP" = "Enable UPnP";
 "Settings.Network.NAT-PMP" = "Enable NAT-PMP";
+"Settings.Network.Port" = "Port";
+"Settings.Network.DefauldPort" = "Use default port";
+"Settings.Network.DefauldPort.Hint" = "Sets the start port to 6881 and the end port as first + 10 [6891]";
+"Settings.Network.PortFirst" = "Start";
+"Settings.Network.PortSecond" = "End";
 
 "Settings.NotifyFinishLoad" = "İndirme bittiğinde";
 "Settings.NotifyFinishSeed" = "Seedleme bittiğinde";

@@ -17,6 +17,12 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
     @IBOutlet var textField: UITextField!
     
     var textEditAction: ((String) -> ())?
+    var textEditEndAction: ((String) -> ())?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        textField.delegate = self
+    }
     
     override func themeUpdate() {
         super.themeUpdate()
@@ -32,11 +38,13 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         title.text = Localize.get(model.title)
         textField.text = model.defaultValue()
         textEditAction = model.textEditAction
+        textEditEndAction = model.textEditEndAction
         
         textField.placeholder = Localize.get(model.placeholder ?? "")
         textField.isSecureTextEntry = model.isPassword
         textField.keyboardType = model.keyboardType
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.addTarget(self, action: #selector(textFieldDidEnd), for: .editingDidEnd)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,6 +60,12 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         }
     }
     
+    @objc func textFieldDidEnd() {
+        if let text = textField.text {
+            textEditEndAction?(text)
+        }
+    }
+    
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
@@ -62,5 +76,13 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var hiddenCondition: (() -> Bool)?
         var tapAction: (() -> ())?
         var textEditAction: ((String) -> ())?
+        var textEditEndAction: ((String) -> ())?
+    }
+}
+
+extension TextFieldCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endEditing(true)
+        return false
     }
 }

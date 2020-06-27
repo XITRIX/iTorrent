@@ -134,13 +134,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BKM-Z7-QMV">
-                                <rect key="frame" x="169" y="412" width="37" height="37"/>
+                                <rect key="frame" x="169" y="390" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxi-gq-Num" secondAttribute="bottom" id="9yD-lu-xvj"/>
-                            <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="22" id="IOs-1r-zKT"/>
+                            <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="2.5" id="IOs-1r-zKT"/>
                             <constraint firstItem="nxi-gq-Num" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M23-SY-liw"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R2A-HJ-SSf"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SWS-Ke-a9L"/>

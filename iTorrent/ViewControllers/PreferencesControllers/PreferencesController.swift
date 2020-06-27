@@ -184,7 +184,7 @@ class PreferencesController: StaticTableViewController {
 
         var network = [CellModelProtocol]()
         network.append(SegueCell.Model(self, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
-        network.append(SegueCell.Model(self, title: "Settings.Network.Protocols", controllerType: NetworkPreferencesController.self))
+        network.append(SegueCell.Model(self, title: "Settings.Network.Connection", controllerType: NetworkPreferencesController.self))
         data.append(Section(rowModels: network, header: "Settings.Network.Header"))
 
         // NOTIFICATIONS

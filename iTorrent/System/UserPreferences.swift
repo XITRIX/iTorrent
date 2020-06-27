@@ -41,6 +41,10 @@ class UserPreferences {
     @PreferenceItem("enableUpnp", true) static var enableUpnp: Bool
     @PreferenceItem("enableNatpmp", true) static var enableNatpmp: Bool
     
+    @PreferenceItem("defaultPort", true) static var defaultPort: Bool
+    @PreferenceItem("portRangeFirst", 6881) static var portRangeFirst: Int
+    @PreferenceItem("portRangeSecond", 6891) static var portRangeSecond: Int
+    
     //proxy
     @PreferenceData("proxyType", ProxyType.none) static var proxyType: ProxyType!
     @PreferenceItem("proxyRequiresAuth", false) static var proxyRequiresAuth: Bool

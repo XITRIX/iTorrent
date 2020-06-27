@@ -37,6 +37,9 @@ struct SettingsPack {
     var enableUtp: Bool
     var enableUpnp: Bool
     var enableNatpmp: Bool
+    
+    var portRangeFirst: Int
+    var portRangeSecond: Int
 
     var proxyType: ProxyType
     var proxyRequiresAuth: Bool
@@ -52,8 +55,8 @@ struct SettingsPack {
                              enable_utp: enableUtp,
                              enable_upnp: enableUpnp,
                              enable_natpmp: enableNatpmp,
-                             portRangeFirst: 6881,
-                             portRangeSecond: 6891,
+                             port_range_first: Int32(portRangeFirst),
+                             port_range_second: Int32(portRangeSecond),
                              proxy_type: proxy_type_t(rawValue: UInt32(proxyType.rawValue)),
                              proxy_requires_auth: proxyRequiresAuth,
                              proxy_hostname: proxyHostname.cString(),
@@ -69,6 +72,12 @@ struct SettingsPack {
                      enableUtp: UserPreferences.enableUtp,
                      enableUpnp: UserPreferences.enableUpnp,
                      enableNatpmp: UserPreferences.enableNatpmp,
+                     portRangeFirst: !UserPreferences.defaultPort ?
+                        UserPreferences.portRangeFirst :
+                        6881,
+                     portRangeSecond: !UserPreferences.defaultPort ?
+                        UserPreferences.portRangeSecond :
+                        6891,
                      proxyType: UserPreferences.proxyType,
                      proxyRequiresAuth: UserPreferences.proxyRequiresAuth,
                      proxyHostname: UserPreferences.proxyHostname,
@@ -86,6 +95,8 @@ extension SettingsPack {
         enableUtp = native.enable_utp
         enableUpnp = native.enable_upnp
         enableNatpmp = native.enable_natpmp
+        portRangeFirst = Int(native.port_range_first)
+        portRangeSecond = Int(native.port_range_second)
         proxyType = ProxyType(rawValue: Int(native.proxy_type.rawValue))!
         proxyRequiresAuth = native.enable_natpmp
         proxyHostname = String(validatingUTF8: native.proxy_hostname) ?? ""

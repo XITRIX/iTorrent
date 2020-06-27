@@ -24,8 +24,8 @@ typedef struct settings_pack_struct {
     bool enable_upnp;
     bool enable_natpmp;
     
-    int portRangeFirst;
-    int portRangeSecond;
+    int port_range_first;
+    int port_range_second;
     
     enum proxy_type_t proxy_type;
     bool proxy_requires_auth;

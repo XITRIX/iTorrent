@@ -26,7 +26,7 @@ class StaticTableViewController: ThemedUIViewController {
     }
     
     var initStyle: UITableView.Style = .grouped
-
+    
     init() {
         super.init(nibName: nil, bundle: Bundle.main)
     }
@@ -35,13 +35,12 @@ class StaticTableViewController: ThemedUIViewController {
         super.init(nibName: nil, bundle: Bundle.main)
         initStyle = style
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-
-    func setup(style: UITableView.Style = .grouped) {
-    }
+    
+    func setup(style: UITableView.Style = .grouped) {}
     
     override func loadView() {
         super.loadView()
@@ -70,15 +69,15 @@ class StaticTableViewController: ThemedUIViewController {
         KeyboardHelper.shared.visibleHeight.bind { [weak self] height in
             guard let self = self else { return }
             
-            if self.tableView.contentSize.height > self.view.frame.height - height {
-                UIView.animate(withDuration: 0.3) {
-                    self.tableView.contentInset.bottom = height
-                    self.tableView.scrollIndicatorInsets.bottom = height
-                }
+            let offset = self.tableView.contentOffset
+            UIView.animate(withDuration: 0.3) {
+                self.tableView.contentInset.bottom = height
+                self.tableView.scrollIndicatorInsets.bottom = height
+                self.tableView.contentOffset = offset
             }
         }.dispose(with: disposalBag)
     }
-
+    
     func initSections() {}
     
     func updateData(animated: Bool = true) {

@@ -127,6 +127,7 @@
 
 "Settings.Network.Header" = "Сеть";
 "Settings.Network.Proxy" = "Прокси";
+"Settings.Network.Connection" = "Настройки соединения";
 "Settings.Network.Proxy.Type.Header" = "Хост";
 "Settings.Network.Proxy.Type" = "Тип прокси";
 "Settings.Network.Proxy.SelectType" = "Выберите тип прокси:";
@@ -145,6 +146,11 @@
 "Settings.Network.uTP.Hint" = "Предназначен для смягчения недостаточной задержки и других вопросов управления перегрузками в обычных торрентах с использованием TCP, обеспечивая при этом надёжную передачу данных";
 "Settings.Network.UPnP" = "Включить UPnP";
 "Settings.Network.NAT-PMP" = "Включить NAT-PMP";
+"Settings.Network.Port" = "Порт";
+"Settings.Network.DefauldPort" = "Стандартный порт";
+"Settings.Network.DefauldPort.Hint" = "Устанавливает начальный порт на 6881 и конечный порт как первый + 10 [6891]";
+"Settings.Network.PortFirst" = "Начальный";
+"Settings.Network.PortSecond" = "Конечный";
 
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
