@@ -43,7 +43,7 @@ class NetworkPreferencesController: StaticTableViewController {
         port.append(SwitchCell.Model(title: "Settings.Network.DefauldPort", defaultValue: { UserPreferences.defaultPort }, hint: "Settings.Network.DefauldPort.Hint") { switcher in
             UserPreferences.defaultPort = switcher.isOn
             TorrentSdk.applySettingsPack()
-            self.tableView.updateData()
+            self.updateData()
         })
         port.append(TextFieldCell.Model(title: "Settings.Network.PortFirst", placeholder: "6881", defaultValue: { String(UserPreferences.portRangeFirst) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }) { port in
             var iPort: Int
@@ -59,7 +59,7 @@ class NetworkPreferencesController: StaticTableViewController {
                 UserPreferences.portRangeSecond = iPort + 10
             }
 
-            self.tableView.updateData()
+            self.updateData()
             TorrentSdk.applySettingsPack()
         })
         port.append(TextFieldCell.Model(title: "Settings.Network.PortSecond", placeholder: "6891", defaultValue: { String(UserPreferences.portRangeSecond) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }) { port in
@@ -76,7 +76,7 @@ class NetworkPreferencesController: StaticTableViewController {
             
             UserPreferences.portRangeSecond = iPort
 
-            self.tableView.updateData()
+            self.updateData()
             TorrentSdk.applySettingsPack()
         })
         data.append(Section(rowModels: port, header: "Settings.Network.Port"))

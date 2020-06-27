@@ -61,6 +61,7 @@ class WebDavPreferencesController: StaticTableViewController {
             } else {
                 UserPreferences.webDavPort = 81
             }
+            self.updateData()
         })
         data.append(Section(rowModels: webDav, header: "Settings.FTP.WebDav.WebDavTitle", footerFunc: { () -> String in
             let addr = Core.shared.webDAVServer.serverURL?.absoluteString

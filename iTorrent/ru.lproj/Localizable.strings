@@ -148,7 +148,7 @@
 "Settings.Network.NAT-PMP" = "Включить NAT-PMP";
 "Settings.Network.Port" = "Порт";
 "Settings.Network.DefauldPort" = "Стандартный порт";
-"Settings.Network.DefauldPort.Hint" = "Устанавливает начальный порт на 6881 и конечный порт как первый + 10 [6891]";
+"Settings.Network.DefauldPort.Hint" = "Устанавливает начальный порт на [6881] и конечный порт как первый + 10 [6891]";
 "Settings.Network.PortFirst" = "Начальный";
 "Settings.Network.PortSecond" = "Конечный";
 

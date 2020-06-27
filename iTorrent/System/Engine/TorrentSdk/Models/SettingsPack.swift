@@ -32,12 +32,15 @@ enum ProxyType: Int, CaseIterable, Codable {
 }
 
 struct SettingsPack {
+    var downloadLimit: Int
+    var uploadLimit: Int
+
     var enableDht: Bool
     var enableLsd: Bool
     var enableUtp: Bool
     var enableUpnp: Bool
     var enableNatpmp: Bool
-    
+
     var portRangeFirst: Int
     var portRangeSecond: Int
 
@@ -50,7 +53,9 @@ struct SettingsPack {
     var proxyPeerConnections: Bool
 
     func asNative() -> settings_pack_struct {
-        settings_pack_struct(enable_dht: enableDht,
+        settings_pack_struct(download_limit: Int32(downloadLimit),
+                             upload_limit: Int32(uploadLimit),
+                             enable_dht: enableDht,
                              enable_lsd: enableLsd,
                              enable_utp: enableUtp,
                              enable_upnp: enableUpnp,
@@ -67,17 +72,19 @@ struct SettingsPack {
     }
 
     static var userPrefered: SettingsPack {
-        SettingsPack(enableDht: UserPreferences.enableDht,
+        SettingsPack(downloadLimit: UserPreferences.downloadLimit,
+                     uploadLimit: UserPreferences.uploadLimit,
+                     enableDht: UserPreferences.enableDht,
                      enableLsd: UserPreferences.enableLsd,
                      enableUtp: UserPreferences.enableUtp,
                      enableUpnp: UserPreferences.enableUpnp,
                      enableNatpmp: UserPreferences.enableNatpmp,
                      portRangeFirst: !UserPreferences.defaultPort ?
-                        UserPreferences.portRangeFirst :
-                        6881,
+                         UserPreferences.portRangeFirst :
+                         6881,
                      portRangeSecond: !UserPreferences.defaultPort ?
-                        UserPreferences.portRangeSecond :
-                        6891,
+                         UserPreferences.portRangeSecond :
+                         6891,
                      proxyType: UserPreferences.proxyType,
                      proxyRequiresAuth: UserPreferences.proxyRequiresAuth,
                      proxyHostname: UserPreferences.proxyHostname,
@@ -90,6 +97,8 @@ struct SettingsPack {
 
 extension SettingsPack {
     init(_ native: settings_pack_struct) {
+        downloadLimit = Int(native.download_limit)
+        uploadLimit = Int(native.upload_limit)
         enableDht = native.enable_dht
         enableLsd = native.enable_lsd
         enableUtp = native.enable_utp

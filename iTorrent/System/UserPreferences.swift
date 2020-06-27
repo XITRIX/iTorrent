@@ -26,8 +26,8 @@ class UserPreferences {
     @PreferenceItem("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1]) static var sectionsSortingOrder: [Int]
     @PreferenceItem("themeNum", 0) static var themeNum: Int
     @PreferenceItem("zeroSpeedLimit", 60) static var zeroSpeedLimit: Int
-    @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int64
-    @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int64 
+    @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int
+    @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int
     @PreferenceItem("seedBackgroundWarning", false) static var seedBackgroundWarning: Bool
     @PreferenceItem("storagePreallocation", false) static var storagePreallocation: Bool
 

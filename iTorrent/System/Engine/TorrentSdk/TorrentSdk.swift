@@ -273,22 +273,6 @@ class TorrentSdk {
     }
     
     /**
-    Set maximum speed of dowloading for Engine.
-    - Parameter limitBytes: speed limit in bytes.
-    */
-    public static func setDownloadLimit(limitBytes: Int) {
-        set_download_limit(Int32(limitBytes))
-    }
-    
-    /**
-    Set maximum speed of uploadeing for Engine.
-    - Parameter limitBytes: speed limit in bytes.
-    */
-    public static func setUploadLimits(limitBytes: Int) {
-        set_upload_limit(Int32(limitBytes))
-    }
-    
-    /**
     Set sequential mode for torrent in downloading queue.
     - Parameter hash: torrent's hash.
     - Parameter sequential: enable sequential mode.

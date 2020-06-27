@@ -148,7 +148,7 @@
 "Settings.Network.NAT-PMP" = "Enable NAT-PMP";
 "Settings.Network.Port" = "Port";
 "Settings.Network.DefauldPort" = "Use default port";
-"Settings.Network.DefauldPort.Hint" = "Sets the start port to 6881 and the end port as first + 10 [6891]";
+"Settings.Network.DefauldPort.Hint" = "Sets the start port to [6881] and the end port as first + 10 [6891]";
 "Settings.Network.PortFirst" = "Start";
 "Settings.Network.PortSecond" = "End";
 

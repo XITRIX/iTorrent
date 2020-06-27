@@ -39,7 +39,7 @@ class TorrentDetailsController: ThemedUITableViewController {
     @IBOutlet var downloadedLabel: UILabel!
     @IBOutlet var uploadedLabel: UILabel!
     @IBOutlet var seedersLabel: UILabel!
-    @IBOutlet var peersLabel: UILabel!
+    @IBOutlet var leechersLabel: UILabel!
 
     @IBOutlet var trackersButtonLabel: UILabel!
     @IBOutlet var filesButtonLabel: UILabel!
@@ -88,7 +88,7 @@ class TorrentDetailsController: ThemedUITableViewController {
 
         let limit = Core.shared.torrentsUserData[managerHash]?.seedLimit
         if limit == 0 {
-            seedLimitButton.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
+            seedLimitButton.setTitle(Localize.get("Unlimited"), for: .normal)
         } else {
             seedLimitButton.setTitle(Utils.getSizeText(size: limit!, decimals: true), for: .normal)
         }
@@ -96,8 +96,9 @@ class TorrentDetailsController: ThemedUITableViewController {
         view.isUserInteractionEnabled = true
         tableView.isUserInteractionEnabled = true
 
-        trackersButtonLabel.textWithFit = NSLocalizedString("Trackers", comment: "")
-        filesButtonLabel.textWithFit = NSLocalizedString("Files", comment: "")
+        trackersButtonLabel.textWithFit = Localize.get("Trackers")
+        filesButtonLabel.textWithFit = Localize.get("Files")
+        title = Localize.get("Back")
 
         // MARQUEE LABEL
         let theme = Themes.current
@@ -167,7 +168,6 @@ class TorrentDetailsController: ThemedUITableViewController {
                 sequentialDownloadSwitcher.setOn(manager.sequentialDownload, animated: false)
             }
 
-            title = Localize.get("Back")
             stateLabel.textWithFit = NSLocalizedString(manager.displayState.rawValue, comment: "")
             downloadLabel.textWithFit = Utils.getSizeText(size: Int64(manager.downloadRate)) + "/s"
             uploadLabel.textWithFit = Utils.getSizeText(size: Int64(manager.uploadRate)) + "/s"
@@ -187,8 +187,8 @@ class TorrentDetailsController: ThemedUITableViewController {
                 String(format: "%.2f", totalDownloadProgress * 100) + "%"
             downloadedLabel.textWithFit = Utils.getSizeText(size: manager.totalDownload)
             uploadedLabel.textWithFit = Utils.getSizeText(size: manager.totalUpload)
-            seedersLabel.textWithFit = String(manager.numSeeds)
-            peersLabel.textWithFit = String(manager.numPeers)
+            seedersLabel.textWithFit = "\(manager.numSeeds) (\(manager.numTotalSeeds))"
+            leechersLabel.textWithFit = "\(manager.numLeechers) (\(manager.numTotalLeechers))"
 
             switcher.setOn(Core.shared.torrentsUserData[managerHash]!.seedMode, animated: true)
 
@@ -337,7 +337,7 @@ class TorrentDetailsController: ThemedUITableViewController {
     }
 
     @IBAction func sendTorrent(_ sender: UIBarButtonItem) {
-        if let title = title {
+        if let title = Core.shared.torrents[managerHash]?.title {
             let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Share", comment: ""), preferredStyle: .actionSheet)
             let file = UIAlertAction(title: NSLocalizedString("Torrent file", comment: ""), style: .default) { _ in
                 let stringPath = Core.configFolder + "/" + title + ".torrent"

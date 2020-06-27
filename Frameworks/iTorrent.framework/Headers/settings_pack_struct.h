@@ -18,6 +18,9 @@ enum proxy_type_t {
 };
 
 typedef struct settings_pack_struct {
+    int download_limit;
+    int upload_limit;
+    
     bool enable_dht;
     bool enable_lsd;
     bool enable_utp;

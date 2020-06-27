@@ -123,47 +123,47 @@ class PreferencesController: StaticTableViewController {
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
                                       buttonTitleFunc: { UserPreferences.downloadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
-                                          Utils.getSizeText(size: UserPreferences.downloadLimit, decimals: true) + "/S"
+                                        Utils.getSizeText(size: Int64(UserPreferences.downloadLimit), decimals: true) + "/S"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.downloadLimit, dataSelected: { res in
+                    self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
                         button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
                     }
                 }, dismissAction: { res in
-                    UserPreferences.downloadLimit = res
-                    TorrentSdk.setDownloadLimit(limitBytes: Int(res))
+                    UserPreferences.downloadLimit = Int(res)
+                    TorrentSdk.applySettingsPack()
             })
                 self.onScreenPopup?.show(self)
         })
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
                                       buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
-                                          Utils.getSizeText(size: UserPreferences.uploadLimit, decimals: true) + "/S"
+                                        Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                self.onScreenPopup = SpeedPicker(defaultValue: UserPreferences.uploadLimit, dataSelected: { res in
+                    self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
                         button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
                     }
                 }, dismissAction: { res in
-                    UserPreferences.uploadLimit = res
-                    TorrentSdk.setUploadLimits(limitBytes: Int(res))
+                    UserPreferences.uploadLimit = Int(res)
+                    TorrentSdk.applySettingsPack()
             })
                 self.onScreenPopup?.show(self)
         })
         data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
 
-        // FTP
+        // DATA SHARING
         var ftp = [CellModelProtocol]()
         ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
             UserPreferences.ftpKey = switcher.isOn
             switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
-            self.updateData()
+            self.updateData(animated: false)
         })
         ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in

@@ -27,6 +27,10 @@ class TorrentModel: Hashable, DiffAware {
     var totalUpload: Int64 = 0
     var numSeeds: Int = 0
     var numPeers: Int = 0
+    var numLeechers: Int = 0
+    var numTotalSeeds: Int = 0
+    var numTotalPeers: Int = 0
+    var numTotalLeechers: Int = 0
     var totalSize: Int64 = 0
     var totalDone: Int64 = 0
     var creationDate: Date?
@@ -56,6 +60,10 @@ class TorrentModel: Hashable, DiffAware {
         totalUploadSession = torrentInfo.total_upload
         numSeeds = Int(torrentInfo.num_seeds)
         numPeers = Int(torrentInfo.num_peers)
+        numLeechers = Int(torrentInfo.num_leechers)
+        numTotalSeeds = Int(torrentInfo.num_total_seeds)
+        numTotalPeers = Int(torrentInfo.num_total_peers)
+        numTotalLeechers = Int(torrentInfo.num_total_leechers)
         totalSize = torrentInfo.total_size
         totalDone = torrentInfo.total_done
         creationDate = Date(timeIntervalSince1970: TimeInterval(torrentInfo.creation_date))
@@ -100,6 +108,10 @@ class TorrentModel: Hashable, DiffAware {
         totalUploadSession = model.totalUploadSession
         numSeeds = model.numSeeds
         numPeers = model.numPeers
+        numLeechers = model.numLeechers
+        numTotalSeeds = model.numTotalSeeds
+        numTotalPeers = model.numTotalPeers
+        numTotalLeechers = model.numTotalLeechers
         totalSize = model.totalSize
         totalDone = model.totalDone
         creationDate = model.creationDate

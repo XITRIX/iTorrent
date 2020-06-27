@@ -31,12 +31,6 @@ class Core {
         DispatchQueue.global(qos: .background).async {
             TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder)
             self.restoreAllTorrents()
-
-            let down = UserPreferences.downloadLimit
-            TorrentSdk.setDownloadLimit(limitBytes: Int(down))
-
-            let up = UserPreferences.uploadLimit
-            TorrentSdk.setUploadLimits(limitBytes: Int(up))
             
             let allocateStorage = UserPreferences.storagePreallocation
             TorrentSdk.setStoragePreallocation(allocate: allocateStorage)
