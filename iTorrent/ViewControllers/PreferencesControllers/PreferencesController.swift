@@ -15,6 +15,10 @@ class PreferencesController: StaticTableViewController {
 
     var onScreenPopup: PopupView?
     
+    override func themeUpdate() {
+        super.themeUpdate()
+    }
+    
     deinit {
         print("PreferencesController Deinit")
     }

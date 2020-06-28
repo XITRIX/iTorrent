@@ -20,8 +20,6 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var rssButton: UIBarButtonItem!
     
-    @IBOutlet var tabBarView: TabBarView!
-    
     var initialBarButtonItems: [UIBarButtonItem] = []
     var editmodeBarButtonItems: [UIBarButtonItem] = []
     
@@ -63,7 +61,6 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     override func setupViews() {
         localize()
         
-//        tabBarView.initialize(self)
         initializeTableView()
         initializeAds()
         initializeSearchView()

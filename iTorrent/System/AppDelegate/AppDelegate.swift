@@ -29,10 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
 
-        MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices: [
-            MSAnalytics.self,
-            MSCrashes.self
-        ])
+        // Crash on iOS 9
+        if #available(iOS 10, *) {
+            MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices: [
+                MSAnalytics.self,
+                MSCrashes.self
+            ])
+        }
 
         PatreonAPI.configure()
 
@@ -117,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     .reduce([], +)
                     .compactMap { $0.title }
                     .joined(separator: "\n")
-                
+
                 NotificationHelper.showNotification(title: Localize.get("RssFeedProvider.Notification.Title"),
                                                     body: text,
                                                     hash: "RSS")

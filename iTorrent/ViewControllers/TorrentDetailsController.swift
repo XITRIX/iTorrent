@@ -183,7 +183,7 @@ class TorrentDetailsController: ThemedUITableViewController {
             selectedLabel.textWithFit = Utils.getSizeText(size: manager.totalWanted) + " / " + Utils.getSizeText(size: manager.totalSize)
             completedLabel.textWithFit = Utils.getSizeText(size: manager.totalWantedDone)
             progressLabel.textWithFit = String(format: "%.2f", manager.totalWanted == 0 ? 0 :
-                Double(manager.totalWantedDone) / Double(manager.totalWanted) * 100) + "% / " +
+                Double(manager.totalWantedDone * 100) / Double(manager.totalWanted)) + "% / " +
                 String(format: "%.2f", totalDownloadProgress * 100) + "%"
             downloadedLabel.textWithFit = Utils.getSizeText(size: manager.totalDownload)
             uploadedLabel.textWithFit = Utils.getSizeText(size: manager.totalUpload)

@@ -12,6 +12,7 @@ extension TorrentListController {
     func initializeTableView() {
         tableView.allowsMultipleSelectionDuringEditing = true
         
+        tableView.register(TabBarView.nib, forHeaderFooterViewReuseIdentifier: TabBarView.id)
         tableView.register(TableHeaderView.nib, forHeaderFooterViewReuseIdentifier: TableHeaderView.id)
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 82
@@ -26,8 +27,8 @@ extension TorrentListController {
         tableView.dataSource = torrentListDataSource
         tableView.delegate = self
         
-        tabBarView.delegate = self
-        tabBarView.selectItem(at: IndexPath(item: 0, section: 0))
+//        tabBarView.delegate = self
+//        tabBarView.selectItem(at: IndexPath(item: 0, section: 0))
         
         updateScrollInset()
     }
@@ -83,8 +84,10 @@ extension TorrentListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if !UserPreferences.sortingSections {
-            return tabBarView
+        if !UserPreferences.sortingSections,
+            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TabBarView.id) as? TabBarView {
+            cell.setModel(self, selected: viewModel.stateFilter.variable)
+            return cell
         }
         if let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableHeaderView.id) as? TableHeaderView {
             cell.title.text = Localize.get(key: torrentListDataSource.snapshot?.sectionIdentifiers[section])

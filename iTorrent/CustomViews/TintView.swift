@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TintView: TabBarView {
+class TintView: ThemedUIView {
     override func themeUpdate() {
         super.themeUpdate()
         tintColor = Themes.current.tintColor
