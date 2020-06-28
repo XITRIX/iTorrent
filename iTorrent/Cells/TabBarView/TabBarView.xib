@@ -23,7 +23,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
-                        <blurEffect style="systemChromeMaterial"/>
+                        <blurEffect style="regular"/>
                     </visualEffectView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Psc-nG-iJr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

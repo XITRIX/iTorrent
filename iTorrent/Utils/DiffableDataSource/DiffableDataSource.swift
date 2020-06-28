@@ -90,20 +90,20 @@ class DiffableDataSource<SectionIdentifierType, ItemIdentifierType>: NSObject, U
                 
                 if deletesInts.count > 0 || insertsInts.count > 0 || replaceInts.count > 0 || moves.count > 0 ||
                     cellChanges.contains(where: { $0.deletes.count > 0 || $0.inserts.count > 0 || $0.moves.count > 0 }) {
-                    self.tableView?.beginUpdates()
-                    if deletesInts.count > 0 { self.tableView?.deleteSections(IndexSet(deletesInts), with: sectionDeleteAnimation) }
-                    if insertsInts.count > 0 { self.tableView?.insertSections(IndexSet(insertsInts), with: sectionInsetAnimation) }
-                    if replaceInts.count > 0 { self.tableView?.reloadSections(IndexSet(replaceInts), with: .fade) }
-                    moves.forEach { self.tableView?.moveSection($0.from, toSection: $0.to) }
-                    
-                    cellChanges.forEach { changes in
-                        if changes.inserts.count > 0 { self.tableView?.insertRows(at: changes.inserts, with: rowInsetAnimation) }
-                        if changes.deletes.count > 0 { self.tableView?.deleteRows(at: changes.deletes, with: rowDeletionAnimation) }
-                        for move in changes.moves {
-                            self.tableView?.moveRow(at: move.from, to: move.to)
+                    self.tableView?.unifiedPerformBatchUpdates({
+                        if deletesInts.count > 0 { self.tableView?.deleteSections(IndexSet(deletesInts), with: sectionDeleteAnimation) }
+                        if insertsInts.count > 0 { self.tableView?.insertSections(IndexSet(insertsInts), with: sectionInsetAnimation) }
+                        if replaceInts.count > 0 { self.tableView?.reloadSections(IndexSet(replaceInts), with: .fade) }
+                        moves.forEach { self.tableView?.moveSection($0.from, toSection: $0.to) }
+                        
+                        cellChanges.forEach { changes in
+                            if changes.inserts.count > 0 { self.tableView?.insertRows(at: changes.inserts, with: rowInsetAnimation) }
+                            if changes.deletes.count > 0 { self.tableView?.deleteRows(at: changes.deletes, with: rowDeletionAnimation) }
+                            for move in changes.moves {
+                                self.tableView?.moveRow(at: move.from, to: move.to)
+                            }
                         }
-                    }
-                    self.tableView?.endUpdates()
+                    }, completion: nil)
                 }
                 
                 self.updateSemaphore.signal()

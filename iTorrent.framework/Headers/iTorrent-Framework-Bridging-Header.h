@@ -6,6 +6,7 @@
 #include "result_struct.h"
 #include "file_struct.h"
 #include "settings_pack_struct.h"
+#include "peer_struct.h"
 
 //TORRENT
 int init_engine(const char* client_name, const char* download_path, const char* config_path, settings_pack_struct settings_pack);
@@ -37,6 +38,8 @@ void pop_alerts();
 void set_torrent_files_sequental(const char* torrent_hash, int sequental);
 int get_torrent_files_sequental(const char* torrent_hash);
 
+PeerResult get_peers_by_hash(const char* torrent_hash);
+
 //memory management
 void set_storage_preallocation(int preallocate);
 int get_storage_preallocation();
@@ -46,3 +49,4 @@ void free_result(TorrentResult res);
 void free_files(Files files);
 void free_trackers(Trackers trackers);
 void free_settings_pack(settings_pack_struct settings_pack);
+void free_peer_result(PeerResult res);
