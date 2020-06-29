@@ -14,11 +14,11 @@ class PreferencesController: StaticTableViewController {
     }
 
     var onScreenPopup: PopupView?
-    
+
     override func themeUpdate() {
         super.themeUpdate()
     }
-    
+
     deinit {
         print("PreferencesController Deinit")
     }
@@ -127,10 +127,10 @@ class PreferencesController: StaticTableViewController {
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
                                       buttonTitleFunc: { UserPreferences.downloadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
-                                        Utils.getSizeText(size: Int64(UserPreferences.downloadLimit), decimals: true) + "/S"
+                                          Utils.getSizeText(size: Int64(UserPreferences.downloadLimit), decimals: true) + "/S"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                    self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
+                self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
@@ -145,10 +145,10 @@ class PreferencesController: StaticTableViewController {
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
                                       buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
-                                        Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
+                                          Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
                 }) { button in
                 self.onScreenPopup?.dismiss()
-                    self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
+                self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
@@ -265,6 +265,6 @@ class PreferencesController: StaticTableViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        onScreenPopup?.dismiss()
+//        onScreenPopup?.dismiss()
     }
 }

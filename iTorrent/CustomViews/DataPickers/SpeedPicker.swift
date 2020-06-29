@@ -81,6 +81,31 @@ class SpeedPicker: PopupView, Themed {
         super.dismiss()
         dismissA?(result)
     }
+
+    override func show(_ vc: UIViewController) {
+        super.show(vc)
+
+        customAction = {
+            self.dismiss()
+            Dialog.withTextField(vc, message: "SpeedPicker.Title", textFieldConfiguration: { textField in
+                textField.keyboardType = .numberPad
+                textField.placeholder = "0"
+                textField.text = String(self.result / 1024)
+            }) { textField in
+                var text = textField.text ?? "0"
+                if text.isEmpty { text = "0" }
+                
+                if let res = Int64(text) {
+                    self.result = min(res, 2097151) * 1024
+                    self.action?(self.result)
+                    self.dismissA?(self.result)
+                } else {
+                    Dialog.show(title: "Error", message: "SpeedPicker.Error")
+                }
+            }
+        }
+        customButton.isHidden = false
+    }
 }
 
 extension SpeedPicker: UIPickerViewDataSource, UIPickerViewDelegate {

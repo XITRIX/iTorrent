@@ -20,6 +20,10 @@
 "Checking fastresume" = "Kontrol ediliyor";
 "Paused" = "Durduruldu";
 
+//SpeedPicker
+"SpeedPicker.Title" = "Speed value in KB/s";
+"SpeedPicker.Error" = "Wrong value";
+
 //Main Controller
 "of" = "of";
 

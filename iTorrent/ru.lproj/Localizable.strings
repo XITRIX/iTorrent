@@ -19,6 +19,10 @@
 "Checking fastresume" = "Проверка восстановления";
 "Paused" = "Пауза";
 
+//SpeedPicker
+"SpeedPicker.Title" = "Скорость в KB/s";
+"SpeedPicker.Error" = "Неверное значение";
+
 //Main Controller
 "of" = "из";
 

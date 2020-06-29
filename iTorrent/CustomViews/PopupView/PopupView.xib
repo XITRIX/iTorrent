@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="bottomOffsetConstraint" destination="aNL-vK-I5W" id="lAy-FZ-rP3"/>
                 <outlet property="containerView" destination="17V-xf-wXC" id="gJX-D3-KbF"/>
+                <outlet property="customButton" destination="8Xv-oN-2tU" id="Njg-vm-LAu"/>
                 <outlet property="dismissButton" destination="iy0-Hp-6Ni" id="Lc5-Wh-BW7"/>
                 <outlet property="fxView" destination="ILC-GV-hPC" id="A6v-Yi-6hA"/>
                 <outlet property="headerView" destination="BV7-QH-unR" id="n3R-Qj-3jw"/>
@@ -62,11 +63,25 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xv-oN-2tU">
+                            <rect key="frame" x="14" y="10.5" width="23" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="23" id="OQ5-Xk-Tev"/>
+                                <constraint firstAttribute="height" constant="23" id="j52-0F-I73"/>
+                            </constraints>
+                            <color key="tintColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" backgroundImage="PlusMinus"/>
+                            <connections>
+                                <action selector="customButtonAction:" destination="-1" eventType="touchUpInside" id="Fl2-Rp-Nie"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="185-bW-Wix"/>
                         <constraint firstItem="got-GY-91B" firstAttribute="top" secondItem="BV7-QH-unR" secondAttribute="top" constant="10" id="QYM-5H-tIf"/>
+                        <constraint firstItem="8Xv-oN-2tU" firstAttribute="centerY" secondItem="BV7-QH-unR" secondAttribute="centerY" id="bam-UB-qHg"/>
+                        <constraint firstItem="8Xv-oN-2tU" firstAttribute="leading" secondItem="BV7-QH-unR" secondAttribute="leading" constant="14" id="iy9-b3-UuU"/>
                         <constraint firstAttribute="trailing" secondItem="iy0-Hp-6Ni" secondAttribute="trailing" constant="14" id="un1-fq-a5s"/>
                         <constraint firstItem="got-GY-91B" firstAttribute="centerX" secondItem="BV7-QH-unR" secondAttribute="centerX" id="vZQ-cq-I76"/>
                         <constraint firstItem="iy0-Hp-6Ni" firstAttribute="centerY" secondItem="BV7-QH-unR" secondAttribute="centerY" id="xVL-GT-Xcj"/>
@@ -98,5 +113,6 @@
     </objects>
     <resources>
         <image name="Close" width="25" height="25"/>
+        <image name="PlusMinus" width="25" height="25"/>
     </resources>
 </document>

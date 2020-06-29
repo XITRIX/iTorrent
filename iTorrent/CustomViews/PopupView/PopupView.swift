@@ -14,6 +14,7 @@ class PopupView: UIView {
     @IBOutlet var headerView: UIView!
     @IBOutlet var fxView: UIVisualEffectView!
     @IBOutlet var dismissButton: UIButton!
+    @IBOutlet var customButton: UIButton!
     @IBOutlet var bottomOffsetConstraint: NSLayoutConstraint! {
         didSet {
             bottomOffsetConstraint.constant = bottomOffset
@@ -27,14 +28,16 @@ class PopupView: UIView {
     var contentView: UIView!
     var contentHeight: CGFloat!
     var dismissAction: (() -> ())?
+    var customAction: (() -> ())?
 
     var vc: UIViewController?
 
-    init(contentView: UIView, contentHeight: CGFloat, dismissAction: (() -> ())? = nil) {
+    init(contentView: UIView, contentHeight: CGFloat, customAction: (()->())? = nil, dismissAction: (() -> ())? = nil) {
         super.init(frame: CGRect.zero)
         commonInit()
         self.contentHeight = contentHeight
         self.dismissAction = dismissAction
+        self.customAction = customAction
         setContentView(contentView: contentView)
     }
 
@@ -105,6 +108,10 @@ class PopupView: UIView {
             })
     }
 
+    @IBAction func customButtonAction(_ sender: Any) {
+        customAction?()
+    }
+    
     @IBAction func dismissButtonAction(_ sender: Any) {
         dismiss()
     }
