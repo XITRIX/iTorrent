@@ -307,4 +307,4 @@
 
 //Version Info
 "info" = " Güncelleme bilgisi";
-"UpdateText" = "- Uygulamanın çoğu, bellek sızıntısı oluşmaması için tekrardan yazıldı\n- Uygulamanın kararlılığı farkedilebilir bir şekilde artırıldı\n- Hafıza yönetimi ekledi\n- Dosyaları indirmeden önce hafıza ayırma eklendi\n- Libtorrent 1.2.6 sürümüne güncellendi\n- Kullanıcı arayüzünde geliştirmeler\n- Patreon ile bağlanma eklendi";
+"UpdateText" = "- Added RSS feed\n- Improved section partitioning\n- Added support for other P2P protocols\n- Added support for proxy server\n- Added port selection\n- Added custom choice of speed limitations\n- Libtorrent updated to 1.2.7\n- Other, less noticeable interface improvements\n- Many bugs fixed (possibly new ones added)";
