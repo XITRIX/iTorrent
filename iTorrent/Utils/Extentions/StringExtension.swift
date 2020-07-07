@@ -17,4 +17,8 @@ extension String {
         }
         return result
     }
+    
+    var localized: String {
+        Localize.get(self)
+    }
 }

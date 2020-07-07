@@ -27,9 +27,6 @@ extension TorrentListController {
         tableView.dataSource = torrentListDataSource
         tableView.delegate = self
         
-//        tabBarView.delegate = self
-//        tabBarView.selectItem(at: IndexPath(item: 0, section: 0))
-        
         updateScrollInset()
     }
     
@@ -78,7 +75,6 @@ extension TorrentListController: UITableViewDelegate {
         let sect = torrentListDataSource.snapshot?.sectionIdentifiers[section] ?? ""
         return torrentListDataSource.snapshot?.sectionIdentifiers.count ?? 0 <= section ||
             (torrentListDataSource.snapshot?.numberOfItems(inSection: sect) ?? 0) == 0 ||
-//            viewModel.stateFilter.variable != .null ||
             sect.isEmpty ?
             CGFloat.leastNonzeroMagnitude : 28
     }
@@ -91,6 +87,7 @@ extension TorrentListController: UITableViewDelegate {
         }
         if let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableHeaderView.id) as? TableHeaderView {
             cell.title.text = Localize.get(key: torrentListDataSource.snapshot?.sectionIdentifiers[section])
+            NSLayoutConstraint(item: cell, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0).isActive = true
             return cell
         }
         return nil

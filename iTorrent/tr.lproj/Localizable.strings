@@ -272,6 +272,7 @@
 "minute:parent" = "dakika";
 
 // RSS Feed Provider
+"RssFeedProvider.Empty.Text" = "Your RSS feed is empty!\nAdd feeds to receive content update alerts";
 "RssFeedProvider.Notification.Title" = "RSS Update:";
 "RssFeedProvider.Error.Unknown" = "An unknown error occurred";
 "RssFeedProvider.Error.NotValid" = "URL is not valid";

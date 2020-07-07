@@ -86,40 +86,41 @@
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-3O-T4A">
                                 <rect key="frame" x="57.666666666666657" y="365.33333333333331" width="260" height="130.66666666666669"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyBox" translatesAutoresizingMaskIntoConstraints="NO" id="uJ0-T4-0KI">
-                                        <rect key="frame" x="89" y="0.0" width="82" height="82"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="82" id="C8s-vD-eiq"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="Mgc-qG-DhS"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="82" id="SBd-4V-xA2"/>
-                                            <constraint firstAttribute="width" constant="82" id="qv9-LC-Xb7"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty, go and download something!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-OU-dJk" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="90" width="260" height="40.666666666666657"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="260" id="H4L-GH-hXj"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tMU-dN-W3p">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="130.66666666666666"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyBox" translatesAutoresizingMaskIntoConstraints="NO" id="uJ0-T4-0KI">
+                                                <rect key="frame" x="89" y="0.0" width="82" height="82"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="82" id="C8s-vD-eiq"/>
+                                                    <constraint firstAttribute="width" constant="82" id="qv9-LC-Xb7"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty, go and download something!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-OU-dJk" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="90" width="260" height="40.666666666666657"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="260" id="H4L-GH-hXj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="uJ0-T4-0KI" firstAttribute="centerX" secondItem="E7j-3O-T4A" secondAttribute="centerX" id="EaT-l7-5eD"/>
-                                    <constraint firstAttribute="bottom" secondItem="KnE-OU-dJk" secondAttribute="bottom" id="LtA-Pr-Bi6"/>
-                                    <constraint firstAttribute="trailing" secondItem="KnE-OU-dJk" secondAttribute="trailing" id="QiV-FI-Amm"/>
-                                    <constraint firstItem="uJ0-T4-0KI" firstAttribute="top" secondItem="E7j-3O-T4A" secondAttribute="top" id="ZfH-Gi-1Jj"/>
-                                    <constraint firstItem="KnE-OU-dJk" firstAttribute="top" secondItem="uJ0-T4-0KI" secondAttribute="bottom" constant="8" id="em2-Mb-PK9"/>
-                                    <constraint firstItem="KnE-OU-dJk" firstAttribute="leading" secondItem="E7j-3O-T4A" secondAttribute="leading" id="f4G-oS-NWf"/>
+                                    <constraint firstAttribute="bottom" secondItem="tMU-dN-W3p" secondAttribute="bottom" id="2v0-mH-faI"/>
+                                    <constraint firstItem="tMU-dN-W3p" firstAttribute="top" secondItem="E7j-3O-T4A" secondAttribute="top" id="Beo-qG-qKD"/>
+                                    <constraint firstAttribute="trailing" secondItem="tMU-dN-W3p" secondAttribute="trailing" id="cSp-hE-9O4"/>
+                                    <constraint firstItem="tMU-dN-W3p" firstAttribute="leading" secondItem="E7j-3O-T4A" secondAttribute="leading" id="qNU-LP-I5E"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxi-gq-Num" customClass="GADBannerView">
@@ -997,11 +998,11 @@
                                         <rect key="frame" x="0.0" y="1236" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bPs-F0-4Cu" id="Pg1-iC-Buh">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Trackers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4sl-7t-NS3">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1017,11 +1018,11 @@
                                         <rect key="frame" x="0.0" y="1280" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RsN-20-yfj" id="cyn-QD-Ek2">
-                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="356" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Files" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2LQ-iM-Wa2">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="333" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

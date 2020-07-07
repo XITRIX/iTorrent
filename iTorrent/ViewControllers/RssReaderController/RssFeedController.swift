@@ -11,6 +11,7 @@ import UIKit
 
 class RssFeedController: ThemedUIViewController {
     var tableView: UITableView!
+    var placeholder: PlaceHolderView!
     var refreshControl: UIRefreshControl?
     
     var editButton: UIBarButtonItem {
@@ -59,6 +60,14 @@ class RssFeedController: ThemedUIViewController {
         
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbarItems = [space, addFeedButton, space, removeFeedButton, space]
+        
+        placeholder = PlaceHolderView.fromNib()
+        placeholder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        placeholder.frame = view.frame
+        view.addSubview(placeholder)
+        
+        placeholder.textLabel.text = "RssFeedProvider.Empty.Text".localized
+        placeholder.imageView.image = UIImage(named: "EmptyRss")
     }
     
     override func viewDidLoad() {
@@ -91,6 +100,8 @@ class RssFeedController: ThemedUIViewController {
         RssFeedProvider.shared.rssModels.bind { [weak self] new in
             guard let self = self else { return }
             
+            self.placeholder.isHidden = new.count != 0
+            
             var snapshot = DataSnapshot<String, RssModel>()
             snapshot.appendSections([""])
             snapshot.appendItems(new, toSection: "")
@@ -122,6 +133,10 @@ class RssFeedController: ThemedUIViewController {
         navigationController?.setToolbarHidden(toolBarIsHidden!, animated: true)
         channelSetupView?.dismiss()
         editModeUpdate()
+        UIView.animate(withDuration: 0.3) {
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc func addRss() {

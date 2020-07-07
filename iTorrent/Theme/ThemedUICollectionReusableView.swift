@@ -16,7 +16,6 @@ class ThemedUICollectionReusableView: UICollectionReusableView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
     deinit {
@@ -25,7 +24,7 @@ class ThemedUICollectionReusableView: UICollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        themeUpdate()
+        setup()
     }
 
     func setup() {

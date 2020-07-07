@@ -128,6 +128,7 @@
 		7CBD074A244CFACA00F0BCC8 /* PatronNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBD0749244CFACA00F0BCC8 /* PatronNameCell.swift */; };
 		7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */; };
 		7CBEFCF12413039400FEEA05 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEFCF02413039400FEEA05 /* WebViewController.swift */; };
+		7CC4368524AB9E4500782145 /* PlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4368424AB9E4500782145 /* PlaceHolderView.swift */; };
 		7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7662623F93F690072338B /* NotificationHelper.swift */; };
 		7CCD02C72438962B00B1669F /* ArrayExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02C62438962B00B1669F /* ArrayExtentions.swift */; };
 		7CCD02C924389A4F00B1669F /* DiffCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02C824389A4F00B1669F /* DiffCalculator.swift */; };
@@ -141,6 +142,7 @@
 		7CCD310A249D479900ECF631 /* NetworkPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD3109249D479900ECF631 /* NetworkPreferencesController.swift */; };
 		7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */; };
 		7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
+		7CCE8D7724AB9F7900C914BA /* PlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCE8D7624AB9F7900C914BA /* PlaceHolderView.xib */; };
 		7CD43AE92488519B00EA531E /* UIViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AE82488519B00EA531E /* UIViewBinding.swift */; };
 		7CD43AEB24895DF600EA531E /* UIActivityIndicatorViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */; };
 		7CD71419248BD64C00A24E98 /* RssFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD71418248BD64C00A24E98 /* RssFeedController.swift */; };
@@ -333,6 +335,7 @@
 		7CBD0749244CFACA00F0BCC8 /* PatronNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronNameCell.swift; sourceTree = "<group>"; };
 		7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtentions.swift; sourceTree = "<group>"; };
 		7CBEFCF02413039400FEEA05 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		7CC4368424AB9E4500782145 /* PlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderView.swift; sourceTree = "<group>"; };
 		7CC7662623F93F690072338B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		7CCD02C62438962B00B1669F /* ArrayExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtentions.swift; sourceTree = "<group>"; };
 		7CCD02C824389A4F00B1669F /* DiffCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCalculator.swift; sourceTree = "<group>"; };
@@ -347,6 +350,7 @@
 		7CCD3109249D479900ECF631 /* NetworkPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPreferencesController.swift; sourceTree = "<group>"; };
 		7CCD494922A6DC990061FEE5 /* ThemedUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUINavigationController.swift; sourceTree = "<group>"; };
 		7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUIActivityViewController.swift; sourceTree = "<group>"; };
+		7CCE8D7624AB9F7900C914BA /* PlaceHolderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceHolderView.xib; sourceTree = "<group>"; };
 		7CD43AE82488519B00EA531E /* UIViewBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBinding.swift; sourceTree = "<group>"; };
 		7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewBinding.swift; sourceTree = "<group>"; };
 		7CD71418248BD64C00A24E98 /* RssFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedController.swift; sourceTree = "<group>"; };
@@ -419,6 +423,7 @@
 		7C0D2F1B20F77F5200B7FBC6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7CC4368324AB9DF300782145 /* PlaceHolder */,
 				7C97E4FD2434E755004923D8 /* SANavigation */,
 				7C6189AF2433476F00B4EF5B /* FileProvider */,
 				7CE61CAD2426977D0038717C /* ColoredProgressBar */,
@@ -850,6 +855,15 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		7CC4368324AB9DF300782145 /* PlaceHolder */ = {
+			isa = PBXGroup;
+			children = (
+				7CC4368424AB9E4500782145 /* PlaceHolderView.swift */,
+				7CCE8D7624AB9F7900C914BA /* PlaceHolderView.xib */,
+			);
+			path = PlaceHolder;
+			sourceTree = "<group>";
+		};
 		7CD71417248BD61200A24E98 /* RssReaderController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1100,6 +1114,7 @@
 				7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */,
 				7C1682C324A8F7F200B04169 /* PeerCell.xib in Resources */,
 				7CFDDCCF235BA4BE0008EBEA /* UpdateInfoCell.xib in Resources */,
+				7CCE8D7724AB9F7900C914BA /* PlaceHolderView.xib in Resources */,
 				7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */,
 				7C80F74624334AC2005C4050 /* FileCell.xib in Resources */,
 				7CD7141E248BFE5D00A24E98 /* RssChannelCell.xib in Resources */,
@@ -1333,6 +1348,7 @@
 				7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */,
 				7C18DF03231D514F00A14326 /* CellModelProtocol.swift in Sources */,
 				7CB9BBAA23786C8A00C8F05E /* WebDavPreferencesController.swift in Sources */,
+				7CC4368524AB9E4500782145 /* PlaceHolderView.swift in Sources */,
 				7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */,
 				7C495527244E4B3B0057648A /* UIViewExtensions.swift in Sources */,
 				7C18DF07231D5DDB00A14326 /* PreferenceCellProtocol.swift in Sources */,

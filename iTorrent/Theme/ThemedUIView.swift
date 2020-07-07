@@ -13,7 +13,7 @@ class ThemedUIView: UIView, Themed {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        themeUpdate()
+        setup()
     }
     
     override init(frame: CGRect) {
@@ -23,7 +23,6 @@ class ThemedUIView: UIView, Themed {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
     func setup() {

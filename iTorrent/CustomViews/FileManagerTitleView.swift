@@ -24,11 +24,15 @@ class FileManagerTitleView: UIView, Themed {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
     }
 
     func setup() {

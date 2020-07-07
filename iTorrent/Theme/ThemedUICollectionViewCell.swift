@@ -16,7 +16,6 @@ class ThemedUICollectionViewCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
 
     deinit {
@@ -25,7 +24,7 @@ class ThemedUICollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        themeUpdate()
+        setup()
     }
 
     func setup() {

@@ -41,7 +41,6 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
     }
     
     deinit {
@@ -50,7 +49,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        themeUpdate()
+        setup()
     }
 
     func setup() {

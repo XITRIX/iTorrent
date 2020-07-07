@@ -288,6 +288,7 @@
 "mime.calculating" = "Вычисление...";
 
 // RSS Feed Provider
+"RssFeedProvider.Empty.Text" = "Ваша RSS лента пуста!\nДобавьте каналы что бы получать оповещения об обновлении контента";
 "RssFeedProvider.Notification.Title" = "Обновления RSS:";
 "RssFeedProvider.Error.Unknown" = "Неизвестная ошибка";
 "RssFeedProvider.Error.NotValid" = "Не верный URL";

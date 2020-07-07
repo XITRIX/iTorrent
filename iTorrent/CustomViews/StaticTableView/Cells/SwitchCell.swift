@@ -28,7 +28,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     override func themeUpdate() {
         super.themeUpdate()
         let theme = Themes.current
-        title?.textColor = theme.mainText
+        title.textColor = theme.mainText
     }
 
     override func prepareForReuse() {
