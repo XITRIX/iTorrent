@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class ColoredProgressBarView: UIView {
+class ColoredProgressBarView: ThemedUIView {
     var segments: [(color: UIColor, progress: Float)] = [(.systemOrange, 0.4), (.systemBlue, 0.3), (.systemGray, 0.25), (.systemGreen, 0.05)]
 
     public func setProgress(_ segments: [(color: UIColor, progress: Float)]) {
@@ -22,6 +22,10 @@ class ColoredProgressBarView: UIView {
         clipsToBounds = true
     }
 
+    override func themeUpdate() {
+        backgroundColor = Themes.current.backgroundMain
+    }
+    
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(bounds.size.height)

@@ -42,16 +42,18 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Psc-nG-iJr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5wA-3m-wYD"/>
-                    <constraint firstAttribute="trailing" secondItem="Psc-nG-iJr" secondAttribute="trailing" id="J1p-KD-LTP"/>
                     <constraint firstAttribute="trailing" secondItem="Bqq-40-XdF" secondAttribute="trailing" id="WId-Tg-WxK"/>
                     <constraint firstAttribute="bottom" secondItem="Psc-nG-iJr" secondAttribute="bottom" id="mgX-NC-F9I"/>
                     <constraint firstAttribute="bottom" secondItem="Bqq-40-XdF" secondAttribute="bottom" id="s3s-Vi-7uu"/>
                     <constraint firstItem="Bqq-40-XdF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="suI-Fw-gkW"/>
-                    <constraint firstItem="Psc-nG-iJr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yeu-iD-hkG"/>
                     <constraint firstItem="Bqq-40-XdF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yr2-Ee-wUE"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Psc-nG-iJr" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" id="mfa-LB-L5A"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="Psc-nG-iJr" secondAttribute="trailing" id="qBA-Qi-ggs"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="Psc-nG-iJr" id="GDX-qQ-myG"/>
