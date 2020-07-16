@@ -87,7 +87,6 @@ extension TorrentListController: UITableViewDelegate {
         }
         if let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableHeaderView.id) as? TableHeaderView {
             cell.title.text = Localize.get(key: torrentListDataSource.snapshot?.sectionIdentifiers[section])
-            NSLayoutConstraint(item: cell, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0).isActive = true
             return cell
         }
         return nil

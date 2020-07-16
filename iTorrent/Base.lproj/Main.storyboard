@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-MO-AoK" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-MO-AoK" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -84,7 +84,7 @@
                                 </prototypes>
                             </tableView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-3O-T4A">
-                                <rect key="frame" x="57.666666666666657" y="365.33333333333331" width="260" height="130.66666666666669"/>
+                                <rect key="frame" x="57.666666666666657" y="351.33333333333331" width="260" height="130.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tMU-dN-W3p">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="130.66666666666666"/>
@@ -98,7 +98,7 @@
                                                     <constraint firstAttribute="width" constant="82" id="qv9-LC-Xb7"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty, go and download something!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-OU-dJk" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List is empty, go and download something!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-OU-dJk" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="90" width="260" height="40.666666666666657"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="H4L-GH-hXj"/>
@@ -143,11 +143,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxi-gq-Num" secondAttribute="bottom" id="9yD-lu-xvj"/>
                             <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="2.5" id="IOs-1r-zKT"/>
                             <constraint firstItem="nxi-gq-Num" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M23-SY-liw"/>
+                            <constraint firstItem="nxi-gq-Num" firstAttribute="top" relation="greaterThanOrEqual" secondItem="E7j-3O-T4A" secondAttribute="bottom" id="Mvn-oc-kG2"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R2A-HJ-SSf"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SWS-Ke-a9L"/>
                             <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tf6-pG-lDm"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Za2-qq-lXh"/>
-                            <constraint firstItem="E7j-3O-T4A" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="22" id="aPx-jZ-Piy"/>
+                            <constraint firstItem="E7j-3O-T4A" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="8" id="aPx-jZ-Piy"/>
                             <constraint firstAttribute="bottom" secondItem="KYM-MO-AoK" secondAttribute="bottom" id="mVJ-2H-IOE"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="q0D-OC-eGZ"/>
                             <constraint firstAttribute="trailing" secondItem="nxi-gq-Num" secondAttribute="trailing" id="usz-dZ-670"/>
@@ -1536,8 +1537,6 @@ Thanks for all your support!</string>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7oo-qb-XiQ" secondAttribute="bottom" constant="16" id="O4n-M7-kc8"/>
                                             <constraint firstItem="7oo-qb-XiQ" firstAttribute="top" secondItem="rr6-WS-LyB" secondAttribute="top" constant="16" id="bvH-nN-BwY"/>
-                                            <constraint firstAttribute="trailing" secondItem="7oo-qb-XiQ" secondAttribute="trailing" constant="16" id="dSn-oM-uqL"/>
-                                            <constraint firstItem="7oo-qb-XiQ" firstAttribute="leading" secondItem="rr6-WS-LyB" secondAttribute="leading" constant="16" id="iJT-mB-klr"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1554,7 +1553,9 @@ Thanks for all your support!</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="7oo-qb-XiQ" firstAttribute="leading" secondItem="2go-8C-vqG" secondAttribute="leading" constant="16" id="Ee1-Tw-9RW"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="trailing" secondItem="GTC-Uy-e9M" secondAttribute="trailing" id="Iw2-Pm-Crs"/>
+                            <constraint firstItem="2go-8C-vqG" firstAttribute="trailing" secondItem="7oo-qb-XiQ" secondAttribute="trailing" constant="16" id="Jwe-gs-1gy"/>
                             <constraint firstAttribute="bottom" secondItem="fim-SI-BRV" secondAttribute="bottom" id="SGL-Ia-24J"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="top" secondItem="GTC-Uy-e9M" secondAttribute="top" constant="20" symbolic="YES" id="Yne-T3-zD9"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="leading" secondItem="GTC-Uy-e9M" secondAttribute="leading" id="igF-Kz-lse"/>
@@ -2018,7 +2019,7 @@ Thanks for all your support!</string>
     <color key="tintColor" red="1" green="0.29803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="ChatPin" width="30.666666030883789" height="12.666666984558105"/>
-        <image name="EmptyBox" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="EmptyBox" width="82" height="82"/>
         <image name="Folder" width="170.66667175292969" height="170.66667175292969"/>
         <image name="GreenCheckMarker" width="35" height="35"/>
         <image name="More2" width="25" height="25"/>

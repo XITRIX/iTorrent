@@ -11,6 +11,10 @@ import Foundation
 import SwiftyXMLParser
 
 class RssModel: Hashable, Codable, DiffAware {
+    enum Error: Swift.Error {
+        case missingKey
+    }
+    
     var xmlLink: URL
     var title: String
     var description: String
@@ -30,12 +34,14 @@ class RssModel: Hashable, Codable, DiffAware {
         }
         return title
     }
+    
     var displayDescription: String {
         if customDescriotion?.isEmpty == false {
             return customDescriotion!
         }
         return description
     }
+    
     var updatesCount: Int {
         items.filter { $0.new }.count
     }
@@ -47,10 +53,18 @@ class RssModel: Hashable, Codable, DiffAware {
             let contents = try String(contentsOf: xmlLink)
             let xml = try XML.parse(contents)
             
-            title = xml["rss", "channel", "title"].text!
-            description = xml["rss", "channel", "description"].text!
-            self.link = URL(string: xml["rss", "channel", "link"].text!)!
-            linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xml["rss", "channel", "link"].text!)!
+            guard let title = xml["rss", "channel", "title"].text,
+                let description = xml["rss", "channel", "description"].text,
+                let xmlLink = xml["rss", "channel", "link"].text,
+                let link = URL(string: xmlLink),
+                let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink) else {
+                    throw Error.missingKey
+            }
+            
+            self.title = title
+            self.description = description
+            self.link = link
+            self.linkImage = linkImage
             
             for xmlItem in xml["rss", "channel", "item"] {
                 items.append(RssItemModel(xml: xmlItem))

@@ -15,10 +15,6 @@ class PreferencesController: StaticTableViewController {
 
     var onScreenPopup: PopupView?
 
-    override func themeUpdate() {
-        super.themeUpdate()
-    }
-
     deinit {
         print("PreferencesController Deinit")
     }
@@ -243,28 +239,15 @@ class PreferencesController: StaticTableViewController {
             let paypal = UIAlertAction(title: "PayPal", style: .default) { _ in
                 Utils.openUrl("https://paypal.me/xitrix")
             }
-            let liberapay = UIAlertAction(title: "Liberapay", style: .default) { _ in
-                Utils.openUrl("https://liberapay.com/XITRIX")
-            }
-            let kofi = UIAlertAction(title: "Ko-fi", style: .default) { _ in
-                Utils.openUrl("https://ko-fi.com/xitrix")
-            }
             let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
 
             alert.addAction(card)
             alert.addAction(paypal)
-            alert.addAction(liberapay)
-            alert.addAction(kofi)
             alert.addAction(cancel)
 
             self.present(alert, animated: true)
         })
         donates.append(SegueCell.Model(self, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        onScreenPopup?.dismiss()
     }
 }
