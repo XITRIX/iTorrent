@@ -43,21 +43,11 @@ extension TorrentListController {
             tableView.tableHeaderView = searchController.searchBar
         }
     }
-    
-    func searchFilter(_ model: TorrentModel) -> Bool {
-        if let filter = searchFilter {
-            let separatedQuery = filter.lowercased().split {
-                $0 == " " || $0 == ","
-            }
-            return separatedQuery.allSatisfy({model.title.lowercased().contains($0)})
-        }
-        return true
-    }
 }
 
 extension TorrentListController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        searchFilter = searchController.searchBar.text
-        update()
+        viewModel.searchFilter.variable = searchController.searchBar.text
+        viewModel.update()
     }
 }

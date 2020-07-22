@@ -8,6 +8,7 @@
 
 
 // Torrent States
+"State.All" = "All";
 "Queued" = "Queued";
 "Hashing" = "Hashing";
 "Metadata" = "Metadata";
@@ -18,14 +19,20 @@
 "Checking fastresume" = "Checking fastresume";
 "Paused" = "Paused";
 
+//SpeedPicker
+"SpeedPicker.Title" = "Speed value in KB/s";
+"SpeedPicker.Error" = "Wrong value";
+
 //Main Controller
 "of" = "of";
 
+"Add" = "Add";
 "Done" = "Done";
 "Edit" = "Edit";
 "Select" = "Select";
 "Select All" = "Select All";
 "Deselect" = "Deselect";
+"None" = "None";
 
 "Search" = "Search";
 
@@ -82,23 +89,28 @@
 
 //Settings Controller
 "Settings.Title" = "Preferences";
+"Settings.Appearance.Header" = "Appearance";
 "Settings.Order" = "Section order";
 "Settings.AutoTheme" = "Automatic theme";
 "Settings.Theme" = "Dark mode";
+
 "Settings.Storage.Header" = "Storage";
 "Settings.Storage.Available" = "Available";
 "Settings.Storage.Allocate" = "Allocate storage";
 "Settings.Storage.Allocate.Hint" = "If enabled, iTorrent will pre-reserve memory for downloaded files";
+
 "Settings.BackgroundEnable" = "Enable";
 "Settings.BackgroundSeeding" = "Allow seeding";
 "Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.BackgroundHeader" = "Background downloading";
 "Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
+
 "Settings.ZeroSpeedLimit" = "Zero speed limit";
 "Settings.ZeroSpeedLimit.Hint" = "If download speed equals zero for a certain amount of time, application will stop background processing to prevent useless battery drain";
 "Settings.DownLimit" = "Download limit";
 "Settings.UpLimit" = "Upload limit";
 "Settings.SpeedHeader" = "Speed limitation";
+
 "Settings.FTPEnable" = "Enable";
 "Settings.FTPEnable.Hint" = "Using this setting, you can enable the file server to which you can connect via a regular Web browser, or WebDav client";
 "Settings.FTP.Settings" = "Settings";
@@ -116,10 +128,39 @@
 "Settings.FTP.WebDav.WebDavPort" = "Port";
 "Settings.FTP.WebDav.WebDavText" = "Use WebDAV client to connect to iTorrent";
 "Settings.FTPHeader" = "File sharing";
+
+"Settings.Network.Header" = "Network";
+"Settings.Network.Proxy" = "Proxy";
+"Settings.Network.Connection" = "Connection settings";
+"Settings.Network.Proxy.Type.Header" = "Host";
+"Settings.Network.Proxy.Type" = "Proxy type";
+"Settings.Network.Proxy.SelectType" = "Select proxy type:";
+"Settings.Network.Proxy.Hostname" = "Hostname";
+"Settings.Network.Proxy.Port" = "Port";
+"Settings.Network.Proxy.Auth.Header" = "Authorization";
+"Settings.Network.Proxy.Auth" = "Requires authorization";
+"Settings.Network.Proxy.Login" = "Login";
+"Settings.Network.Proxy.Password" = "Password";
+"Settings.Network.Protocols" = "Connection protocols";
+"Settings.Network.DHT" = "Enable DHT";
+"Settings.Network.DHT.Hint" = "It allows BitTorrent-clients to find each other without the use of tracker. Enabling this will increase the battery usage";
+"Settings.Network.LSD" = "Enable LSD";
+"Settings.Network.LSD.Hint" = "It's designed to support the discovery of local BitTorrent peers, aiming to minimize the traffic";
+"Settings.Network.uTP" = "Enable µTP";
+"Settings.Network.uTP.Hint" = "It's intended to mitigate poor latency and other congestion control issues found in conventional BitTorrent over TCP, while providing reliable, ordered delivery";
+"Settings.Network.UPnP" = "Enable UPnP";
+"Settings.Network.NAT-PMP" = "Enable NAT-PMP";
+"Settings.Network.Port" = "Port";
+"Settings.Network.DefauldPort" = "Use default port";
+"Settings.Network.DefauldPort.Hint" = "Sets the start port to [6881] and the end port as first + 10 [6891]";
+"Settings.Network.PortFirst" = "Start";
+"Settings.Network.PortSecond" = "End";
+
 "Settings.NotifyFinishLoad" = "On finish loading";
 "Settings.NotifyFinishSeed" = "On finish seeding";
 "Settings.NotifyBadge" = "Enable app's badge icon";
 "Settings.NotifyHeader" = "Notifications";
+
 "Settings.UpdateSite" = "Page on GitHub";
 "Settings.UpdateSite.Open" = "Open";
 "Settings.UpdateHeader" = "Updates";
@@ -193,11 +234,11 @@
 "Add Tracker" = "Add Tracker";
 "Enter the full tracker's URL" = "Enter the full tracker URL";
 "Tracker's URL" = "Enter tracker URL";
-"Add" = "Add";
 "Peers" = "Peers";
 "Seeds" = "Seeds";
 "Leechers" = "Leechers";
 "Are you shure to remove this trackers?" = "Are you shure to remove this trackers?";
+"Tracker's URL copied to clipboard!" = "Tracker's URL copied to clipboard!";
 
 //AppDelegate
 "Obtaining Metadata" = "Obtaining Metadata";
@@ -237,6 +278,31 @@
 "mime.other" = "Other";
 "mime.calculating" = "Calculating...";
 
+// RSS Feed Provider
+"RssFeedProvider.Empty.Text" = "Your RSS feed is empty!\nAdd feeds to receive content update alerts";
+"RssFeedProvider.Notification.Title" = "RSS Update:";
+"RssFeedProvider.Error.Unknown" = "An unknown error occurred";
+"RssFeedProvider.Error.NotValid" = "URL is not valid";
+"RssFeedProvider.Error.Exists" = "This RSS Feed is already exists";
+
+// RSS Feed Controller
+"RssFeedController.AddTitle" = "Add RSS Channel";
+"RssFeedController.RemoveTitle" = "Are you sure to remove this feeds:";
+
+// RSS Channel Setup Controller
+"RssChannelSetup.UrlCopied" = "Chanel's URL copied to clipboard!";
+"RssChannelSetup.Title" = "Title";
+"RssChannelSetup.Description" = "Description";
+"RssChannelSetup.Notify" = "Notify on update";
+
+// RSS Channel Controller
+"RssChannelController.Seen" = "Seen";
+"RssChannelController.Unseen" = "Unseen";
+
+// RSS Item Controller
+"RssItemController.PinTorrent" = "Torrent file is attached to this post";
+"RssItemController.PinMagnet" = "Magnet link is attached to this post";
+
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Most of the application was rewritten from scratch, no more memory leaks\n- Significantly improved stability of the app\n- Memory management implemented\n- Memory allocation for files before downloading\n- Libtorrent updated to 1.2.6\n- UI improvements, noticeable and not so much\n- Added integration with Patreon";
+"UpdateText" = "- Added RSS feed\n- Improved section partitioning\n- Added support for other P2P protocols\n- Added support for proxy server\n- Added port selection\n- Added custom choice of speed limitations\n- Libtorrent updated to 1.2.7\n- Other, less noticeable interface improvements\n- Many bugs fixed (possibly new ones added)";

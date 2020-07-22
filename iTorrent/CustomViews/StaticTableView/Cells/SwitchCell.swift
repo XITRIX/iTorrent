@@ -28,7 +28,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     override func themeUpdate() {
         super.themeUpdate()
         let theme = Themes.current
-        title?.textColor = theme.mainText
+        title.textColor = theme.mainText
     }
 
     override func prepareForReuse() {
@@ -78,9 +78,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     }
 
     @IBAction func hintButtonAction(_ sender: UIButton) {
-        let vc = ThemedUIAlertController(title: Localize.get("Hint"), message: Localize.get(hintText ?? ""), preferredStyle: .alert)
-        vc.addAction(UIAlertAction(title: "OK", style: .cancel))
-        Utils.topViewController?.present(vc, animated: true)
+        Dialog.show(title: "Hint", message: hintText, closeText: "OK")
     }
 
     struct Model: CellModelProtocol {

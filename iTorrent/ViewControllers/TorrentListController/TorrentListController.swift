@@ -9,7 +9,7 @@
 import GoogleMobileAds
 import UIKit
 
-class TorrentListController: ThemedUIViewController {
+class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var tableView: ThemedUITableView!
     @IBOutlet var adsView: GADBannerView!
     
@@ -18,16 +18,19 @@ class TorrentListController: ThemedUIViewController {
     @IBOutlet var tableviewPlaceholderText: UILabel!
     
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var rssButton: UIBarButtonItem!
     
     var initialBarButtonItems: [UIBarButtonItem] = []
     var editmodeBarButtonItems: [UIBarButtonItem] = []
     
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
-    var searchFilter: String?
-    
     var adsLoaded = false
     
-    var torrentSections: [ReloadableSection<TorrentModel>] = []
+    var torrentListDataSource: TorrentListDataSource!
+    
+    override var toolBarIsHidden: Bool? {
+        return false
+    }
     
     func localize() {
         tableviewPlaceholderText.text = Localize.get("MainController.Table.Placeholder.Text")
@@ -55,8 +58,7 @@ class TorrentListController: ThemedUIViewController {
         searchbarUpdateTheme(theme)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setupViews() {
         localize()
         
         initializeTableView()
@@ -66,59 +68,42 @@ class TorrentListController: ThemedUIViewController {
         showUpdateLog()
     }
     
+    override func binding() {
+        /// TableView Binding
+        viewModel.tableViewData.bind { torrents in
+            var snapshot = DataSnapshot<String, TorrentModel>()
+            snapshot.appendSections(torrents.map { $0.title })
+            torrents.forEach { snapshot.appendItems($0.items, toSection: $0.title) }
+            self.torrentListDataSource.apply(snapshot)
+            self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
+        }.dispose(with: disposalBag)
+        
+        /// Binding Loading Indicator
+//        loadingIndicator.isAnimatingBox.bindTo(viewModel.loadingIndicatiorHidden).dispose(with: disposalBag)
+        viewModel.loadingIndicatiorHidden.bind { [weak self] hidden in
+            if hidden {
+                self?.loadingIndicator.stopAnimating()
+            } else {
+                self?.loadingIndicator.startAnimating()
+            }
+        }.dispose(with: disposalBag)
+        
+        /// Binding RSS Indicator
+        RssFeedProvider.shared.isRssUpdates.bind { [weak self] updates in
+            self?.rssButton.image = UIImage(named: updates ? "RssNews" : "Rss")
+        }.dispose(with: disposalBag)
+        
+        /// Binding TableView Placeholder
+//        tableviewPlaceholder.isHiddenBox.bindTo(viewModel.tableviewPlaceholderHidden).dispose(with: disposalBag)
+        viewModel.tableviewPlaceholderHidden.bind { [weak self] hidden in
+            self?.tableviewPlaceholder.isHidden = hidden
+        }.dispose(with: disposalBag)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(update), name: .mainLoopTick, object: nil)
-        navigationController?.isToolbarHidden = false
         smoothlyDeselectRows(in: tableView)
         viewWillAppearAds()
-        update()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    let updateSemaphore = DispatchSemaphore(value: 1)
-    @objc func update(animated: Bool = true) {
-        if Core.shared.state == .Initializing { return }
-        else { loadingIndicator.stopAnimating() }
-        
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.updateSemaphore.wait()
-            let searchFiltered = Array(Core.shared.torrents.values).filter { self.searchFilter($0) }
-            let tempBuf = SortingManager.sortTorrentManagers(managers: searchFiltered)
-            let changes = DiffCalculator.calculate(oldSectionItems: self.torrentSections, newSectionItems: tempBuf)
-            self.torrentSections = tempBuf
-            DispatchQueue.main.async { [changes] in
-                if changes.hasChanges() {
-                    let animation: UITableView.RowAnimation = animated ? .fade : .none
-                    
-                    do {
-                        try ObjC.catchException({
-                            self.tableView.beginUpdates()
-                            if changes.deletes.count > 0 { self.tableView.deleteSections(changes.deletes, with: animation) }
-                            if changes.inserts.count > 0 { self.tableView.insertSections(changes.inserts, with: animation) }
-                            if changes.updates.reloads.count > 0 { self.tableView.reloadRows(at: changes.updates.reloads, with: animation) }
-                            if changes.updates.inserts.count > 0 { self.tableView.insertRows(at: changes.updates.inserts, with: animation) }
-                            if changes.updates.deletes.count > 0 { self.tableView.deleteRows(at: changes.updates.deletes, with: animation) }
-                            if changes.updates.moves.count > 0 { changes.updates.moves.forEach { self.tableView.moveRow(at: $0.from, to: $0.to) } }
-                            if changes.moves.count > 0 { changes.moves.forEach { self.tableView.moveSection($0.from, toSection: $0.to) } }
-                            self.tableView.endUpdates()
-                        })
-                    } catch {
-                        self.tableView.reloadData()
-                    }
-                    
-                }
-                
-                self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
-                
-                self.tableviewPlaceholder.isHidden = self.torrentSections.contains(where: { $0.value.count > 0 })
-                self.updateSemaphore.signal()
-            }
-        }
     }
     
     @IBAction func addTorrentAction(_ sender: UIBarButtonItem) {
@@ -136,10 +121,19 @@ class TorrentListController: ThemedUIViewController {
         show(PreferencesController(), sender: self)
     }
     
+    @IBAction func rssAction(_ sender: UIBarButtonItem) {
+        let back = UIBarButtonItem()
+        back.title = title
+        navigationItem.backBarButtonItem = back
+        show(RssFeedController(), sender: self)
+    }
+    
     @IBAction func sortAction(_ sender: UIBarButtonItem) {
         let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
-            self.update()
+            self.viewModel.update()
+            self.updateScrollInset()
         })
         present(sortingController, animated: true)
     }
 }
+ 

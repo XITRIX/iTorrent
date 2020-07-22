@@ -26,6 +26,10 @@ typedef struct TorrentInfo {
     long long total_upload;
     int num_seeds;
     int num_peers;
+    int num_leechers;
+    int num_total_seeds;
+    int num_total_peers;
+    int num_total_leechers;
     long long total_size;
     long long total_done;
     time_t creation_date;

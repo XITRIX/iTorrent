@@ -10,7 +10,7 @@ import UIKit
 
 extension TorrentListController {
     func initializeEditMode() {
-        initialBarButtonItems.append(navigationItem.rightBarButtonItem!)
+        initialBarButtonItems.append(contentsOf: navigationItem.rightBarButtonItems!)
         initialBarButtonItems.append(contentsOf: toolbarItems!)
 
         editmodeBarButtonItems.append(UIBarButtonItem(title: NSLocalizedString("Select All", comment: ""), style: .plain, target: self, action: #selector(selectAllItem(_:))))
@@ -31,12 +31,12 @@ extension TorrentListController {
         navigationItem.leftBarButtonItem!.title = edit ? Localize.get("Done") : Localize.get("Edit")
 
         if edit {
-            navigationItem.setRightBarButton(editmodeBarButtonItems[0], animated: true)
+            navigationItem.setRightBarButtonItems([editmodeBarButtonItems[0]], animated: true)
             setToolbarItems(Array(editmodeBarButtonItems.dropFirst(1)), animated: true)
             updateEditStatus() 
         } else {
-            navigationItem.setRightBarButton(initialBarButtonItems[0], animated: true)
-            setToolbarItems(Array(initialBarButtonItems.dropFirst(1)), animated: true)
+            navigationItem.setRightBarButtonItems([initialBarButtonItems[0], initialBarButtonItems[1]], animated: true)
+            setToolbarItems(Array(initialBarButtonItems.dropFirst(2)), animated: true)
         }
     }
     
@@ -53,18 +53,22 @@ extension TorrentListController {
 
     @objc func startSelectedOfTorrents(_ sender: UIBarButtonItem) {
         tableView.indexPathsForSelectedRows?.forEach {
-            TorrentSdk.startTorrent(hash: torrentSections[$0.section].value[$0.row].value.hash)
+            if let hash = torrentListDataSource.snapshot?.getItem(from: $0)?.hash {
+                TorrentSdk.startTorrent(hash: hash)
+            }
         }
     }
 
     @objc func pauseSelectedOfTorrents(_ sender: UIBarButtonItem) {
         tableView.indexPathsForSelectedRows?.forEach {
-            TorrentSdk.stopTorrent(hash: torrentSections[$0.section].value[$0.row].value.hash)
+            if let hash = torrentListDataSource.snapshot?.getItem(from: $0)?.hash {
+                TorrentSdk.stopTorrent(hash: hash)
+            }
         }
     }
 
     @objc func rehashSelectedTorrents(_ sender: UIBarButtonItem) {
-        if let torrents = tableView.indexPathsForSelectedRows?.map({ torrentSections[$0.section].value[$0.row].value }) {
+        if let torrents = tableView.indexPathsForSelectedRows?.compactMap({ torrentListDataSource.snapshot?.getItem(from: $0) }) {
             let message = torrents.map { $0.title }.joined(separator: "\n")
 
             let controller = ThemedUIAlertController(title: Localize.get("This action will recheck the state of all downloaded files for torrents:"),
@@ -89,10 +93,10 @@ extension TorrentListController {
     }
 
     @objc func removeSelectedTorrents(_ sender: UIBarButtonItem) {
-        if let torrents = tableView.indexPathsForSelectedRows?.map({ torrentSections[$0.section].value[$0.row].value }) {
+        if let torrents = tableView.indexPathsForSelectedRows?.compactMap({ torrentListDataSource.snapshot?.getItem(from: $0) }) {
             Core.shared.removeTorrentsUI(hashes: torrents.map { $0.hash }, sender: sender, direction: .down) {
                 self.tableView.indexPathsForSelectedRows?.forEach({self.tableView.deselectRow(at: $0, animated: true)})
-                self.update()
+                self.viewModel.update()
                 self.updateEditStatus()
             }
         }

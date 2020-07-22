@@ -57,6 +57,8 @@ class PatreonAccount: Codable {
         get { isPatron || fullVersion }
     }
     
+    var fixedAccount: Bool = false
+    
     init(response: PatreonAPI.AccountResponse) {
         self.identifier = response.data.id
         self.name = response.data.attributes.full_name
@@ -70,6 +72,15 @@ class PatreonAccount: Codable {
         } else {
             self.isPatron = false
         }
+    }
+    
+    init(identifier: String, name: String, firstName: String) {
+        self.identifier = identifier
+        self.name = name
+        self.firstName = firstName
+        self.isPatron = false
+        self.fullVersion = UserPreferences.patreonCredentials?.benefits.fullVersion.contains(self.identifier) ?? false
+        self.fixedAccount = true
     }
     
     func applyPledgeHistory(pledgeHistory: [PatreonAPI.MemberResponse.PledgeEvent]) {

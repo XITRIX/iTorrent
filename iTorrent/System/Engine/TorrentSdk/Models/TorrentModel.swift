@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import DeepDiff
 
-class TorrentModel: Equatable {
+class TorrentModel: Hashable, DiffAware {
     var title: String = ""
     var state: TorrentState = .null
     var displayState: TorrentState = .null
@@ -26,6 +27,10 @@ class TorrentModel: Equatable {
     var totalUpload: Int64 = 0
     var numSeeds: Int = 0
     var numPeers: Int = 0
+    var numLeechers: Int = 0
+    var numTotalSeeds: Int = 0
+    var numTotalPeers: Int = 0
+    var numTotalLeechers: Int = 0
     var totalSize: Int64 = 0
     var totalDone: Int64 = 0
     var creationDate: Date?
@@ -42,7 +47,7 @@ class TorrentModel: Equatable {
 
     init(_ torrentInfo: TorrentInfo) {
         state = TorrentState(rawValue: String(validatingUTF8: torrentInfo.state) ?? "") ?? .null
-        title = state == .metadata ? NSLocalizedString("Obtaining Metadata", comment: "") : String(validatingUTF8: torrentInfo.name) ?? "ERROR"
+        title = String(validatingUTF8: torrentInfo.name) ?? (state == .metadata ? NSLocalizedString("Obtaining Metadata", comment: "") : "ERROR")
         hash = String(validatingUTF8: torrentInfo.hash) ?? "ERROR"
         creator = String(validatingUTF8: torrentInfo.creator) ?? "ERROR"
         comment = String(validatingUTF8: torrentInfo.comment) ?? "ERROR"
@@ -55,6 +60,10 @@ class TorrentModel: Equatable {
         totalUploadSession = torrentInfo.total_upload
         numSeeds = Int(torrentInfo.num_seeds)
         numPeers = Int(torrentInfo.num_peers)
+        numLeechers = Int(torrentInfo.num_leechers)
+        numTotalSeeds = Int(torrentInfo.num_total_seeds)
+        numTotalPeers = Int(torrentInfo.num_total_peers)
+        numTotalLeechers = Int(torrentInfo.num_total_leechers)
         totalSize = torrentInfo.total_size
         totalDone = torrentInfo.total_done
         creationDate = Date(timeIntervalSince1970: TimeInterval(torrentInfo.creation_date))
@@ -99,6 +108,10 @@ class TorrentModel: Equatable {
         totalUploadSession = model.totalUploadSession
         numSeeds = model.numSeeds
         numPeers = model.numPeers
+        numLeechers = model.numLeechers
+        numTotalSeeds = model.numTotalSeeds
+        numTotalPeers = model.numTotalPeers
+        numTotalLeechers = model.numTotalLeechers
         totalSize = model.totalSize
         totalDone = model.totalDone
         creationDate = model.creationDate
@@ -151,14 +164,14 @@ class TorrentModel: Equatable {
     func stateCorrector() {
         if displayState == .finished,
             !isPaused {
-            stop_torrent(hash)
+            TorrentSdk.stopTorrent(hash: hash)
         } else if displayState == .seeding,
             totalUpload >= seedLimit,
             seedLimit != 0 {
             seedMode = false
-            stop_torrent(hash)
+            TorrentSdk.stopTorrent(hash: hash)
         } else if state == .hashing, isPaused {
-            start_torrent(hash)
+            TorrentSdk.startTorrent(hash: hash)
         }
     }
 
@@ -183,6 +196,10 @@ class TorrentModel: Equatable {
                 hash: hash)
             BackgroundTask.checkToStopBackground()
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(hash)
     }
     
     static func == (lhs: TorrentModel, rhs: TorrentModel) -> Bool {

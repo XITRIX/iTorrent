@@ -12,4 +12,5 @@ extension Core {
     public static let rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
     public static let configFolder = rootFolder + "/_Config"
     public static let fastResumesFolder = configFolder + "/.FastResumes"
+    public static let tempFile = configFolder + "/_temp.torrent"
 }

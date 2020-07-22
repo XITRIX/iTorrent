@@ -1,22 +1,24 @@
 {
   "images" : [
     {
+      "filename" : "empty-box.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "empty-box@x2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "empty-box@x3.png",
       "idiom" : "universal",
-      "filename" : "empty-box-open.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   },
   "properties" : {
     "template-rendering-intent" : "template"

@@ -36,7 +36,6 @@ class SizePicker: PopupView, Themed {
 
     @objc func themeUpdate() {
         let theme = Themes.current
-        toolbar.tintColor = theme.tintColor
         fxView.effect = UIBlurEffect(style: theme.blurEffect)
         if #available(iOS 11, *) {
         } else {

@@ -17,10 +17,6 @@ class ThemedUITableViewController: SATableViewController, Themed {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         themeUpdate()
     }
 
@@ -32,9 +28,8 @@ class ThemedUITableViewController: SATableViewController, Themed {
         }
 
         setNeedsStatusBarAppearanceUpdate()
+        tableView.tintColor = theme.tintColor
         tableView.backgroundColor = theme.backgroundSecondary
-
-        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

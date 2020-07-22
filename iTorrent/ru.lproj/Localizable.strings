@@ -8,6 +8,7 @@
 
 
 //Torrent States
+"State.All" = "Все";
 "Queued" = "В очереди";
 "Hashing" = "Хэширование";
 "Metadata" = "Метадата";
@@ -18,14 +19,20 @@
 "Checking fastresume" = "Проверка восстановления";
 "Paused" = "Пауза";
 
+//SpeedPicker
+"SpeedPicker.Title" = "Скорость в KB/s";
+"SpeedPicker.Error" = "Неверное значение";
+
 //Main Controller
 "of" = "из";
 
+"Add" = "Добавить";
 "Done" = "Готово";
 "Edit" = "Изменить";
 "Select" = "Выбрать";
 "Select All" = "Выбрать все";
 "Deselect" = "Отменить";
+"None" = "Нет";
 
 "Search" = "Поиск";
 
@@ -82,23 +89,28 @@
 
 //Settings Controller
 "Settings.Title" = "Настройки";
+"Settings.Appearance.Header" = "Внешний вид";
 "Settings.Order" = "Порядок секций";
 "Settings.AutoTheme" = "Оформление системы";
 "Settings.Theme" = "Тёмная тема";
+
 "Settings.Storage.Header" = "Память";
 "Settings.Storage.Available" = "Доступно";
 "Settings.Storage.Allocate" = "Выделять память";
 "Settings.Storage.Allocate.Hint" = "Если включено, iTorrent будет предварительно резервировать память под скачиваемые файлы";
+
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";
 "Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
+
 "Settings.ZeroSpeedLimit" = "Нулевая скорость";
 "Settings.ZeroSpeedLimit.Hint" = "Если в течение некоторого времени скорость загрузки равна нулю, приложение остановит работу в фоне, чтобы предотвратить бесполезную разрядку батареи";
 "Settings.DownLimit" = "Лимит загрузки";
 "Settings.UpLimit" = "Лимит раздачи";
 "Settings.SpeedHeader" = "Ограничение скорости";
+
 "Settings.FTPEnable" = "Включить";
 "Settings.FTPEnable.Hint" = "При помощи данной настройки вы можете включить файловый вервер, к которому можно подключиться с помощью обычного веб-браузера, либо WebDav клиента";
 "Settings.FTP.Settings" = "Настройки";
@@ -116,13 +128,43 @@
 "Settings.FTP.WebDav.WebDavPort" = "Порт";
 "Settings.FTP.WebDav.WebDavText" = "Используйте WebDAV клиент для соединения с iTorrent";
 "Settings.FTPHeader" = "Обмен файлами";
+
+"Settings.Network.Header" = "Сеть";
+"Settings.Network.Proxy" = "Прокси";
+"Settings.Network.Connection" = "Настройки соединения";
+"Settings.Network.Proxy.Type.Header" = "Хост";
+"Settings.Network.Proxy.Type" = "Тип прокси";
+"Settings.Network.Proxy.SelectType" = "Выберите тип прокси:";
+"Settings.Network.Proxy.Hostname" = "Имя хоста";
+"Settings.Network.Proxy.Port" = "Порт";
+"Settings.Network.Proxy.Auth.Header" = "Авторизация";
+"Settings.Network.Proxy.Auth" = "Требуется авторизация";
+"Settings.Network.Proxy.Login" = "Логин";
+"Settings.Network.Proxy.Password" = "Пароль";
+"Settings.Network.Protocols" = "Протоколы соединения";
+"Settings.Network.DHT" = "Включить DHT";
+"Settings.Network.DHT.Hint" = "Позволяет BitTorrent-клиентам найти друг друга без использования трекера. Включение этой опции увеличит использование батареи";
+"Settings.Network.LSD" = "Включить LSD";
+"Settings.Network.LSD.Hint" = "Разработан для получения возможности обнаружения локальных BitTorrent-пиров, и, следовательно, сокращения трафика";
+"Settings.Network.uTP" = "Включить µTP";
+"Settings.Network.uTP.Hint" = "Предназначен для смягчения недостаточной задержки и других вопросов управления перегрузками в обычных торрентах с использованием TCP, обеспечивая при этом надёжную передачу данных";
+"Settings.Network.UPnP" = "Включить UPnP";
+"Settings.Network.NAT-PMP" = "Включить NAT-PMP";
+"Settings.Network.Port" = "Порт";
+"Settings.Network.DefauldPort" = "Стандартный порт";
+"Settings.Network.DefauldPort.Hint" = "Устанавливает начальный порт на [6881] и конечный порт как первый + 10 [6891]";
+"Settings.Network.PortFirst" = "Начальный";
+"Settings.Network.PortSecond" = "Конечный";
+
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
 "Settings.NotifyBadge" = "Показывать бейджик";
 "Settings.NotifyHeader" = "Оповещения";
+
 "Settings.UpdateSite" = "Страница на GitHub";
 "Settings.UpdateSite.Open" = "Открыть";
 "Settings.UpdateHeader" = "Обновления";
+
 "Settings.DonateDisable" = "Отключить рекламу";
 "Settings.DonateCard" = "Номер карты VISA";
 "Settings.DonateCard.Open" = "Открыть";
@@ -201,11 +243,11 @@
 "Add Tracker" = "Добавить Трекер";
 "Enter the full tracker's URL" = "Введите полный URL трекера";
 "Tracker's URL" = "Введите URL трекера";
-"Add" = "Добавить";
 "Peers" = "Пиры";
 "Seeds" = "Сиды";
 "Leechers" = "Личеры";
 "Are you shure to remove this trackers?" = "Вы уверены что хотите удалить эти трекеры?";
+"Tracker's URL copied to clipboard!" = "URL трекера скопирован!";
 
 //AppDelegate
 "Obtaining Metadata" = "Получение Метадаты";
@@ -245,6 +287,31 @@
 "mime.other" = "Другое";
 "mime.calculating" = "Вычисление...";
 
+// RSS Feed Provider
+"RssFeedProvider.Empty.Text" = "Ваша RSS лента пуста!\nДобавьте каналы что бы получать оповещения об обновлении контента";
+"RssFeedProvider.Notification.Title" = "Обновления RSS:";
+"RssFeedProvider.Error.Unknown" = "Неизвестная ошибка";
+"RssFeedProvider.Error.NotValid" = "Не верный URL";
+"RssFeedProvider.Error.Exists" = "Этот канал RSS уже добавлен";
+
+// RSS Feed Controller
+"RssFeedController.AddTitle" = "Добавить канал RSS";
+"RssFeedController.RemoveTitle" = "Вы уверены что хотите удалить:";
+
+// RSS Channel Setup Controller
+"RssChannelSetup.UrlCopied" = "URL канала скопирован";
+"RssChannelSetup.Title" = "Название";
+"RssChannelSetup.Description" = "Описание";
+"RssChannelSetup.Notify" = "Оповещать при обновлении";
+
+// RSS Channel Controller
+"RssChannelController.Seen" = "Просмотрено";
+"RssChannelController.Unseen" = "Не просмотрено";
+
+// RSS Item Controller
+"RssItemController.PinTorrent" = "Пост содержит Torrent файл";
+"RssItemController.PinMagnet" = "Пост содержит Magnet ссылку";
+
 //Version Info
 "info" = " Изменения";
-"UpdateText" = "- Большая часть приложения переписана с нуля\n- Исправлены утечки памяти\n- Значительно улучшена стабильность приложения\n- Добавлен менеджмент памяти\n- Выделение памяти под файлы до начала загрузки\n- Libtorrent обновлён до 1.2.6\n- Улучшения интерфейса, заметные и не очень\n- Добавлена интеграция с Patreon";
+"UpdateText" = "- Добавлена RSS лента\n- Улучшено разденение на секции\n- Добавлена поддержка других P2P протоколов\n- Добавлена поддержка прокси сервера\n- Добавлен выбор порта\n- Добавлен кастомный выбор ограничения скорости\n- Libtorrent обновлён до 1.2.7\n- Другие, менее заметные улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";

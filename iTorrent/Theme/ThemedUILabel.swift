@@ -22,10 +22,15 @@ class ThemedUILabel: UILabel, Themed {
         }
     }
 
-    var colorType: TextType = .primary
+    var colorType: TextType = .primary {
+        didSet {
+            themeUpdate()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
     }
     
     deinit {
@@ -34,12 +39,15 @@ class ThemedUILabel: UILabel, Themed {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
-        themeUpdate()
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
+    }
+    
+    func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
     }
 

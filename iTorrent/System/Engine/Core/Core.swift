@@ -31,12 +31,6 @@ class Core {
         DispatchQueue.global(qos: .background).async {
             TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder)
             self.restoreAllTorrents()
-
-            let down = UserPreferences.downloadLimit
-            TorrentSdk.setDownloadLimit(limitBytes: Int(down))
-
-            let up = UserPreferences.uploadLimit
-            TorrentSdk.setUploadLimits(limitBytes: Int(up))
             
             let allocateStorage = UserPreferences.storagePreallocation
             TorrentSdk.setStoragePreallocation(allocate: allocateStorage)
@@ -53,7 +47,7 @@ class Core {
     }
     
     func mainLoop() {
-        // update torrents states
+        /// update torrents states
         let res = TorrentSdk.getTorrents()
         for torrent in res {
             if let t = torrents[torrent.hash] {
@@ -65,18 +59,21 @@ class Core {
             torrent.stateCorrector()
         }
         
-        // remove removed torrents
+        /// call engine's alerts loop method
+        TorrentSdk.popAlerts()
+        
+        /// remove removed torrents
         let removed = torrents.values.filter {!res.contains($0)}
         for file in removed {
             torrents[file.hash] = nil
         }
 
-        // check torrents speed to stop if == 0
+        /// check torrents speed to stop if == 0
         for torrent in torrents.values {
             torrent.checkSpeed()
         }
 
-        // notify to update UI
+        /// notify to update UI
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .mainLoopTick, object: nil)
         }

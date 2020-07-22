@@ -9,6 +9,7 @@
 
 
 // Torrent States
+"State.All" = "All";
 "Queued" = "Sıraya ekleniyor";
 "Hashing" = "Hashleniyor";
 "Metadata" = "Metadata";
@@ -19,6 +20,10 @@
 "Checking fastresume" = "Kontrol ediliyor";
 "Paused" = "Durduruldu";
 
+//SpeedPicker
+"SpeedPicker.Title" = "Speed value in KB/s";
+"SpeedPicker.Error" = "Wrong value";
+
 //Main Controller
 "of" = "of";
 
@@ -27,6 +32,7 @@
 "Select" = "Seç";
 "Select All" = "Hepsini Seç";
 "Deselect" = "Seçimi Bırak";
+"None" = "None";
 
 "Search" = "Ara";
 
@@ -83,23 +89,28 @@
 
 //Settings Controller
 "Settings.Title" = "Tercihler";
+"Settings.Appearance.Header" = "Appearance";
 "Settings.Order" = "Sıralama düzeni";
 "Settings.AutoTheme" = "Oto-tema ayarlama";
 "Settings.Theme" = "Koyu mod";
+
 "Settings.Storage.Header" = "Depolama";
 "Settings.Storage.Available" = "Mevcut";
 "Settings.Storage.Allocate" = "Depolama ayır";
 "Settings.Storage.Allocate.Hint" = "Eğer bu seçenek açıksa, iTorrent indirdiğiniz dosyalar için önbellek ayıracaktır.";
+
 "Settings.BackgroundEnable" = "Aktifleştir";
 "Settings.BackgroundSeeding" = "Seedlemeye izin ver";
 "Settings.BackgroundSeeding.Warning" = "Bu seçenek iTorrent'in süresiz olarak arkaplanda çalışmasına izin verecektir, bu durumda torrent bir sınırsız bir şekilde seedler, bu durum yüksek pil kullanımına sebebiyet verebilir. \n\nBunu durdurmak için uygulamayı tamamen kapatmanız gerekir!";
 "Settings.BackgroundHeader" = "Arkaplanda indirme";
 "Settings.BackgroundFooter" = "Multimedya işlevleri vasıtasıyla arkaplanda indirmeye izin ver";
+
 "Settings.ZeroSpeedLimit" = "Hızı sıfırla";
 "Settings.ZeroSpeedLimit.Hint" = "Eğer indirme hızı belli bir süre boyunca sıfırlanırsa, uygulama gereksiz pil kullanımını engellemek için arkaplanda işlem yapmayı durduracaktır.";
 "Settings.DownLimit" = "İndirme sınırı";
 "Settings.UpLimit" = "Yükleme sınırı";
 "Settings.SpeedHeader" = "Hız sınırı";
+
 "Settings.FTPEnable" = "Aktifleştir";
 "Settings.FTPEnable.Hint" = "Bu ayarı kullanarak, normal bir İnternet tarayıcısı ya da WebDAV istemcisi yoluyla bağlanabileceğiniz bir dosya sunucusu oluşturabilirsiniz.";
 "Settings.FTP.Settings" = "Ayarlar";
@@ -117,13 +128,43 @@
 "Settings.FTP.WebDav.WebDavPort" = "Port";
 "Settings.FTP.WebDav.WebDavText" = "iTorrent'e bağlanmak için bir WebDAV istemcisi kullan";
 "Settings.FTPHeader" = "Dosya paylaşımı";
+
+"Settings.Network.Header" = "Network";
+"Settings.Network.Proxy" = "Proxy";
+"Settings.Network.Connection" = "Connection settings";
+"Settings.Network.Proxy.Type.Header" = "Host";
+"Settings.Network.Proxy.Type" = "Proxy type";
+"Settings.Network.Proxy.SelectType" = "Select proxy type:";
+"Settings.Network.Proxy.Hostname" = "Hostname";
+"Settings.Network.Proxy.Port" = "Port";
+"Settings.Network.Proxy.Auth.Header" = "Authorization";
+"Settings.Network.Proxy.Auth" = "Requires authorization";
+"Settings.Network.Proxy.Login" = "Login";
+"Settings.Network.Proxy.Password" = "Password";
+"Settings.Network.Protocols" = "Connection protocols";
+"Settings.Network.DHT" = "Enable DHT";
+"Settings.Network.DHT.Hint" = "It allows BitTorrent-clients to find each other without the use of tracker. Enabling this will increase the battery usage";
+"Settings.Network.LSD" = "Enable LSD";
+"Settings.Network.LSD.Hint" = "It's designed to support the discovery of local BitTorrent peers, aiming to minimize the traffic";
+"Settings.Network.uTP" = "Enable µTP";
+"Settings.Network.uTP.Hint" = "It's intended to mitigate poor latency and other congestion control issues found in conventional BitTorrent over TCP, while providing reliable, ordered delivery";
+"Settings.Network.UPnP" = "Enable UPnP";
+"Settings.Network.NAT-PMP" = "Enable NAT-PMP";
+"Settings.Network.Port" = "Port";
+"Settings.Network.DefauldPort" = "Use default port";
+"Settings.Network.DefauldPort.Hint" = "Sets the start port to [6881] and the end port as first + 10 [6891]";
+"Settings.Network.PortFirst" = "Start";
+"Settings.Network.PortSecond" = "End";
+
 "Settings.NotifyFinishLoad" = "İndirme bittiğinde";
 "Settings.NotifyFinishSeed" = "Seedleme bittiğinde";
 "Settings.NotifyBadge" = "Uygulama rozetini aktifleştir";
 "Settings.NotifyHeader" = "Bildirimler";
+
 "Settings.UpdateSite" = "GitHub Sayfası";
 "Settings.UpdateSite.Open" = "Aç";
 "Settings.UpdateHeader" = "Güncellemeler";
+
 "Settings.DonateDisable" = "Reklamları devre dışı bırak";
 "Settings.DonateCard" = "VISA KREDİ KARTI NUMARASI";
 "Settings.DonateCard.Open" = "Aç";
@@ -199,6 +240,7 @@
 "Seeds" = "Seedler";
 "Leechers" = "Leechler";
 "Are you shure to remove this trackers?" = "Bu takipçileri kaldırmak istediğinizden emin misiniz?";
+"Tracker's URL copied to clipboard!" = "Tracker's URL copied to clipboard!";
 
 //AppDelegate
 "Obtaining Metadata" = "Metadata elde ediliyor.";
@@ -229,6 +271,31 @@
 "minute:plural" = "dakika";
 "minute:parent" = "dakika";
 
+// RSS Feed Provider
+"RssFeedProvider.Empty.Text" = "Your RSS feed is empty!\nAdd feeds to receive content update alerts";
+"RssFeedProvider.Notification.Title" = "RSS Update:";
+"RssFeedProvider.Error.Unknown" = "An unknown error occurred";
+"RssFeedProvider.Error.NotValid" = "URL is not valid";
+"RssFeedProvider.Error.Exists" = "This RSS Feed is already exists";
+
+// RSS Feed Controller
+"RssFeedController.AddTitle" = "Add RSS Channel";
+"RssFeedController.RemoveTitle" = "Are you sure to remove this feeds:";
+
+// RSS Channel Setup Controller
+"RssChannelSetup.UrlCopied" = "Chanel's URL copied to clipboard!";
+"RssChannelSetup.Title" = "Title";
+"RssChannelSetup.Description" = "Description";
+"RssChannelSetup.Notify" = "Notify on update";
+
+// RSS Channel Controller
+"RssChannelController.Seen" = "Seen";
+"RssChannelController.Unseen" = "Unseen";
+
+// RSS Item Controller
+"RssItemController.PinTorrent" = "Torrent file is attached to this post";
+"RssItemController.PinMagnet" = "Magnet link is attached to this post";
+
 // mime
 "mime.video" = "Video";
 "mime.audio" = "Ses";
@@ -240,4 +307,4 @@
 
 //Version Info
 "info" = " Güncelleme bilgisi";
-"UpdateText" = "- Uygulamanın çoğu, bellek sızıntısı oluşmaması için tekrardan yazıldı\n- Uygulamanın kararlılığı farkedilebilir bir şekilde artırıldı\n- Hafıza yönetimi ekledi\n- Dosyaları indirmeden önce hafıza ayırma eklendi\n- Libtorrent 1.2.6 sürümüne güncellendi\n- Kullanıcı arayüzünde geliştirmeler\n- Patreon ile bağlanma eklendi";
+"UpdateText" = "- Added RSS feed\n- Improved section partitioning\n- Added support for other P2P protocols\n- Added support for proxy server\n- Added port selection\n- Added custom choice of speed limitations\n- Libtorrent updated to 1.2.7\n- Other, less noticeable interface improvements\n- Many bugs fixed (possibly new ones added)";

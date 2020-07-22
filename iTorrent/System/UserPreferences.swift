@@ -20,20 +20,39 @@ class UserPreferences {
     @PreferenceItem("ftpWebDavKey", false) static var ftpWebDavKey: Bool
     @PreferenceItem("webDavUsername", "") static var webDavUsername: String
     @PreferenceItem("webDavPassword", "") static var webDavPassword: String
-    @PreferenceItem("webDavWebServerEnabled", true) static var webDavWebServerEnabled: Bool
-    @PreferenceItem("webDavWebDavServerEnabled", false) static var webDavWebDavServerEnabled: Bool
+    @PreferenceItem("webDavWebServerEnabled", true) static var webServerEnabled: Bool
+    @PreferenceItem("webDavWebDavServerEnabled", false) static var webDavServerEnabled: Bool
     @PreferenceItem("webDavPort", 81) static var webDavPort: Int
     @PreferenceItem("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1]) static var sectionsSortingOrder: [Int]
     @PreferenceItem("themeNum", 0) static var themeNum: Int
     @PreferenceItem("zeroSpeedLimit", 60) static var zeroSpeedLimit: Int
-    @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int64
-    @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int64 
+    @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int
+    @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int
     @PreferenceItem("seedBackgroundWarning", false) static var seedBackgroundWarning: Bool
-    @PreferenceItem("disableAds", false, { _ in UserPreferences.patreonAccount?.hideAds ?? false }) static var disableAds: Bool
     @PreferenceItem("storagePreallocation", false) static var storagePreallocation: Bool
 
     @PreferenceItem("SortingType", 0) static var sortingType: Int
-    @PreferenceItem("SortingSections", true) static var sortingSections: Bool
+    @PreferenceItem("SortingSections2", false) static var sortingSections: Bool
+    
+    //network
+    @PreferenceItem("enableDht", true) static var enableDht: Bool
+    @PreferenceItem("enableLsd", true) static var enableLsd: Bool
+    @PreferenceItem("enableUtp", true) static var enableUtp: Bool
+    @PreferenceItem("enableUpnp", true) static var enableUpnp: Bool
+    @PreferenceItem("enableNatpmp", true) static var enableNatpmp: Bool
+    
+    @PreferenceItem("defaultPort", true) static var defaultPort: Bool
+    @PreferenceItem("portRangeFirst", 6881) static var portRangeFirst: Int
+    @PreferenceItem("portRangeSecond", 6891) static var portRangeSecond: Int
+    
+    //proxy
+    @PreferenceData("proxyType", ProxyType.none) static var proxyType: ProxyType!
+    @PreferenceItem("proxyRequiresAuth", false) static var proxyRequiresAuth: Bool
+    @PreferenceItem("proxyHostname", "") static var proxyHostname: String
+    @PreferenceItem("proxyPort", 8080) static var proxyPort: Int
+    @PreferenceItem("proxyUsername", "") static var proxyUsername: String
+    @PreferenceItem("proxyPassword", "") static var proxyPassword: String
+    @PreferenceItem("proxyPeerConnections", true) static var proxyPeerConnections: Bool
 
     @PreferenceItem("autoTheme", true, { value in
         if #available(iOS 13, *) {
@@ -49,11 +68,15 @@ class UserPreferences {
     @PreferenceData("patreonAccessToken", "") static var patreonAccessToken: String?
     @PreferenceData("patreonRefreshToken", "") static var patreonRefreshToken: String?
     
-    @PreferenceData("patreonAccount") static var patreonAccount: PatreonAccount?
-    @PreferenceData("patreonCredentials") static var patreonCredentials: PatreonCredentials?
+    @PreferenceData("patreonAccount", nil) static var patreonAccount: PatreonAccount?
+    @PreferenceData("patreonCredentials", nil) static var patreonCredentials: PatreonCredentials?
     
     static func alertDialog(code: String) -> SettingProperty<Bool> {
         SettingProperty<Bool>("alertDialog" + code, false)
+    }
+    
+    static var disableAds: Bool {
+        UserPreferences.patreonAccount?.hideAds ?? false
     }
 }
 
@@ -104,17 +127,17 @@ struct PreferenceItem<T> {
 @propertyWrapper
 struct PreferenceData<T: Codable> {
     let key: String
-    let defaultValue: T?
+    let defaultValue: T
     let calculatedValue: ((T) -> (T))?
 
-    var wrappedValue: T? {
+    var wrappedValue: T {
         get {
             guard let decoded = UserDefaults.standard.data(forKey: key)
-            else { return nil }
+            else { return defaultValue }
 
             let decoder = JSONDecoder()
             guard let res = try? decoder.decode(T.self, from: decoded)
-            else { return nil }
+            else { return defaultValue }
             
             return calculatedValue?(res) ?? res
         }
@@ -122,8 +145,7 @@ struct PreferenceData<T: Codable> {
             let userDefaults = UserDefaults.standard
             let encoder = JSONEncoder()
 
-            if let newValue = newValue,
-                let encodedData: Data = try? encoder.encode(newValue) {
+            if let encodedData: Data = try? encoder.encode(newValue) {
                 userDefaults.set(encodedData, forKey: key)
             } else {
                 userDefaults.set(nil, forKey: key)
@@ -131,7 +153,7 @@ struct PreferenceData<T: Codable> {
         }
     }
 
-    init(_ key: String, _ defaultValue: T? = nil, calculatedValue: ((T) -> (T))? = nil) {
+    init(_ key: String, _ defaultValue: T, calculatedValue: ((T) -> (T))? = nil) {
         self.key = key
         self.defaultValue = defaultValue
         self.calculatedValue = calculatedValue

@@ -71,13 +71,14 @@ This repo contains iTorrent framework which was compiled only for real devices s
 
 - [LibTorrent](https://github.com/arvidn/libtorrent)
 - [BackgroundTask](https://github.com/yarodevuci/backgroundTask)
+- [SwiftyXMLParser](https://github.com/yahoojapan/SwiftyXMLParser)
 - [MarqueeLabel](https://github.com/cbpowell/MarqueeLabel)
+- [DeepDiff](https://github.com/onmyway133/DeepDiff)
 
 ## Donate for donuts
 
 - [Patreon](https://www.patreon.com/xitrix)
 - [PayPal](https://paypal.me/xitrix)
-- VISA CARD - 4817 7601 3631 7520
 
 ## Important information
 

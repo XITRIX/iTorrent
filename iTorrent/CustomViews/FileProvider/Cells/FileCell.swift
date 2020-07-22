@@ -43,7 +43,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
             prioritySwitch.isHidden = downloaded
             progressBar.setProgress(downloaded ? [1] : model.pieces)
             progressBar.isHidden = false
-            bottomConstraint.constant = 13
+            bottomConstraint.constant = 15
         }
         setSwitchColor()
     }

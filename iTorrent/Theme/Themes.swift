@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Style: Int {
+    case light = 0
+    case dark = 1
+}
+
 protocol Themed {
     func themeUpdate()
 }
@@ -16,6 +21,26 @@ class Themes {
     public static let updateNotification = NSNotification.Name("ThemeUpdated")
 
     static let shared = Themes()
+    
+    static var currentTheme: Style {
+        if #available(iOS 13.0, *) {
+            if UserPreferences.autoTheme {
+                var theme: UIUserInterfaceStyle!
+                if let current = Themes.shared.currentUserTheme {
+                    theme = UIUserInterfaceStyle(rawValue: current)
+                } else {
+                    theme = UIApplication.shared.keyWindow?.traitCollection.userInterfaceStyle
+                }
+                
+                if theme == .dark {
+                    return .dark
+                } else if theme == .light {
+                    return .light
+                }
+            }
+        }
+        return Style(rawValue: UserPreferences.themeNum)!
+    }
 
     var theme: [ColorPalett] = []
     var currentUserTheme: Int!
@@ -39,12 +64,17 @@ class Themes {
         darkTheme.tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
         darkTheme.statusBarStyle = .lightContent
         darkTheme.barStyle = .blackTranslucent
-        darkTheme.blurEffect = .dark
         darkTheme.keyboardAppearence = .dark
         darkTheme.loadingIndicatorStyle = .white
 
         if #available(iOS 12.0, *) {
             darkTheme.overrideUserInterfaceStyle = UIUserInterfaceStyle.dark.rawValue
+        }
+        
+        if #available(iOS 13.0, *) {
+            darkTheme.blurEffect = .systemChromeMaterialDark
+        } else {
+            darkTheme.blurEffect = .dark
         }
 
         theme.append(ColorPalett())
@@ -52,16 +82,7 @@ class Themes {
     }
 
     static var current: ColorPalett {
-        if #available(iOS 13.0, *) {
-            if UserPreferences.autoTheme {
-                if UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .dark {
-                    return shared.theme[1]
-                } else if UIUserInterfaceStyle(rawValue: shared.currentUserTheme)! == .light {
-                    return shared.theme[0]
-                }
-            }
-        }
-        return shared.theme[UserPreferences.themeNum]
+        return shared.theme[currentTheme.rawValue]
     }
 }
 
@@ -82,7 +103,7 @@ struct ColorPalett: Equatable {
     var tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
     var statusBarStyle: UIStatusBarStyle = .default
     var barStyle: UIBarStyle = .default
-    var blurEffect: UIBlurEffect.Style = .extraLight
+    var blurEffect: UIBlurEffect.Style
     var keyboardAppearence: UIKeyboardAppearance = .default
     var loadingIndicatorStyle: UIActivityIndicatorView.Style = .gray
     var overrideUserInterfaceStyle: Int!
@@ -90,6 +111,12 @@ struct ColorPalett: Equatable {
     init() {
         if #available(iOS 12.0, *) {
             overrideUserInterfaceStyle = UIUserInterfaceStyle.light.rawValue
+        }
+        
+        if #available(iOS 13.0, *) {
+            blurEffect = .systemChromeMaterialLight
+        } else {
+            blurEffect = .extraLight
         }
     }
 }

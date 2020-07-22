@@ -9,42 +9,78 @@
 import UIKit
 
 class StaticTableViewController: ThemedUIViewController {
+    let disposalBag = DisposalBag()
+    override var toolBarIsHidden: Bool? {
+        true
+    }
+    
+    var tableAnimation: UITableView.RowAnimation {
+        .top
+    }
+    
     var tableView: StaticTableView!
     var data: [Section] = [] {
         didSet {
             tableView?.data = data
         }
     }
-
+    
+    var initStyle: UITableView.Style = .grouped
+    
     init() {
         super.init(nibName: nil, bundle: Bundle.main)
-        setup(style: .grouped)
     }
-
+    
     init(style: UITableView.Style) {
         super.init(nibName: nil, bundle: Bundle.main)
-        setup(style: style)
+        initStyle = style
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
     }
-
-    func setup(style: UITableView.Style = .grouped) {
+    
+    func setup(style: UITableView.Style = .grouped) {}
+    
+    override func loadView() {
+        super.loadView()
+        
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
         
-        tableView = StaticTableView(frame: view.frame, style: style)
+        tableView = StaticTableView(frame: view.frame, style: initStyle)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.colorType = .secondary
         view.addSubview(tableView)
         tableView.data = data
+        tableView.tableAnimation = tableAnimation
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //tableView.reloadData()
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initSections()
+        updateData()
+        
+        KeyboardHelper.shared.visibleHeight.bind { [weak self] height in
+            guard let self = self else { return }
+            
+            let offset = self.tableView.contentOffset
+            UIView.animate(withDuration: 0.3) {
+                self.tableView.contentInset.bottom = height
+                self.tableView.scrollIndicatorInsets.bottom = height
+                self.tableView.contentOffset = offset
+            }
+        }.dispose(with: disposalBag)
+    }
+    
+    func initSections() {}
+    
+    func updateData(animated: Bool = true) {
+        tableView?.updateData(animated: animated)
     }
 }

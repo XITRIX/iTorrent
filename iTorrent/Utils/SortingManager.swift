@@ -71,69 +71,28 @@ class SortingManager {
         }
     }
 
-    public static func sortTorrentManagers(managers: [TorrentModel]) -> [ReloadableSection<TorrentModel>] {
-        var titles = [String]()
-        let resOld = sortTorrentManagersOld(managers: managers, headers: &titles)
-
-        var res = [ReloadableSection<TorrentModel>]()
-        for idxSection in 0 ..< resOld.count {
-            var attr = ReloadableSection<TorrentModel>(title: titles[idxSection],
-            value: [],
-            index: idxSection)
-            for idxItem in 0 ..< resOld[idxSection].count {
-                attr.value.append(ReloadableCell<TorrentModel>(key: resOld[idxSection][idxItem].hash,
-                                                               value: resOld[idxSection][idxItem],
-                                                               index: idxItem))
-            }
-            res.append(attr)
-        }
-        return res
-    }
-
-    public static func sortTorrentManagersOld(managers: [TorrentModel], headers: inout [String]) -> [[TorrentModel]] {
-        var res = [[TorrentModel]]()
-        var localManagers = [TorrentModel](managers)
-        headers = [String]()
+    public static func sort(managers: [TorrentModel]) -> [SectionModel<TorrentModel>] {
+        var res = [SectionModel<TorrentModel>]()
 
         if UserPreferences.sortingSections {
-            var collection = [TorrentState: [TorrentModel]]()
-            collection[.allocating] = [TorrentModel]()
-            collection[.checkingFastresume] = [TorrentModel]()
-            collection[.downloading] = [TorrentModel]()
-            collection[.finished] = [TorrentModel]()
-            collection[.hashing] = [TorrentModel]()
-            collection[.metadata] = [TorrentModel]()
-            collection[.paused] = [TorrentModel]()
-            collection[.queued] = [TorrentModel]()
-            collection[.seeding] = [TorrentModel]()
-
-            for manager in localManagers {
-                collection[manager.displayState]?.append(manager)
-            }
-
+            let dict = Dictionary(grouping: managers, by: { $0.displayState })
             let sortingOrder = UserPreferences.sectionsSortingOrder
             for id in sortingOrder {
                 let state = TorrentState(id: id)!
-
-                if var list = collection[state] {
-                    addManager(&res, &list, &headers, state.rawValue)
+                if var items = dict[state] {
+                    simpleSort(&items)
+                    let section = SectionModel(title: state.rawValue, items: items)
+                    res.append(section)
                 }
             }
         } else {
-            headers.append("")
-            simpleSort(&localManagers)
-            res.append(localManagers)
+            var items = managers
+            simpleSort(&items)
+            let section = SectionModel(title: "", items: items)
+            res.append(section)
         }
 
         return res
-    }
-
-    private static func addManager(_ res: inout [[TorrentModel]], _ list: inout [TorrentModel], _ headers: inout [String], _ header: String) {
-        if list.count > 0 {
-            simpleSort(&list)
-            headers.append(header)
-            res.append(list)
-        }
     }
 
     private static func simpleSort(_ list: inout [TorrentModel]) {

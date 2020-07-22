@@ -12,9 +12,9 @@ class PopupView: UIView {
     @IBOutlet var mainView: UIView!
     @IBOutlet var containerView: UIView!
     @IBOutlet var headerView: UIView!
-    @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var fxView: UIVisualEffectView!
     @IBOutlet var dismissButton: UIButton!
+    @IBOutlet var customButton: UIButton!
     @IBOutlet var bottomOffsetConstraint: NSLayoutConstraint! {
         didSet {
             bottomOffsetConstraint.constant = bottomOffset
@@ -28,14 +28,16 @@ class PopupView: UIView {
     var contentView: UIView!
     var contentHeight: CGFloat!
     var dismissAction: (() -> ())?
+    var customAction: (() -> ())?
 
     var vc: UIViewController?
 
-    init(contentView: UIView, contentHeight: CGFloat, dismissAction: (() -> ())? = nil) {
+    init(contentView: UIView, contentHeight: CGFloat, customAction: (()->())? = nil, dismissAction: (() -> ())? = nil) {
         super.init(frame: CGRect.zero)
         commonInit()
         self.contentHeight = contentHeight
         self.dismissAction = dismissAction
+        self.customAction = customAction
         setContentView(contentView: contentView)
     }
 
@@ -73,9 +75,6 @@ class PopupView: UIView {
         mainView.frame = bounds
         translatesAutoresizingMaskIntoConstraints = false
 
-        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-
         let image = #imageLiteral(resourceName: "Close").withRenderingMode(.alwaysTemplate) // dismissButton.currentImage?.withRenderingMode(.alwaysTemplate)
         dismissButton.setImage(image, for: .normal)
 
@@ -109,6 +108,10 @@ class PopupView: UIView {
             })
     }
 
+    @IBAction func customButtonAction(_ sender: Any) {
+        customAction?()
+    }
+    
     @IBAction func dismissButtonAction(_ sender: Any) {
         dismiss()
     }
@@ -140,13 +143,22 @@ class PopupView: UIView {
             }
         }
     }
-
+    
     @objc func dismiss() {
+        dismiss(animationOnly: false)
+    }
+
+    @objc func dismiss(animationOnly: Bool = false) {
+        if !(superview?.subviews.contains(self) ?? false) { return }
+        
+        if !animationOnly {
+            dismissAction?()
+        }
+
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.bottomConstraint?.constant += self.frame.height
             self.vc?.view.layoutIfNeeded()
         }) { _ in
-            self.dismissAction?()
             self.removeFromSuperview()
         }
     }

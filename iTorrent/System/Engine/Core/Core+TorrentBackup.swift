@@ -9,7 +9,7 @@
 import Foundation
 
 extension Core {
-    func saveTorrents(filesStatesOnly: Bool = false) {
+    func saveTorrents(filesStatesOnly: Bool = true) {
         let encodedData = NSKeyedArchiver.archivedData(withRootObject: torrentsUserData)
         do {
             try encodedData.write(to: URL(fileURLWithPath: Core.fastResumesFolder + "/userData.dat"))
