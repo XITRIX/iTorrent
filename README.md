@@ -42,6 +42,7 @@ What can this app do:
 - WebDav Server
 - Select files to download or not
 - Change UI to dark theme
+- RSS Feed
 - ??? 
 
 ## Localization
