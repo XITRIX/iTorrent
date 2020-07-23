@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7C005A18249D75590093C926 /* ProxyPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C005A17249D75590093C926 /* ProxyPreferencesController.swift */; };
 		7C005A1B249E55EB0093C926 /* StaticTableViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C005A19249E55EB0093C926 /* StaticTableViewController1.swift */; };
 		7C005A1C249E55EB0093C926 /* StaticTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C005A1A249E55EB0093C926 /* StaticTableViewController.xib */; };
-		7C06249720BD676500C7466C /* iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C06249620BD676500C7466C /* iTorrent.framework */; };
-		7C06249920BD676F00C7466C /* iTorrent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C06249620BD676500C7466C /* iTorrent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C0A334924A91A9100EF33D0 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */; };
 		7C0A334B24A94DA800EF33D0 /* TorrentPeersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A334A24A94DA800EF33D0 /* TorrentPeersController.swift */; };
 		7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */; };
@@ -26,6 +24,8 @@
 		7C18DF03231D514F00A14326 /* CellModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C18DF02231D514F00A14326 /* CellModelProtocol.swift */; };
 		7C18DF05231D52E500A14326 /* SegueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C18DF04231D52E500A14326 /* SegueCell.swift */; };
 		7C18DF07231D5DDB00A14326 /* PreferenceCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C18DF06231D5DDB00A14326 /* PreferenceCellProtocol.swift */; };
+		7C1C6AE824CA3E4B00874C0F /* iTorrent.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C1C6AE724CA3E4B00874C0F /* iTorrent.xcframework */; };
+		7C1C6AE924CA3E4B00874C0F /* iTorrent.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C1C6AE724CA3E4B00874C0F /* iTorrent.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7C1EBD0421E4B64B00EAAF55 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1EBD0321E4B64B00EAAF55 /* TableHeaderView.swift */; };
 		7C1EBD0721E4BA6000EAAF55 /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C1EBD0621E4BA6000EAAF55 /* TableHeaderView.xib */; };
 		7C22BD1724A2514B00C61CA1 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C22BD1624A2514B00C61CA1 /* UIViewControllerExtension.swift */; };
@@ -189,13 +189,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7C37071F20BD4F2000EE9F89 /* Embed Frameworks */ = {
+		7C1C6AEA24CA3E4B00874C0F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7C06249920BD676F00C7466C /* iTorrent.framework in Embed Frameworks */,
+				7C1C6AE924CA3E4B00874C0F /* iTorrent.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +212,6 @@
 		7C005A17249D75590093C926 /* ProxyPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyPreferencesController.swift; sourceTree = "<group>"; };
 		7C005A19249E55EB0093C926 /* StaticTableViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableViewController1.swift; sourceTree = "<group>"; };
 		7C005A1A249E55EB0093C926 /* StaticTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticTableViewController.xib; sourceTree = "<group>"; };
-		7C06249620BD676500C7466C /* iTorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iTorrent.framework; sourceTree = "<group>"; };
 		7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		7C0A334A24A94DA800EF33D0 /* TorrentPeersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorrentPeersController.swift; sourceTree = "<group>"; };
 		7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileManagerTitleView.xib; sourceTree = "<group>"; };
@@ -227,6 +226,8 @@
 		7C18DF02231D514F00A14326 /* CellModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModelProtocol.swift; sourceTree = "<group>"; };
 		7C18DF04231D52E500A14326 /* SegueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueCell.swift; sourceTree = "<group>"; };
 		7C18DF06231D5DDB00A14326 /* PreferenceCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCellProtocol.swift; sourceTree = "<group>"; };
+		7C1C6ADD24C9E7BC00874C0F /* iTorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iTorrent.framework; path = Frameworks/iTorrent.framework; sourceTree = "<group>"; };
+		7C1C6AE724CA3E4B00874C0F /* iTorrent.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = iTorrent.xcframework; path = Frameworks/iTorrent.xcframework; sourceTree = "<group>"; };
 		7C1EBD0321E4B64B00EAAF55 /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		7C1EBD0621E4BA6000EAAF55 /* TableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableHeaderView.xib; sourceTree = "<group>"; };
 		7C22BD1624A2514B00C61CA1 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -403,8 +404,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C1C6AE824CA3E4B00874C0F /* iTorrent.xcframework in Frameworks */,
 				7C4FADE620B5D4CC00ED9C84 /* Pods_iTorrent.framework in Frameworks */,
-				7C06249720BD676500C7466C /* iTorrent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,8 +567,9 @@
 		7C3C694420A75FBF0023396C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C1C6AE724CA3E4B00874C0F /* iTorrent.xcframework */,
+				7C1C6ADD24C9E7BC00874C0F /* iTorrent.framework */,
 				7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */,
-				7C06249620BD676500C7466C /* iTorrent.framework */,
 				65A3AF14FD004AAD8A489528 /* Pods_iTorrent.framework */,
 			);
 			name = Frameworks;
@@ -1049,7 +1051,7 @@
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
 				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
 				7CD95E5E2370443200C21F81 /* Swiftlint */,
-				7C37071F20BD4F2000EE9F89 /* Embed Frameworks */,
+				7C1C6AEA24CA3E4B00874C0F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1545,6 +1547,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1553,7 +1556,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
 					"\"${PODS_ROOT}/Headers/Public/iTorrent\"",
 					"\"$(PROJECT_DIR)/iTorrent/Native Code/include\"",
-					"$(PROJECT_DIR)/iTorrent.framework/Headers/",
+					"$(PROJECT_DIR)/Frameworks/iTorrent.framework/Headers/",
 				);
 				INFOPLIST_FILE = iTorrent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1601,6 +1604,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1609,7 +1613,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
 					"\"${PODS_ROOT}/Headers/Public/iTorrent\"",
 					"\"$(PROJECT_DIR)/iTorrent/Native Code/include\"",
-					"$(PROJECT_DIR)/iTorrent.framework/Headers/",
+					"$(PROJECT_DIR)/Frameworks/iTorrent.framework/Headers/",
 				);
 				INFOPLIST_FILE = iTorrent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

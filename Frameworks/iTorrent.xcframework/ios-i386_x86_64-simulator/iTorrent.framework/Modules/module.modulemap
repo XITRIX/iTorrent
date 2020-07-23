@@ -1,0 +1,6 @@
+framework module iTorrent {
+  umbrella header "iTorrent.h"
+
+  export *
+  module * { export * }
+}
