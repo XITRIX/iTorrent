@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
 
-        FirebaseApp.configure()
+
         GADMobileAds.sharedInstance().start(completionHandler: nil)
 
         // Crash on iOS 9
