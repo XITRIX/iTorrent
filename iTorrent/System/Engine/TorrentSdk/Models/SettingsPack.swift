@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ITorrentFramework
 
 enum ProxyType: Int, CaseIterable, Codable {
     case none

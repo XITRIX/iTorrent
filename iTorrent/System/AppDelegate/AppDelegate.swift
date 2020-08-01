@@ -11,9 +11,11 @@ import UIKit
 import Firebase
 import GoogleMobileAds
 
+#if !targetEnvironment(macCatalyst)
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,10 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Crash on iOS 9
         if #available(iOS 10, *) {
+            #if !targetEnvironment(macCatalyst)
             MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices: [
                 MSAnalytics.self,
                 MSCrashes.self
             ])
+            #endif
         }
 
         PatreonAPI.configure()

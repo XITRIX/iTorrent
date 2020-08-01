@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ITorrentFramework
 
 class FileModel {
     enum TorrentDownloadPriority: Int {

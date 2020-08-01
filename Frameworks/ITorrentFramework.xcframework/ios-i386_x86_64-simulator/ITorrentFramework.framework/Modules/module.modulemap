@@ -1,0 +1,7 @@
+framework module ITorrentFramework {
+    umbrella header "ITorrentFramework.h"
+    header "torrent_headers.h"
+    
+    export *
+    module * { export * }
+}

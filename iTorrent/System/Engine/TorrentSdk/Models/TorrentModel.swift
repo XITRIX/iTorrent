@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ITorrentFramework
 import DeepDiff
 
 class TorrentModel: Hashable, DiffAware {

@@ -15,13 +15,25 @@ target 'iTorrent' do
   pod 'Google-Mobile-Ads-SDK'
   pod "GCDWebServer/WebUploader", "~> 3.0"
   pod "GCDWebServer/WebDAV", "~> 3.0"
-  pod 'AppCenter'
   pod 'DeepDiff'
   pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
+  pod 'AppCenter'
 end
 
 post_install do |installer|
 	installer.pods_project.targets.each do |target|
+		if target.name == "Pods-[Name of Project]"
+      			puts "Updating # to exclude Crashlytics/Fabric/AppCenter"
+      			target.build_configurations.each do |config|
+        			xcconfig_path = config.base_configuration_reference.real_path
+        			xcconfig = File.read(xcconfig_path)
+       			 	xcconfig.sub!('-framework "Crashlytics"', '')
+       		 		xcconfig.sub!('-framework "Fabric"', '')
+       		 		xcconfig.sub!('-framework "AppCenter"', '')
+       		 		new_xcconfig = xcconfig + 'OTHER_LDFLAGS[sdk=iphone*] = -framework "Crashlytics" -framework "Fabric" -framework "AppCenter"'
+       		 		File.open(xcconfig_path, "w") { |file| file << new_xcconfig }
+      			end
+   		end
 		target.build_configurations.each do |config|
 			config.build_settings['ENABLE_BITCODE'] = 'YES'
 		end

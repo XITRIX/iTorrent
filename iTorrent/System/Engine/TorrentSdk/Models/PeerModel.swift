@@ -8,6 +8,7 @@
 
 import Foundation
 import DeepDiff
+import ITorrentFramework
 
 struct PeerModel: Hashable, DiffAware {
     var port: Int
