@@ -6,6 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import AVFoundation
 
 class BackgroundTask {

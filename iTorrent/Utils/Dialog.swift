@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class Dialog {
-    static func withTimer(_ presenter: UIViewController,title: String? = nil, message: String? = nil) {
+    static func withTimer(_ presenter: UIViewController?, title: String? = nil, message: String? = nil) {
         let alert = ThemedUIAlertController(title: Localize.get(key: title), message: Localize.get(key: message), preferredStyle: .alert)
-        presenter.present(alert, animated: true, completion: nil)
+        presenter?.present(alert, animated: true, completion: nil)
         // change alert timer to 2 seconds, then dismiss
         let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {

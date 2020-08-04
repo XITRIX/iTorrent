@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class FileCell: ThemedUITableViewCell, UpdatableModel {
@@ -62,6 +63,8 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         case .normalPriority:
             prioritySwitch.setOn(true, animated: true)
             prioritySwitch.onTintColor = nil
+        @unknown default:
+            fatalError()
         }
     }
     

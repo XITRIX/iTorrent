@@ -49,11 +49,12 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
 
     func setModel(_ model: Model) {
         title.text = Localize.get(model.title)
+        title.font = model.titleFont
         action = model.action
 
         switcher.onTintColor = model.switchColor
         switcher.isEnabled = !(model.disableCondition?() ?? false)
-        switcher.setOn(model.defaultValue(), animated: false)
+        switcher.setOn(model.defaultValue() ?? false, animated: false)
 
         hintText = model.hint
         hintButton.isHiddenInStackView = hintText == nil
@@ -84,12 +85,14 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var defaultValue: () -> Bool
+        var titleFont: UIFont?
+        var defaultValue: () -> Bool?
         var hint: String?
         var switchColor: UIColor?
         var hiddenCondition: (() -> Bool)?
         var disableCondition: (() -> Bool)?
         var tapAction: (() -> ())?
+        var longPressAction: (() -> ())?
         var action: (UISwitch) -> ()
     }
 

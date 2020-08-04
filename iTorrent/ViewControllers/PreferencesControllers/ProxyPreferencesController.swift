@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class ProxyPreferencesController: StaticTableViewController {
@@ -14,12 +15,18 @@ class ProxyPreferencesController: StaticTableViewController {
     override var toolBarIsHidden: Bool? {
         true
     }
+    
+    deinit {
+        print("PreferencesController Deinit")
+    }
 
     override func initSections() {
         title = Localize.get("Settings.Network.Proxy")
-
+        
         var proxyType = [CellModelProtocol]()
-        proxyType.append(ButtonCell.Model(title: "Settings.Network.Proxy.Type", buttonTitleFunc: { UserPreferences.proxyType.title }) { _ in
+        proxyType.append(ButtonCell.Model(title: "Settings.Network.Proxy.Type", buttonTitleFunc: { UserPreferences.proxyType.title }) { [weak self] _ in
+            guard let self = self else { return }
+            
             let alert = ThemedUIAlertController(title: "\(Localize.get("Settings.Network.Proxy.SelectType")) \(UserPreferences.proxyType.title)", message: nil, preferredStyle: .actionSheet)
             alert.popoverPresentationController?.permittedArrowDirections = []
             alert.popoverPresentationController?.sourceView = self.view
@@ -51,9 +58,9 @@ class ProxyPreferencesController: StaticTableViewController {
 //            UserPreferences.proxyPeerConnections = switcher.isOn
 //        })
         var proxyAuth = [CellModelProtocol]()
-        proxyAuth.append(SwitchCell.Model(title: "Settings.Network.Proxy.Auth", defaultValue: { UserPreferences.proxyRequiresAuth }, hiddenCondition: { UserPreferences.proxyType == ProxyType.none }) { switcher in
+        proxyAuth.append(SwitchCell.Model(title: "Settings.Network.Proxy.Auth", defaultValue: { UserPreferences.proxyRequiresAuth }, hiddenCondition: { UserPreferences.proxyType == ProxyType.none }) { [weak self] switcher in
             UserPreferences.proxyRequiresAuth = switcher.isOn
-            self.updateData()
+            self?.updateData()
         })
         proxyAuth.append(TextFieldCell.Model(title: "Settings.Network.Proxy.Login", defaultValue: { UserPreferences.proxyUsername }, hiddenCondition: { UserPreferences.proxyType == ProxyType.none || !UserPreferences.proxyRequiresAuth }, textEditAction: { text in
             UserPreferences.proxyUsername = text
@@ -66,6 +73,6 @@ class ProxyPreferencesController: StaticTableViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        TorrentSdk.applySettingsPack()
+        TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
     }
 }

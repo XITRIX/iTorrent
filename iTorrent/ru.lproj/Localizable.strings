@@ -87,6 +87,43 @@
 "Trackers" = "Трекеры";
 "Details.BackgroundSeeding.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 
+"Details.State" = "Состояние";
+
+"Details.Speed.Title" = "Скорость";
+"Details.Speed.Download" = "Загрузка";
+"Details.Speed.Upload" = "Отдача";
+"Details.Speed.Remains" = "Осталось";
+
+"Details.Downloading.Title" = "Загрузка";
+"Details.Downloading.Sequential" = "Последовательная загрузка";
+"Details.Downloading.Progress" = "Прогресс";
+
+"Details.Seeding.Title" = "Раздача";
+"Details.Seeding.Allow" = "Разрешить раздачу";
+"Details.Seeding.Limit" = "Лимит Раздачи";
+
+"Details.Info.Title" = "Основная информация";
+"Details.Info.Hash" = "Хэш";
+"Details.Info.Creator" = "Создатель";
+"Details.Info.Created" = "Создан";
+"Details.Info.Added" = "Добавлен";
+"Details.Info.Comment" = "Коментарий";
+
+"Details.Transfer.Title" = "Передано";
+"Details.Transfer.Total" = "Выбрано/Всего";
+"Details.Transfer.Completed" = "Завершено";
+"Details.Transfer.Progress" = "Прогресс\nВыбранные/Всего";
+"Details.Transfer.Downloaded" = "Скачано";
+"Details.Transfer.Uploaded" = "Отдано";
+"Details.Transfer.Seeders" = "Сиды";
+"Details.Transfer.Leechers" = "Личеры";
+
+"Details.More.Title" = "Ещё";
+"Details.More.Trackers" = "Трекеры";
+"Details.More.Files" = "Файлы";
+
+"copied" = "скопирован";
+
 //Settings Controller
 "Settings.Title" = "Настройки";
 "Settings.Appearance.Header" = "Внешний вид";

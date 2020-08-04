@@ -38,8 +38,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
-        if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController,
-            let viewController = Utils.mainStoryboard.instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
+        let viewController = TorrentDetailsController()
+        if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             viewController.managerHash = hash
             if !splitViewController.isCollapsed {
                 if splitViewController.viewControllers.count > 1,

@@ -9,6 +9,10 @@
 import UIKit
 
 class StaticTableViewController: ThemedUIViewController {
+    var useInsertStyle: Bool? {
+        nil
+    }
+    
     let disposalBag = DisposalBag()
     override var toolBarIsHidden: Bool? {
         true
@@ -55,6 +59,7 @@ class StaticTableViewController: ThemedUIViewController {
         view.addSubview(tableView)
         tableView.data = data
         tableView.tableAnimation = tableAnimation
+        tableView.useInsertStyle = useInsertStyle
     }
     
     deinit {
@@ -82,5 +87,15 @@ class StaticTableViewController: ThemedUIViewController {
     
     func updateData(animated: Bool = true) {
         tableView?.updateData(animated: animated)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if useInsertStyle != nil,
+            previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
+            tableView.useInsertStyle = useInsertStyle
+            tableView.reloadData()
+        }
     }
 }

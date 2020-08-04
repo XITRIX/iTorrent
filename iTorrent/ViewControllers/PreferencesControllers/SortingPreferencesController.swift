@@ -6,6 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import Foundation
 import UIKit
 
@@ -18,6 +19,10 @@ class SortingPreferencesController: ThemedUITableViewController {
 
     init() {
         super.init(style: .plain)
+    }
+
+    deinit {
+        print("PreferencesController Deinit")
     }
 
     required init?(coder: NSCoder) {

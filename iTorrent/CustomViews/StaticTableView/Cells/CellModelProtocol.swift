@@ -12,4 +12,5 @@ protocol CellModelProtocol {
     var reuseCellIdentifier: String { get }
     var hiddenCondition: (() -> Bool)? { get }
     var tapAction: (() -> ())? { get }
+    var longPressAction: (() -> ())? { get }
 }

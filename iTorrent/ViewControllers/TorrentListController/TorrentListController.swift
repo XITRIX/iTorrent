@@ -7,6 +7,7 @@
 //
 
 import GoogleMobileAds
+import ITorrentFramework
 import UIKit
 
 class TorrentListController: MvvmViewController<TorrentListViewModel> {
@@ -115,16 +116,20 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     }
     
     @IBAction func preferencesAction(_ sender: UIBarButtonItem) {
-        let back = UIBarButtonItem()
-        back.title = title
-        navigationItem.backBarButtonItem = back
+        if #available(iOS 11, *) {} else {
+            let back = UIBarButtonItem()
+            back.title = title
+            navigationItem.backBarButtonItem = back
+        }
         show(PreferencesController(), sender: self)
     }
     
     @IBAction func rssAction(_ sender: UIBarButtonItem) {
-        let back = UIBarButtonItem()
-        back.title = title
-        navigationItem.backBarButtonItem = back
+        if #available(iOS 11, *) {} else {
+            let back = UIBarButtonItem()
+            back.title = title
+            navigationItem.backBarButtonItem = back
+        }
         show(RssFeedController(), sender: self)
     }
     

@@ -6,10 +6,9 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class ThemedUITableViewController: SATableViewController, Themed {
+class ThemedUITableViewController: InsetableTableViewController, Themed {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

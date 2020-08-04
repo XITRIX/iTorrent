@@ -6,7 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
+import ITorrentFramework
 import UIKit
 
 class FileCellOld: ThemedUITableViewCell {
@@ -73,6 +73,8 @@ class FileCellOld: ThemedUITableViewCell {
         case .normalPriority:
             switcher.setOn(true, animated: true)
             switcher.onTintColor = nil
+        @unknown default:
+            fatalError()
         }
     }
 

@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import Foundation
 import GCDWebServer
 
@@ -29,7 +30,7 @@ class Core {
         NotificationCenter.default.addObserver(self, selector: #selector(managerStateChanged(notfication:)), name: .torrentsStateChanged, object: nil)
         
         DispatchQueue.global(qos: .background).async {
-            TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder)
+            TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder, settingsPack: SettingsPack.userPrefered)
             self.restoreAllTorrents()
             
             let allocateStorage = UserPreferences.storagePreallocation
@@ -50,12 +51,16 @@ class Core {
         /// update torrents states
         let res = TorrentSdk.getTorrents()
         for torrent in res {
+            var torrent = torrent
+            
             if let t = torrents[torrent.hash] {
                 t.update(with: torrent)
+                torrent = t
             } else {
                 torrents[torrent.hash] = torrent
             }
-
+            
+            updateSavedData(model: torrent)
             torrent.stateCorrector()
         }
         
@@ -70,12 +75,53 @@ class Core {
 
         /// check torrents speed to stop if == 0
         for torrent in torrents.values {
-            torrent.checkSpeed()
+            checkSpeed(model: torrent)
         }
 
         /// notify to update UI
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .mainLoopTick, object: nil)
+        }
+    }
+    
+    private func updateSavedData(model: TorrentModel) {
+        if Core.shared.torrentsUserData[model.hash] == nil {
+            Core.shared.torrentsUserData[model.hash] = UserManagerSettings()
+        }
+        
+        guard let userData = Core.shared.torrentsUserData[model.hash] else { return }
+        
+        model.addedDate = userData.addedDate
+        model.seedMode = userData.seedMode
+        model.seedLimit = userData.seedLimit
+
+        userData.totalDownloadSession = model.totalDownloadSession
+        userData.totalUploadSession = model.totalUploadSession
+
+        model.totalDownload = userData.totalDownload
+        model.totalUpload = userData.totalUpload
+    }
+    
+    private func checkSpeed(model: TorrentModel) {
+        guard let userData = Core.shared.torrentsUserData[model.hash] else {
+            return
+        }
+
+        if model.displayState == .downloading,
+            model.downloadRate <= 25000,
+            BackgroundTask.backgrounding {
+            userData.zeroSpeedTimeCounter += 1
+        } else {
+            userData.zeroSpeedTimeCounter = 0
+        }
+
+        if userData.zeroSpeedTimeCounter == UserPreferences.zeroSpeedLimit,
+            UserPreferences.zeroSpeedLimit != 0 {
+            NotificationHelper.showNotification(
+                title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(model.downloadRate)))/s)",
+                body: model.title + Localize.get("BackgroundTask.LowSpeed.Message"),
+                hash: model.hash)
+            BackgroundTask.checkToStopBackground()
         }
     }
 }

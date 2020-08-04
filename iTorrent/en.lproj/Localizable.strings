@@ -87,6 +87,43 @@
 "Trackers" = "Trackers";
 "Details.BackgroundSeeding.Warning" = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
 
+"Details.State" = "State";
+
+"Details.Speed.Title" = "Speed";
+"Details.Speed.Download" = "Download";
+"Details.Speed.Upload" = "Upload";
+"Details.Speed.Remains" = "Time remains";
+
+"Details.Downloading.Title" = "Downloading";
+"Details.Downloading.Sequential" = "Sequential download";
+"Details.Downloading.Progress" = "Progress";
+
+"Details.Seeding.Title" = "Seeding";
+"Details.Seeding.Allow" = "Allow seeding";
+"Details.Seeding.Limit" = "Seed limit";
+
+"Details.Info.Title" = "General information";
+"Details.Info.Hash" = "Hash";
+"Details.Info.Creator" = "Creator";
+"Details.Info.Created" = "Created On";
+"Details.Info.Added" = "Added On";
+"Details.Info.Comment" = "Comment";
+
+"Details.Transfer.Title" = "Transfer";
+"Details.Transfer.Total" = "Selected/Total";
+"Details.Transfer.Completed" = "Completed";
+"Details.Transfer.Progress" = "Progress Selected/Total";
+"Details.Transfer.Downloaded" = "Downloaded";
+"Details.Transfer.Uploaded" = "Uploaded";
+"Details.Transfer.Seeders" = "Seeders";
+"Details.Transfer.Leechers" = "Leechers";
+
+"Details.More.Title" = "More";
+"Details.More.Trackers" = "Trackers";
+"Details.More.Files" = "Files";
+
+"copied" = "copied";
+
 //Settings Controller
 "Settings.Title" = "Preferences";
 "Settings.Appearance.Header" = "Appearance";

@@ -9,6 +9,12 @@
 import UIKit
 
 class StaticTableView: ThemedUITableView {
+    var useInsertStyle: Bool? {
+        didSet {
+            diffDataSource?.useInsertStyle = useInsertStyle
+        }
+    }
+    
     var diffDataSource: StaticTableViewDataSource!
     var data: [Section] = []
     
@@ -39,6 +45,8 @@ class StaticTableView: ThemedUITableView {
         register(UpdateInfoCell.nib, forCellReuseIdentifier: UpdateInfoCell.name)
         register(TextFieldCell.nib, forCellReuseIdentifier: TextFieldCell.name)
         register(StoragePropertyCell.nib, forCellReuseIdentifier: StoragePropertyCell.name)
+        
+        addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressRecogniser(_:))))
 
         estimatedRowHeight = 44
         rowHeight = UITableView.automaticDimension
@@ -50,6 +58,7 @@ class StaticTableView: ThemedUITableView {
             (cell as? PreferenceCellProtocol)?.setModel(model.cell)
             return cell
         })
+        diffDataSource.useInsertStyle = useInsertStyle
 
         dataSource = diffDataSource
         delegate = self
@@ -77,17 +86,45 @@ class StaticTableView: ThemedUITableView {
             }
         }
     }
+    
+    @objc func longPressRecogniser(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            if let indexPath = indexPathForRow(at: gesture.location(in: self)) {
+                let model = presentableData[indexPath.section].rowModels[indexPath.row]
+                model.cell.longPressAction?()
+            }
+        }
+    }
 }
 
 class StaticTableViewDataSource: DiffableDataSource<Section, CellModelHolder> {
+    var useInsertStyle: Bool?
+    
+    private var useInsertStyleValue: Bool {
+        useInsertStyle ?? false
+    }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let snapshot = snapshot else { return nil }
-        return snapshot.sectionIdentifiers[section].headerFunc?() ?? Localize.get(snapshot.sectionIdentifiers[section].header)
+        let res = snapshot.sectionIdentifiers[section].headerFunc?() ?? Localize.get(snapshot.sectionIdentifiers[section].header)
+        if res.isEmpty { return nil }
+        return "\(useInsertStyleValue ? "      " : "")\(res)"
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let snapshot = snapshot else { return nil }
-        return snapshot.sectionIdentifiers[section].footerFunc?() ?? Localize.get(snapshot.sectionIdentifiers[section].footer)
+        let res = snapshot.sectionIdentifiers[section].footerFunc?() ?? Localize.get(snapshot.sectionIdentifiers[section].footer)
+        if res.isEmpty { return nil }
+        return "\(useInsertStyleValue ? "      " : "")\(res)"
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let res = super.tableView(tableView, cellForRowAt: indexPath) as! ThemedUITableViewCell
+        res.insetStyle = useInsertStyleValue
+        if useInsertStyleValue {
+            res.setInsetParams(tableView: tableView, indexPath: indexPath)
+        }
+        return res
     }
 }
 

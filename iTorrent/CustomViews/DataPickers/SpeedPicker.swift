@@ -82,7 +82,7 @@ class SpeedPicker: PopupView, Themed {
         dismissA?(result)
     }
 
-    override func show(_ vc: UIViewController) {
+    override func show(_ vc: UIViewController?) {
         super.show(vc)
 
         customAction = {

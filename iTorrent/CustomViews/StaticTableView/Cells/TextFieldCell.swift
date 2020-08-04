@@ -75,6 +75,7 @@ class TextFieldCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var keyboardType: UIKeyboardType = .default
         var hiddenCondition: (() -> Bool)?
         var tapAction: (() -> ())?
+        var longPressAction: (() -> ())?
         var textEditAction: ((String) -> ())?
         var textEditEndAction: ((String) -> ())?
     }
