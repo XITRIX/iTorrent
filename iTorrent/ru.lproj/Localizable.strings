@@ -228,7 +228,7 @@
 
 "Warning" = "Внимание";
 "Enable" = "Включить";
-"Unlimited" = "Без ограничений";
+"Unlimited" = "Отключено";
 "Torrent rehash" = "Перепроверка хэша";
 "This action will recheck the state of all downloaded files" = "Это перепроверит состояние всех скачанных файлов";
 "Rehash" = "Старт";

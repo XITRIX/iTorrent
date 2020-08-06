@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,14 +16,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-Bq-ekh">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-Bq-ekh">
                         <rect key="frame" x="349" y="6.5" width="51" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="V6J-sZ-Awt"/>
+                        </constraints>
                     </switch>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ICT-g1-GwA">
-                        <rect key="frame" x="16" y="8" width="67.5" height="28.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ICT-g1-GwA">
+                        <rect key="frame" x="16" y="9" width="325" height="26"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-De-cAy">
-                                <rect key="frame" x="0.0" y="0.0" width="26" height="28.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="L6J-gh-wv0"/>
+                                    <constraint firstAttribute="width" constant="26" id="mRg-1b-uk8"/>
+                                </constraints>
                                 <state key="normal" image="Info">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -31,8 +38,8 @@
                                     <action selector="hintButtonAction:" destination="rjc-t4-Qdp" eventType="touchUpInside" id="4Gi-4m-0VS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZC-tY-QYG" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                <rect key="frame" x="34" y="0.0" width="33.5" height="28.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZC-tY-QYG" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                                <rect key="frame" x="34" y="3" width="291" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -41,11 +48,15 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ICT-g1-GwA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FIf-GJ-8tD" secondAttribute="top" constant="8" id="1FR-bV-F8N"/>
+                    <constraint firstItem="ICT-g1-GwA" firstAttribute="centerY" secondItem="FIf-GJ-8tD" secondAttribute="centerY" id="EDN-xe-Pw1"/>
+                    <constraint firstItem="zDO-Bq-ekh" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FIf-GJ-8tD" secondAttribute="top" constant="6.5" id="IVb-YE-K7g"/>
                     <constraint firstItem="ICT-g1-GwA" firstAttribute="leading" secondItem="FIf-GJ-8tD" secondAttribute="leading" constant="16" id="JMn-vn-A0p"/>
                     <constraint firstItem="zDO-Bq-ekh" firstAttribute="centerY" secondItem="FIf-GJ-8tD" secondAttribute="centerY" id="M0i-Bb-m5P"/>
-                    <constraint firstItem="ICT-g1-GwA" firstAttribute="centerY" secondItem="FIf-GJ-8tD" secondAttribute="centerY" id="Yf3-qk-Ihw"/>
-                    <constraint firstItem="zDO-Bq-ekh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ICT-g1-GwA" secondAttribute="trailing" constant="8" id="Zki-Qt-6lI"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ICT-g1-GwA" secondAttribute="bottom" constant="8" id="NaE-7t-1vY"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zDO-Bq-ekh" secondAttribute="bottom" constant="6" id="YXm-Va-RUo"/>
                     <constraint firstAttribute="trailing" secondItem="zDO-Bq-ekh" secondAttribute="trailing" constant="16" id="g5u-Pl-cbg"/>
+                    <constraint firstItem="zDO-Bq-ekh" firstAttribute="leading" secondItem="ICT-g1-GwA" secondAttribute="trailing" constant="8" id="v0r-Id-9Qr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -57,6 +68,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Info" width="26" height="28.5"/>
+        <image name="Info" width="26" height="26"/>
     </resources>
 </document>
