@@ -46,7 +46,7 @@ class KeyboardHelper: NSObject {
             guard let self = self else { return }
             
             self.frame.variable = frame
-            self.visibleHeight.variable = UIScreen.main.bounds.height - frame.origin.y
+            self.visibleHeight.variable = max(UIApplication.shared.keyWindow!.bounds.height - frame.origin.y, 0)
             self.isHidden.variable = self.visibleHeight.variable <= 0
             //            self.willShowVisibleHeight.variable =
         }.dispose(with: disposalBag)
