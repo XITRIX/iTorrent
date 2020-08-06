@@ -31,12 +31,12 @@ class StaticTableViewController: ThemedUIViewController {
     
     var initStyle: UITableView.Style = .grouped
     
-    init() {
-        super.init(nibName: nil, bundle: Bundle.main)
+    override init() {
+        super.init()
     }
     
     init(style: UITableView.Style) {
-        super.init(nibName: nil, bundle: Bundle.main)
+        super.init()
         initStyle = style
     }
     

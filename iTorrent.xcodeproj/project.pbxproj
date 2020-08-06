@@ -37,7 +37,6 @@
 		7C3C693820A754FB0023396C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693620A754FB0023396C /* Main.storyboard */; };
 		7C3C693A20A754FD0023396C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693920A754FD0023396C /* Assets.xcassets */; };
 		7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693B20A754FD0023396C /* LaunchScreen.storyboard */; };
-		7C3E842120AB6BB400577282 /* FileCellOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3E842020AB6BB400577282 /* FileCellOld.swift */; };
 		7C46747F24883F0000ABC838 /* TorrentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */; };
 		7C46748224883F4000ABC838 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748124883F4000ABC838 /* ViewModel.swift */; };
 		7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748324883F5900ABC838 /* MvvmViewController.swift */; };
@@ -237,7 +236,6 @@
 		7C3C693920A754FD0023396C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C3C693C20A754FD0023396C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C3C693E20A754FD0023396C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C3E842020AB6BB400577282 /* FileCellOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCellOld.swift; sourceTree = "<group>"; };
 		7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListViewModel.swift; sourceTree = "<group>"; };
 		7C46748124883F4000ABC838 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7C46748324883F5900ABC838 /* MvvmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmViewController.swift; sourceTree = "<group>"; };
@@ -674,10 +672,7 @@
 		7C80257320A9B15300673A4F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7CF0305524A88DE700242822 /* TabBarView */,
-				7C1EBD0521E4BA5300EAAF55 /* TableHeaderView */,
 				7C80257420A9B17C00673A4F /* TorrentCell.swift */,
-				7C3E842020AB6BB400577282 /* FileCellOld.swift */,
 				7C4B10AE20EA30C500440E74 /* TrackerCell.swift */,
 				7C97E4F92433F321004923D8 /* UpdatableModel.swift */,
 			);
@@ -705,6 +700,8 @@
 		7C97E5022436991C004923D8 /* TorrentListController */ = {
 			isa = PBXGroup;
 			children = (
+				7CF0305524A88DE700242822 /* TabBarView */,
+				7C1EBD0521E4BA5300EAAF55 /* TableHeaderView */,
 				7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */,
 				7C97E50024367199004923D8 /* TorrentListController.swift */,
 				7C97E50324369950004923D8 /* TorrentListController+AddTorrentFunc.swift */,
@@ -1221,7 +1218,6 @@
 				7C0A334924A91A9100EF33D0 /* UITableViewExtensions.swift in Sources */,
 				7CAF07802485B97D00AAB4FB /* TorrentListDataSource.swift in Sources */,
 				7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */,
-				7C3E842120AB6BB400577282 /* FileCellOld.swift in Sources */,
 				7CF0305C24A88F5B00242822 /* TabBarItemCell.swift in Sources */,
 				7C97E50124367199004923D8 /* TorrentListController.swift in Sources */,
 				7CCD02CF243A7EF400B1669F /* UIViewControllerExtentions.swift in Sources */,

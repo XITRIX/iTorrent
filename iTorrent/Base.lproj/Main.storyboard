@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRg-H5-Q47">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,35 +20,35 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-MO-AoK" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" focusStyle="custom" rowHeight="82" id="GjT-8w-TC9" customClass="TorrentCell" customModule="iTorrent" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GjT-8w-TC9" id="tHf-tJ-Yom">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="347.66666666666669" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2E-cl-SK6">
-                                                    <rect key="frame" x="13" y="8" width="323" height="18"/>
+                                                    <rect key="frame" x="13" y="8" width="321.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lUK-y0-kWO">
-                                                    <rect key="frame" x="13" y="30" width="323" height="18"/>
+                                                    <rect key="frame" x="13" y="30" width="321.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dGO-ld-VzN">
-                                                    <rect key="frame" x="13" y="48" width="323" height="15.666666666666664"/>
+                                                    <rect key="frame" x="13" y="48" width="321.66666666666669" height="15.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="j87-xc-3WG">
-                                                    <rect key="frame" x="13" y="70" width="323" height="4"/>
+                                                    <rect key="frame" x="13" y="70" width="321.66666666666669" height="4"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="4" id="4RZ-L6-3YT"/>
@@ -138,6 +139,7 @@
                                 <rect key="frame" x="169" y="390" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxi-gq-Num" secondAttribute="bottom" id="9yD-lu-xvj"/>
@@ -153,7 +155,6 @@
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="q0D-OC-eGZ"/>
                             <constraint firstAttribute="trailing" secondItem="nxi-gq-Num" secondAttribute="trailing" id="usz-dZ-670"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="7vm-eg-YZO">
@@ -202,40 +203,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="957.60000000000002" y="116.74876847290641"/>
-        </scene>
-        <!--ThemedUI Split View Controller-->
-        <scene sceneID="82q-bo-10g">
-            <objects>
-                <splitViewController id="rRg-H5-Q47" customClass="ThemedUISplitViewController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="Kdr-xF-frR" kind="relationship" relationship="masterViewController" id="5Q0-rE-sbM"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HGy-UX-hrp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="118" y="-654"/>
-        </scene>
-        <!--ThemedUI Navigation Controller-->
-        <scene sceneID="P44-pq-Goa">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Kdr-xF-frR" customClass="ThemedUINavigationController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="zGP-J0-9B9">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mlC-u3-W8y">
-                        <rect key="frame" x="0.0" y="729" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="sRQ-GS-4aj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9X9-oB-kXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="118" y="118"/>
         </scene>
         <!--Add .torrent-->
         <scene sceneID="jWy-3c-F9q">
@@ -298,17 +265,17 @@
                                 <rect key="frame" x="0.0" y="106" width="375" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rLL-bS-Qjc" id="Qdh-Hg-9AO">
-                                    <rect key="frame" x="0.0" y="0.0" width="348" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="347.66666666666669" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmh-iG-mwT">
-                                            <rect key="frame" x="55" y="7" width="254" height="47.666666666666664"/>
+                                            <rect key="frame" x="54.999999999999986" y="7" width="253.66666666666663" height="47.666666666666664"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024 MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANF-Z7-e4l">
-                                            <rect key="frame" x="16" y="47.666666666666664" width="325" height="24.999999999999993"/>
+                                            <rect key="frame" x="16" y="47.666666666666664" width="324.66666666666669" height="24.999999999999993"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="0p2-zm-3PK"/>
                                             </constraints>
@@ -323,8 +290,8 @@
                                                 <constraint firstAttribute="height" constant="32" id="fRr-aV-5Q9"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4o-ZC-eWY">
-                                            <rect key="frame" x="322" y="24" width="30" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4o-ZC-eWY">
+                                            <rect key="frame" x="321.66666666666669" y="24" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="aNc-D3-Mw7"/>
                                                 <constraint firstAttribute="width" constant="30" id="e8t-h5-l7d"/>
@@ -489,7 +456,7 @@ Thanks for all your support!</string>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="5Z2-0s-Hte" secondAttribute="trailing" constant="12" id="5BJ-LP-jCx"/>
                                                                     <constraint firstItem="5Z2-0s-Hte" firstAttribute="leading" secondItem="pXn-Ji-aOW" secondAttribute="leading" constant="12" id="L3W-iJ-omq"/>
@@ -514,16 +481,16 @@ Thanks for all your support!</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nu1-26-Pma">
-                                                                <rect key="frame" x="65.666666666666686" y="8" width="212" height="41.666666666666664"/>
+                                                                <rect key="frame" x="66.333333333333329" y="8" width="210.66666666666669" height="41.666666666666664"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="You are a patron" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80q-Ae-sAf" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                                        <rect key="frame" x="41" y="0.0" width="129.66666666666666" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="40.666666666666671" y="0.0" width="129" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Ads-free enabled, have fun!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dp-Er-tz0" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="21.333333333333314" width="212" height="20.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="21.333333333333314" width="210.66666666666666" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -537,7 +504,7 @@ Thanks for all your support!</string>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="Nu1-26-Pma" firstAttribute="top" secondItem="PR9-rL-IR8" secondAttribute="top" constant="8" id="2NF-kH-3Kf"/>
                                                             <constraint firstAttribute="bottom" secondItem="i4G-yl-vR6" secondAttribute="bottom" constant="8" id="7Ar-YB-HQ5"/>
@@ -558,7 +525,7 @@ Thanks for all your support!</string>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="IdR-dU-1jB">
                                                         <rect key="frame" x="0.0" y="376.66666666666669" width="343" height="108"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wop-la-tvj">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wop-la-tvj">
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
                                                                 <color key="backgroundColor" red="1" green="0.29803921570000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -577,7 +544,7 @@ Thanks for all your support!</string>
                                                                     <action selector="patronButtonAction:" destination="vUk-uz-zSp" eventType="touchUpInside" id="AZ4-NU-fmq"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-dq-bAa">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6S-dq-bAa">
                                                                 <rect key="frame" x="0.0" y="60" width="343" height="48"/>
                                                                 <color key="backgroundColor" red="1" green="0.29803921570000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
@@ -675,7 +642,8 @@ Thanks for all your support!</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2go-8C-vqG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7oo-qb-XiQ" firstAttribute="leading" secondItem="2go-8C-vqG" secondAttribute="leading" constant="16" id="Ee1-Tw-9RW"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="trailing" secondItem="GTC-Uy-e9M" secondAttribute="trailing" id="Iw2-Pm-Crs"/>
@@ -684,7 +652,6 @@ Thanks for all your support!</string>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="top" secondItem="GTC-Uy-e9M" secondAttribute="top" constant="20" symbolic="YES" id="Yne-T3-zD9"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="leading" secondItem="GTC-Uy-e9M" secondAttribute="leading" id="igF-Kz-lse"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2go-8C-vqG"/>
                     </view>
                     <navigationItem key="navigationItem" title="Patreon" largeTitleDisplayMode="never" id="7Iq-VD-EJR"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -719,16 +686,16 @@ Thanks for all your support!</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" id="7Bz-fJ-AwN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="3BO-jb-O3h" userLabel="Separator">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="0.33333333333333331"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="separatorColor"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ow8-Ml-edz">
                             <rect key="frame" x="0.0" y="231.00000508626303" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <sections>
                             <tableViewSection id="TS7-vk-Fjx">
@@ -749,7 +716,7 @@ Thanks for all your support!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTA-ph-5aV" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                                     <rect key="frame" x="64" y="11.666666666666664" width="295" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
@@ -783,7 +750,7 @@ Thanks for all your support!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjj-Vr-LFF" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                                     <rect key="frame" x="65" y="11.666666666666664" width="294" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
@@ -817,7 +784,7 @@ Thanks for all your support!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYU-Sm-CHK" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                                     <rect key="frame" x="119.66666666666667" y="11.666666666666664" width="239.33333333333331" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="colorTypeAdapter">
@@ -888,62 +855,6 @@ Thanks for all your support!</string>
             </objects>
             <point key="canvasLocation" x="1830" y="117"/>
         </scene>
-        <!--Torrent Files Controller-->
-        <scene sceneID="FcV-Je-ocf">
-            <objects>
-                <viewController storyboardIdentifier="TorrentFilesController" id="PqW-Wq-2I9" customClass="TorrentFilesController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H24-F4-Vq7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C5K-Zn-7sd" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="top" secondItem="H24-F4-Vq7" secondAttribute="top" id="FpU-tk-doc"/>
-                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="leading" secondItem="H24-F4-Vq7" secondAttribute="leading" id="KDA-sF-3PU"/>
-                            <constraint firstItem="C5K-Zn-7sd" firstAttribute="trailing" secondItem="H24-F4-Vq7" secondAttribute="trailing" id="LAu-P4-dCp"/>
-                            <constraint firstAttribute="bottom" secondItem="C5K-Zn-7sd" secondAttribute="bottom" id="oqR-7A-jVb"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="d2k-Fw-6oz"/>
-                    </view>
-                    <toolbarItems>
-                        <barButtonItem title="Deselect All" width="122" id="2py-j7-yiW">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="deselectAllAction:" destination="PqW-Wq-2I9" id="S6u-m2-ovw"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="zeW-qt-jt6"/>
-                        <barButtonItem title="Select All" width="122" id="X7M-vF-Xn1">
-                            <color key="tintColor" red="0.0" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="selectAllAction:" destination="PqW-Wq-2I9" id="d1D-5f-CiF"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="0tB-Gm-J5e">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="w04-lv-fHA">
-                            <connections>
-                                <action selector="editAction:" destination="PqW-Wq-2I9" id="chP-wb-Xcs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="deselectAllButton" destination="2py-j7-yiW" id="H3P-8D-8X0"/>
-                        <outlet property="editButton" destination="w04-lv-fHA" id="Udl-F4-9Kk"/>
-                        <outlet property="selectAllButton" destination="X7M-vF-Xn1" id="5Yt-ay-iYj"/>
-                        <outlet property="tableView" destination="C5K-Zn-7sd" id="bgx-BQ-5It"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ouC-Cn-gua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2732" y="117"/>
-        </scene>
         <!--ThemedUI Navigation Controller-->
         <scene sceneID="tzt-yz-VMU">
             <objects>
@@ -968,8 +879,8 @@ Thanks for all your support!</string>
                     <view key="view" contentMode="scaleToFill" id="8RK-qB-3hv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="wgb-nd-v6i"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Item" image="chevron.left" catalog="system" id="LI9-gV-Pxo">
@@ -1029,7 +940,7 @@ Thanks for all your support!</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KSI-Pp-j7J" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="88" id="wjR-Jn-hKa" customClass="TrackerCell" customModule="iTorrent" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="88"/>
@@ -1097,14 +1008,14 @@ Thanks for all your support!</string>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ONr-lo-LOD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KSI-Pp-j7J" firstAttribute="trailing" secondItem="5Mn-mc-Vk6" secondAttribute="trailing" id="MeZ-hu-YPK"/>
                             <constraint firstAttribute="bottom" secondItem="KSI-Pp-j7J" secondAttribute="bottom" id="QlS-dk-U5V"/>
                             <constraint firstItem="KSI-Pp-j7J" firstAttribute="top" secondItem="5Mn-mc-Vk6" secondAttribute="top" id="mWb-nJ-Qea"/>
                             <constraint firstItem="KSI-Pp-j7J" firstAttribute="leading" secondItem="5Mn-mc-Vk6" secondAttribute="leading" id="zfN-WE-sw2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ONr-lo-LOD"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem systemItem="flexibleSpace" id="umY-4f-Tqv"/>
@@ -1128,6 +1039,7 @@ Thanks for all your support!</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="qyv-y8-VGh" id="vY2-oL-tAU"/>
@@ -1154,5 +1066,14 @@ Thanks for all your support!</string>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="safari" catalog="system" width="128" height="121"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

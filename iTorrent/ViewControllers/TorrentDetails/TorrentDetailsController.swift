@@ -180,8 +180,7 @@ class TorrentDetailsController: StaticTableViewController {
                                     tapAction: {
                                         if weakSelf?.manager.state != .metadata,
                                             let hash = weakSelf?.managerHash {
-                                            let vc = Utils.instantiate("TorrentFilesController") as TorrentFilesController
-                                            vc.initialize(torrentHash: hash)
+                                            let vc = TorrentFilesController(hash: hash)
                                             weakSelf?.show(vc, sender: weakSelf)
                                         }
         }))
