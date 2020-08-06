@@ -41,6 +41,12 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
         collectionView.register(TabBarItemCell.nib, forCellWithReuseIdentifier: TabBarItemCell.id)
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        var sub: UIView? = subviews.first
+        while !(sub is UICollectionView) && sub != nil {
+            sub?.backgroundColor = .clear
+            sub = sub?.subviews.first
+        }
     }
     
     @objc func themeUpdate() {

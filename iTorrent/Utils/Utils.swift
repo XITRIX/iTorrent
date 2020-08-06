@@ -23,9 +23,9 @@ class Utils {
         UIApplication.shared.keyWindow!.rootViewController!
     }
     
-    public static var mainStoryboard: UIStoryboard {
-        rootViewController.storyboard!
-    }
+    public static var mainStoryboard: UIStoryboard = {
+        UIStoryboard(name: "Main", bundle: nil)
+    }()
     
     public static func instantiate<T: UIViewController>(_ viewController: String) -> T {
         mainStoryboard.instantiateViewController(withIdentifier: viewController) as! T

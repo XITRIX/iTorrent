@@ -53,7 +53,7 @@ class StaticTableViewController: ThemedUIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
         
-        tableView = StaticTableView(frame: view.frame, style: initStyle)
+        tableView = StaticTableView(frame: view.bounds, style: initStyle)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.colorType = .secondary
         view.addSubview(tableView)
@@ -71,6 +71,7 @@ class StaticTableViewController: ThemedUIViewController {
         initSections()
         updateData()
         
+        #if !targetEnvironment(macCatalyst)
         KeyboardHelper.shared.visibleHeight.bind { [weak self] height in
             guard let self = self else { return }
             
@@ -81,6 +82,7 @@ class StaticTableViewController: ThemedUIViewController {
                 self.tableView.contentOffset = offset
             }
         }.dispose(with: disposalBag)
+        #endif
     }
     
     func initSections() {}

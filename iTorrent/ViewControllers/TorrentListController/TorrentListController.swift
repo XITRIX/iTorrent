@@ -6,13 +6,20 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if !targetEnvironment(macCatalyst)
 import GoogleMobileAds
+#endif
 import ITorrentFramework
 import UIKit
 
 class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var tableView: ThemedUITableView!
+    
+    #if !targetEnvironment(macCatalyst)
     @IBOutlet var adsView: GADBannerView!
+    #else
+    @IBOutlet var adsView: UIView!
+    #endif
     
     @IBOutlet var tableviewPlaceholder: UIView!
     @IBOutlet var tableviewPlaceholderImage: UIImageView!
@@ -63,7 +70,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         localize()
         
         initializeTableView()
+        #if !targetEnvironment(macCatalyst)
         initializeAds()
+        #endif
         initializeSearchView()
         initializeEditMode()
         showUpdateLog()
@@ -104,7 +113,10 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         smoothlyDeselectRows(in: tableView)
+        
+        #if !targetEnvironment(macCatalyst)
         viewWillAppearAds()
+        #endif
     }
     
     @IBAction func addTorrentAction(_ sender: UIBarButtonItem) {

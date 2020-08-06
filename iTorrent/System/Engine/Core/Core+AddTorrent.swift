@@ -73,7 +73,7 @@ extension Core {
 
                 if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
                     controller.initialize(filePath: dest)
-                    Utils.topViewController?.present(controller.embedInNavController(), animated: true)
+                    Utils.topViewController?.present(controller.embedInNavigation(), animated: true)
                 }
             }
         }
@@ -124,7 +124,7 @@ extension Core {
                 }
                 if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
                     controller.initialize(filePath: Core.tempFile)
-                    presenter.present(controller.embedInNavController(), animated: true)
+                    presenter.present(controller.embedInNavigation(), animated: true)
                 }
             }, errorAction: {
                 Dialog.show(presenter,

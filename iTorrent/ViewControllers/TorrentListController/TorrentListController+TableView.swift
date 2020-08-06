@@ -45,21 +45,25 @@ extension TorrentListController: UITableViewDelegate {
             if let hash = torrentListDataSource.snapshot?.getItem(from: indexPath)?.hash {
                 viewController.managerHash = hash
                 
-                if #available(iOS 11, *) { } else {
+                if #available(iOS 11, *) {} else {
                     let back = UIBarButtonItem()
                     back.title = " "
                     navigationItem.backBarButtonItem = back
                 }
                 
-                if !splitViewController!.isCollapsed {
-                    let navController = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
-                    navController.viewControllers.append(viewController)
-                    navController.isToolbarHidden = false
-                    navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-                    navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
-                    splitViewController?.showDetailViewController(navController, sender: self)
+                if let splitViewController = splitViewController {
+                    if !splitViewController.isCollapsed {
+                        let navController = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+                        navController.viewControllers.append(viewController)
+                        navController.isToolbarHidden = false
+                        navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+                        navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
+                        splitViewController.showDetailViewController(navController, sender: self)
+                    } else {
+                        splitViewController.showDetailViewController(viewController, sender: self)
+                    }
                 } else {
-                    splitViewController?.showDetailViewController(viewController, sender: self)
+                    show(viewController, sender: self)
                 }
             }
         }

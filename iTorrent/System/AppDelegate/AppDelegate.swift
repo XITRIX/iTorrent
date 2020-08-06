@@ -9,10 +9,10 @@
 import ITorrentFramework
 import UIKit
 
+#if !targetEnvironment(macCatalyst)
 import Firebase
 import GoogleMobileAds
 
-#if !targetEnvironment(macCatalyst)
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -26,57 +26,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var openedByFile = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
-        FirebaseApp.configure()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-
+        
+        #if !targetEnvironment(macCatalyst)
         // Crash on iOS 9
         if #available(iOS 10, *) {
-            #if !targetEnvironment(macCatalyst)
             MSAppCenter.start("381c5088-264f-4ea2-b145-498a2ce15a06", withServices: [
                 MSAnalytics.self,
                 MSCrashes.self
             ])
-            #endif
         }
 
+        FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        #endif
+        
+        pushNotificationsInit(application)
         PatreonAPI.configure()
+        rootWindowInit()
+        Core.configure()
+        
 
+        if #available(iOS 13.0, *) {
+            Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
+        }
+
+        if UserPreferences.ftpKey {
+            Core.shared.startFileSharing()
+        }
+        
+        #if !targetEnvironment(macCatalyst)
         DispatchQueue.global(qos: .utility).async {
             sleep(1)
             if !self.openedByFile {
                 FullscreenAd.shared.load()
             }
         }
-
-        Core.configure()
-
-        if #available(iOS 13.0, *) {
-            Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
-        }
-
-        if let splitViewController = window?.rootViewController as? UISplitViewController {
-            splitViewController.delegate = self
-            splitViewController.preferredDisplayMode = .allVisible
-        }
-
-        if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-                print("Granted: " + String(granted))
-            }
-            center.removeAllDeliveredNotifications()
-            center.delegate = self
-        } else {
-            application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
-            UIApplication.shared.cancelAllLocalNotifications()
-        }
-
-        if UserPreferences.ftpKey {
-            Core.shared.startFileSharing()
-        }
+        #endif
 
         return true
     }

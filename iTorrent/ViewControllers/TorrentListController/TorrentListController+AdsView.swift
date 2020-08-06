@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if !targetEnvironment(macCatalyst)
 import GoogleMobileAds
 import UIKit
 
@@ -50,3 +51,4 @@ extension TorrentListController: GADBannerViewDelegate {
         }
     }
 }
+#endif

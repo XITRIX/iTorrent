@@ -303,7 +303,7 @@ class TorrentDetailsController: StaticTableViewController {
 
     @objc func removeAction() {
         Core.shared.removeTorrentsUI(hashes: [managerHash], sender: toolbarButtons.remove, direction: .down) {
-            if !self.splitViewController!.isCollapsed,
+            if !(self.splitViewController?.isCollapsed ?? true),
                 let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
                 splitView.showDetailViewController(Utils.createEmptyViewController(), sender: self)
 

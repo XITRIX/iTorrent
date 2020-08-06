@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,7 +36,8 @@
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="rh2-oE-IZH"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Psc-nG-iJr" secondAttribute="bottom" id="2to-wb-vmu"/>
                 <constraint firstItem="Bqq-40-XdF" firstAttribute="top" secondItem="Ict-dT-htk" secondAttribute="top" id="DXg-cb-JXc"/>
@@ -48,7 +49,6 @@
                 <constraint firstAttribute="trailing" secondItem="Bqq-40-XdF" secondAttribute="trailing" id="n3f-gd-oNs"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="rh2-oE-IZH"/>
             <connections>
                 <outlet property="collectionView" destination="Psc-nG-iJr" id="QC8-4Q-qeB"/>
                 <outlet property="fxView" destination="Bqq-40-XdF" id="9Vy-iB-bQD"/>
