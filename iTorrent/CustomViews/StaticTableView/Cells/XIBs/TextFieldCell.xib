@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,18 +19,23 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPr-zf-40i">
                         <rect key="frame" x="16" y="11.5" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="E4s-uf-lV1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Un-WL-eLX">
-                        <rect key="frame" x="74" y="11.5" width="230" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="74" y="11" width="230" height="22"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="yPr-zf-40i" secondAttribute="bottom" constant="11.5" id="KgX-jC-bUm"/>
                     <constraint firstItem="1Un-WL-eLX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="L4d-Dd-Rql"/>
+                    <constraint firstItem="yPr-zf-40i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11.5" id="ONt-B1-FLT"/>
                     <constraint firstItem="1Un-WL-eLX" firstAttribute="leading" secondItem="yPr-zf-40i" secondAttribute="trailing" constant="16" id="PpY-g3-24y"/>
                     <constraint firstItem="yPr-zf-40i" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Soe-9l-Ctg"/>
                     <constraint firstAttribute="trailing" secondItem="1Un-WL-eLX" secondAttribute="trailing" constant="16" id="cDI-rr-l7f"/>

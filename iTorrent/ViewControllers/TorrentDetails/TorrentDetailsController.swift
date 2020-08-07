@@ -89,7 +89,7 @@ class TorrentDetailsController: StaticTableViewController {
 
         // DOWNLOAD
         var download = [CellModelProtocol]()
-        download.append(SwitchCell.Model(title: "Details.Downloading.Sequential", titleFont: .preferredFont(forTextStyle: .headline), defaultValue: { weakSelf?.manager.sequentialDownload }, action: { sender in
+        download.append(SwitchCell.Model(title: "Details.Downloading.Sequential", bold: true, defaultValue: { weakSelf?.manager.sequentialDownload }, action: { sender in
             TorrentSdk.setTorrentFilesSequential(hash: weakSelf?.managerHash ?? "", sequential: sender.isOn)
         }))
         download.append(DoubleProgressCell.Model(title: "Details.Downloading.Progress", torrentModel: { weakSelf?.manager }))
@@ -97,11 +97,11 @@ class TorrentDetailsController: StaticTableViewController {
 
         // UPLOAD
         var upload = [CellModelProtocol]()
-        upload.append(SwitchCell.Model(title: "Details.Seeding.Allow", titleFont: .preferredFont(forTextStyle: .headline), defaultValue: { weakSelf?.manager.seedMode }, action: { sender in
+        upload.append(SwitchCell.Model(title: "Details.Seeding.Allow", bold: true, defaultValue: { weakSelf?.manager.seedMode }, action: { sender in
             weakSelf?.seedingStateChanged(sender)
         }))
         upload.append(ButtonCell.Model(title: "Details.Seeding.Limit",
-                                       titleFont: .preferredFont(forTextStyle: .headline),
+                                       bold: true,
                                        buttonTitleFunc: {
                                            weakSelf?.manager.seedLimit == 0 ?
                                                "Unlimited".localized :
@@ -167,7 +167,7 @@ class TorrentDetailsController: StaticTableViewController {
         // MORE
         var more = [CellModelProtocol]()
         more.append(SegueCell.Model(title: "Details.More.Trackers",
-                                    titleFont: .preferredFont(forTextStyle: .headline),
+                                    bold: true,
                                     tapAction: {
                                         if weakSelf?.manager.state != .metadata {
                                             let vc = Utils.instantiate("TrackersListController") as TrackersListController
@@ -176,7 +176,7 @@ class TorrentDetailsController: StaticTableViewController {
                                         }
         }))
         more.append(SegueCell.Model(title: "Details.More.Files",
-                                    titleFont: .preferredFont(forTextStyle: .headline),
+                                    bold: true,
                                     tapAction: {
                                         if weakSelf?.manager.state != .metadata,
                                             let hash = weakSelf?.managerHash {

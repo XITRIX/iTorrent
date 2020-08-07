@@ -16,6 +16,11 @@ class TorrentCell: ThemedUITableViewCell, UpdatableModel {
     @IBOutlet var progress: UIProgressView!
 
     var model: TorrentModel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        title.font = title.font.bold()
+    }
 
     override func themeUpdate() {
         super.themeUpdate()

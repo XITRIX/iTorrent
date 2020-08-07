@@ -19,7 +19,7 @@ class RssChannelCell: ThemedUITableViewCell {
     @IBOutlet var setupButton: UIButton!
 
     @IBOutlet var stackTrailing: NSLayoutConstraint!
-    
+
     weak var parent: RssFeedController?
     weak var model: RssModel!
 
@@ -35,20 +35,20 @@ class RssChannelCell: ThemedUITableViewCell {
 
     func setModel(_ model: RssModel) {
         self.model = model
-        updateCellView() 
+        updateCellView()
     }
-    
+
     func updateCellView() {
-        title.text = self.model.displayTitle
+        title.text = model.displayTitle
         descriptionText.text = model.displayDescription
         imageFav.image = UIImage(named: "Rss")
         imageFav.load(url: model.linkImage)
-        
+
         let updatesCount = model.updatesCount
         updatesLabel.superview?.alpha = isEditing || updatesCount == 0 ? 0 : 1
         updatesLabel.text = "\(updatesCount)"
     }
-    
+
     var vc: RssChannelSetupController!
     @IBAction func setupAction(_ sender: UIButton) {
         vc = Utils.instantiate("RssChannelSetup")

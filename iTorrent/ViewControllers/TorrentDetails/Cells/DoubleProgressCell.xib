@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Progress" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfs-VI-evM" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                         <rect key="frame" x="16" y="12" width="71.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -54,11 +54,12 @@
                     <constraint firstAttribute="trailing" secondItem="c1K-7w-hFC" secondAttribute="trailing" constant="16" id="HOo-NX-LBg"/>
                     <constraint firstItem="Lfs-VI-evM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JJD-Mi-Jp1"/>
                     <constraint firstItem="7Hu-cy-s1b" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="NJJ-N5-5Xl"/>
-                    <constraint firstItem="Lfs-VI-evM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VSf-Iw-Y8a"/>
                     <constraint firstItem="c1K-7w-hFC" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="Wib-Zd-azL"/>
                     <constraint firstItem="c1K-7w-hFC" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="gdA-ye-OUB"/>
+                    <constraint firstAttribute="bottom" secondItem="Lfs-VI-evM" secondAttribute="bottom" constant="11.5" id="k0u-m6-Qos"/>
                     <constraint firstAttribute="trailing" secondItem="7Hu-cy-s1b" secondAttribute="trailing" constant="16" id="oTW-l6-RGM"/>
                     <constraint firstItem="c1K-7w-hFC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-8" id="xbZ-81-jaC"/>
+                    <constraint firstItem="Lfs-VI-evM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="zls-HA-fTB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

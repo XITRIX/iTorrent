@@ -20,13 +20,13 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
             return
         }
         title.text = Localize.get(model.title)
-        title.font = model.titleFont
+        title.font = model.bold ? title.font.bold() : title.font.normal()
     }
 
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var titleFont: UIFont?
+        var bold: Bool = false
         var segueViewId: String?
         var controller: UIViewController?
         var controllerType: UIViewController.Type?
@@ -34,15 +34,15 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var tapAction: (() -> ())?
         var longPressAction: (() -> ())?
 
-        init(title: String, titleFont: UIFont? = nil, tapAction: @escaping () -> ()) {
+        init(title: String, bold: Bool = false, tapAction: @escaping () -> ()) {
             self.title = title
-            self.titleFont = titleFont
+            self.bold = bold
             self.tapAction = tapAction
         }
 
-        init(_ vc: UIViewController?, title: String, titleFont: UIFont? = nil, segueViewId: String, isModal: Bool = false) {
+        init(_ vc: UIViewController?, title: String, bold: Bool = false, segueViewId: String, isModal: Bool = false) {
             self.title = title
-            self.titleFont = titleFont
+            self.bold = bold
             self.segueViewId = segueViewId
 
             tapAction = { [weak vc] in
@@ -55,9 +55,9 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
             }
         }
 
-        init(_ vc: UIViewController?, title: String, titleFont: UIFont? = nil, controllerType: UIViewController.Type, isModal: Bool = false) {
+        init(_ vc: UIViewController?, title: String, bold: Bool = false, controllerType: UIViewController.Type, isModal: Bool = false) {
             self.title = title
-            self.titleFont = titleFont
+            self.bold = bold
             self.controllerType = controllerType
 
             tapAction = { [weak vc] in
@@ -69,9 +69,9 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
             }
         }
 
-        init(_ vc: UIViewController?, title: String, titleFont: UIFont? = nil, controller: UIViewController, isModal: Bool = false) {
+        init(_ vc: UIViewController?, title: String, bold: Bool = false, controller: UIViewController, isModal: Bool = false) {
             self.title = title
-            self.titleFont = titleFont
+            self.bold = bold
             self.controller = controller
 
             tapAction = { [weak vc] in

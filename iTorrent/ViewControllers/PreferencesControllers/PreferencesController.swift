@@ -211,9 +211,9 @@ class PreferencesController: StaticTableViewController {
         updates.append(ButtonCell.Model(title: "Settings.UpdateSite", buttonTitle: "Settings.UpdateSite.Open") { _ in
             Utils.openUrl("https://github.com/XITRIX/iTorrent")
         })
-        updates.append(UpdateInfoCell.Model {
+        updates.append(UpdateInfoCell.Model(tapAction: {
             weakSelf?.present(Dialog.createUpdateLogs(forced: true)!, animated: true)
-        })
+        }))
         let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
         data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
 

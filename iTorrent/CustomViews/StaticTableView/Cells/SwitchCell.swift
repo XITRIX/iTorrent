@@ -49,7 +49,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
 
     func setModel(_ model: Model) {
         title.text = Localize.get(model.title)
-        title.font = model.titleFont
+        title.font = model.bold ? title.font.bold() : title.font.normal()
         action = model.action
 
         switcher.onTintColor = model.switchColor
@@ -85,7 +85,7 @@ class SwitchCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var titleFont: UIFont?
+        var bold: Bool = false
         var defaultValue: () -> Bool?
         var hint: String?
         var switchColor: UIColor?

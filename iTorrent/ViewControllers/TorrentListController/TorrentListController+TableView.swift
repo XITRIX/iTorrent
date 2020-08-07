@@ -17,7 +17,7 @@ extension TorrentListController {
         tableView.register(TableHeaderView.nib, forHeaderFooterViewReuseIdentifier: TableHeaderView.id)
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 82
-        tableView.rowHeight = 82
+        tableView.rowHeight = UITableView.automaticDimension
         
         torrentListDataSource = TorrentListDataSource(self, tableView: tableView) { (tableView, indexPath, model) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TorrentCell

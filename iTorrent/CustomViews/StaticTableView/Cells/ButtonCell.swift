@@ -37,7 +37,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
             return
         }
         title.text = Localize.get(model.title)
-        title.font = model.titleFont
+        title.font = model.bold ? title.font.bold() : title.font.normal()
         UIView.performWithoutAnimation {
             button.setTitle(Localize.get(model.buttonTitleFunc?() ?? model.buttonTitle), for: .normal)
             button.layoutIfNeeded()
@@ -59,7 +59,7 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
-        var titleFont: UIFont?
+        var bold: Bool = false
         var buttonTitle: String = ""
         var hint: String?
         var buttonTitleFunc: (() -> String)?

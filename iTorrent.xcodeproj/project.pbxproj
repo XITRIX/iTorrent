@@ -147,6 +147,7 @@
 		7CD71429248C150400A24E98 /* RssItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD71427248C150400A24E98 /* RssItemCell.xib */; };
 		7CDD0D6324DADB04000C38F6 /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
 		7CDD0D6424DADB04000C38F6 /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CDD30FA24DC7355000C38F6 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */; };
 		7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */; };
 		7CE35520248C254B007C9685 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3551F248C254B007C9685 /* UIImageViewExtensions.swift */; };
 		7CE35522248C5A7E007C9685 /* RssItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE35521248C5A7E007C9685 /* RssItemController.swift */; };
@@ -351,6 +352,7 @@
 		7CD71426248C150400A24E98 /* RssItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemCell.swift; sourceTree = "<group>"; };
 		7CD71427248C150400A24E98 /* RssItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssItemCell.xib; sourceTree = "<group>"; };
 		7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ITorrentFramework.xcframework; path = Frameworks/ITorrentFramework.xcframework; sourceTree = "<group>"; };
+		7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		7CE3551F248C254B007C9685 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		7CE35521248C5A7E007C9685 /* RssItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemController.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */,
 				7CCD02CE243A7EF400B1669F /* UIViewControllerExtentions.swift */,
 				7C495526244E4B3B0057648A /* UIViewExtensions.swift */,
+				7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1241,6 +1244,7 @@
 				7CE61CB12426B75B0038717C /* UIColorExtentions.swift in Sources */,
 				7CBEFA60240D68DC00FEEA05 /* UILabelExtentions.swift in Sources */,
 				7CF75F21244B42EE00F5C089 /* PatreonAPI.swift in Sources */,
+				7CDD30FA24DC7355000C38F6 /* UIFontExtensions.swift in Sources */,
 				7C46749724884DB000ABC838 /* Disposal.swift in Sources */,
 				7CB1769324564289005CEEA6 /* FileManagerExtensions.swift in Sources */,
 				7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */,

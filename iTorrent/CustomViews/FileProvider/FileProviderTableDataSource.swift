@@ -38,7 +38,8 @@ class FileProviderTableDataSource: NSObject {
         
         tableView.register(FolderCell.nib, forCellReuseIdentifier: FolderCell.id)
         tableView.register(FileCell.nib, forCellReuseIdentifier: FileCell.id)
-        tableView.rowHeight = 78
+        tableView.estimatedRowHeight = 78
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     func getFolders(from files: [FileModel]) -> [FolderModel] {
