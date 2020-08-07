@@ -56,7 +56,7 @@ class TorrentDetailsController: StaticTableViewController {
 
 //        TorrentSdk.scrapeTracker(hash: managerHash)
 
-        title = Localize.get("Back")
+        title = "Back".localized
 
         // MARQUEE LABEL
         let theme = Themes.current
@@ -200,7 +200,6 @@ class TorrentDetailsController: StaticTableViewController {
     }
 
     @objc func managerUpdated() {
-        title = manager.title
         updateData()
 
         if manager.state == .hashing ||

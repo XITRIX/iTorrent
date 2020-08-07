@@ -71,10 +71,8 @@ extension Core {
                     return
                 }
 
-                if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
-                    controller.initialize(filePath: dest)
-                    Utils.topViewController?.present(controller.embedInNavigation(), animated: true)
-                }
+                let controller = AddTorrentController(filePath: dest)
+                Utils.topViewController?.present(controller.embedInNavigation(), animated: true)
             }
         }
     }
@@ -117,15 +115,15 @@ extension Core {
                     }
                     return
                 }
+
                 if Core.shared.torrents[hash!] != nil {
                     Dialog.show(title: "This torrent already exists",
                                 message: "\(Localize.get("Torrent with hash:")) \"\(hash!)\" \(Localize.get("already exists in download queue"))")
                     return
                 }
-                if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
-                    controller.initialize(filePath: Core.tempFile)
-                    presenter.present(controller.embedInNavigation(), animated: true)
-                }
+
+                let controller = AddTorrentController(filePath: Core.tempFile)
+                presenter.present(controller.embedInNavigation(), animated: true)
             }, errorAction: {
                 Dialog.show(presenter,
                             title: "Error has been occured",

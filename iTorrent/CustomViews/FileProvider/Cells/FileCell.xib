@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                     <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-6G-ciV">
                         <rect key="frame" x="313" y="28.5" width="51" height="31"/>
                     </switch>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuP-bv-4cr">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuP-bv-4cr">
                         <rect key="frame" x="321" y="29" width="34" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="HUS-DO-K6K"/>
@@ -44,16 +44,19 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="v0R-2P-1JM">
-                        <rect key="frame" x="13" y="6" width="292" height="67"/>
+                        <rect key="frame" x="13" y="6" width="292" height="66"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i uwihr jfoiejr flerf " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXe-sO-70x" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="292" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="292" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="vOG-y0-BGn"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024 MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="4ZV-dB-W3t" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="292" height="17"/>
+                                <rect key="frame" x="0.0" y="51" width="292" height="15"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -72,11 +75,11 @@
                     <constraint firstAttribute="bottom" secondItem="48d-ja-BkU" secondAttribute="bottom" constant="8" id="NNZ-4E-4q2"/>
                     <constraint firstItem="HUl-6G-ciV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PjI-L9-RWa"/>
                     <constraint firstItem="v0R-2P-1JM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Qvc-4f-nbX"/>
-                    <constraint firstItem="48d-ja-BkU" firstAttribute="top" secondItem="v0R-2P-1JM" secondAttribute="bottom" constant="3" id="TLL-Uv-Fxo"/>
+                    <constraint firstItem="48d-ja-BkU" firstAttribute="top" secondItem="v0R-2P-1JM" secondAttribute="bottom" constant="4" id="TLL-Uv-Fxo"/>
                     <constraint firstItem="HUl-6G-ciV" firstAttribute="leading" secondItem="v0R-2P-1JM" secondAttribute="trailing" constant="8" id="pFv-VJ-Bfh"/>
                     <constraint firstAttribute="trailing" secondItem="HUl-6G-ciV" secondAttribute="trailing" constant="13" id="qbg-py-a96"/>
                     <constraint firstAttribute="trailing" secondItem="48d-ja-BkU" secondAttribute="trailing" constant="13" id="spv-sx-ogS"/>
-                    <constraint firstAttribute="bottom" secondItem="v0R-2P-1JM" secondAttribute="bottom" constant="15" id="ujZ-Lq-rUC"/>
+                    <constraint firstAttribute="bottom" secondItem="v0R-2P-1JM" secondAttribute="bottom" constant="16" id="ujZ-Lq-rUC"/>
                     <constraint firstItem="48d-ja-BkU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="x07-Yd-IKI"/>
                     <constraint firstItem="XuP-bv-4cr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yz3-bl-prR"/>
                 </constraints>
