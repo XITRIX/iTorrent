@@ -109,7 +109,7 @@ class Core {
 
         if model.displayState == .downloading,
             model.downloadRate <= 25000,
-            BackgroundTask.backgrounding {
+            BackgroundTask.shared.backgrounding {
             userData.zeroSpeedTimeCounter += 1
         } else {
             userData.zeroSpeedTimeCounter = 0
@@ -121,7 +121,7 @@ class Core {
                 title: Localize.get("BackgroundTask.LowSpeed.Title") + "(\(Utils.getSizeText(size: Int64(model.downloadRate)))/s)",
                 body: model.title + Localize.get("BackgroundTask.LowSpeed.Message"),
                 hash: model.hash)
-            BackgroundTask.checkToStopBackground()
+            BackgroundTask.shared.checkToStopBackground()
         }
     }
 }

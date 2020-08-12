@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D7-3D-mbK">
-                        <rect key="frame" x="318" y="24" width="30" height="30"/>
+                        <rect key="frame" x="314" y="24" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Mpx-m8-xsb"/>
                             <constraint firstAttribute="width" constant="30" id="kJw-lz-p7k"/>
@@ -62,7 +62,7 @@
                     <constraint firstAttribute="trailing" secondItem="Ezc-FQ-zxu" secondAttribute="trailing" constant="28" id="BbV-XN-9jF"/>
                     <constraint firstItem="7D7-3D-mbK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RuI-J1-WRB"/>
                     <constraint firstItem="AAk-OI-x25" firstAttribute="centerY" secondItem="Ezc-FQ-zxu" secondAttribute="centerY" id="ZY1-NP-gf9"/>
-                    <constraint firstAttribute="trailing" secondItem="7D7-3D-mbK" secondAttribute="trailing" constant="-4" id="bfa-9u-wSY"/>
+                    <constraint firstAttribute="trailing" secondItem="7D7-3D-mbK" secondAttribute="trailing" id="bfa-9u-wSY"/>
                     <constraint firstItem="f6j-79-rzW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hje-Hh-bTg"/>
                     <constraint firstItem="AAk-OI-x25" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="jGY-y6-31w"/>
                     <constraint firstAttribute="bottom" secondItem="f6j-79-rzW" secondAttribute="bottom" constant="8" id="nNG-zO-jCG"/>
@@ -82,6 +82,6 @@
     </objects>
     <resources>
         <image name="Folder" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="More2" width="25" height="25"/>
+        <image name="More2" width="30" height="30"/>
     </resources>
 </document>

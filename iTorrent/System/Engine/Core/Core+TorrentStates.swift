@@ -20,6 +20,7 @@ extension Core {
         if oldState == .metadata {
             TorrentSdk.saveMagnetToFile(hash: manager.hash)
         }
+        
         if UserPreferences.notificationsKey &&
             (oldState == .downloading && (newState == .finished || newState == .seeding)) {
             NotificationHelper.showNotification(title: Localize.get("Download finished"),
@@ -30,8 +31,8 @@ extension Core {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
 
-            BackgroundTask.checkToStopBackground()
         }
+        
         if UserPreferences.notificationsSeedKey &&
             (oldState == .seeding && (newState == .finished)) {
             NotificationHelper.showNotification(title: Localize.get("Seeding finished"),
@@ -41,8 +42,8 @@ extension Core {
             if UserPreferences.badgeKey && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
-
-            BackgroundTask.checkToStopBackground()
         }
+        
+        BackgroundTask.shared.checkToStopBackground()
     }
 }

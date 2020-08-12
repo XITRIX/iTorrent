@@ -108,7 +108,7 @@ class TorrentDetailsController: StaticTableViewController {
                                                Utils.getSizeText(size: weakSelf?.manager.seedLimit, decimals: true)
         }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
-                weakSelf?.onScreenPopup = SizePicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
+                weakSelf?.onScreenPopup = SizePicker(defaultValue: Int64(Core.shared.torrentsUserData[weakSelf?.managerHash ?? ""]?.seedLimit ?? 0), dataSelected: { res in
                     if let hash = weakSelf?.managerHash {
                         Core.shared.torrentsUserData[hash]?.seedLimit = res
                         if res == 0 {

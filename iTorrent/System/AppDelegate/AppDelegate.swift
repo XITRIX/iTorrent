@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
         Core.shared.saveTorrents()
-        _ = BackgroundTask.startBackground()
+        _ = BackgroundTask.shared.startBackground()
         AppDelegate.backgrounded = true
     }
 
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.cancelAllLocalNotifications()
         }
         UIApplication.shared.applicationIconBadgeNumber = 0
-        BackgroundTask.stopBackgroundTask()
+        BackgroundTask.shared.stopBackgroundTask()
         TorrentSdk.resumeToApp()
         AppDelegate.backgrounded = false
     }
