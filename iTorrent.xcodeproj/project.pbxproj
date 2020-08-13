@@ -138,6 +138,8 @@
 		7CCE8D7724AB9F7900C914BA /* PlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCE8D7624AB9F7900C914BA /* PlaceHolderView.xib */; };
 		7CD43AE92488519B00EA531E /* UIViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AE82488519B00EA531E /* UIViewBinding.swift */; };
 		7CD43AEB24895DF600EA531E /* UIActivityIndicatorViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */; };
+		7CD6A55724E4950D00DEB09B /* ITorrentFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD6A55624E4950D00DEB09B /* ITorrentFramework.framework */; platformFilter = ios; };
+		7CD6A55824E4950D00DEB09B /* ITorrentFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD6A55624E4950D00DEB09B /* ITorrentFramework.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CD71419248BD64C00A24E98 /* RssFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD71418248BD64C00A24E98 /* RssFeedController.swift */; };
 		7CD7141D248BFE5D00A24E98 /* RssCannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD7141B248BFE5D00A24E98 /* RssCannelCell.swift */; };
 		7CD7141E248BFE5D00A24E98 /* RssChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD7141C248BFE5D00A24E98 /* RssChannelCell.xib */; };
@@ -145,8 +147,6 @@
 		7CD71423248C132200A24E98 /* RssChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD71422248C132200A24E98 /* RssChannelController.swift */; };
 		7CD71428248C150400A24E98 /* RssItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD71426248C150400A24E98 /* RssItemCell.swift */; };
 		7CD71429248C150400A24E98 /* RssItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD71427248C150400A24E98 /* RssItemCell.xib */; };
-		7CDD0D6324DADB04000C38F6 /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
-		7CDD0D6424DADB04000C38F6 /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CDD30FA24DC7355000C38F6 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */; };
 		7CE1604B235B970B00E3F1D9 /* StaticTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */; };
 		7CE35520248C254B007C9685 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3551F248C254B007C9685 /* UIImageViewExtensions.swift */; };
@@ -186,13 +186,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7CDD0D6524DADB04000C38F6 /* Embed Frameworks */ = {
+		7CD6A55924E4950D00DEB09B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7CDD0D6424DADB04000C38F6 /* ITorrentFramework.xcframework in Embed Frameworks */,
+				7CD6A55824E4950D00DEB09B /* ITorrentFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +344,8 @@
 		7CCE8D7624AB9F7900C914BA /* PlaceHolderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceHolderView.xib; sourceTree = "<group>"; };
 		7CD43AE82488519B00EA531E /* UIViewBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewBinding.swift; sourceTree = "<group>"; };
 		7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewBinding.swift; sourceTree = "<group>"; };
+		7CD6A54F24E492A100DEB09B /* ITorrentFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ITorrentFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CD6A55624E4950D00DEB09B /* ITorrentFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ITorrentFramework.framework; path = "../../../Library/Developer/Xcode/DerivedData/ITorrentFramework-cxzpcnvbxmbdhccunmtjixhlnujf/Build/Products/Release-iphoneos/ITorrentFramework.framework"; sourceTree = "<group>"; };
 		7CD71418248BD64C00A24E98 /* RssFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedController.swift; sourceTree = "<group>"; };
 		7CD7141B248BFE5D00A24E98 /* RssCannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssCannelCell.swift; sourceTree = "<group>"; };
 		7CD7141C248BFE5D00A24E98 /* RssChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssChannelCell.xib; sourceTree = "<group>"; };
@@ -396,8 +398,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CD6A55724E4950D00DEB09B /* ITorrentFramework.framework in Frameworks */,
 				BEA4455F12A1DDE24B36018F /* Pods_iTorrent.framework in Frameworks */,
-				7CDD0D6324DADB04000C38F6 /* ITorrentFramework.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +543,8 @@
 		7C3C694420A75FBF0023396C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CD6A54F24E492A100DEB09B /* ITorrentFramework.framework */,
+				7CD6A55624E4950D00DEB09B /* ITorrentFramework.framework */,
 				7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */,
 				7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */,
 			);
@@ -1038,7 +1042,7 @@
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
 				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
 				7CD95E5E2370443200C21F81 /* Swiftlint */,
-				7CDD0D6524DADB04000C38F6 /* Embed Frameworks */,
+				7CD6A55924E4950D00DEB09B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1530,7 +1534,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18.0;
+				CURRENT_PROJECT_VERSION = 19.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
@@ -1558,7 +1562,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1587,7 +1591,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18.0;
+				CURRENT_PROJECT_VERSION = 19.0;
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1614,7 +1618,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.8.2;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;

@@ -255,6 +255,7 @@
 "Download" = "Download";
 "Don't Download" = "Don't Download";
 "Share" = "Share";
+"Show in Files" = "Show in Files";
 "AddTorrentController.MemoryWarning.Title" = "Warning";
 "AddTorrentController.MemoryWarning.Message" = "Not enough free space on disk to download all files, free up disk space to continue";
 "AddTorrentController.MemoryWarning.AddAnyway" = "Add anyway";

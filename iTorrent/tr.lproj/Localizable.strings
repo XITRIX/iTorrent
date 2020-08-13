@@ -87,42 +87,42 @@
 "Trackers" = "Takipçiler";
 "Details.BackgroundSeeding.Warning" = "Arkaplanda seedleme devre dışı, eğer uygulamayı kapatırsanız seedleme duracaktır. Arkaplanda seedlemeyi aktif hale getirmek ister misiniz?\nEğer bir seed sınırı belirlemezseniz, uygulama sürekli olarak arkaplanda çalışmaya devam edecektir, bu durum yüksek pil kullanımına sebebiyet verebilir.";
 
-"Details.State" = "State";
+"Details.State" = "Durum";
 
-"Details.Speed.Title" = "Speed";
-"Details.Speed.Download" = "Download";
-"Details.Speed.Upload" = "Upload";
-"Details.Speed.Remains" = "Time remains";
+"Details.Speed.Title" = "Hız";
+"Details.Speed.Download" = "İndiriliyor";
+"Details.Speed.Upload" = "Yükleme hızı";
+"Details.Speed.Remains" = "Kalan zaman";
 
-"Details.Downloading.Title" = "Downloading";
-"Details.Downloading.Sequential" = "Sequential download";
-"Details.Downloading.Progress" = "Progress";
+"Details.Downloading.Title" = "İndiriliyor";
+"Details.Downloading.Sequential" = "Sıralı indirme";
+"Details.Downloading.Progress" = "İndirme durumu";
 
-"Details.Seeding.Title" = "Seeding";
-"Details.Seeding.Allow" = "Allow seeding";
-"Details.Seeding.Limit" = "Seed limit";
+"Details.Seeding.Title" = "Seedleniyor";
+"Details.Seeding.Allow" = "Seedlemeyi aktifleştir";
+"Details.Seeding.Limit" = "Seed Sınırı";
 
-"Details.Info.Title" = "General information";
+"Details.Info.Title" = "Genel bilgi";
 "Details.Info.Hash" = "Hash";
-"Details.Info.Creator" = "Creator";
-"Details.Info.Created" = "Created On";
-"Details.Info.Added" = "Added On";
-"Details.Info.Comment" = "Comment";
+"Details.Info.Creator" = "Yaratıcı";
+"Details.Info.Created" = "Yaratıldığı Tarih";
+"Details.Info.Added" = "Eklendiği Tarih";
+"Details.Info.Comment" = "Yorum";
 
-"Details.Transfer.Title" = "Transfer";
-"Details.Transfer.Total" = "Selected/Total";
-"Details.Transfer.Completed" = "Completed";
-"Details.Transfer.Progress" = "Progress Selected/Total";
-"Details.Transfer.Downloaded" = "Downloaded";
-"Details.Transfer.Uploaded" = "Uploaded";
-"Details.Transfer.Seeders" = "Seeders";
-"Details.Transfer.Leechers" = "Leechers";
+"Details.Transfer.Title" = "Aktarım";
+"Details.Transfer.Total" = "Seçili/Tamamı";
+"Details.Transfer.Completed" = "Tamamlandı";
+"Details.Transfer.Progress" = "İndirme durumu";
+"Details.Transfer.Downloaded" = "İndirildi";
+"Details.Transfer.Uploaded" = "Yüklenmiş";
+"Details.Transfer.Seeders" = "Seederlar";
+"Details.Transfer.Leechers" = "Leecherlar";
 
-"Details.More.Title" = "More";
-"Details.More.Trackers" = "Trackers";
-"Details.More.Files" = "Files";
+"Details.More.Title" = "Daha Fazla";
+"Details.More.Trackers" = "Takipçiler";
+"Details.More.Files" = "Dosyalar";
 
-"copied" = "copied";
+"copied" = "kopyalanan";
 
 //Settings Controller
 "Settings.Title" = "Tercihler";
@@ -256,6 +256,7 @@
 "Download" = "İndir";
 "Don't Download" = "İndirme";
 "Share" = "Paylaş";
+"Show in Files" = "Show in Files";
 "AddTorrentController.MemoryWarning.Title" = "Uyarı";
 "AddTorrentController.MemoryWarning.Message" = "Bütün dosyaları indirmek için yeterli disk alanınız bulunmamaktadır, devam etmeden önce diskinizi boşaltın.";
 "AddTorrentController.MemoryWarning.AddAnyway" = "Yine de ekle";

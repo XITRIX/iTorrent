@@ -112,7 +112,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        smoothlyDeselectRows(in: tableView)
+        if splitViewController?.isCollapsed ?? true {
+            smoothlyDeselectRows(in: tableView)
+        }
         
         #if !targetEnvironment(macCatalyst)
         viewWillAppearAds()
