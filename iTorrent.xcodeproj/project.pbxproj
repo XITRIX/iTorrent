@@ -138,8 +138,6 @@
 		7CCE8D7724AB9F7900C914BA /* PlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCE8D7624AB9F7900C914BA /* PlaceHolderView.xib */; };
 		7CD43AE92488519B00EA531E /* UIViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AE82488519B00EA531E /* UIViewBinding.swift */; };
 		7CD43AEB24895DF600EA531E /* UIActivityIndicatorViewBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD43AEA24895DF600EA531E /* UIActivityIndicatorViewBinding.swift */; };
-		7CD6A55724E4950D00DEB09B /* ITorrentFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD6A55624E4950D00DEB09B /* ITorrentFramework.framework */; platformFilter = ios; };
-		7CD6A55824E4950D00DEB09B /* ITorrentFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD6A55624E4950D00DEB09B /* ITorrentFramework.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CD71419248BD64C00A24E98 /* RssFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD71418248BD64C00A24E98 /* RssFeedController.swift */; };
 		7CD7141D248BFE5D00A24E98 /* RssCannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD7141B248BFE5D00A24E98 /* RssCannelCell.swift */; };
 		7CD7141E248BFE5D00A24E98 /* RssChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD7141C248BFE5D00A24E98 /* RssChannelCell.xib */; };
@@ -161,6 +159,8 @@
 		7CE61CB12426B75B0038717C /* UIColorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CB02426B75B0038717C /* UIColorExtentions.swift */; };
 		7CE61CB32426D0370038717C /* MemorySpaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CB22426D0370038717C /* MemorySpaceManager.swift */; };
 		7CE61CB9242915E20038717C /* PortionBarLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE61CB8242915E20038717C /* PortionBarLabels.swift */; };
+		7CE882DA24E87436006D22C0 /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
+		7CE882DB24E87436006D22C0 /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CF0305824A88E3200242822 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0305624A88E3200242822 /* TabBarView.swift */; };
 		7CF0305924A88E3200242822 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF0305724A88E3200242822 /* TabBarView.xib */; };
 		7CF0305C24A88F5B00242822 /* TabBarItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF0305A24A88F5B00242822 /* TabBarItemCell.swift */; };
@@ -186,13 +186,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7CD6A55924E4950D00DEB09B /* Embed Frameworks */ = {
+		7CE882DC24E87436006D22C0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7CD6A55824E4950D00DEB09B /* ITorrentFramework.framework in Embed Frameworks */,
+				7CE882DB24E87436006D22C0 /* ITorrentFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,8 +398,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CD6A55724E4950D00DEB09B /* ITorrentFramework.framework in Frameworks */,
 				BEA4455F12A1DDE24B36018F /* Pods_iTorrent.framework in Frameworks */,
+				7CE882DA24E87436006D22C0 /* ITorrentFramework.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,7 +1042,7 @@
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
 				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
 				7CD95E5E2370443200C21F81 /* Swiftlint */,
-				7CD6A55924E4950D00DEB09B /* Embed Frameworks */,
+				7CE882DC24E87436006D22C0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1538,6 +1538,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1594,6 +1595,7 @@
 				CURRENT_PROJECT_VERSION = 19.0;
 				DEVELOPMENT_TEAM = D5UQ7XT49T;
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
