@@ -4,6 +4,7 @@
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
 ![](https://app.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
+[![](https://build.appcenter.ms/v0.1/apps/a9efbde4-560e-438a-a178-b17563f9c2da/branches/Dev/badge)](https://install.appcenter.ms/users/x1trix/apps/itorrent/distribution_groups/public)
 
 ## Screenshots
 <details>
@@ -63,10 +64,6 @@ Steps:
 - Build pods "pod install"
 - Open .xcworkspace and build it
 - Profit
-
-### Warning!
-
-This repo contains iTorrent framework which was compiled only for real devices so it will not run on Simulator, if you want to build this app for Simulator, you have to replace itorrent.framework by [this one](https://github.com/XITRIX/iTorrent_Framework/releases)
 
 ## Libraries used
 
