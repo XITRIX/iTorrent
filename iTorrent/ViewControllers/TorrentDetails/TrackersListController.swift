@@ -29,7 +29,7 @@ class TrackersListController: ThemedUIViewController {
 
     @objc func update() {
         let new = TorrentSdk.getTrackersByHash(hash: managerHash)
-        let changes = diff(old: trackers, new: new) // DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
+        let changes = diff(old: trackers, new: new) 
         trackers = new
 
         let res = IndexPathConverter().convert(changes: changes, section: 0)

@@ -16,6 +16,11 @@ class TorrentFilesController: ThemedUIViewController {
     var selectAllButton: UIBarButtonItem!
     var deselectAllButton: UIBarButtonItem!
     
+    lazy var toolBarItems: [UIBarButtonItem] = {
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        return [deselectAllButton, space, selectAllButton]
+    }()
+    
     var tableView: ThemedUITableView!
     
     var torrentHash: String = ""
@@ -52,21 +57,19 @@ class TorrentFilesController: ThemedUIViewController {
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tableView)
         
-//        editButton = UIBarButtonItem()
+        editButton = UIBarButtonItem(title: "Select".localized, style: .plain, target: self, action: #selector(editAction))
         selectAllButton = UIBarButtonItem(title: "TorrentFilesController.SelectAll".localized, style: .plain, target: self, action: #selector(selectAllAction))
         selectAllButton.tintColor = .systemBlue
         deselectAllButton = UIBarButtonItem(title: "TorrentFilesController.DeselectAll".localized, style: .plain, target: self, action: #selector(deselectAllAction))
         deselectAllButton.tintColor = .systemRed
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbarItems = [deselectAllButton, space, selectAllButton]
+        
+        navigationItem.setRightBarButton(editButton, animated: false)
+        toolbarItems = toolBarItems
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         localize()
-        
-        // until I realise what I want to do with it
-        navigationItem.rightBarButtonItem = nil
         
         if files == nil {
             files = TorrentSdk.getFilesOfTorrentByHash(hash: torrentHash)!
@@ -84,6 +87,9 @@ class TorrentFilesController: ThemedUIViewController {
         fileProvider = FileProviderTableDataSource(tableView: tableView, path: path, data: files)
         fileProvider.delegate = self
         
+        tableView.allowsSelection = true
+        tableView.allowsSelectionDuringEditing = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = fileProvider
         tableView.delegate = fileProvider
     }
@@ -130,7 +136,14 @@ class TorrentFilesController: ThemedUIViewController {
         setFilesPriority()
     }
     
-    @objc func editAction() {}
+    @objc func editAction() {
+        let editing = !isEditing
+        setEditing(editing, animated: true)
+        tableView.setEditing(editing, animated: true)
+        
+        editButton.style = editing ? .done : .plain
+        editButton.title = editing ? "Done".localized : "Select".localized
+    }
 }
 
 extension TorrentFilesController: FileProviderDelegate {

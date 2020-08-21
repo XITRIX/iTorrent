@@ -6,6 +6,8 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import AdSupport
+import AppTrackingTransparency
 import ITorrentFramework
 import UIKit
 
@@ -27,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-        
+
         #if !targetEnvironment(macCatalyst)
         // Crash on iOS 9
         if #available(iOS 10, *) {
@@ -40,12 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         #endif
-        
+
         pushNotificationsInit(application)
         PatreonAPI.configure()
         rootWindowInit()
         Core.configure()
-        
 
         if #available(iOS 13.0, *) {
             Themes.shared.currentUserTheme = window?.traitCollection.userInterfaceStyle.rawValue
@@ -54,15 +55,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserPreferences.ftpKey {
             Core.shared.startFileSharing()
         }
-        
-        #if !targetEnvironment(macCatalyst)
-        DispatchQueue.global(qos: .utility).async {
-            sleep(1)
-            if !self.openedByFile {
-                FullscreenAd.shared.load()
+
+        func showAds() {
+            #if !targetEnvironment(macCatalyst)
+            DispatchQueue.global(qos: .utility).async {
+                sleep(1)
+                if !self.openedByFile {
+                    FullscreenAd.shared.load()
+                }
             }
+            #endif
         }
-        #endif
+
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { _ in
+                showAds()
+            }
+        } else {
+            showAds()
+        }
 
         return true
     }

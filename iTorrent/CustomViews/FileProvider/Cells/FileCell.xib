@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="FileCell" customModule="iTorrent" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FileCell" customModule="iTorrent" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -20,7 +20,7 @@
                     <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUl-6G-ciV">
                         <rect key="frame" x="313" y="28.5" width="51" height="31"/>
                     </switch>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuP-bv-4cr">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XuP-bv-4cr">
                         <rect key="frame" x="321" y="29" width="34" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="HUS-DO-K6K"/>
@@ -72,11 +72,11 @@
                 <constraints>
                     <constraint firstItem="v0R-2P-1JM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="Ail-OX-ifj"/>
                     <constraint firstAttribute="trailing" secondItem="XuP-bv-4cr" secondAttribute="trailing" constant="20" id="BGJ-JX-QPt"/>
+                    <constraint firstAttribute="trailing" secondItem="v0R-2P-1JM" secondAttribute="trailing" constant="70" id="Cjx-1X-gyo"/>
                     <constraint firstAttribute="bottom" secondItem="48d-ja-BkU" secondAttribute="bottom" constant="8" id="NNZ-4E-4q2"/>
                     <constraint firstItem="HUl-6G-ciV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PjI-L9-RWa"/>
                     <constraint firstItem="v0R-2P-1JM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Qvc-4f-nbX"/>
                     <constraint firstItem="48d-ja-BkU" firstAttribute="top" secondItem="v0R-2P-1JM" secondAttribute="bottom" constant="4" id="TLL-Uv-Fxo"/>
-                    <constraint firstItem="HUl-6G-ciV" firstAttribute="leading" secondItem="v0R-2P-1JM" secondAttribute="trailing" constant="8" id="pFv-VJ-Bfh"/>
                     <constraint firstAttribute="trailing" secondItem="HUl-6G-ciV" secondAttribute="trailing" constant="13" id="qbg-py-a96"/>
                     <constraint firstAttribute="trailing" secondItem="48d-ja-BkU" secondAttribute="trailing" constant="13" id="spv-sx-ogS"/>
                     <constraint firstAttribute="bottom" secondItem="v0R-2P-1JM" secondAttribute="bottom" constant="16" id="ujZ-Lq-rUC"/>
@@ -87,6 +87,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bottomConstraint" destination="ujZ-Lq-rUC" id="Gym-Ar-8aP"/>
+                <outlet property="editingConstraint" destination="Cjx-1X-gyo" id="uDO-8I-Pgo"/>
                 <outlet property="prioritySwitch" destination="HUl-6G-ciV" id="Efv-DG-7WT"/>
                 <outlet property="progressBar" destination="48d-ja-BkU" id="Bmo-ZC-cmB"/>
                 <outlet property="shareButton" destination="XuP-bv-4cr" id="88c-Yg-cj3"/>

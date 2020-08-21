@@ -23,5 +23,8 @@ class TableHeaderView: UITableViewHeaderFooterView, Themed {
     
     @objc func themeUpdate() {
         background.effect = UIBlurEffect(style: Themes.current.blurEffect)
+        if #available(iOS 14, *) {
+            background.backgroundColor = Themes.current.sectionHeaderColor
+        }
     }
 }

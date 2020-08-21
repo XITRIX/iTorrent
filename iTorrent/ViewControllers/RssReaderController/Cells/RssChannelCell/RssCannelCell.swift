@@ -26,7 +26,7 @@ class RssChannelCell: ThemedUITableViewCell {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         stackTrailing.constant = editing ? 37 : 8
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: animated ? 0.3 : 0) {
             self.setupButton.alpha = editing ? 1 : 0
             self.updatesLabel.superview?.alpha = editing || self.model.updatesCount == 0 ? 0 : 1
             self.layoutIfNeeded()
@@ -36,6 +36,7 @@ class RssChannelCell: ThemedUITableViewCell {
     func setModel(_ model: RssModel) {
         self.model = model
         updateCellView()
+        setEditing(isEditing, animated: false)
     }
 
     func updateCellView() {

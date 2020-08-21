@@ -20,12 +20,28 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
     @IBOutlet var progressBar: SegmentedProgressView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet var editingConstraint: NSLayoutConstraint!
+    var editingConstraintValue: CGFloat {
+        isEditing ? 13 : 70
+    }
     
     weak var model: FileModel!
     
     func setModel(_ model: FileModel) {
         self.model = model
         updateModel()
+        
+        setEditing(isEditing, animated: false)
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        editingConstraint.constant = editingConstraintValue
+        UIView.animate(withDuration: animated ? 0.3 : 0) {
+            self.shareButton.alpha = editing ? 0 : 1
+            self.prioritySwitch.alpha = editing ? 0 : 1
+            self.layoutIfNeeded()
+        }
     }
     
     func updateModel() {
