@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 extension Core {
@@ -44,19 +45,16 @@ extension Core {
             }
             DispatchQueue.main.async {
                 let dest = Core.tempFile
-                print(filePath.startAccessingSecurityScopedResource())
                 do {
                     if FileManager.default.fileExists(atPath: dest) {
                         try FileManager.default.removeItem(atPath: dest)
                     }
-                    print(FileManager.default.fileExists(atPath: filePath.path))
-                    try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
+                    try FileManager.default.moveItem(at: filePath, to: URL(fileURLWithPath: dest))
                 } catch {
                     Dialog.show(title: "Error on torrent opening",
-                                message: "error.localizedDescription")
+                                message: error.localizedDescription)
                     return
                 }
-                filePath.stopAccessingSecurityScopedResource()
 
                 guard let hash = TorrentSdk.getTorrentFileHash(torrentPath: dest) else {
                     Dialog.show(title: "Error",
@@ -70,10 +68,8 @@ extension Core {
                     return
                 }
 
-                if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
-                    controller.initialize(filePath: dest)
-                    Utils.topViewController?.present(controller.embedInNavController(), animated: true)
-                }
+                let controller = AddTorrentController(filePath: dest)
+                Utils.topViewController?.present(controller.embedInNavigation(), animated: true)
             }
         }
     }
@@ -116,15 +112,15 @@ extension Core {
                     }
                     return
                 }
+
                 if Core.shared.torrents[hash!] != nil {
                     Dialog.show(title: "This torrent already exists",
                                 message: "\(Localize.get("Torrent with hash:")) \"\(hash!)\" \(Localize.get("already exists in download queue"))")
                     return
                 }
-                if let controller = Utils.instantiate("AddTorrent") as? AddTorrentController {
-                    controller.initialize(filePath: Core.tempFile)
-                    presenter.present(controller.embedInNavController(), animated: true)
-                }
+
+                let controller = AddTorrentController(filePath: Core.tempFile)
+                presenter.present(controller.embedInNavigation(), animated: true)
             }, errorAction: {
                 Dialog.show(presenter,
                             title: "Error has been occured",

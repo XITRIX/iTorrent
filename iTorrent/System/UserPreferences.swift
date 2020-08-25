@@ -6,6 +6,7 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class UserPreferences {

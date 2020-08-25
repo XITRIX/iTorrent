@@ -28,7 +28,7 @@ class PortionBarLabels: UIView {
     @IBInspectable var colorIndicatorPaddings: CGFloat = 4
     
     /// Font used for the labels
-    var textFont = UIFont.systemFont(ofSize: 11)
+    var textFont = UIFont.preferredFont(forTextStyle: .caption2)
     
     var textInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 6)
     

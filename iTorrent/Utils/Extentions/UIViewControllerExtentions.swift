@@ -9,6 +9,10 @@
 import UIKit
 
 extension UIViewController {
+    func embedInNavigation() -> UINavigationController {
+        Utils.instantiateNavigationController(self)
+    }
+    
     func smoothlyDeselectRows(in tableView: UITableView?) {
         // Get the initially selected index paths, if any
         let selectedIndexPaths = tableView?.indexPathsForSelectedRows ?? []
@@ -32,5 +36,12 @@ extension UIViewController {
                 tableView?.deselectRow(at: $0, animated: false)
             }
         }
+    }
+    
+    func contentInsets() -> UIEdgeInsets {
+        var insets = UIEdgeInsets()
+        insets.top += min(navigationController?.navigationBar.frame.height ?? 0, 44)
+        insets.top += UIApplication.shared.statusBarFrame.height
+        return insets
     }
 }

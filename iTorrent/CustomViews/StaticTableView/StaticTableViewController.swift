@@ -9,6 +9,10 @@
 import UIKit
 
 class StaticTableViewController: ThemedUIViewController {
+    var useInsertStyle: Bool? {
+        nil
+    }
+    
     let disposalBag = DisposalBag()
     override var toolBarIsHidden: Bool? {
         true
@@ -27,12 +31,12 @@ class StaticTableViewController: ThemedUIViewController {
     
     var initStyle: UITableView.Style = .grouped
     
-    init() {
-        super.init(nibName: nil, bundle: Bundle.main)
+    override init() {
+        super.init()
     }
     
     init(style: UITableView.Style) {
-        super.init(nibName: nil, bundle: Bundle.main)
+        super.init()
         initStyle = style
     }
     
@@ -49,12 +53,13 @@ class StaticTableViewController: ThemedUIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
         
-        tableView = StaticTableView(frame: view.frame, style: initStyle)
+        tableView = StaticTableView(frame: view.bounds, style: initStyle)
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.colorType = .secondary
         view.addSubview(tableView)
         tableView.data = data
         tableView.tableAnimation = tableAnimation
+        tableView.useInsertStyle = useInsertStyle
     }
     
     deinit {
@@ -66,6 +71,7 @@ class StaticTableViewController: ThemedUIViewController {
         initSections()
         updateData()
         
+        #if !targetEnvironment(macCatalyst)
         KeyboardHelper.shared.visibleHeight.bind { [weak self] height in
             guard let self = self else { return }
             
@@ -76,11 +82,22 @@ class StaticTableViewController: ThemedUIViewController {
                 self.tableView.contentOffset = offset
             }
         }.dispose(with: disposalBag)
+        #endif
     }
     
     func initSections() {}
     
     func updateData(animated: Bool = true) {
         tableView?.updateData(animated: animated)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if useInsertStyle != nil,
+            previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass {
+            tableView.useInsertStyle = useInsertStyle
+            tableView.reloadData()
+        }
     }
 }

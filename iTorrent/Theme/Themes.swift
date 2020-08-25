@@ -58,6 +58,7 @@ class Themes {
         darkTheme.tableHeaderColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 0.9)
         darkTheme.actionCancelButtonColor = UIColor(red: 28.0 / 255.0, green: 28.0 / 255.0, blue: 28.0 / 255.0, alpha: 1.0)
         darkTheme.progressBarBackground = UIColor(red: 0.24, green: 0.24, blue: 0.25, alpha: 1)
+        darkTheme.sectionHeaderColor = UIColor(hex: "#121212")!
         darkTheme.storageBarOther = UIColor(hex: "#929296")!
         darkTheme.storageBarEmpty = UIColor(hex: "#333333")!
         darkTheme.actionButtonColor = .orange
@@ -97,6 +98,7 @@ struct ColorPalett: Equatable {
     var tableHeaderColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.9)
     var actionCancelButtonColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 244 / 255, alpha: 1)
     var progressBarBackground = UIColor(red: 0.85, green: 0.85, blue: 0.87, alpha: 1)
+    var sectionHeaderColor = UIColor(hex: "#f6f6f6")!
     var storageBarOther = UIColor(hex: "#d0d1d5")!
     var storageBarEmpty = UIColor(hex: "#f1f2f6")!
     var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)

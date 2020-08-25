@@ -6,14 +6,14 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
-import UIKit
 import MarqueeLabel
+import UIKit
 
 class RssChannelController: ThemedUITableViewController {
     override var toolBarIsHidden: Bool? {
         true
     }
-
+    
     var model: RssModel!
     
     func setModel(_ model: RssModel) {
@@ -81,13 +81,17 @@ extension RssChannelController {
         let vc = RssItemController()
         vc.setModel(model.items[indexPath.row])
         
-        if !splitViewController!.isCollapsed {
-            let navController = Utils.instantiateNavigationController()
-            navController.viewControllers.append(vc)
-            navController.isToolbarHidden = true
-            splitViewController?.showDetailViewController(navController, sender: self)
+        if let splitViewController = splitViewController {
+            if !splitViewController.isCollapsed {
+                let navController = Utils.instantiateNavigationController()
+                navController.viewControllers.append(vc)
+                navController.isToolbarHidden = true
+                splitViewController.showDetailViewController(navController, sender: self)
+            } else {
+                splitViewController.showDetailViewController(vc, sender: self)
+            }
         } else {
-            splitViewController?.showDetailViewController(vc, sender: self)
+            show(vc, sender: self)
         }
         
         setItem(at: indexPath, readed: true)
@@ -96,16 +100,16 @@ extension RssChannelController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let readed = model.items[indexPath.row].readed
         let title = readed ? Localize.get("RssChannelController.Unseen") : Localize.get("RssChannelController.Seen")
-        let seen = UITableViewRowAction(style: .destructive, title: title) { (_, indexPath) in
+        let seen = UITableViewRowAction(style: .destructive, title: title) { _, indexPath in
             self.setItem(at: indexPath, readed: !readed)
         }
         return [seen]
     }
     
-    func setItem(at indexPath: IndexPath, readed: Bool ) {
-        self.model.items[indexPath.row].readed = readed
-        self.model.items[indexPath.row].new = false
-        (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(self.model.items[indexPath.row])
+    func setItem(at indexPath: IndexPath, readed: Bool) {
+        model.items[indexPath.row].readed = readed
+        model.items[indexPath.row].new = false
+        (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[indexPath.row])
         RssFeedProvider.shared.rssModels.notifyUpdate()
     }
 }

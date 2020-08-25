@@ -7,46 +7,62 @@
 //
 
 import AVFoundation
+import ITorrentFramework
 
 class BackgroundTask {
-    static var player: AVAudioPlayer?
-    static var timer = Timer()
-    static var backgrounding = false
+    public static let shared = BackgroundTask()
 
-    static func startBackgroundTask() {
+    var player: AVAudioPlayer?
+    var timer = Timer()
+    var backgrounding = false
+
+    func startBackgroundTask() {
         if !backgrounding {
+            NotificationCenter.default.addObserver(self, selector: #selector(interruptedAudio), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
             backgrounding = true
-            BackgroundTask.playAudio()
+            playAudio()
         }
     }
 
-    static func stopBackgroundTask() {
+    func stopBackgroundTask() {
         if backgrounding {
+            NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
             backgrounding = false
             player?.stop()
         }
     }
 
-    fileprivate static func playAudio() {
+    @objc fileprivate func interruptedAudio(_ notification: Notification) {
+        if notification.name == AVAudioSession.interruptionNotification,
+            let info = notification.userInfo {
+            var intValue = 0
+            let key = info[AVAudioSessionInterruptionTypeKey] as AnyObject
+            key.getValue(&intValue)
+            if intValue == 1 { playAudio() }
+        }
+    }
+
+    fileprivate func playAudio() {
         do {
             let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
             let alertSound = URL(fileURLWithPath: bundle!)
             try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
-            BackgroundTask.player = try AVAudioPlayer(contentsOf: alertSound)
-            BackgroundTask.player?.numberOfLoops = -1
-            BackgroundTask.player?.volume = 0.01
-            BackgroundTask.player?.prepareToPlay()
-            BackgroundTask.player?.play()
+            try player = AVAudioPlayer(contentsOf: alertSound)
+
+            player?.numberOfLoops = -1
+            player?.volume = 0.01
+            player?.prepareToPlay()
+            player?.play()
         } catch {
             print(error)
         }
     }
 
-    static func startBackground() -> Bool {
+    func startBackground() -> Bool {
         if UserPreferences.background {
             if Core.shared.torrents.values.contains(where: { (status) -> Bool in
-                getBackgroundConditions(status)
+                BackgroundTask.getBackgroundConditions(status)
             }) {
                 startBackgroundTask()
                 return true
@@ -55,9 +71,9 @@ class BackgroundTask {
         return false
     }
 
-    static func checkToStopBackground() {
-        if !Core.shared.torrents.values.contains(where: { getBackgroundConditions($0) }) {
-            if backgrounding {
+    func checkToStopBackground() {
+        if backgrounding {
+            if !Core.shared.torrents.values.contains(where: { BackgroundTask.getBackgroundConditions($0) }) {
                 Core.shared.saveTorrents()
                 stopBackgroundTask()
             }

@@ -77,7 +77,7 @@
 "Currently sorted by " = "Şu an kullanılan sıralama şekli: ";
 "Disable state sections" = "Sıralamayı devre dışı bırak";
 "Enable state sections" = "Sıralamayı aktifleştir"; 
-"MainController.Table.Placeholder.Text" = "İndirme listesi boş!\nTorrent dosyalarını indirmek için Google Chrome kullanın ya da '+' butonuna basarak direkt olarak bir link ekleyin.";
+"MainController.Table.Placeholder.Text" = "İndirme listesi boş!\nTorrent dosyalarını indirmek için Safari kullanın ya da '+' butonuna basarak direkt olarak bir link ekleyin.";
 
 //Torrent details
 "Torrent file" = "Torrent dosyası";
@@ -86,6 +86,43 @@
 "Files" = "Dosyalar";
 "Trackers" = "Takipçiler";
 "Details.BackgroundSeeding.Warning" = "Arkaplanda seedleme devre dışı, eğer uygulamayı kapatırsanız seedleme duracaktır. Arkaplanda seedlemeyi aktif hale getirmek ister misiniz?\nEğer bir seed sınırı belirlemezseniz, uygulama sürekli olarak arkaplanda çalışmaya devam edecektir, bu durum yüksek pil kullanımına sebebiyet verebilir.";
+
+"Details.State" = "Durum";
+
+"Details.Speed.Title" = "Hız";
+"Details.Speed.Download" = "İndiriliyor";
+"Details.Speed.Upload" = "Yükleme hızı";
+"Details.Speed.Remains" = "Kalan zaman";
+
+"Details.Downloading.Title" = "İndiriliyor";
+"Details.Downloading.Sequential" = "Sıralı indirme";
+"Details.Downloading.Progress" = "İndirme durumu";
+
+"Details.Seeding.Title" = "Seedleniyor";
+"Details.Seeding.Allow" = "Seedlemeyi aktifleştir";
+"Details.Seeding.Limit" = "Seed Sınırı";
+
+"Details.Info.Title" = "Genel bilgi";
+"Details.Info.Hash" = "Hash";
+"Details.Info.Creator" = "Yaratıcı";
+"Details.Info.Created" = "Yaratıldığı Tarih";
+"Details.Info.Added" = "Eklendiği Tarih";
+"Details.Info.Comment" = "Yorum";
+
+"Details.Transfer.Title" = "Aktarım";
+"Details.Transfer.Total" = "Seçili/Tamamı";
+"Details.Transfer.Completed" = "Tamamlandı";
+"Details.Transfer.Progress" = "İndirme durumu";
+"Details.Transfer.Downloaded" = "İndirildi";
+"Details.Transfer.Uploaded" = "Yüklenmiş";
+"Details.Transfer.Seeders" = "Seederlar";
+"Details.Transfer.Leechers" = "Leecherlar";
+
+"Details.More.Title" = "Daha Fazla";
+"Details.More.Trackers" = "Takipçiler";
+"Details.More.Files" = "Dosyalar";
+
+"copied" = "kopyalanan";
 
 //Settings Controller
 "Settings.Title" = "Tercihler";
@@ -219,6 +256,7 @@
 "Download" = "İndir";
 "Don't Download" = "İndirme";
 "Share" = "Paylaş";
+"Show in Files" = "Show in Files";
 "AddTorrentController.MemoryWarning.Title" = "Uyarı";
 "AddTorrentController.MemoryWarning.Message" = "Bütün dosyaları indirmek için yeterli disk alanınız bulunmamaktadır, devam etmeden önce diskinizi boşaltın.";
 "AddTorrentController.MemoryWarning.AddAnyway" = "Yine de ekle";
@@ -262,7 +300,6 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Uyarı!";
-"Dialogs.News.Message" = "Eğer uygulama .torrent dosyalarını açmıyorsa, indirmek için Google Chrome kullanın.";
 
 "Disabled" = "Devre dışı";
 "Hint" = "İpucu";
@@ -307,4 +344,4 @@
 
 //Version Info
 "info" = " Güncelleme bilgisi";
-"UpdateText" = "- Added RSS feed\n- Improved section partitioning\n- Added support for other P2P protocols\n- Added support for proxy server\n- Added port selection\n- Added custom choice of speed limitations\n- Libtorrent updated to 1.2.7\n- Other, less noticeable interface improvements\n- Many bugs fixed (possibly new ones added)";
+"UpdateText" = "- Text accessability support added\n- Huge backend refactoring\n- Libtorrent updated to 1.2.9\n- Minor UI improvements\n- Many bugs fixed (possibly new ones added)";

@@ -77,7 +77,7 @@
 "Currently sorted by " = "Currently sorted by ";
 "Disable state sections" = "Disable state sections";
 "Enable state sections" = "Enable state sections";
-"MainController.Table.Placeholder.Text" = "Download list is empty!\nUse Google Chrome to download torrent files or add a direct link using the '+' button";
+"MainController.Table.Placeholder.Text" = "Download list is empty!\nUse Safari to download torrent files or add a direct link using the '+' button";
 
 //Torrent details
 "Torrent file" = "Torrent file";
@@ -86,6 +86,43 @@
 "Files" = "Files";
 "Trackers" = "Trackers";
 "Details.BackgroundSeeding.Warning" = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
+
+"Details.State" = "State";
+
+"Details.Speed.Title" = "Speed";
+"Details.Speed.Download" = "Download";
+"Details.Speed.Upload" = "Upload";
+"Details.Speed.Remains" = "Time remains";
+
+"Details.Downloading.Title" = "Downloading";
+"Details.Downloading.Sequential" = "Sequential download";
+"Details.Downloading.Progress" = "Progress";
+
+"Details.Seeding.Title" = "Seeding";
+"Details.Seeding.Allow" = "Allow seeding";
+"Details.Seeding.Limit" = "Seed limit";
+
+"Details.Info.Title" = "General information";
+"Details.Info.Hash" = "Hash";
+"Details.Info.Creator" = "Creator";
+"Details.Info.Created" = "Created On";
+"Details.Info.Added" = "Added On";
+"Details.Info.Comment" = "Comment";
+
+"Details.Transfer.Title" = "Transfer";
+"Details.Transfer.Total" = "Selected/Total";
+"Details.Transfer.Completed" = "Completed";
+"Details.Transfer.Progress" = "Progress Selected/Total";
+"Details.Transfer.Downloaded" = "Downloaded";
+"Details.Transfer.Uploaded" = "Uploaded";
+"Details.Transfer.Seeders" = "Seeders";
+"Details.Transfer.Leechers" = "Leechers";
+
+"Details.More.Title" = "More";
+"Details.More.Trackers" = "Trackers";
+"Details.More.Files" = "Files";
+
+"copied" = "copied";
 
 //Settings Controller
 "Settings.Title" = "Preferences";
@@ -218,6 +255,7 @@
 "Download" = "Download";
 "Don't Download" = "Don't Download";
 "Share" = "Share";
+"Show in Files" = "Show in Files";
 "AddTorrentController.MemoryWarning.Title" = "Warning";
 "AddTorrentController.MemoryWarning.Message" = "Not enough free space on disk to download all files, free up disk space to continue";
 "AddTorrentController.MemoryWarning.AddAnyway" = "Add anyway";
@@ -260,7 +298,6 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Warning!";
-"Dialogs.News.Message" = "If app not opening .torrent files, use Google Chrome to download them!";
 
 "Disabled" = "Disabled";
 "Hint" = "Hint";
@@ -305,4 +342,4 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "- Added RSS feed\n- Improved section partitioning\n- Added support for other P2P protocols\n- Added support for proxy server\n- Added port selection\n- Added custom choice of speed limitations\n- Libtorrent updated to 1.2.7\n- Other, less noticeable interface improvements\n- Many bugs fixed (possibly new ones added)";
+"UpdateText" = "- Text accessability support added\n- Huge backend refactoring\n- Libtorrent updated to 1.2.9\n- Minor UI improvements\n- Many bugs fixed (possibly new ones added)";

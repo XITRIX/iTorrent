@@ -37,7 +37,11 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
             return
         }
         title.text = Localize.get(model.title)
-        button.setTitle(Localize.get(model.buttonTitleFunc?() ?? model.buttonTitle), for: .normal)
+        title.font = model.bold ? title.font.bold() : title.font.normal()
+        UIView.performWithoutAnimation {
+            button.setTitle(Localize.get(model.buttonTitleFunc?() ?? model.buttonTitle), for: .normal)
+            button.layoutIfNeeded()
+        }
         action = model.action
 
         hintText = model.hint
@@ -55,11 +59,13 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
+        var bold: Bool = false
         var buttonTitle: String = ""
         var hint: String?
         var buttonTitleFunc: (() -> String)?
         var hiddenCondition: (() -> Bool)?
         var tapAction: (() -> ())?
+        var longPressAction: (() -> ())?
         var action: (UIButton) -> ()
     }
 }

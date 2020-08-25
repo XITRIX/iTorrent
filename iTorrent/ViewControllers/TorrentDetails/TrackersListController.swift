@@ -6,6 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import DeepDiff
 import Foundation
 import UIKit
@@ -28,7 +29,7 @@ class TrackersListController: ThemedUIViewController {
 
     @objc func update() {
         let new = TorrentSdk.getTrackersByHash(hash: managerHash)
-        let changes = diff(old: trackers, new: new) // DiffCalculator.calculate(oldSectionItems: [trackers], newSectionItems: [new])
+        let changes = diff(old: trackers, new: new) 
         trackers = new
 
         let res = IndexPathConverter().convert(changes: changes, section: 0)

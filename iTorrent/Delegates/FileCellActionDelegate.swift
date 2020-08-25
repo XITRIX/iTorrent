@@ -6,7 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
+import ITorrentFramework
 import UIKit
 
 protocol FileCellActionDelegate: class {

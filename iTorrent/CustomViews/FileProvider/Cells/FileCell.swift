@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class FileCell: ThemedUITableViewCell, UpdatableModel {
@@ -19,12 +20,28 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
     @IBOutlet var progressBar: SegmentedProgressView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet var editingConstraint: NSLayoutConstraint!
+    var editingConstraintValue: CGFloat {
+        isEditing ? 13 : 70
+    }
     
     weak var model: FileModel!
     
     func setModel(_ model: FileModel) {
         self.model = model
         updateModel()
+        
+        setEditing(isEditing, animated: false)
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        editingConstraint.constant = editingConstraintValue
+        UIView.animate(withDuration: animated ? 0.3 : 0) {
+            self.shareButton.alpha = editing ? 0 : 1
+            self.prioritySwitch.alpha = editing ? 0 : 1
+            self.layoutIfNeeded()
+        }
     }
     
     func updateModel() {
@@ -43,7 +60,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
             prioritySwitch.isHidden = downloaded
             progressBar.setProgress(downloaded ? [1] : model.pieces)
             progressBar.isHidden = false
-            bottomConstraint.constant = 15
+            bottomConstraint.constant = 16
         }
         setSwitchColor()
     }
@@ -62,6 +79,8 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         case .normalPriority:
             prioritySwitch.setOn(true, animated: true)
             prioritySwitch.onTintColor = nil
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -83,46 +102,58 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
     
     func share() {
         let controller = ThemedUIAlertController(title: nil, message: model.name, preferredStyle: .actionSheet)
-                let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
-                    let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
-                    let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
-                    if shareController.popoverPresentationController != nil {
-                        shareController.popoverPresentationController?.sourceView = self.shareButton
-                        shareController.popoverPresentationController?.sourceRect = self.shareButton.bounds
-                        shareController.popoverPresentationController?.permittedArrowDirections = .any
-                    }
-                    Utils.topViewController?.present(shareController, animated: true)
-                }
-                //        let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
-                //            let deleteController = ThemedUIAlertController(title: "Are you sure to delete?", message: self.file.fileName, preferredStyle: .actionSheet)
-                //            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
+            let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
+            let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
+            if shareController.popoverPresentationController != nil {
+                shareController.popoverPresentationController?.sourceView = self.shareButton
+                shareController.popoverPresentationController?.sourceRect = self.shareButton.bounds
+                shareController.popoverPresentationController?.permittedArrowDirections = .any
+            }
+            Utils.topViewController?.present(shareController, animated: true)
+        }
+        //        let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        //            let deleteController = ThemedUIAlertController(title: "Are you sure to delete?", message: self.file.fileName, preferredStyle: .actionSheet)
+        //            let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
         //
-                //            }
-                //            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        //            }
+        //            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         //
-                //            deleteController.addAction(deleteAction)
-                //            deleteController.addAction(cancel)
+        //            deleteController.addAction(deleteAction)
+        //            deleteController.addAction(cancel)
         //
-                //            if (deleteController.popoverPresentationController != nil) {
-                //                deleteController.popoverPresentationController?.sourceView = sender
-                //                deleteController.popoverPresentationController?.sourceRect = sender.bounds
-                //                deleteController.popoverPresentationController?.permittedArrowDirections = .any
-                //            }
+        //            if (deleteController.popoverPresentationController != nil) {
+        //                deleteController.popoverPresentationController?.sourceView = sender
+        //                deleteController.popoverPresentationController?.sourceRect = sender.bounds
+        //                deleteController.popoverPresentationController?.permittedArrowDirections = .any
+        //            }
         //
-                //            UIApplication.shared.keyWindow?.rootViewController?.present(deleteController, animated: true)
-                //        }
-                let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-                controller.addAction(share)
-                // controller.addAction(delete)
-                controller.addAction(cancel)
-
-                if controller.popoverPresentationController != nil {
-                    controller.popoverPresentationController?.sourceView = self.shareButton
-                    controller.popoverPresentationController?.sourceRect = self.shareButton.bounds
-                    controller.popoverPresentationController?.permittedArrowDirections = .right
-                }
-
-                Utils.topViewController?.present(controller, animated: true)
+        //            UIApplication.shared.keyWindow?.rootViewController?.present(deleteController, animated: true)
+        //        }
+        let showOnFiles = UIAlertAction(title: "Show in Files".localized, style: .default) { _ in
+            let spath = ((Core.rootFolder + self.model.path.path) as NSString).deletingLastPathComponent
+            let path = NSURL(fileURLWithPath: spath, isDirectory: false)
+            var components = URLComponents(url: path as URL, resolvingAgainstBaseURL: false)
+            components?.scheme = "shareddocuments"
+            if let url = components?.url {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        controller.addAction(share)
+        // controller.addAction(delete)
+        if #available(iOS 11, *) {
+            controller.addAction(showOnFiles)
+        }
+        controller.addAction(cancel)
+        
+        if controller.popoverPresentationController != nil {
+            controller.popoverPresentationController?.sourceView = shareButton
+            controller.popoverPresentationController?.sourceRect = shareButton.bounds
+            controller.popoverPresentationController?.permittedArrowDirections = .right
+        }
+        
+        Utils.topViewController?.present(controller, animated: true)
     }
     
     @IBAction func shareAction(_ sender: Any) {

@@ -11,7 +11,7 @@ import UIKit
 @available(iOS 11.0, *)
 class FilesBrowserController: UIDocumentPickerViewController, Themed {
     init() {
-        super.init(documentTypes: ["com.bittorrent.torrent"], in: .open)
+        super.init(documentTypes: ["com.bittorrent.torrent"], in: .import)
     }
 
     @objc func themeUpdate() {

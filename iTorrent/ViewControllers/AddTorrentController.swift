@@ -6,13 +6,19 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import MarqueeLabel
 import UIKit
 
 class AddTorrentController: ThemedUIViewController {
-    @IBOutlet var tableView: UITableView!
-    @IBOutlet var weightLabel: UIBarButtonItem!
-
+    var cancelButton: UIBarButtonItem!
+    var downloadButton: UIBarButtonItem!
+    var selectAllButton: UIBarButtonItem!
+    var deselectAllButton: UIBarButtonItem!
+    var weightLabel: UIBarButtonItem!
+    
+    var tableView: UITableView!
+    
     deinit {
         print("AddTorrentController: deinit")
     }
@@ -27,12 +33,19 @@ class AddTorrentController: ThemedUIViewController {
     override var toolBarIsHidden: Bool? {
         false
     }
-
-    func initialize(filePath: String, path: URL = URL(string: "/")!, name: String = "", files: [FileModel]! = nil) {
+    
+    init(filePath: String, path: URL = URL(string: "/")!, name: String = "", files: [FileModel]! = nil) {
+        super.init()
+        
         self.filePath = filePath
         self.files = files
         self.name = name
         self.path = path
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func themeUpdate() {
@@ -44,6 +57,28 @@ class AddTorrentController: ThemedUIViewController {
             let theme = Themes.current
             label.textColor = theme.mainText
         }
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        tableView = ThemedUITableView(frame: view.frame)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(tableView)
+        
+        selectAllButton = UIBarButtonItem(title: "TorrentFilesController.SelectAll".localized, style: .plain, target: self, action: #selector(selectAllAction))
+        selectAllButton.tintColor = .systemBlue
+        deselectAllButton = UIBarButtonItem(title: "TorrentFilesController.DeselectAll".localized, style: .plain, target: self, action: #selector(deselectAllAction))
+        deselectAllButton.tintColor = .systemRed
+        weightLabel = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbarItems = [deselectAllButton, space, weightLabel, space, selectAllButton]
+        
+        cancelButton = UIBarButtonItem(title: "Cancel".localized, style: .plain, target: self, action: #selector(cancelAction))
+        navigationItem.setLeftBarButton(cancelButton, animated: false)
+        
+        downloadButton = UIBarButtonItem(title: "Download".localized, style: .done, target: self, action: #selector(downloadAction))
+        navigationItem.setRightBarButton(downloadButton, animated: false)
     }
 
     override func viewDidLoad() {
@@ -112,25 +147,27 @@ class AddTorrentController: ThemedUIViewController {
         super.viewDidDisappear(animated)
     }
 
-    @IBAction func cancelAction(_ sender: Any) {
+    @IBAction func cancelAction() {
         if FileManager.default.fileExists(atPath: Core.tempFile) {
             try? FileManager.default.removeItem(atPath: Core.tempFile)
         }
+        #if !targetEnvironment(macCatalyst)
         FullscreenAd.shared.load()
+        #endif
         dismiss(animated: true)
     }
 
-    @IBAction func selectAllAction(_ sender: Any) {
+    @IBAction func selectAllAction() {
         fileProvider.selectAll()
         updateWeightLabel()
     }
 
-    @IBAction func deselectAllAction(_ sender: Any) {
+    @IBAction func deselectAllAction() {
         fileProvider.deselectAll()
         updateWeightLabel()
     }
 
-    @IBAction func downloadAction(_ sender: Any) {
+    @IBAction func downloadAction() {
         if downloadingWeight() >= MemorySpaceManager.freeDiskSpaceInBytes {
             let alert = ThemedUIAlertController(title: Localize.get("AddTorrentController.MemoryWarning.Title"),
                                                 message: Localize.get("AddTorrentController.MemoryWarning.Message"),
@@ -175,7 +212,10 @@ class AddTorrentController: ThemedUIViewController {
         } catch {
             Dialog.show(self, title: "Error has been occured", message: error.localizedDescription)
         }
+        
+        #if !targetEnvironment(macCatalyst)
         FullscreenAd.shared.load()
+        #endif
     }
 
     func updateWeightLabel() {
@@ -192,7 +232,10 @@ extension AddTorrentController: UIAdaptivePresentationControllerDelegate {
         if FileManager.default.fileExists(atPath: Core.tempFile) {
             try? FileManager.default.removeItem(atPath: Core.tempFile)
         }
+        
+        #if !targetEnvironment(macCatalyst)
         FullscreenAd.shared.load()
+        #endif
     }
 }
 
@@ -202,8 +245,7 @@ extension AddTorrentController: FileProviderDelegate {
     }
 
     func folderSelected(folder: FolderModel) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AddTorrent") as! AddTorrentController
-        vc.initialize(filePath: filePath, path: folder.path, name: name, files: files)
+        let vc = AddTorrentController(filePath: filePath, path: folder.path, name: name, files: files)
         show(vc, sender: self)
     }
 

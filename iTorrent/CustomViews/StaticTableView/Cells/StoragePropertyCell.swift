@@ -65,5 +65,6 @@ class StoragePropertyCell: ThemedUITableViewCell, PreferenceCellProtocol {
         var reuseCellIdentifier: String = id
         var hiddenCondition: (() -> Bool)?
         var tapAction: (() -> ())?
+        var longPressAction: (() -> ())?
     }
 }

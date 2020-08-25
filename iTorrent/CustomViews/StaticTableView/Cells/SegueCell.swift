@@ -19,60 +19,66 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
         guard let model = model as? Model else {
             return
         }
-        title?.text = Localize.get(model.title)
+        title.text = Localize.get(model.title)
+        title.font = model.bold ? title.font.bold() : title.font.normal()
     }
 
     struct Model: CellModelProtocol {
         var reuseCellIdentifier: String = id
         var title: String
+        var bold: Bool = false
         var segueViewId: String?
         var controller: UIViewController?
         var controllerType: UIViewController.Type?
         var hiddenCondition: (() -> Bool)?
         var tapAction: (() -> ())?
+        var longPressAction: (() -> ())?
 
-        init(title: String, tapAction: @escaping () -> ()) {
+        init(title: String, bold: Bool = false, tapAction: @escaping () -> ()) {
             self.title = title
+            self.bold = bold
             self.tapAction = tapAction
         }
 
-        init(_ vc: UIViewController, title: String, segueViewId: String, isModal: Bool = false) {
+        init(_ vc: UIViewController?, title: String, bold: Bool = false, segueViewId: String, isModal: Bool = false) {
             self.title = title
+            self.bold = bold
             self.segueViewId = segueViewId
 
-            tapAction = {
-                if let tvc = UIApplication.shared.keyWindow?.rootViewController?.storyboard?.instantiateViewController(withIdentifier: segueViewId) {
-                    if isModal {
-                        vc.present(tvc, animated: true)
-                    } else {
-                        vc.show(tvc, sender: vc)
-                    }
+            tapAction = { [weak vc] in
+                let tvc = Utils.mainStoryboard.instantiateViewController(withIdentifier: segueViewId)
+                if isModal {
+                    vc?.present(tvc, animated: true)
+                } else {
+                    vc?.show(tvc, sender: vc)
                 }
             }
         }
 
-        init(_ vc: UIViewController, title: String, controllerType: UIViewController.Type, isModal: Bool = false) {
+        init(_ vc: UIViewController?, title: String, bold: Bool = false, controllerType: UIViewController.Type, isModal: Bool = false) {
             self.title = title
+            self.bold = bold
             self.controllerType = controllerType
 
-            tapAction = {
+            tapAction = { [weak vc] in
                 if isModal {
-                    vc.present(controllerType.init(), animated: true)
+                    vc?.present(controllerType.init(), animated: true)
                 } else {
-                    vc.show(controllerType.init(), sender: vc)
+                    vc?.show(controllerType.init(), sender: vc)
                 }
             }
         }
 
-        init(_ vc: UIViewController, title: String, controller: UIViewController, isModal: Bool = false) {
+        init(_ vc: UIViewController?, title: String, bold: Bool = false, controller: UIViewController, isModal: Bool = false) {
             self.title = title
+            self.bold = bold
             self.controller = controller
 
-            tapAction = {
+            tapAction = { [weak vc] in
                 if isModal {
-                    vc.present(controller, animated: true)
+                    vc?.present(controller, animated: true)
                 } else {
-                    vc.show(controller, sender: vc)
+                    vc?.show(controller, sender: vc)
                 }
             }
         }

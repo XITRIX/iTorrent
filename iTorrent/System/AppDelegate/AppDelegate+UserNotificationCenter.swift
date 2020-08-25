@@ -9,6 +9,20 @@
 import UIKit
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    func pushNotificationsInit(_ application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+                print("Granted: " + String(granted))
+            }
+            center.removeAllDeliveredNotifications()
+            center.delegate = self
+        } else {
+            application.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+            UIApplication.shared.cancelAllLocalNotifications()
+        }
+    }
+    
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
@@ -38,8 +52,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
-        if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController,
-            let viewController = Utils.mainStoryboard.instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
+        let viewController = TorrentDetailsController()
+        if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             viewController.managerHash = hash
             if !splitViewController.isCollapsed {
                 if splitViewController.viewControllers.count > 1,

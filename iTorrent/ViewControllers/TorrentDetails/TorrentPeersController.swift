@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 28.06.2020.
 //
 
+import ITorrentFramework
 import DeepDiff
 import UIKit
 

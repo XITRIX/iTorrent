@@ -81,7 +81,9 @@ class PopupView: UIView {
         headerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panAction(_:))))
     }
 
-    func show(_ vc: UIViewController) {
+    func show(_ vc: UIViewController?) {
+        guard let vc = vc else { return }
+        
         self.vc = vc
         vc.view.addSubview(self)
 

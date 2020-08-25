@@ -6,6 +6,7 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class PreferencesController: StaticTableViewController {
@@ -21,10 +22,12 @@ class PreferencesController: StaticTableViewController {
 
     override func initSections() {
         title = Localize.get("Settings.Title")
+        
+        weak var weakSelf = self
 
         // APPEARANCE
         var appearance = [CellModelProtocol]()
-        appearance.append(SegueCell.Model(self, title: "Settings.Order", controllerType: SortingPreferencesController.self))
+        appearance.append(SegueCell.Model(weakSelf, title: "Settings.Order", controllerType: SortingPreferencesController.self))
         if #available(iOS 13, *) {
             appearance.append(SwitchCell.Model(title: "Settings.AutoTheme", defaultValue: { UserPreferences.autoTheme },
                                                action: { switcher in
@@ -34,17 +37,17 @@ class PreferencesController: StaticTableViewController {
                                                    let newTheme = Themes.current
 
                                                    if oldTheme != newTheme {
-                                                       self.navigationController?.view.isUserInteractionEnabled = false
+                                                       weakSelf?.navigationController?.view.isUserInteractionEnabled = false
                                                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                                                            CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                                                           self.updateData(animated: false)
-                                                           self.navigationController?.view.isUserInteractionEnabled = true
+                                                           weakSelf?.updateData(animated: false)
+                                                           weakSelf?.navigationController?.view.isUserInteractionEnabled = true
                                                        }
                                                    } else {
                                                        if let rvc = UIApplication.shared.keyWindow?.rootViewController as? Themed {
                                                            rvc.themeUpdate()
                                                        }
-                                                       self.updateData()
+                                                       weakSelf?.updateData()
                                                    }
                 }))
         } else {
@@ -53,11 +56,11 @@ class PreferencesController: StaticTableViewController {
         appearance.append(SwitchCell.Model(title: "Settings.Theme",
                                            defaultValue: { UserPreferences.themeNum == 1 },
                                            hiddenCondition: { UserPreferences.autoTheme }) { switcher in
-                self.navigationController?.view.isUserInteractionEnabled = false
+                weakSelf?.navigationController?.view.isUserInteractionEnabled = false
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                     UserPreferences.themeNum = switcher.isOn ? 1 : 0
                     CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
-                    self.navigationController?.view.isUserInteractionEnabled = true
+                    weakSelf?.navigationController?.view.isUserInteractionEnabled = true
                 }
         })
         data.append(Section(rowModels: appearance, header: "Settings.Appearance.Header"))
@@ -75,7 +78,7 @@ class PreferencesController: StaticTableViewController {
         var background = [CellModelProtocol]()
         background.append(SwitchCell.Model(title: "Settings.BackgroundEnable", defaultValue: { UserPreferences.background }) { switcher in
             UserPreferences.background = switcher.isOn
-            self.updateData()
+            weakSelf?.updateData()
         })
         background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding",
                                            defaultValue: { UserPreferences.backgroundSeedKey },
@@ -91,7 +94,7 @@ class PreferencesController: StaticTableViewController {
                     }
                     controller.addAction(enable)
                     controller.addAction(close)
-                    self.present(controller, animated: true)
+                    weakSelf?.present(controller, animated: true)
                 } else {
                     UserPreferences.seedBackgroundWarning = false
                     UserPreferences.backgroundSeedKey = false
@@ -104,8 +107,8 @@ class PreferencesController: StaticTableViewController {
                                                    NSLocalizedString("Disabled", comment: "") :
                                                    "\(UserPreferences.zeroSpeedLimit / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit / 60))"
                 }) { button in
-                self.onScreenPopup?.dismiss()
-                self.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
+                weakSelf?.onScreenPopup?.dismiss()
+                weakSelf?.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Disabled", comment: ""), for: .normal)
                     } else {
@@ -114,9 +117,9 @@ class PreferencesController: StaticTableViewController {
                 }, dismissAction: { res in
                     UserPreferences.zeroSpeedLimit = res
                 })
-                self.onScreenPopup?.show(self)
+                weakSelf?.onScreenPopup?.show(weakSelf)
         })
-        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
+        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) //, footer: "Settings.BackgroundFooter"))
 
         // SPEED LIMITATION
         var speed = [CellModelProtocol]()
@@ -125,8 +128,8 @@ class PreferencesController: StaticTableViewController {
                                           NSLocalizedString("Unlimited", comment: "") :
                                           Utils.getSizeText(size: Int64(UserPreferences.downloadLimit), decimals: true) + "/S"
                 }) { button in
-                self.onScreenPopup?.dismiss()
-                self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
+                weakSelf?.onScreenPopup?.dismiss()
+                weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
@@ -134,17 +137,17 @@ class PreferencesController: StaticTableViewController {
                     }
                 }, dismissAction: { res in
                     UserPreferences.downloadLimit = Int(res)
-                    TorrentSdk.applySettingsPack()
+                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
             })
-                self.onScreenPopup?.show(self)
+                weakSelf?.onScreenPopup?.show(weakSelf)
         })
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
                                       buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
                                           Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
                 }) { button in
-                self.onScreenPopup?.dismiss()
-                self.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
+                weakSelf?.onScreenPopup?.dismiss()
+                weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
                     if res == 0 {
                         button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
                     } else {
@@ -152,9 +155,9 @@ class PreferencesController: StaticTableViewController {
                     }
                 }, dismissAction: { res in
                     UserPreferences.uploadLimit = Int(res)
-                    TorrentSdk.applySettingsPack()
+                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
             })
-                self.onScreenPopup?.show(self)
+                weakSelf?.onScreenPopup?.show(weakSelf)
         })
         data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
 
@@ -163,9 +166,9 @@ class PreferencesController: StaticTableViewController {
         ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
             UserPreferences.ftpKey = switcher.isOn
             switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
-            self.updateData(animated: false)
+            weakSelf?.updateData(animated: false)
         })
-        ftp.append(SegueCell.Model(self, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
+        ftp.append(SegueCell.Model(weakSelf, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             if UserPreferences.ftpKey,
                 UserPreferences.webServerEnabled {
@@ -183,23 +186,23 @@ class PreferencesController: StaticTableViewController {
         // NETWORK
 
         var network = [CellModelProtocol]()
-        network.append(SegueCell.Model(self, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
-        network.append(SegueCell.Model(self, title: "Settings.Network.Connection", controllerType: NetworkPreferencesController.self))
+        network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
+        network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Connection", controllerType: NetworkPreferencesController.self))
         data.append(Section(rowModels: network, header: "Settings.Network.Header"))
 
         // NOTIFICATIONS
         var notifications = [CellModelProtocol]()
         notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishLoad", defaultValue: { UserPreferences.notificationsKey }) { switcher in
             UserPreferences.notificationsKey = switcher.isOn
-            self.updateData()
+            weakSelf?.updateData()
         })
         notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishSeed", defaultValue: { UserPreferences.notificationsSeedKey }) { switcher in
             UserPreferences.notificationsSeedKey = switcher.isOn
-            self.updateData()
+            weakSelf?.updateData()
         })
         notifications.append(SwitchCell.Model(title: "Settings.NotifyBadge", defaultValue: { UserPreferences.badgeKey }, disableCondition: { !UserPreferences.notificationsKey && !UserPreferences.notificationsSeedKey }) { switcher in
             UserPreferences.badgeKey = switcher.isOn
-            self.updateData()
+            weakSelf?.updateData()
         })
         data.append(Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
@@ -208,9 +211,9 @@ class PreferencesController: StaticTableViewController {
         updates.append(ButtonCell.Model(title: "Settings.UpdateSite", buttonTitle: "Settings.UpdateSite.Open") { _ in
             Utils.openUrl("https://github.com/XITRIX/iTorrent")
         })
-        updates.append(UpdateInfoCell.Model {
-            self.present(Dialog.createUpdateLogs(forced: true)!, animated: true)
-        })
+        updates.append(UpdateInfoCell.Model(tapAction: {
+            weakSelf?.present(Dialog.createUpdateLogs(forced: true)!, animated: true)
+        }))
         let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
         data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
 
@@ -231,7 +234,7 @@ class PreferencesController: StaticTableViewController {
 
                         DispatchQueue.main.async {
                             UIPasteboard.general.string = card
-                            Dialog.withTimer(self, title: nil, message: Localize.get("Copied CC # to clipboard!"))
+                            Dialog.withTimer(weakSelf, title: nil, message: Localize.get("Copied CC # to clipboard!"))
                         }
                     }
                 }
@@ -245,9 +248,9 @@ class PreferencesController: StaticTableViewController {
             alert.addAction(paypal)
             alert.addAction(cancel)
 
-            self.present(alert, animated: true)
+            weakSelf?.present(alert, animated: true)
         })
-        donates.append(SegueCell.Model(self, title: "Patreon", segueViewId: "PatreonViewController"))
+        donates.append(SegueCell.Model(weakSelf, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
     }
 }

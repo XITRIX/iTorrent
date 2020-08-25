@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 extension TorrentListController {
@@ -16,7 +17,7 @@ extension TorrentListController {
         tableView.register(TableHeaderView.nib, forHeaderFooterViewReuseIdentifier: TableHeaderView.id)
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 82
-        tableView.rowHeight = 82
+        tableView.rowHeight = UITableView.automaticDimension
         
         torrentListDataSource = TorrentListDataSource(self, tableView: tableView) { (tableView, indexPath, model) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TorrentCell
@@ -40,22 +41,29 @@ extension TorrentListController: UITableViewDelegate {
         if tableView.isEditing {
             updateEditStatus()
         } else {
-            if let viewController = storyboard?.instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController,
-                let hash = torrentListDataSource.snapshot?.getItem(from: indexPath)?.hash {
+            let viewController = TorrentDetailsController()
+            if let hash = torrentListDataSource.snapshot?.getItem(from: indexPath)?.hash {
                 viewController.managerHash = hash
                 
-                if !splitViewController!.isCollapsed {
-                    let navController = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
-                    navController.viewControllers.append(viewController)
-                    navController.isToolbarHidden = false
-                    navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
-                    navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
-                    splitViewController?.showDetailViewController(navController, sender: self)
-                } else {
+                if #available(iOS 11, *) {} else {
                     let back = UIBarButtonItem()
                     back.title = " "
                     navigationItem.backBarButtonItem = back
-                    splitViewController?.showDetailViewController(viewController, sender: self)
+                }
+                
+                if let splitViewController = splitViewController {
+                    if !splitViewController.isCollapsed {
+                        let navController = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+                        navController.viewControllers.append(viewController)
+                        navController.isToolbarHidden = false
+                        navController.navigationBar.tintColor = navigationController?.navigationBar.tintColor
+                        navController.toolbar.tintColor = navigationController?.navigationBar.tintColor
+                        splitViewController.showDetailViewController(navController, sender: self)
+                    } else {
+                        splitViewController.showDetailViewController(viewController, sender: self)
+                    }
+                } else {
+                    show(viewController, sender: self)
                 }
             }
         }
@@ -98,11 +106,9 @@ extension TorrentListController: UITableViewDelegate {
             splitViewController?.isCollapsed != false else { return nil }
         
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: {
-            if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as? TorrentDetailsController {
-                viewController.managerHash = hash
-                return viewController
-            }
-            return nil
+            let viewController = TorrentDetailsController()
+            viewController.managerHash = hash
+            return viewController
         }) { _ -> UIMenu? in
             if let torrent = Core.shared.torrents[hash] {
                 var canStart, canPause: Bool
@@ -150,9 +156,6 @@ extension TorrentListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
         animator.addCompletion {
             if let preview = animator.previewViewController {
-                let back = UIBarButtonItem()
-                back.title = " "
-                self.navigationItem.backBarButtonItem = back
                 self.splitViewController?.showDetailViewController(preview, sender: self)
                 if let nav = preview.navigationController as? SANavigationController,
                     nav.viewControllers.last == preview {

@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class FileProviderTableDataSource: NSObject {
@@ -37,7 +38,8 @@ class FileProviderTableDataSource: NSObject {
         
         tableView.register(FolderCell.nib, forCellReuseIdentifier: FolderCell.id)
         tableView.register(FileCell.nib, forCellReuseIdentifier: FileCell.id)
-        tableView.rowHeight = 78
+        tableView.estimatedRowHeight = 78
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     func getFolders(from files: [FileModel]) -> [FolderModel] {
@@ -131,12 +133,14 @@ extension FileProviderTableDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.row < folders.count {
-            return false
-        } else {
-            let file = files[indexPath.row - folders.count]
-            if file.downloadedBytes == file.size {
+        if !tableView.isEditing {
+            if indexPath.row < folders.count {
                 return false
+            } else {
+                let file = files[indexPath.row - folders.count]
+                if file.downloadedBytes == file.size {
+                    return false
+                }
             }
         }
         return true
@@ -183,19 +187,25 @@ extension FileProviderTableDataSource: UITableViewDataSource {
         //(tableView.cellForRow(at: indexPath) as? FileCell)?.update()
         return [button]
     }
+    
+    func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        return tableView.isEditing
+    }
 }
 
 extension FileProviderTableDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if folders.count > indexPath.row {
-            delegate?.folderSelected(folder: folders[indexPath.row])
-        } else {
-            let fileIdx = indexPath.row - folders.count
-            let cell = tableView.cellForRow(at: indexPath) as! FileCell
-            cell.onClick()
-            delegate?.fileSelected(file: files[fileIdx])
+        if !tableView.isEditing {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            if folders.count > indexPath.row {
+                delegate?.folderSelected(folder: folders[indexPath.row])
+            } else {
+                let fileIdx = indexPath.row - folders.count
+                let cell = tableView.cellForRow(at: indexPath) as! FileCell
+                cell.onClick()
+                delegate?.fileSelected(file: files[fileIdx])
+            }
         }
     }
 }

@@ -1,35 +1,46 @@
 //
-//  TorrentFilesController2.swift
+//  TorrentFilesController.swift
 //  iTorrent
 //
 //  Created by Daniil Vinogradov on 31.03.2020.
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class TorrentFilesController: ThemedUIViewController {
     static let filesUpdatedNotification = NSNotification.Name(rawValue: "filesUpdatedNotification")
     
-    @IBOutlet var editButton: UIBarButtonItem!
-    @IBOutlet var selectAllButton: UIBarButtonItem!
-    @IBOutlet var deselectAllButton: UIBarButtonItem!
+    var editButton: UIBarButtonItem!
+    var selectAllButton: UIBarButtonItem!
+    var deselectAllButton: UIBarButtonItem!
     
-    @IBOutlet var tableView: ThemedUITableView!
+    lazy var toolBarItems: [UIBarButtonItem] = {
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        return [deselectAllButton, space, selectAllButton]
+    }()
+    
+    var tableView: ThemedUITableView!
     
     var torrentHash: String = ""
     var fileProvider: FileProviderTableDataSource!
     var files: [FileModel]!
     var path: URL!
     
-    func initialize(torrentHash: String, path: URL = URL(string: "/")!, files: [FileModel]! = nil) {
-        self.torrentHash = torrentHash
+    init(hash: String, path: URL = URL(string: "/")!, files: [FileModel]! = nil) {
+        super.init()
+        self.torrentHash = hash
         self.files = files
         self.path = path
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     func localize() {
-        editButton.title = Localize.get("TorrentFilesController.Edit")
+        //editButton.title = Localize.get("TorrentFilesController.Edit")
         selectAllButton.title = Localize.get("TorrentFilesController.SelectAll")
         deselectAllButton.title = Localize.get("TorrentFilesController.DeselectAll")
     }
@@ -39,12 +50,26 @@ class TorrentFilesController: ThemedUIViewController {
         tableView.backgroundColor = Themes.current.backgroundMain
     }
     
+    override func loadView() {
+        super.loadView()
+        
+        tableView = ThemedUITableView(frame: view.bounds)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(tableView)
+        
+        editButton = UIBarButtonItem(title: "Select".localized, style: .plain, target: self, action: #selector(editAction))
+        selectAllButton = UIBarButtonItem(title: "TorrentFilesController.SelectAll".localized, style: .plain, target: self, action: #selector(selectAllAction))
+        selectAllButton.tintColor = .systemBlue
+        deselectAllButton = UIBarButtonItem(title: "TorrentFilesController.DeselectAll".localized, style: .plain, target: self, action: #selector(deselectAllAction))
+        deselectAllButton.tintColor = .systemRed
+        
+        navigationItem.setRightBarButton(editButton, animated: false)
+        toolbarItems = toolBarItems
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         localize()
-        
-        // until I realise what I want to do with it
-        navigationItem.rightBarButtonItem = nil
         
         if files == nil {
             files = TorrentSdk.getFilesOfTorrentByHash(hash: torrentHash)!
@@ -62,6 +87,9 @@ class TorrentFilesController: ThemedUIViewController {
         fileProvider = FileProviderTableDataSource(tableView: tableView, path: path, data: files)
         fileProvider.delegate = self
         
+        tableView.allowsSelection = true
+        tableView.allowsSelectionDuringEditing = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = fileProvider
         tableView.delegate = fileProvider
     }
@@ -98,17 +126,24 @@ class TorrentFilesController: ThemedUIViewController {
         TorrentSdk.setTorrentFilesPriority(hash: torrentHash, states: files.map { $0.priority })
     }
     
-    @IBAction func deselectAllAction(_ sender: Any) {
+    @objc func deselectAllAction() {
         fileProvider.deselectAll()
         setFilesPriority()
     }
     
-    @IBAction func selectAllAction(_ sender: Any) {
+    @objc func selectAllAction() {
         fileProvider.selectAll()
         setFilesPriority()
     }
     
-    @IBAction func editAction(_ sender: Any) {}
+    @objc func editAction() {
+        let editing = !isEditing
+        setEditing(editing, animated: true)
+        tableView.setEditing(editing, animated: true)
+        
+        editButton.style = editing ? .done : .plain
+        editButton.title = editing ? "Done".localized : "Select".localized
+    }
 }
 
 extension TorrentFilesController: FileProviderDelegate {
@@ -117,8 +152,7 @@ extension TorrentFilesController: FileProviderDelegate {
     }
     
     func folderSelected(folder: FolderModel) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "TorrentFilesController") as! TorrentFilesController
-        vc.initialize(torrentHash: torrentHash, path: folder.path, files: files)
+        let vc = TorrentFilesController(hash: torrentHash, path: folder.path, files: files)
         show(vc, sender: self)
     }
     

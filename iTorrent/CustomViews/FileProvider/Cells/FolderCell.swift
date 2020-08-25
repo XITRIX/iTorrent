@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class FolderCell: ThemedUITableViewCell, UpdatableModel {
@@ -17,23 +18,28 @@ class FolderCell: ThemedUITableViewCell, UpdatableModel {
     
     @IBOutlet var moreButton: UIButton!
     @IBOutlet var titleConstraint: NSLayoutConstraint!
+    var titleConstraintValue: CGFloat {
+        isEditing ? 16 : 34
+    }
     
     weak var model: FolderModel!
     var moreAction: ((FolderModel) -> ())?
     
-    func update() {
-        if isEditing {
-            moreButton.isHidden = true
-            titleConstraint?.constant = 13
-        } else {
-            moreButton.isHidden = false
-            titleConstraint?.constant = 36
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        titleConstraint?.constant = titleConstraintValue
+        UIView.animate(withDuration: animated ? 0.3 : 0) {
+            self.moreButton.alpha = editing ? 0 : 1
+            self.layoutIfNeeded()
         }
     }
     
     func setModel(_ model: FolderModel) {
         self.model = model
-        updateModel() 
+        updateModel()
+        
+        setEditing(isEditing, animated: false)
     }
     
     func updateModel() {

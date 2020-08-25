@@ -6,6 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 class TrackerCell: ThemedUITableViewCell {
@@ -14,6 +15,12 @@ class TrackerCell: ThemedUITableViewCell {
     @IBOutlet var seeders: UILabel!
     @IBOutlet var peers: UILabel!
     @IBOutlet var leechers: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        title.font = title.font.bold()
+        message.font = message.font.bold()
+    }
 
     override func themeUpdate() {
         super.themeUpdate()

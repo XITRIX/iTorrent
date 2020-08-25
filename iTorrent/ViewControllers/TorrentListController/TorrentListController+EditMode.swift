@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import UIKit
 
 extension TorrentListController {
@@ -28,6 +29,7 @@ extension TorrentListController {
     func triggerEditMode() {
         let edit = !tableView.isEditing
         tableView.setEditing(edit, animated: true)
+        navigationItem.leftBarButtonItem!.style = edit ? .done : .plain
         navigationItem.leftBarButtonItem!.title = edit ? Localize.get("Done") : Localize.get("Edit")
 
         if edit {

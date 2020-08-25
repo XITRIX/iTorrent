@@ -6,12 +6,20 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if !targetEnvironment(macCatalyst)
 import GoogleMobileAds
+#endif
+import ITorrentFramework
 import UIKit
 
 class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var tableView: ThemedUITableView!
+    
+    #if !targetEnvironment(macCatalyst)
     @IBOutlet var adsView: GADBannerView!
+    #else
+    @IBOutlet var adsView: UIView!
+    #endif
     
     @IBOutlet var tableviewPlaceholder: UIView!
     @IBOutlet var tableviewPlaceholderImage: UIImageView!
@@ -38,11 +46,7 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     
     func showUpdateLog() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            if let updateDialog = Dialog.createUpdateLogs(finishAction: {
-                if let newsDialog = Dialog.createNewsAlert() {
-                    self.present(newsDialog, animated: true)
-                }
-            }) {
+            if let updateDialog = Dialog.createUpdateLogs() {
                 self.present(updateDialog, animated: true)
             }
         }
@@ -62,7 +66,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         localize()
         
         initializeTableView()
+        #if !targetEnvironment(macCatalyst)
         initializeAds()
+        #endif
         initializeSearchView()
         initializeEditMode()
         showUpdateLog()
@@ -102,8 +108,13 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        smoothlyDeselectRows(in: tableView)
+        if splitViewController?.isCollapsed ?? true {
+            smoothlyDeselectRows(in: tableView)
+        }
+        
+        #if !targetEnvironment(macCatalyst)
         viewWillAppearAds()
+        #endif
     }
     
     @IBAction func addTorrentAction(_ sender: UIBarButtonItem) {
@@ -115,16 +126,20 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     }
     
     @IBAction func preferencesAction(_ sender: UIBarButtonItem) {
-        let back = UIBarButtonItem()
-        back.title = title
-        navigationItem.backBarButtonItem = back
+        if #available(iOS 11, *) {} else {
+            let back = UIBarButtonItem()
+            back.title = title
+            navigationItem.backBarButtonItem = back
+        }
         show(PreferencesController(), sender: self)
     }
     
     @IBAction func rssAction(_ sender: UIBarButtonItem) {
-        let back = UIBarButtonItem()
-        back.title = title
-        navigationItem.backBarButtonItem = back
+        if #available(iOS 11, *) {} else {
+            let back = UIBarButtonItem()
+            back.title = title
+            navigationItem.backBarButtonItem = back
+        }
         show(RssFeedController(), sender: self)
     }
     

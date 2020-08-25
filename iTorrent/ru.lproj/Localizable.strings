@@ -77,7 +77,7 @@
 "Currently sorted by " = "Сейчас отсортеровано по ";
 "Disable state sections" = "Отключить разделение на секции";
 "Enable state sections" = "Включить разделение на секции";
-"MainController.Table.Placeholder.Text" = "Список загрузок пуст!\nИспользуйте Google Chrome для загрузки торент файлов или добавьте прямую ссылку с помощью кнопки '+'";
+"MainController.Table.Placeholder.Text" = "Список загрузок пуст!\nИспользуйте Safari для загрузки торент файлов или добавьте прямую ссылку с помощью кнопки '+'";
 
 //Torrent details
 "Torrent file" = "Torrent файл";
@@ -86,6 +86,43 @@
 "Files" = "Файлы";
 "Trackers" = "Трекеры";
 "Details.BackgroundSeeding.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
+
+"Details.State" = "Состояние";
+
+"Details.Speed.Title" = "Скорость";
+"Details.Speed.Download" = "Загрузка";
+"Details.Speed.Upload" = "Отдача";
+"Details.Speed.Remains" = "Осталось";
+
+"Details.Downloading.Title" = "Загрузка";
+"Details.Downloading.Sequential" = "Последовательная загрузка";
+"Details.Downloading.Progress" = "Прогресс";
+
+"Details.Seeding.Title" = "Раздача";
+"Details.Seeding.Allow" = "Разрешить раздачу";
+"Details.Seeding.Limit" = "Лимит Раздачи";
+
+"Details.Info.Title" = "Основная информация";
+"Details.Info.Hash" = "Хэш";
+"Details.Info.Creator" = "Создатель";
+"Details.Info.Created" = "Создан";
+"Details.Info.Added" = "Добавлен";
+"Details.Info.Comment" = "Коментарий";
+
+"Details.Transfer.Title" = "Передано";
+"Details.Transfer.Total" = "Выбрано/Всего";
+"Details.Transfer.Completed" = "Завершено";
+"Details.Transfer.Progress" = "Прогресс\nВыбранные/Всего";
+"Details.Transfer.Downloaded" = "Скачано";
+"Details.Transfer.Uploaded" = "Отдано";
+"Details.Transfer.Seeders" = "Сиды";
+"Details.Transfer.Leechers" = "Личеры";
+
+"Details.More.Title" = "Ещё";
+"Details.More.Trackers" = "Трекеры";
+"Details.More.Files" = "Файлы";
+
+"copied" = "скопирован";
 
 //Settings Controller
 "Settings.Title" = "Настройки";
@@ -191,7 +228,7 @@
 
 "Warning" = "Внимание";
 "Enable" = "Включить";
-"Unlimited" = "Без ограничений";
+"Unlimited" = "Отключено";
 "Torrent rehash" = "Перепроверка хэша";
 "This action will recheck the state of all downloaded files" = "Это перепроверит состояние всех скачанных файлов";
 "Rehash" = "Старт";
@@ -220,6 +257,7 @@
 "Download" = "Скачать";
 "Don't Download" = "Не скачивать";
 "Share" = "Поделиться";
+"Show in Files" = "Показать в Файлы";
 "All" = "Всем";
 "Selected" = "Выделенным";
 "Priority" = "Приоритет";
@@ -269,7 +307,6 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Внимание!";
-"Dialogs.News.Message" = "Если приложение не открывает .torrent файлы, используйте для их загрузки Google Chorome!";
 
 "Disabled" = "Отключено";
 "Hint" = "Подсказка";
@@ -314,4 +351,4 @@
 
 //Version Info
 "info" = " Изменения";
-"UpdateText" = "- Добавлена RSS лента\n- Улучшено разденение на секции\n- Добавлена поддержка других P2P протоколов\n- Добавлена поддержка прокси сервера\n- Добавлен выбор порта\n- Добавлен кастомный выбор ограничения скорости\n- Libtorrent обновлён до 1.2.7\n- Другие, менее заметные улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";
+"UpdateText" = "- Добавлена поддержка шрифтов для слабовидящих\n- Переработан iTorrent Framework\n- Libtorrent обновлён до 1.2.9\n- Некоторые улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";

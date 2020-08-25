@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 class Dialog {
-    static func withTimer(_ presenter: UIViewController,title: String? = nil, message: String? = nil) {
+    static func withTimer(_ presenter: UIViewController?, title: String? = nil, message: String? = nil) {
         let alert = ThemedUIAlertController(title: Localize.get(key: title), message: Localize.get(key: message), preferredStyle: .alert)
-        presenter.present(alert, animated: true, completion: nil)
+        presenter?.present(alert, animated: true, completion: nil)
         // change alert timer to 2 seconds, then dismiss
         let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when) {
@@ -62,36 +62,21 @@ class Dialog {
         presenter?.present(dialog, animated: true)
     }
     
-    static func createUpdateLogs(forced: Bool = false, finishAction: (() -> ())? = nil) -> ThemedUIAlertController? {
+    static func createUpdateLogs(forced: Bool = false, closeAction: (() -> ())? = nil) -> ThemedUIAlertController? {
         let localUrl = Bundle.main.url(forResource: "Version", withExtension: "ver")
         if let localVersion = try? String(contentsOf: localUrl!) {
             if !UserPreferences.versionNews || forced {
                 let title = localVersion + NSLocalizedString("info", comment: "")
-                let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: NSLocalizedString("UpdateText", comment: ""), preferredStyle: .alert)
+                let newsController = ThemedUIAlertController(title: title.replacingOccurrences(of: "\n", with: ""), message: "UpdateText".localized, preferredStyle: .alert)
                 let close = UIAlertAction(title: Localize.get("Close"), style: .cancel) { _ in
                     UserPreferences.versionNews = true
-                    finishAction?()
+                    closeAction?()
                 }
                 newsController.addAction(close)
                 return newsController
             }
         }
-        finishAction?()
-        return nil
-    }
-
-    static func createNewsAlert() -> ThemedUIAlertController? {
-        if #available(iOS 13, *) {
-            let code = "1"
-            if !UserPreferences.alertDialog(code: code).value {
-                let newsController = ThemedUIAlertController(title: Localize.get("Dialogs.News.Title"), message: Localize.get("Dialogs.News.Message"), preferredStyle: .alert)
-                let close = UIAlertAction(title: Localize.get("Close"), style: .cancel) { _ in
-                    UserPreferences.alertDialog(code: code).value = true
-                }
-                newsController.addAction(close)
-                return newsController
-            }
-        }
+        closeAction?()
         return nil
     }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+import ITorrentFramework
 import Foundation
 import UIKit
 
@@ -22,9 +23,9 @@ class Utils {
         UIApplication.shared.keyWindow!.rootViewController!
     }
     
-    public static var mainStoryboard: UIStoryboard {
-        rootViewController.storyboard!
-    }
+    public static var mainStoryboard: UIStoryboard = {
+        UIStoryboard(name: "Main", bundle: nil)
+    }()
     
     public static func instantiate<T: UIViewController>(_ viewController: String) -> T {
         mainStoryboard.instantiateViewController(withIdentifier: viewController) as! T
@@ -70,8 +71,11 @@ class Utils {
         return res
     }
 
-    public static func getSizeText(size: Int64, decimals: Bool = false) -> String {
-        var size = size
+    public static func getSizeText(size: Int64?, decimals: Bool = false) -> String {
+        guard var size = size else {
+            return getSizeText(size: 0, decimals: decimals)
+        }
+        
         let names = ["B", "KB", "MB", "GB"]
         var count = 0
         var fRes: Double = 0
