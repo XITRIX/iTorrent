@@ -13,7 +13,7 @@ target 'iTorrent' do
   pod 'DeepDiff'
   pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
   pod 'Google-Mobile-Ads-SDK'
-  pod 'Firebase/Core'
+  pod 'Firebase/Core', "~> 6.30.0"
   pod 'Firebase/Performance'
   pod 'Fabric'
   pod 'Crashlytics'
