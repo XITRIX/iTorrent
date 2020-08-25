@@ -45,19 +45,16 @@ extension Core {
             }
             DispatchQueue.main.async {
                 let dest = Core.tempFile
-                print(filePath.startAccessingSecurityScopedResource())
                 do {
                     if FileManager.default.fileExists(atPath: dest) {
                         try FileManager.default.removeItem(atPath: dest)
                     }
-                    print(FileManager.default.fileExists(atPath: filePath.path))
-                    try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
+                    try FileManager.default.moveItem(at: filePath, to: URL(fileURLWithPath: dest))
                 } catch {
                     Dialog.show(title: "Error on torrent opening",
-                                message: "error.localizedDescription")
+                                message: error.localizedDescription)
                     return
                 }
-                filePath.stopAccessingSecurityScopedResource()
 
                 guard let hash = TorrentSdk.getTorrentFileHash(torrentPath: dest) else {
                     Dialog.show(title: "Error",
