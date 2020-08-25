@@ -345,4 +345,4 @@
 
 //Version Info
 "info" = " Güncelleme bilgisi";
-"UpdateText" = "- Added RSS feed\n- Improved section partitioning\n- Added support for other P2P protocols\n- Added support for proxy server\n- Added port selection\n- Added custom choice of speed limitations\n- Libtorrent updated to 1.2.7\n- Other, less noticeable interface improvements\n- Many bugs fixed (possibly new ones added)";
+"UpdateText" = "- Text accessability support added\n- Huge backend refactoring\n- Libtorrent updated to 1.2.9\n- Minor UI improvements\n- Many bugs fixed (possibly new ones added)";
