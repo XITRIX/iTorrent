@@ -77,7 +77,7 @@
 "Currently sorted by " = "Сейчас отсортеровано по ";
 "Disable state sections" = "Отключить разделение на секции";
 "Enable state sections" = "Включить разделение на секции";
-"MainController.Table.Placeholder.Text" = "Список загрузок пуст!\nИспользуйте Google Chrome для загрузки торент файлов или добавьте прямую ссылку с помощью кнопки '+'";
+"MainController.Table.Placeholder.Text" = "Список загрузок пуст!\nИспользуйте Safari для загрузки торент файлов или добавьте прямую ссылку с помощью кнопки '+'";
 
 //Torrent details
 "Torrent file" = "Torrent файл";
@@ -307,7 +307,6 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Внимание!";
-"Dialogs.News.Message" = "Если приложение не открывает .torrent файлы, используйте для их загрузки Google Chorome!";
 
 "Disabled" = "Отключено";
 "Hint" = "Подсказка";

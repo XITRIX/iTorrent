@@ -46,11 +46,7 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     
     func showUpdateLog() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            if let updateDialog = Dialog.createUpdateLogs(finishAction: {
-                if let newsDialog = Dialog.createNewsAlert() {
-                    self.present(newsDialog, animated: true)
-                }
-            }) {
+            if let updateDialog = Dialog.createUpdateLogs() {
                 self.present(updateDialog, animated: true)
             }
         }

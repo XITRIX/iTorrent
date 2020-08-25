@@ -77,7 +77,7 @@
 "Currently sorted by " = "Şu an kullanılan sıralama şekli: ";
 "Disable state sections" = "Sıralamayı devre dışı bırak";
 "Enable state sections" = "Sıralamayı aktifleştir"; 
-"MainController.Table.Placeholder.Text" = "İndirme listesi boş!\nTorrent dosyalarını indirmek için Google Chrome kullanın ya da '+' butonuna basarak direkt olarak bir link ekleyin.";
+"MainController.Table.Placeholder.Text" = "İndirme listesi boş!\nTorrent dosyalarını indirmek için Safari kullanın ya da '+' butonuna basarak direkt olarak bir link ekleyin.";
 
 //Torrent details
 "Torrent file" = "Torrent dosyası";
@@ -300,7 +300,6 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Uyarı!";
-"Dialogs.News.Message" = "Eğer uygulama .torrent dosyalarını açmıyorsa, indirmek için Google Chrome kullanın.";
 
 "Disabled" = "Devre dışı";
 "Hint" = "İpucu";

@@ -77,7 +77,7 @@
 "Currently sorted by " = "Currently sorted by ";
 "Disable state sections" = "Disable state sections";
 "Enable state sections" = "Enable state sections";
-"MainController.Table.Placeholder.Text" = "Download list is empty!\nUse Google Chrome to download torrent files or add a direct link using the '+' button";
+"MainController.Table.Placeholder.Text" = "Download list is empty!\nUse Safari to download torrent files or add a direct link using the '+' button";
 
 //Torrent details
 "Torrent file" = "Torrent file";
@@ -298,7 +298,6 @@
 
 //News Alerts
 "Dialogs.News.Title" = "Warning!";
-"Dialogs.News.Message" = "If app not opening .torrent files, use Google Chrome to download them!";
 
 "Disabled" = "Disabled";
 "Hint" = "Hint";
