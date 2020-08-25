@@ -6,12 +6,12 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import ITorrentFramework
 import AVFoundation
+import ITorrentFramework
 
 class BackgroundTask {
     public static let shared = BackgroundTask()
-    
+
     var player: AVAudioPlayer?
     var timer = Timer()
     var backgrounding = false
@@ -31,7 +31,7 @@ class BackgroundTask {
             player?.stop()
         }
     }
-    
+
     @objc fileprivate func interruptedAudio(_ notification: Notification) {
         if notification.name == AVAudioSession.interruptionNotification,
             let info = notification.userInfo {
@@ -48,12 +48,12 @@ class BackgroundTask {
             let alertSound = URL(fileURLWithPath: bundle!)
             try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
-            try self.player = AVAudioPlayer(contentsOf: alertSound)
-            
-            self.player?.numberOfLoops = -1
-            self.player?.volume = 0.01
-            self.player?.prepareToPlay()
-            self.player?.play()
+            try player = AVAudioPlayer(contentsOf: alertSound)
+
+            player?.numberOfLoops = -1
+            player?.volume = 0.01
+            player?.prepareToPlay()
+            player?.play()
         } catch {
             print(error)
         }
@@ -72,8 +72,8 @@ class BackgroundTask {
     }
 
     func checkToStopBackground() {
-        if !Core.shared.torrents.values.contains(where: { BackgroundTask.getBackgroundConditions($0) }) {
-            if backgrounding {
+        if backgrounding {
+            if !Core.shared.torrents.values.contains(where: { BackgroundTask.getBackgroundConditions($0) }) {
                 Core.shared.saveTorrents()
                 stopBackgroundTask()
             }
