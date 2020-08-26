@@ -49,15 +49,17 @@ class DoubleProgressCell: ThemedUITableViewCell, PreferenceCellProtocol {
         title?.text = Localize.get(model.title)
         torrentModel = model.torrentModel()
 
-        setupPiecesFilter()
-
-        let totalDownloadProgress = torrentModel.totalSize > 0 ? Float(torrentModel.totalDone) / Float(torrentModel.totalSize) : 0
-        bottomProgressBar.setProgress([totalDownloadProgress])
-        // Very large torrents cause "ladder" effect (lags) while scrolling on running in main thread
-        DispatchQueue.global(qos: .background).async {
-            let pieces = self.sortPiecesByFilesName(self.torrentModel.pieces)
-            DispatchQueue.main.async {
-                self.topProgressBar.setProgress(pieces)
+        if torrentModel.hasMetadata {
+            setupPiecesFilter()
+            
+            let totalDownloadProgress = torrentModel.totalSize > 0 ? Float(torrentModel.totalDone) / Float(torrentModel.totalSize) : 0
+            bottomProgressBar.setProgress([totalDownloadProgress])
+            // Very large torrents cause "ladder" effect (lags) while scrolling on running in main thread
+            DispatchQueue.global(qos: .background).async {
+                let pieces = self.sortPiecesByFilesName(self.torrentModel.pieces)
+                DispatchQueue.main.async {
+                    self.topProgressBar.setProgress(pieces)
+                }
             }
         }
     }
