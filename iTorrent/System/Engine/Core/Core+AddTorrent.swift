@@ -26,7 +26,7 @@ extension Core {
         mainLoop()
     }
 
-    func addTorrentFromFile(_ filePath: URL) {
+    func addTorrentFromFile(_ filePath: URL, openInPlace: Bool = false) {
         if var nav = (Utils.topViewController as? UINavigationController)?.topViewController {
             while let presentedViewController = nav.presentedViewController {
                 nav = presentedViewController
@@ -49,7 +49,13 @@ extension Core {
                     if FileManager.default.fileExists(atPath: dest) {
                         try FileManager.default.removeItem(atPath: dest)
                     }
-                    try FileManager.default.moveItem(at: filePath, to: URL(fileURLWithPath: dest))
+                    if openInPlace {
+                        _ = filePath.startAccessingSecurityScopedResource()
+                        try FileManager.default.copyItem(at: filePath, to: URL(fileURLWithPath: dest))
+                        filePath.stopAccessingSecurityScopedResource()
+                    } else {
+                        try FileManager.default.moveItem(at: filePath, to: URL(fileURLWithPath: dest))
+                    }
                 } catch {
                     Dialog.show(title: "Error on torrent opening",
                                 message: error.localizedDescription)

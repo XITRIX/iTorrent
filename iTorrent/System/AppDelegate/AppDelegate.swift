@@ -83,8 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if url.absoluteString.hasPrefix("magnet:") {
             Core.shared.addMagnet(url.absoluteString)
         } else {
-            openedByFile = true
-            Core.shared.addTorrentFromFile(url)
+            let openInPlace = options[.openInPlace] as? Bool ?? false
+            Core.shared.addTorrentFromFile(url, openInPlace: openInPlace)
         }
 
         return true
