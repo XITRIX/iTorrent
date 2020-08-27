@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,11 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="372" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-Rg-s2B">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-Rg-s2B">
                     <rect key="frame" x="0.0" y="0.0" width="334" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCL-su-1B3" customClass="MarqueeLabel" customModule="iTorrent">
-                            <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
+                            <rect key="frame" x="151.5" y="0.0" width="31" height="26"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TestFolderText/ABC123" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bb-xh-YZz">
-                            <rect key="frame" x="0.0" y="22" width="334" height="22"/>
+                            <rect key="frame" x="95" y="18" width="144.5" height="26"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -54,6 +54,7 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
                 <constraint firstItem="0fA-Rg-s2B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-19" id="PGO-sw-RuX"/>
                 <constraint firstItem="0fA-Rg-s2B" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TTV-pk-hGp"/>
@@ -61,8 +62,12 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0fA-Rg-s2B" secondAttribute="bottom" id="zGl-E7-GlO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="32" y="-241"/>
         </view>
     </objects>
+    <designables>
+        <designable name="uCL-su-1B3">
+            <size key="intrinsicContentSize" width="31" height="18"/>
+        </designable>
+    </designables>
 </document>

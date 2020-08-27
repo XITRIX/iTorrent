@@ -39,12 +39,6 @@ class TorrentFilesController: ThemedUIViewController {
         super.init(coder: coder)
     }
     
-    func localize() {
-        //editButton.title = Localize.get("TorrentFilesController.Edit")
-        selectAllButton.title = Localize.get("TorrentFilesController.SelectAll")
-        deselectAllButton.title = Localize.get("TorrentFilesController.DeselectAll")
-    }
-    
     override func themeUpdate() {
         super.themeUpdate()
         tableView.backgroundColor = Themes.current.backgroundMain
@@ -63,13 +57,12 @@ class TorrentFilesController: ThemedUIViewController {
         deselectAllButton = UIBarButtonItem(title: "TorrentFilesController.DeselectAll".localized, style: .plain, target: self, action: #selector(deselectAllAction))
         deselectAllButton.tintColor = .systemRed
         
-        navigationItem.setRightBarButton(editButton, animated: false)
+//        navigationItem.setRightBarButton(editButton, animated: false)
         toolbarItems = toolBarItems
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localize()
         
         if files == nil {
             files = TorrentSdk.getFilesOfTorrentByHash(hash: torrentHash)!
