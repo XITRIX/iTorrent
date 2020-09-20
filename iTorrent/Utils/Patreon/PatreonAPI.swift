@@ -24,7 +24,7 @@ struct PatreonCredentials: Codable {
     var benefits: Benefits
 }
 
-private let redirectUri = "http://127.0.0.1:55555"
+private let redirectUri = "http://127.0.0.1:25565"
 
 extension PatreonAPI {
     func fetchCredentials(completion: ((Result<PatreonCredentials, Swift.Error>) -> Void)? = nil)

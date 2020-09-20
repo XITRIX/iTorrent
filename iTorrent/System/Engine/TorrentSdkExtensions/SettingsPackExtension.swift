@@ -18,6 +18,7 @@ extension SettingsPack {
                      enableUtp: UserPreferences.enableUtp,
                      enableUpnp: UserPreferences.enableUpnp,
                      enableNatpmp: UserPreferences.enableNatpmp,
+                     outgoingInterfaces: UserPreferences.interface, //Utils.interfacesForTorrent(vpnOnly: UserPreferences.onlyVpn),
                      portRangeFirst: !UserPreferences.defaultPort ?
                          UserPreferences.portRangeFirst :
                          6881,

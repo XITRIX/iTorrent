@@ -27,6 +27,8 @@ typedef struct settings_pack_struct {
     bool enable_upnp;
     bool enable_natpmp;
     
+    char * _Nonnull outgoing_interfaces;
+    
     int port_range_first;
     int port_range_second;
     

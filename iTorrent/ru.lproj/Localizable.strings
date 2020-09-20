@@ -192,6 +192,9 @@
 "Settings.Network.DefauldPort.Hint" = "Устанавливает начальный порт на [6881] и конечный порт как начальный + 10 [6891]";
 "Settings.Network.PortFirst" = "Начальный";
 "Settings.Network.PortSecond" = "Конечный";
+"Settings.Network.Interface" = "Сетевой интерфейс";
+"Settings.Network.Interface.VpnOnly" = "VPN только";
+"Settings.Network.Interface.AnyInterface" = "Любой";
 
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
@@ -351,4 +354,4 @@
 
 //Version Info
 "info" = " Изменения";
-"UpdateText" = "- Добавлена поддержка шрифтов для слабовидящих\n- Переработан iTorrent Framework\n- Libtorrent обновлён до 1.2.9\n- Некоторые улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";
+"UpdateText" = "- Фикс Патреона для iOS 14\n- Libtorrent обновлён до 1.2.10\n--- 1.8.2 ---\n- Добавлена поддержка шрифтов для слабовидящих\n- Переработан iTorrent Framework\n- Некоторые улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";

@@ -6,11 +6,40 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import ITorrentFramework
 import Foundation
+import ITorrentFramework
 import UIKit
 
 class Utils {
+    public static func interfacesForTorrentName() -> String {
+        UserPreferences.onlyVpn ?
+            "Settings.Network.Interface.VpnOnly".localized :
+            "Settings.Network.Interface.AnyInterface".localized
+    }
+    
+    public static func interfacesForTorrent(vpnOnly: Bool) -> String {
+        let interfaces = interfaceNames()
+        return vpnOnly ? interfaces.filter { $0.starts(with: "utun") }.joined(separator: ",") : ""
+    }
+    
+    public static func interfaceNames() -> [String] {
+        let MAX_INTERFACES = 128
+
+        var interfaceNames = [String]()
+        let interfaceNamePtr = UnsafeMutablePointer<Int8>.allocate(capacity: Int(IF_NAMESIZE))
+        for interfaceIndex in 1 ... MAX_INTERFACES {
+            if if_indextoname(UInt32(interfaceIndex), interfaceNamePtr) != nil {
+                let interfaceName = String(cString: interfaceNamePtr)
+                interfaceNames.append(interfaceName)
+            } else {
+                break
+            }
+        }
+
+        interfaceNamePtr.deallocate()
+        return interfaceNames
+    }
+
     public static var topViewController: UIViewController? {
         var vc = UIApplication.shared.keyWindow?.rootViewController
         while vc?.presentedViewController != nil {
@@ -18,19 +47,19 @@ class Utils {
         }
         return vc
     }
-    
+
     public static var rootViewController: UIViewController {
         UIApplication.shared.keyWindow!.rootViewController!
     }
-    
+
     public static var mainStoryboard: UIStoryboard = {
         UIStoryboard(name: "Main", bundle: nil)
     }()
-    
+
     public static func instantiate<T: UIViewController>(_ viewController: String) -> T {
         mainStoryboard.instantiateViewController(withIdentifier: viewController) as! T
     }
-    
+
     public static func instantiateNavigationController(_ rootViewController: UIViewController? = nil) -> UINavigationController {
         let nvc = instantiate("NavigationController") as UINavigationController
         if let vc = rootViewController {
@@ -38,7 +67,7 @@ class Utils {
         }
         return nvc
     }
-    
+
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
         if speedInBytes == 0 {
             return NSLocalizedString("eternity", comment: "")
@@ -75,7 +104,7 @@ class Utils {
         guard var size = size else {
             return getSizeText(size: 0, decimals: decimals)
         }
-        
+
         let names = ["B", "KB", "MB", "GB"]
         var count = 0
         var fRes: Double = 0
@@ -180,7 +209,7 @@ class Localize {
     static func get(_ key: String) -> String {
         NSLocalizedString(key, comment: "")
     }
-    
+
     static func get(key: String?) -> String? {
         guard let key = key else { return nil }
         return get(key)

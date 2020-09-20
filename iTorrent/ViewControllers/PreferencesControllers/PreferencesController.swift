@@ -188,6 +188,36 @@ class PreferencesController: StaticTableViewController {
         var network = [CellModelProtocol]()
         network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
         network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Connection", controllerType: NetworkPreferencesController.self))
+//        network.append(ButtonCell.Model(title: "Settings.Network.Interface", buttonTitleFunc: {UserPreferences.interface == "" ? "All" : UserPreferences.interface}, action: { button in
+//            let alert = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+////            alert.addAction(UIAlertAction(title: "Settings.Network.Interface.AnyInterface".localized, style: .default, handler: { _ in
+////                UserPreferences.onlyVpn = false
+////                button.setTitle(Utils.interfacesForTorrentName(), for: .normal)
+////                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+////            }))
+////            alert.addAction(UIAlertAction(title: "Settings.Network.Interface.VpnOnly".localized, style: .default, handler: { _ in
+////                UserPreferences.onlyVpn = true
+////                button.setTitle(Utils.interfacesForTorrentName(), for: .normal)
+////                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+////            }))
+//            alert.addAction(UIAlertAction(title: "All", style: .default, handler: { _ in
+//                UserPreferences.interface = ""
+//                button.setTitle("All", for: .normal)
+//                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+//            }))
+//            Utils.interfaceNames().forEach { interface in
+//                alert.addAction(UIAlertAction(title: interface, style: .default, handler: { _ in
+//                    UserPreferences.interface = interface
+//                    button.setTitle(interface, for: .normal)
+//                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+//                }))
+//            }
+//            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+//            alert.popoverPresentationController?.sourceView = button.superview
+//            alert.popoverPresentationController?.sourceRect = button.superview!.frame
+//            alert.popoverPresentationController?.permittedArrowDirections = [.left]
+//            self.present(alert, animated: true)
+//        }))
         data.append(Section(rowModels: network, header: "Settings.Network.Header"))
 
         // NOTIFICATIONS
@@ -252,5 +282,13 @@ class PreferencesController: StaticTableViewController {
         })
         donates.append(SegueCell.Model(weakSelf, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
+        
+        // DEBUG
+//        var debug = [CellModelProtocol]()
+//        debug.append(ButtonCell.Model(title: "Interfaces", buttonTitle: "Show", action: { _ in
+//            let interfaces = Utils.interfaceNames()
+//            Dialog.show(title: "Interfaces", message: interfaces.joined(separator: "\n"))
+//        }))
+//        data.append(Section(rowModels: debug, header: "Debug"))
     }
 }

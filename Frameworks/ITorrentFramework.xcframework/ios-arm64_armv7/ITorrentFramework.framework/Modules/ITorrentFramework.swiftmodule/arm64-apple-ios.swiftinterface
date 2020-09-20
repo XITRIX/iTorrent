@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.22.4 clang-1200.0.25.1)
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
 // swift-module-flags: -target arm64-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
 import Foundation
 @_exported import ITorrentFramework
@@ -196,6 +196,7 @@ public struct SettingsPack {
   public var enableUtp: Swift.Bool
   public var enableUpnp: Swift.Bool
   public var enableNatpmp: Swift.Bool
+  public var outgoingInterfaces: Swift.String
   public var portRangeFirst: Swift.Int
   public var portRangeSecond: Swift.Int
   public var proxyType: ITorrentFramework.ProxyType
@@ -209,7 +210,7 @@ public struct SettingsPack {
 }
 extension SettingsPack {
   public init(_ native: ITorrentFramework.settings_pack_struct)
-  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
+  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, outgoingInterfaces: Swift.String, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
 }
 extension NSNotification.Name {
   public static let torrentsStateChanged: Foundation.Notification.Name

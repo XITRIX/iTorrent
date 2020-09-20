@@ -34,7 +34,7 @@ class PatreonWebServer: GCDWebServer {
     func run(completion: @escaping (String?) -> ()) {
         self.completion = completion
         if !isRunning {
-            start(withPort: 55555, bonjourName: nil)
+            start(withPort: 25565, bonjourName: nil)
         }
     }
 }
