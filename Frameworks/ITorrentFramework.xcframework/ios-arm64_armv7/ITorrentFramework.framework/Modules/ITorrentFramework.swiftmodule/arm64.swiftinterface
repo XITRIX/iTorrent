@@ -5,6 +5,16 @@ import Foundation
 @_exported import ITorrentFramework
 import ITorrentFramework.Private
 import Swift
+public enum InterfaceType {
+  case all
+  case primary
+  case vpnOnly
+  case manual(name: Swift.String)
+}
+extension InterfaceType : Swift.Codable {
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
 public struct PeerModel : Swift.Hashable {
   public var port: Swift.Int
   public var client: Swift.String
@@ -196,7 +206,7 @@ public struct SettingsPack {
   public var enableUtp: Swift.Bool
   public var enableUpnp: Swift.Bool
   public var enableNatpmp: Swift.Bool
-  public var outgoingInterfaces: Swift.String
+  public var interfaceType: ITorrentFramework.InterfaceType
   public var portRangeFirst: Swift.Int
   public var portRangeSecond: Swift.Int
   public var proxyType: ITorrentFramework.ProxyType
@@ -210,7 +220,7 @@ public struct SettingsPack {
 }
 extension SettingsPack {
   public init(_ native: ITorrentFramework.settings_pack_struct)
-  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, outgoingInterfaces: Swift.String, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
+  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, interfaceType: ITorrentFramework.InterfaceType, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
 }
 extension NSNotification.Name {
   public static let torrentsStateChanged: Foundation.Notification.Name

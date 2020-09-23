@@ -28,6 +28,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var rssButton: UIBarButtonItem!
     
+    @IBOutlet weak var addTorrentButton: UIBarButtonItem!
+    @IBOutlet weak var sortButton: UIBarButtonItem!
+    
     var initialBarButtonItems: [UIBarButtonItem] = []
     var editmodeBarButtonItems: [UIBarButtonItem] = []
     
@@ -60,6 +63,20 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         tableView.backgroundColor = theme.backgroundMain
         tableviewPlaceholderImage.tintColor = theme.secondaryText
         searchbarUpdateTheme(theme)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if #available(iOS 14.0, *) {
+            addTorrentButton.menu = createMenu()
+            setupSortButtonMenu()
+        } else {
+            addTorrentButton.target = self
+            addTorrentButton.action = #selector(addTorrent(_:))
+            
+            sortButton.target = self
+            sortButton.action = #selector(sortAction(_:))
+        }
     }
     
     override func setupViews() {
@@ -117,10 +134,6 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         #endif
     }
     
-    @IBAction func addTorrentAction(_ sender: UIBarButtonItem) {
-        addTorrent(sender)
-    }
-    
     @IBAction func editAction(_ sender: UIBarButtonItem) {
         triggerEditMode()
     }
@@ -143,12 +156,21 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         show(RssFeedController(), sender: self)
     }
     
-    @IBAction func sortAction(_ sender: UIBarButtonItem) {
+    @objc func sortAction(_ sender: UIBarButtonItem) {
         let sortingController = SortingManager.createSortingController(buttonItem: sender, applyChanges: {
             self.viewModel.update()
             self.updateScrollInset()
         })
         present(sortingController, animated: true)
+    }
+    
+    @available(iOS 14.0, *)
+    func setupSortButtonMenu() {
+        sortButton.menu = SortingManager.createSortingMenu(applyChanges: {
+            self.viewModel.update()
+            self.updateScrollInset()
+            self.setupSortButtonMenu()
+        })
     }
 }
  
