@@ -354,4 +354,4 @@
 
 //Version Info
 "info" = " Güncelleme bilgisi";
-"UpdateText" = "- Patreon fix for iOS 14\n- Libtorrent updated to 1.2.10\n--- 1.8.2 ---\n- Text accessability support added\n- Huge backend refactoring\n- Minor UI improvements\n- Many bugs fixed (possibly new ones added)";
+"UpdateText" = "\n--- 1.8.3 ---\n- Patreon fix for iOS 14\n- Libtorrent updated to 1.2.10\n--- 1.8.2 ---\n- Text accessability support added\n- Huge backend refactoring\n- Minor UI improvements\n- Many bugs fixed (possibly new ones added)";
