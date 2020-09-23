@@ -24,12 +24,12 @@ class WebDavPreferencesController: StaticTableViewController {
         weak var weakSelf = self
 
         var pass = [CellModelProtocol]()
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: { UserPreferences.webDavUsername }) { username in
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Username", placeholder: "Settings.FTP.WebDav.Username.Placeholder", defaultValue: { UserPreferences.webDavUsername }, textEditEndAction: { username in
             UserPreferences.webDavUsername = username
-        })
-        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: { UserPreferences.webDavPassword }, isPassword: true) { password in
+        }))
+        pass.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.Password", placeholder: "Settings.FTP.WebDav.Password.Placeholder", defaultValue: { UserPreferences.webDavPassword }, isPassword: true, textEditEndAction: { password in
             UserPreferences.webDavPassword = password
-        })
+        }))
         data.append(Section(rowModels: pass, footer: "Settings.FTP.WebDav.PassText"))
 
         var web = [CellModelProtocol]()
@@ -62,14 +62,14 @@ class WebDavPreferencesController: StaticTableViewController {
             }
             weakSelf?.updateData()
         })
-        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: { String(UserPreferences.webDavPort) }, keyboardType: .numberPad, hiddenCondition: { !UserPreferences.webDavServerEnabled }) { port in
+        webDav.append(TextFieldCell.Model(title: "Settings.FTP.WebDav.WebDavPort", placeholder: "81", defaultValue: { String(UserPreferences.webDavPort) }, keyboardType: .numberPad, hiddenCondition: { !UserPreferences.webDavServerEnabled }, textEditEndAction: { port in
             if let intPort = Int(port) {
                 UserPreferences.webDavPort = intPort
             } else {
                 UserPreferences.webDavPort = 81
             }
             weakSelf?.updateData()
-        })
+        }))
         data.append(Section(rowModels: webDav, header: "Settings.FTP.WebDav.WebDavTitle", footerFunc: { () -> String in
             let addr = Core.shared.webDAVServer.serverURL?.absoluteString
             let res = addr != nil ? ": \(addr!)" : ""

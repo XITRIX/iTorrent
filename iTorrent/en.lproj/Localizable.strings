@@ -193,8 +193,15 @@
 "Settings.Network.PortFirst" = "Start";
 "Settings.Network.PortSecond" = "End";
 "Settings.Network.Interface" = "Interface";
-"Settings.Network.Interface.VpnOnly" = "VPN only";
-"Settings.Network.Interface.AnyInterface" = "Any";
+"Settings.Network.Interface.Title" = "Mode";
+"Settings.Network.Interface.Hint" = "#IMPORTANT#\nAny network state changes requires iTorrent to REBOOT!\n---All mode---\nIt will allow iTorrent to use every available device interface, which gives maximum download speed, but could use cellular data even with wifi connected\n---Primary mode---\nIt will use only primary connections, which prevents using cellular data while using wifi, but still could cause IP leak, if you are using VPN\n---VPN Only---\nUse it if you need to provide private connections to trackers, it will prevent IP leak\n---Manual mode---\nSelect interface by yourself";
+"Settings.Network.Interface.Select" = "Select interface mode";
+"Settings.Network.Interface.SelectInterface" = "Select interface";
+
+"InterfaceType.All" = "All";
+"InterfaceType.Primary" = "Primary";
+"InterfaceType.VpnOnly" = "VPN Only";
+"InterfaceType.Manual" = "Manual";
 
 "Settings.NotifyFinishLoad" = "On finish loading";
 "Settings.NotifyFinishSeed" = "On finish seeding";

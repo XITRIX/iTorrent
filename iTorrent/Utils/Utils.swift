@@ -11,17 +11,6 @@ import ITorrentFramework
 import UIKit
 
 class Utils {
-    public static func interfacesForTorrentName() -> String {
-        UserPreferences.onlyVpn ?
-            "Settings.Network.Interface.VpnOnly".localized :
-            "Settings.Network.Interface.AnyInterface".localized
-    }
-    
-    public static func interfacesForTorrent(vpnOnly: Bool) -> String {
-        let interfaces = interfaceNames()
-        return vpnOnly ? interfaces.filter { $0.starts(with: "utun") }.joined(separator: ",") : ""
-    }
-    
     public static func interfaceNames() -> [String] {
         let MAX_INTERFACES = 128
 

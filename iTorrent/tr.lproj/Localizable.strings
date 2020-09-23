@@ -193,8 +193,15 @@
 "Settings.Network.PortFirst" = "Start";
 "Settings.Network.PortSecond" = "End";
 "Settings.Network.Interface" = "Interface";
-"Settings.Network.Interface.VpnOnly" = "VPN only";
-"Settings.Network.Interface.AnyInterface" = "Any";
+"Settings.Network.Interface.Title" = "Mode";
+"Settings.Network.Interface.Hint" = "#ADD HINT#";
+"Settings.Network.Interface.Select" = "Select interface mode";
+"Settings.Network.Interface.SelectInterface" = "Select interface";
+
+"InterfaceType.All" = "All";
+"InterfaceType.Primary" = "Primary";
+"InterfaceType.VpnOnly" = "VPN Only";
+"InterfaceType.Manual" = "Manual";
 
 "Settings.NotifyFinishLoad" = "İndirme bittiğinde";
 "Settings.NotifyFinishSeed" = "Seedleme bittiğinde";

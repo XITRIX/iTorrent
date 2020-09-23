@@ -25,7 +25,7 @@ class PreferencesController: StaticTableViewController {
         
         weak var weakSelf = self
 
-        // APPEARANCE
+        // -MARK: APPEARANCE
         var appearance = [CellModelProtocol]()
         appearance.append(SegueCell.Model(weakSelf, title: "Settings.Order", controllerType: SortingPreferencesController.self))
         if #available(iOS 13, *) {
@@ -65,7 +65,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: appearance, header: "Settings.Appearance.Header"))
 
-        // STORAGE
+        // -MARK: STORAGE
         var storage = [CellModelProtocol]()
         storage.append(StoragePropertyCell.Model())
         storage.append(SwitchCell.Model(title: "Settings.Storage.Allocate", defaultValue: { UserPreferences.storagePreallocation }, hint: "Settings.Storage.Allocate.Hint") { switcher in
@@ -74,7 +74,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: storage, header: "Settings.Storage.Header"))
 
-        // BACKGROUND
+        // -MARK: BACKGROUND
         var background = [CellModelProtocol]()
         background.append(SwitchCell.Model(title: "Settings.BackgroundEnable", defaultValue: { UserPreferences.background }) { switcher in
             UserPreferences.background = switcher.isOn
@@ -121,7 +121,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) //, footer: "Settings.BackgroundFooter"))
 
-        // SPEED LIMITATION
+        // -MARK: SPEED LIMITATION
         var speed = [CellModelProtocol]()
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
                                       buttonTitleFunc: { UserPreferences.downloadLimit == 0 ?
@@ -161,7 +161,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
 
-        // DATA SHARING
+        // -MARK: DATA SHARING
         var ftp = [CellModelProtocol]()
         ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
             UserPreferences.ftpKey = switcher.isOn
@@ -183,44 +183,14 @@ class PreferencesController: StaticTableViewController {
             }
         }))
 
-        // NETWORK
+        // -MARK: NETWORK
 
         var network = [CellModelProtocol]()
         network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
         network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Connection", controllerType: NetworkPreferencesController.self))
-//        network.append(ButtonCell.Model(title: "Settings.Network.Interface", buttonTitleFunc: {UserPreferences.interface == "" ? "All" : UserPreferences.interface}, action: { button in
-//            let alert = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-////            alert.addAction(UIAlertAction(title: "Settings.Network.Interface.AnyInterface".localized, style: .default, handler: { _ in
-////                UserPreferences.onlyVpn = false
-////                button.setTitle(Utils.interfacesForTorrentName(), for: .normal)
-////                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-////            }))
-////            alert.addAction(UIAlertAction(title: "Settings.Network.Interface.VpnOnly".localized, style: .default, handler: { _ in
-////                UserPreferences.onlyVpn = true
-////                button.setTitle(Utils.interfacesForTorrentName(), for: .normal)
-////                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-////            }))
-//            alert.addAction(UIAlertAction(title: "All", style: .default, handler: { _ in
-//                UserPreferences.interface = ""
-//                button.setTitle("All", for: .normal)
-//                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-//            }))
-//            Utils.interfaceNames().forEach { interface in
-//                alert.addAction(UIAlertAction(title: interface, style: .default, handler: { _ in
-//                    UserPreferences.interface = interface
-//                    button.setTitle(interface, for: .normal)
-//                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-//                }))
-//            }
-//            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
-//            alert.popoverPresentationController?.sourceView = button.superview
-//            alert.popoverPresentationController?.sourceRect = button.superview!.frame
-//            alert.popoverPresentationController?.permittedArrowDirections = [.left]
-//            self.present(alert, animated: true)
-//        }))
         data.append(Section(rowModels: network, header: "Settings.Network.Header"))
 
-        // NOTIFICATIONS
+        // -MARK: NOTIFICATIONS
         var notifications = [CellModelProtocol]()
         notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishLoad", defaultValue: { UserPreferences.notificationsKey }) { switcher in
             UserPreferences.notificationsKey = switcher.isOn
@@ -236,7 +206,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
-        // UPDATES
+        // -MARK: UPDATES
         var updates = [CellModelProtocol]()
         updates.append(ButtonCell.Model(title: "Settings.UpdateSite", buttonTitle: "Settings.UpdateSite.Open") { _ in
             Utils.openUrl("https://github.com/XITRIX/iTorrent")
@@ -247,7 +217,7 @@ class PreferencesController: StaticTableViewController {
         let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
         data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
 
-        // DONATES
+        // -MARK: DONATES
         var donates = [CellModelProtocol]()
         donates.append(SegueCell.Model(title: "Settings.DonateCard.DonatePlatforms") {
             let alert = ThemedUIAlertController(title: Localize.get("Settings.DonateCard.DonatePlatforms.Title"), message: "", preferredStyle: .alert)
@@ -283,7 +253,7 @@ class PreferencesController: StaticTableViewController {
         donates.append(SegueCell.Model(weakSelf, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
         
-        // DEBUG
+        // -MARK: DEBUG
 //        var debug = [CellModelProtocol]()
 //        debug.append(ButtonCell.Model(title: "Interfaces", buttonTitle: "Show", action: { _ in
 //            let interfaces = Utils.interfaceNames()

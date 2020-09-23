@@ -72,6 +72,7 @@
 		7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D7683230335A4002E1352 /* FilesBrowserController.swift */; };
 		7C6189B12433478E00B4EF5B /* FileProviderTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6189B02433478E00B4EF5B /* FileProviderTableDataSource.swift */; };
 		7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */; };
+		7C786891251B942800CD61F0 /* InterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C786890251B942800CD61F0 /* InterfaceType.swift */; };
 		7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */; };
 		7C7D0ABA20D911EB001B08E5 /* SortingPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB920D911EB001B08E5 /* SortingPreferencesController.swift */; };
 		7C7D0ABC20D97B3A001B08E5 /* FileCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */; };
@@ -272,6 +273,7 @@
 		7C5D7683230335A4002E1352 /* FilesBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBrowserController.swift; sourceTree = "<group>"; };
 		7C6189B02433478E00B4EF5B /* FileProviderTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderTableDataSource.swift; sourceTree = "<group>"; };
 		7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesExtention.swift; sourceTree = "<group>"; };
+		7C786890251B942800CD61F0 /* InterfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceType.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C7D0AB920D911EB001B08E5 /* SortingPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingPreferencesController.swift; sourceTree = "<group>"; };
 		7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCellActionDelegate.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 			children = (
 				7C4B71D224D5DC5C00DA0C49 /* SettingsPackExtension.swift */,
 				7C4B71D424D5DFE100DA0C49 /* DiffAwareExtensions.swift */,
+				7C786890251B942800CD61F0 /* InterfaceType.swift */,
 			);
 			path = TorrentSdkExtensions;
 			sourceTree = "<group>";
@@ -1334,6 +1337,7 @@
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
 				7C46749224884DB000ABC838 /* UIBarButtonItemBinding.swift in Sources */,
 				7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */,
+				7C786891251B942800CD61F0 /* InterfaceType.swift in Sources */,
 				7C18DF03231D514F00A14326 /* CellModelProtocol.swift in Sources */,
 				7CB9BBAA23786C8A00C8F05E /* WebDavPreferencesController.swift in Sources */,
 				7CC4368524AB9E4500782145 /* PlaceHolderView.swift in Sources */,
@@ -1567,12 +1571,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent/Utils/Native/iTorrent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};
@@ -1623,11 +1627,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent/Utils/Native/iTorrent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "";
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
 			};

@@ -193,8 +193,15 @@
 "Settings.Network.PortFirst" = "Начальный";
 "Settings.Network.PortSecond" = "Конечный";
 "Settings.Network.Interface" = "Сетевой интерфейс";
-"Settings.Network.Interface.VpnOnly" = "VPN только";
-"Settings.Network.Interface.AnyInterface" = "Любой";
+"Settings.Network.Interface.Title" = "Режим";
+"Settings.Network.Interface.Hint" = "#ADD HINT#";
+"Settings.Network.Interface.Select" = "Выберите режим интерфейса";
+"Settings.Network.Interface.SelectInterface" = "Выберите интерфейс";
+
+"InterfaceType.All" = "Все";
+"InterfaceType.Primary" = "Основные";
+"InterfaceType.VpnOnly" = "Только VPN";
+"InterfaceType.Manual" = "Вручную";
 
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
