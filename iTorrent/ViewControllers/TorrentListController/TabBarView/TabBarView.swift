@@ -47,13 +47,16 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
             sub?.backgroundColor = .clear
             sub = sub?.subviews.first
         }
+        
+        if #available(iOS 14.0, *) {
+            var backgroundConfig = UIBackgroundConfiguration.clear()
+            backgroundConfig.backgroundColor = .clear
+            backgroundConfiguration = backgroundConfig
+        }
     }
     
     @objc func themeUpdate() {
         fxView.effect = UIBlurEffect(style: Themes.current.blurEffect)
-        if #available(iOS 14, *) {
-            fxView.backgroundColor = Themes.current.sectionHeaderColor
-        }
     }
     
     private func selectItem(at indexPath: IndexPath, animated: Bool = true) {

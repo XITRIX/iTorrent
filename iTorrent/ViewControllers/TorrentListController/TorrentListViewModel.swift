@@ -8,13 +8,14 @@
 
 import ITorrentFramework
 import Foundation
+import Bond
 
 class TorrentListViewModel: ViewModel {
-    var tableViewData = Box<[SectionModel<TorrentModel>]>([])
-    var searchFilter = Box<String?>("")
-    var stateFilter = Box<TorrentState>(.null)
-    var tableviewPlaceholderHidden = Box<Bool>(true)
-    var loadingIndicatiorHidden = Box<Bool>(false)
+    var tableViewData = MutableObservableArray<SectionModel<TorrentModel>>([])
+    var searchFilter = Observable<String?>("")
+    var stateFilter = Observable<TorrentState>(.null)
+    var tableviewPlaceholderHidden = Observable<Bool>(true)
+    var loadingIndicatiorHidden = Observable<Bool>(false)
     
     override func viewWillAppear() {
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: .mainLoopTick, object: nil)
@@ -27,16 +28,16 @@ class TorrentListViewModel: ViewModel {
     
     @objc func update(animated: Bool = true) {
         if Core.shared.state == .Initializing { return }
-        else { loadingIndicatiorHidden.variable = true }
+        else { loadingIndicatiorHidden.value = true }
         
         var data = Array(Core.shared.torrents.values)
         if !UserPreferences.sortingSections {
-            data = data.filter { stateFilter.variable == .null || $0.displayState == stateFilter.variable }
+            data = data.filter { stateFilter.value == .null || $0.displayState == stateFilter.value }
         }
-        data = data.filter { self.searchFilter($0, filter: searchFilter.variable) }
-        tableViewData.variable = SortingManager.sort(managers: data)
+        data = data.filter { self.searchFilter($0, filter: searchFilter.value) }
+        tableViewData.replace(with: SortingManager.sort(managers: data))
         
-        tableviewPlaceholderHidden.variable = tableViewData.variable.contains(where: { $0.items.count > 0 })
+        tableviewPlaceholderHidden.value = tableViewData.value.collection.contains(where: { $0.items.count > 0 })
     }
     
     func searchFilter(_ model: TorrentModel, filter: String?) -> Bool {

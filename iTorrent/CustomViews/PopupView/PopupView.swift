@@ -17,7 +17,7 @@ class PopupView: UIView {
     @IBOutlet var customButton: UIButton!
     @IBOutlet var bottomOffsetConstraint: NSLayoutConstraint! {
         didSet {
-            bottomOffsetConstraint.constant = bottomOffset
+            bottomOffsetConstraint.constant = bottomOffset + Utils.safeAreaInsets.bottom
         }
     }
 
@@ -32,7 +32,7 @@ class PopupView: UIView {
 
     var vc: UIViewController?
 
-    init(contentView: UIView, contentHeight: CGFloat, customAction: (()->())? = nil, dismissAction: (() -> ())? = nil) {
+    init(contentView: UIView, contentHeight: CGFloat, customAction: (() -> ())? = nil, dismissAction: (() -> ())? = nil) {
         super.init(frame: CGRect.zero)
         commonInit()
         self.contentHeight = contentHeight
@@ -83,11 +83,11 @@ class PopupView: UIView {
 
     func show(_ vc: UIViewController?) {
         guard let vc = vc else { return }
-        
+
         self.vc = vc
         vc.view.addSubview(self)
 
-        let viewHeight = contentHeight + headerView.frame.height + bottomOffset
+        let viewHeight = contentHeight + headerView.frame.height + bottomOffset + Utils.safeAreaInsets.bottom
 
         centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         heightAnchor.constraint(equalToConstant: viewHeight).isActive = true
@@ -107,13 +107,13 @@ class PopupView: UIView {
                            self.bottomConstraint?.constant = self.bottomOffset
                            vc.view.layoutIfNeeded()
                            self.initViewPos = self.frame
-            })
+                       })
     }
 
     @IBAction func customButtonAction(_ sender: Any) {
         customAction?()
     }
-    
+
     @IBAction func dismissButtonAction(_ sender: Any) {
         dismiss()
     }
@@ -137,22 +137,22 @@ class PopupView: UIView {
                                    initialSpringVelocity: 0,
                                    options: .curveEaseInOut,
                                    animations: {
-                                       self.frame.origin.y = self.initViewPos.origin.y
+                                       self.frame.origin.y = vc.view.frame.height - self.frame.height + self.bottomOffset
                                        self.bottomConstraint?.constant = self.bottomOffset
                                        vc.view.layoutIfNeeded()
-                        })
+                                   })
                 }
             }
         }
     }
-    
+
     @objc func dismiss() {
         dismiss(animationOnly: false)
     }
 
     @objc func dismiss(animationOnly: Bool = false) {
         if !(superview?.subviews.contains(self) ?? false) { return }
-        
+
         if !animationOnly {
             dismissAction?()
         }

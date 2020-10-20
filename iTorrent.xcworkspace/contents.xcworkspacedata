@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/xitrix/Documents/GitHub/iTorrent---libtorrent-core/iTorrent.playground">
+   </FileRef>
+   <FileRef
       location = "group:iTorrent.xcodeproj">
    </FileRef>
    <FileRef

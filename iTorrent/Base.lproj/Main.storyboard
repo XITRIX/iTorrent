@@ -652,9 +652,6 @@ Thanks for all your support!</string>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aod-lD-LrV">
                                                     <rect key="frame" x="310" y="6.6666666666666679" width="51" height="31.000000000000004"/>
-                                                    <connections>
-                                                        <action selector="notificationAction:" destination="e7q-mA-zCg" eventType="valueChanged" id="8fa-2N-DEb"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>

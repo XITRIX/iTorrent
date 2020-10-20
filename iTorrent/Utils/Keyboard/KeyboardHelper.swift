@@ -6,23 +6,25 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import Bond
 import UIKit
+import ReactiveKit
 
 class KeyboardHelper: NSObject {
     static let shared = KeyboardHelper()
     
-    let animationDuration = Box<Double>(0)
+    let animationDuration = Observable<Double>(0)
     
-    let frame = Box<CGRect>(.zero)
-    let visibleHeight = Box<CGFloat>(0)
-    let isHidden = Box<Bool>(true)
+    let frame = Observable<CGRect>(.zero)
+    let visibleHeight = Observable<CGFloat>(0)
+    let isHidden = Observable<Bool>(true)
 //    let willShowVisibleHeight = Box<CGFloat>(0)
     
-    private let disposalBag = DisposalBag()
+    private let disposalBag = DisposeBag()
     private let panRecognizer: UIPanGestureRecognizer
     
     private let defaultFrame: CGRect
-    private let frameVariable: Box<CGRect>
+    private let frameVariable: Observable<CGRect>
     
     override init() {
         defaultFrame = CGRect(
@@ -31,7 +33,7 @@ class KeyboardHelper: NSObject {
             width: UIApplication.shared.keyWindow!.bounds.width,
             height: 0
         )
-        frameVariable = Box<CGRect>(defaultFrame)
+        frameVariable = Observable<CGRect>(defaultFrame)
         panRecognizer = UIPanGestureRecognizer()
         super.init()
         
@@ -42,53 +44,52 @@ class KeyboardHelper: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(frameHide), name: UIResponder.keyboardDidHideNotification, object: nil)
         UIApplication.shared.keyWindow?.addGestureRecognizer(panRecognizer)
         
-        frameVariable.bind { [weak self] frame in
+        frameVariable.observeNext { [weak self] frame in
             guard let self = self else { return }
-            
-            self.frame.variable = frame
-            self.visibleHeight.variable = max(UIApplication.shared.keyWindow!.bounds.height - frame.origin.y, 0)
-            self.isHidden.variable = self.visibleHeight.variable <= 0
-            //            self.willShowVisibleHeight.variable =
-        }.dispose(with: disposalBag)
+
+            self.frame.value = frame
+            self.visibleHeight.value = max(UIApplication.shared.keyWindow!.bounds.height - frame.origin.y, 0)
+            self.isHidden.value = self.visibleHeight.value <= 0
+        }.dispose(in: disposalBag)
     }
     
     @objc private func frameChanged(_ notification: Notification) {
         let time = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
-        animationDuration.variable = time?.doubleValue ?? 0
+        animationDuration.value = time?.doubleValue ?? 0
         
         let rectValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let frame = rectValue?.cgRectValue ?? defaultFrame
         if frame.origin.y < 0 { // if went to wrong frame
             var newFrame = frame
             newFrame.origin.y = UIApplication.shared.keyWindow!.bounds.height - newFrame.height
-            frameVariable.variable = newFrame
+            frameVariable.value = newFrame
         }
-        frameVariable.variable = frame
+        frameVariable.value = frame
     }
     
     @objc private func frameHide(_ notification: Notification) {
         let time = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
-        animationDuration.variable = time?.doubleValue ?? 0
+        animationDuration.value = time?.doubleValue ?? 0
         
         let rectValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let frame = rectValue?.cgRectValue ?? defaultFrame
         if frame.origin.y < 0 { // if went to wrong frame
             var newFrame = frame
             newFrame.origin.y = UIApplication.shared.keyWindow!.bounds.height
-            frameVariable.variable = newFrame
+            frameVariable.value = newFrame
         }
-        frameVariable.variable = frame
+        frameVariable.value = frame
     }
     
     @objc private func pan(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard gestureRecognizer.state == .changed,
             let window = UIApplication.shared.windows.first,
-            frameVariable.variable.origin.y < UIApplication.shared.keyWindow!.bounds.height
+            frameVariable.value.origin.y < UIApplication.shared.keyWindow!.bounds.height
         else { return }
         let origin = gestureRecognizer.location(in: window)
-        var newFrame = frameVariable.variable
-        newFrame.origin.y = max(origin.y, UIApplication.shared.keyWindow!.bounds.height - frameVariable.variable.height)
-        frameVariable.variable = newFrame
+        var newFrame = frameVariable.value
+        newFrame.origin.y = max(origin.y, UIApplication.shared.keyWindow!.bounds.height - frameVariable.value.height)
+        frameVariable.value = newFrame
     }
 }
 

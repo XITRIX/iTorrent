@@ -9,7 +9,6 @@
 import Foundation
 
 class ViewModel {
-    let disposalBag = DisposalBag()
     required init() { }
     
     func viewDidLoad() { }

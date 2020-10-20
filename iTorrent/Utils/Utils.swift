@@ -6,7 +6,6 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
 import ITorrentFramework
 import UIKit
 
@@ -28,6 +27,13 @@ class Utils {
         interfaceNamePtr.deallocate()
         return interfaceNames
     }
+    
+    public static var safeAreaInsets: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
+        }
+        return .zero
+    }
 
     public static var topViewController: UIViewController? {
         var vc = UIApplication.shared.keyWindow?.rootViewController
@@ -39,6 +45,10 @@ class Utils {
 
     public static var rootViewController: UIViewController {
         UIApplication.shared.keyWindow!.rootViewController!
+    }
+    
+    public static var splitViewController: UISplitViewController? {
+        rootViewController as? UISplitViewController
     }
 
     public static var mainStoryboard: UIStoryboard = {

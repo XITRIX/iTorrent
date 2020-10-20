@@ -6,8 +6,10 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import Bond
 import DeepDiff
 import Foundation
+import ReactiveKit
 import SwiftyXMLParser
 
 class RssModel: Hashable, Codable, DiffAware {
@@ -23,24 +25,40 @@ class RssModel: Hashable, Codable, DiffAware {
     var items: [RssItemModel] = []
     
     //
-    var customTitle: String?
-    var customDescriotion: String?
-    var muteNotifications: Bool = false
-    
+    var customTitle = CObservable<String?>(nil)
+    var customDescriotion = CObservable<String?>(nil)
+    var muteNotifications = CObservable<Bool>(false)
     //
-    var displayTitle: String {
-        if customTitle?.isEmpty == false {
-            return customTitle!
-        }
-        return title
-    }
     
-    var displayDescription: String {
-        if customDescriotion?.isEmpty == false {
-            return customDescriotion!
-        }
-        return description
-    }
+//    private enum CodingKeys: String, CodingKey {
+//        case xmlLink, title, description, linkImage, link, items, customTitle, customDescriotion, muteNotifications
+//    }
+//
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        xmlLink = try container.decode(URL.self, forKey: .xmlLink)
+//        title = try container.decode(String.self, forKey: .title)
+//        description = try container.decode(String.self, forKey: .description)
+//        linkImage = try container.decode(URL.self, forKey: .linkImage)
+//        link = try container.decode(URL.self, forKey: .link)
+//        items = try container.decode([RssItemModel].self, forKey: .items)
+//        customTitle.value = try container.decode(String?.self, forKey: .customTitle)
+//        customDescriotion.value = try container.decode(String?.self, forKey: .customDescriotion)
+//        muteNotifications.value = try container.decode(Bool.self, forKey: .muteNotifications)
+//    }
+//
+//    func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(xmlLink, forKey: .xmlLink)
+//        try container.encode(title, forKey: .title)
+//        try container.encode(description, forKey: .description)
+//        try container.encode(linkImage, forKey: .linkImage)
+//        try container.encode(link, forKey: .link)
+//        try container.encode(items, forKey: .items)
+//        try container.encode(customTitle.value, forKey: .customTitle)
+//        try container.encode(customDescriotion.value, forKey: .customDescriotion)
+//        try container.encode(muteNotifications.value, forKey: .muteNotifications)
+//    }
     
     var updatesCount: Int {
         items.filter { $0.new }.count
@@ -57,8 +75,9 @@ class RssModel: Hashable, Codable, DiffAware {
                 let description = xml["rss", "channel", "description"].text,
                 let xmlLink = xml["rss", "channel", "link"].text,
                 let link = URL(string: xmlLink),
-                let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink) else {
-                    throw Error.missingKey
+                let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink)
+            else {
+                throw Error.missingKey
             }
             
             self.title = title
@@ -74,6 +93,18 @@ class RssModel: Hashable, Codable, DiffAware {
         }
     }
     
+    var displayTitle: String {
+        if let title = customTitle.value,
+            !title.isEmpty { return title }
+        return title
+    }
+    
+    var displayDescription: String {
+        if let description = customDescriotion.value,
+            !description.isEmpty { return description }
+        return description
+    }
+
     @discardableResult func update(_ model: RssModel) -> [RssItemModel] {
         title = model.title
         description = model.description
@@ -104,10 +135,10 @@ class RssModel: Hashable, Codable, DiffAware {
     static func == (lhs: RssModel, rhs: RssModel) -> Bool {
         lhs.xmlLink == rhs.xmlLink &&
             lhs.title == rhs.title &&
-            lhs.customTitle == rhs.customTitle &&
             lhs.description == rhs.description &&
-            lhs.customDescriotion == rhs.customDescriotion &&
-            lhs.muteNotifications == rhs.muteNotifications &&
+            lhs.customTitle.value == rhs.customTitle.value &&
+            lhs.customDescriotion.value == rhs.customDescriotion.value &&
+            lhs.muteNotifications.value == rhs.muteNotifications.value &&
             lhs.linkImage == rhs.linkImage &&
             lhs.items == rhs.items
     }

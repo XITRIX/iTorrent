@@ -9,7 +9,6 @@
 import UIKit
 
 class MvvmViewController<T: ViewModel>: ThemedUIViewController {
-    let disposalBag = DisposalBag()
     var viewModel: T!
 
     override func viewDidLoad() {

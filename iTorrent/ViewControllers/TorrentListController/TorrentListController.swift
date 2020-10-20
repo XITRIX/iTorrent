@@ -11,6 +11,7 @@ import GoogleMobileAds
 #endif
 import ITorrentFramework
 import UIKit
+import Bond
 
 class TorrentListController: MvvmViewController<TorrentListViewModel> {
     @IBOutlet var tableView: ThemedUITableView!
@@ -34,10 +35,11 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     var initialBarButtonItems: [UIBarButtonItem] = []
     var editmodeBarButtonItems: [UIBarButtonItem] = []
     
-    var searchController: UISearchController = UISearchController(searchResultsController: nil)
+    var searchController: UISearchController!
     var adsLoaded = false
     
     var torrentListDataSource: TorrentListDataSource!
+    var rssSearchDataSource: RssSearchDataSource!
     
     override var toolBarIsHidden: Bool? {
         return false
@@ -93,34 +95,30 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     
     override func binding() {
         /// TableView Binding
-        viewModel.tableViewData.bind { torrents in
+        viewModel.tableViewData.observeNext { torrents in
             var snapshot = DataSnapshot<String, TorrentModel>()
-            snapshot.appendSections(torrents.map { $0.title })
-            torrents.forEach { snapshot.appendItems($0.items, toSection: $0.title) }
+            snapshot.appendSections(torrents.collection.map { $0.title })
+            torrents.collection.forEach { snapshot.appendItems($0.items, toSection: $0.title) }
             self.torrentListDataSource.apply(snapshot)
             self.tableView.visibleCells.forEach { ($0 as! UpdatableModel).updateModel() }
-        }.dispose(with: disposalBag)
+        }.dispose(in: bag)
         
         /// Binding Loading Indicator
-//        loadingIndicator.isAnimatingBox.bindTo(viewModel.loadingIndicatiorHidden).dispose(with: disposalBag)
-        viewModel.loadingIndicatiorHidden.bind { [weak self] hidden in
+        viewModel.loadingIndicatiorHidden.observeNext { [weak self] hidden in
             if hidden {
                 self?.loadingIndicator.stopAnimating()
             } else {
                 self?.loadingIndicator.startAnimating()
             }
-        }.dispose(with: disposalBag)
+        }.dispose(in: bag)
         
         /// Binding RSS Indicator
-        RssFeedProvider.shared.isRssUpdates.bind { [weak self] updates in
+        RssFeedProvider.shared.isRssUpdates.observeNext { [weak self] updates in
             self?.rssButton.image = UIImage(named: updates ? "RssNews" : "Rss")
-        }.dispose(with: disposalBag)
+        }.dispose(in: bag)
         
         /// Binding TableView Placeholder
-//        tableviewPlaceholder.isHiddenBox.bindTo(viewModel.tableviewPlaceholderHidden).dispose(with: disposalBag)
-        viewModel.tableviewPlaceholderHidden.bind { [weak self] hidden in
-            self?.tableviewPlaceholder.isHidden = hidden
-        }.dispose(with: disposalBag)
+        viewModel.tableviewPlaceholderHidden.bind(to: tableviewPlaceholder.reactive.isHidden).dispose(in: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {

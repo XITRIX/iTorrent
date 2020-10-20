@@ -78,6 +78,7 @@ class RssItemController: ThemedUIViewController {
         webView = WKWebView(frame: view.frame)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.backgroundColor = Themes.current.backgroundSecondary
+        webView.scrollView.keyboardDismissMode = .onDrag
         view.addSubview(webView)
         
         // MARQUEE LABEL
@@ -105,6 +106,17 @@ class RssItemController: ThemedUIViewController {
         } else if TorrentSdk.getMagnetHash(magnetUrl: model.link.absoluteString) != nil {
             Dialog.withButton(self, title: "RssItemController.PinMagnet", okTitle: "Download") {
                 TorrentSdk.addMagnet(magnetUrl: self.model.link.absoluteString)
+            }
+        } else {
+            Core.shared.getTorrent(by: model.link.absoluteString) { result in
+                switch result {
+                case .failure: break
+                case .success(let url):
+                    Dialog.withButton(self, title: "RssItemController.PinTorrent", okTitle: "Download") {
+                        let controller = AddTorrentController(filePath: url)
+                        self.present(controller.embedInNavigation(), animated: true)
+                    }
+                }
             }
         }
     }
@@ -136,7 +148,8 @@ extension RssItemController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
             if let url = navigationAction.request.url,
-                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.canOpenURL(url)
+            {
                 if url.absoluteString.hasSuffix(".torrent") {
                     Core.shared.addFromUrl(url.absoluteString, presenter: self)
                 } else {

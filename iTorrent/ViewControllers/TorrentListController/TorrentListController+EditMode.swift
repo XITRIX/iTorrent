@@ -123,4 +123,4 @@ extension TorrentListController {
             sender.title = NSLocalizedString("Select All", comment: "")
         }
     }
-}
+} 

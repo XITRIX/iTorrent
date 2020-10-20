@@ -18,6 +18,7 @@ target 'iTorrent' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'AppCenter'
+  pod 'Bond'
 end
 
 post_install do |installer|

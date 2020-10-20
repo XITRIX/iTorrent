@@ -19,12 +19,15 @@ class TableHeaderView: UITableViewHeaderFooterView, Themed {
         super.awakeFromNib()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
+        
+        if #available(iOS 14.0, *) {
+            var backgroundConfig = UIBackgroundConfiguration.clear()
+            backgroundConfig.backgroundColor = .clear
+            backgroundConfiguration = backgroundConfig
+        }
     }
     
     @objc func themeUpdate() {
         background.effect = UIBlurEffect(style: Themes.current.blurEffect)
-        if #available(iOS 14, *) {
-            background.backgroundColor = Themes.current.sectionHeaderColor
-        }
     }
 }

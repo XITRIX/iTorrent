@@ -46,7 +46,9 @@ class RssChannelController: ThemedUITableViewController {
         label.textAlignment = NSTextAlignment.center
         label.textColor = Themes.current.mainText
         label.trailingBuffer = 44
-        label.text = model.displayTitle
+        model.customTitle.observeNext(with: { _ in
+            label.text = self.model.displayTitle
+        }).dispose(in: bag)
         navigationItem.titleView = label
     }
     
@@ -110,6 +112,6 @@ extension RssChannelController {
         model.items[indexPath.row].readed = readed
         model.items[indexPath.row].new = false
         (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[indexPath.row])
-        RssFeedProvider.shared.rssModels.notifyUpdate()
+//        RssFeedProvider.shared.rssModels.notifyUpdate()
     }
 }

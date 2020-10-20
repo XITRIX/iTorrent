@@ -28,7 +28,7 @@ class RssChannelCell: ThemedUITableViewCell {
         stackTrailing.constant = editing ? 37 : 8
         UIView.animate(withDuration: animated ? 0.3 : 0) {
             self.setupButton.alpha = editing ? 1 : 0
-            self.updatesLabel.superview?.alpha = editing || self.model.updatesCount == 0 ? 0 : 1
+            self.updatesLabel.superview?.alpha = editing || (self.model?.updatesCount ?? 0) == 0 ? 0 : 1
             self.layoutIfNeeded()
         }
     }
@@ -40,8 +40,16 @@ class RssChannelCell: ThemedUITableViewCell {
     }
 
     func updateCellView() {
-        title.text = model.displayTitle
-        descriptionText.text = model.displayDescription
+        bag.dispose()
+        
+        model.customTitle.observeNext(with: { _ in
+            self.title.text = self.model.displayTitle
+        }).dispose(in: bag)
+        
+        model.customDescriotion.observeNext(with: { _ in
+            self.descriptionText.text = self.model.displayDescription
+        }).dispose(in: bag)
+        
         imageFav.image = UIImage(named: "Rss")
         imageFav.load(url: model.linkImage)
 
@@ -55,12 +63,12 @@ class RssChannelCell: ThemedUITableViewCell {
         vc = Utils.instantiate("RssChannelSetup")
         vc.model = model
         parent?.channelSetupView?.dismiss(animationOnly: true)
-        parent?.channelSetupView = PopupView(contentView: vc.view, contentHeight: 198) {
+        parent?.channelSetupView = PopupView(contentView: vc.view, contentHeight: 198, dismissAction: {
             if let editing = self.parent?.isEditing {
                 self.parent?.channelSetupView = nil
                 self.parent?.navigationController?.setToolbarHidden(!editing, animated: true)
             }
-        }
+        })
         parent?.navigationController?.setToolbarHidden(true, animated: true)
         parent?.channelSetupView?.show(parent!)
     }

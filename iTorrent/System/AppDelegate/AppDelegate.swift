@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        //GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "0e836d6d9e4873bf2acac60f6e5de207" ]
         #endif
 
         pushNotificationsInit(application)
@@ -117,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RssFeedProvider.shared.fetchUpdates { updates in
             if updates.keys.count > 0 {
                 let text = updates.keys
-                    .filter { !$0.muteNotifications }
+                    .filter { !$0.muteNotifications.value }
                     .map { updates[$0]! }
                     .reduce([], +)
                     .compactMap { $0.title }

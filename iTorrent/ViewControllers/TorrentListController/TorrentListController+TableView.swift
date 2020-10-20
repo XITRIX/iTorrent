@@ -90,7 +90,7 @@ extension TorrentListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if !UserPreferences.sortingSections,
             let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TabBarView.id) as? TabBarView {
-            cell.setModel(self, selected: viewModel.stateFilter.variable)
+            cell.setModel(self, selected: viewModel.stateFilter.value)
             return cell
         }
         if let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableHeaderView.id) as? TableHeaderView {
@@ -176,7 +176,7 @@ extension TorrentListController: UITableViewDelegate {
 
 extension TorrentListController: TabBarViewDelegate {
     func filterSelected(_ state: TorrentState) {
-        viewModel.stateFilter.variable = state
+        viewModel.stateFilter.value = state
         viewModel.update()
     }
 }
