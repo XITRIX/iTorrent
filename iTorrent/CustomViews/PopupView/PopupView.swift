@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopupView: UIView {
+class PopupView: ThemedUIView {
     @IBOutlet var mainView: UIView!
     @IBOutlet var containerView: UIView!
     @IBOutlet var headerView: UIView!
@@ -17,7 +17,7 @@ class PopupView: UIView {
     @IBOutlet var customButton: UIButton!
     @IBOutlet var bottomOffsetConstraint: NSLayoutConstraint! {
         didSet {
-            bottomOffsetConstraint.constant = bottomOffset + Utils.safeAreaInsets.bottom
+            bottomOffsetConstraint.constant = bottomOffset // + Utils.safeAreaInsets.bottom
         }
     }
 

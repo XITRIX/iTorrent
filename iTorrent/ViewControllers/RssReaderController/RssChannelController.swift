@@ -37,8 +37,13 @@ class RssChannelController: ThemedUITableViewController {
         title = model.title
         tableView.register(RssItemCell.nib, forCellReuseIdentifier: RssItemCell.id)
         
-        let button = UIBarButtonItem(image: UIImage(named: "Share"), style: .plain, target: self, action: #selector(openLink))
-        navigationItem.setRightBarButton(button, animated: false)
+        if #available(iOS 14.0, *) {
+            let button = UIBarButtonItem(title: nil, image: #imageLiteral(resourceName: "More2"), primaryAction: nil, menu: createMenu())
+            navigationItem.setRightBarButton(button, animated: false)
+        } else {
+            let button = UIBarButtonItem(image: #imageLiteral(resourceName: "More2"), style: .plain, target: self, action: #selector(openLink))
+            navigationItem.setRightBarButton(button, animated: false)
+        }
         
         // MARQUEE LABEL
         let label = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
@@ -52,19 +57,41 @@ class RssChannelController: ThemedUITableViewController {
         navigationItem.titleView = label
     }
     
+    @available(iOS 13.0, *)
+    func createMenu() -> UIMenu {
+        UIMenu(children: [
+            UIAction(title: "Read All".localized, image: UIImage(systemName: "checkmark.circle"), handler: { _ in self.readAll() }),
+            UIAction(title: "Open in Safari".localized, image: UIImage(systemName: "safari"), handler: { _ in UIApplication.shared.openURL(self.model.link) })
+        ])
+    }
+    
     @objc func openLink() {
         let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
-        let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
+        let readAll = UIAlertAction(title: "Read All".localized, style: .default) { _ in
+            self.readAll()
+        }
+        let openInSafari = UIAlertAction(title: "Open in Safari".localized, style: .default) { _ in
             UIApplication.shared.openURL(self.model.link)
         }
-        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
+        dialog.addAction(readAll)
         dialog.addAction(openInSafari)
         dialog.addAction(cancel)
         
         present(dialog, animated: true)
+    }
+    
+    func readAll() {
+        for i in 0 ..< model.items.count {
+            model.items[i].readed = true
+            model.items[i].new = false
+            
+            let indexPath = IndexPath(row: i, section: 0)
+            (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[i])
+        }
     }
 }
 

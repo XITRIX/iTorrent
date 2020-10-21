@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SpeedPicker: PopupView, Themed {
+class SpeedPicker: PopupView {
     var action: ((Int64) -> ())?
     var dismissA: ((Int64) -> ())?
     var picker: UIPickerView!
@@ -34,14 +34,14 @@ class SpeedPicker: PopupView, Themed {
 
     var sizes = ["KB/S", "MB/S"]
 
-    @objc func themeUpdate() {
+    @objc override func themeUpdate() {
         let theme = Themes.current
-        fxView.effect = UIBlurEffect(style: theme.blurEffect)
+        fxView?.effect = UIBlurEffect(style: theme.blurEffect)
         if #available(iOS 11, *) {
         } else {
-            fxView.backgroundColor = theme.backgroundMain
+            fxView?.backgroundColor = theme.backgroundMain
         }
-        picker.reloadAllComponents()
+        picker?.reloadAllComponents()
     }
 
     init(defaultValue: Int64, dataSelected: ((Int64) -> ())? = nil, dismissAction: ((Int64) -> ())? = nil) {

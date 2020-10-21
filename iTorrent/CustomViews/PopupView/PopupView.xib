@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupView" customModule="iTorrent" customModuleProvider="target">
             <connections>
-                <outlet property="bottomOffsetConstraint" destination="aNL-vK-I5W" id="lAy-FZ-rP3"/>
+                <outlet property="bottomOffsetConstraint" destination="AbX-kC-XA6" id="gMj-7J-Klv"/>
                 <outlet property="containerView" destination="17V-xf-wXC" id="gJX-D3-KbF"/>
                 <outlet property="customButton" destination="8Xv-oN-2tU" id="Njg-vm-LAu"/>
                 <outlet property="dismissButton" destination="iy0-Hp-6Ni" id="Lc5-Wh-BW7"/>
@@ -32,6 +32,10 @@
                     </view>
                     <blurEffect style="regular"/>
                 </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17V-xf-wXC">
+                    <rect key="frame" x="0.0" y="44" width="414" height="216"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BV7-QH-unR" userLabel="Header View">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <subviews>
@@ -63,7 +67,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xv-oN-2tU">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xv-oN-2tU">
                             <rect key="frame" x="14" y="10.5" width="23" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="23" id="OQ5-Xk-Tev"/>
@@ -87,27 +91,23 @@
                         <constraint firstItem="iy0-Hp-6Ni" firstAttribute="centerY" secondItem="BV7-QH-unR" secondAttribute="centerY" id="xVL-GT-Xcj"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17V-xf-wXC">
-                    <rect key="frame" x="0.0" y="44" width="414" height="216"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="17V-xf-wXC" secondAttribute="trailing" id="GXg-Se-FYz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="17V-xf-wXC" secondAttribute="bottom" constant="44" id="AbX-kC-XA6"/>
                 <constraint firstItem="ILC-GV-hPC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ho7-4E-Szs"/>
-                <constraint firstItem="17V-xf-wXC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JOa-qj-Gu3"/>
                 <constraint firstItem="BV7-QH-unR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="L0w-Zm-esD"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="17V-xf-wXC" secondAttribute="bottom" constant="44" id="aNL-vK-I5W"/>
+                <constraint firstItem="17V-xf-wXC" firstAttribute="top" secondItem="BV7-QH-unR" secondAttribute="bottom" id="MBG-tJ-zku"/>
+                <constraint firstAttribute="trailing" secondItem="17V-xf-wXC" secondAttribute="trailing" id="Pfq-ud-c0m"/>
                 <constraint firstItem="BV7-QH-unR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="b4K-B5-USY"/>
                 <constraint firstAttribute="trailing" secondItem="ILC-GV-hPC" secondAttribute="trailing" id="bdb-Ld-XFl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BV7-QH-unR" secondAttribute="trailing" id="dCZ-lm-oCb"/>
-                <constraint firstItem="17V-xf-wXC" firstAttribute="top" secondItem="BV7-QH-unR" secondAttribute="bottom" id="hCl-Aw-t6b"/>
                 <constraint firstAttribute="bottom" secondItem="ILC-GV-hPC" secondAttribute="bottom" id="hmb-DG-Zsv"/>
                 <constraint firstItem="ILC-GV-hPC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ktK-dS-Hyh"/>
+                <constraint firstItem="17V-xf-wXC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="u5S-jN-vQs"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="137.68115942028987" y="314.73214285714283"/>
         </view>
     </objects>

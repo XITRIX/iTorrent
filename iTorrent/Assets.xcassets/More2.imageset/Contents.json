@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "more.png",
+      "filename" : "SF_ellipsis_circle.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "more@2x.png",
+      "filename" : "SF_ellipsis_circle@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "more@3x.png",
+      "filename" : "SF_ellipsis_circle@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -557,8 +557,9 @@ Thanks for all your support!</string>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
+                                            <viewLayoutGuide key="safeArea" id="e9w-kH-xqA"/>
                                             <constraints>
-                                                <constraint firstItem="8Bh-Dj-AZt" firstAttribute="leading" secondItem="QYA-FU-hOc" secondAttribute="leading" constant="16" id="6iH-8S-qZi"/>
+                                                <constraint firstItem="8Bh-Dj-AZt" firstAttribute="leading" secondItem="e9w-kH-xqA" secondAttribute="leading" constant="16" id="6iH-8S-qZi"/>
                                                 <constraint firstItem="qTA-ph-5aV" firstAttribute="leading" secondItem="8Bh-Dj-AZt" secondAttribute="trailing" constant="16" id="E6z-SZ-QxM"/>
                                                 <constraint firstItem="8Bh-Dj-AZt" firstAttribute="top" secondItem="QYA-FU-hOc" secondAttribute="top" constant="11.67" id="Maf-zr-7Na"/>
                                                 <constraint firstItem="qTA-ph-5aV" firstAttribute="centerY" secondItem="QYA-FU-hOc" secondAttribute="centerY" id="cUE-wK-dhy"/>

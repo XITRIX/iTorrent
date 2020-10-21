@@ -72,7 +72,7 @@ class RssItemController: ThemedUIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
         
-        let button = UIBarButtonItem(image: UIImage(named: "Share"), style: .plain, target: self, action: #selector(openLink))
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "Safari"), style: .plain, target: self, action: #selector(openLink))
         navigationItem.setRightBarButton(button, animated: false)
         
         webView = WKWebView(frame: view.frame)
@@ -129,18 +129,20 @@ class RssItemController: ThemedUIViewController {
     }
     
     @objc func openLink() {
-        let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        UIApplication.shared.openURL(self.model.link)
         
-        let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
-            UIApplication.shared.openURL(self.model.link)
-        }
-        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
-        
-        dialog.addAction(openInSafari)
-        dialog.addAction(cancel)
-        
-        present(dialog, animated: true)
+//        let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+//        
+//        let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
+//            UIApplication.shared.openURL(self.model.link)
+//        }
+//        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
+//        
+//        dialog.addAction(openInSafari)
+//        dialog.addAction(cancel)
+//        
+//        present(dialog, animated: true)
     }
 }
 

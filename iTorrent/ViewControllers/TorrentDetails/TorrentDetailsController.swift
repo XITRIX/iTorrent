@@ -106,7 +106,7 @@ class TorrentDetailsController: StaticTableViewController {
                                            weakSelf?.manager.seedLimit == 0 ?
                                                "Unlimited".localized :
                                                Utils.getSizeText(size: weakSelf?.manager.seedLimit, decimals: true)
-        }) { button in
+                                       }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
                 weakSelf?.onScreenPopup = SizePicker(defaultValue: Int64(Core.shared.torrentsUserData[weakSelf?.managerHash ?? ""]?.seedLimit ?? 0), dataSelected: { res in
                     if let hash = weakSelf?.managerHash {
@@ -125,7 +125,7 @@ class TorrentDetailsController: StaticTableViewController {
                 })
                 weakSelf?.navigationController?.setToolbarHidden(true, animated: true)
                 weakSelf?.onScreenPopup?.show(weakSelf)
-        })
+            })
         data.append(Section(rowModels: upload, header: "Details.Seeding.Title"))
 
         // MAIN INFORMATION
@@ -138,14 +138,14 @@ class TorrentDetailsController: StaticTableViewController {
                                                 hiddenCondition: { weakSelf?.manager.creator.isEmpty ?? true }, longPressAction: {
                                                     UIPasteboard.general.string = weakSelf?.manager.creator
                                                     Dialog.withTimer(weakSelf, title: "\("Details.Info.Creator".localized) \("copied".localized)")
-        }))
+                                                }))
         mainInformation.append(DetailCell.Model(title: "Details.Info.Created", detail: { weakSelf?.manager.creationDate?.simpleDate() }))
         mainInformation.append(DetailCell.Model(title: "Details.Info.Added", detail: { weakSelf?.manager.addedDate?.simpleDate() }))
         mainInformation.append(DetailCell.Model(title: "Details.Info.Comment", detail: { weakSelf?.manager.comment },
                                                 hiddenCondition: { weakSelf?.manager.comment.isEmpty ?? true }, longPressAction: {
                                                     UIPasteboard.general.string = weakSelf?.manager.comment
                                                     Dialog.withTimer(weakSelf, title: "\("Details.Info.Comment".localized) \("copied".localized)")
-        }))
+                                                }))
         data.append(Section(rowModels: mainInformation, header: "Details.Info.Title"))
 
         // TRANSFER
@@ -174,16 +174,17 @@ class TorrentDetailsController: StaticTableViewController {
                                             vc.managerHash = weakSelf?.managerHash
                                             weakSelf?.show(vc, sender: weakSelf)
                                         }
-        }))
+                                    }))
         more.append(SegueCell.Model(title: "Details.More.Files",
                                     bold: true,
                                     tapAction: {
                                         if weakSelf?.manager.state != .metadata,
-                                            let hash = weakSelf?.managerHash {
+                                            let hash = weakSelf?.managerHash
+                                        {
                                             let vc = TorrentFilesController(hash: hash)
                                             weakSelf?.show(vc, sender: weakSelf)
                                         }
-        }))
+                                    }))
         data.append(Section(rowModels: more, header: "Details.More.Title"))
     }
 
@@ -203,7 +204,8 @@ class TorrentDetailsController: StaticTableViewController {
         updateData()
 
         if manager.state == .hashing ||
-            manager.state == .metadata {
+            manager.state == .metadata
+        {
             toolbarButtons.start.isEnabled = false
             toolbarButtons.pause.isEnabled = false
             toolbarButtons.rehash.isEnabled = false
@@ -237,7 +239,8 @@ class TorrentDetailsController: StaticTableViewController {
             if sender.isOn {
                 if UserPreferences.background &&
                     !UserPreferences.backgroundSeedKey &&
-                    !UserPreferences.seedBackgroundWarning {
+                    !UserPreferences.seedBackgroundWarning
+                {
                     UserPreferences.seedBackgroundWarning = true
 
                     let controller = ThemedUIAlertController(title: "Warning".localized,
@@ -255,7 +258,8 @@ class TorrentDetailsController: StaticTableViewController {
                 }
             } else if !sender.isOn,
                 manager.isFinished,
-                !manager.isPaused {
+                !manager.isPaused
+            {
                 TorrentSdk.stopTorrent(hash: managerHash)
             }
         }
@@ -263,7 +267,13 @@ class TorrentDetailsController: StaticTableViewController {
     }
 
     func setupToolBar() {
-        let share = UIBarButtonItem(image: #imageLiteral(resourceName: "Share"), style: .plain, target: self, action: #selector(shareAction))
+        var share: UIBarButtonItem
+        if #available(iOS 14.0, *) {
+            share = UIBarButtonItem(title: nil, image: #imageLiteral(resourceName: "Share"), primaryAction: nil, menu: shareMenu())
+        } else {
+            share = UIBarButtonItem(image: #imageLiteral(resourceName: "Share"), style: .plain, target: self, action: #selector(shareAction))
+        }
+        
         let start = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startAction))
         let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseAction))
         let rehash = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rehashAction))
@@ -302,7 +312,8 @@ class TorrentDetailsController: StaticTableViewController {
     @objc func removeAction() {
         Core.shared.removeTorrentsUI(hashes: [managerHash], sender: toolbarButtons.remove, direction: .down) {
             if !(self.splitViewController?.isCollapsed ?? true),
-                let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
+                let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController
+            {
                 splitView.showDetailViewController(Utils.createEmptyViewController(), sender: self)
 
                 print(splitView.viewControllers.count)
@@ -312,37 +323,53 @@ class TorrentDetailsController: StaticTableViewController {
         }
     }
 
-    @objc func shareAction() {
+    func shareFile() {
         if let title = Core.shared.torrents[managerHash]?.title {
-            let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Share", comment: ""), preferredStyle: .actionSheet)
-            let file = UIAlertAction(title: NSLocalizedString("Torrent file", comment: ""), style: .default) { _ in
-                let stringPath = Core.configFolder + "/" + title + ".torrent"
-                if FileManager.default.fileExists(atPath: stringPath) {
-                    let path = NSURL(fileURLWithPath: stringPath, isDirectory: false)
-                    let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
-                    if shareController.popoverPresentationController != nil {
-                        shareController.popoverPresentationController?.barButtonItem = self.toolbarButtons.share
-                        shareController.popoverPresentationController?.permittedArrowDirections = .any
-                    }
-                    Utils.topViewController?.present(shareController, animated: true)
+            let stringPath = Core.configFolder + "/" + title + ".torrent"
+            if FileManager.default.fileExists(atPath: stringPath) {
+                let path = NSURL(fileURLWithPath: stringPath, isDirectory: false)
+                let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
+                if shareController.popoverPresentationController != nil {
+                    shareController.popoverPresentationController?.barButtonItem = toolbarButtons.share
+                    shareController.popoverPresentationController?.permittedArrowDirections = .any
                 }
+                Utils.topViewController?.present(shareController, animated: true)
             }
-            let magnet = UIAlertAction(title: NSLocalizedString("Magnet link", comment: ""), style: .default) { _ in
-                UIPasteboard.general.string = TorrentSdk.getTorrentMagnetLink(hash: self.managerHash)
-                Dialog.withTimer(self, message: "Magnet link copied to clipboard")
-            }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-
-            controller.addAction(file)
-            controller.addAction(magnet)
-            controller.addAction(cancel)
-
-            if controller.popoverPresentationController != nil {
-                controller.popoverPresentationController?.barButtonItem = toolbarButtons.share
-                controller.popoverPresentationController?.permittedArrowDirections = .up
-            }
-
-            present(controller, animated: true)
         }
+    }
+
+    func shareMagnet() {
+        UIPasteboard.general.string = TorrentSdk.getTorrentMagnetLink(hash: managerHash)
+        Dialog.withTimer(self, message: "Magnet link copied to clipboard")
+    }
+
+    @available(iOS 13.0, *)
+    func shareMenu() -> UIMenu {
+        UIMenu(title: "Share".localized, children: [
+            UIAction(title: "Torrent file".localized, image: UIImage(systemName: "doc.fill"), handler: { _ in self.shareFile() }),
+            UIAction(title: "Magnet link".localized, image: UIImage(systemName: "link"), handler: { _ in self.shareMagnet() })
+        ])
+    }
+
+    @objc func shareAction() {
+        let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Share", comment: ""), preferredStyle: .actionSheet)
+        let file = UIAlertAction(title: NSLocalizedString("Torrent file", comment: ""), style: .default) { _ in
+            self.shareFile()
+        }
+        let magnet = UIAlertAction(title: NSLocalizedString("Magnet link", comment: ""), style: .default) { _ in
+            self.shareMagnet()
+        }
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+
+        controller.addAction(file)
+        controller.addAction(magnet)
+        controller.addAction(cancel)
+
+        if controller.popoverPresentationController != nil {
+            controller.popoverPresentationController?.barButtonItem = toolbarButtons.share
+            controller.popoverPresentationController?.permittedArrowDirections = .up
+        }
+
+        present(controller, animated: true)
     }
 }

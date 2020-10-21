@@ -68,6 +68,8 @@
 		7C65304E253F140C0011A91E /* RssSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C65304C253F140C0011A91E /* RssSearchCell.xib */; };
 		7C653050253F75ED0011A91E /* MutableObservableArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */; };
 		7C653052253F7ED60011A91E /* MessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C653051253F7ED60011A91E /* MessageError.swift */; };
+		7C6530552540B35D0011A91E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6530532540B35D0011A91E /* PopupViewController.swift */; };
+		7C6530562540B35D0011A91E /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C6530542540B35D0011A91E /* PopupViewController.xib */; };
 		7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */; };
 		7C786891251B942800CD61F0 /* InterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C786890251B942800CD61F0 /* InterfaceType.swift */; };
 		7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */; };
@@ -266,6 +268,8 @@
 		7C65304C253F140C0011A91E /* RssSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssSearchCell.xib; sourceTree = "<group>"; };
 		7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableObservableArrayExtension.swift; sourceTree = "<group>"; };
 		7C653051253F7ED60011A91E /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
+		7C6530532540B35D0011A91E /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		7C6530542540B35D0011A91E /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
 		7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesExtention.swift; sourceTree = "<group>"; };
 		7C786890251B942800CD61F0 /* InterfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceType.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 			children = (
 				7C10D34C232188C800B5ED9A /* PopupView.swift */,
 				7C10D34B232188C800B5ED9A /* PopupView.xib */,
+				7C6530532540B35D0011A91E /* PopupViewController.swift */,
+				7C6530542540B35D0011A91E /* PopupViewController.xib */,
 			);
 			path = PopupView;
 			sourceTree = "<group>";
@@ -1078,6 +1084,7 @@
 				7C1EBD0721E4BA6000EAAF55 /* TableHeaderView.xib in Resources */,
 				7C27A1A420B223630065238C /* GoogleService-Info.plist in Resources */,
 				7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */,
+				7C6530562540B35D0011A91E /* PopupViewController.xib in Resources */,
 				7CD71429248C150400A24E98 /* RssItemCell.xib in Resources */,
 				7CFDDCCB235BA3940008EBEA /* SwitchCell.xib in Resources */,
 				7C27A16820B0B9040065238C /* Version.ver in Resources */,
@@ -1247,6 +1254,7 @@
 				7CCD02C72438962B00B1669F /* ArrayExtentions.swift in Sources */,
 				7C4B10AD20EA278900440E74 /* TrackersListController.swift in Sources */,
 				7CE3CEB32321C350005575D5 /* SpeedPicker.swift in Sources */,
+				7C6530552540B35D0011A91E /* PopupViewController.swift in Sources */,
 				7CBD0745244CE3AE00F0BCC8 /* ThemedUICollectionReusableView.swift in Sources */,
 				7C26E34E24327D250012D455 /* Core+TorrentStates.swift in Sources */,
 				7CE35520248C254B007C9685 /* UIImageViewExtensions.swift in Sources */,

@@ -8,11 +8,11 @@
 
 import UIKit
 
-class DatasetPicker: PopupView, Themed {
+class DatasetPicker: PopupView {
     var data: [[String]]!
     var action: ((String) -> ())!
 
-    func themeUpdate() { }
+    override func themeUpdate() { }
 
     init(data: [[String]], dataSelected: @escaping (String) -> ()) {
         let picker = UIPickerView()

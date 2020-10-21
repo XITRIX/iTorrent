@@ -8,19 +8,19 @@
 
 import UIKit
 
-class TimeLimitPicker: PopupView, Themed {
+class TimeLimitPicker: PopupView {
     var action: ((Int) -> ())?
     var dismissA: ((Int) -> ())?
     var picker: UIPickerView!
 
     var size: [Int] = [0, 1, 2, 5, 10]
 
-    @objc func themeUpdate() {
+    @objc override func themeUpdate() {
         let theme = Themes.current
-        fxView.effect = UIBlurEffect(style: theme.blurEffect)
+        fxView?.effect = UIBlurEffect(style: theme.blurEffect)
         if #available(iOS 11, *) {
         } else {
-            fxView.backgroundColor = theme.backgroundMain
+            fxView?.backgroundColor = theme.backgroundMain
         }
         picker.reloadAllComponents()
     }
@@ -37,18 +37,18 @@ class TimeLimitPicker: PopupView, Themed {
 
         picker.selectRow(size.firstIndex(of: defaultValue) ?? 0, inComponent: 0, animated: true)
 
-        setupView()
+//        setupView()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupView()
+//        setupView()
     }
 
-    func setupView() {
-        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
-        themeUpdate()
-    }
+//    func setupView() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
+//        themeUpdate()
+//    }
 
     override func dismiss() {
         super.dismiss()
