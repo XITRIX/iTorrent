@@ -514,7 +514,7 @@ Thanks for all your support!</string>
         <!--RSS Chanel Setup-->
         <scene sceneID="Uoc-TJ-iBY">
             <objects>
-                <tableViewController storyboardIdentifier="RssChannelSetup" title="RSS Chanel Setup" id="e7q-mA-zCg" customClass="RssChannelSetupController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RssChannelSetupController" title="RSS Chanel Setup" id="e7q-mA-zCg" customClass="RssChannelSetupController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" id="7Bz-fJ-AwN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -41,15 +41,15 @@ class RssChannelCell: ThemedUITableViewCell {
 
     func updateCellView() {
         bag.dispose()
-        
+
         model.customTitle.observeNext(with: { _ in
             self.title.text = self.model.displayTitle
         }).dispose(in: bag)
-        
+
         model.customDescriotion.observeNext(with: { _ in
             self.descriptionText.text = self.model.displayDescription
         }).dispose(in: bag)
-        
+
         imageFav.image = UIImage(named: "Rss")
         imageFav.load(url: model.linkImage)
 
@@ -60,16 +60,17 @@ class RssChannelCell: ThemedUITableViewCell {
 
     var vc: RssChannelSetupController!
     @IBAction func setupAction(_ sender: UIButton) {
-        vc = Utils.instantiate("RssChannelSetup")
+        vc = Utils.instantiate("RssChannelSetupController")
         vc.model = model
         parent?.channelSetupView?.dismiss(animationOnly: true)
-        parent?.channelSetupView = PopupView(contentView: vc.view, contentHeight: 198, dismissAction: {
+        parent?.channelSetupView = PopupViewController(vc, contentHeight: 198)
+        parent?.channelSetupView?.dismissAction = {
             if let editing = self.parent?.isEditing {
                 self.parent?.channelSetupView = nil
                 self.parent?.navigationController?.setToolbarHidden(!editing, animated: true)
             }
-        })
+        }
         parent?.navigationController?.setToolbarHidden(true, animated: true)
-        parent?.channelSetupView?.show(parent!)
+        parent?.channelSetupView?.show(in: parent!)
     }
 }

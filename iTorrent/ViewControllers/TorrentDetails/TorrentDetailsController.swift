@@ -11,7 +11,7 @@ import MarqueeLabel
 import UIKit
 
 class TorrentDetailsController: StaticTableViewController {
-    private var onScreenPopup: PopupView?
+    private var onScreenPopup: PopupViewController?
 
     override var toolBarIsHidden: Bool? {
         onScreenPopup != nil
@@ -124,7 +124,9 @@ class TorrentDetailsController: StaticTableViewController {
                     }
                 })
                 weakSelf?.navigationController?.setToolbarHidden(true, animated: true)
-                weakSelf?.onScreenPopup?.show(weakSelf)
+
+                guard let self = weakSelf else { return }
+                self.onScreenPopup?.show(in: self)
             })
         data.append(Section(rowModels: upload, header: "Details.Seeding.Title"))
 
@@ -273,7 +275,7 @@ class TorrentDetailsController: StaticTableViewController {
         } else {
             share = UIBarButtonItem(image: #imageLiteral(resourceName: "Share"), style: .plain, target: self, action: #selector(shareAction))
         }
-        
+
         let start = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(startAction))
         let pause = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(pauseAction))
         let rehash = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(rehashAction))

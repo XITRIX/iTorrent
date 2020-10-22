@@ -14,7 +14,7 @@ class PreferencesController: StaticTableViewController {
         true
     }
 
-    var onScreenPopup: PopupView?
+    var onScreenPopup: PopupViewController?
 
     deinit {
         print("PreferencesController Deinit")
@@ -22,7 +22,7 @@ class PreferencesController: StaticTableViewController {
 
     override func initSections() {
         title = Localize.get("Settings.Title")
-        
+
         weak var weakSelf = self
 
         // -MARK: APPEARANCE
@@ -49,7 +49,7 @@ class PreferencesController: StaticTableViewController {
                                                        }
                                                        weakSelf?.updateData()
                                                    }
-                }))
+                                               }))
         } else {
             UserPreferences.autoTheme = false
         }
@@ -62,7 +62,7 @@ class PreferencesController: StaticTableViewController {
                     CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
                     weakSelf?.navigationController?.view.isUserInteractionEnabled = true
                 }
-        })
+            })
         data.append(Section(rowModels: appearance, header: "Settings.Appearance.Header"))
 
         // -MARK: STORAGE
@@ -99,14 +99,14 @@ class PreferencesController: StaticTableViewController {
                     UserPreferences.seedBackgroundWarning = false
                     UserPreferences.backgroundSeedKey = false
                 }
-        })
+            })
         background.append(ButtonCell.Model(title: "Settings.ZeroSpeedLimit",
                                            hint: Localize.get("Settings.ZeroSpeedLimit.Hint"),
                                            buttonTitleFunc: {
                                                UserPreferences.zeroSpeedLimit == 0 ?
                                                    NSLocalizedString("Disabled", comment: "") :
                                                    "\(UserPreferences.zeroSpeedLimit / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit / 60))"
-                }) { button in
+                                           }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
                 weakSelf?.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
                     if res == 0 {
@@ -117,9 +117,11 @@ class PreferencesController: StaticTableViewController {
                 }, dismissAction: { res in
                     UserPreferences.zeroSpeedLimit = res
                 })
-                weakSelf?.onScreenPopup?.show(weakSelf)
-        })
-        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) //, footer: "Settings.BackgroundFooter"))
+
+                guard let self = weakSelf else { return }
+                self.onScreenPopup?.show(in: self)
+            })
+        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) // , footer: "Settings.BackgroundFooter"))
 
         // -MARK: SPEED LIMITATION
         var speed = [CellModelProtocol]()
@@ -127,7 +129,7 @@ class PreferencesController: StaticTableViewController {
                                       buttonTitleFunc: { UserPreferences.downloadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
                                           Utils.getSizeText(size: Int64(UserPreferences.downloadLimit), decimals: true) + "/S"
-                }) { button in
+                                      }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
                 weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
                     if res == 0 {
@@ -138,14 +140,16 @@ class PreferencesController: StaticTableViewController {
                 }, dismissAction: { res in
                     UserPreferences.downloadLimit = Int(res)
                     TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                })
+
+                guard let self = weakSelf else { return }
+                self.onScreenPopup?.show(in: self)
             })
-                weakSelf?.onScreenPopup?.show(weakSelf)
-        })
         speed.append(ButtonCell.Model(title: "Settings.UpLimit",
                                       buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
                                           Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
-                }) { button in
+                                      }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
                 weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
                     if res == 0 {
@@ -156,9 +160,11 @@ class PreferencesController: StaticTableViewController {
                 }, dismissAction: { res in
                     UserPreferences.uploadLimit = Int(res)
                     TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                })
+
+                guard let self = weakSelf else { return }
+                self.onScreenPopup?.show(in: self)
             })
-                weakSelf?.onScreenPopup?.show(weakSelf)
-        })
         data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
 
         // -MARK: DATA SHARING
@@ -171,7 +177,8 @@ class PreferencesController: StaticTableViewController {
         ftp.append(SegueCell.Model(weakSelf, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
         data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
             if UserPreferences.ftpKey,
-                UserPreferences.webServerEnabled {
+                UserPreferences.webServerEnabled
+            {
                 let addr = Core.shared.webUploadServer.serverURL // Utils.getWiFiAddress()
                 if let addr = addr?.absoluteString {
                     return UserPreferences.ftpKey ? Localize.get("Settings.FTP.Message") + addr : ""

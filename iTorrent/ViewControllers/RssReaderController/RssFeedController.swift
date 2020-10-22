@@ -30,7 +30,7 @@ class RssFeedController: ThemedUIViewController {
     
     var dataSource: RssFeedDataSource!
     
-    var channelSetupView: PopupView?
+    var channelSetupView: PopupViewController?
     
     override var toolBarIsHidden: Bool? {
         !isEditing || channelSetupView != nil

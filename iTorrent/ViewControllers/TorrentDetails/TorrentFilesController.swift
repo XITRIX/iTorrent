@@ -57,7 +57,7 @@ class TorrentFilesController: ThemedUIViewController {
         deselectAllButton = UIBarButtonItem(title: "TorrentFilesController.DeselectAll".localized, style: .plain, target: self, action: #selector(deselectAllAction))
         deselectAllButton.tintColor = .systemRed
         
-//        navigationItem.setRightBarButton(editButton, animated: false)
+        navigationItem.setRightBarButton(editButton, animated: false)
         toolbarItems = toolBarItems
     }
     
