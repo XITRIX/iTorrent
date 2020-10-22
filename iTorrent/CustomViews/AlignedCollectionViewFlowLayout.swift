@@ -95,7 +95,7 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     fileprivate var effectiveHorizontalAlignment: EffectiveHorizontalAlignment {
 
         var trivialMapping: [HorizontalAlignment: EffectiveHorizontalAlignment] {
-            return [
+            [
                 .left: .left,
                 .right: .right,
                 .justified: .justified
@@ -253,7 +253,7 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// - Returns: The unmodified layout attributes for the item at the specified index path
     ///            as computed by `UICollectionViewFlowLayout`.
     fileprivate func originalLayoutAttribute(forItemAt indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return super.layoutAttributesForItem(at: indexPath)
+        super.layoutAttributesForItem(at: indexPath)
     }
     
     /// Determines if the `firstItemAttributes`' frame is in the same line
@@ -333,7 +333,9 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// - Parameter layoutAttributesArray: The array to be copied.
     /// - Returns: A deep copy of the passed array.
     private func copy(_ layoutAttributesArray: [UICollectionViewLayoutAttributes]?) -> [UICollectionViewLayoutAttributes]? {
-        return layoutAttributesArray?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
+        layoutAttributesArray?.map {
+            $0.copy()
+        } as? [UICollectionViewLayoutAttributes]
     }
     
 }
@@ -345,21 +347,21 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 fileprivate extension UICollectionViewLayoutAttributes {
     
     private var currentSection: Int {
-        return indexPath.section
+        indexPath.section
     }
     
     private var currentItem: Int {
-        return indexPath.item
+        indexPath.item
     }
     
     /// The index path for the item preceding the item represented by this layout attributes object.
     private var precedingIndexPath: IndexPath {
-        return IndexPath(item: currentItem - 1, section: currentSection)
+        IndexPath(item: currentItem - 1, section: currentSection)
     }
     
     /// The index path for the item following the item represented by this layout attributes object.
     private var followingIndexPath: IndexPath {
-        return IndexPath(item: currentItem + 1, section: currentSection)
+        IndexPath(item: currentItem + 1, section: currentSection)
     }
     
     /// Checks if the item represetend by this layout attributes object is the first item in the line.

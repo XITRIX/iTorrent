@@ -18,7 +18,7 @@ public final class CodableProperty<Value: Codable>: PropertyProtocol, SubjectPro
     private let subject: Subject<Value, Never>
 
     public var bag: DisposeBag {
-        return subject.disposeBag
+        subject.disposeBag
     }
     
     /// Underlying value. Changing it emits `.next` event with new value.
@@ -68,7 +68,7 @@ public final class CodableProperty<Value: Codable>: PropertyProtocol, SubjectPro
     }
     
     public var readOnlyView: AnyCodableProperty<Value> {
-        return AnyCodableProperty(property: self)
+        AnyCodableProperty(property: self)
     }
     
     /// Change the underlying value without notifying the observers.
@@ -78,12 +78,12 @@ public final class CodableProperty<Value: Codable>: PropertyProtocol, SubjectPro
     }
     
     public func bind(signal: Signal<Value, Never>) -> Disposable {
-        return signal
-            .prefix(untilOutputFrom: bag.deallocated)
-            .receive(on: ExecutionContext.nonRecursive())
-            .observeNext { [weak self] element in
-                self?.on(.next(element))
-            }
+        signal.prefix(untilOutputFrom: bag.deallocated)
+              .receive(on: ExecutionContext.nonRecursive())
+              .observeNext { [weak self]
+              element in
+                  self?.on(.next(element))
+              }
     }
     
     deinit {
@@ -97,7 +97,7 @@ public final class AnyCodableProperty<Value: Codable>: PropertyProtocol, SignalP
     private let property: CodableProperty<Value>
     
     public var value: Value {
-        return property.value
+        property.value
     }
     
     public init(property: CodableProperty<Value>) {
@@ -105,7 +105,7 @@ public final class AnyCodableProperty<Value: Codable>: PropertyProtocol, SignalP
     }
     
     public func observe(with observer: @escaping (Signal<Value, Never>.Event) -> Void) -> Disposable {
-        return property.observe(with: observer)
+        property.observe(with: observer)
     }
 }
 

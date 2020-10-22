@@ -83,7 +83,7 @@ class Themes {
     }
 
     static var current: ColorPalett {
-        return shared.theme[currentTheme.rawValue]
+        shared.theme[currentTheme.rawValue]
     }
 }
 

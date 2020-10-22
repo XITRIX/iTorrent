@@ -13,7 +13,7 @@ class ThemedUITableView: UITableView, Themed {
     @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'colorType' instead.")
     @IBInspectable var colorTypeAdapter: Int {
         get {
-            return colorType.rawValue
+            colorType.rawValue
         }
         set {
             if let newColorType = ColorType(rawValue: newValue) {

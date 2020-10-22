@@ -25,7 +25,7 @@ class MemorySpaceManager {
         case free = "mime.free"
         
         var title: String {
-            return Localize.get(rawValue)
+            Localize.get(rawValue)
         }
         
         var color: UIColor {
@@ -56,11 +56,15 @@ class MemorySpaceManager {
         var category: CategoryType
         var segments: [StorageSegment]
         var size: Float {
-            return segments.map { $0.size }.reduce(0, +)
+            segments.map {
+                $0.size
+            }.reduce(0, +)
         }
         
         var percentage: Float {
-            return segments.map { $0.percentage }.reduce(0, +)
+            segments.map {
+                $0.percentage
+            }.reduce(0, +)
         }
     }
     
@@ -170,19 +174,20 @@ class MemorySpaceManager {
     // MARK: Get String Value
     
     class var totalDiskSpace: String {
-        return ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+        ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
     }
     
     class var freeDiskSpace: String {
-        return ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+        ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
     }
     
     class var usedDiskSpace: String {
-        return ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+        ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
     }
     
     class var usedDiskSpaceByApp: String {
-        return ByteCountFormatter.string(fromByteCount: usedDiskSpaceByAppInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+        ByteCountFormatter.string(fromByteCount: usedDiskSpaceByAppInBytes,
+                countStyle: ByteCountFormatter.CountStyle.file)
     }
     
     // MARK: Get raw value

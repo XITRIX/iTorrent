@@ -114,6 +114,6 @@ extension KeyboardHelper: UIGestureRecognizerDelegate {
         _ gestureRecognizer: UIGestureRecognizer,
         shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
     ) -> Bool {
-        return gestureRecognizer === panRecognizer
+        gestureRecognizer === panRecognizer
     }
 }

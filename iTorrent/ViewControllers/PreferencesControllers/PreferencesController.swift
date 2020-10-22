@@ -142,43 +142,46 @@ class PreferencesController: StaticTableViewController {
                     TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
                 })
 
-                guard let self = weakSelf else { return }
-                self.onScreenPopup?.show(in: self)
-            })
-        speed.append(ButtonCell.Model(title: "Settings.UpLimit",
-                                      buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
-                                          NSLocalizedString("Unlimited", comment: "") :
-                                          Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
-                                      }) { button in
-                weakSelf?.onScreenPopup?.dismiss()
-                weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
-                    if res == 0 {
-                        button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
-                    } else {
-                        button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
-                    }
-                }, dismissAction: { res in
-                    UserPreferences.uploadLimit = Int(res)
-                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-                })
-
-                guard let self = weakSelf else { return }
-                self.onScreenPopup?.show(in: self)
-            })
+            guard let self = weakSelf
+            else { return }
+            self.onScreenPopup?.show(in: self)
+        })
+        speed.append(ButtonCell.Model(title: "Settings.UpLimit", buttonTitleFunc: {
+            UserPreferences.uploadLimit == 0 ? NSLocalizedString("Unlimited",
+                    comment: "") : Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
+        }) { button in
+            weakSelf?.onScreenPopup?.dismiss()
+            weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit),
+                    dataSelected: { res in
+                        if res == 0 {
+                            button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
+                        } else {
+                            button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
+                        }
+                    },
+                    dismissAction: { res in
+                        UserPreferences.uploadLimit = Int(res)
+                        TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                    })
+            guard let self = weakSelf
+            else { return }
+            self.onScreenPopup?.show(in: self)
+        })
         data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
-
         // -MARK: DATA SHARING
         var ftp = [CellModelProtocol]()
-        ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
+        ftp.append(SwitchCell.Model(title: "Settings.FTPEnable",
+                defaultValue: { UserPreferences.ftpKey },
+                hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
             UserPreferences.ftpKey = switcher.isOn
             switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
             weakSelf?.updateData(animated: false)
         })
-        ftp.append(SegueCell.Model(weakSelf, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
-        data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
-            if UserPreferences.ftpKey,
-                UserPreferences.webServerEnabled
-            {
+        ftp.append(SegueCell.Model(weakSelf,
+                title: "Settings.FTP.Settings",
+                controllerType: WebDavPreferencesController.self))
+        data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> String in
+            if UserPreferences.ftpKey, UserPreferences.webServerEnabled {
                 let addr = Core.shared.webUploadServer.serverURL // Utils.getWiFiAddress()
                 if let addr = addr?.absoluteString {
                     return UserPreferences.ftpKey ? Localize.get("Settings.FTP.Message") + addr : ""
@@ -259,13 +262,28 @@ class PreferencesController: StaticTableViewController {
         })
         donates.append(SegueCell.Model(weakSelf, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
-        
+
         // -MARK: DEBUG
-//        var debug = [CellModelProtocol]()
-//        debug.append(ButtonCell.Model(title: "Interfaces", buttonTitle: "Show", action: { _ in
+        var debug = [CellModelProtocol]()
+        debug.append(ButtonCell.Model(title: "Interfaces", buttonTitle: "Show", action: { _ in
 //            let interfaces = Utils.interfaceNames()
 //            Dialog.show(title: "Interfaces", message: interfaces.joined(separator: "\n"))
-//        }))
-//        data.append(Section(rowModels: debug, header: "Debug"))
+
+//            let vc = Utils.instantiate("RssChannelSetupController") as! RssChannelSetupController
+//            vc.model = RssFeedProvider.shared.rssModels.collection.first
+//            let popup = PopupViewController(vc, contentHeight: 200)
+//            popup.show(in: self)
+            
+            TestPopup().show(in: self)
+        }))
+        data.append(Section(rowModels: debug, header: "Debug"))
+    }
+}
+
+class TestPopup: PopupViewController {
+    init() {
+        let view = UIView()
+        view.backgroundColor = .blue
+        super.init(view, contentHeight: 196)
     }
 }

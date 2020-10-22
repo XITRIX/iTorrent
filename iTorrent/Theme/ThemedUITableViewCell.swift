@@ -17,7 +17,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
     override var frame: CGRect {
         get {
-            return super.frame
+            super.frame
         }
         set(newFrame) {
             var frame = newFrame

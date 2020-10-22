@@ -110,7 +110,7 @@ extension TabBarView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 0, height: 44)
+        CGSize(width: 0, height: 44)
     }
 }
 

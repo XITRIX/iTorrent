@@ -33,7 +33,7 @@ class DatasetPicker: PopupViewController {
 
 extension DatasetPicker: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data[component].count
+        data[component].count
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

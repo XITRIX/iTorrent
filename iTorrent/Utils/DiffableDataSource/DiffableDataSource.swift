@@ -263,6 +263,6 @@ struct DataSnapshot<SectionIdentifierType, ItemIdentifierType> where SectionIden
 
 fileprivate extension Int {
     func toIndexPath(section: Int) -> IndexPath {
-        return IndexPath(item: self, section: section)
+        IndexPath(item: self, section: section)
     }
 }
