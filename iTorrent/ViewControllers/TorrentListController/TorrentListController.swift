@@ -91,6 +91,8 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         initializeSearchView()
         initializeEditMode()
         showUpdateLog()
+
+        themeUpdate()
     }
 
     override func binding() {

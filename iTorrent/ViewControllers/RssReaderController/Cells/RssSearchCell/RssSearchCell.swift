@@ -16,4 +16,24 @@ class RssSearchCell: UITableViewCell {
     @IBOutlet var descriptionText: ThemedUILabel!
     @IBOutlet var date: ThemedUILabel!
     @IBOutlet var imageFav: UIImageView!
+    @IBOutlet var newIcon: TintView!
+    
+    func setModel(_ model: RssSearchItem) {
+        title.text = model.item.title
+        descriptionText.text = model.rss.displayTitle
+        
+        if let datet = model.item.date {
+            let now = Date()
+            date.isHidden = false
+            date.text = now.offset(from: datet)
+        } else {
+            date.isHidden = true
+        }
+        
+        imageFav.image = UIImage(named: "Rss")
+        imageFav.load(url: model.rss.linkImage)
+        
+        title.colorType = model.item.readed ? .secondary : .primary
+        newIcon.isHidden = !model.item.new
+    }
 }
