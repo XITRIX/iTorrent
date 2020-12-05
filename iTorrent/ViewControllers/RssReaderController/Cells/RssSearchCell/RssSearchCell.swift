@@ -30,8 +30,7 @@ class RssSearchCell: UITableViewCell {
             date.isHidden = true
         }
         
-        imageFav.image = UIImage(named: "Rss")
-        imageFav.load(url: model.rss.linkImage)
+        imageFav.load(url: model.rss.linkImage, placeholder: UIImage(named: "Rss"))
         
         title.colorType = model.item.readed ? .secondary : .primary
         newIcon.isHidden = !model.item.new

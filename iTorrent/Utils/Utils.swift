@@ -7,7 +7,62 @@
 //
 
 import ITorrentFramework
+import ObjectiveC.runtime
 import UIKit
+
+//var ObserverKey: UInt8 = 0
+//public extension NSObject {
+//    static func oldOSPatch() {
+//        let originalSelector = #selector(NSObject.addObserver(_:forKeyPath:options:context:))
+//        let swizzledSelector = #selector(NSObject.swizzled_addObserver(observer:forKeyPath:options:context:))
+//
+//        let originalMethod = class_getInstanceMethod(self, originalSelector)
+//        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+//        if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+//            // switch implementation..
+//            method_exchangeImplementations(originalMethod, swizzledMethod)
+//        }
+//
+//        let doriginalSelector = #selector("dealloc")
+//        let dswizzledSelector = #selector(NSObject.swizzled_dealloc)
+//
+//        let doriginalMethod = class_getInstanceMethod(self, doriginalSelector)
+//        let dswizzledMethod = class_getInstanceMethod(self, dswizzledSelector)
+//        if let doriginalMethod = doriginalMethod, let dswizzledMethod = dswizzledMethod {
+//            // switch implementation..
+//            method_exchangeImplementations(doriginalMethod, dswizzledMethod)
+//        }
+//    }
+//
+//    @objc func swizzled_addObserver(observer: NSObject, forKeyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?) {
+//        var observerSet = objc_getAssociatedObject(self, &ObserverKey) as? NSMutableSet
+//        if observerSet == nil {
+//            observerSet = NSMutableSet()
+//            objc_setAssociatedObject(self, &ObserverKey, observerSet, .OBJC_ASSOCIATION_RETAIN)
+//        }
+//        // store all observer info into a set.
+//        observerSet?.add([observer, forKeyPath])
+//
+//        swizzled_addObserver(observer: observer, forKeyPath: forKeyPath, options: options, context: context) // this will call the origin impl
+//    }
+//
+//    @objc func swizzled_dealloc() {
+//        let observerSet = objc_getAssociatedObject(self, &ObserverKey) as? NSMutableSet
+//        objc_setAssociatedObject(self, &ObserverKey, nil, .OBJC_ASSOCIATION_RETAIN)
+//        if let observerSet = observerSet {
+//            for arr in observerSet {
+//                if let arr = arr as? NSArray,
+//                    arr.count == 2,
+//                    let obj = arr[0] as? NSObject,
+//                    let path = arr[1] as? String
+//                {
+//                    // remove all observers before self is deallocated.
+//                    removeObserver(obj, forKeyPath: path)
+//                }
+//            }
+//        }
+//    }
+//}
 
 class Utils {
     public static func interfaceNames() -> [String] {
@@ -27,7 +82,7 @@ class Utils {
         interfaceNamePtr.deallocate()
         return interfaceNames
     }
-    
+
     public static var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
@@ -46,7 +101,7 @@ class Utils {
     public static var rootViewController: UIViewController {
         UIApplication.shared.keyWindow!.rootViewController!
     }
-    
+
     public static var splitViewController: UISplitViewController? {
         rootViewController as? UISplitViewController
     }

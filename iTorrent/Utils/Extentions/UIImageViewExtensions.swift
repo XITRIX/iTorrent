@@ -8,13 +8,24 @@
 
 import UIKit
 
+fileprivate var cache = NSCache<NSURL, UIImage>()
+
 extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
+    func load(url: URL, placeholder: UIImage? = nil) {
+        if let cachedImage = cache.object(forKey: url as NSURL) {
+            self.image = cachedImage
+        } else {
+            if let placeholderImage = placeholder {
+                self.image = placeholderImage
+            }
+            
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                if let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            cache.setObject(image, forKey: url as NSURL)
+                            self?.image = image
+                        }
                     }
                 }
             }

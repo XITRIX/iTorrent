@@ -40,9 +40,12 @@ extension Core {
         }
 
         DispatchQueue.global(qos: .background).async {
-            while self.state != .InProgress {
-                sleep(1)
-            }
+            let semaphore = DispatchSemaphore(value: 1)
+            self.state.observeNext { state in
+                if state == .InProgress { semaphore.signal() }
+            }.dispose(in: self.bag)
+            semaphore.wait()
+            
             DispatchQueue.main.async {
                 let dest = Core.tempFile
                 do {
@@ -83,9 +86,12 @@ extension Core {
     func addMagnet(_ magnetLink: String) {
         if magnetLink.starts(with: "magnet:") {
             DispatchQueue.global(qos: .background).async {
-                while self.state != .InProgress {
-                    sleep(1)
-                }
+                let semaphore = DispatchSemaphore(value: 1)
+                self.state.observeNext { state in
+                    if state == .InProgress { semaphore.signal() }
+                }.dispose(in: self.bag)
+                semaphore.wait()
+                
                 DispatchQueue.main.async {
                     if let hash = TorrentSdk.getMagnetHash(magnetUrl: magnetLink),
                         self.torrents[hash] != nil

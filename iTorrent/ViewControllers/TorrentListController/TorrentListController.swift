@@ -121,7 +121,8 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
         }.dispose(in: bag)
 
         /// Binding RSS Indicator
-        RssFeedProvider.shared.isRssUpdates.observeNext { [weak self] updates in
+        RssFeedProvider.shared.rssModels.observeNext { [weak self] models in
+            let updates = models.collection.contains(where: { !$0.muteNotifications.value && $0.updatesCount > 0 })
             self?.rssButton.image = UIImage(named: updates ? "RssNews" : "Rss")
         }.dispose(in: bag)
 

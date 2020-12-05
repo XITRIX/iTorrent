@@ -30,13 +30,11 @@ class RssFeedProvider {
     public static let shared = RssFeedProvider()
 
     var rssModels = MutableObservableArray<RssModel>([])
-    var isRssUpdates = Observable<Bool>(false)
 
     init() {
         loadFromDisk()
         fetchUpdates()
         rssModels.observeNext { models in
-            self.isRssUpdates.value = self.rssModels.collection.contains(where: { !$0.muteNotifications.value && $0.updatesCount > 0 })
             self.saveToDisk()
         }.dispose(in: disposalBag)
     }

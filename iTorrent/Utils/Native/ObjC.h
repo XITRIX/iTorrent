@@ -15,6 +15,8 @@
 
 + (BOOL)catchException:(void(^)(void))tryBlock error:(__autoreleasing NSError **)error;
 
++ (void)oldOSPatch;
+
 @end
 
 #endif /* ObjC_h */

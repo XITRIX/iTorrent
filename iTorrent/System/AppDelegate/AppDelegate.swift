@@ -10,6 +10,7 @@ import AdSupport
 import AppTrackingTransparency
 import ITorrentFramework
 import UIKit
+// import ObjectiveC
 
 #if !targetEnvironment(macCatalyst)
 import Firebase
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+//        ObjC.oldOSPatch()
 
         #if !targetEnvironment(macCatalyst)
         // Crash on iOS 9
@@ -41,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        //GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "0e836d6d9e4873bf2acac60f6e5de207" ]
+        // GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "0e836d6d9e4873bf2acac60f6e5de207" ]
         #endif
 
         pushNotificationsInit(application)
@@ -117,16 +119,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         RssFeedProvider.shared.fetchUpdates { updates in
             if updates.keys.count > 0 {
-                let text = updates.keys
+                let unmuted = updates.keys
                     .filter { !$0.muteNotifications.value }
-                    .map { updates[$0]! }
-                    .reduce([], +)
-                    .compactMap { $0.title }
-                    .joined(separator: "\n")
 
-                NotificationHelper.showNotification(title: Localize.get("RssFeedProvider.Notification.Title"),
-                                                    body: text,
-                                                    hash: "RSS")
+                if unmuted.count > 0 {
+                    let text = unmuted
+                        .map { updates[$0]! }
+                        .reduce([], +)
+                        .compactMap { $0.title }
+                        .joined(separator: "\n")
+
+                    NotificationHelper.showNotification(title: Localize.get("RssFeedProvider.Notification.Title"),
+                                                        body: text,
+                                                        hash: "RSS")
+                }
                 completionHandler(.newData)
             } else {
                 completionHandler(.noData)

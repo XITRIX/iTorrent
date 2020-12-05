@@ -354,6 +354,7 @@
 // RSS Channel Controller
 "RssChannelController.Seen" = "Просмотрено";
 "RssChannelController.Unseen" = "Не просмотрено";
+"RssChannelController.ReadAll" = "Прочитать всё";
 
 // RSS Item Controller
 "RssItemController.PinTorrent" = "Пост содержит Torrent файл";

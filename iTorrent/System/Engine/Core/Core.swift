@@ -9,8 +9,10 @@
 import ITorrentFramework
 import Foundation
 import GCDWebServer
+import ReactiveKit
+import Bond
 
-class Core {
+class Core: NSObject {
     private(set) static var shared: Core!
     
     public static func configure() {
@@ -18,7 +20,7 @@ class Core {
         shared = Core()
     }
     
-    var state: CoreState = .Initializing
+    var state = Observable<CoreState>(.Initializing)
     
     var torrents: [String: TorrentModel] = [:]
     var torrentsUserData: [String: UserManagerSettings] = [:]
@@ -26,9 +28,8 @@ class Core {
     let webUploadServer = GCDWebUploader(uploadDirectory: Core.rootFolder)
     let webDAVServer = GCDWebDAVServer(uploadDirectory: Core.rootFolder)
     
-    private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(managerStateChanged(notfication:)), name: .torrentsStateChanged, object: nil)
-        
+    private override init() {
+        super.init()
         DispatchQueue.global(qos: .background).async {
             TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder, settingsPack: SettingsPack.userPrefered)
             self.restoreAllTorrents()
@@ -38,7 +39,7 @@ class Core {
             
             FileManager.default.clearTmpDirectory()
             
-            self.state = .InProgress
+            self.state.value = .InProgress
 
             while true {
                 self.mainLoop()

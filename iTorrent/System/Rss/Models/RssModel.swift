@@ -25,9 +25,9 @@ class RssModel: Hashable, Codable, DiffAware {
     var items: [RssItemModel] = []
     
     //
-    var customTitle = CObservable<String?>(nil)
-    var customDescriotion = CObservable<String?>(nil)
-    var muteNotifications = CObservable<Bool>(false)
+    var customTitle = Observable<String?>(nil)
+    var customDescriotion = Observable<String?>(nil)
+    var muteNotifications = Observable<Bool>(false)
     //
     
 //    private enum CodingKeys: String, CodingKey {

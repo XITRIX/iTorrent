@@ -266,14 +266,12 @@ class PreferencesController: StaticTableViewController {
         // -MARK: DEBUG
         var debug = [CellModelProtocol]()
         debug.append(ButtonCell.Model(title: "Interfaces", buttonTitle: "Show", action: { _ in
-//            let interfaces = Utils.interfaceNames()
-//            Dialog.show(title: "Interfaces", message: interfaces.joined(separator: "\n"))
-
-//            let vc = Utils.instantiate("RssChannelSetupController") as! RssChannelSetupController
-//            vc.model = RssFeedProvider.shared.rssModels.collection.first
-//            let popup = PopupViewController(vc, contentHeight: 200)
-//            popup.show(in: self)
-            
+            //            let interfaces = Utils.interfaceNames()
+            //            Dialog.show(title: "Interfaces", message: interfaces.joined(separator: "\n"))
+            //            let vc = Utils.instantiate("RssChannelSetupController") as! RssChannelSetupController
+            //            vc.model = RssFeedProvider.shared.rssModels.collection.first
+            //            let popup = PopupViewController(vc, contentHeight: 200)
+            //            popup.show(in: self)
             TestPopup().show(in: self)
         }))
         data.append(Section(rowModels: debug, header: "Debug"))

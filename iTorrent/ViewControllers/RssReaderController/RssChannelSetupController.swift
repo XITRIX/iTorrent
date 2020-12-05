@@ -46,11 +46,10 @@ class RssChannelSetupController: ThemedUITableViewController {
         }).dispose(in: bag)
         
         notificationSwitch.setOn(!model.muteNotifications.value, animated: false)
-//        model.muteNotifications.map { !$0 }.bind(to: notificationSwitch.reactive.isOn).dispose(in: bag)
         notificationSwitch.reactive.isOn.observeNext { on in
             self.model.muteNotifications.value = !on
+            RssFeedProvider.shared.rssModels.notifyUpdate() 
         }.dispose(in: bag)
-//        notificationSwitch.reactive.isOn.map { !$0 }.bind(to: model.muteNotifications).dispose(in: bag)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -65,7 +64,7 @@ class RssChannelSetupController: ThemedUITableViewController {
             }) { textField in
                 self.model.customTitle.value = textField.text
                 self.titleLabel.text = self.model.displayTitle
-//                RssFeedProvider.shared.rssModels.notifyUpdate()
+                RssFeedProvider.shared.rssModels.notifyUpdate()
             }
         case 2:
             Dialog.withTextField(self, title: Localize.get("RssChannelSetup.Description"), textFieldConfiguration: { textField in
@@ -74,7 +73,7 @@ class RssChannelSetupController: ThemedUITableViewController {
             }) { textField in
                 self.model.customDescriotion.value = textField.text
                 self.descriptionLabel.text = self.model.displayDescription
-//                RssFeedProvider.shared.rssModels.notifyUpdate()
+                RssFeedProvider.shared.rssModels.notifyUpdate()
             }
         default:
             break

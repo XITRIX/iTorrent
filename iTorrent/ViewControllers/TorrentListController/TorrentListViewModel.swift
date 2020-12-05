@@ -27,7 +27,7 @@ class TorrentListViewModel: ViewModel {
     }
     
     @objc func update(animated: Bool = true) {
-        if Core.shared.state == .Initializing { return }
+        if Core.shared.state.value == .Initializing { return }
         else { loadingIndicatiorHidden.value = true }
         
         var data = Array(Core.shared.torrents.values)

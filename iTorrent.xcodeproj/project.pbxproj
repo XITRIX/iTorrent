@@ -61,6 +61,8 @@
 		7C59F5C524D8C1FC004B2BDE /* DoubleProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C59F5C324D8C1FC004B2BDE /* DoubleProgressCell.swift */; };
 		7C59F5C624D8C1FC004B2BDE /* DoubleProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C59F5C424D8C1FC004B2BDE /* DoubleProgressCell.xib */; };
 		7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D7683230335A4002E1352 /* FilesBrowserController.swift */; };
+		7C60114825472FC500A0EFC5 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C60114725472FC500A0EFC5 /* Cache.swift */; };
+		7C60114A2547345100A0EFC5 /* ObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6011492547345100A0EFC5 /* ObservableExtension.swift */; };
 		7C6189B12433478E00B4EF5B /* FileProviderTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6189B02433478E00B4EF5B /* FileProviderTableDataSource.swift */; };
 		7C65304D253F140C0011A91E /* RssSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C65304B253F140C0011A91E /* RssSearchCell.swift */; };
 		7C65304E253F140C0011A91E /* RssSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C65304C253F140C0011A91E /* RssSearchCell.xib */; };
@@ -259,6 +261,8 @@
 		7C59F5C324D8C1FC004B2BDE /* DoubleProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleProgressCell.swift; sourceTree = "<group>"; };
 		7C59F5C424D8C1FC004B2BDE /* DoubleProgressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoubleProgressCell.xib; sourceTree = "<group>"; };
 		7C5D7683230335A4002E1352 /* FilesBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesBrowserController.swift; sourceTree = "<group>"; };
+		7C60114725472FC500A0EFC5 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		7C6011492547345100A0EFC5 /* ObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableExtension.swift; sourceTree = "<group>"; };
 		7C6189B02433478E00B4EF5B /* FileProviderTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderTableDataSource.swift; sourceTree = "<group>"; };
 		7C65304B253F140C0011A91E /* RssSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchCell.swift; sourceTree = "<group>"; };
 		7C65304C253F140C0011A91E /* RssSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssSearchCell.xib; sourceTree = "<group>"; };
@@ -800,6 +804,7 @@
 				7C495526244E4B3B0057648A /* UIViewExtensions.swift */,
 				7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */,
 				7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */,
+				7C6011492547345100A0EFC5 /* ObservableExtension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -929,6 +934,7 @@
 				7CCD02C824389A4F00B1669F /* DiffCalculator.swift */,
 				7CB8083420AAF09F00F76931 /* Downloader.swift */,
 				7C653051253F7ED60011A91E /* MessageError.swift */,
+				7C60114725472FC500A0EFC5 /* Cache.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -994,6 +1000,7 @@
 			buildConfigurationList = 7C3C694120A754FD0023396C /* Build configuration list for PBXNativeTarget "iTorrent" */;
 			buildPhases = (
 				DBBCCBC72A898D1AC5BBD608 /* [CP] Check Pods Manifest.lock */,
+				3A7DBB95A930514E2CA2E431 /* [CP] Prepare Artifacts */,
 				7C3C692B20A754FB0023396C /* Sources */,
 				7C3C692C20A754FB0023396C /* Frameworks */,
 				7C3C692D20A754FB0023396C /* Resources */,
@@ -1007,8 +1014,6 @@
 			dependencies = (
 			);
 			name = iTorrent;
-			packageProductDependencies = (
-			);
 			productName = iTorrent;
 			productReference = 7C3C692F20A754FB0023396C /* iTorrent.app */;
 			productType = "com.apple.product-type.application";
@@ -1045,8 +1050,6 @@
 				tr,
 			);
 			mainGroup = 7C3C692620A754FB0023396C;
-			packageReferences = (
-			);
 			productRefGroup = 7C3C693020A754FB0023396C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1111,6 +1114,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A7DBB95A930514E2CA2E431 /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C05FC0A20BBFB2E006E5CFC /* Firebase */ = {
@@ -1240,6 +1260,7 @@
 				7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */,
 				7CFB6E9223F8914D00F5D210 /* SANavigationController.swift in Sources */,
 				7CF522E820AEF3DB00D319E6 /* FileInfo.swift in Sources */,
+				7C60114A2547345100A0EFC5 /* ObservableExtension.swift in Sources */,
 				7C98410624A4EAD700B51AA0 /* UINavigationControllerExtensions.swift in Sources */,
 				7CAF077E248591AA00AAB4FB /* DiffableDataSource.swift in Sources */,
 				7C97E50424369950004923D8 /* TorrentListController+AddTorrentFunc.swift in Sources */,
@@ -1306,6 +1327,7 @@
 				7C18DF07231D5DDB00A14326 /* PreferenceCellProtocol.swift in Sources */,
 				7CF75F1F244B42EE00F5C089 /* Benefit.swift in Sources */,
 				7C1EBD0421E4B64B00EAAF55 /* TableHeaderView.swift in Sources */,
+				7C60114825472FC500A0EFC5 /* Cache.swift in Sources */,
 				7C97E4FF2434E76A004923D8 /* SAViewControllers.swift in Sources */,
 				7C10D350232189C200B5ED9A /* DatasetPicker.swift in Sources */,
 				7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */,

@@ -37,8 +37,9 @@ class RssSearchDataSource: DiffableDataSource<String, RssSearchItem> {
             var items = [RssSearchItem]()
             for rss in combine.rssModels.collection {
                 for item in rss.items {
-                    if self.searchFilter(item.title, query: combine.searchQuery) {
-                        items.append(RssSearchItem(rss: rss, item: item))
+                    let searchItem = RssSearchItem(rss: rss, item: item)
+                    if self.searchFilter(searchItem, query: combine.searchQuery) {
+                        items.append(searchItem)
                     }
                 }
             }
@@ -55,12 +56,12 @@ class RssSearchDataSource: DiffableDataSource<String, RssSearchItem> {
         true
     }
 
-    private func searchFilter(_ text: String?, query: String?) -> Bool {
-        if let query = query, let text = text {
+    private func searchFilter(_ model: RssSearchItem, query: String?) -> Bool {
+        if let query = query, let title = model.item.title {
             let separatedQuery = query.lowercased().split {
                 $0 == " " || $0 == ","
             }
-            return separatedQuery.allSatisfy { text.lowercased().contains($0) }
+            return separatedQuery.allSatisfy { title.lowercased().contains($0) || model.rss.title.lowercased().contains($0) }
         }
         return true
     }

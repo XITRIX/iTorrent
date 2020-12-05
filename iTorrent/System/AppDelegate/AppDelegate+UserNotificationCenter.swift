@@ -22,7 +22,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             UIApplication.shared.cancelAllLocalNotifications()
         }
     }
-    
+
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
@@ -35,11 +35,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 return
             }
 
-            if Core.shared.state != .InProgress {
+            if Core.shared.state.value != .InProgress {
                 DispatchQueue.global(qos: .background).async {
-                    while Core.shared.state != .InProgress {
-                        sleep(1)
-                    }
+                    let semaphore = DispatchSemaphore(value: 1)
+                    Core.shared.state.observeNext { state in
+                        if state == .InProgress { semaphore.signal() }
+                    }.dispose(in: self.bag)
+                    semaphore.wait()
+
                     DispatchQueue.main.async {
                         self.openTorrentDetailsViewController(withHash: hash, sender: self)
                     }
@@ -57,7 +60,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             viewController.managerHash = hash
             if !splitViewController.isCollapsed {
                 if splitViewController.viewControllers.count > 1,
-                    let nvc = splitViewController.viewControllers[1] as? UINavigationController {
+                    let nvc = splitViewController.viewControllers[1] as? UINavigationController
+                {
                     nvc.show(viewController, sender: sender)
                 } else {
                     let navController = Utils.instantiateNavigationController(viewController)

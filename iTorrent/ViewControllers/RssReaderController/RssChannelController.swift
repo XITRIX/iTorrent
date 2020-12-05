@@ -60,7 +60,7 @@ class RssChannelController: ThemedUITableViewController {
     @available(iOS 13.0, *)
     func createMenu() -> UIMenu {
         UIMenu(children: [
-            UIAction(title: "Read All".localized, image: UIImage(systemName: "checkmark.circle"), handler: { _ in self.readAll() }),
+            UIAction(title: "RssChannelController.ReadAll".localized, image: UIImage(systemName: "checkmark.circle"), handler: { _ in self.readAll() }),
             UIAction(title: "Open in Safari".localized, image: UIImage(systemName: "safari"), handler: { _ in UIApplication.shared.openURL(self.model.link) })
         ])
     }
@@ -69,7 +69,7 @@ class RssChannelController: ThemedUITableViewController {
         let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
-        let readAll = UIAlertAction(title: "Read All".localized, style: .default) { _ in
+        let readAll = UIAlertAction(title: "RssChannelController.ReadAll".localized, style: .default) { _ in
             self.readAll()
         }
         let openInSafari = UIAlertAction(title: "Open in Safari".localized, style: .default) { _ in
@@ -139,6 +139,6 @@ extension RssChannelController {
         model.items[indexPath.row].readed = readed
         model.items[indexPath.row].new = false
         (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[indexPath.row])
-//        RssFeedProvider.shared.rssModels.notifyUpdate()
+        RssFeedProvider.shared.rssModels.notifyUpdate()
     }
 }
