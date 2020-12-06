@@ -59,10 +59,13 @@ class RssChannelController: ThemedUITableViewController {
     
     @available(iOS 13.0, *)
     func createMenu() -> UIMenu {
-        UIMenu(children: [
-            UIAction(title: "RssChannelController.ReadAll".localized, image: UIImage(systemName: "checkmark.circle"), handler: { _ in self.readAll() }),
-            UIAction(title: "Open in Safari".localized, image: UIImage(systemName: "safari"), handler: { _ in UIApplication.shared.openURL(self.model.link) })
-        ])
+        var actions = [
+            UIAction(title: "RssChannelController.ReadAll".localized, image: UIImage(systemName: "checkmark.circle"), handler: { _ in self.readAll() })
+        ]
+        if let link = self.model.link {
+            actions.append(UIAction(title: "Open in Safari".localized, image: UIImage(systemName: "safari"), handler: { _ in UIApplication.shared.openURL(link) }))
+        }
+        return UIMenu(children: actions)
     }
     
     @objc func openLink() {
@@ -73,12 +76,16 @@ class RssChannelController: ThemedUITableViewController {
             self.readAll()
         }
         let openInSafari = UIAlertAction(title: "Open in Safari".localized, style: .default) { _ in
-            UIApplication.shared.openURL(self.model.link)
+            if let link = self.model.link {
+                UIApplication.shared.openURL(link)
+            }
         }
         let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
         dialog.addAction(readAll)
-        dialog.addAction(openInSafari)
+        if self.model.link != nil {
+            dialog.addAction(openInSafari)
+        }
         dialog.addAction(cancel)
         
         present(dialog, animated: true)

@@ -91,8 +91,8 @@ class RssFeedController: ThemedUIViewController {
         
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.register(RssChannelCell.nib, forCellReuseIdentifier: RssChannelCell.id)
-        tableView.estimatedRowHeight = 59
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 58
+        tableView.rowHeight = 58
         tableView.delegate = self
         tableView.dataSource = dataSource
         

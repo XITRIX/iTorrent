@@ -19,9 +19,9 @@ class RssModel: Hashable, Codable, DiffAware {
     
     var xmlLink: URL
     var title: String
-    var description: String
-    var linkImage: URL
-    var link: URL
+    var description: String?
+    var linkImage: URL?
+    var link: URL?
     var items: [RssItemModel] = []
     
     //
@@ -71,19 +71,18 @@ class RssModel: Hashable, Codable, DiffAware {
             let contents = try String(contentsOf: xmlLink)
             let xml = try XML.parse(contents)
             
-            guard let title = xml["rss", "channel", "title"].text,
-                let description = xml["rss", "channel", "description"].text,
-                let xmlLink = xml["rss", "channel", "link"].text,
-                let link = URL(string: xmlLink),
-                let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink)
-            else {
-                throw Error.missingKey
-            }
+            let title = xml["rss", "channel", "title"].text
+            let description = xml["rss", "channel", "description"].text
             
-            self.title = title
+            self.title = title ?? "RSS Feed".localized
             self.description = description
-            self.link = link
-            self.linkImage = linkImage
+            
+            if let xmlLink = xml["rss", "channel", "link"].text,
+               let link = URL(string: xmlLink),
+               let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink) {
+                self.link = link
+                self.linkImage = linkImage
+            }
             
             for xmlItem in xml["rss", "channel", "item"] {
                 items.append(RssItemModel(xml: xmlItem))
@@ -99,7 +98,7 @@ class RssModel: Hashable, Codable, DiffAware {
         return title
     }
     
-    var displayDescription: String {
+    var displayDescription: String? {
         if let description = customDescriotion.value,
             !description.isEmpty { return description }
         return description
@@ -170,11 +169,26 @@ struct RssItemModel: Hashable, Codable, DiffAware {
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(guid)
+        if let guid = guid {
+            hasher.combine(guid)
+            return
+        }
+        
+        hasher.combine(title)
+        hasher.combine(description)
+        hasher.combine(date)
+        hasher.combine(link)
     }
     
     static func == (lhs: RssItemModel, rhs: RssItemModel) -> Bool {
-        lhs.guid == rhs.guid
+        if let lg = lhs.guid,
+           let rg = rhs.guid {
+            return lg == rg
+        }
+        return lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.date == rhs.date &&
+            lhs.link == rhs.link
     }
     
     mutating func update(_ model: RssItemModel) {

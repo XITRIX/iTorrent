@@ -48,9 +48,13 @@ class RssChannelCell: ThemedUITableViewCell {
 
         model.customDescriotion.observeNext(with: { _ in
             self.descriptionText.text = self.model.displayDescription
+            self.descriptionText.isHidden = self.model.displayDescription?.isEmpty ?? true
         }).dispose(in: bag)
 
-        imageFav.load(url: model.linkImage, placeholder: UIImage(named: "Rss"))
+        imageFav.isHidden = model.linkImage == nil
+        if let icon = model.linkImage {
+            imageFav.load(url: icon, placeholder: UIImage(named: "Rss"))
+        }
 
         let updatesCount = model.updatesCount
         updatesLabel.superview?.alpha = isEditing || updatesCount == 0 ? 0 : 1
