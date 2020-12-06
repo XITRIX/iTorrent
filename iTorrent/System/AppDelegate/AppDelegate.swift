@@ -13,7 +13,7 @@ import UIKit
 // import ObjectiveC
 
 #if !targetEnvironment(macCatalyst)
-import Firebase
+import FirebaseCore
 import GoogleMobileAds
 
 import AppCenter
