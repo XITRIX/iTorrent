@@ -55,8 +55,10 @@ class Core: NSObject {
             var torrent = torrent
             
             if let t = torrents[torrent.hash] {
+                let oldState = t.displayState
                 t.update(with: torrent)
                 torrent = t
+                managersStateUpdate(manager: torrent, oldState: oldState)
             } else {
                 torrents[torrent.hash] = torrent
             }

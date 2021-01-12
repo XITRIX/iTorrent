@@ -10,15 +10,14 @@ import ITorrentFramework
 import UIKit
 
 extension Core {
-    @objc func managerStateChanged(notfication: NSNotification) {
-        if let userInfo = notfication.userInfo?["data"] as? (manager: TorrentModel, oldState: TorrentState, newState: TorrentState) {
-            managersStateChanged(manager: userInfo.manager, oldState: userInfo.oldState, newState: userInfo.newState)
-        }
-    }
-    
-    func managersStateChanged(manager: TorrentModel, oldState: TorrentState, newState: TorrentState) {
+    func managersStateUpdate(manager: TorrentModel, oldState: TorrentState) {
+        let newState = manager.displayState
+        
+        if oldState == newState { return }
+        
         if oldState == .metadata {
             TorrentSdk.saveMagnetToFile(hash: manager.hash)
+            return
         }
         
         if UserPreferences.notificationsKey &&
@@ -30,7 +29,8 @@ extension Core {
             if UserPreferences.badgeKey && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
-
+            
+            return
         }
         
         if UserPreferences.notificationsSeedKey &&
@@ -42,6 +42,8 @@ extension Core {
             if UserPreferences.badgeKey && AppDelegate.backgrounded {
                 UIApplication.shared.applicationIconBadgeNumber += 1
             }
+            
+            return
         }
         
         BackgroundTask.shared.checkToStopBackground()
