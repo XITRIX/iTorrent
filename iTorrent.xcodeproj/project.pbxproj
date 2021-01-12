@@ -74,8 +74,6 @@
 		7C786891251B942800CD61F0 /* InterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C786890251B942800CD61F0 /* InterfaceType.swift */; };
 		7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */; };
 		7C7D0ABA20D911EB001B08E5 /* SortingPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB920D911EB001B08E5 /* SortingPreferencesController.swift */; };
-		7C7D0ABC20D97B3A001B08E5 /* FileCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */; };
-		7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */; };
 		7C80257520A9B17C00673A4F /* TorrentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C80257420A9B17C00673A4F /* TorrentCell.swift */; };
 		7C802CFF212B3B630031C19F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C802D01212B3B630031C19F /* Localizable.strings */; };
 		7C802D07212C6D060031C19F /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C802D06212C6D060031C19F /* Dialog.swift */; };
@@ -274,8 +272,6 @@
 		7C786890251B942800CD61F0 /* InterfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceType.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C7D0AB920D911EB001B08E5 /* SortingPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingPreferencesController.swift; sourceTree = "<group>"; };
-		7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCellActionDelegate.swift; sourceTree = "<group>"; };
-		7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCellActionDelegate.swift; sourceTree = "<group>"; };
 		7C80257420A9B17C00673A4F /* TorrentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentCell.swift; sourceTree = "<group>"; };
 		7C802CFB212B328D0031C19F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		7C802D02212B3B860031C19F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -416,6 +412,7 @@
 		7C0D2F1B20F77F5200B7FBC6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7C4B109720DFDECA00440E74 /* Theme */,
 				7C59F5BA24D62EF9004B2BDE /* InsetableTableVIew */,
 				7CC4368324AB9DF300782145 /* PlaceHolder */,
 				7C97E4FD2434E755004923D8 /* SANavigation */,
@@ -445,11 +442,10 @@
 		7C1682BC24A8F3B000B04169 /* TorrentDetails */ = {
 			isa = PBXGroup;
 			children = (
-				7C1682BF24A8F7D600B04169 /* Cells */,
-				7C59F5BD24D73A5D004B2BDE /* TorrentDetailsController.swift */,
-				7C26E358243340B40012D455 /* TorrentFilesController.swift */,
-				7C4B10AC20EA278800440E74 /* TrackersListController.swift */,
-				7C0A334A24A94DA800EF33D0 /* TorrentPeersController.swift */,
+				7C6844CC25AE05D500D654BF /* TorrentDetails */,
+				7C6844CB25AE05BA00D654BF /* TrackersList */,
+				7C6844CA25AE05A400D654BF /* TorrentPeers */,
+				7C6844C925AE059500D654BF /* TorrentFiles */,
 			);
 			path = TorrentDetails;
 			sourceTree = "<group>";
@@ -457,12 +453,8 @@
 		7C1682BF24A8F7D600B04169 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7C59F5BF24D73B63004B2BDE /* DetailCell.swift */,
-				7C59F5C024D73B63004B2BDE /* DetailCell.xib */,
 				7C1682C024A8F7F200B04169 /* PeerCell.swift */,
 				7C1682C124A8F7F200B04169 /* PeerCell.xib */,
-				7C59F5C324D8C1FC004B2BDE /* DoubleProgressCell.swift */,
-				7C59F5C424D8C1FC004B2BDE /* DoubleProgressCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -523,13 +515,10 @@
 			children = (
 				7CE9EA4B231C4D9300D50753 /* iTorrent.entitlements */,
 				7C0D2F1B20F77F5200B7FBC6 /* CustomViews */,
-				7C4B109720DFDECA00440E74 /* Theme */,
 				7CF99DC420B3636D00E5BF3A /* Resources */,
 				7CF522E420AE1F2C00D319E6 /* Utils */,
 				7CB8083320AAEDE200F76931 /* ViewControllers */,
-				7CB8082E20AA380400F76931 /* Delegates */,
 				7CB8082720AA26CE00F76931 /* System */,
-				7C80257320A9B15300673A4F /* Cells */,
 				7C3C693620A754FB0023396C /* Main.storyboard */,
 				7C3C693920A754FD0023396C /* Assets.xcassets */,
 				7C3C693B20A754FD0023396C /* LaunchScreen.storyboard */,
@@ -625,12 +614,64 @@
 			path = RssSearchCell;
 			sourceTree = "<group>";
 		};
-		7C80257320A9B15300673A4F /* Cells */ = {
+		7C6844C825AE053600D654BF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				7C80257420A9B17C00673A4F /* TorrentCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7C6844C925AE059500D654BF /* TorrentFiles */ = {
+			isa = PBXGroup;
+			children = (
+				7C26E358243340B40012D455 /* TorrentFilesController.swift */,
+			);
+			path = TorrentFiles;
+			sourceTree = "<group>";
+		};
+		7C6844CA25AE05A400D654BF /* TorrentPeers */ = {
+			isa = PBXGroup;
+			children = (
+				7C1682BF24A8F7D600B04169 /* Cells */,
+				7C0A334A24A94DA800EF33D0 /* TorrentPeersController.swift */,
+			);
+			path = TorrentPeers;
+			sourceTree = "<group>";
+		};
+		7C6844CB25AE05BA00D654BF /* TrackersList */ = {
+			isa = PBXGroup;
+			children = (
+				7C6844CE25AE063600D654BF /* Cells */,
+				7C4B10AC20EA278800440E74 /* TrackersListController.swift */,
+			);
+			path = TrackersList;
+			sourceTree = "<group>";
+		};
+		7C6844CC25AE05D500D654BF /* TorrentDetails */ = {
+			isa = PBXGroup;
+			children = (
+				7C6844CD25AE05E400D654BF /* Cells */,
+				7C59F5BD24D73A5D004B2BDE /* TorrentDetailsController.swift */,
+			);
+			path = TorrentDetails;
+			sourceTree = "<group>";
+		};
+		7C6844CD25AE05E400D654BF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7C59F5BF24D73B63004B2BDE /* DetailCell.swift */,
+				7C59F5C024D73B63004B2BDE /* DetailCell.xib */,
+				7C59F5C324D8C1FC004B2BDE /* DoubleProgressCell.swift */,
+				7C59F5C424D8C1FC004B2BDE /* DoubleProgressCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7C6844CE25AE063600D654BF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
 				7C4B10AE20EA30C500440E74 /* TrackerCell.swift */,
-				7C97E4F92433F321004923D8 /* UpdatableModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -656,6 +697,7 @@
 		7C97E5022436991C004923D8 /* TorrentListController */ = {
 			isa = PBXGroup;
 			children = (
+				7C6844C825AE053600D654BF /* Cells */,
 				7CF0305524A88DE700242822 /* TabBarView */,
 				7C1EBD0521E4BA5300EAAF55 /* TableHeaderView */,
 				7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */,
@@ -741,15 +783,6 @@
 				7CB3A5062418034100CE44A2 /* FullscreenAd.swift */,
 			);
 			path = System;
-			sourceTree = "<group>";
-		};
-		7CB8082E20AA380400F76931 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				7C7D0ABB20D97B3A001B08E5 /* FileCellActionDelegate.swift */,
-				7C7D0ABD20D98923001B08E5 /* FolderCellActionDelegate.swift */,
-			);
-			path = Delegates;
 			sourceTree = "<group>";
 		};
 		7CB8083320AAEDE200F76931 /* ViewControllers */ = {
@@ -925,6 +958,7 @@
 				7CB39E72244A500A00FA3E20 /* Patreon */,
 				7CBEFA5E240D68BA00FEEA05 /* Extentions */,
 				7CB8083120AADA8300F76931 /* Utils.swift */,
+				7C97E4F92433F321004923D8 /* UpdatableModel.swift */,
 				7CF522E520AE1F5000D319E6 /* SortingManager.swift */,
 				7CF522E720AEF3DB00D319E6 /* FileInfo.swift */,
 				7C802D06212C6D060031C19F /* Dialog.swift */,
@@ -1208,8 +1242,6 @@
 				7CF0305C24A88F5B00242822 /* TabBarItemCell.swift in Sources */,
 				7C97E50124367199004923D8 /* TorrentListController.swift in Sources */,
 				7CCD02CF243A7EF400B1669F /* UIViewControllerExtentions.swift in Sources */,
-				7C7D0ABE20D98923001B08E5 /* FolderCellActionDelegate.swift in Sources */,
-				7C7D0ABC20D97B3A001B08E5 /* FileCellActionDelegate.swift in Sources */,
 				7CF0305824A88E3200242822 /* TabBarView.swift in Sources */,
 				7CCD02C924389A4F00B1669F /* DiffCalculator.swift in Sources */,
 				7CB175FA2454F144005CEEA6 /* ObjC.m in Sources */,
