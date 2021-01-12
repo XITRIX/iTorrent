@@ -56,6 +56,10 @@ extension TorrentListController {
         }
 
         if #available(iOS 13.0, *) {
+            rssSearchDataSource = RssSearchDataSource(tableView: resultController!.tableView, searchBar: searchController.searchBar)
+            resultController?.tableView.dataSource = rssSearchDataSource
+            resultController?.tableView.delegate = rssSearchDataSource
+            
             if RssFeedProvider.shared.rssModels.count > 0 {
                 searchController.searchBar.scopeButtonTitles = ["Torrents", "RSS"]
             } else {
@@ -70,20 +74,7 @@ extension TorrentListController {
 extension TorrentListController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         if #available(iOS 13.0, *) {
-            guard let tableViewController = searchController.searchResultsController as? UITableViewController
-            else { return }
-            
             searchController.showsSearchResultsController = selectedScope > 0
-            
-            switch selectedScope {
-            case 1:
-                if rssSearchDataSource == nil {
-                    rssSearchDataSource = RssSearchDataSource(tableView: tableViewController.tableView, searchBar: searchBar)
-                }
-                tableViewController.tableView.dataSource = rssSearchDataSource
-                tableViewController.tableView.delegate = rssSearchDataSource
-            default: break
-            }
         }
     }
 }

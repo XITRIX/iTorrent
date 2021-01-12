@@ -14,10 +14,18 @@ import UIKit
 struct RssSearchItem: Hashable, DiffAware {
     var rss: RssModel
     var item: RssItemModel
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(item)
+    }
+    
+    static func == (lhs: RssSearchItem, rhs: RssSearchItem) -> Bool {
+        lhs.item == rhs.item
+    }
 }
 
 class RssSearchDataSource: DiffableDataSource<String, RssSearchItem> {
-    var tableView: UITableView
+    let tableView: UITableView
     
     init(tableView: UITableView, searchBar: UISearchBar) {
         self.tableView = tableView
@@ -47,8 +55,10 @@ class RssSearchDataSource: DiffableDataSource<String, RssSearchItem> {
 
             var snapshot = DataSnapshot<String, RssSearchItem>()
             snapshot.appendSections([""])
-            snapshot.appendItems(items, toSection: "")
-            self.apply(snapshot, animateInitial: false)
+            snapshot.appendItems(items[0 ..< min(items.count, 100)], toSection: "")
+            self.apply(snapshot, animateInitial: false) {
+                print("Updated")
+            }
         }.dispose(in: bag)
     }
     
@@ -106,7 +116,9 @@ extension RssSearchDataSource: UITableViewDelegate {
         var model = snapshot!.getItem(from: indexPath)!
         model.item.new = false
         model.item.readed = readed
-        model.rss.items[indexPath.row] = model.item
+        if let index = model.rss.items.firstIndex(of: model.item) {
+            model.rss.items[index] = model.item
+        }
         (tableView.cellForRow(at: indexPath) as! RssSearchCell).setModel(model)
         RssFeedProvider.shared.rssModels.notifyUpdate()
     }

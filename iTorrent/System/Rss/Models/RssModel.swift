@@ -188,7 +188,10 @@ struct RssItemModel: Hashable, Codable, DiffAware {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.date == rhs.date &&
-            lhs.link == rhs.link
+            lhs.link == rhs.link &&
+            lhs.new == rhs.new &&
+            lhs.readed == rhs.readed
+            
     }
     
     mutating func update(_ model: RssItemModel) {

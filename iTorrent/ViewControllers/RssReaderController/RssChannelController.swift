@@ -95,9 +95,10 @@ class RssChannelController: ThemedUITableViewController {
         for i in 0 ..< model.items.count {
             model.items[i].readed = true
             model.items[i].new = false
-            
-            let indexPath = IndexPath(row: i, section: 0)
-            (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[i])
+        }
+        
+        tableView.indexPathsForVisibleRows?.forEach { indexPath in
+            (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[indexPath.row])
         }
     }
 }
