@@ -6,7 +6,11 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
 import UIKit
 
 class FileProviderTableDataSource: NSObject {
@@ -151,13 +155,13 @@ extension FileProviderTableDataSource: UITableViewDataSource {
         let button = UITableViewRowAction(style: .default, title: title) { _, indexPath in
             let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Priority", comment: ""), preferredStyle: .actionSheet)
 
-            let max = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in
+            let high = UIAlertAction(title: NSLocalizedString("High", comment: ""), style: .default, handler: { _ in
+                updateCell(indexPath, .highPriority)
+            })
+            let norm = UIAlertAction(title: NSLocalizedString("Normal", comment: ""), style: .default, handler: { _ in
                 updateCell(indexPath, .normalPriority)
             })
-            let high = UIAlertAction(title: NSLocalizedString("Medium", comment: ""), style: .default, handler: { _ in
-                updateCell(indexPath, .mediumPriority)
-            })
-            let norm = UIAlertAction(title: NSLocalizedString("Low", comment: ""), style: .default, handler: { _ in
+            let low = UIAlertAction(title: NSLocalizedString("Low", comment: ""), style: .default, handler: { _ in
                 updateCell(indexPath, .lowPriority)
             })
             
@@ -170,9 +174,9 @@ extension FileProviderTableDataSource: UITableViewDataSource {
 
             let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 
-            controller.addAction(max)
             controller.addAction(high)
             controller.addAction(norm)
+            controller.addAction(low)
             controller.addAction(cancel)
 
             if controller.popoverPresentationController != nil {

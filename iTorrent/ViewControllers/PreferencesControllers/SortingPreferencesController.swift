@@ -6,7 +6,12 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import Foundation
 import UIKit
 

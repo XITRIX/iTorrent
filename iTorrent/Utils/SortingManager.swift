@@ -6,7 +6,11 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
 import Foundation
 import UIKit
 
@@ -43,25 +47,25 @@ class SortingManager {
             applyChanges?()
         }
 
-        return UIMenu(title: "", children: [
+        return UIMenu(title: "Sort Torrents By:".localized, children: [
             UIMenu(title: "", options: .displayInline, children: [alphabetAction, dateAddedAction, dateCreatedAction, sizeAction]),
             UIMenu(title: "", options: .displayInline, children: [sectionsAction])
         ])
     }
 
     public static func createSortingController(buttonItem: UIBarButtonItem? = nil, applyChanges: @escaping () -> Void = {}) -> ThemedUIAlertController {
-        let alphabetAction = createAlertButton(NSLocalizedString("Name", comment: ""), SortingTypes.name, applyChanges)
-        let dateAddedAction = createAlertButton(NSLocalizedString("Date Added", comment: ""), SortingTypes.dateAdded, applyChanges)
-        let dateCreatedAction = createAlertButton(NSLocalizedString("Date Created", comment: ""), SortingTypes.dateCreated, applyChanges)
-        let sizeAction = createAlertButton(NSLocalizedString("Size", comment: ""), SortingTypes.size, applyChanges)
+        let alphabetAction = createAlertButton("Name".localized, SortingTypes.name, applyChanges)
+        let dateAddedAction = createAlertButton("Date Added".localized, SortingTypes.dateAdded, applyChanges)
+        let dateCreatedAction = createAlertButton("Date Created".localized, SortingTypes.dateCreated, applyChanges)
+        let sizeAction = createAlertButton("Size".localized, SortingTypes.size, applyChanges)
 
         let sectionsAction = createSectionsAlertButton(applyChanges)
 
-        let cancel = UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Close".localized, style: UIAlertAction.Style.cancel, handler: nil)
 
-        var sortAlertController = ThemedUIAlertController(title: NSLocalizedString("Sort Torrents By:", comment: ""), message: nil, preferredStyle: .actionSheet)
+        var sortAlertController = ThemedUIAlertController(title: "Sort Torrents By:".localized, message: nil, preferredStyle: .actionSheet)
 
-        var message = NSLocalizedString("Currently sorted by ", comment: "")
+        var message = "Currently sorted by ".localized
         checkConditionToAddButtonToList(&sortAlertController, &message, alphabetAction, SortingTypes.name)
         checkConditionToAddButtonToList(&sortAlertController, &message, dateAddedAction, SortingTypes.dateAdded)
         checkConditionToAddButtonToList(&sortAlertController, &message, dateCreatedAction, SortingTypes.dateCreated)
@@ -88,7 +92,7 @@ class SortingManager {
 
     private static func createSectionsAlertButton(_ applyChanges: @escaping () -> Void = {}) -> UIAlertAction {
         let sections = UserPreferences.sortingSections
-        let name = sections ? NSLocalizedString("Disable state sections", comment: "") : NSLocalizedString("Enable state sections", comment: "")
+        let name = sections ? "Disable state sections".localized : "Enable state sections".localized
         return UIAlertAction(title: name, style: sections ? .destructive : .default) { _ in
             UserPreferences.sortingSections = !sections
             applyChanges()

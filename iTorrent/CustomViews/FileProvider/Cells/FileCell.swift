@@ -6,7 +6,11 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
 import UIKit
 
 class FileCell: ThemedUITableViewCell, UpdatableModel {
@@ -73,12 +77,12 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         case .lowPriority:
             prioritySwitch.setOn(true, animated: true)
             prioritySwitch.onTintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
-        case .mediumPriority:
-            prioritySwitch.setOn(true, animated: true)
-            prioritySwitch.onTintColor = UIColor.orange
         case .normalPriority:
             prioritySwitch.setOn(true, animated: true)
             prioritySwitch.onTintColor = nil
+        case .highPriority:
+            prioritySwitch.setOn(true, animated: true)
+            prioritySwitch.onTintColor = UIColor.orange
         @unknown default:
             fatalError()
         }

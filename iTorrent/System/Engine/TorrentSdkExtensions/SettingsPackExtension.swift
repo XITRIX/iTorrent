@@ -7,7 +7,12 @@
 //
 
 import Foundation
+
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
 
 extension SettingsPack {
     static var userPrefered: SettingsPack {

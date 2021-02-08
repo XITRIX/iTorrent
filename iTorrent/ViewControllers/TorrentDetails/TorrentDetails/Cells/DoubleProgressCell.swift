@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class DoubleProgressCell: ThemedUITableViewCell, PreferenceCellProtocol {
@@ -19,13 +24,13 @@ class DoubleProgressCell: ThemedUITableViewCell, PreferenceCellProtocol {
     @IBOutlet var bottomProgressBar: SegmentedProgressView!
 
     private var torrentModel: TorrentModel!
-    private var sortedFilesData: [FilePieceData]!
+    private var sortedFilesData: [FilePieceData]?
 
     func setupPiecesFilter() {
         if sortedFilesData != nil {
             return
         }
-        sortedFilesData = TorrentSdk.getFilesOfTorrentByHash(hash: torrentModel.hash)!
+        sortedFilesData = TorrentSdk.getFilesOfTorrentByHash(hash: torrentModel.hash)?
             .sorted(by: { $0.name < $1.name })
             .map { FilePieceData(name: $0.name, beginIdx: $0.beginIdx, endIdx: $0.endIdx) }
     }
@@ -33,7 +38,7 @@ class DoubleProgressCell: ThemedUITableViewCell, PreferenceCellProtocol {
     func sortPiecesByFilesName(_ pieces: [Int]) -> [CGFloat] {
         var res: [CGFloat] = []
 
-        for file in sortedFilesData {
+        for file in sortedFilesData ?? [] {
             for piece in file.beginIdx...file.endIdx {
                 res.append(CGFloat(pieces[Int(piece)]))
             }

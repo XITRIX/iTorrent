@@ -7,7 +7,12 @@
 //
 
 import AVFoundation
+
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
 
 class BackgroundTask {
     public static let shared = BackgroundTask()

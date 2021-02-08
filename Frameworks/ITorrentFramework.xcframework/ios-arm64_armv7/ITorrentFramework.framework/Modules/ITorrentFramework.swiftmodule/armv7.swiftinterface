@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
+// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
 // swift-module-flags: -target armv7-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
 import Foundation
 @_exported import ITorrentFramework
@@ -97,8 +97,8 @@ public class FileModel {
   public enum TorrentDownloadPriority : Swift.Int {
     case dontDownload
     case lowPriority
-    case mediumPriority
     case normalPriority
+    case highPriority
     public typealias RawValue = Swift.Int
     public init?(rawValue: Swift.Int)
     public var rawValue: Swift.Int {

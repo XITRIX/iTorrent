@@ -6,7 +6,12 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class UserPreferences {

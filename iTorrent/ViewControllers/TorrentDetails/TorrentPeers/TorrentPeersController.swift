@@ -5,7 +5,12 @@
 //  Created by Daniil Vinogradov on 28.06.2020.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import DeepDiff
 import UIKit
 

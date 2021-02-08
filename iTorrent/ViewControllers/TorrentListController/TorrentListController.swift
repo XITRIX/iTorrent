@@ -9,7 +9,13 @@
 #if !targetEnvironment(macCatalyst)
 import GoogleMobileAds
 #endif
+
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 import Bond
 

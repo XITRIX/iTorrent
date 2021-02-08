@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import MarqueeLabel
 import UIKit
 
@@ -155,9 +160,11 @@ class TorrentDetailsController: StaticTableViewController {
         transfer.append(DetailCell.Model(title: "Details.Transfer.Total", detail: { Utils.getSizeText(size: weakSelf?.manager.totalWanted) + " / " + Utils.getSizeText(size: weakSelf?.manager.totalSize) }))
         transfer.append(DetailCell.Model(title: "Details.Transfer.Completed", detail: { Utils.getSizeText(size: weakSelf?.manager.totalWantedDone) }))
         transfer.append(DetailCell.Model(title: "Details.Transfer.Progress", detail: {
-            let totalDownloadProgress = (weakSelf?.manager.totalSize ?? 0) > 0 ? Float(weakSelf?.manager.totalDone ?? 0) / Float(weakSelf?.manager.totalSize ?? 0) : 0
+            let totalSize = weakSelf?.manager.totalSize ?? 0
+            let totalDownloadProgress = totalSize > 0 ? Float(weakSelf?.manager.totalDone ?? 0) / Float(totalSize) : 0
             return String(format: "%.2f", weakSelf?.manager.totalWanted == 0 ? 0 :
-                Double(weakSelf?.manager.totalWantedDone ?? 0 * 100) / Double(weakSelf?.manager.totalWanted ?? 0)) + "% / " +
+                Double((weakSelf?.manager.totalWantedDone ?? 0) * 100) / Double(weakSelf?.manager.totalWanted ?? 0)) +
+                "% / " +
                 String(format: "%.2f", totalDownloadProgress * 100) + "%"
         }))
         transfer.append(DetailCell.Model(title: "Details.Transfer.Downloaded", detail: { Utils.getSizeText(size: weakSelf?.manager.totalDownload) }))

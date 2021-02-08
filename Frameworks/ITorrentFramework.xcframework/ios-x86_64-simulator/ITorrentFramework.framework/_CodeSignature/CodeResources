@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/ITorrentFramework-Swift.h</key>
 		<data>
-		L07l5UMil17EeY7NTI0keOamlvo=
+		XtJn1zs130zpyJF5GK9fK8Iu3XM=
 		</data>
 		<key>Headers/ITorrentFramework.h</key>
 		<data>
@@ -14,39 +14,39 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		luuj53z5PzB5ym91FWd+vu5SHY8=
+		h+uyW9eJBlUMPliTCzLVeiiy/tU=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		ae//fzKPPliJN34jq9Xj9veGG2I=
+		17irrtgzGpTZCz9Sgdhw9D146z8=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		ae//fzKPPliJN34jq9Xj9veGG2I=
+		17irrtgzGpTZCz9Sgdhw9D146z8=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		m+9D0piSoRHz3LL03keWQeVFr+8=
+		G5qkCg4kTMuNT409sEEgp4M8NAs=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		i2OdBODbarbV82PPQCJNMciMP20=
+		NvOXjwsn731mwtfEiS20urJMPy8=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Gu0lmk77s90tIhl4UQiMLeyuMcQ=
+		j8A0y5GZ6YGgdvkLHllODFc88QM=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		m+9D0piSoRHz3LL03keWQeVFr+8=
+		G5qkCg4kTMuNT409sEEgp4M8NAs=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		i2OdBODbarbV82PPQCJNMciMP20=
+		NvOXjwsn731mwtfEiS20urJMPy8=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		Gu0lmk77s90tIhl4UQiMLeyuMcQ=
+		j8A0y5GZ6YGgdvkLHllODFc88QM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -79,11 +79,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			L07l5UMil17EeY7NTI0keOamlvo=
+			XtJn1zs130zpyJF5GK9fK8Iu3XM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Loopu5MHwDxmy7SdAcDCwvfxQrmDwPxWnXUCiRVnTGw=
+			I5uAOGBh1nTJQHx2L0wByDM6/YukFU4wHNwPO0EB7lU=
 			</data>
 		</dict>
 		<key>Headers/ITorrentFramework.h</key>
@@ -101,88 +101,88 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ae//fzKPPliJN34jq9Xj9veGG2I=
+			17irrtgzGpTZCz9Sgdhw9D146z8=
 			</data>
 			<key>hash2</key>
 			<data>
-			XxqDN3Vf2nmYvAM+kNXvkTfoDxWGRTT8HBQSy66rHoU=
+			HBvATZ85aDIUxSr5jw5o8/M0S6QpfpWfHbHnVZA6rBU=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ae//fzKPPliJN34jq9Xj9veGG2I=
+			17irrtgzGpTZCz9Sgdhw9D146z8=
 			</data>
 			<key>hash2</key>
 			<data>
-			XxqDN3Vf2nmYvAM+kNXvkTfoDxWGRTT8HBQSy66rHoU=
+			HBvATZ85aDIUxSr5jw5o8/M0S6QpfpWfHbHnVZA6rBU=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			m+9D0piSoRHz3LL03keWQeVFr+8=
+			G5qkCg4kTMuNT409sEEgp4M8NAs=
 			</data>
 			<key>hash2</key>
 			<data>
-			HJaHMUp3dPi3n7vsu8sjBaACNgYqJDixnxG2Cz42Zvg=
+			sNMX4YksE4n4wBW/AZAYgEUiY/R5P0dQvaxSdJP8Q48=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			i2OdBODbarbV82PPQCJNMciMP20=
+			NvOXjwsn731mwtfEiS20urJMPy8=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ch7bE9HSSZqW7DlSlaMktT9Ft3TNS2l6Z1WjtT1JeVc=
+			4QaKo5tAmfXUCjJH4qUGg7uzP1LzNWmAZTDj7IM1w9c=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Gu0lmk77s90tIhl4UQiMLeyuMcQ=
+			j8A0y5GZ6YGgdvkLHllODFc88QM=
 			</data>
 			<key>hash2</key>
 			<data>
-			irsWCgPCr7vSr22qoVy75q1czqjiX5XycIuDlgFumJY=
+			hjxXyPfXPbQ4DL79O+zNKm/UT8zwcunTZoE05C7qU4k=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			m+9D0piSoRHz3LL03keWQeVFr+8=
+			G5qkCg4kTMuNT409sEEgp4M8NAs=
 			</data>
 			<key>hash2</key>
 			<data>
-			HJaHMUp3dPi3n7vsu8sjBaACNgYqJDixnxG2Cz42Zvg=
+			sNMX4YksE4n4wBW/AZAYgEUiY/R5P0dQvaxSdJP8Q48=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftinterface</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			i2OdBODbarbV82PPQCJNMciMP20=
+			NvOXjwsn731mwtfEiS20urJMPy8=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ch7bE9HSSZqW7DlSlaMktT9Ft3TNS2l6Z1WjtT1JeVc=
+			4QaKo5tAmfXUCjJH4qUGg7uzP1LzNWmAZTDj7IM1w9c=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Gu0lmk77s90tIhl4UQiMLeyuMcQ=
+			j8A0y5GZ6YGgdvkLHllODFc88QM=
 			</data>
 			<key>hash2</key>
 			<data>
-			irsWCgPCr7vSr22qoVy75q1czqjiX5XycIuDlgFumJY=
+			hjxXyPfXPbQ4DL79O+zNKm/UT8zwcunTZoE05C7qU4k=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -6,7 +6,12 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class PreferencesController: StaticTableViewController {
@@ -224,8 +229,13 @@ class PreferencesController: StaticTableViewController {
         updates.append(UpdateInfoCell.Model(tapAction: {
             weakSelf?.present(Dialog.createUpdateLogs(forced: true)!, animated: true)
         }))
-        let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
-        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
+        let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!).trimmingCharacters(in: .whitespacesAndNewlines)
+        #if TRANSMISSION
+        let core = "Transmission"
+        #else
+        let core = "libTorrent"
+        #endif
+        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: "iTorrent v\(version ?? "Unknown") \(core) core"))
 
         // -MARK: DONATES
         var donates = [CellModelProtocol]()
@@ -254,7 +264,7 @@ class PreferencesController: StaticTableViewController {
             }
             let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
 
-            alert.addAction(card)
+//            alert.addAction(card)
             alert.addAction(paypal)
             alert.addAction(cancel)
 
