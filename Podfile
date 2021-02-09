@@ -15,9 +15,8 @@ target 'iTorrent' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Core', "~> 6.30.0"
   pod 'Firebase/Performance'
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'AppCenter'
+  pod 'FirebaseCrashlytics'
+  pod 'AppCenter', "~> 4.0.0"
   pod 'Bond'
 end
 

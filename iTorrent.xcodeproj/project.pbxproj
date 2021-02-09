@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E212F0DCB350CD7D3C5C85B /* Pods_iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */; };
 		7C005A18249D75590093C926 /* ProxyPreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C005A17249D75590093C926 /* ProxyPreferencesController.swift */; };
 		7C005A1C249E55EB0093C926 /* StaticTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C005A1A249E55EB0093C926 /* StaticTableViewController.xib */; };
 		7C0A334924A91A9100EF33D0 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */; };
@@ -174,7 +175,6 @@
 		7C2F9E0C25AFA4F500CC61F8 /* FileProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97E4F52433A783004923D8 /* FileProviderDelegate.swift */; };
 		7C2F9E0D25AFA4F500CC61F8 /* TorrentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */; };
 		7C2F9E0E25AFA4F500CC61F8 /* InsetableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C59F5B824D62BCF004B2BDE /* InsetableTableViewController.swift */; };
-		7C2F9E1025AFA4F500CC61F8 /* Pods_iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */; };
 		7C2F9E1325AFA4F500CC61F8 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF0305724A88E3200242822 /* TabBarView.xib */; };
 		7C2F9E1425AFA4F500CC61F8 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CF522ED20AF7B0200D319E6 /* 3.wav */; };
 		7C2F9E1525AFA4F500CC61F8 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C80F74A24338F9B005C4050 /* FolderCell.xib */; };
@@ -387,7 +387,7 @@
 		1BF91A092471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1BF91A0A2471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1BF91A0B2471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
+		5843B8897754FBD2766A88D2 /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
 		7C005A17249D75590093C926 /* ProxyPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyPreferencesController.swift; sourceTree = "<group>"; };
 		7C005A1A249E55EB0093C926 /* StaticTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticTableViewController.xib; sourceTree = "<group>"; };
 		7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
@@ -513,7 +513,8 @@
 		7CC4368424AB9E4500782145 /* PlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderView.swift; sourceTree = "<group>"; };
 		7CC721EB25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ITorrentTransmissionFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CC7662623F93F690072338B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
-		7CCC8DFA25D1E257008F79C3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CCC8DFA25D1E257008F79C3 /* Info-L.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-L.plist"; sourceTree = "<group>"; };
+		7CCC8EEA25D2EFA9008F79C3 /* Info-T.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-T.plist"; sourceTree = "<group>"; };
 		7CCD02C62438962B00B1669F /* ArrayExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtentions.swift; sourceTree = "<group>"; };
 		7CCD02C824389A4F00B1669F /* DiffCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCalculator.swift; sourceTree = "<group>"; };
 		7CCD02CA2439F2C600B1669F /* TorrentListController+SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TorrentListController+SearchView.swift"; sourceTree = "<group>"; };
@@ -571,7 +572,7 @@
 		7CFDDCCA235BA3940008EBEA /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateInfoCell.xib; sourceTree = "<group>"; };
-		F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
+		9A310E18B9CBE5A89C0E1A67 /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -580,7 +581,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CC721EC25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework in Frameworks */,
-				7C2F9E1025AFA4F500CC61F8 /* Pods_iTorrent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +590,7 @@
 			files = (
 				BEA4455F12A1DDE24B36018F /* Pods_iTorrent.framework in Frameworks */,
 				7CCC8DD025D1DFEA008F79C3 /* ITorrentFramework.xcframework in Frameworks */,
+				4E212F0DCB350CD7D3C5C85B /* Pods_iTorrent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,8 +600,8 @@
 		6BC37F51D386D0DAAEDD08BC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */,
-				2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */,
+				9A310E18B9CBE5A89C0E1A67 /* Pods-iTorrent.debug.xcconfig */,
+				5843B8897754FBD2766A88D2 /* Pods-iTorrent.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -719,7 +720,7 @@
 				7C3C693620A754FB0023396C /* Main.storyboard */,
 				7C3C693920A754FD0023396C /* Assets.xcassets */,
 				7C3C693B20A754FD0023396C /* LaunchScreen.storyboard */,
-				7CCC8DFA25D1E257008F79C3 /* Info.plist */,
+				7CCC8EE925D1FB66008F79C3 /* Info */,
 			);
 			path = iTorrent;
 			sourceTree = "<group>";
@@ -1049,6 +1050,15 @@
 			path = PlaceHolder;
 			sourceTree = "<group>";
 		};
+		7CCC8EE925D1FB66008F79C3 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				7CCC8EEA25D2EFA9008F79C3 /* Info-T.plist */,
+				7CCC8DFA25D1E257008F79C3 /* Info-L.plist */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		7CD71417248BD61200A24E98 /* RssReaderController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1231,12 +1241,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C2F9E3525AFA4F500CC61F8 /* Build configuration list for PBXNativeTarget "iTorrent-Transmission" */;
 			buildPhases = (
-				7C2F9D7E25AFA4F500CC61F8 /* [CP] Check Pods Manifest.lock */,
 				7C2F9D7F25AFA4F500CC61F8 /* [CP] Prepare Artifacts */,
 				7C2F9D8025AFA4F500CC61F8 /* Sources */,
 				7C2F9E0F25AFA4F500CC61F8 /* Frameworks */,
 				7C2F9E1225AFA4F500CC61F8 /* Resources */,
-				7C2F9E3025AFA4F500CC61F8 /* [CP] Embed Pods Frameworks */,
 				7C2F9E3125AFA4F500CC61F8 /* Firebase */,
 				7C2F9E3225AFA4F500CC61F8 /* Swiftlint */,
 				7C2F9E4625AFA93400CC61F8 /* Embed Frameworks */,
@@ -1255,7 +1263,6 @@
 			buildConfigurationList = 7C3C694120A754FD0023396C /* Build configuration list for PBXNativeTarget "iTorrent" */;
 			buildPhases = (
 				DBBCCBC72A898D1AC5BBD608 /* [CP] Check Pods Manifest.lock */,
-				3A7DBB95A930514E2CA2E431 /* [CP] Prepare Artifacts */,
 				7C3C692B20A754FB0023396C /* Sources */,
 				7C3C692C20A754FB0023396C /* Frameworks */,
 				7C3C692D20A754FB0023396C /* Resources */,
@@ -1408,23 +1415,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3A7DBB95A930514E2CA2E431 /* [CP] Prepare Artifacts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Prepare Artifacts";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7C05FC0A20BBFB2E006E5CFC /* Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1438,24 +1428,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[$ARCHS != \"x86_64\"]]; then\n    \"${PODS_ROOT}/Fabric/run\"\nfi\n";
-		};
-		7C2F9D7E25AFA4F500CC61F8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iTorrent-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		7C2F9D7F25AFA4F500CC61F8 /* [CP] Prepare Artifacts */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1472,23 +1444,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-artifacts.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7C2F9E3025AFA4F500CC61F8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTorrent/Pods-iTorrent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C2F9E3125AFA4F500CC61F8 /* Firebase */ = {
@@ -1907,7 +1862,6 @@
 /* Begin XCBuildConfiguration section */
 		7C2F9E3625AFA4F500CC61F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1934,7 +1888,7 @@
 					"\"${PODS_ROOT}/Headers/Public/iTorrent\"",
 					"\"$(PROJECT_DIR)/iTorrent/Native Code/include\"",
 				);
-				INFOPLIST_FILE = iTorrent/Info.plist;
+				INFOPLIST_FILE = "iTorrent/Info/Info-T.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1967,7 +1921,6 @@
 		};
 		7C2F9E3725AFA4F500CC61F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1993,7 +1946,7 @@
 					"\"${PODS_ROOT}/Headers/Public/iTorrent\"",
 					"\"$(PROJECT_DIR)/iTorrent/Native Code/include\"",
 				);
-				INFOPLIST_FILE = iTorrent/Info.plist;
+				INFOPLIST_FILE = "iTorrent/Info/Info-T.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2144,7 +2097,7 @@
 		};
 		7C3C694220A754FD0023396C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5512C13E413E5718899B92C /* Pods-iTorrent.debug.xcconfig */;
+			baseConfigurationReference = 9A310E18B9CBE5A89C0E1A67 /* Pods-iTorrent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2170,7 +2123,7 @@
 					"\"${PODS_ROOT}/Headers/Public/iTorrent\"",
 					"\"$(PROJECT_DIR)/iTorrent/Native Code/include\"",
 				);
-				INFOPLIST_FILE = iTorrent/Info.plist;
+				INFOPLIST_FILE = "iTorrent/Info/Info-L.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2202,7 +2155,7 @@
 		};
 		7C3C694320A754FD0023396C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */;
+			baseConfigurationReference = 5843B8897754FBD2766A88D2 /* Pods-iTorrent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -2227,7 +2180,7 @@
 					"\"${PODS_ROOT}/Headers/Public/iTorrent\"",
 					"\"$(PROJECT_DIR)/iTorrent/Native Code/include\"",
 				);
-				INFOPLIST_FILE = iTorrent/Info.plist;
+				INFOPLIST_FILE = "iTorrent/Info/Info-L.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
