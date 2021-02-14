@@ -53,40 +53,40 @@ class NetworkPreferencesController: StaticTableViewController {
             TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
             weakSelf?.updateData()
         })
-        port.append(TextFieldCell.Model(title: "Settings.Network.PortFirst", placeholder: "6881", defaultValue: { String(UserPreferences.portRangeFirst) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }) { port in
-            var iPort: Int
-            if let port = Int(port) {
-                iPort = port
-            } else {
-                iPort = 6881
-            }
-            
-            UserPreferences.portRangeFirst = iPort
-
-            if UserPreferences.portRangeSecond - iPort < 0 {
-                UserPreferences.portRangeSecond = iPort + 10
-            }
-
-            weakSelf?.updateData()
-            TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-        })
-        port.append(TextFieldCell.Model(title: "Settings.Network.PortSecond", placeholder: "6891", defaultValue: { String(UserPreferences.portRangeSecond) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }) { port in
-            var iPort: Int
-            if let port = Int(port) {
-                iPort = port
-            } else {
-                iPort = UserPreferences.portRangeFirst + 10
-            }
-            
-            if iPort - UserPreferences.portRangeFirst < 0 {
-                iPort = UserPreferences.portRangeFirst + 10
-            }
-            
-            UserPreferences.portRangeSecond = iPort
-
-            weakSelf?.updateData()
-            TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-        })
+      port.append(TextFieldCell.Model(title: "Settings.Network.PortFirst", placeholder: "6881", defaultValue: { String(UserPreferences.portRangeFirst) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }, textEditEndAction:  { port in
+        var iPort: Int
+        if let port = Int(port) {
+          iPort = port
+        } else {
+          iPort = 6881
+        }
+        
+        UserPreferences.portRangeFirst = iPort
+        
+        if UserPreferences.portRangeSecond - iPort < 0 {
+          UserPreferences.portRangeSecond = iPort + 10
+        }
+        
+        weakSelf?.updateData()
+        TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+      }))
+      port.append(TextFieldCell.Model(title: "Settings.Network.PortSecond", placeholder: "6891", defaultValue: { String(UserPreferences.portRangeSecond) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }, textEditEndAction:  { port in
+        var iPort: Int
+        if let port = Int(port) {
+          iPort = port
+        } else {
+          iPort = UserPreferences.portRangeFirst + 10
+        }
+        
+        if iPort - UserPreferences.portRangeFirst < 0 {
+          iPort = UserPreferences.portRangeFirst + 10
+        }
+        
+        UserPreferences.portRangeSecond = iPort
+        
+        weakSelf?.updateData()
+        TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+      }))
         data.append(Section(rowModels: port, header: "Settings.Network.Port"))
     }
 }

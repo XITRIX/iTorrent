@@ -12,9 +12,6 @@ import ITorrentFramework
 import UIKit
 
 #if !targetEnvironment(macCatalyst)
-import FirebaseCore
-import GoogleMobileAds
-
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -29,20 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
-        #if !targetEnvironment(macCatalyst)
-        // Crash on iOS 9
-        if #available(iOS 10, *) {
-            AppCenter.start(withAppSecret: "381c5088-264f-4ea2-b145-498a2ce15a06", services: [
-                Analytics.self,
-                Crashes.self
-            ])
-        }
-
-        FirebaseApp.configure()
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        #endif
-
         pushNotificationsInit(application)
         PatreonAPI.configure()
         rootWindowInit()
@@ -55,26 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserPreferences.ftpKey {
             Core.shared.startFileSharing()
         }
-
-        func showAds() {
-            #if !targetEnvironment(macCatalyst)
-            DispatchQueue.global(qos: .utility).async {
-                sleep(1)
-                if !self.openedByFile {
-                    FullscreenAd.shared.load()
-                }
-            }
-            #endif
-        }
-
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { _ in
-                showAds()
-            }
-        } else {
-            showAds()
-        }
-
         return true
     }
 

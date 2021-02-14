@@ -31,11 +31,6 @@ class ThemedUIViewController: SAViewController, Themed {
         themeUpdate()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //themeUpdate()
-    }
-
     @objc func themeUpdate() {
         let theme = Themes.current
 

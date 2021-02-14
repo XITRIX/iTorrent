@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -125,17 +125,6 @@
                                     <constraint firstItem="tMU-dN-W3p" firstAttribute="leading" secondItem="E7j-3O-T4A" secondAttribute="leading" id="qNU-LP-I5E"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxi-gq-Num" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="679" width="375" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="f9q-nH-fhb"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-3833820876743264/1345533898"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BKM-Z7-QMV">
                                 <rect key="frame" x="169" y="390" width="37" height="37"/>
                             </activityIndicatorView>
@@ -143,10 +132,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxi-gq-Num" secondAttribute="bottom" id="9yD-lu-xvj"/>
                             <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="2.5" id="IOs-1r-zKT"/>
-                            <constraint firstItem="nxi-gq-Num" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M23-SY-liw"/>
-                            <constraint firstItem="nxi-gq-Num" firstAttribute="top" relation="greaterThanOrEqual" secondItem="E7j-3O-T4A" secondAttribute="bottom" id="Mvn-oc-kG2"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R2A-HJ-SSf"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SWS-Ke-a9L"/>
                             <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tf6-pG-lDm"/>
@@ -154,7 +140,6 @@
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="8" id="aPx-jZ-Piy"/>
                             <constraint firstAttribute="bottom" secondItem="KYM-MO-AoK" secondAttribute="bottom" id="mVJ-2H-IOE"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="q0D-OC-eGZ"/>
-                            <constraint firstAttribute="trailing" secondItem="nxi-gq-Num" secondAttribute="trailing" id="usz-dZ-670"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -192,7 +177,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="adsView" destination="nxi-gq-Num" id="j3U-eP-Jt3"/>
                         <outlet property="loadingIndicator" destination="BKM-Z7-QMV" id="qIk-wH-5TV"/>
                         <outlet property="rssButton" destination="NHt-EX-Ip2" id="9iY-GE-Shk"/>
                         <outlet property="tableView" destination="KYM-MO-AoK" id="cR8-c4-Yl1"/>

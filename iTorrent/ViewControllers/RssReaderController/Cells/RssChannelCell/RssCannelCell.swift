@@ -55,12 +55,12 @@ class RssChannelCell: ThemedUITableViewCell {
         vc = Utils.instantiate("RssChannelSetup")
         vc.model = model
         parent?.channelSetupView?.dismiss(animationOnly: true)
-        parent?.channelSetupView = PopupView(contentView: vc.view, contentHeight: 198) {
-            if let editing = self.parent?.isEditing {
-                self.parent?.channelSetupView = nil
-                self.parent?.navigationController?.setToolbarHidden(!editing, animated: true)
-            }
+      parent?.channelSetupView = PopupView(contentView: vc.view, contentHeight: 198, dismissAction:  {
+        if let editing = self.parent?.isEditing {
+          self.parent?.channelSetupView = nil
+          self.parent?.navigationController?.setToolbarHidden(!editing, animated: true)
         }
+      })
         parent?.navigationController?.setToolbarHidden(true, animated: true)
         parent?.channelSetupView?.show(parent!)
     }
