@@ -36,7 +36,7 @@ class TorrentListDataSource: DiffableDataSource<String, TorrentModel> {
             // if detail view opens with deleted hash, close it
             if let splitViewController = self.controller.splitViewController,
                 !splitViewController.isCollapsed,
-                let nav = splitViewController.viewControllers[1] as? UINavigationController,
+                let nav = splitViewController.viewControllers.last(where: {$0 is UINavigationController}) as? UINavigationController,
                 let detailView = nav.viewControllers.first as? TorrentDetailsController {
                 if hashes.contains(where: { $0 == detailView.managerHash }) {
                     splitViewController.showDetailViewController(Utils.createEmptyViewController(), sender: self)
