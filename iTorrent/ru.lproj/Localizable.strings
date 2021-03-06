@@ -142,6 +142,11 @@
 "Settings.BackgroundHeader" = "Фоновая загрузка";
 "Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
 
+"Settings.QueueLimitHeader" = "Лимиты очерёдности торрентов";
+"Settings.TorrentsLimit" = "Активных торрентов";
+"Settings.TorrentsDownLimit" = "Активных загрузок";
+"Settings.TorrentsUpLimit" = "Активных отдач";
+
 "Settings.ZeroSpeedLimit" = "Нулевая скорость";
 "Settings.ZeroSpeedLimit.Hint" = "Если в течение некоторого времени скорость загрузки равна нулю, приложение остановит работу в фоне, чтобы предотвратить бесполезную разрядку батареи";
 "Settings.DownLimit" = "Лимит загрузки";

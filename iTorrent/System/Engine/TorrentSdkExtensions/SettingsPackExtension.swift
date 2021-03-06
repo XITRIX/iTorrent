@@ -23,6 +23,9 @@ extension SettingsPack {
                      enableUtp: UserPreferences.enableUtp,
                      enableUpnp: UserPreferences.enableUpnp,
                      enableNatpmp: UserPreferences.enableNatpmp,
+                     maxActiveTorrents: UserPreferences.maxActiveTorrents,
+                     maxUplodingTorrents: UserPreferences.maxUplodingTorrents,
+                     maxDownloadingTorrents: UserPreferences.maxDownloadingTorrents,
                      interfaceType: UserPreferences.interfaceType,
                      portRangeFirst: !UserPreferences.defaultPort ?
                          UserPreferences.portRangeFirst :

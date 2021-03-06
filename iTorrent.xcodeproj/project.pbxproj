@@ -242,6 +242,9 @@
 		7C653052253F7ED60011A91E /* MessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C653051253F7ED60011A91E /* MessageError.swift */; };
 		7C6530552540B35D0011A91E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6530532540B35D0011A91E /* PopupViewController.swift */; };
 		7C6530562540B35D0011A91E /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C6530542540B35D0011A91E /* PopupViewController.xib */; };
+		7C73277F25F2E83700B7CFAD /* TorrentLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C73277E25F2E83700B7CFAD /* TorrentLimitPicker.swift */; };
+		7C7327B125F2FD0200B7CFAD /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
+		7C7327B225F2FD0200B7CFAD /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C74B8522125BE4700988F1C /* NotificationNamesExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */; };
 		7C786891251B942800CD61F0 /* InterfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C786890251B942800CD61F0 /* InterfaceType.swift */; };
 		7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */; };
@@ -298,8 +301,6 @@
 		7CC721EC25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC721EB25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework */; };
 		7CC721ED25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC721EB25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7662623F93F690072338B /* NotificationHelper.swift */; };
-		7CCC8DD025D1DFEA008F79C3 /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
-		7CCC8DD125D1DFEA008F79C3 /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CCD02C72438962B00B1669F /* ArrayExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02C62438962B00B1669F /* ArrayExtentions.swift */; };
 		7CCD02C924389A4F00B1669F /* DiffCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02C824389A4F00B1669F /* DiffCalculator.swift */; };
 		7CCD02CB2439F2C600B1669F /* TorrentListController+SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02CA2439F2C600B1669F /* TorrentListController+SearchView.swift */; };
@@ -369,13 +370,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7CCC8DD225D1DFEB008F79C3 /* Embed Frameworks */ = {
+		7C7327B325F2FD0200B7CFAD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7CCC8DD125D1DFEA008F79C3 /* ITorrentFramework.xcframework in Embed Frameworks */,
+				7C7327B225F2FD0200B7CFAD /* ITorrentFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,6 +454,8 @@
 		7C653051253F7ED60011A91E /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
 		7C6530532540B35D0011A91E /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		7C6530542540B35D0011A91E /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
+		7C73277E25F2E83700B7CFAD /* TorrentLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentLimitPicker.swift; sourceTree = "<group>"; };
+		7C7327AA25F2FCAF00B7CFAD /* ITorrentFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ITorrentFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesExtention.swift; sourceTree = "<group>"; };
 		7C786890251B942800CD61F0 /* InterfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceType.swift; sourceTree = "<group>"; };
 		7C7D0AB320D8EA2C001B08E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -589,8 +592,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA4455F12A1DDE24B36018F /* Pods_iTorrent.framework in Frameworks */,
-				7CCC8DD025D1DFEA008F79C3 /* ITorrentFramework.xcframework in Frameworks */,
 				4E212F0DCB350CD7D3C5C85B /* Pods_iTorrent.framework in Frameworks */,
+				7C7327B125F2FD0200B7CFAD /* ITorrentFramework.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,6 +733,7 @@
 			children = (
 				7CC721EB25B1F85A0080A3B0 /* ITorrentTransmissionFramework.framework */,
 				7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */,
+				7C7327AA25F2FCAF00B7CFAD /* ITorrentFramework.framework */,
 				7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */,
 			);
 			name = Frameworks;
@@ -1217,6 +1221,7 @@
 				7CE3CEB22321C350005575D5 /* SpeedPicker.swift */,
 				7CBB17DA232328D20043A9F6 /* SizePicker.swift */,
 				7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */,
+				7C73277E25F2E83700B7CFAD /* TorrentLimitPicker.swift */,
 			);
 			path = DataPickers;
 			sourceTree = "<group>";
@@ -1269,7 +1274,7 @@
 				2166940B46193AB32D6C3260 /* [CP] Embed Pods Frameworks */,
 				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
 				7CD95E5E2370443200C21F81 /* Swiftlint */,
-				7CCC8DD225D1DFEB008F79C3 /* Embed Frameworks */,
+				7C7327B325F2FD0200B7CFAD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1792,6 +1797,7 @@
 				7C4B10A320E0099300440E74 /* ThemedUILabel.swift in Sources */,
 				7C4DB4E122AD457A00D45494 /* SegmentedProgressView.swift in Sources */,
 				7CB9BBAF23786D8D00C8F05E /* Section.swift in Sources */,
+				7C73277F25F2E83700B7CFAD /* TorrentLimitPicker.swift in Sources */,
 				7C59F5C124D73B63004B2BDE /* DetailCell.swift in Sources */,
 				7CB8083520AAF09F00F76931 /* Downloader.swift in Sources */,
 				7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */,

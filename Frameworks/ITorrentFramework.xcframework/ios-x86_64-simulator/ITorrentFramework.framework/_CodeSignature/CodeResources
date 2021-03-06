@@ -14,15 +14,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		h+uyW9eJBlUMPliTCzLVeiiy/tU=
+		oKTSSdSWu9u5DZEXin0r/c4/+kg=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		17irrtgzGpTZCz9Sgdhw9D146z8=
+		SoY/pVoAY4uNtQ0riU/hnK+xhzg=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		17irrtgzGpTZCz9Sgdhw9D146z8=
+		SoY/pVoAY4uNtQ0riU/hnK+xhzg=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		NvOXjwsn731mwtfEiS20urJMPy8=
+		mlbyGamVGxGVdCDXU4TTKbQPT7I=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		j8A0y5GZ6YGgdvkLHllODFc88QM=
+		7qdkNIEdpVSVeKVWCvWCSfxiQ1A=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -42,11 +42,11 @@
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		NvOXjwsn731mwtfEiS20urJMPy8=
+		mlbyGamVGxGVdCDXU4TTKbQPT7I=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		j8A0y5GZ6YGgdvkLHllODFc88QM=
+		7qdkNIEdpVSVeKVWCvWCSfxiQ1A=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>PrivateHeaders/settings_pack_struct.h</key>
 		<data>
-		4EijuOSlRojey+8sK+2cmA0kO5A=
+		bav1bL6oqGgqfLy41nj7XDiuRro=
 		</data>
 		<key>PrivateHeaders/torrent_headers.h</key>
 		<data>
@@ -101,22 +101,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			17irrtgzGpTZCz9Sgdhw9D146z8=
+			SoY/pVoAY4uNtQ0riU/hnK+xhzg=
 			</data>
 			<key>hash2</key>
 			<data>
-			HBvATZ85aDIUxSr5jw5o8/M0S6QpfpWfHbHnVZA6rBU=
+			hIEzTuAvT4gk9baTF6XM/uC4UqSmBUzN4iTM6Fwt4nI=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			17irrtgzGpTZCz9Sgdhw9D146z8=
+			SoY/pVoAY4uNtQ0riU/hnK+xhzg=
 			</data>
 			<key>hash2</key>
 			<data>
-			HBvATZ85aDIUxSr5jw5o8/M0S6QpfpWfHbHnVZA6rBU=
+			hIEzTuAvT4gk9baTF6XM/uC4UqSmBUzN4iTM6Fwt4nI=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -134,22 +134,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NvOXjwsn731mwtfEiS20urJMPy8=
+			mlbyGamVGxGVdCDXU4TTKbQPT7I=
 			</data>
 			<key>hash2</key>
 			<data>
-			4QaKo5tAmfXUCjJH4qUGg7uzP1LzNWmAZTDj7IM1w9c=
+			S5++dB+eBoqI8ZJvoHAP+LL3govAzjImCnFAUNGnDhM=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			j8A0y5GZ6YGgdvkLHllODFc88QM=
+			7qdkNIEdpVSVeKVWCvWCSfxiQ1A=
 			</data>
 			<key>hash2</key>
 			<data>
-			hjxXyPfXPbQ4DL79O+zNKm/UT8zwcunTZoE05C7qU4k=
+			tfG8Myp94++TcmFwJ9quLrC9NkFRnYJJUdPXYW+Bau0=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftdoc</key>
@@ -167,22 +167,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			NvOXjwsn731mwtfEiS20urJMPy8=
+			mlbyGamVGxGVdCDXU4TTKbQPT7I=
 			</data>
 			<key>hash2</key>
 			<data>
-			4QaKo5tAmfXUCjJH4qUGg7uzP1LzNWmAZTDj7IM1w9c=
+			S5++dB+eBoqI8ZJvoHAP+LL3govAzjImCnFAUNGnDhM=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			j8A0y5GZ6YGgdvkLHllODFc88QM=
+			7qdkNIEdpVSVeKVWCvWCSfxiQ1A=
 			</data>
 			<key>hash2</key>
 			<data>
-			hjxXyPfXPbQ4DL79O+zNKm/UT8zwcunTZoE05C7qU4k=
+			tfG8Myp94++TcmFwJ9quLrC9NkFRnYJJUdPXYW+Bau0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -233,11 +233,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4EijuOSlRojey+8sK+2cmA0kO5A=
+			bav1bL6oqGgqfLy41nj7XDiuRro=
 			</data>
 			<key>hash2</key>
 			<data>
-			RJSdVYorq2Sljr2PoKbkwMZ2ablzXI9eyBTKxw7Sk6c=
+			ZBGxD3mqfX9TeURnI0IR/aN1+SK/2L4hwwkGmoi7zs8=
 			</data>
 		</dict>
 		<key>PrivateHeaders/torrent_headers.h</key>

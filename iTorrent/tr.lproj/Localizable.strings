@@ -142,6 +142,11 @@
 "Settings.BackgroundHeader" = "Arkaplanda indirme";
 "Settings.BackgroundFooter" = "Multimedya işlevleri vasıtasıyla arkaplanda indirmeye izin ver";
 
+"Settings.QueueLimitHeader" = "Torrent Queueing limit";
+"Settings.TorrentsLimit" = "Active torrents";
+"Settings.TorrentsDownLimit" = "Downloading torrents";
+"Settings.TorrentsUpLimit" = "Uploading torrents";
+
 "Settings.ZeroSpeedLimit" = "Hızı sıfırla";
 "Settings.ZeroSpeedLimit.Hint" = "Eğer indirme hızı belli bir süre boyunca sıfırlanırsa, uygulama gereksiz pil kullanımını engellemek için arkaplanda işlem yapmayı durduracaktır.";
 "Settings.DownLimit" = "İndirme sınırı";

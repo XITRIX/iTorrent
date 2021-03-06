@@ -32,6 +32,9 @@ class UserPreferences {
     @PreferenceItem("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1]) static var sectionsSortingOrder: [Int]
     @PreferenceItem("themeNum", 0) static var themeNum: Int
     @PreferenceItem("zeroSpeedLimit", 60) static var zeroSpeedLimit: Int
+    @PreferenceItem("maxActiveTorrents", 5) static var maxActiveTorrents: Int
+    @PreferenceItem("maxUplodingTorrents", 3) static var maxUplodingTorrents: Int
+    @PreferenceItem("maxDownloadingTorrents", 3) static var maxDownloadingTorrents: Int
     @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int
     @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int
     @PreferenceItem("seedBackgroundWarning", false) static var seedBackgroundWarning: Bool

@@ -21,6 +21,10 @@ typedef struct settings_pack_struct {
     int download_limit;
     int upload_limit;
     
+    int max_active_torrents_limit;
+    int max_upload_torrents_limit;
+    int max_download_torrents_limit;
+    
     bool enable_dht;
     bool enable_lsd;
     bool enable_utp;

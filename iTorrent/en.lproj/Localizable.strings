@@ -142,6 +142,11 @@
 "Settings.BackgroundHeader" = "Background downloading";
 "Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
 
+"Settings.QueueLimitHeader" = "Torrent Queueing limit";
+"Settings.TorrentsLimit" = "Active torrents";
+"Settings.TorrentsDownLimit" = "Downloading torrents";
+"Settings.TorrentsUpLimit" = "Uploading torrents";
+
 "Settings.ZeroSpeedLimit" = "Zero speed limit";
 "Settings.ZeroSpeedLimit.Hint" = "If download speed equals zero for a certain amount of time, application will stop background processing to prevent useless battery drain";
 "Settings.DownLimit" = "Download limit";
