@@ -9,11 +9,21 @@
 import Foundation
 
 class ViewModel {
-    required init() { }
-    
-    func viewDidLoad() { }
-    func viewWillAppear() { }
-    func viewDidAppear() { }
-    func viewWillDisappear() { }
-    func viewDidDisappear() { }
+    required init() {
+    }
+
+    func viewDidLoad() {
+    }
+
+    func viewWillAppear() {
+    }
+
+    func viewDidAppear() {
+    }
+
+    func viewWillDisappear() {
+    }
+
+    func viewDidDisappear() {
+    }
 }
