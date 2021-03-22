@@ -10,6 +10,8 @@ import ITorrentFramework
 import UIKit
 
 class TorrentFilesController: ThemedUIViewController {
+    private var canUpdateData = true
+    
     static let filesUpdatedNotification = NSNotification.Name(rawValue: "filesUpdatedNotification")
     
     var editButton: UIBarButtonItem!
@@ -97,6 +99,8 @@ class TorrentFilesController: ThemedUIViewController {
     }
     
     @objc func updateData() {
+        guard canUpdateData else { return }
+        canUpdateData = false
         DispatchQueue.global(qos: .utility).async { [files] in
             guard let files = files else { return }
             if let upd = TorrentSdk.getFilesOfTorrentByHash(hash: self.torrentHash),
@@ -108,6 +112,7 @@ class TorrentFilesController: ThemedUIViewController {
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: TorrentFilesController.self.filesUpdatedNotification, object: nil)
             }
+            self.canUpdateData = true
         }
     }
     
