@@ -12,6 +12,9 @@ import UIKit
 class TorrentFilesController: ThemedUIViewController {
     static let filesUpdatedNotification = NSNotification.Name(rawValue: "filesUpdatedNotification")
     
+    private var currentWorkItem: DispatchWorkItem?
+    private let updateSerialQueue = DispatchQueue.init(label: "com.iTorrent.filesUpdate", qos: .utility)
+    
     var editButton: UIBarButtonItem!
     var selectAllButton: UIBarButtonItem!
     var deselectAllButton: UIBarButtonItem!
@@ -97,10 +100,11 @@ class TorrentFilesController: ThemedUIViewController {
     }
     
     @objc func updateData() {
-        DispatchQueue.global(qos: .utility).async { [files] in
+        guard currentWorkItem == nil else { return }
+        currentWorkItem = DispatchWorkItem { [files] in
             guard let files = files else { return }
             if let upd = TorrentSdk.getFilesOfTorrentByHash(hash: self.torrentHash),
-                files.count == upd.count {
+               files.count == upd.count {
                 for idx in 0 ..< files.count {
                     files[idx].update(with: upd[idx])
                 }
@@ -109,6 +113,11 @@ class TorrentFilesController: ThemedUIViewController {
                 NotificationCenter.default.post(name: TorrentFilesController.self.filesUpdatedNotification, object: nil)
             }
         }
+        currentWorkItem?.notify(queue: updateSerialQueue) { [weak self] in
+            self?.currentWorkItem = nil
+        }
+        guard let workItem = currentWorkItem else { return }
+        updateSerialQueue.async(execute: workItem)
     }
     
     @objc func updateUI() {
