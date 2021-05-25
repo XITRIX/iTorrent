@@ -93,7 +93,6 @@
 		7C2F9DBA25AFA4F500CC61F8 /* ThemedUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD494B22A85B610061FEE5 /* ThemedUIActivityViewController.swift */; };
 		7C2F9DBB25AFA4F500CC61F8 /* DiffAwareExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B71D424D5DFE100DA0C49 /* DiffAwareExtensions.swift */; };
 		7C2F9DBC25AFA4F500CC61F8 /* ThemedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C98410C24A6370800B51AA0 /* ThemedUIView.swift */; };
-		7C2F9DBD25AFA4F500CC61F8 /* CObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA545D5253EEE0C002A9DBE /* CObservable.swift */; };
 		7C2F9DBE25AFA4F500CC61F8 /* AppDelegate+UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */; };
 		7C2F9DBF25AFA4F500CC61F8 /* SortingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF522E520AE1F5000D319E6 /* SortingManager.swift */; };
 		7C2F9DC025AFA4F500CC61F8 /* PatreonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF75F28244BB97300F5C089 /* PatreonViewController.swift */; };
@@ -271,7 +270,6 @@
 		7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */; };
 		7CA2E84C2496B9580010EAB4 /* AppDelegate+SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2E84B2496B9580010EAB4 /* AppDelegate+SplitViewController.swift */; };
 		7CA2E84E2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */; };
-		7CA545D6253EEE0C002A9DBE /* CObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA545D5253EEE0C002A9DBE /* CObservable.swift */; };
 		7CA545D8253F0F77002A9DBE /* RssSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA545D7253F0F77002A9DBE /* RssSearchDataSource.swift */; };
 		7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */; };
 		7CAF077E248591AA00AAB4FB /* DiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF077D248591AA00AAB4FB /* DiffableDataSource.swift */; };
@@ -484,7 +482,6 @@
 		7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		7CA2E84B2496B9580010EAB4 /* AppDelegate+SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SplitViewController.swift"; sourceTree = "<group>"; };
 		7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UserNotificationCenter.swift"; sourceTree = "<group>"; };
-		7CA545D5253EEE0C002A9DBE /* CObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CObservable.swift; sourceTree = "<group>"; };
 		7CA545D7253F0F77002A9DBE /* RssSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchDataSource.swift; sourceTree = "<group>"; };
 		7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLimitPicker.swift; sourceTree = "<group>"; };
 		7CAF077D248591AA00AAB4FB /* DiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSource.swift; sourceTree = "<group>"; };
@@ -744,7 +741,6 @@
 			children = (
 				7C46748124883F4000ABC838 /* ViewModel.swift */,
 				7C46748324883F5900ABC838 /* MvvmViewController.swift */,
-				7CA545D5253EEE0C002A9DBE /* CObservable.swift */,
 			);
 			path = Mvvm;
 			sourceTree = "<group>";
@@ -1586,7 +1582,6 @@
 				7C2F9DBA25AFA4F500CC61F8 /* ThemedUIActivityViewController.swift in Sources */,
 				7C2F9DBB25AFA4F500CC61F8 /* DiffAwareExtensions.swift in Sources */,
 				7C2F9DBC25AFA4F500CC61F8 /* ThemedUIView.swift in Sources */,
-				7C2F9DBD25AFA4F500CC61F8 /* CObservable.swift in Sources */,
 				7C2F9DBE25AFA4F500CC61F8 /* AppDelegate+UserNotificationCenter.swift in Sources */,
 				7C2F9DBF25AFA4F500CC61F8 /* SortingManager.swift in Sources */,
 				7C2F9DC025AFA4F500CC61F8 /* PatreonViewController.swift in Sources */,
@@ -1735,7 +1730,6 @@
 				7CCD494C22A85B610061FEE5 /* ThemedUIActivityViewController.swift in Sources */,
 				7C4B71D524D5DFE100DA0C49 /* DiffAwareExtensions.swift in Sources */,
 				7C98410D24A6370800B51AA0 /* ThemedUIView.swift in Sources */,
-				7CA545D6253EEE0C002A9DBE /* CObservable.swift in Sources */,
 				7CA2E84E2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift in Sources */,
 				7CF522E620AE1F5000D319E6 /* SortingManager.swift in Sources */,
 				7CF75F29244BB97300F5C089 /* PatreonViewController.swift in Sources */,
@@ -2113,7 +2107,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 21.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = D5UQ7XT49T;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2146,7 +2140,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = "VS: ru.nonamedude.iTorrent Development";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent/Utils/Native/iTorrent-Bridging-Header.h";
@@ -2170,7 +2164,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 21.0;
-				DEVELOPMENT_TEAM = D5UQ7XT49T;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2202,7 +2196,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = "VS: ru.nonamedude.iTorrent Development";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent/Utils/Native/iTorrent-Bridging-Header.h";
