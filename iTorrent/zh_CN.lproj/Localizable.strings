@@ -115,8 +115,8 @@
 "Details.Transfer.Progress" = "选中进度/全部进度";
 "Details.Transfer.Downloaded" = "已下载";
 "Details.Transfer.Uploaded" = "已上传";
-"Details.Transfer.Seeders" = "做种者";
-"Details.Transfer.leech" = "下载者";
+"Details.Transfer.Seeders" = "完成";
+"Details.Transfer.Leechers" = "下载";
 
 "Details.More.Title" = "更多";
 "Details.More.Trackers" = "Tracker 列表";
@@ -276,13 +276,13 @@
 "Enter the fullTracker's URL" = "输入完整 Tracker 的 URL";
 "Tracker's URL" = "输入 Tracker 的 URL";
 "Peers" = "对等节点";
-"Seeds" = "做种者";
-"Leechers" = "下载者";
+"Seeds" = "做种";
+"Leechers" = "下载";
 "Are you shure to remove thisTrackers?" = "你确定要删除这个 Tracker 吗？";
 "Tracker's URL copied to clipboard!" = "Tracker 的 URL 已被拷贝到剪切板！";
 
 //AppDelegate
-"Obtaining Metadata" = "Obtaining Metadata";
+"Obtaining Metadata" = "获取元数据";
 "Finish the previous torrent adding before start the new one." = "完成上个 Torrent 添加后才能添加新的 Torrent";
 "Error on torrent opening" = "打开 Torrent 时发生错误";
 "Error on torrent reading" = "读取 Torrent 时发生错误";
