@@ -108,7 +108,7 @@
 "KEg-ok-zwa.text" = "已完成";
 
 /* Class = "UILabel"; text = "Hash"; ObjectID = "LN8-EP-fZn"; */
-"LN8-EP-fZn.text" = "Хэш";
+"LN8-EP-fZn.text" = "Hash";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "LNi-AY-9uK"; */
 "LNi-AY-9uK.text" = "标题";
