@@ -24,7 +24,7 @@
 "SpeedPicker.Error" = "错误值";
 
 //Main Controller
-"of" = "为";
+"of" = "/";
 
 "Add" = "添加";
 "Done" = "完成";
@@ -210,7 +210,7 @@
 "Settings.DonateCard.DonatePlatforms" = "捐赠";
 "Settings.DonateCard.DonatePlatforms.Title" = "选择捐赠平台: ";
 "Settings.DonateHeader" = "捐赠甜甜圈";
-"Settings.DonateFooter" = "链接到 Patreon 以关闭广告";
+"Settings.DonateFooter" = "链接 Patreon 以关闭广告";
 
 "Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
 "Settings.Patreon.Creator" = "iTorrent 的创建者";
@@ -235,7 +235,7 @@
 "This action will recheck the state of all downloaded files" = "此操作将重新检查所有下载文件的状态";
 "Rehash" = "重新检查";
 
-"Current app version: " = "当前的 App 版本: ";
+"Current app version: " = "当前 App 版本: ";
 "New version " = "新版本 ";
 " available" = " 可用";
 "WOW, is it a new inDev build, huh?" = "哇哦，这是正在开发的新版本，对吗？";
