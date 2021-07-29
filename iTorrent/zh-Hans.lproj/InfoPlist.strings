@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 09.04.2020.
+  Copyright © 2020  XITRIX. All rights reserved.
+*/
+
+"NSPhotoLibraryAddUsageDescription" = "允许以存储文件到照片 App";
