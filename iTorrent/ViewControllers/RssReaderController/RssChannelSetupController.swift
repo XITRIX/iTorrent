@@ -46,9 +46,9 @@ class RssChannelSetupController: ThemedUITableViewController {
         }).dispose(in: bag)
         
         notificationSwitch.setOn(!model.muteNotifications.value, animated: false)
-        notificationSwitch.reactive.isOn.observeNext { on in
-            self.model.muteNotifications.value = !on
-            RssFeedProvider.shared.rssModels.notifyUpdate() 
+        notificationSwitch.reactive.controlEvents(.valueChanged).observeNext { [unowned self] _ in
+            model.muteNotifications.value = !notificationSwitch.isOn
+            RssFeedProvider.shared.rssModels.notifyUpdate()
         }.dispose(in: bag)
     }
     
