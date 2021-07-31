@@ -105,6 +105,17 @@ extension TorrentListController: UITableViewDelegate {
         return nil
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if #available(iOS 15.0, *) {
+            if !UserPreferences.sortingSections,
+                let header = tableView.headerView(forSection: 0) as? TabBarView {
+                let navHeight = navigationController?.navigationBar.frame.height ?? 0
+                let alpha = min(max(0, scrollView.contentOffset.y + navHeight), 12) / 12
+                header.fxView.alpha = alpha
+            }
+        }
+    }
+    
     @available(iOS 13.0, *)
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         guard let hash = torrentListDataSource.snapshot?.getItem(from: indexPath)?.hash,
