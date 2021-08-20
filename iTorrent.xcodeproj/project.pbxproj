@@ -2109,7 +2109,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D59DHVRS87;
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = armv7;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator15.0]" = "armv7 arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2166,7 +2167,8 @@
 				CURRENT_PROJECT_VERSION = 21.0;
 				DEVELOPMENT_TEAM = D59DHVRS87;
 				ENABLE_BITCODE = NO;
-				EXCLUDED_ARCHS = "";
+				EXCLUDED_ARCHS = armv7;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator15.0]" = "armv7 arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
