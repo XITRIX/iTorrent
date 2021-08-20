@@ -18,8 +18,11 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
     static let id = "TabBarView"
     static let nib = UINib(nibName: id, bundle: Bundle.main)
     
+    
+    @IBOutlet var backgroundFxView: UIView!
     @IBOutlet var fxView: UIVisualEffectView!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var separatorView: UIView!
     weak var delegate: TabBarViewDelegate?
     
     var selected = IndexPath(item: 0, section: 0)
@@ -57,6 +60,12 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
             var backgroundConfig = UIBackgroundConfiguration.clear()
             backgroundConfig.backgroundColor = .clear
             backgroundConfiguration = backgroundConfig
+        }
+        
+        if #available(iOS 15.0, *) {
+            backgroundFxView.alpha = 0
+        } else {
+            separatorView.isHidden = true
         }
     }
     

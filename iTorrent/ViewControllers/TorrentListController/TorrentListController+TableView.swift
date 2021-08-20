@@ -107,12 +107,45 @@ extension TorrentListController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if #available(iOS 15.0, *) {
+            let safe = tableView.adjustedContentInset.top
+            let offset = scrollView.contentOffset.y
+            let alpha = min(max(0, offset + safe - 22), 12) / 12
+//            print("offset: \(Int(offset)) / safe: \(Int(safe))")
+            
             if !UserPreferences.sortingSections,
                 let header = tableView.headerView(forSection: 0) as? TabBarView {
-                let navHeight = navigationController?.navigationBar.frame.height ?? 0
-                let alpha = min(max(0, scrollView.contentOffset.y + navHeight), 12) / 12
-                header.fxView.alpha = alpha
+                header.backgroundFxView.alpha = alpha
+            } else {
+                updateHeadersBackground()
             }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if #available(iOS 15.0, *) {
+            updateHeadersBackground()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        if #available(iOS 15.0, *) {
+            updateHeadersBackground()
+        }
+    }
+    
+    @available(iOS 15.0, *)
+    func updateHeadersBackground() {
+        var first = true
+        let offset = tableView.contentOffset.y
+        let safe = tableView.adjustedContentInset.top
+        let alpha = min(max(0, offset + safe - 22), 12) / 12
+        for i in 0 ..< tableView.numberOfSections {
+            guard let header = tableView.headerView(forSection: i) as? TableHeaderView
+            else { continue }
+            
+            print("#\(i): \(Int(header.frame.origin.y)) / \(Int(offset + safe))")
+            header.background.alpha = first ? alpha : 0
+            first = false
         }
     }
     

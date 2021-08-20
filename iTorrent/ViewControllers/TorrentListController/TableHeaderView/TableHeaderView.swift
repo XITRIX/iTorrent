@@ -25,6 +25,10 @@ class TableHeaderView: UITableViewHeaderFooterView, Themed {
             backgroundConfig.backgroundColor = .clear
             backgroundConfiguration = backgroundConfig
         }
+        
+        if #available(iOS 15.0, *) {
+            background.alpha = 0
+        }
     }
     
     @objc func themeUpdate() {
