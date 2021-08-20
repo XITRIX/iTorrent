@@ -31,6 +31,17 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
     
     weak var model: FileModel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if #available(iOS 14, *) {
+            shareButton.menu = createShareMenu()
+            shareButton.showsMenuAsPrimaryAction = true
+        } else {
+            shareButton.addTarget(self, action: #selector(shareAction), for: .touchUpInside)
+        }
+    }
+    
     func setModel(_ model: FileModel) {
         self.model = model
         updateModel()
@@ -106,7 +117,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
     
     func share() {
         let controller = ThemedUIAlertController(title: nil, message: model.name, preferredStyle: .actionSheet)
-        let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
+        let share = UIAlertAction(title: "Share".localized, style: .default) { _ in
             let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
             let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
             if shareController.popoverPresentationController != nil {
@@ -143,7 +154,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
                 UIApplication.shared.openURL(url)
             }
         }
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         controller.addAction(share)
         // controller.addAction(delete)
         if #available(iOS 11, *) {
@@ -160,7 +171,34 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         Utils.topViewController?.present(controller, animated: true)
     }
     
-    @IBAction func shareAction(_ sender: Any) {
+    @available(iOS 14, *)
+    func createShareMenu() -> UIMenu {
+        let share = UIAction(title: "Share".localized) { _ in
+            let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
+            let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
+            if shareController.popoverPresentationController != nil {
+                shareController.popoverPresentationController?.sourceView = self.shareButton
+                shareController.popoverPresentationController?.sourceRect = self.shareButton.bounds
+                shareController.popoverPresentationController?.permittedArrowDirections = .any
+            }
+            Utils.topViewController?.present(shareController, animated: true)
+        }
+        
+        let showOnFiles = UIAction(title: "Show in Files".localized) { _ in
+            let spath = ((Core.rootFolder + self.model.path.path) as NSString).deletingLastPathComponent
+            let path = NSURL(fileURLWithPath: spath, isDirectory: false)
+            var components = URLComponents(url: path as URL, resolvingAgainstBaseURL: false)
+            components?.scheme = "shareddocuments"
+            if let url = components?.url {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
+        return UIMenu(title: "", children: [share, showOnFiles])
+    }
+    
+    @objc func shareAction(_ sender: Any) {
+        if #available(iOS 14, *) { return }
         share()
     }
 }
