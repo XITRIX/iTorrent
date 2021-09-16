@@ -205,6 +205,10 @@
 		1BF91A0A2471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1BF91A0B2471780E00788BE5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AB0FBEC90700CD3DC82B13A /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
+		4B21325D26F386260094146C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		4B21325E26F386260094146C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		4B21325F26F386260094146C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4B21326026F386260094146C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7C005A17249D75590093C926 /* ProxyPreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyPreferencesController.swift; sourceTree = "<group>"; };
 		7C005A1A249E55EB0093C926 /* StaticTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticTableViewController.xib; sourceTree = "<group>"; };
 		7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
@@ -1081,6 +1085,7 @@
 				Base,
 				ru,
 				tr,
+				"zh-Hans",
 			);
 			mainGroup = 7C3C692620A754FB0023396C;
 			packageReferences = (
@@ -1364,6 +1369,7 @@
 				7C3C693720A754FB0023396C /* Base */,
 				7C802CFB212B328D0031C19F /* ru */,
 				1BF91A082471780E00788BE5 /* tr */,
+				4B21325D26F386260094146C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1373,6 +1379,7 @@
 			children = (
 				7C3C693C20A754FD0023396C /* Base */,
 				1BF91A092471780E00788BE5 /* tr */,
+				4B21325E26F386260094146C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1383,6 +1390,7 @@
 				7C802D02212B3B860031C19F /* en */,
 				7C802D03212B3D240031C19F /* ru */,
 				1BF91A0A2471780E00788BE5 /* tr */,
+				4B21325F26F386260094146C /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1393,6 +1401,7 @@
 				7CCD02E5243E7D2B00B1669F /* ru */,
 				7CCD02E7243E7D3100B1669F /* en */,
 				1BF91A0B2471780E00788BE5 /* tr */,
+				4B21326026F386260094146C /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

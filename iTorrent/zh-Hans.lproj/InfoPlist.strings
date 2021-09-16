@@ -1,0 +1,16 @@
+/* (No Comment) */
+"BitTorrent Metadata" = "BT 种子元数据";
+
+/* Bundle name */
+"CFBundleName" = "iTorrent 下载器";
+
+/* InfoPlist.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 09.04.2020.
+  Copyright © 2020  XITRIX. All rights reserved. */
+"NSPhotoLibraryAddUsageDescription" = "允许后您可以保存文件到相册";
+
+/* Privacy - Tracking Usage Description */
+"NSUserTrackingUsageDescription" = "支持开发者，允许个性化广告";
+

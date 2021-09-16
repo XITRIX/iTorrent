@@ -1,0 +1,819 @@
+/* (No Comment) */
+"Add" = "添加";
+
+/* (No Comment) */
+"Add from magnet" = "通过磁力链接添加任务";
+
+/* (No Comment) */
+"Add from URL" = "通过下载地址添加任务";
+
+/* (No Comment) */
+"Add from..." = "添加任务方式...";
+
+/* (No Comment) */
+"Add Tracker" = "添加 Tracker 服务器";
+
+/* (No Comment) */
+"AddTorrentController.MemoryWarning.AddAnyway" = "仍然添加";
+
+/* (No Comment) */
+"AddTorrentController.MemoryWarning.Message" = "设备存储空间不足，请清理磁盘空间以继续下载。";
+
+/* (No Comment) */
+"AddTorrentController.MemoryWarning.Title" = "警告";
+
+/* (No Comment) */
+"Allocating" = "分配中";
+
+/* (No Comment) */
+"already exists in download queue" = "已存在于下载队列";
+
+/* (No Comment) */
+"already exists, do you want to apply previous files selection settings to this torrent" = "已经存在，是否要将以前的文件选择设置应用到此种子";
+
+/* No comment provided by engineer. */
+"An unknown error occurred." = "发生未知错误";
+
+/* (No Comment) */
+"Apply" = "应用";
+
+/* (No Comment) */
+"Are you shure to remove this trackers?" = "您确定要移除Trackers服务器吗？";
+
+/* (No Comment) */
+"Are you sure to remove" = "您确定要移除";
+
+/* (No Comment) */
+"Are you sure to remove this magnet torrent?" = "您确定要移除这个磁力链接种子？";
+
+/* Add Torrent Controller */
+"Back" = "返回";
+
+/* (No Comment) */
+"Cancel" = "取消";
+
+/* (No Comment) */
+"Checking fastresume" = "检查快速恢复";
+
+/* (No Comment) */
+"Close" = "关闭";
+
+/* (No Comment) */
+"copied" = "已复制";
+
+/* (No Comment) */
+"Copied CC # to clipboard!" = "已复制卡号";
+
+/* (No Comment) */
+"Date Added" = "添加日期";
+
+/* (No Comment) */
+"Date Created" = "创建日期";
+
+/* (No Comment) */
+"Delete" = "删除";
+
+/* (No Comment) */
+"Deselect" = "取消选择";
+
+/* (No Comment) */
+"Details.BackgroundSeeding.Warning" = "已禁用后台做种，App被关闭后会停止做种。您希望启用后台做种吗？ 若未设置做种限制，App会持续在后台做种，可能导致电量耗尽。";
+
+/* (No Comment) */
+"Details.Downloading.Progress" = "进度";
+
+/* (No Comment) */
+"Details.Downloading.Sequential" = "顺序下载";
+
+/* (No Comment) */
+"Details.Downloading.Title" = "下载中";
+
+/* (No Comment) */
+"Details.Info.Added" = "添加";
+
+/* (No Comment) */
+"Details.Info.Comment" = "评论";
+
+/* (No Comment) */
+"Details.Info.Created" = "创建";
+
+/* (No Comment) */
+"Details.Info.Creator" = "创建者";
+
+/* (No Comment) */
+"Details.Info.Hash" = "哈希";
+
+/* (No Comment) */
+"Details.Info.Title" = "一般信息";
+
+/* (No Comment) */
+"Details.More.Files" = "文件列表";
+
+/* (No Comment) */
+"Details.More.Title" = "更多";
+
+/* (No Comment) */
+"Details.More.Trackers" = "Trackers 服务器";
+
+/* (No Comment) */
+"Details.Seeding.Allow" = "允许做种";
+
+/* (No Comment) */
+"Details.Seeding.Limit" = "做种限制";
+
+/* (No Comment) */
+"Details.Seeding.Title" = "做种";
+
+/* (No Comment) */
+"Details.Speed.Download" = "下载";
+
+/* (No Comment) */
+"Details.Speed.Remains" = "剩余时间";
+
+/* (No Comment) */
+"Details.Speed.Title" = "速度";
+
+/* (No Comment) */
+"Details.Speed.Upload" = "上传";
+
+/* (No Comment) */
+"Details.State" = "状态";
+
+/* (No Comment) */
+"Details.Transfer.Completed" = "已完成";
+
+/* (No Comment) */
+"Details.Transfer.Downloaded" = "已下载";
+
+/* (No Comment) */
+"Details.Transfer.Leechers" = "下载客户端数";
+
+/* (No Comment) */
+"Details.Transfer.Progress" = "已选择的进度/总共";
+
+/* (No Comment) */
+"Details.Transfer.Seeders" = "做种客户端数";
+
+/* (No Comment) */
+"Details.Transfer.Title" = "传输";
+
+/* (No Comment) */
+"Details.Transfer.Total" = "已选/总共";
+
+/* (No Comment) */
+"Details.Transfer.Uploaded" = "已上传";
+
+/* News Alerts */
+"Dialogs.News.Title" = "警告!";
+
+/* (No Comment) */
+"Disable Anyway" = "仍然禁用";
+
+/* (No Comment) */
+"Disable state sections" = "按状态分组";
+
+/* (No Comment) */
+"Disabled" = "已禁用";
+
+/* (No Comment) */
+"Don't Download" = "不要下载";
+
+/* (No Comment) */
+"Done" = "完成";
+
+/* (No Comment) */
+"Download" = "已下载";
+
+/* (No Comment) */
+"Download content of folder" = "下载文件夹内容";
+
+/* (No Comment) */
+"Download finished" = "下载完成";
+
+/* (No Comment) */
+"Downloading" = "下载中";
+
+/* (No Comment) */
+"Edit" = "编辑";
+
+/* (No Comment) */
+"Enable" = "启用";
+
+/* (No Comment) */
+"Enable state sections" = "不按状态分组";
+
+/* (No Comment) */
+"Enter the full tracker's URL" = "输入Tracker服务器的完整地址";
+
+/* (No Comment) */
+"Error" = "错误";
+
+/* (No Comment) */
+"Error has been occured" = "发生错误";
+
+/* (No Comment) */
+"Error on torrent opening" = "无法打开种子文件";
+
+/* (No Comment) */
+"Error on torrent reading" = "无法读取种子文件";
+
+/* (No Comment) */
+"eternity" = "∞";
+
+/* (No Comment) */
+"Files" = "从文件导入";
+
+/* (No Comment) */
+"Finish the previous torrent adding before start the new one." = "逐个添加种子。";
+
+/* (No Comment) */
+"Finished" = "已完成";
+
+/* (No Comment) */
+"Hashing" = "哈希";
+
+/* No comment provided by engineer. */
+"High" = "高";
+
+/* (No Comment) */
+"Hint" = "提示";
+
+/* (No Comment) */
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "如果你喜欢这个App，请考虑保持启用广告来支持开发者。 感谢！";
+
+/* (No Comment) */
+"Inactive" = "不活跃";
+
+/* No comment provided by engineer. */
+"Invalid access token." = "无效的访问令牌";
+
+/* (No Comment) */
+"Latest version installed" = "已安装最新版本";
+
+/* (No Comment) */
+"Leechers" = "下载中客户端";
+
+/* No comment provided by engineer. */
+"Low" = "低";
+
+/* (No Comment) */
+"Magnet link" = "磁力链接";
+
+/* (No Comment) */
+"Magnet link copied to clipboard" = "已复制磁力链接";
+
+/* (No Comment) */
+"MainController.Table.Placeholder.Text" = "下载列表是空的！ 您可以通过下方的“+”按钮添加下载任务。";
+
+/* No comment provided by engineer. */
+"Medium" = "中等";
+
+/* (No Comment) */
+"Metadata" = "获取元数据";
+
+/* (No Comment) */
+"mime.audio" = "音频";
+
+/* (No Comment) */
+"mime.calculating" = "计算中...";
+
+/* (No Comment) */
+"mime.documents" = "文档";
+
+/* (No Comment) */
+"mime.free" = "可用空间";
+
+/* (No Comment) */
+"mime.image" = "图片";
+
+/* (No Comment) */
+"mime.other" = "其他";
+
+/* mime */
+"mime.video" = "视频";
+
+/* (No Comment) */
+"minute:parent" = "分钟";
+
+/* (No Comment) */
+"minute:plural" = "分钟";
+
+/* (No Comment) */
+"minute:single" = "分钟";
+
+/* (No Comment) */
+"Name" = "名称";
+
+/* No comment provided by engineer. */
+"No connected Patreon account." = "未连接到 Patreon 账户";
+
+/* No comment provided by engineer. */
+"No credentials." = "没有凭据";
+
+/* (No Comment) */
+"None" = "无";
+
+/* AppDelegate */
+"Obtaining Metadata" = "正在获取元数据";
+
+/* Main Controller */
+"of" = "/";
+
+/* (No Comment) */
+"Open in Safari" = "在 Safari 浏览器打开";
+
+/* (No Comment) */
+"Pause" = "暂停";
+
+/* (No Comment) */
+"Paused" = "已暂停";
+
+/* (No Comment) */
+"Peers" = "BT客户端数（Peers）";
+
+/* (No Comment) */
+"Please enter the existing torrent's URL below" = "请在下方输入种子的下载地址";
+
+/* (No Comment) */
+"Please enter the magnet link below" = "请在下方输入磁力链接";
+
+/* (No Comment) */
+"Please, open this link in Safari, and send .torrent file from there" = "请在 Safari 浏览器打开此链接，然后从那里发送种子文件";
+
+/* No comment provided by engineer. */
+"Priority" = "优先级";
+
+/* (No Comment) */
+"Queued" = "已进入队列";
+
+/* (No Comment) */
+"Rehash" = "重新计算哈希";
+
+/* (No Comment) */
+"Remove" = "移除";
+
+/* RSS Channel Controller */
+"RssChannelController.Seen" = "可见";
+
+/* (No Comment) */
+"RssChannelController.Unseen" = "不可见";
+
+/* (No Comment) */
+"RssChannelSetup.Description" = "描述";
+
+/* (No Comment) */
+"RssChannelSetup.Notify" = "更新时通知我";
+
+/* (No Comment) */
+"RssChannelSetup.Title" = "标题";
+
+/* RSS Channel Setup Controller */
+"RssChannelSetup.UrlCopied" = "已复制到剪贴板";
+
+/* RSS Feed Controller */
+"RssFeedController.AddTitle" = "添加 RSS 订阅";
+
+/* (No Comment) */
+"RssFeedController.RemoveTitle" = "您确定要移除此订阅";
+
+/* RSS Feed Provider */
+"RssFeedProvider.Empty.Text" = "您没有添加任何 RSS 订阅！添加 RSS 订阅后这里会显示内容更新。";
+
+/* (No Comment) */
+"RssFeedProvider.Error.Exists" = "此 RSS 订阅已存在";
+
+/* (No Comment) */
+"RssFeedProvider.Error.NotValid" = "无效的地址";
+
+/* (No Comment) */
+"RssFeedProvider.Error.Unknown" = "发生未知错误";
+
+/* (No Comment) */
+"RssFeedProvider.Notification.Title" = "已更新：";
+
+/* (No Comment) */
+"RssItemController.PinMagnet" = "磁力链接已添加";
+
+/* RSS Item Controller */
+"RssItemController.PinTorrent" = "种子文件已添加";
+
+/* (No Comment) */
+"Search" = "搜索";
+
+/* (No Comment) */
+"Seeding" = "做种中";
+
+/* (No Comment) */
+"Seeding finished" = "完成做种";
+
+/* (No Comment) */
+"Seeds" = "种子";
+
+/* (No Comment) */
+"Select" = "选择";
+
+/* (No Comment) */
+"Select All" = "全选";
+
+/* (No Comment) */
+"Settings.Appearance.Header" = "外观";
+
+/* (No Comment) */
+"Settings.AutoTheme" = "自动切换";
+
+/* (No Comment) */
+"Settings.BackgroundEnable" = "启用";
+
+/* (No Comment) */
+"Settings.BackgroundFooter" = "通过多媒体功能启用后台下载";
+
+/* (No Comment) */
+"Settings.BackgroundHeader" = "后台任务";
+
+/* (No Comment) */
+"Settings.BackgroundSeeding" = "允许做种";
+
+/* (No Comment) */
+"Settings.BackgroundSeeding.Warning" = "这将使 iTorrent 不受限制地在后台运行，可能会导致大量电池消耗。 您需要强制关闭 iTorrent 才能停止此操作！";
+
+/* (No Comment) */
+"Settings.DonateCard" = "VISA";
+
+/* (No Comment) */
+"Settings.DonateCard.DonatePlatforms" = "捐助";
+
+/* (No Comment) */
+"Settings.DonateCard.DonatePlatforms.Title" = "选择捐助平台";
+
+/* (No Comment) */
+"Settings.DonateCard.Open" = "打开";
+
+/* (No Comment) */
+"Settings.DonateDisable" = "关闭广告";
+
+/* (No Comment) */
+"Settings.DonateFooter" = "通过连接 Patreon 帐号关闭广告";
+
+/* (No Comment) */
+"Settings.DonateHeader" = "给开发者买个甜甜圈";
+
+/* (No Comment) */
+"Settings.DownLimit" = "下载限制";
+
+/* (No Comment) */
+"Settings.FTP.Message.NoNetwork" = "连接WI-FI来使用文件共享";
+"Settings.FTP.Message" = "文件共享地址: ";
+
+/* (No Comment) */
+"Settings.FTP.Settings" = "设置";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.PassText" = "重启后应用设置";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.Password" = "密码";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.Password.Placeholder" = "密码（可选）";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.Username" = "用户名";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.Username.Placeholder" = "用户名";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.WebDavPort" = "端口";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.WebDavText" = "使用 WebDAV 客户端连接 iTorrent";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.WebDavTitle" = "WebDAV 服务器";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.WebText" = "通过浏览器分享文件";
+
+/* (No Comment) */
+"Settings.FTP.WebDav.WebTitle" = "网页服务器";
+
+/* (No Comment) */
+"Settings.FTPBackground" = "后台运行";
+
+/* (No Comment) */
+"Settings.FTPEnable" = "启用";
+
+/* (No Comment) */
+"Settings.FTPEnable.Hint" = "通过启用这些设置，您可以通过浏览器或 WebDav 客户端连接文件服务器";
+
+/* (No Comment) */
+"Settings.FTPHeader" = "文件共享";
+
+/* (No Comment) */
+"Settings.Network.Connection" = "连接设置";
+
+/* (No Comment) */
+"Settings.Network.DefauldPort" = "使用默认端口";
+
+/* (No Comment) */
+"Settings.Network.DefauldPort.Hint" = "将起始端口设置为 [6881]，将终止端口设置为开始 + 10 [6891]";
+
+/* (No Comment) */
+"Settings.Network.DHT" = "启用 DHT";
+
+/* (No Comment) */
+"Settings.Network.DHT.Hint" = "使得 BitTorrent 客户端在不使用 Tracker 的情况下找到彼此。 启用此功能将增加电池使用量";
+
+/* (No Comment) */
+"Settings.Network.Header" = "网络";
+
+/* (No Comment) */
+"Settings.Network.Interface" = "接口";
+
+/* (No Comment) */
+"Settings.Network.Interface.AnyInterface" = "任何";
+
+/* (No Comment) */
+"Settings.Network.Interface.VpnOnly" = "仅 VPN";
+
+/* (No Comment) */
+"Settings.Network.LSD" = "启用 LSD";
+
+/* (No Comment) */
+"Settings.Network.LSD.Hint" = "它旨在支持发现本地 BitTorrent 对等点，旨在最大限度地减少流量";
+
+/* (No Comment) */
+"Settings.Network.NAT-PMP" = "启用 NAT-PMP";
+
+/* (No Comment) */
+"Settings.Network.Port" = "端口";
+
+/* (No Comment) */
+"Settings.Network.PortFirst" = "起始";
+
+/* (No Comment) */
+"Settings.Network.PortSecond" = "终止";
+
+/* (No Comment) */
+"Settings.Network.Protocols" = "连接协议";
+
+/* (No Comment) */
+"Settings.Network.Proxy" = "代理";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Auth" = "需要认证";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Auth.Header" = "认证";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Hostname" = "主机名";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Login" = "登录";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Password" = "密码";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Port" = "端口";
+
+/* (No Comment) */
+"Settings.Network.Proxy.SelectType" = "选择代理类型";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Type" = "代理类型";
+
+/* (No Comment) */
+"Settings.Network.Proxy.Type.Header" = "主机";
+
+/* (No Comment) */
+"Settings.Network.UPnP" = "启用 UPnP";
+
+/* (No Comment) */
+"Settings.Network.uTP" = "启用 µTP";
+
+/* (No Comment) */
+"Settings.Network.uTP.Hint" = "它旨在缓解 TCP 上的传统 BitTorrent 中存在的不良延迟和其他拥塞控制问题，同时提供可靠、有序的传输";
+
+/* (No Comment) */
+"Settings.NotifyBadge" = "启用App图标通知标记";
+
+/* (No Comment) */
+"Settings.NotifyFinishLoad" = "完成加载时";
+
+/* (No Comment) */
+"Settings.NotifyFinishSeed" = "完成做种时";
+
+/* (No Comment) */
+"Settings.NotifyHeader" = "通知";
+
+/* (No Comment) */
+"Settings.Order" = "分区顺序";
+
+/* (No Comment) */
+"Settings.Patreon.CopiedID" = "您的 Patreon ID 已复制";
+
+/* (No Comment) */
+"Settings.Patreon.Creator" = "iTorrent 作者";
+
+/* (No Comment) */
+"Settings.Patreon.Full" = "您已获得完整版";
+
+/* (No Comment) */
+"Settings.Patreon.LinkButton" = "连接到 Patreon 帐户";
+
+/* (No Comment) */
+"Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
+
+/* (No Comment) */
+"Settings.Patreon.Patron" = "您是赞助者";
+
+/* (No Comment) */
+"Settings.Patreon.PatronButton" = "成为赞助者";
+
+/* (No Comment) */
+"Settings.Patreon.Reward" = "已启用无广告模式，玩得开心！";
+
+/* (No Comment) */
+"Settings.Patreon.Thanks" = "特别感谢：";
+
+/* (No Comment) */
+"Settings.Patreon.UnlinkButton" = "退出";
+
+/* (No Comment) */
+"Settings.Patreon.UnlinkButton.Action" = "退出 Patreon 账户的连接";
+
+/* (No Comment) */
+"Settings.Patreon.UnlinkButton.Text" = "您确定要退出您的 Patron 账户吗？";
+
+/* (No Comment) */
+"Settings.Patreon.Welcome" = "你好呀，\n\n你可以通过在 Patreon 上捐赠我来支持 iTorrent 的未来开发。作为回报，你将可以使用无广告版本的 iTorrent。\n\n感谢你的支持！";
+
+/* (No Comment) */
+"Settings.Sorting.Revert" = "默认";
+
+/* (No Comment) */
+"Settings.SpeedHeader" = "限速";
+
+/* (No Comment) */
+"Settings.Storage.Allocate" = "分配存储空间";
+
+/* (No Comment) */
+"Settings.Storage.Allocate.Hint" = "如果启用，iTorrent 将为下载的文件预先分配存储空间";
+
+/* (No Comment) */
+"Settings.Storage.Available" = "可用";
+
+/* (No Comment) */
+"Settings.Storage.Header" = "存储";
+
+/* (No Comment) */
+"Settings.Theme" = "黑暗模式";
+
+/* Settings Controller */
+"Settings.Title" = "偏好设置";
+
+/* (No Comment) */
+"Settings.UpdateHeader" = "更新";
+
+/* (No Comment) */
+"Settings.UpdateSite" = "GitHub 主页";
+
+/* (No Comment) */
+"Settings.UpdateSite.Open" = "打开";
+
+/* (No Comment) */
+"Settings.UpLimit" = "上传限速";
+
+/* (No Comment) */
+"Settings.ZeroSpeedLimit" = "下载速度为0持续多长时间停止";
+
+/* (No Comment) */
+"Settings.ZeroSpeedLimit.Hint" = "如果下载速度在一定时间内为 0，应用程序将停止后台处理以防止无用的电池消耗";
+
+/* (No Comment) */
+"Share" = "分享";
+
+/* (No Comment) */
+"Show in Files" = "在“文件”App 显示";
+
+/* (No Comment) */
+"Size" = "大小";
+
+/* (No Comment) */
+"Sort Torrents By:" = "排序方式";
+
+/* (No Comment) */
+"SpeedPicker.Error" = "无效值";
+
+/* SpeedPicker */
+"SpeedPicker.Title" = "单位：KB/s";
+
+/* (No Comment) */
+"Start" = "开始";
+
+/* Torrent States */
+"State.All" = "全部";
+
+/* (No Comment) */
+"Supplication" = "请求";
+
+/* (No Comment) */
+"This action will recheck the state of all downloaded files" = "此操作将重新检查所有下载文件的状态";
+
+/* (No Comment) */
+"This action will recheck the state of all downloaded files for torrents:" = "此操作将重新检查所有下载的种子文件的状态：";
+
+/* (No Comment) */
+"This torrent already exists" = "种子文件已存在";
+
+/* (No Comment) */
+"time remains" = "剩余时间";
+
+/* (No Comment) */
+"torrent" = "种子";
+
+/* Torrent details */
+"Torrent file" = "种子文件";
+
+/* (No Comment) */
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Torrent 文件已损坏或此 URL 具有某种 DDOS 保护，您可以尝试在 Safari 中打开此链接";
+
+/* (No Comment) */
+"Torrent file opening error has been occured" = "种子文件文件打开错误";
+
+/* (No Comment) */
+"Torrent rehash" = "种子哈希：";
+
+/* (No Comment) */
+"Torrent update detected" = "检查到种子更新";
+
+/* (No Comment) */
+"Torrent with hash:" = "种子哈希：";
+
+/* (No Comment) */
+"Torrent with name" = "种子名：";
+
+/* (No Comment) */
+"TorrentFilesController.DeselectAll" = "全不选";
+
+/* Torrent Files Controller */
+"TorrentFilesController.Edit" = "编辑";
+
+/* (No Comment) */
+"TorrentFilesController.SelectAll" = "全选";
+
+/* (No Comment) */
+"torrents" = "种子";
+
+/* (No Comment) */
+"Tracker's URL" = "输入 Tracker 地址";
+
+/* (No Comment) */
+"Tracker's URL copied to clipboard!" = "已复制 Tracker 地址";
+
+/* (No Comment) */
+"Trackers" = "Trackers 服务器";
+
+/* (No Comment) */
+"Unlimited" = "不限制";
+
+/* (No Comment) */
+"Update check failed" = "检查更新失败";
+
+/* (No Comment) */
+"UpdateText" = "- 适用于 iOS 14 的 Patreon 修复\n- Libtorrent 更新至 1.2.10\n--- 1.8.2 ---\n- 添加了文本可访问性支持\n- 成吨的后端重构\n- 较小的用户界面改进\n- 修复了许多错误（可能添加了新错误）";
+
+/* (No Comment) */
+"Verified" = "已验证";
+
+/* (No Comment) */
+"Warning" = "警告";
+
+/* (No Comment) */
+"WARNING" = "警告";
+
+/* Trackers List Controller */
+"Working" = "警告";
+
+/* (No Comment) */
+"WOW, is it a new inDev build, huh?" = "哇，这是一个新的 inDev 构建，是吗？";
+
+/* (No Comment) */
+"Wrong link, check it and try again!" = "链接有误，请检查后重试！";
+
+/* (No Comment) */
+"Wrong magnet link, check it and try again!" = "磁力链接有误，请检查后重试！";
+
+/* (No Comment) */
+"Yes and remove data" = "是，且删除数据";
+
+/* (No Comment) */
+"Yes but keep data" = "是，但保留数据";
+
+"Current app version: " = "iTorrent 版本: ";
+
+"Magnet" = "磁力链接";
+
+"Currently sorted by " = "当前排序方式：按";
