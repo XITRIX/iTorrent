@@ -62,8 +62,8 @@
 
 "Are you sure to remove" = "你确定要删除吗";
 "torrents" = "torrents";
-"Yes and remove data" = "是并删除数据";
-"Yes but keep data" = "是但保留数据";
+"Yes and remove data" = "是，且删除数据";
+"Yes but keep data" = "是，但保留数据";
 
 "torrent" = "torrent";
 "Are you sure to remove this magnet torrent?" = "你确定删除这个磁力链 Torrent 吗？";
@@ -74,7 +74,7 @@
 "Date Created" = "创建日期";
 "Size" = "大小";
 "Sort Torrents By:" = "Torrent 的排序方法: ";
-"Currently sorted by " = "当前排序方法 ";
+"Currently sorted by " = "当前排序方式：按";
 "Disable state sections" = "关闭状态选单";
 "Enable state sections" = "开启状态选单";
 "MainController.Table.Placeholder.Text" = "下载列表为空！\n使用 Chrome 下载 Torrent 文件或使用 '+' 按钮来添加";
@@ -94,7 +94,7 @@
 "Details.Speed.Upload" = "上传";
 "Details.Speed.Remains" = "剩余时间";
 
-"Details.Downloading.Title" = "下载中";
+"Details.Downloading.Title" = "下载";
 "Details.Downloading.Sequential" = "顺序下载";
 "Details.Downloading.Progress" = "进度";
 
@@ -103,7 +103,7 @@
 "Details.Seeding.Limit" = "做种限额";
 
 "Details.Info.Title" = "一般信息";
-"Details.Info.Hash" = "Hash";
+"Details.Info.Hash" = "哈希值";
 "Details.Info.Creator" = "创建者";
 "Details.Info.Created" = "创建于";
 "Details.Info.Added" = "添加于";
@@ -138,10 +138,9 @@
 
 "Settings.BackgroundEnable" = "开关";
 "Settings.BackgroundSeeding" = "允许做种";
-"Settings.BackgroundSeeding.Warning" = "这将使 iTorrent 无限期在后台运行，所有 Torrent 都将持续做种，这可能会导致大量电池用量。\n\n你需要强制关闭 App 才能停止此操作！";
+"Settings.BackgroundSeeding.Warning" = "若禁用后台做种，App 进入后台将停止做种。您希望启用后台做种吗？若未设置做种限制，App 会持续在后台做种，可能导致电量耗尽。";
 "Settings.BackgroundHeader" = "后台下载";
 "Settings.BackgroundFooter" = "通过多媒体功能启动后台下载";
-
 "Settings.QueueLimitHeader" = "Torrent 队列限制";
 "Settings.TorrentsLimit" = "可用 Torrent";
 "Settings.TorrentsDownLimit" = "下载中的 Torrent ";
@@ -210,14 +209,14 @@
 
 "Settings.NotifyFinishLoad" = "当完成下载时";
 "Settings.NotifyFinishSeed" = "当完成做种时";
-"Settings.NotifyBadge" = "启动应用的徽章图标";
+"Settings.NotifyBadge" = "启用 App 图标通知标记";
 "Settings.NotifyHeader" = "通知";
 
 "Settings.UpdateSite" = "GitHub 项目地址";
 "Settings.UpdateSite.Open" = "打开";
 "Settings.UpdateHeader" = "更新";
 "Settings.DonateDisable" = "关闭广告";
-"Settings.DonateCard" = "VISA 信用卡卡号";
+"Settings.DonateCard" = "VISA";
 "Settings.DonateCard.Open" = "打开";
 "Settings.DonateCard.DonatePlatforms" = "捐赠";
 "Settings.DonateCard.DonatePlatforms.Title" = "选择捐赠平台: ";
@@ -238,7 +237,7 @@
 "Settings.Patreon.Thanks" = "特别感谢: ";
 "Settings.Patreon.CopiedID" = "你的 Patreon ID 已经拷贝到剪切板";
 
-"Settings.Sorting.Revert" = "恢复";
+"Settings.Sorting.Revert" = "默认";
 
 "Warning" = "警告";
 "Enable" = "开启";
@@ -273,7 +272,7 @@
 "Show in Files" = "在文件里显示";
 "AddTorrentController.MemoryWarning.Title" = "警告";
 "AddTorrentController.MemoryWarning.Message" = "磁盘上没有足够的可用空间来下载全部文件，释放磁盘空间以继续";
-"AddTorrentController.MemoryWarning.AddAnyway" = "无论如何都添加";
+"AddTorrentController.MemoryWarning.AddAnyway" = "仍然添加";
 
 //Torrent Files Controller
 "TorrentFilesController.Edit" = "编辑";
