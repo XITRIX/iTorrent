@@ -7,3 +7,6 @@
 */
 
 "NSPhotoLibraryAddUsageDescription" = "允许以存储文件到照片 App";
+"NSUserTrackingUsageDescription" = "支持开发者，允许个性化广告";
+"BitTorrent Metadata" = "BT 种子元数据";
+"CFBundleName" = "iTorrent 下载器";
