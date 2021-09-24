@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,9 +22,8 @@
                     </view>
                     <blurEffect style="systemChromeMaterial"/>
                 </visualEffectView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Downloading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ic8-8p-hEU" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ic8-8p-hEU" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                     <rect key="frame" x="16" y="0.0" width="343" height="28"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -32,9 +31,13 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
-                <constraint firstItem="xZ5-5z-75L" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="UBM-en-p5D"/>
-                <constraint firstItem="xZ5-5z-75L" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="d5T-nt-PbX"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="xZ5-5z-75L" secondAttribute="bottom" id="gui-hO-yVu"/>
+                <constraint firstItem="ic8-8p-hEU" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="3GB-bo-Tho"/>
+                <constraint firstItem="ic8-8p-hEU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="OYi-eG-EUr"/>
+                <constraint firstItem="xZ5-5z-75L" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="UBM-en-p5D"/>
+                <constraint firstItem="ic8-8p-hEU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Zlz-z8-f5S"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ic8-8p-hEU" secondAttribute="trailing" constant="16" id="cTO-bT-4hT"/>
+                <constraint firstItem="xZ5-5z-75L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="d5T-nt-PbX"/>
+                <constraint firstAttribute="bottom" secondItem="xZ5-5z-75L" secondAttribute="bottom" id="gui-hO-yVu"/>
                 <constraint firstItem="xZ5-5z-75L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rBi-GN-eGK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

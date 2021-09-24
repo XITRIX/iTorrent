@@ -23,6 +23,10 @@ extension TorrentListController {
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 82
         tableView.rowHeight = UITableView.automaticDimension
+
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
         
         torrentListDataSource = TorrentListDataSource(self, tableView: tableView) { (tableView, indexPath, model) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TorrentCell
@@ -109,8 +113,7 @@ extension TorrentListController: UITableViewDelegate {
         if #available(iOS 15.0, *) {
             let safe = tableView.adjustedContentInset.top
             let offset = scrollView.contentOffset.y
-            let alpha = min(max(0, offset + safe - 22), 12) / 12
-//            print("offset: \(Int(offset)) / safe: \(Int(safe))")
+            let alpha = min(max(0, offset + safe), 4) / 4
             
             if !UserPreferences.sortingSections,
                 let header = tableView.headerView(forSection: 0) as? TabBarView {
@@ -135,17 +138,14 @@ extension TorrentListController: UITableViewDelegate {
     
     @available(iOS 15.0, *)
     func updateHeadersBackground() {
-        var first = true
         let offset = tableView.contentOffset.y
         let safe = tableView.adjustedContentInset.top
-        let alpha = min(max(0, offset + safe - 22), 12) / 12
+        let alpha = min(max(0, offset + safe), 4) / 4
         for i in 0 ..< tableView.numberOfSections {
             guard let header = tableView.headerView(forSection: i) as? TableHeaderView
             else { continue }
             
-            print("#\(i): \(Int(header.frame.origin.y)) / \(Int(offset + safe))")
-            header.background.alpha = first ? alpha : 0
-            first = false
+            header.background.alpha = alpha
         }
     }
     
