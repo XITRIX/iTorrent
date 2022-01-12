@@ -33,7 +33,8 @@ class TorrentDetailsController: StaticTableViewController {
     }
 
     override var useInsertStyle: Bool {
-        !(splitViewController?.isCollapsed ?? true)
+        if #available(iOS 15, *) { return true }
+        return !(splitViewController?.isCollapsed ?? true)
     }
 
     deinit {

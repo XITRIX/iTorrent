@@ -30,7 +30,12 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
                 frame.size.width -= (42 + rightSafeareaInset)
             }
             super.frame = frame
-            self.layer.mask = cutEdgesMask(tableView: tableView, indexPath: indexPath)
+
+            if #available(iOS 11, *) {
+                cornerRadiusMask(tableView: tableView, indexPath: indexPath)
+            } else {
+                self.layer.mask = cutEdgesMask(tableView: tableView, indexPath: indexPath)
+            }
         }
     }
 
@@ -42,7 +47,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -62,7 +67,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
         textLabel?.textColor = theme.mainText
         backgroundColor = theme.backgroundMain
-        
+
         let bgColorView = UIView()
         bgColorView.backgroundColor = theme.backgroundSecondary
         selectedBackgroundView = bgColorView
@@ -73,17 +78,59 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         self.indexPath = indexPath
     }
 
+    // Remove section top and bottom separators
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        for subview in subviews {
+            if subview != contentView {
+                if subview.frame.width == frame.width {
+                    subview.isHidden = insetStyle
+                } else {
+                    subview.isHidden = false
+                }
+            }
+        }
+    }
+
+    @available(iOS 11.0, *)
+    private func cornerRadiusMask(tableView: UITableView?, indexPath: IndexPath?) {
+        guard insetStyle,
+              let tableView = tableView,
+              let indexPath = indexPath,
+              indexPath.section < tableView.numberOfSections,
+              indexPath.row < tableView.numberOfRows(inSection: indexPath.section)
+        else { return }
+
+        layer.cornerRadius = cornerRadius
+        if #available(iOS 13.0, *) {
+            self.layer.cornerCurve = .continuous
+        }
+
+        if indexPath.row == 0, indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1) {
+            layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        } else if indexPath.row == 0 {
+            layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        } else if indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1) {
+            layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        } else {
+            layer.maskedCorners = []
+        }
+    }
+
     private func cutEdgesMask(tableView: UITableView?, indexPath: IndexPath?) -> CALayer? {
-        guard let tableView = tableView,
-            let indexPath = indexPath,
-            insetStyle else { return nil }
-        
-        let layer: CAShapeLayer = CAShapeLayer()
-        let path: CGMutablePath = CGMutablePath()
+        guard insetStyle,
+              let tableView = tableView,
+              let indexPath = indexPath,
+              indexPath.section < tableView.numberOfSections,
+              indexPath.row < tableView.numberOfRows(inSection: indexPath.section)
+        else { return nil }
+
+        let layer = CAShapeLayer()
+        let path = CGMutablePath()
 
         if indexPath.row == 0, indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1) {
             addBothCorner(path)
-
         } else if indexPath.row == 0 {
             addUpperCorner(path)
         } else if indexPath.row == (tableView.numberOfRows(inSection: indexPath.section) - 1) {
