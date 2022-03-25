@@ -235,6 +235,7 @@
 		7C60114825472FC500A0EFC5 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C60114725472FC500A0EFC5 /* Cache.swift */; };
 		7C60114A2547345100A0EFC5 /* ObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6011492547345100A0EFC5 /* ObservableExtension.swift */; };
 		7C6189B12433478E00B4EF5B /* FileProviderTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6189B02433478E00B4EF5B /* FileProviderTableDataSource.swift */; };
+		7C63965B27D72FC500062DE4 /* BackportIosApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63965A27D72FC500062DE4 /* BackportIosApi.swift */; };
 		7C65304D253F140C0011A91E /* RssSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C65304B253F140C0011A91E /* RssSearchCell.swift */; };
 		7C65304E253F140C0011A91E /* RssSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C65304C253F140C0011A91E /* RssSearchCell.xib */; };
 		7C653050253F75ED0011A91E /* MutableObservableArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */; };
@@ -446,6 +447,7 @@
 		7C60114725472FC500A0EFC5 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		7C6011492547345100A0EFC5 /* ObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableExtension.swift; sourceTree = "<group>"; };
 		7C6189B02433478E00B4EF5B /* FileProviderTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderTableDataSource.swift; sourceTree = "<group>"; };
+		7C63965A27D72FC500062DE4 /* BackportIosApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackportIosApi.swift; sourceTree = "<group>"; };
 		7C65304B253F140C0011A91E /* RssSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchCell.swift; sourceTree = "<group>"; };
 		7C65304C253F140C0011A91E /* RssSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssSearchCell.xib; sourceTree = "<group>"; };
 		7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableObservableArrayExtension.swift; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 		7CBEFA5E240D68BA00FEEA05 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				7C63965A27D72FC500062DE4 /* BackportIosApi.swift */,
 				7CCD02C62438962B00B1669F /* ArrayExtentions.swift */,
 				7C8BF081248ECEB30004603A /* DateExtensions.swift */,
 				7CB1769224564289005CEEA6 /* FileManagerExtensions.swift */,
@@ -1774,6 +1777,7 @@
 				7C0D2F1F20F77F9B00B7FBC6 /* FileManagerTitleView.swift in Sources */,
 				7C97E4FA2433F321004923D8 /* UpdatableModel.swift in Sources */,
 				7C26E35024327D940012D455 /* Core+AddTorrent.swift in Sources */,
+				7C63965B27D72FC500062DE4 /* BackportIosApi.swift in Sources */,
 				7C653050253F75ED0011A91E /* MutableObservableArrayExtension.swift in Sources */,
 				7C4B10A120E0019100440E74 /* ThemedUITableViewController.swift in Sources */,
 				7CD71428248C150400A24E98 /* RssItemCell.swift in Sources */,

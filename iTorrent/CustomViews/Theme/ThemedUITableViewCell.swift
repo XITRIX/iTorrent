@@ -22,12 +22,14 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         set(newFrame) {
             var frame = newFrame
             if insetStyle {
-                var rightSafeareaInset: CGFloat = 0
-                if #available(iOS 11, *) {
-                    rightSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.right ?? 0) > 0 ? 23 : 0
-                }
-                frame.origin.x += 21
-                frame.size.width -= (42 + rightSafeareaInset)
+                var rightSafeareaInset: CGFloat = safeAreaInsetsBack.right > 0 ? 23 : 0
+                var leftSafeareaInset: CGFloat = safeAreaInsetsBack.left > 0 ? 23 : 0
+//                if #available(iOS 11, *) {
+//                    rightSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.right ?? 0) > 0 ? 23 : 0
+//                    leftSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.left ?? 0) > 0 ? 23 : 0
+//                }
+                frame.origin.x += 21 + leftSafeareaInset
+                frame.size.width -= (42 + rightSafeareaInset + leftSafeareaInset)
             }
             super.frame = frame
 

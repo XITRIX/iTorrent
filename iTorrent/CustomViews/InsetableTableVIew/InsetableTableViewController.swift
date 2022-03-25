@@ -27,7 +27,7 @@ class InsetableTableViewController: SATableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let res = super.tableView(tableView, titleForHeaderInSection: section) {
+        if let res = super.tableView(tableView, titleForHeaderInSection: section){
             return "\(useInsertStyleValue ? "      " : "")\(res)"
         }
         return nil

@@ -20,12 +20,22 @@ class TorrentFilesController: ThemedUIViewController {
     static let filesUpdatedNotification = NSNotification.Name(rawValue: "filesUpdatedNotification")
     
     var editButton: UIBarButtonItem!
+    var doneButton: UIBarButtonItem!
+    
     var selectAllButton: UIBarButtonItem!
     var deselectAllButton: UIBarButtonItem!
     
     lazy var toolBarItems: [UIBarButtonItem] = {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         return [deselectAllButton, space, selectAllButton]
+    }()
+    
+    var priorityButton: UIBarButtonItem!
+    var shareButton: UIBarButtonItem!
+    
+    lazy var editToolBarItems: [UIBarButtonItem] = {
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        return [priorityButton, space, shareButton]
     }()
     
     var tableView: ThemedUITableView!
@@ -58,11 +68,15 @@ class TorrentFilesController: ThemedUIViewController {
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(tableView)
         
-        editButton = UIBarButtonItem(title: "Select".localized, style: .plain, target: self, action: #selector(editAction))
+        editButton = UIBarButtonItem(image: #imageLiteral(resourceName: "More2"), style: .plain, target: self, action: #selector(editAction))
+        doneButton = UIBarButtonItem(title: "Done".localized, style: .done, target: self, action: #selector(editAction))
         selectAllButton = UIBarButtonItem(title: "TorrentFilesController.SelectAll".localized, style: .plain, target: self, action: #selector(selectAllAction))
         selectAllButton.tintColor = .systemBlue
         deselectAllButton = UIBarButtonItem(title: "TorrentFilesController.DeselectAll".localized, style: .plain, target: self, action: #selector(deselectAllAction))
         deselectAllButton.tintColor = .systemRed
+        
+        priorityButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Order"), style: .plain, target: self, action: #selector(editAction))
+        shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Share"), style: .plain, target: self, action: #selector(editAction))
         
         navigationItem.setRightBarButton(editButton, animated: false)
         toolbarItems = toolBarItems
@@ -92,6 +106,14 @@ class TorrentFilesController: ThemedUIViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = fileProvider
         tableView.delegate = fileProvider
+        
+        observableIsEditing.observeNext { [unowned self] editing in
+//            editButton.style = editing ? .done : .plain
+//            editButton.title = editing ? "Done".localized : "Select".localized
+            navigationItem.setRightBarButton(editing ? doneButton : editButton, animated: true)
+            
+            setToolbarItems(editing ? editToolBarItems : toolBarItems, animated: true)
+        }.dispose(in: bag)
     }
     
     deinit {
@@ -109,13 +131,14 @@ class TorrentFilesController: ThemedUIViewController {
         DispatchQueue.global(qos: .utility).async { [files] in
             guard let files = files else { return }
             if let upd = TorrentSdk.getFilesOfTorrentByHash(hash: self.torrentHash),
-                files.count == upd.count {
+               files.count == upd.count
+            {
                 for idx in 0 ..< files.count {
                     files[idx].update(with: upd[idx])
                 }
             }
             DispatchQueue.main.async {
-                NotificationCenter.default.post(name: TorrentFilesController.self.filesUpdatedNotification, object: nil)
+                NotificationCenter.default.post(name: TorrentFilesController.filesUpdatedNotification, object: nil)
             }
             self.canUpdateData = true
         }
@@ -143,9 +166,6 @@ class TorrentFilesController: ThemedUIViewController {
         let editing = !isEditing
         setEditing(editing, animated: true)
         tableView.setEditing(editing, animated: true)
-        
-        editButton.style = editing ? .done : .plain
-        editButton.title = editing ? "Done".localized : "Select".localized
     }
 }
 
