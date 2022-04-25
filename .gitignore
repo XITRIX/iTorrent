@@ -1,0 +1,5 @@
+Pods
+.DS_Store
+iTorrent/submodules/TorrentKit/Thirdparties/boost/src
+iTorrent/submodules/TorrentKit/Thirdparties/libtorrent/src
+xcuserdata/

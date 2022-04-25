@@ -1,0 +1,36 @@
+PODS:
+  - Bond (7.8.1):
+    - Differ (~> 1.4)
+    - ReactiveKit (~> 3.14)
+  - Differ (1.4.5)
+  - Kingfisher (7.2.0)
+  - MVVMFoundation (0.1.0):
+    - Bond
+    - Kingfisher
+  - ReactiveKit (3.19.1)
+
+DEPENDENCIES:
+  - Bond
+  - MVVMFoundation (from `iTorrent/submodules/MVVMFoundation`)
+
+SPEC REPOS:
+  trunk:
+    - Bond
+    - Differ
+    - Kingfisher
+    - ReactiveKit
+
+EXTERNAL SOURCES:
+  MVVMFoundation:
+    :path: iTorrent/submodules/MVVMFoundation
+
+SPEC CHECKSUMS:
+  Bond: 87075c7f20f37ea3e73dc7057fce839787bf46eb
+  Differ: 3b6bd78e2b20cc795d9a86f7641d087524e4273e
+  Kingfisher: 3ac0b75b155cabc0e544877d1a4deea29feece92
+  MVVMFoundation: 223331fac948a16572905f94094df52726065f10
+  ReactiveKit: a36ebeb959fe6852dd674cc423163bfffb7e0541
+
+PODFILE CHECKSUM: a6df6df7aa0739f09b69b8c4deb5401a66651cef
+
+COCOAPODS: 1.11.2

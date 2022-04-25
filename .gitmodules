@@ -1,0 +1,3 @@
+[submodule "submodules/transmission"]
+	path = iTorrent/submodules/MVVMFoundation
+	url = https://github.com/XITRIX/MVVMFoundation.git

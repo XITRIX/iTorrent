@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "OpenSSL",
+        "repositoryURL": "https://github.com/krzyzanowskim/OpenSSL.git",
+        "state": {
+          "branch": null,
+          "revision": "8697a05bcddbbeb5ac2d29cd60442cf93ee0d3ae",
+          "version": "1.1.1400"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
