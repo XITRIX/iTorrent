@@ -3,3 +3,7 @@ Pods
 iTorrent/submodules/TorrentKit/Thirdparties/boost/src
 iTorrent/submodules/TorrentKit/Thirdparties/libtorrent/src
 xcuserdata/
+submodules/TorrentKit/Thirdparties/boost/src
+submodules/TorrentKit/Thirdparties/boost/boost.tar.gz
+submodules/TorrentKit/Thirdparties/libtorrent/libtorrent.tar.gz
+submodules/TorrentKit/Thirdparties/libtorrent/src

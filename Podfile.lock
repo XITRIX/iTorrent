@@ -11,7 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - Bond
-  - MVVMFoundation (from `iTorrent/submodules/MVVMFoundation`)
+  - MVVMFoundation (from `submodules/MVVMFoundation`)
 
 SPEC REPOS:
   trunk:
@@ -22,7 +22,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   MVVMFoundation:
-    :path: iTorrent/submodules/MVVMFoundation
+    :path: submodules/MVVMFoundation
 
 SPEC CHECKSUMS:
   Bond: 87075c7f20f37ea3e73dc7057fce839787bf46eb
@@ -31,6 +31,6 @@ SPEC CHECKSUMS:
   MVVMFoundation: 223331fac948a16572905f94094df52726065f10
   ReactiveKit: a36ebeb959fe6852dd674cc423163bfffb7e0541
 
-PODFILE CHECKSUM: a6df6df7aa0739f09b69b8c4deb5401a66651cef
+PODFILE CHECKSUM: 51e513dc5e81c7da03a23ff7a30c3ec17509d4ea
 
 COCOAPODS: 1.11.2

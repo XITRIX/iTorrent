@@ -1,4 +1,4 @@
-project 'iTorrent/iTorrent.xcodeproj'
+project 'iTorrent.xcodeproj'
 
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
@@ -8,7 +8,7 @@ target 'iTorrent' do
   use_frameworks!
 
   # Pods for iTorrent
-  pod 'MVVMFoundation', :path => 'iTorrent/submodules/MVVMFoundation'
+  pod 'MVVMFoundation', :path => 'submodules/MVVMFoundation'
   pod 'Bond'
 
 end

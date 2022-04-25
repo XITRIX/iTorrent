@@ -66,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F9DBA8A443188499674A2F2 /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
 		7CC9B2E628167884001A13ED /* TorrentHandleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentHandleExtensions.swift; sourceTree = "<group>"; };
 		7CC9B2EB281679C2001A13ED /* TorrentDelailsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TorrentDelailsDetailCell.xib; sourceTree = "<group>"; };
 		7CC9B2EC281679C2001A13ED /* TorrentDelailsDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorrentDelailsDetailCell.swift; sourceTree = "<group>"; };
@@ -109,9 +110,8 @@
 		7CFB9ED62815F8D5006C1E1E /* DiffableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffableDataSource.swift; sourceTree = "<group>"; };
 		7CFB9ED82815F8D5006C1E1E /* SegmentedProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedProgressView.swift; sourceTree = "<group>"; };
 		7CFB9EDE2815F91D006C1E1E /* TorrentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentManager.swift; sourceTree = "<group>"; };
-		8825075A9619EDCBCF0AB4B1 /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
+		814B102AA21C49930A749CF1 /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 		E2539417FC0D40EFE1CF98E8 /* Pods_iTorrent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTorrent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD3EF7AE499EB6C94EE63207 /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +127,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		675B6B8EA22CC9F1804E035F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				814B102AA21C49930A749CF1 /* Pods-iTorrent.debug.xcconfig */,
+				2F9DBA8A443188499674A2F2 /* Pods-iTorrent.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7CC9B2E528167871001A13ED /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +203,7 @@
 				7CFB9E872815F298006C1E1E /* iTorrent */,
 				7CFB9E862815F298006C1E1E /* Products */,
 				7CFB9E9D2815F33E006C1E1E /* Frameworks */,
-				C74930E74FA160CB198B0FF6 /* Pods */,
+				675B6B8EA22CC9F1804E035F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,16 +354,6 @@
 				7CFB9EDE2815F91D006C1E1E /* TorrentManager.swift */,
 			);
 			path = TorrentManager;
-			sourceTree = "<group>";
-		};
-		C74930E74FA160CB198B0FF6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FD3EF7AE499EB6C94EE63207 /* Pods-iTorrent.debug.xcconfig */,
-				8825075A9619EDCBCF0AB4B1 /* Pods-iTorrent.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -651,7 +651,7 @@
 		};
 		7CFB9E9A2815F299006C1E1E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD3EF7AE499EB6C94EE63207 /* Pods-iTorrent.debug.xcconfig */;
+			baseConfigurationReference = 814B102AA21C49930A749CF1 /* Pods-iTorrent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -681,7 +681,7 @@
 		};
 		7CFB9E9B2815F299006C1E1E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8825075A9619EDCBCF0AB4B1 /* Pods-iTorrent.release.xcconfig */;
+			baseConfigurationReference = 2F9DBA8A443188499674A2F2 /* Pods-iTorrent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

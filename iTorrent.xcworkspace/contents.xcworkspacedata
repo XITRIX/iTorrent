@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:iTorrent/submodules/TorrentKit/TorrentKit.xcodeproj">
+      location = "group:submodules/TorrentKit/TorrentKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:iTorrent/iTorrent.xcodeproj">
+      location = "group:iTorrent.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
