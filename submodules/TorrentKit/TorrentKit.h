@@ -17,9 +17,11 @@ FOUNDATION_EXPORT const unsigned char TorrentKitVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <TorrentKit/PublicHeader.h>
 
 #import <TorrentKit/Session.h>
+#import <TorrentKit/FileEntry.h>
 #import <TorrentKit/TorrentHandle.h>
 #import <TorrentKit/TorrentHandleState.h>
-#import <TorrentKit/TorrentFile.h>
 #import <TorrentKit/Downloadable.h>
+#import <TorrentKit/TorrentFile.h>
+#import <TorrentKit/MagnetURI.h>
 #import <TorrentKit/NSData+Hex.h>
 

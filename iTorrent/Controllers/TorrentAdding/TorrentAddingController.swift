@@ -1,20 +1,30 @@
 //
-//  TorrentFilesController.swift
+//  TorrentAddingController.swift
 //  iTorrent
 //
-//  Created by Даниил Виноградов on 21.04.2022.
+//  Created by Даниил Виноградов on 25.04.2022.
 //
 
-import MVVMFoundation
-import QuickLook
 import UIKit
+import MVVMFoundation
 
-class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
+class TorrentAddingController: MvvmTableViewController<TorrentAddingViewModel> {
+    let doneItem = UIBarButtonItem(title: "Download", style: .done, target: nil, action: nil)
+    let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
+
     var previewDataSource = TorrentFilesControllerPreviewDataSource()
     var dataSource: DiffableDataSource<FileEntityProtocol>?
 
+    deinit {
+        print("Deinit TorrentAddingController!")
+    }
+
     override func setupView() {
         super.setupView()
+
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.setRightBarButton(doneItem, animated: false)
+        navigationItem.setLeftBarButton(cancelItem, animated: false)
 
         dataSource = DiffableDataSource<FileEntityProtocol>(tableView: tableView, cellProvider: { [unowned self] tableView, indexPath, itemIdentifier in
             switch itemIdentifier {
@@ -47,32 +57,15 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
             }
 
             tableView.reactive.selectedRowIndexPath.observeNext { [unowned self] indexPath in
-                if let cell = tableView.cellForRow(at: indexPath) as? TorrentFileCell,
-                   let file = viewModel.getFile(at: indexPath.row)
-                {
-                    if file.progress == 1 {
-                        previewDataSource.previewURL = URL(fileURLWithPath: file.getFullPath(), isDirectory: false)
-                        let qlvc = QLPreviewController()
-                        qlvc.dataSource = previewDataSource
-                        present(qlvc, animated: true)
-                    } else { cell.triggerSwitch() }
+                if let cell = tableView.cellForRow(at: indexPath) as? TorrentFileCell {
+                    cell.triggerSwitch()
                     return
                 }
                 viewModel.selectItem(at: indexPath)
             }
+
+            doneItem.bindTap(viewModel.download)
+            cancelItem.bindTap(viewModel.dismiss)
         }
-    }
-}
-
-class TorrentFilesControllerPreviewDataSource: NSObject, QLPreviewControllerDataSource {
-    var previewURL: URL?
-
-    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        previewURL == nil ? 0 : 1
-    }
-
-    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        guard let url = previewURL else { fatalError() }
-        return url as NSURL
     }
 }

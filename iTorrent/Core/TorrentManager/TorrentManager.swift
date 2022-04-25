@@ -31,10 +31,18 @@ class TorrentManager {
         session.add(self)
     }
 
+    func addTorrent(_ torrent: Downloadable) {
+        session.addTorrent(torrent)
+    }
+}
+
+private extension TorrentManager {
     func append(torrent: TorrentHandle) {
         autoreleasepool {
             guard let localTorrent = torrents[torrent.infoHash] else {
-                torrents[torrent.infoHash] = torrent
+                DispatchQueue.main.async { [self] in
+                    torrents[torrent.infoHash] = torrent
+                }
                 return
             }
 

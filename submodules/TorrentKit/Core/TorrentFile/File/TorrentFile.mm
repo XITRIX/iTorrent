@@ -6,9 +6,11 @@
 //
 
 #import "Session.h"
-#import "TorrentFile.h"
+#import "TorrentFile_Internal.h"
+#import "TorrentHandle_Internal.h"
 
 #import "libtorrent/torrent_info.hpp"
+#import "libtorrent/torrent_handle.hpp"
 #import "libtorrent/read_resume_data.hpp"
 #import "libtorrent/add_torrent_params.hpp"
 
@@ -55,8 +57,51 @@
             *_params = resume;
         }
     }
-
+    
     _params->ti = std::make_shared<lt::torrent_info>(ti);
+}
+
+- (void)configureAfterAdded:(TorrentHandle *)torrentHandle {
+    if (_priorities == NULL) return;
+
+    std::vector<lt::download_priority_t> priorities;
+    for (int i = 0; i < _priorities.count; i++) {
+        priorities.push_back((lt::download_priority_t)_priorities[i].intValue);
+    }
+
+    torrentHandle.torrentHandle.prioritize_files(priorities);
+}
+
+- (NSString *)name {
+    return [[NSString alloc] initWithFormat:@"%s", self.torrent_info.name().c_str()];
+}
+
+- (NSArray<FileEntry *> *)files {
+    auto info = [self torrent_info];
+    auto files = info.files();
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    _priorities = [[NSMutableArray alloc] initWithCapacity:files.num_files()];
+
+    for (int i=0; i<files.num_files(); i++) {
+        auto path = files.file_path(i);
+        auto size = files.file_size(i);
+        [_priorities setObject:[NSNumber numberWithInt:FilePriorityDefaultPriority] atIndexedSubscript:i];
+
+        FileEntry *fileEntry = [[FileEntry alloc] init];
+        fileEntry.isPrototype = true;
+        fileEntry.priority = FilePriorityDefaultPriority;
+        fileEntry.path = [NSString stringWithUTF8String:path.c_str()];
+        fileEntry.name = [fileEntry.path lastPathComponent];
+        fileEntry.size = size;
+
+        [results addObject:fileEntry];
+    }
+
+    return [results copy];
+}
+
+- (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex {
+    [_priorities setObject:[NSNumber numberWithInt:priority] atIndexedSubscript:fileIndex];
 }
 
 @end

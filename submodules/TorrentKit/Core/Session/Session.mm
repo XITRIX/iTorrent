@@ -9,7 +9,7 @@
 
 #import "Session_Internal.h"
 #import "Downloadable.h"
-#import "TorrentFile.h"
+#import "TorrentFile_Internal.h"
 #import "TorrentHandle_Internal.h"
 #import "NSData+Hex.h"
 #import "NSData+Sha1Hash.h"
@@ -118,6 +118,10 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
     params.save_path = [_downloadPath UTF8String];
     auto th = _session->add_torrent(params);
+
+
+    [torrent configureAfterAdded: [[TorrentHandle alloc] initWith:th]];
+
     return YES;
 }
 

@@ -15,27 +15,13 @@ class TorrentsListTorrentCell: MvvmTableViewCell {
     @IBOutlet private var statusLabel: UILabel!
     @IBOutlet private var progressView: UIProgressView!
 
-    @Bindable var title: String?
-    @Bindable var progressText: String?
-    @Bindable var statusText: String?
-    @Bindable var progress: Float = 0
-
-    override func binding() {
-        bind(in: reuseBag) {
-            $title.bind(to: titleLabel)
-            $progressText.bind(to: progressLabel)
-            $statusText.bind(to: statusLabel.reactive.text)
-            $progress.bind(to: progressView.reactive.progress)
-        }
-    }
-
     func setup(with torrent: TorrentsListTorrentModel) {
         titleLabel.font = titleLabel.font.bold()
         bind(in: reuseBag) {
-            torrent.$title => $title
-            torrent.$progressText => $progressText
-            torrent.$statusText => $statusText
-            torrent.$progress => $progress
+            torrent.title => titleLabel
+            torrent.progressText => progressLabel
+            torrent.statusText => statusLabel.reactive.text
+            torrent.progress => progressView.reactive.progress
         }
     }
 }

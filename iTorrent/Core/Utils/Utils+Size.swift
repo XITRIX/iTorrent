@@ -9,7 +9,7 @@ import Foundation
 
 extension Utils {
     struct Size {
-        public static func getSizeText(size: UInt?, decimals: Int = 0) -> String {
+        public static func getSizeText(size: UInt?, decimals: Int = 2) -> String {
             guard var size = size else {
                 return getSizeText(size: 0, decimals: decimals)
             }

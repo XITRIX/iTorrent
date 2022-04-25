@@ -41,8 +41,8 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
         let timeRemain = Detail(title: "Time remains")
 
         bind(in: bag) {
-            torrent.rx.downloadRate.map { "\(ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .binary))/s" } => downloadSpeed.$detail
-            torrent.rx.uploadRate.map { "\(ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .binary))/s" } => uploadSpeed.$detail
+            torrent.rx.downloadRate.map { "\(Utils.Size.getSizeText(size: $0, decimals: 2))/s" } => downloadSpeed.$detail
+            torrent.rx.uploadRate.map { "\(Utils.Size.getSizeText(size: $0, decimals: 2))/s" } => uploadSpeed.$detail
             torrent.rx.updateObserver.map { torrent in
                 Utils.Time.downloadingTimeRemainText(speedInBytes: Int64(torrent.downloadRate), fileSize: Int64(torrent.totalWanted), downloadedSize: Int64(torrent.totalWantedDone))
             } => timeRemain.$detail
@@ -118,6 +118,14 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
     }
 
     func navigateToFiles() {
-//        navigate(to: TorrentFilesViewModel.self, prepare: TorrentFilesModel(torrent: torrent))
+        navigate(to: TorrentFilesViewModel.self, prepare: TorrentFilesModel(torrent: torrent))
+    }
+
+    var canResume: Signal<Bool, Never> {
+        torrent.rx.canResume
+    }
+
+    var canPause: Signal<Bool, Never> {
+        torrent.rx.canPause
     }
 }

@@ -30,4 +30,6 @@
     }
 }
 
+- (void)configureAfterAdded:(TorrentHandle *)torrentHandle { }
+
 @end

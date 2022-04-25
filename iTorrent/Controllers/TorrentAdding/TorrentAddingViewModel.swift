@@ -1,27 +1,29 @@
 //
-//  TorrentFilesViewModel.swift
+//  TorrentAddingViewModel.swift
 //  iTorrent
 //
-//  Created by Даниил Виноградов on 21.04.2022.
+//  Created by Даниил Виноградов on 25.04.2022.
 //
 
 import MVVMFoundation
 import TorrentKit
 
-struct TorrentFilesModel {
-    let torrent: TorrentHandle
-    var fileManager: FileManager?
+struct TorrentAddingModel {
+    let file: TorrentFile
+    var fileManager: AddingFileManager?
     var root: DirectoryEntity?
 }
 
-class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
-    private var model: TorrentFilesModel!
+class TorrentAddingViewModel: MvvmViewModelWith<TorrentAddingModel> {
+    private var model: TorrentAddingModel!
     @Bindable var sections: [SectionModel<FileEntityProtocol>] = []
 
-    override func prepare(with item: MvvmViewModelWith<TorrentFilesModel>.Model) {
+    override func prepare(with item: TorrentAddingModel) {
         model = item
+
         if model.root == nil {
-            model.fileManager = FileManager(with: model.torrent)
+            title.value = model.file.name
+            model.fileManager = AddingFileManager(with: item.file)
             model.root = model.fileManager?.root
         }
 
@@ -41,14 +43,19 @@ class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
         else { return }
 
         model.root = nextDir
-        navigate(to: TorrentFilesViewModel.self, prepare: model)
+        navigate(to: TorrentAddingViewModel.self, prepare: model)
     }
 
     func setTorrentFilePriority(_ priority: FileEntry.Priority, at fileIndex: Int) {
-        model.torrent.setFilePriority(priority, at: fileIndex)
+        model.fileManager?.rawFiles[fileIndex].priority = priority
     }
 
     func getFile(at index: Int) -> FileEntity? {
         sections.first?.items[index] as? FileEntity
+    }
+
+    func download() {
+        (MVVM.resolve() as TorrentManager).addTorrent(model.file)
+        dismiss()
     }
 }

@@ -1,16 +1,15 @@
 //
-//  FileManager.swift
+//  AddingFileManager.swift
 //  iTorrent
 //
-//  Created by Даниил Виноградов on 22.04.2022.
+//  Created by Даниил Виноградов on 25.04.2022.
 //
 
 import Foundation
 import ReactiveKit
-import MVVMFoundation
 import TorrentKit
 
-class FileManager {
+class AddingFileManager {
     let rawFiles: [FileEntity]
     let root: DirectoryEntity
 
@@ -20,11 +19,11 @@ class FileManager {
         print("FileManager deinit")
     }
 
-    init(with torrent: TorrentHandle) {
+    init(with file: TorrentFile) {
+        let files = file.files
         let root = DirectoryEntity(name: "")
         var rawFiles = [FileEntity]()
 
-        let files = torrent.files
         for fileNum in files.enumerated() {
             let file = fileNum.element
             let parts = file.path.split(separator: "/")
@@ -32,7 +31,9 @@ class FileManager {
             for part in parts {
                 let part = String(part)
 
-                if part == file.name {
+                if let lastPart = parts.last,
+                   part == lastPart
+                {
                     let fileEntity = FileEntity(file: file, id: fileNum.offset)
                     currentDirectory.files[part] = fileEntity
                     rawFiles.append(fileEntity)
@@ -53,20 +54,11 @@ class FileManager {
 
         if root.files.values.count == 1,
            let first = root.files.values.first as? DirectoryEntity,
-           first.name == torrent.name
+           first.name == file.name
         {
             self.root = first
         } else {
             self.root = root
         }
-
-        // Binding
-        torrent.rx.progress.observeNext { _ in
-            for file in torrent.files.enumerated() {
-                DispatchQueue.main.async {
-                    rawFiles[file.offset].update(with: file.element)
-                }
-            }
-        }.dispose(in: bag)
     }
 }

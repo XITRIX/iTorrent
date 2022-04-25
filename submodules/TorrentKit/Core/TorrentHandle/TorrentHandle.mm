@@ -6,6 +6,7 @@
 //
 
 #import "TorrentHandle_Internal.h"
+#import "FileEntry_Internal.h"
 
 #import "NSData+Hex.h"
 
@@ -21,14 +22,6 @@
     }
     return self;
 }
-
-//- (libtorrent::torrent_info *)torrentInfo {
-//    auto ts = _torrentHandle.status();
-//    if (ts.has_metadata) {
-//        return _torrentHandle.torrent_file().get();
-//    }
-//    return NULL;
-//}
 
 - (NSUInteger)hash {
     return self.infoHash.hash;
@@ -192,6 +185,8 @@
     return ts.flags & lt::torrent_flags::sequential_download;
 }
 
+// MARK: - Functions
+
 - (void)resume {
     _torrentHandle.set_flags(lt::torrent_flags::auto_managed);
     _torrentHandle.resume();
@@ -208,17 +203,66 @@
 }
 
 - (void)setSequentialDownload:(BOOL)enabled {
-    auto th = _torrentHandle;
     if (enabled) {
-        th.set_flags(lt::torrent_flags::sequential_download);
+        _torrentHandle.set_flags(lt::torrent_flags::sequential_download);
     } else {
-        th.unset_flags(lt::torrent_flags::sequential_download);
+        _torrentHandle.unset_flags(lt::torrent_flags::sequential_download);
     }
-    th.save_resume_data();
+    _torrentHandle.save_resume_data();
 }
 
-- (void)setFilePriority:(uint8_t)priority forFile:(NSInteger)index {
-    _torrentHandle.file_priority((int)index, priority);
+- (NSArray<FileEntry *> *)files {
+    auto th = _torrentHandle;
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    auto ti = th.torrent_file();
+    if (ti == nullptr) {
+        NSLog(@"No metadata for torrent with name: %s", th.status().name.c_str());
+        return nil;
+    }
+
+    std::vector<int64_t> progresses;
+    th.file_progress(progresses);
+    auto priorities = th.get_file_priorities();
+
+    auto info = ti.get();
+    auto stat = th.status();
+    auto files = info->files();
+    for (int i=0; i<files.num_files(); i++) {
+        auto name = std::string(files.file_name(i));
+        auto path = files.file_path(i);
+        auto size = files.file_size(i);
+        uint8_t priority = priorities[i];
+
+        FileEntry *fileEntry = [[FileEntry alloc] init];
+        fileEntry.name = [NSString stringWithUTF8String:name.c_str()];
+        fileEntry.path = [NSString stringWithUTF8String:path.c_str()];
+        fileEntry.size = size;
+        fileEntry.downloaded = progresses[i];
+        fileEntry.priority = (FilePriority) priority;
+
+        const auto fileSize = files.file_size(i);// > 0 ? files.file_size(i) : 0;
+        const auto fileOffset = files.file_offset(i);
+
+        const int pieceLength = info->piece_length();
+        const long long beginIdx = (fileOffset / pieceLength);
+        const long long endIdx = ((fileOffset + fileSize) / pieceLength);
+
+        fileEntry.begin_idx = beginIdx;
+        fileEntry.end_idx = endIdx;
+        fileEntry.num_pieces = (int)(endIdx - beginIdx);
+        auto array = [[NSMutableArray<NSNumber *> alloc] init];
+        for (int j = 0; j < fileEntry.num_pieces; j++) {
+            [array addObject: [NSNumber numberWithBool: stat.pieces.get_bit(j + (int)beginIdx)]];
+        }
+        fileEntry.pieces = array;
+
+        [results addObject:fileEntry];
+    }
+    return [results copy];
+}
+
+- (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex {
+    _torrentHandle.file_priority((int)fileIndex, priority);
     _torrentHandle.save_resume_data();
 }
 

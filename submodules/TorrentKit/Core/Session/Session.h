@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 
 #import "Downloadable.h"
+#import "TorrentFile.h"
+#import "FileEntry.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

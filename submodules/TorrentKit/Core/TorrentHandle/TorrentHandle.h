@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 #import "TorrentHandleState.h"
+#import "FileEntry.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,15 +39,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL isFinished;
 @property (readonly) BOOL isSeed;
 @property (readonly) BOOL isSequential;
+@property (readonly) NSArray<FileEntry *> *files;
 
 - (void)resume;
 - (void)pause;
 - (void)rehash;
 
 - (void)setSequentialDownload:(BOOL)enabled;
-//- (NSArray<STFileEntry *> *)files;
 
-- (void)setFilePriority:(uint8_t)priority forFile:(NSInteger)index;
+- (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex;
 - (void)setFilesPriority:(NSArray<NSNumber *> *)priorities;
 
 @end

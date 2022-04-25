@@ -14,13 +14,18 @@
 		7C4AB5F7280B601C003940CD /* NSData+Hex.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C4AB5E5280B601C003940CD /* NSData+Hex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C4AB5F8280B601C003940CD /* NSData+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AB5E6280B601C003940CD /* NSData+Hex.m */; };
 		7C4E4BF1280DEF03005B13E6 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E4BF0280DEF03005B13E6 /* Data+Hex.swift */; };
+		7CC9B3452816CCF9001A13ED /* FileEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC9B3442816CCF9001A13ED /* FileEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CC9B3472816CD69001A13ED /* FileEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9B3462816CD69001A13ED /* FileEntry.m */; };
+		7CC9B3492816CD92001A13ED /* FileEntry_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC9B3482816CD92001A13ED /* FileEntry_Internal.h */; };
+		7CC9B34B2816CDDA001A13ED /* FilePriority.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC9B34A2816CDD7001A13ED /* FilePriority.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CC9B34D2816DDC6001A13ED /* TorrentHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9B34C2816DDC6001A13ED /* TorrentHandle.swift */; };
 		7CFB9E552814DCC0006C1E1E /* Session.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB9E542814DCC0006C1E1E /* Session.mm */; };
 		7CFB9E582814DD30006C1E1E /* Session.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E572814DCD0006C1E1E /* Session.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CFB9E5D28154AB7006C1E1E /* TorrentHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E5B28154AB7006C1E1E /* TorrentHandle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CFB9E5E28154AB7006C1E1E /* TorrentHandle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB9E5C28154AB7006C1E1E /* TorrentHandle.mm */; };
 		7CFB9E64281557E0006C1E1E /* TorrentFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB9E63281557E0006C1E1E /* TorrentFile.mm */; };
 		7CFB9E66281557EF006C1E1E /* TorrentFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E65281557EB006C1E1E /* TorrentFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7CFB9E6B28155A78006C1E1E /* MagnetURI.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E6928155A78006C1E1E /* MagnetURI.h */; };
+		7CFB9E6B28155A78006C1E1E /* MagnetURI.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E6928155A78006C1E1E /* MagnetURI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CFB9E6C28155A78006C1E1E /* MagnetURI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7CFB9E6A28155A78006C1E1E /* MagnetURI.mm */; };
 		7CFB9E6E28155AFE006C1E1E /* Downloadable.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E6D28155AFE006C1E1E /* Downloadable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CFB9E752815685B006C1E1E /* NSData+Sha1Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CFB9E742815685B006C1E1E /* NSData+Sha1Hash.h */; };
@@ -48,6 +53,12 @@
 		7C4AB5E6280B601C003940CD /* NSData+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Hex.m"; sourceTree = "<group>"; };
 		7C4AB5F9280B60B0003940CD /* libtorrent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libtorrent.xcodeproj; path = Thirdparties/libtorrent/Xcode/libtorrent.xcodeproj; sourceTree = "<group>"; };
 		7C4E4BF0280DEF03005B13E6 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
+		7CC9B3442816CCF9001A13ED /* FileEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileEntry.h; sourceTree = "<group>"; };
+		7CC9B3462816CD69001A13ED /* FileEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileEntry.m; sourceTree = "<group>"; };
+		7CC9B3482816CD92001A13ED /* FileEntry_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileEntry_Internal.h; sourceTree = "<group>"; };
+		7CC9B34A2816CDD7001A13ED /* FilePriority.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePriority.h; sourceTree = "<group>"; };
+		7CC9B34C2816DDC6001A13ED /* TorrentHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentHandle.swift; sourceTree = "<group>"; };
+		7CC9B35128172576001A13ED /* TorrentFile_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorrentFile_Internal.h; sourceTree = "<group>"; };
 		7CFB9E542814DCC0006C1E1E /* Session.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Session.mm; sourceTree = "<group>"; };
 		7CFB9E572814DCD0006C1E1E /* Session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
 		7CFB9E5B28154AB7006C1E1E /* TorrentHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorrentHandle.h; sourceTree = "<group>"; };
@@ -110,6 +121,7 @@
 		7C4AB5D4280B601C003940CD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7CC9B3422816CCD7001A13ED /* FileEntry */,
 				7CFB9E622815572C006C1E1E /* TorrentFile */,
 				7CFB9E5A28154A95006C1E1E /* TorrentHandle */,
 				7CFB9E5928154A8C006C1E1E /* Session */,
@@ -145,6 +157,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7CC9B3422816CCD7001A13ED /* FileEntry */ = {
+			isa = PBXGroup;
+			children = (
+				7CC9B3442816CCF9001A13ED /* FileEntry.h */,
+				7CC9B3482816CD92001A13ED /* FileEntry_Internal.h */,
+				7CC9B3462816CD69001A13ED /* FileEntry.m */,
+				7CC9B34A2816CDD7001A13ED /* FilePriority.h */,
+			);
+			path = FileEntry;
+			sourceTree = "<group>";
+		};
 		7CFB9E5928154A8C006C1E1E /* Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +185,7 @@
 				7CFB9E5F28154B87006C1E1E /* TorrentHandle_Internal.h */,
 				7CFB9E5C28154AB7006C1E1E /* TorrentHandle.mm */,
 				7CFB9E7828157223006C1E1E /* TorrentHandleState.h */,
+				7CC9B34C2816DDC6001A13ED /* TorrentHandle.swift */,
 			);
 			path = TorrentHandle;
 			sourceTree = "<group>";
@@ -180,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				7CFB9E65281557EB006C1E1E /* TorrentFile.h */,
+				7CC9B35128172576001A13ED /* TorrentFile_Internal.h */,
 				7CFB9E63281557E0006C1E1E /* TorrentFile.mm */,
 			);
 			path = File;
@@ -212,12 +237,15 @@
 				7CFB9E66281557EF006C1E1E /* TorrentFile.h in Headers */,
 				7C4AB5D1280B5FF6003940CD /* TorrentKit.h in Headers */,
 				7CFB9E7928157267006C1E1E /* TorrentHandleState.h in Headers */,
+				7CC9B3452816CCF9001A13ED /* FileEntry.h in Headers */,
 				7C4AB5F7280B601C003940CD /* NSData+Hex.h in Headers */,
+				7CC9B3492816CD92001A13ED /* FileEntry_Internal.h in Headers */,
 				7CFB9E752815685B006C1E1E /* NSData+Sha1Hash.h in Headers */,
 				7CFB9E6B28155A78006C1E1E /* MagnetURI.h in Headers */,
 				7CFB9E6E28155AFE006C1E1E /* Downloadable.h in Headers */,
 				7CFB9E582814DD30006C1E1E /* Session.h in Headers */,
 				7CFB9E5D28154AB7006C1E1E /* TorrentHandle.h in Headers */,
+				7CC9B34B2816CDDA001A13ED /* FilePriority.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,9 +334,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC9B3472816CD69001A13ED /* FileEntry.m in Sources */,
 				7CFB9E64281557E0006C1E1E /* TorrentFile.mm in Sources */,
 				7CFB9E5E28154AB7006C1E1E /* TorrentHandle.mm in Sources */,
 				7CFB9E552814DCC0006C1E1E /* Session.mm in Sources */,
+				7CC9B34D2816DDC6001A13ED /* TorrentHandle.swift in Sources */,
 				7CFB9E7728156922006C1E1E /* NSData+Sha1Hash.mm in Sources */,
 				7C4E4BF1280DEF03005B13E6 /* Data+Hex.swift in Sources */,
 				7CFB9E6C28155A78006C1E1E /* MagnetURI.mm in Sources */,

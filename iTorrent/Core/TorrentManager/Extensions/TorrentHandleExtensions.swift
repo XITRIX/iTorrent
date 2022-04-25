@@ -30,6 +30,14 @@ extension TorrentHandle {
         }
         return state
     }
+
+    var canResume: Bool {
+        isPaused && (state != .finished || seedMode)
+    }
+
+    var canPause: Bool {
+        !isPaused
+    }
 }
 
 extension TorrentHandle.State: CustomStringConvertible {

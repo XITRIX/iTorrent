@@ -44,6 +44,8 @@ class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel>
         bind(in: bag) {
             playItem.bindTap(viewModel.resume)
             pauseItem.bindTap(viewModel.pause)
+            viewModel.canResume => playItem.reactive.isEnabled
+            viewModel.canPause => pauseItem.reactive.isEnabled
             rehashItem.bindTap { [unowned self] in rehashAction() }
             removeItem.bindTap { [unowned self] in removeAction() }
 

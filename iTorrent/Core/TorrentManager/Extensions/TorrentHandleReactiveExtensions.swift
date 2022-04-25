@@ -140,4 +140,12 @@ extension ReactiveExtensions where Base == TorrentHandle {
     var numberOfTotalLeechers: Signal<UInt, Never> {
         updateObserver.map { $0.numberOfTotalLeechers }
     }
+
+    var canResume: Signal<Bool, Never> {
+        updateObserver.map { $0.canResume }
+    }
+
+    var canPause: Signal<Bool, Never> {
+        updateObserver.map { $0.canPause }
+    }
 }
