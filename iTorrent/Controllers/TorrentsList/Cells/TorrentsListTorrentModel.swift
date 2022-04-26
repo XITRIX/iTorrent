@@ -53,9 +53,9 @@ private extension TorrentHandle {
         switch displayState {
         case .downloading:
             let timeRemains = Utils.Time.downloadingTimeRemainText(speedInBytes: Int64(downloadRate), fileSize: Int64(totalWanted), downloadedSize: Int64(totalWantedDone))
-            return "\(displayState) - \(displayState.symbol)\(Utils.Size.getSizeText(size: downloadRate)) - time remains: \(timeRemains)"
+            return "\(displayState) - \(displayState.symbol):\(Utils.Size.getSizeText(size: downloadRate)) - time remains: \(timeRemains)"
         case .seeding:
-            return "\(displayState) - \(displayState.symbol)\(Utils.Size.getSizeText(size: uploadRate))"
+            return "\(displayState) - \(displayState.symbol):\(Utils.Size.getSizeText(size: uploadRate))"
         default:
             return displayState.description
         }

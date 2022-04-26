@@ -62,6 +62,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
         [_eventsThread setName: EventsQueueIdentifier];
         [_eventsThread setQualityOfService:NSQualityOfServiceDefault];
         [_eventsThread start];
+
     }
     return self;
 }
@@ -80,6 +81,15 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 }
 
 // MARK: - Public
+- (NSArray<TorrentHandle *> *)torrents {
+    auto torrents = _session->get_torrents();
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:torrents.size()];
+    for (int i = 0; i < torrents.size(); i++) {
+        [result setObject:[[TorrentHandle alloc] initWith:torrents[i]] atIndexedSubscript:i];
+    }
+    return result;
+}
+
 - (void)restoreSession {
     NSError *error;
     // load .torrents files
@@ -125,6 +135,17 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
     return YES;
 }
 
+- (void)removeTorrent:(TorrentHandle *)torrent deleteFiles:(BOOL)deleteFiles {
+    [self removeStoredTorrentOrMagnet:torrent.torrentHandle];
+
+    // Remove torrrent from session
+    if (deleteFiles) {
+        _session->remove_torrent(torrent.torrentHandle, lt::session::delete_files);
+    } else {
+        _session->remove_torrent(torrent.torrentHandle);
+    }
+}
+
 // MARK: - Private
 - (NSError *)errorWithCode:(ErrorCode)code message:(NSString *)message {
     return [NSError errorWithDomain:ErrorDomain
@@ -132,6 +153,13 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
                            userInfo:@{NSLocalizedDescriptionKey: message}];
 }
 
+- (void)removeStoredTorrentOrMagnet:(lt::torrent_handle)th {
+    // Remove stored torrent
+    auto ti = th.torrent_file();
+    [self removeTorrentFileWithInfo:ti];
+    auto ih = th.info_hash();
+    [self removeMagnetURIWithHash:ih];
+}
 
 // MARK: - Alerts Loop
 
@@ -153,10 +181,11 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 //            NSLog(@"type:%d msg:%s", alert->type(), alert->message().c_str());
             switch (alert->type()) {
                 case lt::metadata_received_alert::alert_type: {
+                    [self metadataReceivedAlert:(lt::torrent_alert *)alert];
                 } break;
 
                 case lt::metadata_failed_alert::alert_type: {
-                    [self metadataReceivedAlert:(lt::torrent_alert *)alert];
+//                    [self metadataReceivedAlert:(lt::torrent_alert *)alert];
                 } break;
 
                 case lt::block_finished_alert::alert_type: {
@@ -218,6 +247,8 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 }
 
 - (void)notifyDelegatesWithUpdate:(lt::torrent_handle)th {
+    if (!th.is_valid()) return;
+    
     TorrentHandle *torrent = [[TorrentHandle alloc] initWith:th];
     for (id<SessionDelegate>delegate in self.delegates) {
         [delegate torrentManager:self didReceiveUpdateForTorrent:torrent];
@@ -226,6 +257,12 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
 - (void)metadataReceivedAlert:(lt::torrent_alert *)alert {
     auto th = alert->handle;
+    auto info = th.torrent_file();
+
+    if (th.status().has_metadata) {
+        [self saveTorrentFileWithInfo:info];
+        [self removeMagnetURIWithHash:th.info_hash()];
+    }
 }
 
 - (void)torrentAddedAlert:(lt::torrent_alert *)alert {

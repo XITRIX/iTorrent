@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TorrentHandle : NSObject
 
-@property (readonly) NSString *infoHash;
+@property (readonly) NSData *infoHash;
 @property (readonly) NSString* name;
 @property (readonly) TorrentHandleState state;
 @property (readonly, nullable) NSString *creator;

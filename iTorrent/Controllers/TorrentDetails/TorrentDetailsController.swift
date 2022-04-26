@@ -63,9 +63,8 @@ class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel>
 
     func rehashAction() {
         let alert = UIAlertController(title: "Torrent rehash?", message: "This action will recheck the state of all downloaded files", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Rehash", style: .destructive, handler: { [self] _ in viewModel.rehash() }))
+        alert.addAction(UIAlertAction(title: "Rehash", style: .destructive, handler: { [unowned self] _ in viewModel.rehash() }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.view.tintColor = .secondaryAccent
         present(alert, animated: true)
     }
 
@@ -74,7 +73,6 @@ class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel>
         alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { _ in }))
         alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { _ in }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.view.tintColor = .secondaryAccent
         present(alert, animated: true)
     }
 }

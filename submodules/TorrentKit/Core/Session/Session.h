@@ -32,6 +32,8 @@ typedef NS_ENUM(NSUInteger, ErrorCode) {
 @property (readwrite, strong, nonatomic) NSString *torrentsPath;
 @property (readwrite, strong, nonatomic) NSString *fastResumePath;
 
+@property (readonly) NSArray<TorrentHandle *> *torrents;
+
 - (instancetype)initWith:(NSString *)downloadPath torrentsPath:(NSString *)torrentsPath fastResumePath:(NSString *)fastResumePath;
 
 - (NSString *)fastResumePathForInfoHash:(NSData *)infoHash;
@@ -42,6 +44,7 @@ typedef NS_ENUM(NSUInteger, ErrorCode) {
 - (void)restoreSession;
 
 - (BOOL)addTorrent:(id<Downloadable>)torrent;
+- (void)removeTorrent:(TorrentHandle *)torrent deleteFiles:(BOOL)deleteFiles;
 
 @end
 

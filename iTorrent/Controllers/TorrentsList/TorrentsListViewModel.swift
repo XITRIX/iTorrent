@@ -28,17 +28,27 @@ class TorrentsListViewModel: MvvmViewModel {
         navigate(to: TorrentDetailsViewModel.self, prepare: sections[indexPath.section].items[indexPath.row].torrent)
     }
 
-    func addTorrent(with url: URL) {
+    func addTorrentFile(with url: URL) {
         if url.startAccessingSecurityScopedResource() {
             let file = TorrentFile(fileAt: url)
             url.stopAccessingSecurityScopedResource()
             navigate(to: TorrentAddingViewModel.self, prepare: TorrentAddingModel(file: file), with: .modal(wrapInNavigation: true))
         }
     }
+
+    func addMagnet(with link: String) {
+        guard let url = URL(string: link) else { return }
+        torrentManager.addTorrent(MagnetURI(magnetURI: url))
+    }
+
+    func removeTorrent(at index: IndexPath, deleteFiles: Bool) {
+        let torrent = sections[index.section].items[index.row].torrent
+        torrentManager.removeTorrent(torrent, deleteFiles: deleteFiles)
+    }
 }
 
 extension TorrentsListViewModel {
-    func mapTorrentsIntoSections(_ torrents: Property<[String: TorrentHandle]>) -> Signal<[SectionModel<TorrentsListTorrentModel>], Never> {
+    func mapTorrentsIntoSections(_ torrents: Property<[Data: TorrentHandle]>) -> Signal<[SectionModel<TorrentsListTorrentModel>], Never> {
         return torrents.map { [unowned self] dict in
             var section = SectionModel<TorrentsListTorrentModel>()
             section.items = dict.values.sorted(by: sortTorrents).map { torrent in

@@ -27,14 +27,9 @@
     return self.infoHash.hash;
 }
 
-- (NSString *)infoHash {
+- (NSData *)infoHash {
     auto ih = _torrentHandle.info_hash();
-
-    std::stringstream ss;
-    ss << ih;
-    auto str = ss.str();
-
-    return [[NSString alloc] initWithFormat:@"%s", str.c_str()];
+    return [[NSData alloc] initWithBytes:ih.data() length:ih.size()];
 }
 
 - (NSString *)name {

@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         MVVM.initialize(with: CoreMvvm())
         MVVM.resolve(in: window)
+
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .secondaryAccent
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

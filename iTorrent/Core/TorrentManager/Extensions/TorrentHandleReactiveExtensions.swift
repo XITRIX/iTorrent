@@ -86,7 +86,7 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var infoHash: Signal<String, Never> {
-        updateObserver.map { $0.infoHash }
+        updateObserver.map { $0.infoHash.hex }
     }
 
     var creator: Signal<String?, Never> {
