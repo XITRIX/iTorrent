@@ -35,8 +35,7 @@ extension TorrentsListTorrentModel: Hashable {
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {
-//        false
-        return lhs.torrent == rhs.torrent
+        lhs.torrent == rhs.torrent
     }
 }
 

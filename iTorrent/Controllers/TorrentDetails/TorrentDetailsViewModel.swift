@@ -10,6 +10,7 @@ import ReactiveKit
 import TorrentKit
 
 class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
+    typealias Progress = TorrentDelailsProgressViewModel
     typealias Detail = TorrentDelailsDetailViewModel
     typealias Switch = TorrentDelailsSwitchViewModel
     typealias Navigation = TorrentDelailsNavigationViewModel
@@ -41,10 +42,11 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
         let timeRemain = Detail(title: "Time remains")
 
         bind(in: bag) {
-            torrent.rx.downloadRate.map { "\(Utils.Size.getSizeText(size: $0, decimals: 2))/s" } => downloadSpeed.$detail
-            torrent.rx.uploadRate.map { "\(Utils.Size.getSizeText(size: $0, decimals: 2))/s" } => uploadSpeed.$detail
-            torrent.rx.updateObserver.map { torrent in
-                Utils.Time.downloadingTimeRemainText(speedInBytes: Int64(torrent.downloadRate), fileSize: Int64(torrent.totalWanted), downloadedSize: Int64(torrent.totalWantedDone))
+            torrent.rx.downloadRate.map { "\(Utils.Size.getSizeText(size: $0))/s" } => downloadSpeed.$detail
+            torrent.rx.uploadRate.map { "\(Utils.Size.getSizeText(size: $0))/s" } => uploadSpeed.$detail
+            torrent.rx.updateObserver.map { torrent -> String in
+                if torrent.isPaused { return "---" }
+                return Utils.Time.downloadingTimeRemainText(speedInBytes: Int64(torrent.downloadRate), fileSize: Int64(torrent.totalWanted), downloadedSize: Int64(torrent.totalWantedDone))
             } => timeRemain.$detail
         }
 
@@ -52,12 +54,15 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
 
         // MARK: - Download Section
         let sequential = Switch(title: "Sequential download", value: torrent.isSequential)
+        let overallProgress = Progress(title: "Progress")
 
         bind(in: bag) {
             sequential.$value => torrent.rx.isSequential
+            torrent.rx.progressTotal => overallProgress.$overallProgress
+            torrent.rx.pieces.map { $0.map { $0 ? 1 : 0 } } => overallProgress.$partialProgress
         }
 
-        sections.append(SectionModel<TableCellRepresentable>(header: "Download", items: [sequential]))
+        sections.append(SectionModel<TableCellRepresentable>(header: "Downloading", items: [sequential, overallProgress]))
 
         // MARK: - Info
         let hashInfo = Detail(title: "Hash")
@@ -70,7 +75,7 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
             torrent.rx.creationDate.map { $0?.simpleDate() ?? "Unknown" } => creationDateInfo.$detail
         }
 
-        sections.append(SectionModel<TableCellRepresentable>(header: "Info", items: [hashInfo, creatorInfo, creationDateInfo]))
+        sections.append(SectionModel<TableCellRepresentable>(header: "General information", items: [hashInfo, creatorInfo, creationDateInfo]))
 
         // MARK: - Progress
         let overallInfo = Detail(title: "Selected/Total")
@@ -82,16 +87,16 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
         let leeches = Detail(title: "Leechers")
 
         bind(in: bag) {
-            combineLatest(torrent.rx.totalWanted, torrent.rx.total).map { "\(Utils.Size.getSizeText(size: $0, decimals: 2)) / \(Utils.Size.getSizeText(size: $1, decimals: 2))" } => overallInfo.$detail
-            torrent.rx.totalDone.map { Utils.Size.getSizeText(size: $0, decimals: 2) } => completionInfo.$detail
+            combineLatest(torrent.rx.totalWanted, torrent.rx.total).map { "\(Utils.Size.getSizeText(size: $0)) / \(Utils.Size.getSizeText(size: $1))" } => overallInfo.$detail
+            torrent.rx.totalDone.map { Utils.Size.getSizeText(size: $0) } => completionInfo.$detail
             combineLatest(torrent.rx.progress, torrent.rx.progressTotal).map { "\(String(format: "%0.2f %%", $0 * 100)) / \(String(format: "%0.2f %%", $1 * 100))" } => progressInfo.$detail
-            torrent.rx.totalDownload.map { "\(Utils.Size.getSizeText(size: $0, decimals: 2))" } => downloadInfo.$detail
-            torrent.rx.totalUpload.map { "\(Utils.Size.getSizeText(size: $0, decimals: 2))" } => uploadInfo.$detail
+            torrent.rx.totalDownload.map { "\(Utils.Size.getSizeText(size: $0))" } => downloadInfo.$detail
+            torrent.rx.totalUpload.map { "\(Utils.Size.getSizeText(size: $0))" } => uploadInfo.$detail
             combineLatest(torrent.rx.numberOfSeeds, torrent.rx.numberOfTotalSeeds).map { "\($0.0) (\($0.1))" } => seeds.$detail
             combineLatest(torrent.rx.numberOfLeechers, torrent.rx.numberOfTotalLeechers).map { "\($0.0) (\($0.1))" } => leeches.$detail
         }
 
-        sections.append(SectionModel<TableCellRepresentable>(header: "Progress", items: [overallInfo, completionInfo, progressInfo, downloadInfo, uploadInfo, seeds, leeches]))
+        sections.append(SectionModel<TableCellRepresentable>(header: "Transfer", items: [overallInfo, completionInfo, progressInfo, downloadInfo, uploadInfo, seeds, leeches]))
 
         // MARK: - More
         let trackers = Navigation(title: "Trackers")
@@ -127,5 +132,10 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
 
     var canPause: Signal<Bool, Never> {
         torrent.rx.canPause
+    }
+
+    func removeTorrent(withFiles: Bool) {
+        (MVVM.resolve() as TorrentManager).removeTorrent(torrent, deleteFiles: withFiles)
+        dismissToRoot()
     }
 }

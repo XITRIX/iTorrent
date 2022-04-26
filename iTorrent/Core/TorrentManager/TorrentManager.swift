@@ -46,7 +46,9 @@ private extension TorrentManager {
     func append(torrent: TorrentHandle) {
         autoreleasepool {
             DispatchQueue.main.async { [self] in
-                if torrents[torrent.infoHash] == nil {
+                if torrents[torrent.infoHash] == nil,
+                   torrent.isValid
+                {
                     torrents[torrent.infoHash] = torrent
                 }
             }
@@ -55,7 +57,8 @@ private extension TorrentManager {
 
     func update(torrent: TorrentHandle) {
         autoreleasepool {
-            guard let localTorrent = torrents[torrent.infoHash]
+            guard let localTorrent = torrents[torrent.infoHash],
+                  localTorrent.isValid
             else { return }
 
             localTorrent.rx.update()

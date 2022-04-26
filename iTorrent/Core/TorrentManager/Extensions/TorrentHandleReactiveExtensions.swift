@@ -148,4 +148,8 @@ extension ReactiveExtensions where Base == TorrentHandle {
     var canPause: Signal<Bool, Never> {
         updateObserver.map { $0.canPause }
     }
+
+    var pieces: Signal<[Bool], Never> {
+        updateObserver.map { $0.pieces.map { $0.boolValue } }
+    }
 }

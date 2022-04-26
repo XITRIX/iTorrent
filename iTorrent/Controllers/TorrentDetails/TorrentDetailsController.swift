@@ -17,7 +17,7 @@ class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel>
     let removeItem = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: nil)
     let spacerItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-    lazy var torrentControls: [UIBarButtonItem] = [playItem, spacerItem, pauseItem, spacerItem, rehashItem, spacerItem, spacerItem, spacerItem, spacerItem, removeItem]
+    lazy var torrentControls: [UIBarButtonItem] = [playItem, spacerItem, pauseItem, spacerItem, rehashItem, spacerItem, spacerItem, spacerItem, spacerItem, spacerItem, removeItem]
 
     deinit {
         print("Deinit!")
@@ -70,8 +70,8 @@ class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel>
 
     func removeAction() {
         let alert = UIAlertController(title: "Are you shure to remove?", message: title, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { _ in }))
-        alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { _ in }))
+        alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { [unowned self] _ in viewModel.removeTorrent(withFiles: true) }))
+        alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { [unowned self] _ in viewModel.removeTorrent(withFiles: false) }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alert, animated: true)
     }

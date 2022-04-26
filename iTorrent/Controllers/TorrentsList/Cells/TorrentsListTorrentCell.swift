@@ -25,13 +25,3 @@ class TorrentsListTorrentCell: MvvmTableViewCell {
         }
     }
 }
-
-//private extension Torrent.Progress {
-//    var description: String {
-//        let percentString = String(format: "%0.2f%%", progress * 100)
-//        let totalWantedString = ByteCountFormatter.string(fromByteCount: Int64(totalWanted), countStyle: .binary)
-//        let totalWantedDoneString = ByteCountFormatter.string(fromByteCount: Int64(totalWantedDone), countStyle: .binary)
-//
-//        return "\(totalWantedDoneString) of \(totalWantedString) (\(percentString))"
-//    }
-//}

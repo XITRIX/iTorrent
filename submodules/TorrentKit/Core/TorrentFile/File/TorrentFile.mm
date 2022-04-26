@@ -16,10 +16,28 @@
 
 @implementation TorrentFile : NSObject
 
-- (instancetype)initWithFileAtURL:(NSURL *)fileURL {
+- (instancetype)initUnsafeWithFileAtURL:(NSURL *)fileURL {
     self = [self init];
     if (self) {
         _fileData = [NSData dataWithContentsOfURL:fileURL];
+        try {
+            if (!self.torrent_info.is_valid()) { return NULL; }
+        }
+        catch(std::exception const& ex)
+        { return NULL; }
+    }
+    return self;
+}
+
+- (instancetype)initUnsafeWithFileWithData:(NSData *)data {
+    self = [self init];
+    if (self) {
+        _fileData = data;
+        try {
+            if (!self.torrent_info.is_valid()) { return NULL; }
+        }
+        catch(std::exception const& ex)
+        { return NULL; }
     }
     return self;
 }
@@ -27,7 +45,11 @@
 - (lt::torrent_info)torrent_info {
     uint8_t *buffer = (uint8_t *)[self.fileData bytes];
     size_t size = [self.fileData length];
-    return lt::torrent_info((char *)buffer, (int)size);;
+    return lt::torrent_info((char *)buffer, (int)size);
+}
+
+- (BOOL)isValid {
+    return self.torrent_info.is_valid();
 }
 
 - (void)configureAddTorrentParams:(void *)params forSession:(Session *)session {

@@ -102,7 +102,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
     for (NSString *fileName in torrentsDirFiles) {
         NSString *filePath = [_torrentsPath stringByAppendingPathComponent:fileName];
         NSURL *fileURL = [NSURL fileURLWithPath:filePath];
-        TorrentFile *torrent = [[TorrentFile alloc] initWithFileAtURL:fileURL];
+        TorrentFile *torrent = [[TorrentFile alloc] initUnsafeWithFileAtURL:fileURL];
         [self addTorrent:torrent];
     }
 }

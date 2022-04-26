@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TorrentHandle : NSObject
 
+@property (readonly) BOOL isValid;
 @property (readonly) NSData *infoHash;
 @property (readonly) NSString* name;
 @property (readonly) TorrentHandleState state;
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL isFinished;
 @property (readonly) BOOL isSeed;
 @property (readonly) BOOL isSequential;
+@property (readonly) NSArray<NSNumber *> *pieces;
 @property (readonly) NSArray<FileEntry *> *files;
 
 - (void)resume;

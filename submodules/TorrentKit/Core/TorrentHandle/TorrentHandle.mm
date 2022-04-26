@@ -23,6 +23,10 @@
     return self;
 }
 
+- (BOOL)isValid {
+    return self.torrentHandle.is_valid();
+}
+
 - (NSUInteger)hash {
     return self.infoHash.hash;
 }
@@ -180,6 +184,17 @@
     return ts.flags & lt::torrent_flags::sequential_download;
 }
 
+- (NSArray<NSNumber *> *)pieces {
+    auto stat = _torrentHandle.status();
+    auto info = _torrentHandle.torrent_file().get();
+
+    auto array = [[NSMutableArray<NSNumber *> alloc] init];
+    for (int i = 0; i < info->end_piece(); i++) {
+        [array addObject: [NSNumber numberWithBool: stat.pieces.get_bit(i)]];
+    }
+    return array;
+}
+
 // MARK: - Functions
 
 - (void)resume {
@@ -222,6 +237,8 @@
     auto info = ti.get();
     auto stat = th.status();
     auto files = info->files();
+    const int pieceLength = info->piece_length();
+    
     for (int i=0; i<files.num_files(); i++) {
         auto name = std::string(files.file_name(i));
         auto path = files.file_path(i);
@@ -238,7 +255,6 @@
         const auto fileSize = files.file_size(i);// > 0 ? files.file_size(i) : 0;
         const auto fileOffset = files.file_offset(i);
 
-        const int pieceLength = info->piece_length();
         const long long beginIdx = (fileOffset / pieceLength);
         const long long endIdx = ((fileOffset + fileSize) / pieceLength);
 

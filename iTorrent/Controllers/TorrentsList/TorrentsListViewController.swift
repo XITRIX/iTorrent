@@ -12,11 +12,18 @@ import UIKit
 
 class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel> {
     let editItem = UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: nil)
+    let selectAllItem = UIBarButtonItem(title: "Select All", style: .plain, target: nil, action: nil)
     let addTorrentItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     let settingsItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: nil, action: nil)
     let spacerItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
+    let resumeItem = UIBarButtonItem(barButtonSystemItem: .play, target: nil, action: nil)
+    let pauseItem = UIBarButtonItem(barButtonSystemItem: .pause, target: nil, action: nil)
+    let rehashItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
+    let removeItem = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: nil)
+
     var dataSource: DiffableDataSource<TorrentsListTorrentModel>?
+    var searchController = UISearchController()
 
     override class var style: UITableView.Style { .plain }
 
@@ -31,6 +38,7 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
         tableView.register(cell: TorrentsListTorrentCell.self)
         tableView.dataSource = dataSource
 
+        setupSearchController()
         updateEditState(animated: false)
         setupItems()
     }
@@ -39,21 +47,70 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
         super.binding()
 
         bind(in: bag) {
+            viewModel.canResumeAny => resumeItem.reactive.isEnabled
+            viewModel.canPauseAny => pauseItem.reactive.isEnabled
+
+            resumeItem.bindTap(viewModel.resumeSelected)
+            pauseItem.bindTap(viewModel.pauseSelected)
+            rehashItem.bindTap { [unowned self] in
+                let message = viewModel.selectedTorrents.map { $0.name }.sorted(by: { $0 < $1 }).joined(separator: "\n")
+                let alert = UIAlertController(title: "This action will recheck the state of all downloaded files for torrents:", message: message, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Rehash", style: .destructive, handler: { [unowned self] _ in viewModel.rehashSelected() }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                present(alert, animated: true)
+            }
+            removeItem.bindTap { [unowned self] in
+                let message = viewModel.selectedTorrents.map { $0.name }.sorted(by: { $0 < $1 }).joined(separator: "\n")
+                let alert = UIAlertController(title: "Are you shure to remove?", message: message, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { [unowned self] _ in viewModel.removeSelected(withFiles: true) }))
+                alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { [unowned self] _ in viewModel.removeSelected(withFiles: false) }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                present(alert, animated: true)
+            }
+
+            viewModel.$selectedIndexPaths.map { $0.isEmpty ? "Select All" : "Deselect (\($0.count))" } => selectAllItem.reactive.title
+
+            searchController.searchBar.reactive.text => viewModel.$searchQuery
+            searchController.searchBar.reactive.cancelTap.observeNext { [unowned self] _ in viewModel.searchQuery = nil }
             viewModel.$sections.observeNext { [unowned self] torrents in
                 var snapshot = DiffableDataSource<TorrentsListTorrentModel>.Snapshot()
                 snapshot.append(torrents)
                 dataSource?.apply(snapshot)
+                refreshSelectedItems()
             }
             editItem.bindTap { [unowned self] in
                 setEditing(!isEditing, animated: true)
                 updateEditState(animated: true)
             }
+            selectAllItem.bindTap { [unowned self] in
+                let anySelected = tableView.indexPathsForSelectedRows?.count ?? 0 > 0
+
+                if !anySelected {
+                    for section in 0..<tableView.numberOfSections {
+                        for row in 0..<tableView.numberOfRows(inSection: section) {
+                            let indexPath = IndexPath(row: row, section: section)
+                            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+                            refreshSelectedItems()
+                        }
+                    }
+                } else {
+                    tableView.indexPathsForSelectedRows?.forEach {
+                        tableView.deselectRow(at: $0, animated: true)
+                        refreshSelectedItems()
+                    }
+                }
+            }
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        refreshSelectedItems()
         if isEditing { return }
         viewModel.openTorrentDetails(at: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        refreshSelectedItems()
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -74,16 +131,54 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
 }
 
 private extension TorrentsListViewController {
-    func setupItems() {
-        addTorrentItem.menu = UIMenu(title: "Add torrent from", options: [], children:
-            [UIAction(title: "Files", image: UIImage(systemName: "doc.fill.badge.plus"), handler: { [unowned self] _ in addViaFileSelector() }),
-             UIAction(title: "Magnet", image: UIImage(systemName: "link.badge.plus"), handler: { [unowned self] _ in addViaMagnet() }),
-             UIAction(title: "URL", image: UIImage(systemName: "link.badge.plus"), handler: { _ in })])
+    func setupSearchController() {
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "Search"
     }
 
-    func addViaFileSelector() {
+    func refreshSelectedItems() {
+        guard isEditing else { return }
+        viewModel.selectedIndexPaths = tableView.indexPathsForSelectedRows ?? []
+    }
+
+    func updateEditState(animated: Bool) {
+        editItem.title = isEditing ? "Done" : "Edit"
+        editItem.style = isEditing ? .done : .plain
+
+        let defaultItems = [addTorrentItem, spacerItem, settingsItem]
+        let editItems = [resumeItem, spacerItem, pauseItem, spacerItem, rehashItem, spacerItem, spacerItem, spacerItem, spacerItem, removeItem]
+        let currentItems = isEditing ? editItems : defaultItems
+
+        let defaultRightItems: [UIBarButtonItem] = []
+        let editRightItems = [selectAllItem]
+        let currentRightItems = isEditing ? editRightItems : defaultRightItems
+
+        setToolbarItems(currentItems, animated: animated)
+        navigationItem.setRightBarButtonItems(currentRightItems, animated: animated)
+        navigationItem.setLeftBarButton(editItem, animated: animated)
+
+        refreshSelectedItems()
+    }
+}
+
+// Add torrents variants
+private extension TorrentsListViewController {
+    func setupItems() {
+        addTorrentItem.menu = UIMenu(title: "Add torrent from", options: [], children:
+            [UIAction(title: "Files", image: UIImage(systemName: "doc.fill.badge.plus"), handler: { [unowned self] _ in addViaFile() }),
+             UIAction(title: "Magnet", image: UIImage(systemName: "link.badge.plus"), handler: { [unowned self] _ in addViaMagnet() }),
+             UIAction(title: "URL", image: UIImage(systemName: "link.badge.plus"), handler: { [unowned self] _ in addViaUrl() })])
+    }
+
+    func addViaFile() {
         let vc = FilesBrowserController.init { [unowned self] fileUrl in
-            viewModel.addTorrentFile(with: fileUrl)
+            if fileUrl.startAccessingSecurityScopedResource() {
+                guard let torrent = TorrentFile(with: fileUrl)
+                else { return showError(with: "Torrent file is corrupted!") }
+
+                fileUrl.stopAccessingSecurityScopedResource()
+                viewModel.addTorrentFile(torrent)
+            }
         }
         present(vc, animated: true)
     }
@@ -95,24 +190,48 @@ private extension TorrentsListViewController {
         }
         vc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         vc.addAction(UIAlertAction(title: "OK", style: .default, handler: { [unowned self, unowned vc] _ in
-            guard let url = vc.textFields?.first?.text
-            else { return }
+            guard let link = vc.textFields?.first?.text,
+                  let url = URL(string: link),
+                  let magnet = MagnetURI(with: url)
+            else { return showError(with: "Wrong magnet link, check it and try again!") }
 
-            viewModel.addMagnet(with: url)
+            viewModel.addMagnet(with: magnet)
         }))
         present(vc, animated: true)
     }
 
-    func updateEditState(animated: Bool) {
-        editItem.title = isEditing ? "Done" : "Edit"
-        editItem.style = isEditing ? .done : .plain
+    func addViaUrl() {
+        let vc = UIAlertController(title: "Add from URL", message: "Please enter the existing torrent's URL below", preferredStyle: .alert)
+        vc.addTextField { textField in
+            textField.placeholder = "https://"
+        }
+        vc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        vc.addAction(UIAlertAction(title: "OK", style: .default, handler: { [unowned self, unowned vc] _ in
+            guard let path = vc.textFields?.first?.text,
+                  let url = URL(string: path)
+            else { return showError(with: "Link corrupted or torrent file is unreachable!") }
 
-        let defaultItems = [addTorrentItem, spacerItem, settingsItem]
-        let editItems = [spacerItem]
+            let urlRequest = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+                DispatchQueue.main.async {
+                    guard error == nil,
+                          let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode == 200,
+                          let data = data,
+                          let torrent = TorrentFile(with: data)
+                    else { return showError(with: "Link corrupted or torrent file is unreachable!") }
 
-        let currentItems = isEditing ? editItems : defaultItems
+                    viewModel.addTorrentFile(torrent)
+                }
+            }
+            task.resume()
+        }))
+        present(vc, animated: true)
+    }
 
-        setToolbarItems(currentItems, animated: animated)
-        navigationItem.setLeftBarButton(editItem, animated: animated)
+    func showError(with text: String) {
+        let vc = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
+        vc.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(vc, animated: true)
     }
 }

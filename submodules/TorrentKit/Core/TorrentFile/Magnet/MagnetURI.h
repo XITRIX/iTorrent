@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MagnetURI : NSObject <Downloadable>
 @property (readonly, strong, nonatomic) NSURL *magnetURI;
 
-- (instancetype)initWithMagnetURI:(NSURL *)magnetURI;
+- (instancetype)initUnsafeWithMagnetURI:(NSURL *)magnetURI;
 
 @end
 

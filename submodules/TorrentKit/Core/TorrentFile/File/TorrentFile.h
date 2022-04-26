@@ -16,8 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, strong, nonatomic) NSData *fileData;
 @property (readonly) NSString *name;
 @property (readonly) NSArray<FileEntry *> *files;
+@property (readonly) BOOL isValid;
 
-- (instancetype)initWithFileAtURL:(NSURL *)fileURL;
+- (instancetype)initUnsafeWithFileAtURL:(NSURL *)fileURL;
+- (instancetype)initUnsafeWithFileWithData:(NSData *)data ;
 
 - (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex;
 
