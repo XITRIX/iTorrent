@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL isSequential;
 @property (readonly) NSArray<NSNumber *> *pieces;
 @property (readonly) NSArray<FileEntry *> *files;
+@property (readonly) NSString* magnetLink;
+@property (readonly, nullable) NSString* torrentFilePath;
 
 - (void)resume;
 - (void)pause;

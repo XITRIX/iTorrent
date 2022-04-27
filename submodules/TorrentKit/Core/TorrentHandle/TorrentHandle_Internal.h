@@ -9,13 +9,15 @@
 #import "TorrentHandle.h"
 
 #import "libtorrent/torrent_handle.hpp"
+#import "Session.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TorrentHandle ()
 @property lt::torrent_handle torrentHandle;
+@property NSString *torrentPath;
 
--(instancetype)initWith:(lt::torrent_handle)torrentHandle;
+-(instancetype)initWith:(lt::torrent_handle)torrentHandle inSession:(Session *)session;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -80,7 +80,6 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
             }
             editItem.bindTap { [unowned self] in
                 setEditing(!isEditing, animated: true)
-                updateEditState(animated: true)
             }
             selectAllItem.bindTap { [unowned self] in
                 let anySelected = tableView.indexPathsForSelectedRows?.count ?? 0 > 0
@@ -101,6 +100,11 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
                 }
             }
         }
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        updateEditState(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -127,6 +131,14 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
             present(vc, animated: true)
             completion(true)
         })])
+    }
+
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        true
+    }
+
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        setEditing(true, animated: true)
     }
 }
 

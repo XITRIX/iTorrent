@@ -85,7 +85,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
     auto torrents = _session->get_torrents();
     NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:torrents.size()];
     for (int i = 0; i < torrents.size(); i++) {
-        [result setObject:[[TorrentHandle alloc] initWith:torrents[i]] atIndexedSubscript:i];
+        [result setObject:[[TorrentHandle alloc] initWith:torrents[i] inSession:self] atIndexedSubscript:i];
     }
     return result;
 }
@@ -130,13 +130,13 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
     auto th = _session->add_torrent(params);
 
 
-    [torrent configureAfterAdded: [[TorrentHandle alloc] initWith:th]];
+    [torrent configureAfterAdded: [[TorrentHandle alloc] initWith:th inSession:self]];
 
     return YES;
 }
 
 - (void)removeTorrent:(TorrentHandle *)torrent deleteFiles:(BOOL)deleteFiles {
-    [self removeStoredTorrentOrMagnet:torrent.torrentHandle];
+//    [self removeStoredTorrentOrMagnet:torrent.torrentHandle];
 
     // Remove torrrent from session
     if (deleteFiles) {
@@ -154,9 +154,11 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 }
 
 - (void)removeStoredTorrentOrMagnet:(lt::torrent_handle)th {
+
     // Remove stored torrent
     auto ti = th.torrent_file();
     [self removeTorrentFileWithInfo:ti];
+    [self removeFastResumeFileWithInfo:ti];
     auto ih = th.info_hash();
     [self removeMagnetURIWithHash:ih];
 }
@@ -233,7 +235,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 }
 
 - (void)notifyDelegatesWithAdd:(lt::torrent_handle)th {
-    TorrentHandle *torrent = [[TorrentHandle alloc] initWith:th];
+    TorrentHandle *torrent = [[TorrentHandle alloc] initWith:th inSession:self];
     for (id<SessionDelegate>delegate in self.delegates) {
         [delegate torrentManager:self didAddTorrent:torrent];
     }
@@ -249,7 +251,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 - (void)notifyDelegatesWithUpdate:(lt::torrent_handle)th {
     if (!th.is_valid()) return;
     
-    TorrentHandle *torrent = [[TorrentHandle alloc] initWith:th];
+    TorrentHandle *torrent = [[TorrentHandle alloc] initWith:th inSession:self];
     for (id<SessionDelegate>delegate in self.delegates) {
         [delegate torrentManager:self didReceiveUpdateForTorrent:torrent];
     }
@@ -294,10 +296,11 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
     }
 
     auto torrent_info = th.torrent_file();
-    auto info_hash = th.info_hash();
+//    auto info_hash = th.info_hash();
     dispatch_async(self.filesQueue, ^{
-        [self removeTorrentFileWithInfo:torrent_info];
-        [self removeMagnetURIWithHash:info_hash];
+        [self removeStoredTorrentOrMagnet:th];
+//        [self removeTorrentFileWithInfo:torrent_info];
+//        [self removeMagnetURIWithHash:info_hash];
     });
 }
 
@@ -372,6 +375,19 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 }
 
 // MARK: - Torrent deletion
+- (void)removeFastResumeFileWithInfo:(std::shared_ptr<const lt::torrent_info>)ti {
+    if (ti == nullptr) { return; }
+
+    auto hash = ti->info_hash();
+    auto data = [[NSData alloc] initWithBytes:hash.data() length:hash.size()];
+
+    NSString *filePath = [self fastResumePathForInfoHash:data];
+
+    NSError *error;
+    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+    if (error) { NSLog(@"success: %d, %@", success, error); }
+}
+
 - (void)removeTorrentFileWithInfo:(std::shared_ptr<const lt::torrent_info>)ti {
     if (ti == nullptr) { return; }
 

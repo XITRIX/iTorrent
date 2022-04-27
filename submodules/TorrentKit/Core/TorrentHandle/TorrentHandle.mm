@@ -12,13 +12,15 @@
 
 #import "libtorrent/torrent_status.hpp"
 #import "libtorrent/torrent_info.hpp"
+#import "libtorrent/magnet_uri.hpp"
 
 @implementation TorrentHandle : NSObject
 
-- (instancetype)initWith:(lt::torrent_handle)torrentHandle {
+- (instancetype)initWith:(lt::torrent_handle)torrentHandle inSession:(Session *)session {
     self = [self init];
     if (self) {
         _torrentHandle = torrentHandle;
+        _torrentPath = session.torrentsPath;
     }
     return self;
 }
@@ -193,6 +195,24 @@
         [array addObject: [NSNumber numberWithBool: stat.pieces.get_bit(i)]];
     }
     return array;
+}
+
+- (NSString *)magnetLink {
+    auto uri = lt::make_magnet_uri(_torrentHandle);
+    return [[NSString alloc] initWithFormat:@"%s", uri.c_str()];
+}
+
+- (NSString *)torrentFilePath {
+    if (!self.isValid || !self.hasMetadata) return NULL;
+
+    auto fileInfo = _torrentHandle.torrent_file().get();
+    NSString *fileName = [NSString stringWithFormat:@"%s.torrent", fileInfo->name().c_str()];
+    NSString *filePath = [_torrentPath stringByAppendingPathComponent:fileName];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+        return NULL;
+
+    return filePath;
 }
 
 // MARK: - Functions

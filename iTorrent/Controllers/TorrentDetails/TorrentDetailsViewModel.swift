@@ -134,6 +134,14 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
         torrent.rx.canPause
     }
 
+    var torrentMagnetLink: String {
+        torrent.magnetLink
+    }
+
+    var torrentFilePath: String? {
+        torrent.torrentFilePath
+    }
+
     func removeTorrent(withFiles: Bool) {
         (MVVM.resolve() as TorrentManager).removeTorrent(torrent, deleteFiles: withFiles)
         dismissToRoot()
