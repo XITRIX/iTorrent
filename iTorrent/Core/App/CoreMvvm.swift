@@ -12,7 +12,8 @@ import TorrentKit
 class CoreMvvm: MVVM {
     override func registerContainer() {
         // Register Services
-        container.registerSingleton(type: TorrentManager.self) { TorrentManager() }
+        container.registerSingleton { TorrentManager() }
+        container.registerSingleton { PropertyStorage() }
 //
 //        // Register ViewControllers
         container.register { TorrentsListViewController() }

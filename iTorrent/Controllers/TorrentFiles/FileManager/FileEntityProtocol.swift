@@ -7,9 +7,10 @@
 
 import Foundation
 
-class FileEntityProtocol {
+class FileEntityProtocol: HidableItem {
     var name: String { "" }
     var size: UInt64 { 0 }
+    var hidden: Bool { false }
 }
 
 extension FileEntityProtocol: Hashable {

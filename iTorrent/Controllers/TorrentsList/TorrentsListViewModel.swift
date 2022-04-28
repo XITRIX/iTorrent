@@ -9,11 +9,25 @@ import MVVMFoundation
 import ReactiveKit
 import TorrentKit
 
+struct TorrentListSortingModel: Codable {
+    var type: `Type`
+    var reversed: Bool = false
+
+    enum `Type`: Equatable, Codable {
+        case name
+        case date
+        case size
+    }
+}
+
 class TorrentsListViewModel: MvvmViewModel {
+    private let propertyManager = MVVM.resolve() as PropertyStorage
     private let torrentManager = MVVM.resolve() as TorrentManager
     @Bindable public var sections = [SectionModel<TorrentsListTorrentModel>]()
     @Bindable public var searchQuery: String?
     @Bindable public var selectedIndexPaths: [IndexPath] = []
+
+    @Bindable public var sortingType: TorrentListSortingModel = .init(type: .name, reversed: false)
 
     var selectedTorrents: [TorrentHandle] {
         selectedIndexPaths.map { sections[$0.section].items[$0.row].torrent }
@@ -38,12 +52,13 @@ class TorrentsListViewModel: MvvmViewModel {
 
     override func binding() {
         bind(in: bag) {
-            combineLatest($searchQuery, torrentManager.$torrents).map { [unowned self] query, torrents -> [SectionModel<TorrentsListTorrentModel>] in
+            propertyManager.$torrentListSortingType <=> $sortingType
+            combineLatest($searchQuery, $sortingType, torrentManager.$torrents).map { [unowned self] query, sortingType, torrents -> [SectionModel<TorrentsListTorrentModel>] in
                 var torrents = Array(torrents.values)
                 torrents = torrents.filter({ torrent in
                     query?.lowercased().split(separator: " ").allSatisfy { torrent.name.lowercased().contains($0) } ?? true
                 })
-                return mapTorrentsIntoSections(torrents)
+                return mapTorrentsIntoSections(torrents, sorting: sortingType)
             }  => $sections
         }
     }
@@ -91,15 +106,36 @@ class TorrentsListViewModel: MvvmViewModel {
 }
 
 extension TorrentsListViewModel {
-    func mapTorrentsIntoSections(_ torrents: [TorrentHandle]) -> [SectionModel<TorrentsListTorrentModel>] {
+    func mapTorrentsIntoSections(_ torrents: [TorrentHandle], sorting sortingType: TorrentListSortingModel) -> [SectionModel<TorrentsListTorrentModel>] {
         var section = SectionModel<TorrentsListTorrentModel>()
-        section.items = torrents.sorted(by: sortTorrents).map { torrent in
+        section.items = torrents.sorted(by: { sortTorrents($0, $1, sortingType) }).map { torrent in
             TorrentsListTorrentModel(torrent: torrent)
         }
         return [section]
     }
 
-    func sortTorrents(_ lhs: TorrentHandle, _ rhs: TorrentHandle) -> Bool {
-        lhs.name < rhs.name
+    func sortTorrents(_ lhs: TorrentHandle, _ rhs: TorrentHandle, _ sortingType: TorrentListSortingModel) -> Bool {
+        switch sortingType.type {
+        case .name:
+            if !sortingType.reversed {
+                return lhs.name < rhs.name
+            } else {
+                return lhs.name > rhs.name
+            }
+        case .date:
+            let lhsDate = lhs.creationDate ?? Date()
+            let rhsDate = rhs.creationDate ?? Date()
+            if !sortingType.reversed {
+                return lhsDate > rhsDate
+            } else {
+                return lhsDate < rhsDate
+            }
+        case .size:
+            if !sortingType.reversed {
+                return lhs.totalWanted > rhs.totalWanted
+            } else {
+                return lhs.totalWanted < rhs.totalWanted
+            }
+        }
     }
 }

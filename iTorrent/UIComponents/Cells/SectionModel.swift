@@ -8,10 +8,12 @@
 import Foundation
 import MVVMFoundation
 
-struct SectionModel<Item>: Hashable where Item: Hashable {
+struct SectionModel<Item>: Hashable, HidableItem where Item: Hashable & HidableItem {
     @Bindable var header: String?
     @Bindable var footer: String?
     @Bindable var items: [Item] = []
+
+    var hidden: Bool { items.allSatisfy { $0.hidden } }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(header)

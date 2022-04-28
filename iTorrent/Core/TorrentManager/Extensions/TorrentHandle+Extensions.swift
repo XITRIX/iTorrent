@@ -11,15 +11,13 @@ import TorrentKit
 
 
 extension TorrentHandle {
-    var seedMode: Bool { true }
-
     var displayState: State {
         if state == .finished || state == .downloading,
-           isFinished, !isPaused, seedMode
+           isFinished, !isPaused, allowSeeding
         {
             return .seeding
         }
-        if state == .seeding, isPaused || !seedMode {
+        if state == .seeding, isPaused || !allowSeeding {
             return .finished
         }
         if state == .downloading, isFinished {
@@ -32,11 +30,24 @@ extension TorrentHandle {
     }
 
     var canResume: Bool {
-        isPaused && (state != .finished || seedMode)
+        isPaused && (displayState != .finished || allowSeeding)
     }
 
     var canPause: Bool {
         !isPaused
+    }
+
+    func localInit() {
+        initLocalStorage()
+        bind(in: bag) {
+            rx.updateObserver.observeNext { $0.pauseIfNeeded() }
+        }
+    }
+
+    func pauseIfNeeded() {
+        if !isPaused && displayState == .finished {
+            pause()
+        }
     }
 }
 

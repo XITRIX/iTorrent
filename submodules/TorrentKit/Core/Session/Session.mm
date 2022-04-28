@@ -306,6 +306,8 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
 - (void)torrentStateChanged:(lt::torrent_alert *)alert {
     auto th = alert->handle;
+    if (!th.is_valid()) return;
+    
     th.save_resume_data();
 }
 

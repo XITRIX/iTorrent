@@ -30,7 +30,9 @@ class TorrentManager {
         session = Session(downloadFolder, torrentsPath: torrentsFolder, fastResumePath: fastResumesFolder)
         session.add(self)
 
-        torrents = Dictionary(uniqueKeysWithValues: session.torrents.map { ($0.infoHash, $0) })
+        let _torrents = Dictionary(uniqueKeysWithValues: session.torrents.map { ($0.infoHash, $0) })
+        _torrents.values.forEach { $0.localInit() }
+        torrents = _torrents
     }
 
     func addTorrent(_ torrent: Downloadable) {
@@ -49,6 +51,7 @@ private extension TorrentManager {
                 if torrents[torrent.infoHash] == nil,
                    torrent.isValid
                 {
+                    torrent.localInit()
                     torrents[torrent.infoHash] = torrent
                 }
             }
@@ -68,6 +71,7 @@ private extension TorrentManager {
     func remove(by hash: Data) {
         autoreleasepool {
             DispatchQueue.main.async { [self] in
+                torrents[hash]?.removeLocalStorage()
                 torrents.removeValue(forKey: hash)
             }
         }

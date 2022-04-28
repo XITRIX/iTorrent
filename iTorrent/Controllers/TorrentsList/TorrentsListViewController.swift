@@ -13,7 +13,7 @@ import UIKit
 class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel> {
     let editItem = UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: nil)
     let selectAllItem = UIBarButtonItem(title: "Select All", style: .plain, target: nil, action: nil)
-    let addTorrentItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+    let addTorrentItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: nil, action: nil)
     let settingsItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: nil, action: nil)
     let spacerItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
@@ -21,6 +21,8 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
     let pauseItem = UIBarButtonItem(barButtonSystemItem: .pause, target: nil, action: nil)
     let rehashItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
     let removeItem = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: nil)
+
+    let sortingItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Sort"), style: .plain, target: nil, action: nil)
 
     var dataSource: DiffableDataSource<TorrentsListTorrentModel>?
     var searchController = UISearchController()
@@ -39,8 +41,9 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
         tableView.dataSource = dataSource
 
         setupSearchController()
-        updateEditState(animated: false)
+        setupSortingItem()
         setupItems()
+        updateEditState(animated: false)
     }
 
     override func binding() {
@@ -80,6 +83,7 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
             }
             editItem.bindTap { [unowned self] in
                 setEditing(!isEditing, animated: true)
+                updateEditState(animated: true)
             }
             selectAllItem.bindTap { [unowned self] in
                 let anySelected = tableView.indexPathsForSelectedRows?.count ?? 0 > 0
@@ -100,11 +104,6 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
                 }
             }
         }
-    }
-
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        updateEditState(animated: true)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -139,6 +138,7 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
 
     override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         setEditing(true, animated: true)
+        updateEditState(animated: true)
     }
 }
 
@@ -146,6 +146,45 @@ private extension TorrentsListViewController {
     func setupSearchController() {
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "Search"
+    }
+
+    func setupSortingItem() {
+        let nameSort = UIAction(title: "Name", attributes: []) { [unowned self] _ in
+            if viewModel.sortingType.type == .name {
+                viewModel.sortingType.reversed.toggle()
+            } else {
+                viewModel.sortingType = .init(type: .name, reversed: false)
+            }
+            setupSortingItem()
+        }
+        if viewModel.sortingType.type == .name { nameSort.image = getSortingArrowImage() }
+
+        let dateSort = UIAction(title: "Date", attributes: []) { [unowned self] _ in
+            if viewModel.sortingType.type == .date {
+                viewModel.sortingType.reversed.toggle()
+            } else {
+                viewModel.sortingType = .init(type: .date, reversed: false)
+            }
+            setupSortingItem()
+        }
+        if viewModel.sortingType.type == .date { dateSort.image = getSortingArrowImage() }
+
+        let sizeSort = UIAction(title: "Size", attributes: []) { [unowned self] _ in
+            if viewModel.sortingType.type == .size {
+                viewModel.sortingType.reversed.toggle()
+            } else {
+                viewModel.sortingType = .init(type: .size, reversed: false)
+            }
+            setupSortingItem()
+        }
+        if viewModel.sortingType.type == .size { sizeSort.image = getSortingArrowImage() }
+
+        let menu = UIMenu(title: "Sort torrents by:", options: [], children: [nameSort, dateSort, sizeSort])
+        sortingItem.menu = menu
+    }
+
+    func getSortingArrowImage() -> UIImage? {
+        viewModel.sortingType.reversed ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")
     }
 
     func refreshSelectedItems() {
@@ -161,7 +200,7 @@ private extension TorrentsListViewController {
         let editItems = [resumeItem, spacerItem, pauseItem, spacerItem, rehashItem, spacerItem, spacerItem, spacerItem, spacerItem, removeItem]
         let currentItems = isEditing ? editItems : defaultItems
 
-        let defaultRightItems: [UIBarButtonItem] = []
+        let defaultRightItems = [sortingItem]
         let editRightItems = [selectAllItem]
         let currentRightItems = isEditing ? editRightItems : defaultRightItems
 

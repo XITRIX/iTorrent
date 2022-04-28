@@ -50,7 +50,7 @@ class AddingFileManager {
             }
         }
 
-        self.rawFiles = rawFiles.sorted(by: { $0.id < $1.id })
+        self.rawFiles = rawFiles.sorted(by: { $0.index < $1.index })
 
         if root.files.values.count == 1,
            let first = root.files.values.first as? DirectoryEntity,

@@ -8,15 +8,16 @@
 import ReactiveKit
 import UIKit
 
-class TableCellRepresentable: Hashable {
+class TableCellRepresentable: Hashable, HidableItem {
     private let id = UUID()
     var action = PassthroughSubject<Void, Never>()
+    var hidden: Bool { false }
 
     func registerCell(in tableView: UITableView) {}
     func resolveCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell { UITableViewCell() }
 
     static func == (lhs: TableCellRepresentable, rhs: TableCellRepresentable) -> Bool {
-        true
+        lhs.hidden == rhs.hidden
     }
 
     func hash(into hasher: inout Hasher) {

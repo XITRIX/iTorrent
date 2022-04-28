@@ -12,6 +12,10 @@ class TorrentDelailsDetailViewModel: TableCellRepresentable {
     @Bindable var title: String
     @Bindable var detail: String?
 
+    override var hidden: Bool {
+        detail.isNilOrEmpty
+    }
+
     init(title: String = "", detail: String = "") {
         self.title = title
         self.detail = detail

@@ -32,6 +32,7 @@ class FileManager {
             for part in parts {
                 let part = String(part)
 
+                // If path part equals file name - it's file
                 if part == file.name {
                     let fileEntity = FileEntity(file: file, id: fileNum.offset)
                     currentDirectory.files[part] = fileEntity
@@ -49,7 +50,7 @@ class FileManager {
             }
         }
 
-        self.rawFiles = rawFiles.sorted(by: { $0.id < $1.id })
+        self.rawFiles = rawFiles.sorted(by: { $0.index < $1.index })
 
         if root.files.values.count == 1,
            let first = root.files.values.first as? DirectoryEntity,
@@ -68,5 +69,9 @@ class FileManager {
                 }
             }
         }.dispose(in: bag)
+    }
+
+    func setAllFilesPriority(_ priority: FileEntry.Priority) {
+        rawFiles.forEach { $0.priority = priority }
     }
 }

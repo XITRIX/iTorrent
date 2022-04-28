@@ -9,8 +9,10 @@ import MVVMFoundation
 import ReactiveKit
 import TorrentKit
 
-struct TorrentsListTorrentModel {
+struct TorrentsListTorrentModel: HidableItem {
     let torrent: TorrentHandle
+
+    var hidden: Bool { false }
 
     var title: SafeSignal<String> {
         torrent.rx.name
@@ -35,7 +37,9 @@ extension TorrentsListTorrentModel: Hashable {
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.torrent == rhs.torrent
+        guard lhs.torrent == rhs.torrent else { return false }
+        guard lhs.torrent.totalWanted == rhs.torrent.totalWanted else { return false }
+        return true
     }
 }
 

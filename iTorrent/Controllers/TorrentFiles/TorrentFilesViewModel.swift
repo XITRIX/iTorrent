@@ -46,9 +46,46 @@ class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
 
     func setTorrentFilePriority(_ priority: FileEntry.Priority, at fileIndex: Int) {
         model.torrent.setFilePriority(priority, at: fileIndex)
+        model.fileManager?.rawFiles[fileIndex].priority = priority
+    }
+
+    func setTorrentDictionaryPriority(_ priority: FileEntry.Priority, at dictionaryIndex: Int) {
+        guard let dict = getDirectory(at: dictionaryIndex)
+        else { return }
+
+        for file in dict.getRawFiles() {
+            model.torrent.setFilePriority(priority, at: file.index)
+            file.priority = priority
+        }
+    }
+
+    func setAllTorrentFilesPriority(_ priority: FileEntry.Priority) {
+        let priorities = Array(repeating: NSNumber(value: priority.rawValue), count: model.fileManager?.rawFiles.count ?? 0)
+        model.torrent.setFilesPriority(priorities)
+        model.fileManager?.rawFiles.forEach { $0.priority = priority }
+    }
+
+    func getDirectory(at index: Int) -> DirectoryEntity? {
+        sections.first?.items[index] as? DirectoryEntity
     }
 
     func getFile(at index: Int) -> FileEntity? {
         sections.first?.items[index] as? FileEntity
+    }
+}
+
+extension DirectoryEntity {
+    func getRawFiles() -> [FileEntity] {
+        var res = [FileEntity]()
+        files.values.forEach {
+            switch $0 {
+            case let file as FileEntity:
+                res.append(file)
+            case let directory as DirectoryEntity:
+                res.append(contentsOf: directory.getRawFiles())
+            default: break
+            }
+        }
+        return res
     }
 }

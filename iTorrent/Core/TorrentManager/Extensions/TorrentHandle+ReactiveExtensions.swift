@@ -5,13 +5,14 @@
 //  Created by Даниил Виноградов on 25.04.2022.
 //
 
-import ReactiveKit
-import Foundation
-import TorrentKit
 import Bond
+import Foundation
+import ReactiveKit
+import TorrentKit
 
 extension TorrentHandle {
     fileprivate enum AssociatedKeys {
+        static var InitObserver = "AssociatedKeyInitObserver"
         static var UpdateObserver = "AssociatedKeyUpdateObserver"
     }
 
@@ -30,10 +31,10 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var initObserver: SafeReplayOneSubject<TorrentHandle> {
-        guard let subject = objc_getAssociatedObject(base, &Base.AssociatedKeys.UpdateObserver) as? SafeReplayOneSubject<TorrentHandle> else {
+        guard let subject = objc_getAssociatedObject(base, &Base.AssociatedKeys.InitObserver) as? SafeReplayOneSubject<TorrentHandle> else {
             let sub = SafeReplayOneSubject<TorrentHandle>()
             sub.receive(base)
-            objc_setAssociatedObject(base, &Base.AssociatedKeys.UpdateObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(base, &Base.AssociatedKeys.InitObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
             return sub
         }
         return subject
@@ -61,7 +62,6 @@ extension ReactiveExtensions where Base == TorrentHandle {
         updateObserver.map {
             guard $0.totalDone > 0 else { return 0 }
             return Float($0.totalDone) / Float($0.total)
-
         }
     }
 

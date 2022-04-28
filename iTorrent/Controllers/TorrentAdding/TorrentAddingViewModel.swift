@@ -16,12 +16,14 @@ struct TorrentAddingModel {
 
 class TorrentAddingViewModel: MvvmViewModelWith<TorrentAddingModel> {
     private var model: TorrentAddingModel!
+    private(set) var rootDirectory: Bool = false
     @Bindable var sections: [SectionModel<FileEntityProtocol>] = []
 
     override func prepare(with item: TorrentAddingModel) {
         model = item
 
         if model.root == nil {
+            rootDirectory = true
             title.value = model.file.name
             model.fileManager = AddingFileManager(with: item.file)
             model.root = model.fileManager?.root
@@ -39,7 +41,7 @@ class TorrentAddingViewModel: MvvmViewModelWith<TorrentAddingModel> {
 
     func selectItem(at indexPath: IndexPath) {
         guard var model = model,
-            let nextDir = sections[indexPath.section].items[indexPath.row] as? DirectoryEntity
+              let nextDir = sections[indexPath.section].items[indexPath.row] as? DirectoryEntity
         else { return }
 
         model.root = nextDir
@@ -50,8 +52,20 @@ class TorrentAddingViewModel: MvvmViewModelWith<TorrentAddingModel> {
         model.fileManager?.rawFiles[fileIndex].priority = priority
     }
 
+    func setTorrentDictionaryPriority(_ priority: FileEntry.Priority, at directoryIndex: Int) {
+        getDirectory(at: directoryIndex)?.getRawFiles().forEach { $0.priority = priority }
+    }
+
+    func setAllTorrentFilesPriority(_ priority: FileEntry.Priority) {
+        model.fileManager?.rawFiles.forEach { $0.priority = priority }
+    }
+
     func getFile(at index: Int) -> FileEntity? {
         sections.first?.items[index] as? FileEntity
+    }
+
+    func getDirectory(at index: Int) -> DirectoryEntity? {
+        sections.first?.items[index] as? DirectoryEntity
     }
 
     func download() {

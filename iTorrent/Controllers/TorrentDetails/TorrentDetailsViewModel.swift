@@ -53,29 +53,40 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
         sections.append(SectionModel<TableCellRepresentable>(header: "Speed", items: [downloadSpeed, uploadSpeed, timeRemain]))
 
         // MARK: - Download Section
-        let sequential = Switch(title: "Sequential download", value: torrent.isSequential)
+        let sequential = Switch(title: "Sequential download")
         let overallProgress = Progress(title: "Progress")
 
         bind(in: bag) {
-            sequential.$value => torrent.rx.isSequential
+            torrent.rx.isSequential <=> sequential.$value
             torrent.rx.progressTotal => overallProgress.$overallProgress
             torrent.rx.pieces.map { $0.map { $0 ? 1 : 0 } } => overallProgress.$partialProgress
         }
 
         sections.append(SectionModel<TableCellRepresentable>(header: "Downloading", items: [sequential, overallProgress]))
 
+        // MARK: - Seeding
+        let allowSeeding = Switch(title: "Allow seeding")
+
+        bind(in: bag) {
+            torrent.rx.allowSeeding <=> allowSeeding.$value
+        }
+
+        sections.append(SectionModel<TableCellRepresentable>(header: "Seeding", items: [allowSeeding]))
+
         // MARK: - Info
         let hashInfo = Detail(title: "Hash")
         let creatorInfo = Detail(title: "Creator")
-        let creationDateInfo = Detail(title: "Created date")
+        let creationDateInfo = Detail(title: "Created on")
+        let addedDateInfo = Detail(title: "Added on")
 
         bind(in: bag) {
             torrent.rx.infoHash => hashInfo.$detail
             torrent.rx.creator => creatorInfo.$detail
             torrent.rx.creationDate.map { $0?.simpleDate() ?? "Unknown" } => creationDateInfo.$detail
+            torrent.rx.addedDate.map { $0.simpleDate() } => addedDateInfo.$detail
         }
 
-        sections.append(SectionModel<TableCellRepresentable>(header: "General information", items: [hashInfo, creatorInfo, creationDateInfo]))
+        sections.append(SectionModel<TableCellRepresentable>(header: "General information", items: [hashInfo, creatorInfo, creationDateInfo, addedDateInfo]))
 
         // MARK: - Progress
         let overallInfo = Detail(title: "Selected/Total")

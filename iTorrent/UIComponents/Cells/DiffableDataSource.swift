@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiffableDataSource<Item>: UITableViewDiffableDataSource<SectionModel<Item>, Item> where Item: Hashable {
+class DiffableDataSource<Item>: UITableViewDiffableDataSource<SectionModel<Item>, Item> where Item: Hashable, Item: HidableItem {
     typealias Snapshot = NSDiffableDataSourceSnapshot<SectionModel<Item>, Item>
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -23,7 +23,8 @@ extension NSDiffableDataSourceSnapshot where SectionIdentifierType == SectionMod
     mutating func append(_ sections: [SectionIdentifierType]) {
         appendSections(sections)
         for section in sections {
-            appendItems(section.items, toSection: section)
+            guard !section.hidden else { continue }
+            appendItems(section.items.filter { !$0.hidden }, toSection: section)
         }
     }
 }

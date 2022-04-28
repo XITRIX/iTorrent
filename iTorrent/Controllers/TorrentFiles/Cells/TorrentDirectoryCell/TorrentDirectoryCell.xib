@@ -91,6 +91,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="optionsButton" destination="5N9-oK-9UT" id="l1w-Wk-inL"/>
                 <outlet property="sizeLabel" destination="ROB-vb-hFH" id="LV3-T5-9jF"/>
                 <outlet property="titleLabel" destination="87N-8Q-VW4" id="3LG-wW-eTl"/>
             </connections>
@@ -98,7 +99,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Folder" width="512" height="512"/>
+        <image name="Folder" width="96" height="96"/>
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

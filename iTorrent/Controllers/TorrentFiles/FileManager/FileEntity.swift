@@ -14,7 +14,7 @@ class FileEntity: FileEntityProtocol {
     private let _name: String
     private let _size: UInt64
     
-    let id: Int
+    let index: Int
     let prototype: Bool
     let localPath: String
 
@@ -32,7 +32,7 @@ class FileEntity: FileEntityProtocol {
         self.prototype = file.isPrototype
         self.localPath = file.path
         self.priority = file.priority
-        self.id = id
+        self.index = id
 
         super.init()
         update(with: file)
