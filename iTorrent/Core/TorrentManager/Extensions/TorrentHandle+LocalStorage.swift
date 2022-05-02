@@ -73,7 +73,7 @@ extension TorrentHandle {
         get { localStorage.wrappedValue.allowSeeding }
         set {
             localStorage.wrappedValue.allowSeeding = newValue
-            rx.updateObserver.send(self)
+            rx.update()
         }
     }
 }

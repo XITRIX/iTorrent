@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C614A37281F5E58008FA916 /* UIWindow+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A36281F5E58008FA916 /* UIWindow+Key.swift */; };
 		7CA11D662819491D00CB424E /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA11D652819491D00CB424E /* Dialog.swift */; };
 		7CA11D6828194E4F00CB424E /* MarqueeLabel+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA11D6728194E4F00CB424E /* MarqueeLabel+Reactive.swift */; };
 		7CA11D832819C82E00CB424E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA11D822819C82E00CB424E /* Images.xcassets */; };
@@ -94,6 +95,7 @@
 
 /* Begin PBXFileReference section */
 		2F9DBA8A443188499674A2F2 /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
+		7C614A36281F5E58008FA916 /* UIWindow+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Key.swift"; sourceTree = "<group>"; };
 		7CA11D652819491D00CB424E /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		7CA11D6728194E4F00CB424E /* MarqueeLabel+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarqueeLabel+Reactive.swift"; sourceTree = "<group>"; };
 		7CA11D822819C82E00CB424E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				7CFB9EB32815F7A9006C1E1E /* Bindable+Value.swift */,
 				7CFB9EB42815F7A9006C1E1E /* DateExtensions.swift */,
 				7CFB9EB52815F7A9006C1E1E /* UIFontExtensions.swift */,
+				7C614A36281F5E58008FA916 /* UIWindow+Key.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				7CA11D6828194E4F00CB424E /* MarqueeLabel+Reactive.swift in Sources */,
 				7CFB9EB92815F7A9006C1E1E /* AppDelegate.swift in Sources */,
 				7CFB9EBA2815F7A9006C1E1E /* SceneDelegate.swift in Sources */,
+				7C614A37281F5E58008FA916 /* UIWindow+Key.swift in Sources */,
 				7CC9B354281728D9001A13ED /* FilesBrowserController.swift in Sources */,
 				7CC9B33E2816CA9C001A13ED /* TorrentFilesController.swift in Sources */,
 				7CC9B37628186619001A13ED /* TorrentDelailsProgressCell.swift in Sources */,

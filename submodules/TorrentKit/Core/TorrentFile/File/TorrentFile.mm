@@ -126,4 +126,9 @@
     [_priorities setObject:[NSNumber numberWithInt:priority] atIndexedSubscript:fileIndex];
 }
 
+- (void)setAllFilesPriority:(FilePriority)priority {
+    for (int i = 0; i < _priorities.count; i++)
+        [_priorities setObject:[NSNumber numberWithInt:priority] atIndexedSubscript:i];
+}
+
 @end

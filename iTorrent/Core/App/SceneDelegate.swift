@@ -6,6 +6,7 @@
 //
 
 import MVVMFoundation
+import TorrentKit
 import UIKit
 
 @available(iOS 13.0, *)
@@ -57,5 +58,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        // TODO: - Refactor with MVVM services
+        guard let url = URLContexts.first?.url,
+              url.startAccessingSecurityScopedResource(),
+              let file = TorrentFile(with: url)
+        else { return }
+
+        url.stopAccessingSecurityScopedResource()
+
+        let addVc = TorrentAddingViewModel.resolveView(with: .init(file: file))
+        let nvc = UINavigationController.safeResolve()
+        nvc.viewControllers = [addVc]
+        
+        let key = UIWindow.keyWindow?.rootViewController
+        key?.present(nvc, animated: true)
     }
 }

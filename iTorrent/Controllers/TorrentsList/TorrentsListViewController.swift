@@ -159,15 +159,25 @@ private extension TorrentsListViewController {
         }
         if viewModel.sortingType.type == .name { nameSort.image = getSortingArrowImage() }
 
-        let dateSort = UIAction(title: "Date", attributes: []) { [unowned self] _ in
-            if viewModel.sortingType.type == .date {
+        let dateAddedSort = UIAction(title: "Date Added", attributes: []) { [unowned self] _ in
+            if viewModel.sortingType.type == .dateAdded {
                 viewModel.sortingType.reversed.toggle()
             } else {
-                viewModel.sortingType = .init(type: .date, reversed: false)
+                viewModel.sortingType = .init(type: .dateAdded, reversed: false)
             }
             setupSortingItem()
         }
-        if viewModel.sortingType.type == .date { dateSort.image = getSortingArrowImage() }
+        if viewModel.sortingType.type == .dateAdded { dateAddedSort.image = getSortingArrowImage() }
+
+        let dateCreatedSort = UIAction(title: "Date Created", attributes: []) { [unowned self] _ in
+            if viewModel.sortingType.type == .dateCreated {
+                viewModel.sortingType.reversed.toggle()
+            } else {
+                viewModel.sortingType = .init(type: .dateCreated, reversed: false)
+            }
+            setupSortingItem()
+        }
+        if viewModel.sortingType.type == .dateCreated { dateCreatedSort.image = getSortingArrowImage() }
 
         let sizeSort = UIAction(title: "Size", attributes: []) { [unowned self] _ in
             if viewModel.sortingType.type == .size {
@@ -179,7 +189,7 @@ private extension TorrentsListViewController {
         }
         if viewModel.sortingType.type == .size { sizeSort.image = getSortingArrowImage() }
 
-        let menu = UIMenu(title: "Sort torrents by:", options: [], children: [nameSort, dateSort, sizeSort])
+        let menu = UIMenu(title: "Sort torrents by:", options: [], children: [nameSort, dateAddedSort, dateCreatedSort, sizeSort])
         sortingItem.menu = menu
     }
 

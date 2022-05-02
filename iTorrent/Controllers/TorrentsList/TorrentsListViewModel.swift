@@ -15,7 +15,8 @@ struct TorrentListSortingModel: Codable {
 
     enum `Type`: Equatable, Codable {
         case name
-        case date
+        case dateAdded
+        case dateCreated
         case size
     }
 }
@@ -122,7 +123,15 @@ extension TorrentsListViewModel {
             } else {
                 return lhs.name > rhs.name
             }
-        case .date:
+        case .dateAdded:
+            let lhsDate = lhs.addedDate
+            let rhsDate = rhs.addedDate
+            if !sortingType.reversed {
+                return lhsDate > rhsDate
+            } else {
+                return lhsDate < rhsDate
+            }
+        case .dateCreated:
             let lhsDate = lhs.creationDate ?? Date()
             let rhsDate = rhs.creationDate ?? Date()
             if !sortingType.reversed {

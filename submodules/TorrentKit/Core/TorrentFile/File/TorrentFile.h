@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initUnsafeWithFileWithData:(NSData *)data ;
 
 - (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex;
-
+- (void)setAllFilesPriority:(FilePriority)priority;
 
 @end
 
