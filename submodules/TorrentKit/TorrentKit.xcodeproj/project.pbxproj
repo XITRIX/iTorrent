@@ -16,6 +16,9 @@
 		7C4E4BF1280DEF03005B13E6 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E4BF0280DEF03005B13E6 /* Data+Hex.swift */; };
 		7C614A3A281FD10E008FA916 /* ExceptionCatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C614A38281FD10C008FA916 /* ExceptionCatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C614A3C281FD241008FA916 /* ExceptionCatcher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A3B281FD241008FA916 /* ExceptionCatcher.mm */; };
+		7C614A5228206B95008FA916 /* TorrentTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C614A5028206B95008FA916 /* TorrentTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C614A5328206B95008FA916 /* TorrentTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A5128206B95008FA916 /* TorrentTracker.mm */; };
+		7C614A5528206D1C008FA916 /* TorrentTracker_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C614A5428206D1C008FA916 /* TorrentTracker_Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CC9B3452816CCF9001A13ED /* FileEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC9B3442816CCF9001A13ED /* FileEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CC9B3472816CD69001A13ED /* FileEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9B3462816CD69001A13ED /* FileEntry.m */; };
 		7CC9B3492816CD92001A13ED /* FileEntry_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC9B3482816CD92001A13ED /* FileEntry_Internal.h */; };
@@ -60,6 +63,9 @@
 		7C4E4BF0280DEF03005B13E6 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		7C614A38281FD10C008FA916 /* ExceptionCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExceptionCatcher.h; sourceTree = "<group>"; };
 		7C614A3B281FD241008FA916 /* ExceptionCatcher.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ExceptionCatcher.mm; sourceTree = "<group>"; };
+		7C614A5028206B95008FA916 /* TorrentTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorrentTracker.h; sourceTree = "<group>"; };
+		7C614A5128206B95008FA916 /* TorrentTracker.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TorrentTracker.mm; sourceTree = "<group>"; };
+		7C614A5428206D1C008FA916 /* TorrentTracker_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorrentTracker_Internal.h; sourceTree = "<group>"; };
 		7CC9B3442816CCF9001A13ED /* FileEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileEntry.h; sourceTree = "<group>"; };
 		7CC9B3462816CD69001A13ED /* FileEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileEntry.m; sourceTree = "<group>"; };
 		7CC9B3482816CD92001A13ED /* FileEntry_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileEntry_Internal.h; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 			children = (
 				7CC9B3422816CCD7001A13ED /* FileEntry */,
 				7CFB9E622815572C006C1E1E /* TorrentFile */,
+				7C614A4F28206B82008FA916 /* TorrentTracker */,
 				7CFB9E5A28154A95006C1E1E /* TorrentHandle */,
 				7CFB9E5928154A8C006C1E1E /* Session */,
 			);
@@ -166,6 +173,16 @@
 				7C0CE28F280B668300753FB6 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C614A4F28206B82008FA916 /* TorrentTracker */ = {
+			isa = PBXGroup;
+			children = (
+				7C614A5028206B95008FA916 /* TorrentTracker.h */,
+				7C614A5428206D1C008FA916 /* TorrentTracker_Internal.h */,
+				7C614A5128206B95008FA916 /* TorrentTracker.mm */,
+			);
+			path = TorrentTracker;
 			sourceTree = "<group>";
 		};
 		7CC9B3422816CCD7001A13ED /* FileEntry */ = {
@@ -252,11 +269,13 @@
 				7C4AB5D1280B5FF6003940CD /* TorrentKit.h in Headers */,
 				7CFB9E7928157267006C1E1E /* TorrentHandleState.h in Headers */,
 				7CC9B3452816CCF9001A13ED /* FileEntry.h in Headers */,
+				7C614A5528206D1C008FA916 /* TorrentTracker_Internal.h in Headers */,
 				7C614A3A281FD10E008FA916 /* ExceptionCatcher.h in Headers */,
 				7C4AB5F7280B601C003940CD /* NSData+Hex.h in Headers */,
 				7CC9B3492816CD92001A13ED /* FileEntry_Internal.h in Headers */,
 				7CFB9E752815685B006C1E1E /* NSData+Sha1Hash.h in Headers */,
 				7CFB9E6B28155A78006C1E1E /* MagnetURI.h in Headers */,
+				7C614A5228206B95008FA916 /* TorrentTracker.h in Headers */,
 				7CFB9E6E28155AFE006C1E1E /* Downloadable.h in Headers */,
 				7CFB9E582814DD30006C1E1E /* Session.h in Headers */,
 				7CFB9E5D28154AB7006C1E1E /* TorrentHandle.h in Headers */,
@@ -359,6 +378,7 @@
 				7CC9B37028183BC5001A13ED /* MagnetURI.swift in Sources */,
 				7CFB9E7728156922006C1E1E /* NSData+Sha1Hash.mm in Sources */,
 				7C4E4BF1280DEF03005B13E6 /* Data+Hex.swift in Sources */,
+				7C614A5328206B95008FA916 /* TorrentTracker.mm in Sources */,
 				7CFB9E6C28155A78006C1E1E /* MagnetURI.mm in Sources */,
 				7C4AB5F8280B601C003940CD /* NSData+Hex.m in Sources */,
 			);

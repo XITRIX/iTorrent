@@ -7,6 +7,7 @@
 
 #import "TorrentHandle_Internal.h"
 #import "FileEntry_Internal.h"
+#import "TorrentTracker_Internal.h"
 
 #import "NSData+Hex.h"
 
@@ -292,6 +293,17 @@
     return [results copy];
 }
 
+- (NSArray<TorrentTracker *> *)trackers {
+    auto trackers = _torrentHandle.trackers();
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+
+    for (auto tracker : trackers) {
+        [results addObject: [[TorrentTracker alloc] initWithAnnounceEntry: tracker]];
+    }
+
+    return results;
+}
+
 - (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex {
     _torrentHandle.file_priority((int)fileIndex, priority);
     _torrentHandle.save_resume_data();
@@ -304,6 +316,23 @@
     }
     _torrentHandle.prioritize_files(array);
     _torrentHandle.save_resume_data();
+}
+
+- (void)addTracker:(NSString *)url {
+    _torrentHandle.add_tracker(lt::announce_entry(url.UTF8String));
+}
+
+- (void)removeTrackers:(NSArray<NSString *> *)urls {
+    auto trackers = _torrentHandle.trackers();
+    std::vector<lt::announce_entry> newTrackers;
+
+    for (auto tracker: trackers) {
+        if ([urls containsObject: [NSString stringWithFormat:@"%s", tracker.url.c_str()]]) { continue; }
+        newTrackers.push_back(tracker);
+    }
+
+    _torrentHandle.replace_trackers(newTrackers);
+    _torrentHandle.force_reannounce();
 }
 
 @end

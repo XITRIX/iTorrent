@@ -62,7 +62,7 @@ class FileManager {
         }
 
         // Binding
-        torrent.rx.progress.observeNext { _ in
+        torrent.rx.progress.throttle(for: 0.5).observeNext { _ in
             for file in torrent.files.enumerated() {
                 DispatchQueue.main.async {
                     rawFiles[file.offset].update(with: file.element)

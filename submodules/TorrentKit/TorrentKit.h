@@ -18,6 +18,7 @@ FOUNDATION_EXPORT const unsigned char TorrentKitVersionString[];
 
 #import <TorrentKit/Session.h>
 #import <TorrentKit/FileEntry.h>
+#import <TorrentKit/TorrentTracker.h>
 #import <TorrentKit/TorrentHandle.h>
 #import <TorrentKit/TorrentHandleState.h>
 #import <TorrentKit/Downloadable.h>

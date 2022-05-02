@@ -9,8 +9,6 @@ import Bond
 
 infix operator =?
 public func =?<T>(lhs: Observable<T>, rhs: T) where T: Equatable {
-    guard lhs.value != rhs else {
-        return
-    }
+    guard lhs.value != rhs else { return }
     lhs.value = rhs
 }

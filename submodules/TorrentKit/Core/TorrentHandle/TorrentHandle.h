@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 #import "TorrentHandleState.h"
+#import "TorrentTracker.h"
 #import "FileEntry.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -42,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL isSequential;
 @property (readonly) NSArray<NSNumber *> *pieces;
 @property (readonly) NSArray<FileEntry *> *files;
+@property (readonly) NSArray<TorrentTracker *> *trackers;
 @property (readonly) NSString* magnetLink;
 @property (readonly, nullable) NSString* torrentFilePath;
 
@@ -53,6 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex;
 - (void)setFilesPriority:(NSArray<NSNumber *> *)priorities;
+
+- (void)addTracker:(NSString *)url;
+- (void)removeTrackers:(NSArray<NSString *> *)urls;
 
 @end
 

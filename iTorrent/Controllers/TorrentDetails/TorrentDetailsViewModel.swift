@@ -114,7 +114,7 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
         let files = Navigation(title: "Files")
 
         bind(in: bag) {
-            trackers.action.observeNext { [unowned self] _ in print("Test") }
+            trackers.action.observeNext { [unowned self] _ in navigateToTrackers() }
             files.action.observeNext { [unowned self] _ in navigateToFiles() }
         }
 
@@ -131,6 +131,10 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
 
     func rehash() {
         torrent.rehash()
+    }
+
+    func navigateToTrackers() {
+        navigate(to: TorrentTrackersListViewModel.self, prepare: torrent)
     }
 
     func navigateToFiles() {
