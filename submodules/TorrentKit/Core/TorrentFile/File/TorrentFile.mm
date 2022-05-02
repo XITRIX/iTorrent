@@ -79,7 +79,7 @@
             *_params = resume;
         }
     }
-    
+
     _params->ti = std::make_shared<lt::torrent_info>(ti);
 }
 

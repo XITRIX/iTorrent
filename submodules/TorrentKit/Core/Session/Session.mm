@@ -136,6 +136,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 }
 
 - (void)removeTorrent:(TorrentHandle *)torrent deleteFiles:(BOOL)deleteFiles {
+    [self notifyDelegatesWithRemove:torrent.torrentHandle];
 //    [self removeStoredTorrentOrMagnet:torrent.torrentHandle];
 
     // Remove torrrent from session
@@ -199,6 +200,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
                 case lt::torrent_removed_alert::alert_type: {
                     [self torrentRemovedAlert:(lt::torrent_alert *)alert];
+                    continue;
                 } break;
 
                 case lt::torrent_finished_alert::alert_type: {
@@ -225,7 +227,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
             if (dynamic_cast<lt::torrent_alert *>(alert) != nullptr) {
                 auto th = ((lt::torrent_alert *)alert)->handle;
-                if (!th.is_valid()) { break; }
+                if (!th.is_valid()) { continue; }
                 [self notifyDelegatesWithUpdate:th];
             }
         }
@@ -289,7 +291,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
 - (void)torrentRemovedAlert:(lt::torrent_alert *)alert {
     auto th = alert->handle;
-    [self notifyDelegatesWithRemove:th];
+//    [self notifyDelegatesWithRemove:th];
     if (!th.is_valid()) {
         NSLog(@"%s: torrent_handle is invalid!", __FUNCTION__);
         return;

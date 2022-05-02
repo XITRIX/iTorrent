@@ -24,4 +24,4 @@ FOUNDATION_EXPORT const unsigned char TorrentKitVersionString[];
 #import <TorrentKit/TorrentFile.h>
 #import <TorrentKit/MagnetURI.h>
 #import <TorrentKit/NSData+Hex.h>
-
+#import <TorrentKit/ExceptionCatcher.h>
