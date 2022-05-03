@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import MVVMFoundation
 
 class FileEntityProtocol: HidableItem {
     var name: String { "" }
+    var path: String { "" }
     var size: UInt64 { 0 }
     var hidden: Bool { false }
+
+    func getFullPath() -> String {
+        let manager = MVVM.resolve() as TorrentManager
+        return manager.downloadFolder + "/" + path
+    }
 }
 
 extension FileEntityProtocol: Hashable {

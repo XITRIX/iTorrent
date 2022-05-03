@@ -18,25 +18,34 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
     let deselectAll = UIBarButtonItem(title: "Deselect All", style: .plain, target: nil, action: nil)
     let spaces = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
+    let globalItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.circle"), style: .plain, target: nil, action: nil)
+    let selectionDoneItem = UIBarButtonItem(title: "Done", style: .done, target: nil, action: nil)
+    let shareSelectedItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+    let prioritySelectedItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Sort"), style: .plain, target: nil, action: nil)
+
     override func setupView() {
         super.setupView()
 
-        toolbarItems = [selectAll, spaces, deselectAll]
+        globalItem.menu = createGlobalMenu()
+        shareSelectedItem.menu = createShareMenu()
+        prioritySelectedItem.menu = createSelectedPriorityMenu()
+
+        setupItems(animated: false)
 
         dataSource = DiffableDataSource<FileEntityProtocol>(tableView: tableView, cellProvider: { [unowned self] tableView, indexPath, itemIdentifier in
             switch itemIdentifier {
             case let file as FileEntity:
                 let cell = tableView.dequeue(for: indexPath) as TorrentFileCell
                 cell.setup(with: file)
-                cell.menu = createFileMenu(at: file.index)
+                cell.menu = createItemMenu(for: indexPath)
                 cell.bind(in: cell.reuseBag) {
-                    cell.valueChanged.observeNext { priority in viewModel.setTorrentFilePriority(priority, at: file.index) }
+                    cell.valueChanged.observeNext { priority in viewModel.setPriority(priority, at: indexPath) }
                 }
                 return cell
             case let directory as DirectoryEntity:
                 let cell = tableView.dequeue(for: indexPath) as TorrentDirectoryCell
                 cell.setup(with: directory)
-                cell.menu = createFolderMenu(for: indexPath)
+                cell.menu = createItemMenu(for: indexPath)
                 return cell
             default: return UITableViewCell()
             }
@@ -49,6 +58,9 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
     override func binding() {
         super.binding()
         bind(in: bag) {
+            selectionDoneItem.bindTap { [unowned self] in
+                setEditing(false, animated: true)
+            }
             selectAll.bindTap { [unowned self] in
                 viewModel.setAllTorrentFilesPriority(.defaultPriority)
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -64,11 +76,13 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
             }
 
             tableView.reactive.selectedRowIndexPath.observeNext { [unowned self] indexPath in
+                guard !isEditing else { return }
+
                 if let cell = tableView.cellForRow(at: indexPath) as? TorrentFileCell,
                    let file = viewModel.getFile(at: indexPath.row)
                 {
                     if file.progress == 1 {
-                        previewDataSource.previewURL = URL(fileURLWithPath: file.getFullPath(), isDirectory: false)
+                        previewDataSource.previewURLs = [URL(fileURLWithPath: file.getFullPath(), isDirectory: false)]
                         let qlvc = QLPreviewController()
                         qlvc.dataSource = previewDataSource
                         present(qlvc, animated: true)
@@ -80,25 +94,102 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
         }
     }
 
-    func createFileMenu(at fileIndex: Int) -> UIMenu? {
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        isEditing
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        setupItems()
+    }
+
+    func setupItems(animated: Bool = true) {
+        if isEditing {
+            navigationItem.setRightBarButton(selectionDoneItem, animated: animated)
+            setToolbarItems([prioritySelectedItem, spaces, shareSelectedItem], animated: animated)
+        } else {
+            navigationItem.setRightBarButton(globalItem, animated: animated)
+            setToolbarItems(nil, animated: animated)
+        }
+    }
+
+    func openSelected() {
+        let urls = tableView.indexPathsForSelectedRows?.map { indexPath -> URL in
+            let url = viewModel.sections[indexPath.section].items[indexPath.row].getFullPath()
+            return URL(fileURLWithPath: url, isDirectory: false)
+        }
+
+        guard let urls = urls else { return }
+
+        previewDataSource.previewURLs = urls
+        let qlvc = QLPreviewController()
+        qlvc.dataSource = previewDataSource
+        present(qlvc, animated: true)
+    }
+
+    func shareSelected() {
+        let urls = tableView.indexPathsForSelectedRows?.map { indexPath -> URL in
+            let url = viewModel.sections[indexPath.section].items[indexPath.row].getFullPath()
+            return URL(fileURLWithPath: url, isDirectory: false)
+        }
+
+        guard let urls = urls else { return }
+
+        previewDataSource.previewURLs = urls
+        let qlvc = QLPreviewController()
+        qlvc.dataSource = previewDataSource
+        present(qlvc, animated: true)
+    }
+}
+
+// MARK: - UIMenu
+extension TorrentFilesController {
+    func createShareMenu() -> UIMenu {
+        UIMenu(children: [
+            UIAction(title: "Share", handler: { [unowned self] _ in
+                shareSelected()
+            }),
+            UIAction(title: "Open", handler: { [unowned self] _ in
+                openSelected()
+            })
+        ])
+    }
+
+    func createItemMenu(for indexPath: IndexPath) -> UIMenu? {
         let setPriority: (FileEntry.Priority) -> () = { [unowned self] priority in
-            viewModel.setTorrentFilePriority(priority, at: fileIndex)
+            viewModel.setPriority(priority, at: indexPath)
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
 
         return createPriorityMenu(setPriority)
     }
 
-    func createFolderMenu(for indexPath: IndexPath) -> UIMenu? {
+    func createSelectedPriorityMenu() -> UIMenu {
         let setPriority: (FileEntry.Priority) -> () = { [unowned self] priority in
-            viewModel.setTorrentDictionaryPriority(priority, at: indexPath.row)
+            tableView.indexPathsForSelectedRows?.forEach { viewModel.setPriority(priority, at: $0) }
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
 
-        return createPriorityMenu(setPriority)
+        return createPriorityMenu(title: "Selected items priority", setPriority)
     }
 
-    func createPriorityMenu(_ priorityCallback: @escaping (FileEntry.Priority)->()) -> UIMenu {
+    func createGlobalMenu() -> UIMenu {
+        let setPriority: (FileEntry.Priority) -> () = { [unowned self] priority in
+            viewModel.setAllTorrentFilesPriority(priority)
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        }
+
+        let priorityMenu = createPriorityMenu(title: "Priority for all files", setPriority)
+
+        return UIMenu(children: [
+            UIAction(title: "Selection mode", handler: { [unowned self] _ in
+                setEditing(!isEditing, animated: true)
+            }),
+            UIMenu(options: [.displayInline], children: [priorityMenu])
+        ])
+    }
+
+    func createPriorityMenu(title: String = "Priority", _ priorityCallback: @escaping (FileEntry.Priority) -> ()) -> UIMenu {
         let loadMenu = UIMenu(title: "", options: [.displayInline], children: [
             UIAction(title: "Low priority") { _ in
                 priorityCallback(.lowPriority)
@@ -117,19 +208,19 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
             }
         ])
 
-        return UIMenu(title: "Priority", children: [notLoadMenu, loadMenu])
+        return UIMenu(title: title, children: [notLoadMenu, loadMenu])
     }
 }
 
+// MARK: - QLPreviewControllerDataSource
 class TorrentFilesControllerPreviewDataSource: NSObject, QLPreviewControllerDataSource {
-    var previewURL: URL?
+    var previewURLs: [URL] = []
 
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        previewURL == nil ? 0 : 1
+        previewURLs.count
     }
 
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        guard let url = previewURL else { fatalError() }
-        return url as NSURL
+        previewURLs[index] as NSURL
     }
 }

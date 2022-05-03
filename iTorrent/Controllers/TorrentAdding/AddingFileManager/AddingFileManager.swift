@@ -21,7 +21,7 @@ class AddingFileManager {
 
     init(with file: TorrentFile) {
         let files = file.files
-        let root = DirectoryEntity(name: "")
+        let root = DirectoryEntity(name: "", path: "")
         var rawFiles = [FileEntity]()
 
         for fileNum in files.enumerated() {
@@ -43,7 +43,7 @@ class AddingFileManager {
                 // Create and move to next folder
                 var nextDir: DirectoryEntity? = currentDirectory.files[part] as? DirectoryEntity
                 if nextDir == nil {
-                    nextDir = DirectoryEntity(name: part)
+                    nextDir = DirectoryEntity(name: part, path: "\(currentDirectory)/\(part)")
                     currentDirectory.files[part] = nextDir
                 }
                 currentDirectory = nextDir!

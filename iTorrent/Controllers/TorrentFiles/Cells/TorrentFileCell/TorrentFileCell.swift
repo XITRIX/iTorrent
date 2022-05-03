@@ -17,6 +17,11 @@ class TorrentFileCell: MvvmTableViewCell {
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var progressView: SegmentedProgressView!
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        selectionStyle = editing ? .default : .none
+    }
+
     var menu: UIMenu? {
         get { switchView.menu }
         set {
@@ -29,6 +34,8 @@ class TorrentFileCell: MvvmTableViewCell {
 
     func setup(with model: FileEntity) {
         reuseBag.dispose()
+
+        selectionStyle = .none
 
         titleLabel.text = model.name
         sizeLabel.text = "\(Utils.Size.getSizeText(size: UInt(model.size)))"

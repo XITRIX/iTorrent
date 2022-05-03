@@ -19,16 +19,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xFI-ad-xHq">
-                        <rect key="frame" x="20" y="6" width="302.5" height="76"/>
+                        <rect key="frame" x="20" y="6" width="298.5" height="76"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fJ9-gJ-RXT">
-                                <rect key="frame" x="0.0" y="0.0" width="302.5" height="76"/>
+                                <rect key="frame" x="0.0" y="0.0" width="298.5" height="76"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ewT-T2-Xel">
-                                        <rect key="frame" x="0.0" y="0.0" width="250.5" height="76"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="246.5" height="76"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="k87-j0-2xN">
-                                                <rect key="frame" x="0.0" y="0.0" width="250.5" height="62.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="246.5" height="62.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Folder" translatesAutoresizingMaskIntoConstraints="NO" id="SsI-mu-Oa6">
                                                         <rect key="frame" x="0.0" y="15.5" width="32" height="32"/>
@@ -38,7 +38,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i uwihr jfoiejr flerf " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87N-8Q-VW4">
-                                                        <rect key="frame" x="40" y="6.5" width="210.5" height="50"/>
+                                                        <rect key="frame" x="40" y="6.5" width="206.5" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="AH4-VK-fLU"/>
                                                         </constraints>
@@ -49,7 +49,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="1024 MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" translatesAutoresizingMaskIntoConstraints="NO" id="ROB-vb-hFH">
-                                                <rect key="frame" x="0.0" y="62.5" width="250.5" height="13.5"/>
+                                                <rect key="frame" x="0.0" y="62.5" width="246.5" height="13.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
@@ -57,7 +57,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7HB-7W-HMc">
-                                        <rect key="frame" x="266.5" y="0.0" width="36" height="76"/>
+                                        <rect key="frame" x="262.5" y="0.0" width="36" height="76"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5N9-oK-9UT">
                                                 <rect key="frame" x="3" y="23" width="30" height="30"/>
@@ -86,7 +86,7 @@
                     <constraint firstItem="xFI-ad-xHq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="EJK-9f-haG"/>
                     <constraint firstAttribute="bottom" secondItem="xFI-ad-xHq" secondAttribute="bottom" constant="6" id="FkF-f1-Tmd"/>
                     <constraint firstItem="5N9-oK-9UT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZTk-BZ-nGi"/>
-                    <constraint firstAttribute="trailing" secondItem="xFI-ad-xHq" secondAttribute="trailing" id="w5d-vu-pRA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xFI-ad-xHq" secondAttribute="trailing" constant="-4" id="w5d-vu-pRA"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

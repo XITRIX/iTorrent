@@ -44,12 +44,22 @@ class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
         navigate(to: TorrentFilesViewModel.self, prepare: model)
     }
 
-    func setTorrentFilePriority(_ priority: FileEntry.Priority, at fileIndex: Int) {
+    func setPriority(_ priority: FileEntry.Priority, at indexPath: IndexPath) {
+        switch sections[indexPath.section].items[indexPath.row] {
+        case is DirectoryEntity:
+            setTorrentDictionaryPriority(priority, at: indexPath.row)
+        case let file as FileEntity:
+            setTorrentFilePriority(priority, at: file.index)
+        default: break
+        }
+    }
+
+    private func setTorrentFilePriority(_ priority: FileEntry.Priority, at fileIndex: Int) {
         model.torrent.setFilePriority(priority, at: fileIndex)
         model.fileManager?.rawFiles[fileIndex].priority = priority
     }
 
-    func setTorrentDictionaryPriority(_ priority: FileEntry.Priority, at dictionaryIndex: Int) {
+    private func setTorrentDictionaryPriority(_ priority: FileEntry.Priority, at dictionaryIndex: Int) {
         guard let dict = getDirectory(at: dictionaryIndex)
         else { return }
 

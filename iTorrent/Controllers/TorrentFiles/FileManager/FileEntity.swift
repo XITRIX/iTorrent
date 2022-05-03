@@ -12,13 +12,14 @@ import ReactiveKit
 
 class FileEntity: FileEntityProtocol {
     private let _name: String
+    private let _path: String
     private let _size: UInt64
     
     let index: Int
     let prototype: Bool
-    let localPath: String
 
     override var name: String { _name }
+    override var path: String { _path }
     override var size: UInt64 { _size }
 
     @Bindable var priority: FileEntry.Priority
@@ -28,9 +29,9 @@ class FileEntity: FileEntityProtocol {
 
     init(file: FileEntry, id: Int) {
         self._name = file.name
+        self._path = file.path
         self._size = file.size
         self.prototype = file.isPrototype
-        self.localPath = file.path
         self.priority = file.priority
         self.index = id
 
@@ -42,10 +43,5 @@ class FileEntity: FileEntityProtocol {
         $downloaded =? fileEntry.downloaded
         $progress =? (Float(downloaded) / Float(size))
         $pieces =? (progress < 1 ? fileEntry.pieces.map { $0.boolValue } : [true])
-    }
-
-    func getFullPath() -> String {
-        let manager = MVVM.resolve() as TorrentManager
-        return manager.downloadFolder + "/" + localPath
     }
 }

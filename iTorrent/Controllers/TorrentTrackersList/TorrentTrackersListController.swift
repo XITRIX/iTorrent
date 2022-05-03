@@ -68,7 +68,6 @@ private extension TorrentTrackersListController {
         } else {
             setToolbarItems([], animated: true)
         }
-        navigationController?.setToolbarHidden(toolbarHidden, animated: true)
         updateSelection()
     }
 
