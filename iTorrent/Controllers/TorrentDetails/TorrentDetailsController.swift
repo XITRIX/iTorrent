@@ -9,7 +9,7 @@ import MarqueeLabel
 import MVVMFoundation
 import UIKit
 
-class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel> {
+class TorrentDetailsController: BaseTableViewController<TorrentDetailsViewModel> {
     var dataSource: DiffableDataSource<TableCellRepresentable>!
 
     let playItem = UIBarButtonItem(barButtonSystemItem: .play, target: nil, action: nil)
@@ -96,7 +96,6 @@ class TorrentDetailsController: MvvmTableViewController<TorrentDetailsViewModel>
                 shareController.popoverPresentationController?.permittedArrowDirections = .any
             }
             present(shareController, animated: true)
-
         })
 
         let magnetAction = UIAction(title: "Magnet link", image: UIImage(systemName: "link"), handler: { [unowned self] _ in

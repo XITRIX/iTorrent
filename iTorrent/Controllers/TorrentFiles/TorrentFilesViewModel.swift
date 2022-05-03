@@ -44,16 +44,6 @@ class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
         navigate(to: TorrentFilesViewModel.self, prepare: model)
     }
 
-    func setPriority(_ priority: FileEntry.Priority, at indexPath: IndexPath) {
-        switch sections[indexPath.section].items[indexPath.row] {
-        case is DirectoryEntity:
-            setTorrentDictionaryPriority(priority, at: indexPath.row)
-        case let file as FileEntity:
-            setTorrentFilePriority(priority, at: file.index)
-        default: break
-        }
-    }
-
     private func setTorrentFilePriority(_ priority: FileEntry.Priority, at fileIndex: Int) {
         model.torrent.setFilePriority(priority, at: fileIndex)
         model.fileManager?.rawFiles[fileIndex].priority = priority
@@ -69,9 +59,23 @@ class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
         }
     }
 
+    func setPriority(_ priority: FileEntry.Priority, at indexPath: IndexPath) {
+        switch sections[indexPath.section].items[indexPath.row] {
+        case is DirectoryEntity:
+            setTorrentDictionaryPriority(priority, at: indexPath.row)
+        case let file as FileEntity:
+            setTorrentFilePriority(priority, at: file.index)
+        default: break
+        }
+    }
+
+    func setPriorities(_ priority: FileEntry.Priority, for files: [FileEntity]) {
+        model.torrent.setFilesPriority(priority, at: files.map { NSNumber(value: $0.index) })
+        files.forEach { $0.priority = priority }
+    }
+
     func setAllTorrentFilesPriority(_ priority: FileEntry.Priority) {
-        let priorities = Array(repeating: NSNumber(value: priority.rawValue), count: model.fileManager?.rawFiles.count ?? 0)
-        model.torrent.setFilesPriority(priorities)
+        model.torrent.setAllFilesPriority(priority)
         model.fileManager?.rawFiles.forEach { $0.priority = priority }
     }
 
@@ -81,6 +85,10 @@ class TorrentFilesViewModel: MvvmViewModelWith<TorrentFilesModel> {
 
     func getFile(at index: Int) -> FileEntity? {
         sections.first?.items[index] as? FileEntity
+    }
+
+    var downloadPath: String {
+        model.torrent.downloadPath
     }
 }
 

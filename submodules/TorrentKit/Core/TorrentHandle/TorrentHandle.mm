@@ -22,6 +22,7 @@
     if (self) {
         _torrentHandle = torrentHandle;
         _torrentPath = session.torrentsPath;
+        _downloadPath = session.downloadPath;
     }
     return self;
 }
@@ -216,6 +217,19 @@
     return filePath;
 }
 
+- (NSString *)downloadPath {
+    if (!self.isValid || !self.hasMetadata) return NULL;
+
+    auto fileInfo = _torrentHandle.torrent_file().get();
+    NSString *fileName = [NSString stringWithFormat:@"%s", fileInfo->name().c_str()];
+    NSString *filePath = [_downloadPath stringByAppendingPathComponent:fileName];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])
+        return NULL;
+
+    return filePath;
+}
+
 // MARK: - Functions
 
 - (void)resume {
@@ -309,10 +323,18 @@
     _torrentHandle.save_resume_data();
 }
 
-- (void)setFilesPriority:(NSArray<NSNumber *> *)priorities {
+- (void)setFilesPriority:(FilePriority)priority at:(NSArray<NSNumber *> *)fileIndexes {
     std::vector<lt::download_priority_t> array;
-    for (int i = 0; i < priorities.count; i++) {
-        array.push_back([[priorities objectAtIndex:i] integerValue]);
+    for (int i = 0; i < fileIndexes.count; i++) {
+        _torrentHandle.file_priority((int)fileIndexes[i].integerValue, priority);
+    }
+    _torrentHandle.save_resume_data();
+}
+
+- (void)setAllFilesPriority:(FilePriority)priority {
+    std::vector<lt::download_priority_t> array;
+    for (int i = 0; i < _torrentHandle.torrent_file().get()->files().num_files(); i++) {
+        array.push_back(priority);
     }
     _torrentHandle.prioritize_files(array);
     _torrentHandle.save_resume_data();

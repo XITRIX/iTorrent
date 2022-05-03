@@ -14,6 +14,13 @@
 		7C614A4D28206309008FA916 /* TorrentTrackerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A4B28206308008FA916 /* TorrentTrackerCell.swift */; };
 		7C614A4E28206309008FA916 /* TorrentTrackerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C614A4C28206308008FA916 /* TorrentTrackerCell.xib */; };
 		7C614A57282070DF008FA916 /* TorrentTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A56282070DF008FA916 /* TorrentTrackerModel.swift */; };
+		7C83BDC42821CD9C00454CF7 /* SplitScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDC32821CD9C00454CF7 /* SplitScreenViewModel.swift */; };
+		7C83BDC62821CE3D00454CF7 /* SplitScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDC52821CE3D00454CF7 /* SplitScreenController.swift */; };
+		7C83BDCC2821D8EA00454CF7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDCB2821D8EA00454CF7 /* BaseNavigationController.swift */; };
+		7C83BDCF2821D91E00454CF7 /* SANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDCE2821D91E00454CF7 /* SANavigationController.swift */; };
+		7C83BDD12821D94900454CF7 /* SAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDD02821D94900454CF7 /* SAViewController.swift */; };
+		7C83BDD32821DA2C00454CF7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDD22821DA2C00454CF7 /* BaseViewController.swift */; };
+		7C83BDD52821DA5700454CF7 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDD42821DA5700454CF7 /* BaseTableViewController.swift */; };
 		7CA11D662819491D00CB424E /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA11D652819491D00CB424E /* Dialog.swift */; };
 		7CA11D6828194E4F00CB424E /* MarqueeLabel+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA11D6728194E4F00CB424E /* MarqueeLabel+Reactive.swift */; };
 		7CA11D832819C82E00CB424E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA11D822819C82E00CB424E /* Images.xcassets */; };
@@ -108,6 +115,14 @@
 		7C614A4B28206308008FA916 /* TorrentTrackerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentTrackerCell.swift; sourceTree = "<group>"; };
 		7C614A4C28206308008FA916 /* TorrentTrackerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentTrackerCell.xib; sourceTree = "<group>"; };
 		7C614A56282070DF008FA916 /* TorrentTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentTrackerModel.swift; sourceTree = "<group>"; };
+		7C614A5F2821901F008FA916 /* iTorrent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iTorrent.entitlements; sourceTree = "<group>"; };
+		7C83BDC32821CD9C00454CF7 /* SplitScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitScreenViewModel.swift; sourceTree = "<group>"; };
+		7C83BDC52821CE3D00454CF7 /* SplitScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitScreenController.swift; sourceTree = "<group>"; };
+		7C83BDCB2821D8EA00454CF7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		7C83BDCE2821D91E00454CF7 /* SANavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
+		7C83BDD02821D94900454CF7 /* SAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAViewController.swift; sourceTree = "<group>"; };
+		7C83BDD22821DA2C00454CF7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7C83BDD42821DA5700454CF7 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		7CA11D652819491D00CB424E /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		7CA11D6728194E4F00CB424E /* MarqueeLabel+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarqueeLabel+Reactive.swift"; sourceTree = "<group>"; };
 		7CA11D822819C82E00CB424E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -223,6 +238,34 @@
 				7C614A4C28206308008FA916 /* TorrentTrackerCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7C83BDC22821CD8C00454CF7 /* SplitScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7C83BDC32821CD9C00454CF7 /* SplitScreenViewModel.swift */,
+				7C83BDC52821CE3D00454CF7 /* SplitScreenController.swift */,
+			);
+			path = SplitScreen;
+			sourceTree = "<group>";
+		};
+		7C83BDCA2821D8CC00454CF7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7C83BDCB2821D8EA00454CF7 /* BaseNavigationController.swift */,
+				7C83BDD22821DA2C00454CF7 /* BaseViewController.swift */,
+				7C83BDD42821DA5700454CF7 /* BaseTableViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7C83BDCD2821D90F00454CF7 /* SANavigation */ = {
+			isa = PBXGroup;
+			children = (
+				7C83BDCE2821D91E00454CF7 /* SANavigationController.swift */,
+				7C83BDD02821D94900454CF7 /* SAViewController.swift */,
+			);
+			path = SANavigation;
 			sourceTree = "<group>";
 		};
 		7CA11D642819491100CB424E /* UI */ = {
@@ -422,6 +465,7 @@
 		7CFB9E872815F298006C1E1E /* iTorrent */ = {
 			isa = PBXGroup;
 			children = (
+				7C614A5F2821901F008FA916 /* iTorrent.entitlements */,
 				7CFB9EA82815F7A9006C1E1E /* Core */,
 				7CFB9EC32815F7F5006C1E1E /* Controllers */,
 				7CFB9ED22815F8D5006C1E1E /* UIComponents */,
@@ -500,6 +544,7 @@
 		7CFB9EC32815F7F5006C1E1E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7C83BDC22821CD8C00454CF7 /* SplitScreen */,
 				7CFB9EC42815F811006C1E1E /* TorrentsList */,
 				7CC9B2E8281679C2001A13ED /* TorrentDetails */,
 				7C614A412820613C008FA916 /* TorrentTrackersList */,
@@ -534,6 +579,8 @@
 		7CFB9ED22815F8D5006C1E1E /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				7C83BDCD2821D90F00454CF7 /* SANavigation */,
+				7C83BDCA2821D8CC00454CF7 /* Base */,
 				7CFB9ED32815F8D5006C1E1E /* Cells */,
 				7CFB9ED72815F8D5006C1E1E /* Views */,
 			);
@@ -710,10 +757,13 @@
 				7CFB9EC02815F7A9006C1E1E /* UIFontExtensions.swift in Sources */,
 				7CFB9EDF2815F91D006C1E1E /* TorrentManager.swift in Sources */,
 				7CFB9EC12815F7A9006C1E1E /* Utils.swift in Sources */,
+				7C83BDCF2821D91E00454CF7 /* SANavigationController.swift in Sources */,
 				7CC9B35C28172BF9001A13ED /* TorrentAddingController.swift in Sources */,
 				7C614A4D28206309008FA916 /* TorrentTrackerCell.swift in Sources */,
+				7C83BDCC2821D8EA00454CF7 /* BaseNavigationController.swift in Sources */,
 				7CFB9EC22815F7A9006C1E1E /* Utils+Time.swift in Sources */,
 				7CC9B2E728167884001A13ED /* TorrentHandle+Extensions.swift in Sources */,
+				7C83BDC42821CD9C00454CF7 /* SplitScreenViewModel.swift in Sources */,
 				7CC9B36228172DBD001A13ED /* AddingFileManager.swift in Sources */,
 				7CC9B2FA281679C2001A13ED /* TorrentDelailsDetailCell.swift in Sources */,
 				7CC9B304281679C2001A13ED /* TorrentDetailsViewModel.swift in Sources */,
@@ -729,15 +779,19 @@
 				7CC9B33F2816CA9C001A13ED /* TorrentFilesViewModel.swift in Sources */,
 				7CC9B2FE281679C2001A13ED /* TorrentDelailsNavigationViewModel.swift in Sources */,
 				7CFB9EBF2815F7A9006C1E1E /* DateExtensions.swift in Sources */,
+				7C83BDD12821D94900454CF7 /* SAViewController.swift in Sources */,
 				7CA11D6828194E4F00CB424E /* MarqueeLabel+Reactive.swift in Sources */,
+				7C83BDD32821DA2C00454CF7 /* BaseViewController.swift in Sources */,
 				7CFB9EB92815F7A9006C1E1E /* AppDelegate.swift in Sources */,
 				7CFB9EBA2815F7A9006C1E1E /* SceneDelegate.swift in Sources */,
+				7C83BDC62821CE3D00454CF7 /* SplitScreenController.swift in Sources */,
 				7C614A37281F5E58008FA916 /* UIWindow+Key.swift in Sources */,
 				7CC9B354281728D9001A13ED /* FilesBrowserController.swift in Sources */,
 				7CC9B33E2816CA9C001A13ED /* TorrentFilesController.swift in Sources */,
 				7CC9B37628186619001A13ED /* TorrentDelailsProgressCell.swift in Sources */,
 				7CA11D8F281AF28900CB424E /* UISwitchWithMenu.swift in Sources */,
 				7CA11D862819CE5200CB424E /* PropertyStorage.swift in Sources */,
+				7C83BDD52821DA5700454CF7 /* BaseTableViewController.swift in Sources */,
 				7C614A57282070DF008FA916 /* TorrentTrackerModel.swift in Sources */,
 				7CC9B2FB281679C2001A13ED /* TorrentDelailsDetailViewModel.swift in Sources */,
 				7CFB9EBB2815F7A9006C1E1E /* Utils+Size.swift in Sources */,
@@ -902,6 +956,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iTorrent/iTorrent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D59DHVRS87;
@@ -920,6 +975,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.xitrix.iTorrent-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -932,6 +988,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iTorrent/iTorrent.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D59DHVRS87;
@@ -950,6 +1007,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.xitrix.iTorrent-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

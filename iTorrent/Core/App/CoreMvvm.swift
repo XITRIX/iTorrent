@@ -11,18 +11,21 @@ import TorrentKit
 
 class CoreMvvm: MVVM {
     override func registerContainer() {
+
         // Register Services
         container.registerSingleton { TorrentManager() }
         container.registerSingleton { PropertyStorage() }
-//
-//        // Register ViewControllers
+
+        // Register ViewControllers
+        container.register { SplitScreenController() }
         container.register { TorrentsListViewController() }
         container.register { TorrentDetailsController() }
         container.register { TorrentFilesController() }
         container.register { TorrentAddingController() }
         container.register { TorrentTrackersListController() }
-//
-//        // Register ViewModels
+
+        // Register ViewModels
+        container.register { SplitScreenViewModel() }
         container.register { TorrentsListViewModel() }
         container.register { TorrentDetailsViewModel() }
         container.register { TorrentFilesViewModel() }
@@ -30,18 +33,15 @@ class CoreMvvm: MVVM {
         container.register { TorrentTrackersListViewModel() }
 
         // Add custom Navigation Controller
-        container.register { () -> UINavigationController in
-            let nvc = UINavigationController()
-            nvc.navigationBar.prefersLargeTitles = true
-            return nvc
-        }
+        container.register(type: UINavigationController.self) { BaseNavigationController() }
     }
 
     override func registerRouting() {
         // Register Root
-        router.registerRoot(TorrentsListViewModel.self, wrappedInNavigation: true)
-//
-//        // Register Routing
+        router.registerRoot(SplitScreenViewModel.self, wrappedInNavigation: false)
+
+        // Register Routing
+        router.register(viewModel: SplitScreenViewModel.self, viewController: SplitScreenController.self)
         router.register(viewModel: TorrentsListViewModel.self, viewController: TorrentsListViewController.self)
         router.register(viewModel: TorrentDetailsViewModel.self, viewController: TorrentDetailsController.self)
         router.register(viewModel: TorrentFilesViewModel.self, viewController: TorrentFilesController.self)

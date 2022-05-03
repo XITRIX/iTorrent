@@ -10,7 +10,7 @@ import QuickLook
 import TorrentKit
 import UIKit
 
-class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
+class TorrentFilesController: BaseTableViewController<TorrentFilesViewModel> {
     var previewDataSource = TorrentFilesControllerPreviewDataSource()
     var dataSource: DiffableDataSource<FileEntityProtocol>?
 
@@ -18,7 +18,7 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
     let deselectAll = UIBarButtonItem(title: "Deselect All", style: .plain, target: nil, action: nil)
     let spaces = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-    let globalItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.circle"), style: .plain, target: nil, action: nil)
+    let globalItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis"), style: .plain, target: nil, action: nil)
     let selectionDoneItem = UIBarButtonItem(title: "Done", style: .done, target: nil, action: nil)
     let shareSelectedItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
     let prioritySelectedItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Sort"), style: .plain, target: nil, action: nil)
@@ -135,10 +135,12 @@ class TorrentFilesController: MvvmTableViewController<TorrentFilesViewModel> {
 
         guard let urls = urls else { return }
 
-        previewDataSource.previewURLs = urls
-        let qlvc = QLPreviewController()
-        qlvc.dataSource = previewDataSource
-        present(qlvc, animated: true)
+        let shareController = UIActivityViewController(activityItems: urls, applicationActivities: nil)
+        if shareController.popoverPresentationController != nil {
+            shareController.popoverPresentationController?.barButtonItem = shareSelectedItem
+            shareController.popoverPresentationController?.permittedArrowDirections = .any
+        }
+        present(shareController, animated: true)
     }
 }
 
@@ -166,7 +168,20 @@ extension TorrentFilesController {
 
     func createSelectedPriorityMenu() -> UIMenu {
         let setPriority: (FileEntry.Priority) -> () = { [unowned self] priority in
-            tableView.indexPathsForSelectedRows?.forEach { viewModel.setPriority(priority, at: $0) }
+            let files = tableView.indexPathsForSelectedRows?.map { indexPath -> [FileEntity] in
+                let item = viewModel.sections[indexPath.section].items[indexPath.row]
+                switch item {
+                case let file as FileEntity:
+                    return [file]
+                case let dir as DirectoryEntity:
+                    return dir.getRawFiles()
+                default: return []
+                }
+            }.flatMap { $0 }
+
+            guard let files = files else { return }
+
+            viewModel.setPriorities(priority, for: files)
             UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
 
@@ -182,8 +197,17 @@ extension TorrentFilesController {
         let priorityMenu = createPriorityMenu(title: "Priority for all files", setPriority)
 
         return UIMenu(children: [
-            UIAction(title: "Selection mode", handler: { [unowned self] _ in
+            UIAction(title: "Selection mode", image: UIImage(systemName: "checkmark.circle"), handler: { [unowned self] _ in
                 setEditing(!isEditing, animated: true)
+            }),
+            UIAction(title: "Share all", image: UIImage(systemName: "square.and.arrow.up"), handler: { [unowned self] _ in
+                let path = NSURL(fileURLWithPath: viewModel.downloadPath, isDirectory: false)
+                let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+                if shareController.popoverPresentationController != nil {
+                    shareController.popoverPresentationController?.barButtonItem = globalItem
+                    shareController.popoverPresentationController?.permittedArrowDirections = .any
+                }
+                present(shareController, animated: true)
             }),
             UIMenu(options: [.displayInline], children: [priorityMenu])
         ])

@@ -9,7 +9,7 @@ import MVVMFoundation
 import SwiftUI
 import UIKit
 
-class TorrentTrackersListController: MvvmTableViewController<TorrentTrackersListViewModel> {
+class TorrentTrackersListController: BaseTableViewController<TorrentTrackersListViewModel> {
     var dataSource: DiffableDataSource<TorrentTrackerModel>!
 
     let editItem = UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: nil)

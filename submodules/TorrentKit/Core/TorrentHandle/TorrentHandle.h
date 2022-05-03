@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSArray<TorrentTracker *> *trackers;
 @property (readonly) NSString* magnetLink;
 @property (readonly, nullable) NSString* torrentFilePath;
+@property (readonly) NSString* downloadPath;
 
 - (void)resume;
 - (void)pause;
@@ -54,7 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSequentialDownload:(BOOL)enabled;
 
 - (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex;
-- (void)setFilesPriority:(NSArray<NSNumber *> *)priorities;
+- (void)setFilesPriority:(FilePriority)priority at:(NSArray<NSNumber *> *)fileIndexes;
+- (void)setAllFilesPriority:(FilePriority)priority;
 
 - (void)addTracker:(NSString *)url;
 - (void)removeTrackers:(NSArray<NSString *> *)urls;

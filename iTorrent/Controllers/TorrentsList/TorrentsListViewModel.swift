@@ -60,12 +60,12 @@ class TorrentsListViewModel: MvvmViewModel {
                     query?.lowercased().split(separator: " ").allSatisfy { torrent.name.lowercased().contains($0) } ?? true
                 })
                 return mapTorrentsIntoSections(torrents, sorting: sortingType)
-            }  => $sections
+            } => $sections
         }
     }
 
     func openTorrentDetails(at indexPath: IndexPath) {
-        navigate(to: TorrentDetailsViewModel.self, prepare: sections[indexPath.section].items[indexPath.row].torrent)
+        navigate(to: TorrentDetailsViewModel.self, prepare: sections[indexPath.section].items[indexPath.row].torrent, with: .detail)
     }
 
     func addTorrentFile(_ file: TorrentFile) {

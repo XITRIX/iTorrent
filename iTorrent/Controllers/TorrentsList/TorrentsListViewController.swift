@@ -10,7 +10,7 @@ import MVVMFoundation
 import TorrentKit
 import UIKit
 
-class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel> {
+class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel> {
     let editItem = UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: nil)
     let selectAllItem = UIBarButtonItem(title: "Select All", style: .plain, target: nil, action: nil)
     let addTorrentItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: nil, action: nil)
@@ -26,6 +26,8 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
 
     var dataSource: DiffableDataSource<TorrentsListTorrentModel>?
     var searchController = UISearchController()
+
+    var firstUpdate: Bool = true
 
     override class var style: UITableView.Style { .plain }
 
@@ -76,10 +78,13 @@ class TorrentsListViewController: MvvmTableViewController<TorrentsListViewModel>
             searchController.searchBar.reactive.text => viewModel.$searchQuery
             searchController.searchBar.reactive.cancelTap.observeNext { [unowned self] _ in viewModel.searchQuery = nil }
             viewModel.$sections.observeNext { [unowned self] torrents in
-                var snapshot = DiffableDataSource<TorrentsListTorrentModel>.Snapshot()
-                snapshot.append(torrents)
-                dataSource?.apply(snapshot)
-                refreshSelectedItems()
+                DispatchQueue.main.async {
+                    var snapshot = DiffableDataSource<TorrentsListTorrentModel>.Snapshot()
+                    snapshot.append(torrents)
+                    dataSource?.apply(snapshot, animatingDifferences: !firstUpdate)
+                    refreshSelectedItems()
+                    firstUpdate = false
+                }
             }
             editItem.bindTap { [unowned self] in
                 setEditing(!isEditing, animated: true)

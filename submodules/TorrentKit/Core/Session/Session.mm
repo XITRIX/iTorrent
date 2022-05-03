@@ -171,68 +171,70 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 - (void)alertsLoop {
     auto max_wait = lt::milliseconds(ALERTS_LOOP_WAIT_MILLIS);
     while (YES) {
-        auto alert_ptr = _session->wait_for_alert(max_wait);
-        std::vector<lt::alert *> alerts_queue;
-        if (alert_ptr != nullptr) {
-            _session->pop_alerts(&alerts_queue);
-        } else {
-            continue;
-        }
-
-        for (auto it = alerts_queue.begin(); it != alerts_queue.end(); ++it) {
-            auto alert = (*it);
-//            NSLog(@"type:%d msg:%s", alert->type(), alert->message().c_str());
-            switch (alert->type()) {
-                case lt::metadata_received_alert::alert_type: {
-                    [self metadataReceivedAlert:(lt::torrent_alert *)alert];
-                } break;
-
-                case lt::metadata_failed_alert::alert_type: {
-//                    [self metadataReceivedAlert:(lt::torrent_alert *)alert];
-                } break;
-
-                case lt::block_finished_alert::alert_type: {
-                } break;
-
-                case lt::add_torrent_alert::alert_type: {
-                    [self torrentAddedAlert:(lt::torrent_alert *)alert];
-                } break;
-
-                case lt::torrent_removed_alert::alert_type: {
-                    [self torrentRemovedAlert:(lt::torrent_alert *)alert];
-                    continue;
-                } break;
-
-                case lt::torrent_finished_alert::alert_type: {
-                    [self torrentStateChanged:(lt::torrent_alert *)alert];
-                } break;
-
-                case lt::torrent_paused_alert::alert_type: {
-                    [self torrentStateChanged:(lt::torrent_alert *)alert];
-                } break;
-
-                case lt::torrent_resumed_alert::alert_type: {
-                    [self torrentStateChanged:(lt::torrent_alert *)alert];
-                } break;
-
-                case lt::torrent_error_alert::alert_type: {
-                } break;
-
-                case lt::save_resume_data_alert::alert_type: {
-                    [self torrentSaveFastResume:(lt::save_resume_data_alert *)alert];
-                } break;
-
-                default: break;
+        @autoreleasepool {
+            auto alert_ptr = _session->wait_for_alert(max_wait);
+            std::vector<lt::alert *> alerts_queue;
+            if (alert_ptr != nullptr) {
+                _session->pop_alerts(&alerts_queue);
+            } else {
+                continue;
             }
 
-            if (dynamic_cast<lt::torrent_alert *>(alert) != nullptr) {
-                auto th = ((lt::torrent_alert *)alert)->handle;
-                if (!th.is_valid()) { continue; }
-                [self notifyDelegatesWithUpdate:th];
-            }
-        }
+            for (auto it = alerts_queue.begin(); it != alerts_queue.end(); ++it) {
+                auto alert = (*it);
+    //            NSLog(@"type:%d msg:%s", alert->type(), alert->message().c_str());
+                switch (alert->type()) {
+                    case lt::metadata_received_alert::alert_type: {
+                        [self metadataReceivedAlert:(lt::torrent_alert *)alert];
+                    } break;
 
-        alerts_queue.clear();
+                    case lt::metadata_failed_alert::alert_type: {
+    //                    [self metadataReceivedAlert:(lt::torrent_alert *)alert];
+                    } break;
+
+                    case lt::block_finished_alert::alert_type: {
+                    } break;
+
+                    case lt::add_torrent_alert::alert_type: {
+                        [self torrentAddedAlert:(lt::torrent_alert *)alert];
+                    } break;
+
+                    case lt::torrent_removed_alert::alert_type: {
+                        [self torrentRemovedAlert:(lt::torrent_alert *)alert];
+                        continue;
+                    } break;
+
+                    case lt::torrent_finished_alert::alert_type: {
+                        [self torrentStateChanged:(lt::torrent_alert *)alert];
+                    } break;
+
+                    case lt::torrent_paused_alert::alert_type: {
+                        [self torrentStateChanged:(lt::torrent_alert *)alert];
+                    } break;
+
+                    case lt::torrent_resumed_alert::alert_type: {
+                        [self torrentStateChanged:(lt::torrent_alert *)alert];
+                    } break;
+
+                    case lt::torrent_error_alert::alert_type: {
+                    } break;
+
+                    case lt::save_resume_data_alert::alert_type: {
+                        [self torrentSaveFastResume:(lt::save_resume_data_alert *)alert];
+                    } break;
+
+                    default: break;
+                }
+
+                if (dynamic_cast<lt::torrent_alert *>(alert) != nullptr) {
+                    auto th = ((lt::torrent_alert *)alert)->handle;
+                    if (!th.is_valid()) { continue; }
+                    [self notifyDelegatesWithUpdate:th];
+                }
+            }
+
+            alerts_queue.clear();
+        }
     }
 }
 

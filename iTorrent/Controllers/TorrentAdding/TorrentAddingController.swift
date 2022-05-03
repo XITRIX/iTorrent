@@ -9,7 +9,7 @@ import MVVMFoundation
 import TorrentKit
 import UIKit
 
-class TorrentAddingController: MvvmTableViewController<TorrentAddingViewModel> {
+class TorrentAddingController: BaseTableViewController<TorrentAddingViewModel> {
     let doneItem = UIBarButtonItem(title: "Download", style: .done, target: nil, action: nil)
     let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
     let globalItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: nil, action: nil)
