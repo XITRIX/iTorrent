@@ -85,7 +85,7 @@
 "Magnet link copied to clipboard" = "Magnet link copied to clipboard";
 "Files" = "Files";
 "Trackers" = "Trackers";
-"Details.BackgroundSeeding.Warning" = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will countinue working in the background indefinitely, which may cause battery drain.";
+"Details.BackgroundSeeding.Warning" = "Seeding in background is disabled, if you will close this app, seeding will stop. Do you want to enable background seeding?\nIf seed limit is not set, then the app will continue working in the background indefinitely, which may cause battery drain.";
 
 "Details.State" = "State";
 
@@ -330,7 +330,7 @@
 "RssFeedController.RemoveTitle" = "Are you sure to remove this feeds:";
 
 // RSS Channel Setup Controller
-"RssChannelSetup.UrlCopied" = "Chanel's URL copied to clipboard!";
+"RssChannelSetup.UrlCopied" = "Channel's URL copied to clipboard!";
 "RssChannelSetup.Title" = "Title";
 "RssChannelSetup.Description" = "Description";
 "RssChannelSetup.Notify" = "Notify on update";

@@ -4,7 +4,7 @@
 
   Created by Daniil Vinogradov on 09.04.2020.
   Copyright © 2020  XITRIX. All rights reserved.
-  Translated by @ygzo
+  Translated by @caffeineWithdrawal
 */
 
-"NSPhotoLibraryAddUsageDescription" = "Uygulamanın, galeriye kaydetmesine izin ver.";
+"NSPhotoLibraryAddUsageDescription" = "Fotoğraflar uygulamasına dosya kaydedebilmek istiyorsanız izin verin.";
