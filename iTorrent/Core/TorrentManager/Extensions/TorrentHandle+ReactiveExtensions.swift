@@ -27,6 +27,9 @@ extension TorrentHandle: BindingExecutionContextProvider {
 
 extension ReactiveExtensions where Base == TorrentHandle {
     func update() {
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        
         updateObserver.receive(base)
     }
 
@@ -51,17 +54,17 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var name: Signal<String, Never> {
-        updateObserver.map { $0.name }
+        updateObserver.map { $0.snapshot.name }
     }
 
     var progress: Signal<Float, Never> {
-        updateObserver.map { Float($0.progress) }
+        updateObserver.map { Float($0.snapshot.progress) }
     }
 
     var progressTotal: Signal<Float, Never> {
         updateObserver.map {
-            guard $0.totalDone > 0 else { return 0 }
-            return Float($0.totalDone) / Float($0.total)
+            guard $0.snapshot.totalDone > 0 else { return 0 }
+            return Float($0.snapshot.totalDone) / Float($0.snapshot.total)
         }
     }
 
@@ -70,75 +73,75 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var downloadRate: Signal<UInt, Never> {
-        updateObserver.map { $0.downloadRate }
+        updateObserver.map { $0.snapshot.downloadRate }
     }
 
     var uploadRate: Signal<UInt, Never> {
-        updateObserver.map { $0.uploadRate }
+        updateObserver.map { $0.snapshot.uploadRate }
     }
 
     var isSequential: DynamicSubject<Bool> {
         return dynamicSubject(
             signal: initObserver.eraseType(),
-            get: { $0.isSequential },
+            get: { $0.snapshot.isSequential },
             set: { $0.setSequentialDownload($1) }
         )
     }
 
     var infoHash: Signal<String, Never> {
-        updateObserver.map { $0.infoHash.hex }
+        updateObserver.map { $0.snapshot.infoHash.hex }
     }
 
     var creator: Signal<String?, Never> {
-        updateObserver.map { $0.creator }
+        updateObserver.map { $0.snapshot.creator }
     }
 
     var creationDate: Signal<Date?, Never> {
-        updateObserver.map { $0.creationDate }
+        updateObserver.map { $0.snapshot.creationDate }
     }
 
     var totalDownload: Signal<UInt, Never> {
-        updateObserver.map { $0.totalDownload }
+        updateObserver.map { $0.snapshot.totalDownload }
     }
 
     var totalUpload: Signal<UInt, Never> {
-        updateObserver.map { $0.totalUpload }
+        updateObserver.map { $0.snapshot.totalUpload }
     }
 
     var total: Signal<UInt, Never> {
-        updateObserver.map { $0.total }
+        updateObserver.map { $0.snapshot.total }
     }
 
     var totalWanted: Signal<UInt, Never> {
-        updateObserver.map { $0.totalWanted }
+        updateObserver.map { $0.snapshot.totalWanted }
     }
 
     var totalDone: Signal<UInt, Never> {
-        updateObserver.map { $0.totalDone }
+        updateObserver.map { $0.snapshot.totalDone }
     }
 
     var numberOfSeeds: Signal<UInt, Never> {
-        updateObserver.map { $0.numberOfSeeds }
+        updateObserver.map { $0.snapshot.numberOfSeeds }
     }
 
     var numberOfPeers: Signal<UInt, Never> {
-        updateObserver.map { $0.numberOfPeers }
+        updateObserver.map { $0.snapshot.numberOfPeers }
     }
 
     var numberOfLeechers: Signal<UInt, Never> {
-        updateObserver.map { $0.numberOfLeechers }
+        updateObserver.map { $0.snapshot.numberOfLeechers }
     }
 
     var numberOfTotalSeeds: Signal<UInt, Never> {
-        updateObserver.map { $0.numberOfTotalSeeds }
+        updateObserver.map { $0.snapshot.numberOfTotalSeeds }
     }
 
     var numberOfTotalPeers: Signal<UInt, Never> {
-        updateObserver.map { $0.numberOfTotalPeers }
+        updateObserver.map { $0.snapshot.numberOfTotalPeers }
     }
 
     var numberOfTotalLeechers: Signal<UInt, Never> {
-        updateObserver.map { $0.numberOfTotalLeechers }
+        updateObserver.map { $0.snapshot.numberOfTotalLeechers }
     }
 
     var canResume: Signal<Bool, Never> {
@@ -150,6 +153,6 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var pieces: Signal<[Bool], Never> {
-        updateObserver.map { $0.pieces.map { $0.boolValue } }
+        updateObserver.map { $0.snapshot.pieces.map { $0.boolValue } }
     }
 }

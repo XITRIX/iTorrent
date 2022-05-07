@@ -31,7 +31,10 @@ class TorrentManager {
         session.add(self)
 
         let _torrents = Dictionary(uniqueKeysWithValues: session.torrents.map { ($0.infoHash, $0) })
-        _torrents.values.forEach { $0.localInit() }
+        _torrents.values.forEach {
+            $0.localInit()
+            $0.updateSnapshot()
+        }
         torrents = _torrents
     }
 
@@ -52,6 +55,7 @@ private extension TorrentManager {
                    torrent.isValid
                 {
                     torrent.localInit()
+                    torrent.updateSnapshot()
                     torrents[torrent.infoHash] = torrent
                 }
             }
@@ -64,6 +68,7 @@ private extension TorrentManager {
                   localTorrent.isValid
             else { return }
 
+            localTorrent.updateSnapshot()
             localTorrent.rx.update()
         }
     }

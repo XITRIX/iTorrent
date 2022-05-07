@@ -93,15 +93,21 @@ private extension TorrentTrackersListController {
     }
 
     func removeSelectedTrackersAction() {
-        let vc = UIAlertController(title: "Are you shure to remove selected trackers", message: nil, preferredStyle: .actionSheet)
-        vc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        vc.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [unowned self] _ in
+        let alert = UIAlertController(title: "Are you shure to remove selected trackers", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { [unowned self] _ in
             guard let selected = tableView.indexPathsForSelectedRows
             else { return }
 
             viewModel.removeTrackers(at: selected.map { $0.row })
             tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: true) }
         }))
-        present(vc, animated: true)
+
+        if alert.popoverPresentationController != nil {
+            alert.popoverPresentationController?.barButtonItem = removeItem
+            alert.popoverPresentationController?.permittedArrowDirections = .any
+        }
+
+        present(alert, animated: true)
     }
 }

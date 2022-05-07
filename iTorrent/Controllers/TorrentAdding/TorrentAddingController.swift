@@ -26,7 +26,7 @@ class TorrentAddingController: BaseTableViewController<TorrentAddingViewModel> {
 
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setRightBarButton(doneItem, animated: false)
-        globalItem.menu = createGlobalMenu()
+        setupItems()
         toolbarItems = [globalItem]
 
         if viewModel.rootDirectory {
@@ -68,6 +68,8 @@ class TorrentAddingController: BaseTableViewController<TorrentAddingViewModel> {
             }
 
             tableView.reactive.selectedRowIndexPath.observeNext { [unowned self] indexPath in
+                guard !isEditing else { return }
+                
                 if let cell = tableView.cellForRow(at: indexPath) as? TorrentFileCell {
                     cell.triggerSwitch()
                     return
@@ -79,9 +81,26 @@ class TorrentAddingController: BaseTableViewController<TorrentAddingViewModel> {
             cancelItem.bindTap(viewModel.dismiss)
         }
     }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        setupItems()
+    }
+
+    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+        true
+    }
+
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        setEditing(true, animated: true)
+    }
 }
 
 private extension TorrentAddingController {
+    func setupItems() {
+        globalItem.menu = createGlobalMenu()
+    }
+
     func createFileMenu(for fileIndex: Int) -> UIMenu? {
         let setPriority: (FileEntry.Priority) -> () = { [unowned self] priority in
             viewModel.setTorrentFilePriority(priority, at: fileIndex)
@@ -108,10 +127,37 @@ private extension TorrentAddingController {
 
         let priorityMenu = createPriorityMenu(title: "Priority for all files", setPriority)
 
-        return UIMenu(children: [
-            UIMenu(options: [.displayInline], children: [priorityMenu]),
-            UIAction(title: "Selection mode", handler: { _ in
+        let setSelectedPriority: (FileEntry.Priority) -> () = { [unowned self] priority in
+            let files = tableView.indexPathsForSelectedRows?.map { indexPath -> [FileEntity] in
+                let item = viewModel.sections[indexPath.section].items[indexPath.row]
+                switch item {
+                case let file as FileEntity:
+                    return [file]
+                case let dir as DirectoryEntity:
+                    return dir.getRawFiles()
+                default: return []
+                }
+            }.flatMap { $0 }
 
+            guard let files = files else { return }
+
+            viewModel.setPriorities(priority, for: files)
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+
+        let selectedPriorityMenu = createPriorityMenu(title: "Priority for selected files", setSelectedPriority)
+
+        let priorityMenus: [UIMenu]
+        if isEditing {
+            priorityMenus = [priorityMenu, selectedPriorityMenu]
+        } else {
+            priorityMenus = [priorityMenu]
+        }
+
+        return UIMenu(children: [
+            UIMenu(options: [.displayInline], children: priorityMenus),
+            UIAction(title: "Selection mode", image: isEditing ? UIImage(systemName: "checkmark") : nil, handler: { [unowned self] _ in
+                setEditing(!isEditing, animated: true)
             })
         ])
     }

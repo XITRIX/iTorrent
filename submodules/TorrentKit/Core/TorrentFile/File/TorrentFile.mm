@@ -48,6 +48,11 @@
     return lt::torrent_info((char *)buffer, (int)size);
 }
 
+- (NSData *)infoHash {
+    auto ih = self.torrent_info.info_hash();
+    return [NSData dataWithBytes:ih.data() length:ih.size()];
+}
+
 - (BOOL)isValid {
     return self.torrent_info.is_valid();
 }
@@ -56,14 +61,7 @@
     lt::add_torrent_params *_params = (lt::add_torrent_params *)params;
     lt::torrent_info ti = [self torrent_info];
 
-    auto ih = ti.info_hash();
-
-    std::stringstream ss;
-    ss << ih;
-    std::string hashText = ss.str();
-
-    auto data = [NSData dataWithBytes:ih.data() length:ih.size()];
-    auto nspath = [session fastResumePathForInfoHash:data];
+    auto nspath = [session fastResumePathForInfoHash: self.infoHash];
     std::string path = std::string([nspath UTF8String]);
 
     std::ifstream ifs(path, std::ios_base::binary);
@@ -124,6 +122,13 @@
 
 - (void)setFilePriority:(FilePriority)priority at:(NSInteger)fileIndex {
     [_priorities setObject:[NSNumber numberWithInt:priority] atIndexedSubscript:fileIndex];
+}
+
+- (void)setFilesPriority:(FilePriority)priority at:(NSArray<NSNumber *> *)fileIndexes {
+    std::vector<lt::download_priority_t> array;
+    for (int i = 0; i < fileIndexes.count; i++) {
+        [_priorities setObject:[NSNumber numberWithInt:priority] atIndexedSubscript:i];
+    }
 }
 
 - (void)setAllFilesPriority:(FilePriority)priority {

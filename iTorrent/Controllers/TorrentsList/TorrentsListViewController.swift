@@ -62,6 +62,10 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
                 let alert = UIAlertController(title: "This action will recheck the state of all downloaded files for torrents:", message: message, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Rehash", style: .destructive, handler: { [unowned self] _ in viewModel.rehashSelected() }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                if alert.popoverPresentationController != nil {
+                    alert.popoverPresentationController?.barButtonItem = rehashItem
+                    alert.popoverPresentationController?.permittedArrowDirections = .any
+                }
                 present(alert, animated: true)
             }
             removeItem.bindTap { [unowned self] in
@@ -70,6 +74,10 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
                 alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { [unowned self] _ in viewModel.removeSelected(withFiles: true) }))
                 alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { [unowned self] _ in viewModel.removeSelected(withFiles: false) }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                if alert.popoverPresentationController != nil {
+                    alert.popoverPresentationController?.barButtonItem = removeItem
+                    alert.popoverPresentationController?.permittedArrowDirections = .any
+                }
                 present(alert, animated: true)
             }
 
@@ -124,15 +132,23 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete", handler: { [unowned self] _, _, completion in
             let title = dataSource?.itemIdentifier(for: indexPath)?.torrent.name
-            let vc = UIAlertController(title: "Are you sure to remove?", message: title, preferredStyle: .actionSheet)
-            vc.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { [unowned self] _ in
+            let alert = UIAlertController(title: "Are you sure to remove?", message: title, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { [unowned self] _ in
                 viewModel.removeTorrent(at: indexPath, deleteFiles: true)
             }))
-            vc.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { [unowned self] _ in
+            alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { [unowned self] _ in
                 viewModel.removeTorrent(at: indexPath, deleteFiles: false)
             }))
-            vc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            present(vc, animated: true)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+            if alert.popoverPresentationController != nil,
+                let cell = tableView.cellForRow(at: indexPath) {
+                alert.popoverPresentationController?.sourceView = cell
+                alert.popoverPresentationController?.sourceRect = cell.bounds
+                alert.popoverPresentationController?.permittedArrowDirections = .left
+            }
+
+            present(alert, animated: true)
             completion(true)
         })])
     }

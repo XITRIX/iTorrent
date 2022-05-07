@@ -53,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		7C0CE28F280B668300753FB6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		7C185359282736FC00BCB5D5 /* MagnetURI_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagnetURI_Internal.h; sourceTree = "<group>"; };
 		7C4AB5C6280B5F83003940CD /* TorrentKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TorrentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C4AB5D0280B5FF6003940CD /* TorrentKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorrentKit.h; sourceTree = "<group>"; };
 		7C4AB5D3280B601C003940CD /* Torrents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Torrents.plist; sourceTree = "<group>"; };
@@ -243,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				7CFB9E6928155A78006C1E1E /* MagnetURI.h */,
+				7C185359282736FC00BCB5D5 /* MagnetURI_Internal.h */,
 				7CFB9E6A28155A78006C1E1E /* MagnetURI.mm */,
 				7CC9B36F28183BC5001A13ED /* MagnetURI.swift */,
 			);

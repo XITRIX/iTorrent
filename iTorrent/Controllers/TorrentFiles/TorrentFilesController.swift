@@ -95,7 +95,11 @@ class TorrentFilesController: BaseTableViewController<TorrentFilesViewModel> {
     }
 
     override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        isEditing
+        true
+    }
+
+    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+        setEditing(true, animated: true)
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

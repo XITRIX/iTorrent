@@ -7,4 +7,8 @@
 
 import MVVMFoundation
 
-class SplitScreenController: MvvmSplitViewController<SplitScreenViewModel> {}
+class SplitScreenController: MvvmSplitViewController<SplitScreenViewModel> {
+    override func createEmptyViewController() -> UIViewController {
+        return EmptyViewController()
+    }
+}

@@ -48,6 +48,11 @@ class TorrentAddingViewModel: MvvmViewModelWith<TorrentAddingModel> {
         navigate(to: TorrentAddingViewModel.self, prepare: model)
     }
 
+    func setPriorities(_ priority: FileEntry.Priority, for files: [FileEntity]) {
+        model.file.setFilesPriority(priority, at: files.map { NSNumber(value: $0.index) })
+        files.forEach { $0.priority = priority }
+    }
+
     func setTorrentFilePriority(_ priority: FileEntry.Priority, at fileIndex: Int) {
         model.fileManager?.rawFiles[fileIndex].priority = priority
         model.file.setFilePriority(priority, at: fileIndex)

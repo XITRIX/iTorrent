@@ -13,7 +13,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TorrentHandle : NSObject
+NS_SWIFT_NAME(TorrentHandle.Snapshot)
+@interface TorrentHandleSnapshot : NSObject
 
 @property (readonly) BOOL isValid;
 @property (readonly) NSData *infoHash;
@@ -47,6 +48,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSString* magnetLink;
 @property (readonly, nullable) NSString* torrentFilePath;
 @property (readonly) NSString* downloadPath;
+@end
+
+@interface TorrentHandle : TorrentHandleSnapshot
+
+@property (readonly) TorrentHandleSnapshot* snapshot;
 
 - (void)resume;
 - (void)pause;
@@ -60,6 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addTracker:(NSString *)url;
 - (void)removeTrackers:(NSArray<NSString *> *)urls;
+
+- (void)updateSnapshot;
 
 @end
 

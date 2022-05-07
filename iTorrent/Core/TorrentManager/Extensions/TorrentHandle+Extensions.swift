@@ -12,29 +12,29 @@ import TorrentKit
 
 extension TorrentHandle {
     var displayState: State {
-        if state == .finished || state == .downloading,
-           isFinished, !isPaused, allowSeeding
+        if snapshot.state == .finished || snapshot.state == .downloading,
+           snapshot.isFinished, !snapshot.isPaused, allowSeeding
         {
             return .seeding
         }
-        if state == .seeding, isPaused || !allowSeeding {
+        if snapshot.state == .seeding, snapshot.isPaused || !allowSeeding {
             return .finished
         }
-        if state == .downloading, isFinished {
+        if snapshot.state == .downloading, snapshot.isFinished {
             return .finished
         }
-        if state == .downloading, !isFinished, isPaused {
+        if snapshot.state == .downloading, !snapshot.isFinished, snapshot.isPaused {
             return .paused
         }
-        return state
+        return snapshot.state
     }
 
     var canResume: Bool {
-        isPaused && (displayState != .finished || allowSeeding)
+        snapshot.isPaused && (displayState != .finished || allowSeeding)
     }
 
     var canPause: Bool {
-        !isPaused
+        !snapshot.isPaused
     }
 
     func localInit() {
@@ -45,7 +45,7 @@ extension TorrentHandle {
     }
 
     func pauseIfNeeded() {
-        if !isPaused && displayState == .finished {
+        if !snapshot.isPaused && displayState == .finished {
             pause()
         }
     }

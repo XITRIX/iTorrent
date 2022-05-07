@@ -5,10 +5,7 @@
 //  Created by Даниил Виноградов on 24.04.2022.
 //
 
-#import "MagnetURI.h"
-
-#import "libtorrent/torrent_info.hpp"
-#import "libtorrent/magnet_uri.hpp"
+#import "MagnetURI_Internal.h"
 
 @implementation MagnetURI : NSObject
 
@@ -16,14 +13,22 @@
     self = [self init];
     if (self) {
         _magnetURI = magnetURI;
-        if (!self.isMagnetLinkValid) { return NULL; }
+
+        lt::error_code ec;
+        _torrentParams = lt::parse_magnet_uri([_magnetURI.absoluteString UTF8String], ec);
+        if (ec.failed()) { return NULL; }
     }
     return self;
 }
 
+- (NSData *)infoHash {
+    auto ih = _torrentParams.info_hash;
+    return [NSData dataWithBytes:ih.data() length:ih.size()];
+}
+
 - (BOOL)isMagnetLinkValid {
     lt::error_code ec;
-    lt::string_view uri = lt::string_view([self.magnetURI.absoluteString UTF8String]);
+    lt::string_view uri = lt::string_view([_magnetURI.absoluteString UTF8String]);
     lt::parse_magnet_uri(uri, ec);
     return !ec.failed();
 }

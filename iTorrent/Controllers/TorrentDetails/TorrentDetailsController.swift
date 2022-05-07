@@ -81,6 +81,12 @@ class TorrentDetailsController: BaseTableViewController<TorrentDetailsViewModel>
         alert.addAction(UIAlertAction(title: "Yes and remove files", style: .destructive, handler: { [unowned self] _ in viewModel.removeTorrent(withFiles: true) }))
         alert.addAction(UIAlertAction(title: "Yes but keep files", style: .default, handler: { [unowned self] _ in viewModel.removeTorrent(withFiles: false) }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        if alert.popoverPresentationController != nil {
+            alert.popoverPresentationController?.barButtonItem = removeItem
+            alert.popoverPresentationController?.permittedArrowDirections = .any
+        }
+
         present(alert, animated: true)
     }
 
