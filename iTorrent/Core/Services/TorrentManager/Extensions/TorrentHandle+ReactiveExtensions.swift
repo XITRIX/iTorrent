@@ -14,6 +14,7 @@ extension TorrentHandle {
     fileprivate enum AssociatedKeys {
         static var InitObserver = "AssociatedKeyInitObserver"
         static var UpdateObserver = "AssociatedKeyUpdateObserver"
+        static var RemovedObserver = "AssociatedKeyRemovedObserver"
     }
 
     var rx: Reactive<TorrentHandle> {
@@ -53,6 +54,16 @@ extension ReactiveExtensions where Base == TorrentHandle {
         return subject
     }
 
+    var removedObserver: SafeReplayOneSubject<Bool> {
+        guard let subject = objc_getAssociatedObject(base, &Base.AssociatedKeys.RemovedObserver) as? SafeReplayOneSubject<Bool> else {
+            let sub = SafeReplayOneSubject<Bool>()
+            sub.receive(false)
+            objc_setAssociatedObject(base, &Base.AssociatedKeys.RemovedObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return sub
+        }
+        return subject
+    }
+    
     var name: Signal<String, Never> {
         updateObserver.map { $0.snapshot.name }
     }

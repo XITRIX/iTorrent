@@ -142,7 +142,8 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
             if alert.popoverPresentationController != nil,
-                let cell = tableView.cellForRow(at: indexPath) {
+               let cell = tableView.cellForRow(at: indexPath)
+            {
                 alert.popoverPresentationController?.sourceView = cell
                 alert.popoverPresentationController?.sourceRect = cell.bounds
                 alert.popoverPresentationController?.permittedArrowDirections = .left
@@ -254,13 +255,18 @@ private extension TorrentsListViewController {
 
     func addViaFile() {
         let vc = FilesBrowserController.init { [unowned self] fileUrl in
-            if fileUrl.startAccessingSecurityScopedResource() {
-                guard let torrent = TorrentFile(with: fileUrl)
-                else { return showError(with: "Torrent file is corrupted!") }
-
-                fileUrl.stopAccessingSecurityScopedResource()
-                viewModel.addTorrent(torrent)
+            let permsRequested = fileUrl.startAccessingSecurityScopedResource()
+            defer {
+                if permsRequested {
+                    fileUrl.stopAccessingSecurityScopedResource()
+                }
             }
+
+            guard let torrent = TorrentFile(with: fileUrl)
+            else { return showError(with: "Torrent file is corrupted!") }
+
+
+            viewModel.addTorrent(torrent)
         }
         present(vc, animated: true)
     }

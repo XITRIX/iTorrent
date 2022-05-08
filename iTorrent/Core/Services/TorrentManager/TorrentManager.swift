@@ -43,6 +43,7 @@ class TorrentManager {
     }
 
     func removeTorrent(_ torrent: TorrentHandle, deleteFiles: Bool) {
+        torrent.rx.removedObserver.send(true)
         session.removeTorrent(torrent, deleteFiles: deleteFiles)
     }
 }

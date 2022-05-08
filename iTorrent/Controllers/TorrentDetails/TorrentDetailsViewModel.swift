@@ -27,6 +27,10 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
     func configure() {
         title.value = torrent.name
 
+        bind(in: bag) {
+            torrent.rx.removedObserver.observeNext(with: { [unowned self] in if $0 { dismissToRoot() } })
+        }
+
         // MARK: - Status Section
         let status = Detail(title: "Status")
 
@@ -159,6 +163,5 @@ class TorrentDetailsViewModel: MvvmViewModelWith<TorrentHandle> {
 
     func removeTorrent(withFiles: Bool) {
         (MVVM.resolve() as TorrentManager).removeTorrent(torrent, deleteFiles: withFiles)
-        dismissToRoot()
     }
 }

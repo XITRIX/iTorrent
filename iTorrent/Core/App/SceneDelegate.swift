@@ -62,12 +62,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         // TODO: - Refactor with MVVM services
-        guard let url = URLContexts.first?.url,
-              url.startAccessingSecurityScopedResource(),
-              let file = TorrentFile(with: url)
+        guard let url = URLContexts.first?.url
         else { return }
 
-        url.stopAccessingSecurityScopedResource()
+        let permsRequested = url.startAccessingSecurityScopedResource()
+        defer {
+            if permsRequested {
+                url.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        guard let file = TorrentFile(with: url)
+        else { return }
 
         guard let key = UIWindow.keyWindow?.rootViewController
         else { return }
