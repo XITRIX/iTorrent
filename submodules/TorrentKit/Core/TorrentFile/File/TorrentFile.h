@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TorrentFile : NSObject <Downloadable>
 @property (readonly, strong, nonatomic) NSData *fileData;
-@property (readonly) NSData *infoHash;
 @property (readonly) NSString *name;
 @property (readonly) NSArray<FileEntry *> *files;
 @property (readonly) BOOL isValid;

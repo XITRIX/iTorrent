@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class Session;
 @protocol Downloadable <NSObject>
 
+@property (readonly) NSData *infoHash;
+
 - (void)configureAddTorrentParams:(void *)params forSession:(Session *)session;
 - (void)configureAfterAdded:(TorrentHandle *)torrentHandle;
 

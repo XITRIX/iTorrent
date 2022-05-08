@@ -68,21 +68,25 @@ class TorrentsListViewModel: MvvmViewModel {
         navigate(to: TorrentDetailsViewModel.self, prepare: sections[indexPath.section].items[indexPath.row].torrent, with: .detail)
     }
 
-    func addTorrentFile(_ file: TorrentFile) {
-        guard !torrentManager.torrents.keys.contains(where: { $0 == file.infoHash }) else {
-            MVVM.resolve(type: AlertService.self).showAlert(.init(title: "Torrent already exists in download queue", message: file.name, action: ("Close", nil)), in: self)
-            return
-        }
-        navigate(to: TorrentAddingViewModel.self, prepare: TorrentAddingModel(file: file), with: .modal(wrapInNavigation: true))
+    func addTorrent(_ torrent: Downloadable) {
+        MVVM.resolve(type: TorrentAddingService.self).addTorrent(torrent, from: .VM(self))
     }
 
-    func addMagnet(with magnet: MagnetURI) {
-        if let file = torrentManager.torrents.first(where: { $0.key == magnet.infoHash }) {
-            MVVM.resolve(type: AlertService.self).showAlert(.init(title: "Torrent already exists in download queue", message: file.value.name, action: ("Close", nil)), in: self)
-            return
-        }
-        torrentManager.addTorrent(magnet)
-    }
+//    func addTorrentFile(_ file: TorrentFile) {
+//        guard !torrentManager.torrents.keys.contains(where: { $0 == file.infoHash }) else {
+//            MVVM.resolve(type: AlertService.self).showAlert(.init(title: "Torrent already exists in download queue", message: file.name, action: ("Close", nil)), in: self)
+//            return
+//        }
+//        navigate(to: TorrentAddingViewModel.self, prepare: TorrentAddingModel(file: file), with: .modal(wrapInNavigation: true))
+//    }
+//
+//    func addMagnet(with magnet: MagnetURI) {
+//        if let file = torrentManager.torrents.first(where: { $0.key == magnet.infoHash }) {
+//            MVVM.resolve(type: AlertService.self).showAlert(.init(title: "Torrent already exists in download queue", message: file.value.name, action: ("Close", nil)), in: self)
+//            return
+//        }
+//        torrentManager.addTorrent(magnet)
+//    }
 
     func removeTorrent(at index: IndexPath, deleteFiles: Bool) {
         let torrent = sections[index.section].items[index.row].torrent

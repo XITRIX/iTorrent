@@ -27,8 +27,8 @@ extension TorrentHandle: BindingExecutionContextProvider {
 
 extension ReactiveExtensions where Base == TorrentHandle {
     func update() {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
+//        objc_sync_enter(self)
+//        defer { objc_sync_exit(self) }
         
         updateObserver.receive(base)
     }

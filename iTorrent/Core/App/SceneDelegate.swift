@@ -69,11 +69,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         url.stopAccessingSecurityScopedResource()
 
-        let addVc = TorrentAddingViewModel.resolveView(with: .init(file: file))
-        let nvc = UINavigationController.safeResolve()
-        nvc.viewControllers = [addVc]
-        
-        let key = UIWindow.keyWindow?.rootViewController
-        key?.present(nvc, animated: true)
+        guard let key = UIWindow.keyWindow?.rootViewController
+        else { return }
+        MVVM.resolve(type: TorrentAddingService.self).addTorrent(file, from: .View(key))
     }
 }

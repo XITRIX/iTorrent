@@ -19,25 +19,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IbA-cd-iGY">
-                        <rect key="frame" x="13" y="8" width="269.5" height="55.5"/>
+                        <rect key="frame" x="16" y="8" width="271.5" height="55.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLg-HQ-Pvc">
-                                <rect key="frame" x="0.0" y="0.0" width="269.5" height="14.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="271.5" height="14.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qo6-v4-9kw">
-                                <rect key="frame" x="0.0" y="18.5" width="269.5" height="29"/>
+                                <rect key="frame" x="0.0" y="18.5" width="271.5" height="29"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yhx-kd-HCh">
-                                        <rect key="frame" x="0.0" y="0.0" width="269.5" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="271.5" height="14.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ceo-CX-4pz">
-                                        <rect key="frame" x="0.0" y="14.5" width="269.5" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="14.5" width="271.5" height="14.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                                 </subviews>
                             </stackView>
                             <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jMK-LF-8SN">
-                                <rect key="frame" x="0.0" y="51.5" width="269.5" height="4"/>
+                                <rect key="frame" x="0.0" y="51.5" width="271.5" height="4"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="UGP-vw-qKw"/>
                                 </constraints>
@@ -60,10 +60,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IbA-cd-iGY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="33c-W0-FkD"/>
+                    <constraint firstItem="IbA-cd-iGY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="33c-W0-FkD"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IbA-cd-iGY" secondAttribute="bottom" constant="8" id="JXF-X9-Ers"/>
                     <constraint firstItem="IbA-cd-iGY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ddj-QS-O0n"/>
-                    <constraint firstAttribute="trailing" secondItem="IbA-cd-iGY" secondAttribute="trailing" constant="13" id="sUB-uz-pP6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IbA-cd-iGY" secondAttribute="trailing" id="sUB-uz-pP6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

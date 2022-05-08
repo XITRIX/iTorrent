@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C18534E282694E500BCB5D5 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C18534C282694E500BCB5D5 /* EmptyViewController.swift */; };
 		7C18534F282694E500BCB5D5 /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C18534D282694E500BCB5D5 /* EmptyViewController.xib */; };
+		7C18535E2827CA0500BCB5D5 /* TorrentAddingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C18535D2827CA0500BCB5D5 /* TorrentAddingService.swift */; };
 		7C614A37281F5E58008FA916 /* UIWindow+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A36281F5E58008FA916 /* UIWindow+Key.swift */; };
 		7C614A4528206177008FA916 /* TorrentTrackersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A4428206177008FA916 /* TorrentTrackersListViewModel.swift */; };
 		7C614A482820619C008FA916 /* TorrentTrackersListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C614A462820619C008FA916 /* TorrentTrackersListController.swift */; };
@@ -112,6 +113,7 @@
 		2F9DBA8A443188499674A2F2 /* Pods-iTorrent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.release.xcconfig"; path = "Target Support Files/Pods-iTorrent/Pods-iTorrent.release.xcconfig"; sourceTree = "<group>"; };
 		7C18534C282694E500BCB5D5 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		7C18534D282694E500BCB5D5 /* EmptyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
+		7C18535D2827CA0500BCB5D5 /* TorrentAddingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentAddingService.swift; sourceTree = "<group>"; };
 		7C614A36281F5E58008FA916 /* UIWindow+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Key.swift"; sourceTree = "<group>"; };
 		7C614A4428206177008FA916 /* TorrentTrackersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentTrackersListViewModel.swift; sourceTree = "<group>"; };
 		7C614A462820619C008FA916 /* TorrentTrackersListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentTrackersListController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,24 @@
 				7C18534D282694E500BCB5D5 /* EmptyViewController.xib */,
 			);
 			path = EmptyViewController;
+			sourceTree = "<group>";
+		};
+		7C18535B2827C80F00BCB5D5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7CA11D89281AB93300CB424E /* Storage */,
+				7CFB9EDD2815F908006C1E1E /* TorrentManager */,
+				7C18535C2827C84B00BCB5D5 /* TorrentAddingService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7C18535C2827C84B00BCB5D5 /* TorrentAddingService */ = {
+			isa = PBXGroup;
+			children = (
+				7C18535D2827CA0500BCB5D5 /* TorrentAddingService.swift */,
+			);
+			path = TorrentAddingService;
 			sourceTree = "<group>";
 		};
 		7C614A412820613C008FA916 /* TorrentTrackersList */ = {
@@ -502,7 +522,7 @@
 			children = (
 				7CFB9EA92815F7A9006C1E1E /* App */,
 				7CFB9EAD2815F7A9006C1E1E /* Utils */,
-				7CFB9EDD2815F908006C1E1E /* TorrentManager */,
+				7C18535B2827C80F00BCB5D5 /* Services */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -525,7 +545,6 @@
 		7CFB9EAD2815F7A9006C1E1E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7CA11D89281AB93300CB424E /* Storage */,
 				7CA11D842819CE2B00CB424E /* Utils */,
 				7CA11D642819491100CB424E /* UI */,
 				7CFB9EAF2815F7A9006C1E1E /* Extensions */,
@@ -767,6 +786,7 @@
 				7CC9B379281885A8001A13ED /* TorrentDelailsProgressViewModel.swift in Sources */,
 				7CFB9ECF2815F811006C1E1E /* TorrentsListViewController.swift in Sources */,
 				7CFB9EDA2815F8D5006C1E1E /* UIRepresentable.swift in Sources */,
+				7C18535E2827CA0500BCB5D5 /* TorrentAddingService.swift in Sources */,
 				7CFB9ECC2815F811006C1E1E /* TorrentsListTorrentCell.swift in Sources */,
 				7CC9B33D2816CA9C001A13ED /* FileEntity.swift in Sources */,
 				7CFB9EB82815F7A9006C1E1E /* CoreMvvm.swift in Sources */,

@@ -259,7 +259,7 @@ private extension TorrentsListViewController {
                 else { return showError(with: "Torrent file is corrupted!") }
 
                 fileUrl.stopAccessingSecurityScopedResource()
-                viewModel.addTorrentFile(torrent)
+                viewModel.addTorrent(torrent)
             }
         }
         present(vc, animated: true)
@@ -277,7 +277,7 @@ private extension TorrentsListViewController {
                   let magnet = MagnetURI(with: url)
             else { return showError(with: "Wrong magnet link, check it and try again!") }
 
-            viewModel.addMagnet(with: magnet)
+            viewModel.addTorrent(magnet)
         }))
         present(vc, animated: true)
     }
@@ -303,7 +303,7 @@ private extension TorrentsListViewController {
                           let torrent = TorrentFile(with: data)
                     else { return showError(with: "Link corrupted or torrent file is unreachable!") }
 
-                    viewModel.addTorrentFile(torrent)
+                    viewModel.addTorrent(torrent)
                 }
             }
             task.resume()
