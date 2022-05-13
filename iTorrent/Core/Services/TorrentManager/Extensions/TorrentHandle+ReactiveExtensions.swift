@@ -65,30 +65,30 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
     
     var name: Signal<String, Never> {
-        updateObserver.map { $0.snapshot.name }
+        updateObserver.map { $0.snapshot.name }.removeDuplicates()
     }
 
     var progress: Signal<Float, Never> {
-        updateObserver.map { Float($0.snapshot.progress) }
+        updateObserver.map { Float($0.snapshot.progress) }.removeDuplicates()
     }
 
     var progressTotal: Signal<Float, Never> {
         updateObserver.map {
             guard $0.snapshot.totalDone > 0 else { return 0 }
             return Float($0.snapshot.totalDone) / Float($0.snapshot.total)
-        }
+        }.removeDuplicates()
     }
 
     var displayState: Signal<TorrentHandle.State, Never> {
-        updateObserver.map { $0.displayState }
+        updateObserver.map { $0.displayState }.removeDuplicates()
     }
 
     var downloadRate: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.downloadRate }
+        updateObserver.map { $0.snapshot.downloadRate }.removeDuplicates()
     }
 
     var uploadRate: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.uploadRate }
+        updateObserver.map { $0.snapshot.uploadRate }.removeDuplicates()
     }
 
     var isSequential: DynamicSubject<Bool> {
@@ -100,70 +100,70 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var infoHash: Signal<String, Never> {
-        updateObserver.map { $0.snapshot.infoHash.hex }
+        updateObserver.map { $0.snapshot.infoHash.hex }.removeDuplicates()
     }
 
     var creator: Signal<String?, Never> {
-        updateObserver.map { $0.snapshot.creator }
+        updateObserver.map { $0.snapshot.creator }.removeDuplicates()
     }
 
     var creationDate: Signal<Date?, Never> {
-        updateObserver.map { $0.snapshot.creationDate }
+        updateObserver.map { $0.snapshot.creationDate }.removeDuplicates()
     }
 
     var totalDownload: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.totalDownload }
+        updateObserver.map { $0.snapshot.totalDownload }.removeDuplicates()
     }
 
     var totalUpload: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.totalUpload }
+        updateObserver.map { $0.snapshot.totalUpload }.removeDuplicates()
     }
 
     var total: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.total }
+        updateObserver.map { $0.snapshot.total }.removeDuplicates()
     }
 
     var totalWanted: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.totalWanted }
+        updateObserver.map { $0.snapshot.totalWanted }.removeDuplicates()
     }
 
     var totalDone: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.totalDone }
+        updateObserver.map { $0.snapshot.totalDone }.removeDuplicates()
     }
 
     var numberOfSeeds: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.numberOfSeeds }
+        updateObserver.map { $0.snapshot.numberOfSeeds }.removeDuplicates()
     }
 
     var numberOfPeers: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.numberOfPeers }
+        updateObserver.map { $0.snapshot.numberOfPeers }.removeDuplicates()
     }
 
     var numberOfLeechers: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.numberOfLeechers }
+        updateObserver.map { $0.snapshot.numberOfLeechers }.removeDuplicates()
     }
 
     var numberOfTotalSeeds: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.numberOfTotalSeeds }
+        updateObserver.map { $0.snapshot.numberOfTotalSeeds }.removeDuplicates()
     }
 
     var numberOfTotalPeers: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.numberOfTotalPeers }
+        updateObserver.map { $0.snapshot.numberOfTotalPeers }.removeDuplicates()
     }
 
     var numberOfTotalLeechers: Signal<UInt, Never> {
-        updateObserver.map { $0.snapshot.numberOfTotalLeechers }
+        updateObserver.map { $0.snapshot.numberOfTotalLeechers }.removeDuplicates()
     }
 
     var canResume: Signal<Bool, Never> {
-        updateObserver.map { $0.canResume }
+        updateObserver.map { $0.canResume }.removeDuplicates()
     }
 
     var canPause: Signal<Bool, Never> {
-        updateObserver.map { $0.canPause }
+        updateObserver.map { $0.canPause }.removeDuplicates()
     }
 
     var pieces: Signal<[Bool], Never> {
-        updateObserver.map { $0.snapshot.pieces.map { $0.boolValue } }
+        updateObserver.map { $0.snapshot.pieces.map { $0.boolValue } }.removeDuplicates()
     }
 }

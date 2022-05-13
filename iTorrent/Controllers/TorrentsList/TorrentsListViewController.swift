@@ -38,7 +38,11 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
             cell.setup(with: model)
             return cell
         })
+        dataSource?.defaultRowAnimation = .fade
 
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        } 
         tableView.register(cell: TorrentsListTorrentCell.self)
         tableView.dataSource = dataSource
 
@@ -129,6 +133,10 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
         refreshSelectedItems()
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return viewModel.sections[section].header.isNilOrEmpty ? 0 : 28
+    }
+
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete", handler: { [unowned self] _, _, completion in
             let title = dataSource?.itemIdentifier(for: indexPath)?.torrent.name
@@ -211,7 +219,15 @@ private extension TorrentsListViewController {
         }
         if viewModel.sortingType.type == .size { sizeSort.image = getSortingArrowImage() }
 
-        let menu = UIMenu(title: "Sort torrents by:", options: [], children: [nameSort, dateAddedSort, dateCreatedSort, sizeSort])
+        let sortMenu = UIMenu(options: [.displayInline], children: [nameSort, dateAddedSort, dateCreatedSort, sizeSort])
+
+        let group = UIAction(title: "Group in sections") { [unowned self] _ in
+            viewModel.sortingType.grouped.toggle()
+            setupSortingItem()
+        }
+        group.image = viewModel.sortingType.grouped ? UIImage(systemName: "checkmark") : nil
+
+        let menu = UIMenu (title: "Sort torrents by:", children: [sortMenu, group])
         sortingItem.menu = menu
     }
 

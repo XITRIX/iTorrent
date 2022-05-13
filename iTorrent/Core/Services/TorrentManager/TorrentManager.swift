@@ -69,6 +69,7 @@ private extension TorrentManager {
                   localTorrent.isValid
             else { return }
 
+//            $torrents.send(torrents)
             localTorrent.updateSnapshot()
             localTorrent.rx.update()
         }

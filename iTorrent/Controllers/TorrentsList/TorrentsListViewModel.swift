@@ -11,6 +11,7 @@ import TorrentKit
 
 struct TorrentListSortingModel: Codable {
     var type: `Type`
+    var grouped: Bool = false
     var reversed: Bool = false
 
     enum `Type`: Equatable, Codable {
@@ -28,7 +29,7 @@ class TorrentsListViewModel: MvvmViewModel {
     @Bindable public var searchQuery: String?
     @Bindable public var selectedIndexPaths: [IndexPath] = []
 
-    @Bindable public var sortingType: TorrentListSortingModel = .init(type: .name, reversed: false)
+    @Bindable public var sortingType: TorrentListSortingModel = .init(type: .name)
 
     var selectedTorrents: [TorrentHandle] {
         selectedIndexPaths.map { sections[$0.section].items[$0.row].torrent }
@@ -102,13 +103,20 @@ class TorrentsListViewModel: MvvmViewModel {
     }
 }
 
-extension TorrentsListViewModel {
+private extension TorrentsListViewModel {
     func mapTorrentsIntoSections(_ torrents: [TorrentHandle], sorting sortingType: TorrentListSortingModel) -> [SectionModel<TorrentsListTorrentModel>] {
-        var section = SectionModel<TorrentsListTorrentModel>()
-        section.items = torrents.sorted(by: { sortTorrents($0, $1, sortingType) }).map { torrent in
-            TorrentsListTorrentModel(torrent: torrent)
+        if !sortingType.grouped {
+            var section = SectionModel<TorrentsListTorrentModel>()
+            section.items = torrents.sorted(by: { sortTorrents($0, $1, sortingType) }).map { torrent in
+                TorrentsListTorrentModel(torrent: torrent)
+            }
+            return [section]
+        } else {
+            let groups = Dictionary(grouping: torrents, by: { $0.displayState })
+            return groups.map { section in
+                SectionModel(header: section.key.description, items: section.value.sorted(by: { sortTorrents($0, $1, sortingType) }).map{ TorrentsListTorrentModel(torrent: $0) } )
+            }.sorted(by: { $0.header ?? "" < $1.header ?? "" })
         }
-        return [section]
     }
 
     func sortTorrents(_ lhs: TorrentHandle, _ rhs: TorrentHandle, _ sortingType: TorrentListSortingModel) -> Bool {
