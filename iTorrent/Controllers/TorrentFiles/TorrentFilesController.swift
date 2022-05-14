@@ -205,7 +205,14 @@ extension TorrentFilesController {
                 setEditing(!isEditing, animated: true)
             }),
             UIAction(title: "Share all", image: UIImage(systemName: "square.and.arrow.up"), handler: { [unowned self] _ in
-                let path = NSURL(fileURLWithPath: viewModel.downloadPath, isDirectory: false)
+                guard !viewModel.downloadPath.isEmpty else {
+                    let alert = UIAlertController(title: "Download folder is empty", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Close", style: .cancel))
+                    present(alert, animated: true)
+                    return
+                }
+
+                let path = URL(fileURLWithPath: viewModel.downloadPath, isDirectory: false)
                 let shareController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
                 if shareController.popoverPresentationController != nil {
                     shareController.popoverPresentationController?.barButtonItem = globalItem

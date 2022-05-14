@@ -34,6 +34,10 @@ class TorrentManager {
         _torrents.values.forEach {
             $0.localInit()
             $0.updateSnapshot()
+
+            $0.rx.displayState.observeNext { [unowned self] _ in
+                $torrents.send(torrents)
+            }.dispose(in: $0.bag)
         }
         torrents = _torrents
     }
@@ -58,6 +62,10 @@ private extension TorrentManager {
                     torrent.localInit()
                     torrent.updateSnapshot()
                     torrents[torrent.infoHash] = torrent
+
+                    torrent.rx.displayState.observeNext { _ in
+                        $torrents.send(torrents)
+                    }.dispose(in: torrent.bag)
                 }
             }
         }

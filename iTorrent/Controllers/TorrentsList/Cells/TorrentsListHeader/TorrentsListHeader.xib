@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TorrentsListHeader" customModule="iTorrent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="28"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giT-KX-1g4">
+                    <rect key="frame" x="0.0" y="0.0" width="387" height="28"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="D7g-i4-dMm">
+                        <rect key="frame" x="0.0" y="0.0" width="387" height="28"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="systemChromeMaterial"/>
+                </visualEffectView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHC-V8-OMo">
+                    <rect key="frame" x="16" y="5" width="355" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <constraints>
+                <constraint firstItem="giT-KX-1g4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="006-9m-tJ6"/>
+                <constraint firstAttribute="trailingMargin" secondItem="ZHC-V8-OMo" secondAttribute="trailing" id="4wV-x6-Qlc"/>
+                <constraint firstAttribute="bottom" secondItem="ZHC-V8-OMo" secondAttribute="bottom" constant="5" id="77I-gP-IPC"/>
+                <constraint firstItem="giT-KX-1g4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="866-cq-uPT"/>
+                <constraint firstItem="ZHC-V8-OMo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="Izs-Tk-LgZ"/>
+                <constraint firstItem="ZHC-V8-OMo" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VX2-sf-AMU"/>
+                <constraint firstAttribute="trailing" secondItem="giT-KX-1g4" secondAttribute="trailing" id="ZaX-nt-A2u"/>
+                <constraint firstItem="ZHC-V8-OMo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="vYH-1H-0FI"/>
+                <constraint firstAttribute="bottom" secondItem="giT-KX-1g4" secondAttribute="bottom" id="wdE-QA-YZr"/>
+                <constraint firstItem="ZHC-V8-OMo" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ytv-W7-1OR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="background" destination="giT-KX-1g4" id="2cI-9f-jsf"/>
+                <outlet property="titleLabel" destination="ZHC-V8-OMo" id="Fp5-4G-WSL"/>
+            </connections>
+            <point key="canvasLocation" x="118.11594202898551" y="376.33928571428572"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

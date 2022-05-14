@@ -44,6 +44,7 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
             tableView.sectionHeaderTopPadding = 0
         } 
         tableView.register(cell: TorrentsListTorrentCell.self)
+        tableView.register(view: TorrentsListHeader.self)
         tableView.dataSource = dataSource
 
         setupSearchController()
@@ -94,6 +95,7 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
                     var snapshot = DiffableDataSource<TorrentsListTorrentModel>.Snapshot()
                     snapshot.append(torrents)
                     dataSource?.apply(snapshot, animatingDifferences: !firstUpdate)
+                    updateHeadersBackground()
                     refreshSelectedItems()
                     firstUpdate = false
                 }
@@ -134,7 +136,16 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.sections[section].header.isNilOrEmpty ? 0 : 28
+        return viewModel.sections[section].header.isNilOrEmpty ? 0 : UITableView.automaticDimension
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let title = viewModel.sections[section].header
+        else { return nil }
+
+        let header = tableView.dequeue() as TorrentsListHeader
+        header.titleLabel.text = title
+        return header
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -170,9 +181,36 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
         setEditing(true, animated: true)
         updateEditState(animated: true)
     }
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        updateHeadersBackground()
+    }
+
+    override func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        updateHeadersBackground()
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeadersBackground()
+    }
 }
 
 private extension TorrentsListViewController {
+    func updateHeadersBackground() {
+        let alpha = navigationController?.navigationBar.blurAlpha ?? 1
+        for i in 0 ..< tableView.numberOfSections {
+            guard let header = tableView.headerView(forSection: i) as? TorrentsListHeader
+            else { continue }
+
+            let rect = header.frame
+            let originRect = tableView.rectForHeader(inSection: i)
+
+            let isHeaderSticky = rect.origin.y != originRect.origin.y
+
+            header.background.alpha = isHeaderSticky ? alpha : 0
+        }
+    }
+
     func setupSearchController() {
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "Search"
