@@ -65,6 +65,10 @@ class TorrentsListViewModel: MvvmViewModel {
         }
     }
 
+    func openPreferences() {
+        navigate(to: TorrentSettingsViewModel.self)
+    }
+
     func openTorrentDetails(at indexPath: IndexPath) {
         navigate(to: TorrentDetailsViewModel.self, prepare: sections[indexPath.section].items[indexPath.row].torrent, with: .detail)
     }

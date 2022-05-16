@@ -60,6 +60,7 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
             viewModel.canResumeAny => resumeItem.reactive.isEnabled
             viewModel.canPauseAny => pauseItem.reactive.isEnabled
 
+            settingsItem.bindTap(viewModel.openPreferences)
             resumeItem.bindTap(viewModel.resumeSelected)
             pauseItem.bindTap(viewModel.pauseSelected)
             rehashItem.bindTap { [unowned self] in
@@ -205,7 +206,7 @@ private extension TorrentsListViewController {
             let rect = header.frame
             let originRect = tableView.rectForHeader(inSection: i)
 
-            let isHeaderSticky = rect.origin.y != originRect.origin.y
+            let isHeaderSticky = i == 0 || rect.origin.y != originRect.origin.y
 
             header.background.alpha = isHeaderSticky ? alpha : 0
         }

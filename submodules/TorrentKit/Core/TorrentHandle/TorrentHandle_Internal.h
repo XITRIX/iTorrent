@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readwrite) BOOL isSeed;
 @property (readwrite) BOOL isSequential;
 @property (readwrite) NSArray<NSNumber *> *pieces;
-@property (readwrite) NSArray<FileEntry *> *files;
+//@property (readwrite) NSArray<FileEntry *> *files;
 @property (readwrite) NSArray<TorrentTracker *> *trackers;
 @property (readwrite) NSString* magnetLink;
 @property (readwrite, nullable) NSString* torrentFilePath;

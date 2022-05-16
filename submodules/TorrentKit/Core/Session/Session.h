@@ -10,6 +10,7 @@
 #import "Downloadable.h"
 #import "TorrentFile.h"
 #import "FileEntry.h"
+#import "SessionSettings.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,9 +33,11 @@ typedef NS_ENUM(NSUInteger, ErrorCode) {
 @property (readwrite, strong, nonatomic) NSString *torrentsPath;
 @property (readwrite, strong, nonatomic) NSString *fastResumePath;
 
+@property (readwrite, nonatomic) SessionSettings *settings;
+
 @property (readonly) NSArray<TorrentHandle *> *torrents;
 
-- (instancetype)initWith:(NSString *)downloadPath torrentsPath:(NSString *)torrentsPath fastResumePath:(NSString *)fastResumePath;
+- (instancetype)initWith:(NSString *)downloadPath torrentsPath:(NSString *)torrentsPath fastResumePath:(NSString *)fastResumePath settings:(SessionSettings *)settings;
 
 - (NSString *)fastResumePathForInfoHash:(NSData *)infoHash;
 

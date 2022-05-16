@@ -42,8 +42,6 @@ class TorrentDetailsController: BaseTableViewController<TorrentDetailsViewModel>
             itemIdentifier.resolveCell(in: tableView, for: indexPath)
         })
         tableView.dataSource = dataSource
-        tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableView.automaticDimension
     }
 
     override func binding() {

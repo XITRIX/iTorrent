@@ -25,6 +25,7 @@ class CoreMvvm: MVVM {
         container.register { TorrentFilesController() }
         container.register { TorrentAddingController() }
         container.register { TorrentTrackersListController() }
+        container.register { TorrentSettingsController() }
 
         // Register ViewModels
         container.register { SplitScreenViewModel() }
@@ -33,6 +34,7 @@ class CoreMvvm: MVVM {
         container.register { TorrentFilesViewModel() }
         container.register { TorrentAddingViewModel() }
         container.register { TorrentTrackersListViewModel() }
+        container.register { TorrentSettingsViewModel() }
 
         // Add custom Navigation Controller
         container.register(type: UINavigationController.self) { BaseNavigationController() }
@@ -49,5 +51,6 @@ class CoreMvvm: MVVM {
         router.register(viewModel: TorrentFilesViewModel.self, viewController: TorrentFilesController.self)
         router.register(viewModel: TorrentAddingViewModel.self, viewController: TorrentAddingController.self)
         router.register(viewModel: TorrentTrackersListViewModel.self, viewController: TorrentTrackersListController.self)
+        router.register(viewModel: TorrentSettingsViewModel.self, viewController: TorrentSettingsController.self)
     }
 }

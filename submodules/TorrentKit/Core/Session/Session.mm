@@ -35,21 +35,20 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 @implementation Session : NSObject
 
 // MARK: - Init
-- (instancetype)initWith:(NSString *)downloadPath torrentsPath:(NSString *)torrentsPath fastResumePath:(NSString *)fastResumePath {
+- (instancetype)initWith:(NSString *)downloadPath torrentsPath:(NSString *)torrentsPath fastResumePath:(NSString *)fastResumePath settings:(SessionSettings *)settings {
     self = [super init];
     if (self) {
         _downloadPath = downloadPath;
         _torrentsPath = torrentsPath;
         _fastResumePath = fastResumePath;
+        _settings = settings;
 
         NSError * error;
         [[NSFileManager defaultManager] createDirectoryAtPath:downloadPath withIntermediateDirectories:YES attributes:nil error:&error];
         [[NSFileManager defaultManager] createDirectoryAtPath:torrentsPath withIntermediateDirectories:YES attributes:nil error:&error];
         [[NSFileManager defaultManager] createDirectoryAtPath:fastResumePath withIntermediateDirectories:YES attributes:nil error:&error];
 
-        lt::settings_pack p;
-        p.set_int(lt::settings_pack::alert_mask, lt::alert_category::all);
-        _session = new lt::session(p);
+        _session = new lt::session(_settings.settingsPack);
 
         _filesQueue = dispatch_queue_create([FileEntriesQueueIdentifier UTF8String], DISPATCH_QUEUE_SERIAL);
         _delegates = [NSHashTable weakObjectsHashTable];
@@ -65,6 +64,11 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
 
     }
     return self;
+}
+
+- (void)setSettings:(SessionSettings *)settings {
+    _settings = settings;
+    _session->apply_settings(settings.settingsPack);
 }
 
 - (void)dealloc {
@@ -85,7 +89,8 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
     auto torrents = _session->get_torrents();
     NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:torrents.size()];
     for (int i = 0; i < torrents.size(); i++) {
-        [result setObject:[[TorrentHandle alloc] initWith:torrents[i] inSession:self] atIndexedSubscript:i];
+        auto torrent = [[TorrentHandle alloc] initWith:torrents[i] inSession:self];
+        [result setObject:torrent atIndexedSubscript:i];
     }
     return result;
 }
@@ -126,6 +131,7 @@ static NSString *FileEntriesQueueIdentifier = @"ru.xitrix.TorrentKit.Session.fil
         return NO;
     }
 
+    params.storage_mode = _settings.preallocateStorage ? lt::storage_mode_allocate : lt::storage_mode_sparse;
     params.save_path = [_downloadPath UTF8String];
     auto th = _session->add_torrent(params);
 

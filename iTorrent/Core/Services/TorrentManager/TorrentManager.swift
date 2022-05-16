@@ -12,6 +12,7 @@ import ReactiveKit
 import TorrentKit
 
 class TorrentManager {
+    let bag = DisposeBag()
     let rootFolder: String
     let downloadFolder: String
     let torrentsFolder: String
@@ -21,13 +22,15 @@ class TorrentManager {
 
     @Bindable var torrents: [Data: TorrentHandle] = [:]
 
+    private let propertiesUpdated = PassthroughSubject<Void, Never>()
+
     init() {
         rootFolder = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         downloadFolder = rootFolder + "/Downloads"
         torrentsFolder = rootFolder + "/torrents"
         fastResumesFolder = torrentsFolder + "/resume_data"
 
-        session = Session(downloadFolder, torrentsPath: torrentsFolder, fastResumePath: fastResumesFolder)
+        session = Session(downloadFolder, torrentsPath: torrentsFolder, fastResumePath: fastResumesFolder, settings: .fromPropertyStorage())
         session.add(self)
 
         let _torrents = Dictionary(uniqueKeysWithValues: session.torrents.map { ($0.infoHash, $0) })
@@ -40,6 +43,18 @@ class TorrentManager {
             }.dispose(in: $0.bag)
         }
         torrents = _torrents
+
+        binding()
+    }
+
+    func binding() {
+        let storage = MVVM.resolve() as PropertyStorage
+
+        storage.$preallocationStorage.eraseType().bind(to: propertiesUpdated).dispose(in: bag)
+
+        propertiesUpdated.observeNext { [unowned self] _ in
+            session.settings = .fromPropertyStorage()
+        }.dispose(in: bag)
     }
 
     func addTorrent(_ torrent: Downloadable) {

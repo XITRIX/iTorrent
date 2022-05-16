@@ -390,7 +390,7 @@
     snapshot.isSeed = self.isSeed;
     snapshot.isSequential = self.isSequential;
     snapshot.pieces = self.pieces;
-    snapshot.files = self.files;
+//    snapshot.files = self.files;
     snapshot.trackers = self.trackers;
     snapshot.magnetLink = self.magnetLink;
     snapshot.torrentFilePath = self.torrentFilePath;

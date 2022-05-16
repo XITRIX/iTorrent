@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Session.h"
+#import "SessionSettings_Internal.h"
 
 #import "libtorrent/session.hpp"
 
