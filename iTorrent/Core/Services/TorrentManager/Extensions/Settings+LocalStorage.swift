@@ -17,7 +17,7 @@ extension Session.Settings {
         storage.preallocateStorage = propStorage.preallocationStorage
         storage.maxActiveTorrents = propStorage.maxActiveTorrents
         storage.maxDownloadingTorrents = propStorage.maxDownloadingTorrents
-        storage.maxUplodingTorrents = propStorage.maxUplodingTorrents
+        storage.maxUploadingTorrents = propStorage.maxUploadingTorrents
         return storage
     }
 }

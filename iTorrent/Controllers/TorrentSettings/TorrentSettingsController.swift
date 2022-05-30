@@ -33,6 +33,13 @@ class TorrentSettingsController: BaseTableViewController<TorrentSettingsViewMode
                 dataSource.apply(snapshot)
             }
 
+            viewModel.deselectCell.observeNext { [unowned self] _ in
+                guard let indexPath = tableView.indexPathForSelectedRow
+                else { return }
+
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+
             tableView.reactive.selectedRowIndexPath.observeNext { [unowned self] indexPath in
                 viewModel.sections[indexPath.section].items[indexPath.row].action.send()
             }

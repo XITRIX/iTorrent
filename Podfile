@@ -9,6 +9,7 @@ target 'iTorrent' do
 
   # Pods for iTorrent
   pod 'MVVMFoundation', :path => 'submodules/MVVMFoundation'
+  pod 'XTBottomSheet', :path => 'submodules/XTBottomSheet'
   pod 'Bond'
   pod 'MarqueeLabel'
 

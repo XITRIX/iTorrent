@@ -1,3 +1,6 @@
 [submodule "submodules/transmission"]
 	path = submodules/MVVMFoundation
 	url = https://github.com/XITRIX/MVVMFoundation.git
+[submodule "submodules/XTBottomSheet"]
+	path = submodules/XTBottomSheet
+	url = https://github.com/XITRIX/XTBottomSheet.git

@@ -12,7 +12,7 @@ class TorrentSettingsActionViewModel: TableCellRepresentable {
     @Bindable var title: String
     @Bindable var detail: String
 
-    init(title: String = "", detail: String = "", action: @escaping ()->()) {
+    init(title: String = "", detail: String = "") {
         self.title = title
         self.detail = detail
     }

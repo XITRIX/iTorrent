@@ -16,7 +16,10 @@ NS_SWIFT_NAME(Session.Settings)
 
 @property (readwrite, nonatomic) NSInteger maxActiveTorrents;
 @property (readwrite, nonatomic) NSInteger maxDownloadingTorrents;
-@property (readwrite, nonatomic) NSInteger maxUplodingTorrents;
+@property (readwrite, nonatomic) NSInteger maxUploadingTorrents;
+
+@property (readwrite, nonatomic) NSUInteger maxDownloadSpeed;
+@property (readwrite, nonatomic) NSUInteger maxUploadSpeed;
 
 @end
 

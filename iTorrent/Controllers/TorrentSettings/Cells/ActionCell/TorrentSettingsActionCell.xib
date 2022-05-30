@@ -18,17 +18,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Twz-z8-wh0">
-                        <rect key="frame" x="16" y="7" width="288" height="31"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Twz-z8-wh0">
+                        <rect key="frame" x="16" y="12" width="288" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sc-Vz-1f0">
-                                <rect key="frame" x="0.0" y="0.0" width="244.5" height="31"/>
+                                <rect key="frame" x="0.0" y="1.5" width="244.5" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hui-yh-1Ek">
-                                <rect key="frame" x="252.5" y="0.0" width="35.5" height="31"/>
+                                <rect key="frame" x="252.5" y="1.5" width="35.5" height="17"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,8 +37,8 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Twz-z8-wh0" secondAttribute="bottom" constant="6" id="0wP-Nh-YIu"/>
-                    <constraint firstItem="Twz-z8-wh0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="NGk-mR-RR9"/>
+                    <constraint firstAttribute="bottom" secondItem="Twz-z8-wh0" secondAttribute="bottom" constant="12" id="0wP-Nh-YIu"/>
+                    <constraint firstItem="Twz-z8-wh0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="NGk-mR-RR9"/>
                     <constraint firstItem="Twz-z8-wh0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hah-Lo-eZr"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Twz-z8-wh0" secondAttribute="trailing" id="kFu-Mi-WFe"/>
                 </constraints>

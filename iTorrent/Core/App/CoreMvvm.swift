@@ -17,6 +17,7 @@ class CoreMvvm: MVVM {
         container.registerSingleton { TorrentManager() }
         container.registerSingleton { PropertyStorage() }
         container.registerSingleton { TorrentAddingService() }
+        container.registerSingleton { TorrentBackgroundTask() }
 
         // Register ViewControllers
         container.register { SplitScreenController() }

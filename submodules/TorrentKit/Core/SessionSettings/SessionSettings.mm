@@ -30,7 +30,10 @@
     // Settings pack
     settings.set_int(lt::settings_pack::active_limit, (int)_maxActiveTorrents);
     settings.set_int(lt::settings_pack::active_downloads, (int)_maxDownloadingTorrents);
-    settings.set_int(lt::settings_pack::active_seeds, (int)_maxUplodingTorrents);
+    settings.set_int(lt::settings_pack::active_seeds, (int)_maxUploadingTorrents);
+
+    settings.set_int(lt::settings_pack::download_rate_limit, (int)_maxDownloadSpeed);
+    settings.set_int(lt::settings_pack::upload_rate_limit, (int)_maxUploadSpeed);
 
     return settings;
 }

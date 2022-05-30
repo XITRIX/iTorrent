@@ -78,6 +78,9 @@
 		7CC9B37628186619001A13ED /* TorrentDelailsProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9B37428186619001A13ED /* TorrentDelailsProgressCell.swift */; };
 		7CC9B37728186619001A13ED /* TorrentDelailsProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CC9B37528186619001A13ED /* TorrentDelailsProgressCell.xib */; };
 		7CC9B379281885A8001A13ED /* TorrentDelailsProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9B378281885A8001A13ED /* TorrentDelailsProgressViewModel.swift */; };
+		7CE72AF32843ED0200DB1DAE /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE72AF22843ED0200DB1DAE /* BackgroundTask.swift */; };
+		7CE72AF52843EE9B00DB1DAE /* TorrentBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE72AF42843EE9B00DB1DAE /* TorrentBackgroundTask.swift */; };
+		7CE72AF72843F40F00DB1DAE /* empty.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CE72AF62843F40F00DB1DAE /* empty.wav */; };
 		7CFB9E902815F298006C1E1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB9E8E2815F298006C1E1E /* Main.storyboard */; };
 		7CFB9E922815F299006C1E1E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB9E912815F299006C1E1E /* Colors.xcassets */; };
 		7CFB9E952815F299006C1E1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFB9E932815F299006C1E1E /* LaunchScreen.storyboard */; };
@@ -196,6 +199,9 @@
 		7CC9B37428186619001A13ED /* TorrentDelailsProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDelailsProgressCell.swift; sourceTree = "<group>"; };
 		7CC9B37528186619001A13ED /* TorrentDelailsProgressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentDelailsProgressCell.xib; sourceTree = "<group>"; };
 		7CC9B378281885A8001A13ED /* TorrentDelailsProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDelailsProgressViewModel.swift; sourceTree = "<group>"; };
+		7CE72AF22843ED0200DB1DAE /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
+		7CE72AF42843EE9B00DB1DAE /* TorrentBackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentBackgroundTask.swift; sourceTree = "<group>"; };
+		7CE72AF62843F40F00DB1DAE /* empty.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = empty.wav; sourceTree = "<group>"; };
 		7CFB9E852815F298006C1E1E /* iTorrent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTorrent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CFB9E8F2815F298006C1E1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CFB9E912815F299006C1E1E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -266,6 +272,7 @@
 				7CA11D89281AB93300CB424E /* Storage */,
 				7CFB9EDD2815F908006C1E1E /* TorrentManager */,
 				7C18535C2827C84B00BCB5D5 /* TorrentAddingService */,
+				7CE72AF12843EC3600DB1DAE /* BackgroundTask */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -564,6 +571,16 @@
 			path = ProgressCell;
 			sourceTree = "<group>";
 		};
+		7CE72AF12843EC3600DB1DAE /* BackgroundTask */ = {
+			isa = PBXGroup;
+			children = (
+				7CE72AF62843F40F00DB1DAE /* empty.wav */,
+				7CE72AF22843ED0200DB1DAE /* BackgroundTask.swift */,
+				7CE72AF42843EE9B00DB1DAE /* TorrentBackgroundTask.swift */,
+			);
+			path = BackgroundTask;
+			sourceTree = "<group>";
+		};
 		7CFB9E7C2815F298006C1E1E = {
 			isa = PBXGroup;
 			children = (
@@ -799,6 +816,7 @@
 			files = (
 				7C18534F282694E500BCB5D5 /* EmptyViewController.xib in Resources */,
 				7CB6084028304A8200CB229E /* TorrentSettingsController.xib in Resources */,
+				7CE72AF72843F40F00DB1DAE /* empty.wav in Resources */,
 				7CFB9E952815F299006C1E1E /* LaunchScreen.storyboard in Resources */,
 				7C614A4E28206309008FA916 /* TorrentTrackerCell.xib in Resources */,
 				7CFB9ED02815F811006C1E1E /* TorrentsListViewController.xib in Resources */,
@@ -906,6 +924,7 @@
 				7CC9B3372816CA9C001A13ED /* TorrentFileCell.swift in Sources */,
 				7CB60828282FB07800CB229E /* TorrentsListHeader.swift in Sources */,
 				7CFB9ECD2815F811006C1E1E /* TorrentsListTorrentModel.swift in Sources */,
+				7CE72AF52843EE9B00DB1DAE /* TorrentBackgroundTask.swift in Sources */,
 				7CC9B33A2816CA9C001A13ED /* DirectoryEntity.swift in Sources */,
 				7CFB9EBC2815F7A9006C1E1E /* NamedColors.swift in Sources */,
 				7CA11D662819491D00CB424E /* Dialog.swift in Sources */,
@@ -945,6 +964,7 @@
 				7CFB9ED12815F811006C1E1E /* TorrentsListViewModel.swift in Sources */,
 				7CC9B301281679C2001A13ED /* TorrentDelailsSwitchCell.swift in Sources */,
 				7CC9B30628167BE3001A13ED /* TorrentHandle+ReactiveExtensions.swift in Sources */,
+				7CE72AF32843ED0200DB1DAE /* BackgroundTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

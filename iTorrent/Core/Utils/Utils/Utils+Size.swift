@@ -30,5 +30,10 @@ extension Utils {
             let res = count > 1 ? String(format: format, fRes) : String(size)
             return res + " " + names[count]
         }
+
+        public static func getSpeedLimitText(size: UInt?, decimals: Int = 2) -> String {
+            guard size != 0 else { return "Unlimited" }
+            return getSizeText(size: size, decimals: decimals).appending("/s")
+        }
     }
 }
