@@ -26,6 +26,8 @@ class TorrentDetailsController: BaseTableViewController<TorrentDetailsViewModel>
         print("Deinit!")
     }
 
+    override var adoptMarginsToContentWidth: Bool { true }
+
     override func setupView() {
         super.setupView()
 

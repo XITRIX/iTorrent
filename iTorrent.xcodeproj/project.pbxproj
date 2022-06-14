@@ -24,6 +24,10 @@
 		7C83BDD12821D94900454CF7 /* SAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDD02821D94900454CF7 /* SAViewController.swift */; };
 		7C83BDD32821DA2C00454CF7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDD22821DA2C00454CF7 /* BaseViewController.swift */; };
 		7C83BDD52821DA5700454CF7 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C83BDD42821DA5700454CF7 /* BaseTableViewController.swift */; };
+		7C9E5A7C28463E560082034F /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E5A7A28463E560082034F /* DataPicker.swift */; };
+		7C9E5A7D28463E560082034F /* DataPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9E5A7B28463E560082034F /* DataPicker.xib */; };
+		7C9E5A892846B7470082034F /* Utils+Dataset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E5A882846B7470082034F /* Utils+Dataset.swift */; };
+		7C9E5A8C2846B94C0082034F /* SpeedPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E5A8B2846B94C0082034F /* SpeedPicker.swift */; };
 		7CA11D662819491D00CB424E /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA11D652819491D00CB424E /* Dialog.swift */; };
 		7CA11D6828194E4F00CB424E /* MarqueeLabel+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA11D6728194E4F00CB424E /* MarqueeLabel+Reactive.swift */; };
 		7CA11D832819C82E00CB424E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA11D822819C82E00CB424E /* Images.xcassets */; };
@@ -145,6 +149,10 @@
 		7C83BDD02821D94900454CF7 /* SAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAViewController.swift; sourceTree = "<group>"; };
 		7C83BDD22821DA2C00454CF7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7C83BDD42821DA5700454CF7 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		7C9E5A7A28463E560082034F /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
+		7C9E5A7B28463E560082034F /* DataPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataPicker.xib; sourceTree = "<group>"; };
+		7C9E5A882846B7470082034F /* Utils+Dataset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utils+Dataset.swift"; sourceTree = "<group>"; };
+		7C9E5A8B2846B94C0082034F /* SpeedPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedPicker.swift; sourceTree = "<group>"; };
 		7CA11D652819491D00CB424E /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		7CA11D6728194E4F00CB424E /* MarqueeLabel+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MarqueeLabel+Reactive.swift"; sourceTree = "<group>"; };
 		7CA11D822819C82E00CB424E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -335,6 +343,23 @@
 			path = SANavigation;
 			sourceTree = "<group>";
 		};
+		7C9E5A7928463E3A0082034F /* DataPicker */ = {
+			isa = PBXGroup;
+			children = (
+				7C9E5A7A28463E560082034F /* DataPicker.swift */,
+				7C9E5A7B28463E560082034F /* DataPicker.xib */,
+			);
+			path = DataPicker;
+			sourceTree = "<group>";
+		};
+		7C9E5A8A2846B92B0082034F /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				7C9E5A8B2846B94C0082034F /* SpeedPicker.swift */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
 		7CA11D642819491100CB424E /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +374,7 @@
 				7CFB9EB62815F7A9006C1E1E /* Utils.swift */,
 				7CFB9EAE2815F7A9006C1E1E /* Utils+Size.swift */,
 				7CFB9EB72815F7A9006C1E1E /* Utils+Time.swift */,
+				7C9E5A882846B7470082034F /* Utils+Dataset.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -716,6 +742,8 @@
 		7CFB9ED22815F8D5006C1E1E /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				7C9E5A8A2846B92B0082034F /* Pickers */,
+				7C9E5A7928463E3A0082034F /* DataPicker */,
 				7C83BDCD2821D90F00454CF7 /* SANavigation */,
 				7C83BDCA2821D8CC00454CF7 /* Base */,
 				7CFB9ED32815F8D5006C1E1E /* Cells */,
@@ -837,6 +865,7 @@
 				7CB6084828304BAF00CB229E /* TorrentSettingsSwitchCell.xib in Resources */,
 				7CC9B35D28172BF9001A13ED /* TorrentAddingController.xib in Resources */,
 				7CFB9ECE2815F811006C1E1E /* TorrentsListTorrentCell.xib in Resources */,
+				7C9E5A7D28463E560082034F /* DataPicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,6 +945,7 @@
 				7C83BDC42821CD9C00454CF7 /* SplitScreenViewModel.swift in Sources */,
 				7CC9B36228172DBD001A13ED /* AddingFileManager.swift in Sources */,
 				7CC9B2FA281679C2001A13ED /* TorrentDelailsDetailCell.swift in Sources */,
+				7C9E5A7C28463E560082034F /* DataPicker.swift in Sources */,
 				7CC9B304281679C2001A13ED /* TorrentDetailsViewModel.swift in Sources */,
 				7CA11D8B281AB94200CB424E /* StoredProperty.swift in Sources */,
 				7C614A4528206177008FA916 /* TorrentTrackersListViewModel.swift in Sources */,
@@ -928,6 +958,7 @@
 				7CC9B33A2816CA9C001A13ED /* DirectoryEntity.swift in Sources */,
 				7CFB9EBC2815F7A9006C1E1E /* NamedColors.swift in Sources */,
 				7CA11D662819491D00CB424E /* Dialog.swift in Sources */,
+				7C9E5A8C2846B94C0082034F /* SpeedPicker.swift in Sources */,
 				7CC9B33B2816CA9C001A13ED /* FileManager.swift in Sources */,
 				7CC9B33F2816CA9C001A13ED /* TorrentFilesViewModel.swift in Sources */,
 				7CC9B2FE281679C2001A13ED /* TorrentDelailsNavigationViewModel.swift in Sources */,
@@ -938,6 +969,7 @@
 				7CFB9EB92815F7A9006C1E1E /* AppDelegate.swift in Sources */,
 				7CFB9EBA2815F7A9006C1E1E /* SceneDelegate.swift in Sources */,
 				7C83BDC62821CE3D00454CF7 /* SplitScreenController.swift in Sources */,
+				7C9E5A892846B7470082034F /* Utils+Dataset.swift in Sources */,
 				7C614A37281F5E58008FA916 /* UIWindow+Key.swift in Sources */,
 				7CC9B354281728D9001A13ED /* FilesBrowserController.swift in Sources */,
 				7CC9B33E2816CA9C001A13ED /* TorrentFilesController.swift in Sources */,

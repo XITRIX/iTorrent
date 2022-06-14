@@ -74,6 +74,10 @@ class TorrentSettingsViewModel: MvvmViewModel {
 
             speedDownloadLimit.action.observeNext { [unowned self] _ in
                 deselectCell.send()
+                let picker = SpeedPicker { size in
+                    print(size)
+                }
+                attachedView.present(picker.embedInBottomSheet(), animated: true)
             }
             speedUploadLimit.action.observeNext { [unowned self] _ in
                 deselectCell.send()

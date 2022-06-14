@@ -35,30 +35,30 @@ extension ReactiveExtensions where Base == TorrentHandle {
     }
 
     var initObserver: SafeReplayOneSubject<TorrentHandle> {
-        guard let subject = objc_getAssociatedObject(base, &Base.AssociatedKeys.InitObserver) as? SafeReplayOneSubject<TorrentHandle> else {
+        guard let subject = objc_getAssociatedObject(base, &TorrentHandle.AssociatedKeys.InitObserver) as? SafeReplayOneSubject<TorrentHandle> else {
             let sub = SafeReplayOneSubject<TorrentHandle>()
             sub.receive(base)
-            objc_setAssociatedObject(base, &Base.AssociatedKeys.InitObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(base, &TorrentHandle.AssociatedKeys.InitObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
             return sub
         }
         return subject
     }
 
     var updateObserver: SafeReplayOneSubject<TorrentHandle> {
-        guard let subject = objc_getAssociatedObject(base, &Base.AssociatedKeys.UpdateObserver) as? SafeReplayOneSubject<TorrentHandle> else {
+        guard let subject = objc_getAssociatedObject(base, &TorrentHandle.AssociatedKeys.UpdateObserver) as? SafeReplayOneSubject<TorrentHandle> else {
             let sub = SafeReplayOneSubject<TorrentHandle>()
             sub.receive(base)
-            objc_setAssociatedObject(base, &Base.AssociatedKeys.UpdateObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(base, &TorrentHandle.AssociatedKeys.UpdateObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
             return sub
         }
         return subject
     }
 
     var removedObserver: SafeReplayOneSubject<Bool> {
-        guard let subject = objc_getAssociatedObject(base, &Base.AssociatedKeys.RemovedObserver) as? SafeReplayOneSubject<Bool> else {
+        guard let subject = objc_getAssociatedObject(base, &TorrentHandle.AssociatedKeys.RemovedObserver) as? SafeReplayOneSubject<Bool> else {
             let sub = SafeReplayOneSubject<Bool>()
             sub.receive(false)
-            objc_setAssociatedObject(base, &Base.AssociatedKeys.RemovedObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(base, &TorrentHandle.AssociatedKeys.RemovedObserver, sub, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
             return sub
         }
         return subject

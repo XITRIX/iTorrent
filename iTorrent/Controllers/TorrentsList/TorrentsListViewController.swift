@@ -137,7 +137,9 @@ class TorrentsListViewController: BaseTableViewController<TorrentsListViewModel>
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.sections[section].header.isNilOrEmpty ? 0 : UITableView.automaticDimension
+        let sections = viewModel.sections
+        guard sections.count >= section - 1 else { return 0 }
+        return sections[section].header.isNilOrEmpty ? 0 : UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
