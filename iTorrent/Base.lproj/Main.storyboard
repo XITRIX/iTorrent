@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -20,10 +20,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KYM-MO-AoK" customClass="ThemedUITableView" customModule="iTorrent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" focusStyle="custom" rowHeight="82" id="GjT-8w-TC9" customClass="TorrentCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="82"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GjT-8w-TC9" id="tHf-tJ-Yom">
                                             <rect key="frame" x="0.0" y="0.0" width="347.66666666666669" height="82"/>
@@ -525,7 +524,7 @@ Thanks for all your support!</string>
                             <color key="backgroundColor" systemColor="separatorColor"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ow8-Ml-edz">
-                            <rect key="frame" x="0.0" y="231.00000508626303" width="375" height="0.0"/>
+                            <rect key="frame" x="0.0" y="253.000005086263" width="375" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
@@ -533,20 +532,20 @@ Thanks for all your support!</string>
                             <tableViewSection id="TS7-vk-Fjx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="z21-AY-9SM" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28.333333333333329" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50.333333333333343" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z21-AY-9SM" id="QYA-FU-hOc">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-Dj-AZt" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="32" height="21.333333333333336"/>
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="32" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTA-ph-5aV" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="64" y="11.666666666666664" width="295" height="21"/>
+                                                    <rect key="frame" x="64" y="11.333333333333336" width="295" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -569,20 +568,20 @@ Thanks for all your support!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wFC-eQ-tSC" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72.00000127156575" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="94.00000127156575" width="375" height="43.666667938232408"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wFC-eQ-tSC" id="7iZ-2O-Exf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNh-58-8Ne" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="33" height="21.333333333333336"/>
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="33" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjj-Vr-LFF" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="11.666666666666664" width="294" height="21"/>
+                                                    <rect key="frame" x="65" y="11.333333333333336" width="294" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -604,20 +603,20 @@ Thanks for all your support!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="STw-P8-dN4" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="115.66666920979816" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="137.66666920979819" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="STw-P8-dN4" id="nwM-su-8LL">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggn-IC-6GD" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="87.666666666666671" height="21.333333333333336"/>
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="87.666666666666671" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYU-Sm-CHK" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="119.66666666666667" y="11.666666666666664" width="239.33333333333331" height="21"/>
+                                                    <rect key="frame" x="119.66666666666667" y="11.333333333333336" width="239.33333333333331" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -639,20 +638,20 @@ Thanks for all your support!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="mNH-tE-WLa" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="159.33333714803061" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="181.33333714803061" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mNH-tE-WLa" id="9DN-yt-TY4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify on update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSm-iV-XGN" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666666" width="286" height="21.333333333333336"/>
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="286" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aod-lD-LrV">
-                                                    <rect key="frame" x="310" y="6.6666666666666679" width="51" height="31.000000000000004"/>
+                                                    <rect key="frame" x="310" y="6.3333333333333321" width="51" height="30.999999999999996"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -777,7 +776,7 @@ Thanks for all your support!</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="88" id="wjR-Jn-hKa" customClass="TrackerCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="88"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wjR-Jn-hKa" id="tdS-Ab-BgC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>

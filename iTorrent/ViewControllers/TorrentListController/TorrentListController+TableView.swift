@@ -110,10 +110,10 @@ extension TorrentListController: UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if #available(iOS 15.0, *) {
-            let safe = tableView.adjustedContentInset.top
-            let offset = scrollView.contentOffset.y
-            let alpha = min(max(0, offset + safe), 4) / 4
+//        if #available(iOS 15.0, *) {
+//            let safe = tableView.adjustedContentInset.top
+//            let offset = scrollView.contentOffset.y
+            let alpha = getNavBarAlpha() ?? 1// min(max(0, offset + safe), 4) / 4
             
             if !UserPreferences.sortingSections,
                 let header = tableView.headerView(forSection: 0) as? TabBarView {
@@ -121,32 +121,40 @@ extension TorrentListController: UITableViewDelegate {
             } else {
                 updateHeadersBackground()
             }
-        }
+//        }
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if #available(iOS 15.0, *) {
+//        if #available(iOS 15.0, *) {
             updateHeadersBackground()
-        }
+//        }
     }
     
     func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        if #available(iOS 15.0, *) {
+//        if #available(iOS 15.0, *) {
             updateHeadersBackground()
-        }
+//        }
     }
     
-    @available(iOS 15.0, *)
+//    @available(iOS 15.0, *)
     func updateHeadersBackground() {
-        let offset = tableView.contentOffset.y
-        let safe = tableView.adjustedContentInset.top
-        let alpha = min(max(0, offset + safe), 4) / 4
+//        let offset = tableView.contentOffset.y
+//        let safe = tableView.adjustedContentInset.top
+        let alpha = getNavBarAlpha() ?? 1// min(max(0, offset + safe), 4) / 4
         for i in 0 ..< tableView.numberOfSections {
             guard let header = tableView.headerView(forSection: i) as? TableHeaderView
             else { continue }
             
             header.background.alpha = alpha
         }
+    }
+
+    func getNavBarAlpha() -> CGFloat? {
+        // Try to get navbar backlayer
+        guard let navBar = navigationController?.navigationBar.subviews.first?.subviews.first
+        else { return nil }
+
+        return navBar.alpha
     }
     
     @available(iOS 13.0, *)

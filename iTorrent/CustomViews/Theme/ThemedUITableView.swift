@@ -54,13 +54,26 @@ class ThemedUITableView: UITableView, Themed {
     @objc func themeUpdate() {
         let theme = Themes.current
         tintColor = theme.tintColor
-        
-        switch colorType {
-        case .primary:
+//
+//        switch colorType {
+//        case .primary:
+        switch style {
+        case .plain:
             backgroundColor = theme.backgroundMain
-        case .secondary:
-            backgroundColor = theme.backgroundSecondary
+        default:
+            backgroundColor = theme.groupedBackgroundMain
         }
+//        case .secondary:
+//            backgroundColor = theme.backgroundSecondary
+//        }
+    }
+
+    override func dequeueReusableCell(withIdentifier identifier: String) -> UITableViewCell? {
+        let cell = super.dequeueReusableCell(withIdentifier: identifier)
+        if let cell = cell as? ThemedUITableViewCell {
+            cell.setTableView(self)
+        }
+        return cell
     }
 
     enum ColorType: Int {

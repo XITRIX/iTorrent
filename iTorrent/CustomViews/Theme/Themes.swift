@@ -55,6 +55,8 @@ class Themes {
         darkTheme.backgroundMain = UIColor.black
         darkTheme.backgroundSecondary = UIColor(red: 55 / 255, green: 55 / 255, blue: 55 / 255, alpha: 1)
         darkTheme.backgroundTertiary = UIColor(red: 55 / 255, green: 55 / 255, blue: 55 / 255, alpha: 1)
+        darkTheme.groupedBackgroundMain = UIColor.black
+        darkTheme.groupedBackgroundSecondary = UIColor(red: 28 / 255, green: 28 / 255, blue: 30 / 255, alpha: 1)
         darkTheme.tableHeaderColor = UIColor(red: 0.05, green: 0.05, blue: 0.05, alpha: 0.9)
         darkTheme.actionCancelButtonColor = UIColor(red: 28.0 / 255.0, green: 28.0 / 255.0, blue: 28.0 / 255.0, alpha: 1.0)
         darkTheme.progressBarBackground = UIColor(red: 0.24, green: 0.24, blue: 0.25, alpha: 1)
@@ -95,6 +97,8 @@ struct ColorPalett: Equatable {
     var backgroundMain = UIColor.white
     var backgroundSecondary = UIColor(red: 239 / 255, green: 239 / 255, blue: 244 / 255, alpha: 1)
     var backgroundTertiary = UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1)
+    var groupedBackgroundMain = UIColor(red: 242 / 255, green: 241 / 255, blue: 246 / 255, alpha: 1)
+    var groupedBackgroundSecondary = UIColor.white
     var tableHeaderColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.9)
     var actionCancelButtonColor = UIColor(red: 239 / 255, green: 239 / 255, blue: 244 / 255, alpha: 1)
     var progressBarBackground = UIColor(red: 0.85, green: 0.85, blue: 0.87, alpha: 1)

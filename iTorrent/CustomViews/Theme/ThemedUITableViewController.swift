@@ -31,6 +31,12 @@ class ThemedUITableViewController: InsetableTableViewController, Themed {
         tableView.backgroundColor = theme.backgroundSecondary
     }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? ThemedUITableViewCell {
+            cell.setTableView(tableView)
+        }
+    }
+
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let theme = Themes.current
         if let header = view as? UITableViewHeaderFooterView {

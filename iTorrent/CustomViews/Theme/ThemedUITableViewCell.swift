@@ -19,15 +19,11 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         get {
             super.frame
         }
-        set(newFrame) {
-            var frame = newFrame
+        set {
+            var frame = newValue
             if insetStyle {
-                var rightSafeareaInset: CGFloat = safeAreaInsetsBack.right > 0 ? 23 : 0
-                var leftSafeareaInset: CGFloat = safeAreaInsetsBack.left > 0 ? 23 : 0
-//                if #available(iOS 11, *) {
-//                    rightSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.right ?? 0) > 0 ? 23 : 0
-//                    leftSafeareaInset = (UIApplication.shared.keyWindow?.safeAreaInsets.left ?? 0) > 0 ? 23 : 0
-//                }
+                let rightSafeareaInset: CGFloat = safeAreaInsetsBack.right > 0 ? 23 : 0
+                let leftSafeareaInset: CGFloat = safeAreaInsetsBack.left > 0 ? 23 : 0
                 frame.origin.x += 21 + leftSafeareaInset
                 frame.size.width -= (42 + rightSafeareaInset + leftSafeareaInset)
             }
@@ -68,16 +64,26 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         let theme = Themes.current
 
         textLabel?.textColor = theme.mainText
-        backgroundColor = theme.backgroundMain
 
         let bgColorView = UIView()
-        bgColorView.backgroundColor = theme.backgroundSecondary
+        if tableView?.style == .plain {
+            backgroundColor = theme.backgroundMain
+            bgColorView.backgroundColor = theme.backgroundSecondary
+        } else {
+            backgroundColor = theme.groupedBackgroundSecondary
+            bgColorView.backgroundColor = theme.backgroundSecondary
+        }
         selectedBackgroundView = bgColorView
     }
 
     func setInsetParams(tableView: UITableView, indexPath: IndexPath) {
         self.tableView = tableView
         self.indexPath = indexPath
+    }
+
+    func setTableView(_ tableView: UITableView) {
+        self.tableView = tableView
+        themeUpdate()
     }
 
     // Remove section top and bottom separators
