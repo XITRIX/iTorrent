@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1K-7w-hFC" customClass="SegmentedProgressView" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="123.5" y="12" width="269.5" height="4"/>
+                        <rect key="frame" x="127.5" y="12" width="261.5" height="4"/>
                         <color key="backgroundColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="4" id="cdX-Jl-a6M"/>
@@ -30,13 +30,13 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Progress" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfs-VI-evM" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="16" y="12" width="71.5" height="20.5"/>
+                        <rect key="frame" x="20" y="12" width="71.5" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hu-cy-s1b" customClass="SegmentedProgressView" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="123.5" y="28" width="269.5" height="4"/>
+                        <rect key="frame" x="127.5" y="28" width="261.5" height="4"/>
                         <color key="backgroundColor" white="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="4" id="QZV-7i-y21"/>
@@ -51,13 +51,13 @@
                 <constraints>
                     <constraint firstItem="7Hu-cy-s1b" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="8" id="17C-yd-rdw"/>
                     <constraint firstItem="7Hu-cy-s1b" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="AiC-u6-E6T"/>
-                    <constraint firstAttribute="trailing" secondItem="c1K-7w-hFC" secondAttribute="trailing" constant="16" id="HOo-NX-LBg"/>
-                    <constraint firstItem="Lfs-VI-evM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JJD-Mi-Jp1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="c1K-7w-hFC" secondAttribute="trailing" id="HOo-NX-LBg"/>
+                    <constraint firstItem="Lfs-VI-evM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="JJD-Mi-Jp1"/>
                     <constraint firstItem="7Hu-cy-s1b" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="NJJ-N5-5Xl"/>
                     <constraint firstItem="c1K-7w-hFC" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="Wib-Zd-azL"/>
                     <constraint firstItem="c1K-7w-hFC" firstAttribute="leading" secondItem="Lfs-VI-evM" secondAttribute="trailing" constant="36" id="gdA-ye-OUB"/>
                     <constraint firstAttribute="bottom" secondItem="Lfs-VI-evM" secondAttribute="bottom" constant="11.5" id="k0u-m6-Qos"/>
-                    <constraint firstAttribute="trailing" secondItem="7Hu-cy-s1b" secondAttribute="trailing" constant="16" id="oTW-l6-RGM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7Hu-cy-s1b" secondAttribute="trailing" id="oTW-l6-RGM"/>
                     <constraint firstItem="c1K-7w-hFC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-8" id="xbZ-81-jaC"/>
                     <constraint firstItem="Lfs-VI-evM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="zls-HA-fTB"/>
                 </constraints>

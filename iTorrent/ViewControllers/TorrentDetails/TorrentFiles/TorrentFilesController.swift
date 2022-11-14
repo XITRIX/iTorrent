@@ -78,7 +78,7 @@ class TorrentFilesController: ThemedUIViewController {
         priorityButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Order"), style: .plain, target: self, action: #selector(editAction))
         shareButton = UIBarButtonItem(image: #imageLiteral(resourceName: "Share"), style: .plain, target: self, action: #selector(editAction))
         
-        navigationItem.setRightBarButton(editButton, animated: false)
+//        navigationItem.setRightBarButton(editButton, animated: false)
         toolbarItems = toolBarItems
     }
     
@@ -110,7 +110,7 @@ class TorrentFilesController: ThemedUIViewController {
         observableIsEditing.observeNext { [unowned self] editing in
 //            editButton.style = editing ? .done : .plain
 //            editButton.title = editing ? "Done".localized : "Select".localized
-            navigationItem.setRightBarButton(editing ? doneButton : editButton, animated: true)
+//            navigationItem.setRightBarButton(editing ? doneButton : editButton, animated: true)
             
             setToolbarItems(editing ? editToolBarItems : toolBarItems, animated: true)
         }.dispose(in: bag)

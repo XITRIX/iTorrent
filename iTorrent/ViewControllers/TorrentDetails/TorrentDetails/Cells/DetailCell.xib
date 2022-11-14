@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,8 +39,8 @@
                 <constraints>
                     <constraint firstItem="BhU-t4-7eO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="3SC-no-6uI"/>
                     <constraint firstAttribute="bottom" secondItem="kpU-hg-G6v" secondAttribute="bottom" constant="11" id="4tq-Mc-OPS"/>
-                    <constraint firstAttribute="trailing" secondItem="kpU-hg-G6v" secondAttribute="trailing" constant="16" id="5Cg-Ak-xa6"/>
-                    <constraint firstItem="BhU-t4-7eO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="GjF-lY-ySi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="kpU-hg-G6v" secondAttribute="trailing" id="5Cg-Ak-xa6"/>
+                    <constraint firstItem="BhU-t4-7eO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="GjF-lY-ySi"/>
                     <constraint firstAttribute="bottom" secondItem="BhU-t4-7eO" secondAttribute="bottom" constant="11" id="emP-3c-xey"/>
                     <constraint firstItem="kpU-hg-G6v" firstAttribute="leading" secondItem="BhU-t4-7eO" secondAttribute="trailing" constant="8" id="uya-OS-G36"/>
                     <constraint firstItem="kpU-hg-G6v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="vQp-hZ-zXd"/>

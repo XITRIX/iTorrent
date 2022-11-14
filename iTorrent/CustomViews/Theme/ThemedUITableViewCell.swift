@@ -22,10 +22,14 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         set {
             var frame = newValue
             if insetStyle {
-                let rightSafeareaInset: CGFloat = safeAreaInsetsBack.right > 0 ? 23 : 0
-                let leftSafeareaInset: CGFloat = safeAreaInsetsBack.left > 0 ? 23 : 0
-                frame.origin.x += 21 + leftSafeareaInset
-                frame.size.width -= (42 + rightSafeareaInset + leftSafeareaInset)
+                let left = tableView?.layoutMargins.left ?? 0
+                let right = tableView?.layoutMargins.right ?? 0
+
+                frame.origin.x += left
+                frame.size.width -= left + right
+
+                layoutMargins.left = left
+                layoutMargins.right = right
             }
             super.frame = frame
 

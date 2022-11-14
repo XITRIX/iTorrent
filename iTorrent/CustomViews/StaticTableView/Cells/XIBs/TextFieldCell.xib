@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,8 +38,8 @@
                     <constraint firstItem="yPr-zf-40i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11.5" id="ONt-B1-FLT"/>
                     <constraint firstItem="1Un-WL-eLX" firstAttribute="leading" secondItem="yPr-zf-40i" secondAttribute="trailing" constant="16" id="PpY-g3-24y"/>
                     <constraint firstItem="yPr-zf-40i" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Soe-9l-Ctg"/>
-                    <constraint firstAttribute="trailing" secondItem="1Un-WL-eLX" secondAttribute="trailing" constant="16" id="cDI-rr-l7f"/>
-                    <constraint firstItem="yPr-zf-40i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="k6k-OV-bbV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1Un-WL-eLX" secondAttribute="trailing" id="cDI-rr-l7f"/>
+                    <constraint firstItem="yPr-zf-40i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="k6k-OV-bbV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

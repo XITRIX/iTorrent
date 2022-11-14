@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -25,29 +25,29 @@
                                         <rect key="frame" x="0.0" y="50" width="375" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GjT-8w-TC9" id="tHf-tJ-Yom">
-                                            <rect key="frame" x="0.0" y="0.0" width="347.66666666666669" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.66666666666669" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2E-cl-SK6">
-                                                    <rect key="frame" x="13" y="8" width="321.66666666666669" height="18"/>
+                                                    <rect key="frame" x="20" y="8" width="316.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lUK-y0-kWO">
-                                                    <rect key="frame" x="13" y="30" width="321.66666666666669" height="18"/>
+                                                    <rect key="frame" x="20" y="30" width="316.66666666666669" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dGO-ld-VzN">
-                                                    <rect key="frame" x="13" y="48" width="321.66666666666669" height="15.666666666666664"/>
+                                                    <rect key="frame" x="20" y="48" width="316.66666666666669" height="15.666666666666664"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="j87-xc-3WG">
-                                                    <rect key="frame" x="13" y="70" width="321.66666666666669" height="4"/>
+                                                    <rect key="frame" x="20" y="70" width="316.66666666666669" height="4"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="4" id="4RZ-L6-3YT"/>
@@ -63,16 +63,16 @@
                                                 <constraint firstItem="lUK-y0-kWO" firstAttribute="top" secondItem="w2E-cl-SK6" secondAttribute="bottom" constant="4" id="5XM-an-ejJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="j87-xc-3WG" secondAttribute="bottom" constant="8" id="6PM-pD-KXd"/>
                                                 <constraint firstItem="j87-xc-3WG" firstAttribute="top" secondItem="dGO-ld-VzN" secondAttribute="bottom" constant="6.3300000000000001" id="7Rq-Mj-3gr"/>
-                                                <constraint firstAttribute="trailing" secondItem="lUK-y0-kWO" secondAttribute="trailing" constant="13" id="B29-3x-9oE"/>
-                                                <constraint firstItem="w2E-cl-SK6" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leading" constant="13" id="DO3-eA-Uly"/>
-                                                <constraint firstAttribute="trailing" secondItem="j87-xc-3WG" secondAttribute="trailing" constant="13" id="OL1-3t-eCM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lUK-y0-kWO" secondAttribute="trailing" id="B29-3x-9oE"/>
+                                                <constraint firstItem="w2E-cl-SK6" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leadingMargin" id="DO3-eA-Uly"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="j87-xc-3WG" secondAttribute="trailing" id="OL1-3t-eCM"/>
                                                 <constraint firstItem="dGO-ld-VzN" firstAttribute="top" secondItem="lUK-y0-kWO" secondAttribute="bottom" id="S2Z-p3-HCh"/>
-                                                <constraint firstItem="dGO-ld-VzN" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leading" constant="13" id="WLN-R5-gwt"/>
-                                                <constraint firstItem="j87-xc-3WG" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leading" constant="13" id="Yhg-is-MZR"/>
-                                                <constraint firstAttribute="trailing" secondItem="dGO-ld-VzN" secondAttribute="trailing" constant="13" id="jk2-m8-wFL"/>
+                                                <constraint firstItem="dGO-ld-VzN" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leadingMargin" id="WLN-R5-gwt"/>
+                                                <constraint firstItem="j87-xc-3WG" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leadingMargin" id="Yhg-is-MZR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dGO-ld-VzN" secondAttribute="trailing" id="jk2-m8-wFL"/>
                                                 <constraint firstItem="w2E-cl-SK6" firstAttribute="top" secondItem="tHf-tJ-Yom" secondAttribute="top" constant="8" id="rc8-FE-6Fc"/>
-                                                <constraint firstAttribute="trailing" secondItem="w2E-cl-SK6" secondAttribute="trailing" constant="13" id="u6P-9y-0uu"/>
-                                                <constraint firstItem="lUK-y0-kWO" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leading" constant="13" id="zf9-r7-NN0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="w2E-cl-SK6" secondAttribute="trailing" id="u6P-9y-0uu"/>
+                                                <constraint firstItem="lUK-y0-kWO" firstAttribute="leading" secondItem="tHf-tJ-Yom" secondAttribute="leadingMargin" id="zf9-r7-NN0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -85,7 +85,7 @@
                                 </prototypes>
                             </tableView>
                             <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7j-3O-T4A">
-                                <rect key="frame" x="57.666666666666657" y="351.33333333333331" width="260" height="130.66666666666669"/>
+                                <rect key="frame" x="57.666666666666657" y="352.66666666666669" width="260" height="130.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tMU-dN-W3p">
                                         <rect key="frame" x="0.0" y="0.0" width="260" height="130.66666666666666"/>
@@ -206,10 +206,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fim-SI-BRV">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fim-SI-BRV">
                                 <rect key="frame" x="0.0" y="20" width="375" height="792"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-WS-LyB">
+                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-WS-LyB">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="7oo-qb-XiQ">
@@ -296,7 +296,7 @@ Thanks for all your support!</string>
                                                                 </constraints>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="8"/>
+                                                                        <integer key="value" value="12"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
@@ -349,7 +349,7 @@ Thanks for all your support!</string>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
+                                                                <integer key="value" value="12"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
@@ -368,7 +368,7 @@ Thanks for all your support!</string>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="8"/>
+                                                                        <integer key="value" value="12"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
@@ -387,7 +387,7 @@ Thanks for all your support!</string>
                                                                 </state>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="8"/>
+                                                                        <integer key="value" value="12"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
@@ -476,9 +476,9 @@ Thanks for all your support!</string>
                         <viewLayoutGuide key="safeArea" id="2go-8C-vqG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7oo-qb-XiQ" firstAttribute="leading" secondItem="2go-8C-vqG" secondAttribute="leading" constant="16" id="Ee1-Tw-9RW"/>
+                            <constraint firstItem="7oo-qb-XiQ" firstAttribute="leading" secondItem="rr6-WS-LyB" secondAttribute="leadingMargin" id="Ee1-Tw-9RW"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="trailing" secondItem="GTC-Uy-e9M" secondAttribute="trailing" id="Iw2-Pm-Crs"/>
-                            <constraint firstItem="2go-8C-vqG" firstAttribute="trailing" secondItem="7oo-qb-XiQ" secondAttribute="trailing" constant="16" id="Jwe-gs-1gy"/>
+                            <constraint firstItem="rr6-WS-LyB" firstAttribute="trailingMargin" secondItem="7oo-qb-XiQ" secondAttribute="trailing" id="Jwe-gs-1gy"/>
                             <constraint firstAttribute="bottom" secondItem="fim-SI-BRV" secondAttribute="bottom" id="SGL-Ia-24J"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="top" secondItem="GTC-Uy-e9M" secondAttribute="top" constant="20" symbolic="YES" id="Yne-T3-zD9"/>
                             <constraint firstItem="fim-SI-BRV" firstAttribute="leading" secondItem="GTC-Uy-e9M" secondAttribute="leading" id="igF-Kz-lse"/>
@@ -539,13 +539,13 @@ Thanks for all your support!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-Dj-AZt" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666664" width="32" height="21"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="32" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTA-ph-5aV" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="64" y="11.333333333333336" width="295" height="21"/>
+                                                    <rect key="frame" x="68" y="11.333333333333336" width="287" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -558,12 +558,12 @@ Thanks for all your support!</string>
                                             </subviews>
                                             <viewLayoutGuide key="safeArea" id="e9w-kH-xqA"/>
                                             <constraints>
-                                                <constraint firstItem="8Bh-Dj-AZt" firstAttribute="leading" secondItem="e9w-kH-xqA" secondAttribute="leading" constant="16" id="6iH-8S-qZi"/>
+                                                <constraint firstItem="8Bh-Dj-AZt" firstAttribute="leading" secondItem="QYA-FU-hOc" secondAttribute="leadingMargin" id="6iH-8S-qZi"/>
                                                 <constraint firstItem="qTA-ph-5aV" firstAttribute="leading" secondItem="8Bh-Dj-AZt" secondAttribute="trailing" constant="16" id="E6z-SZ-QxM"/>
                                                 <constraint firstItem="8Bh-Dj-AZt" firstAttribute="top" secondItem="QYA-FU-hOc" secondAttribute="top" constant="11.67" id="Maf-zr-7Na"/>
                                                 <constraint firstItem="qTA-ph-5aV" firstAttribute="centerY" secondItem="QYA-FU-hOc" secondAttribute="centerY" id="cUE-wK-dhy"/>
                                                 <constraint firstAttribute="bottom" secondItem="8Bh-Dj-AZt" secondAttribute="bottom" constant="11" id="cjK-MN-hTH"/>
-                                                <constraint firstAttribute="trailing" secondItem="qTA-ph-5aV" secondAttribute="trailing" constant="16" id="lrv-mw-5iz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="qTA-ph-5aV" secondAttribute="trailing" id="lrv-mw-5iz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -575,13 +575,13 @@ Thanks for all your support!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNh-58-8Ne" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666664" width="33" height="21"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="33" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjj-Vr-LFF" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="65" y="11.333333333333336" width="294" height="21"/>
+                                                    <rect key="frame" x="69" y="11.333333333333336" width="286" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -595,8 +595,8 @@ Thanks for all your support!</string>
                                             <constraints>
                                                 <constraint firstItem="fjj-Vr-LFF" firstAttribute="centerY" secondItem="7iZ-2O-Exf" secondAttribute="centerY" id="3hl-Fe-XKf"/>
                                                 <constraint firstAttribute="bottom" secondItem="kNh-58-8Ne" secondAttribute="bottom" constant="11" id="Fs6-XV-rhF"/>
-                                                <constraint firstAttribute="trailing" secondItem="fjj-Vr-LFF" secondAttribute="trailing" constant="16" id="Hih-gw-a18"/>
-                                                <constraint firstItem="kNh-58-8Ne" firstAttribute="leading" secondItem="7iZ-2O-Exf" secondAttribute="leading" constant="16" id="IoO-m1-OVo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fjj-Vr-LFF" secondAttribute="trailing" id="Hih-gw-a18"/>
+                                                <constraint firstItem="kNh-58-8Ne" firstAttribute="leading" secondItem="7iZ-2O-Exf" secondAttribute="leadingMargin" id="IoO-m1-OVo"/>
                                                 <constraint firstItem="fjj-Vr-LFF" firstAttribute="leading" secondItem="kNh-58-8Ne" secondAttribute="trailing" constant="16" id="bmp-qN-LPf"/>
                                                 <constraint firstItem="kNh-58-8Ne" firstAttribute="top" secondItem="7iZ-2O-Exf" secondAttribute="top" constant="11.67" id="gbS-9y-ddi"/>
                                             </constraints>
@@ -610,13 +610,13 @@ Thanks for all your support!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggn-IC-6GD" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666664" width="87.666666666666671" height="21"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="87.666666666666671" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYU-Sm-CHK" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="119.66666666666667" y="11.333333333333336" width="239.33333333333331" height="21"/>
+                                                    <rect key="frame" x="123.66666666666667" y="11.333333333333336" width="231.33333333333331" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -629,9 +629,9 @@ Thanks for all your support!</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CYU-Sm-CHK" firstAttribute="centerY" secondItem="nwM-su-8LL" secondAttribute="centerY" id="ZHf-6n-wzw"/>
-                                                <constraint firstAttribute="trailing" secondItem="CYU-Sm-CHK" secondAttribute="trailing" constant="16" id="f18-za-ejL"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CYU-Sm-CHK" secondAttribute="trailing" id="f18-za-ejL"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ggn-IC-6GD" secondAttribute="bottom" constant="11" id="ivF-0U-dRK"/>
-                                                <constraint firstItem="Ggn-IC-6GD" firstAttribute="leading" secondItem="nwM-su-8LL" secondAttribute="leading" constant="16" id="lHj-U1-oqs"/>
+                                                <constraint firstItem="Ggn-IC-6GD" firstAttribute="leading" secondItem="nwM-su-8LL" secondAttribute="leadingMargin" id="lHj-U1-oqs"/>
                                                 <constraint firstItem="CYU-Sm-CHK" firstAttribute="leading" secondItem="Ggn-IC-6GD" secondAttribute="trailing" constant="16" id="nbP-YU-4Yx"/>
                                                 <constraint firstItem="Ggn-IC-6GD" firstAttribute="top" secondItem="nwM-su-8LL" secondAttribute="top" constant="11.67" id="ynJ-Ie-YSZ"/>
                                             </constraints>
@@ -645,20 +645,20 @@ Thanks for all your support!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify on update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSm-iV-XGN" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="11.666666666666664" width="286" height="21"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="278" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aod-lD-LrV">
-                                                    <rect key="frame" x="310" y="6.3333333333333321" width="51" height="30.999999999999996"/>
+                                                    <rect key="frame" x="306" y="6.3333333333333321" width="51" height="30.999999999999996"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZSm-iV-XGN" firstAttribute="leading" secondItem="9DN-yt-TY4" secondAttribute="leading" constant="16" id="0aI-q7-J99"/>
+                                                <constraint firstItem="ZSm-iV-XGN" firstAttribute="leading" secondItem="9DN-yt-TY4" secondAttribute="leadingMargin" id="0aI-q7-J99"/>
                                                 <constraint firstItem="Aod-lD-LrV" firstAttribute="leading" secondItem="ZSm-iV-XGN" secondAttribute="trailing" constant="8" id="DC3-ey-Puv"/>
                                                 <constraint firstItem="Aod-lD-LrV" firstAttribute="centerY" secondItem="9DN-yt-TY4" secondAttribute="centerY" id="KIC-8R-fdl"/>
-                                                <constraint firstAttribute="trailing" secondItem="Aod-lD-LrV" secondAttribute="trailing" constant="16" id="S3S-lO-ZFY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Aod-lD-LrV" secondAttribute="trailing" id="S3S-lO-ZFY"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZSm-iV-XGN" secondAttribute="bottom" constant="11" id="VKD-PB-mfX"/>
                                                 <constraint firstItem="ZSm-iV-XGN" firstAttribute="top" secondItem="9DN-yt-TY4" secondAttribute="top" constant="11.67" id="W3x-Gi-dZe"/>
                                             </constraints>
@@ -693,7 +693,7 @@ Thanks for all your support!</string>
             <objects>
                 <navigationController storyboardIdentifier="NavigationController" toolbarHidden="NO" id="Xbv-vm-Jxy" customClass="ThemedUINavigationController" customModule="iTorrent" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wfe-CB-Byd">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="USp-Cq-iSZ">
@@ -783,37 +783,37 @@ Thanks for all your support!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6dz-7f-U5v">
-                                                    <rect key="frame" x="16" y="8" width="343" height="72"/>
+                                                    <rect key="frame" x="20" y="8" width="335" height="72"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gY-6c-JgS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="22.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="22.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3q-Rb-9Cx">
-                                                            <rect key="frame" x="0.0" y="30.333333333333336" width="343" height="18"/>
+                                                            <rect key="frame" x="0.0" y="30.333333333333336" width="335" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eug-BP-UkO">
-                                                            <rect key="frame" x="0.0" y="56.333333333333321" width="343" height="15.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="56.333333333333321" width="335" height="15.666666666666664"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f7-B9-PJf" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="114.33333333333333" height="15.666666666666666"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="15.666666666666666"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGp-f9-hrr" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                                    <rect key="frame" x="114.33333333333334" y="0.0" width="114.33333333333334" height="15.666666666666666"/>
+                                                                    <rect key="frame" x="111.66666666666666" y="0.0" width="111.66666666666666" height="15.666666666666666"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzQ-xz-c6A" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                                    <rect key="frame" x="228.66666666666666" y="0.0" width="114.33333333333334" height="15.666666666666666"/>
+                                                                    <rect key="frame" x="223.33333333333334" y="0.0" width="111.66666666666666" height="15.666666666666666"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -825,9 +825,9 @@ Thanks for all your support!</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="6dz-7f-U5v" secondAttribute="bottom" constant="8" id="6n8-px-m1K"/>
-                                                <constraint firstAttribute="trailing" secondItem="6dz-7f-U5v" secondAttribute="trailing" constant="16" id="k55-FT-qGc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6dz-7f-U5v" secondAttribute="trailing" id="k55-FT-qGc"/>
                                                 <constraint firstItem="6dz-7f-U5v" firstAttribute="top" secondItem="tdS-Ab-BgC" secondAttribute="top" constant="8" id="oNE-sp-aFe"/>
-                                                <constraint firstItem="6dz-7f-U5v" firstAttribute="leading" secondItem="tdS-Ab-BgC" secondAttribute="leading" constant="16" id="v3W-3d-bTl"/>
+                                                <constraint firstItem="6dz-7f-U5v" firstAttribute="leading" secondItem="tdS-Ab-BgC" secondAttribute="leadingMargin" id="v3W-3d-bTl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -894,9 +894,9 @@ Thanks for all your support!</string>
         <image name="Settings" width="25" height="25"/>
         <image name="Sort" width="25" height="25"/>
         <image name="Xitrix" width="52" height="52"/>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="chevron.right" catalog="system" width="96" height="128"/>
-        <image name="safari" catalog="system" width="128" height="121"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="safari" catalog="system" width="128" height="123"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

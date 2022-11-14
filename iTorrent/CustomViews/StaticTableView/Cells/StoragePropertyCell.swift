@@ -26,7 +26,10 @@ class StoragePropertyCell: ThemedUITableViewCell, PreferenceCellProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        progressBarView.layer.cornerRadius = 4
+        progressBarView.layer.cornerRadius = 6
+        if #available(iOS 13.0, *) {
+            progressBarView.layer.cornerCurve = .continuous
+        }
         updateBarData()
         
         MemorySpaceManager.shared.calculateDetailedSections { [weak self] _ in
