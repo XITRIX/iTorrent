@@ -301,6 +301,7 @@
 		7CC7662723F93F690072338B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7662623F93F690072338B /* NotificationHelper.swift */; };
 		7CC9B34E2816E1F3001A13ED /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
 		7CC9B34F2816E1F3001A13ED /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7CCCC8232922E08100C63102 /* UIEdgeInsetsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCC8222922E08100C63102 /* UIEdgeInsetsExtensions.swift */; };
 		7CCD02C72438962B00B1669F /* ArrayExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02C62438962B00B1669F /* ArrayExtentions.swift */; };
 		7CCD02C924389A4F00B1669F /* DiffCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02C824389A4F00B1669F /* DiffCalculator.swift */; };
 		7CCD02CB2439F2C600B1669F /* TorrentListController+SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD02CA2439F2C600B1669F /* TorrentListController+SearchView.swift */; };
@@ -519,6 +520,7 @@
 		7CC7662623F93F690072338B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		7CCC8DFA25D1E257008F79C3 /* Info-L.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-L.plist"; sourceTree = "<group>"; };
 		7CCC8EEA25D2EFA9008F79C3 /* Info-T.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-T.plist"; sourceTree = "<group>"; };
+		7CCCC8222922E08100C63102 /* UIEdgeInsetsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsetsExtensions.swift; sourceTree = "<group>"; };
 		7CCD02C62438962B00B1669F /* ArrayExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtentions.swift; sourceTree = "<group>"; };
 		7CCD02C824389A4F00B1669F /* DiffCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCalculator.swift; sourceTree = "<group>"; };
 		7CCD02CA2439F2C600B1669F /* TorrentListController+SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TorrentListController+SearchView.swift"; sourceTree = "<group>"; };
@@ -1026,23 +1028,24 @@
 		7CBEFA5E240D68BA00FEEA05 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				7C63965A27D72FC500062DE4 /* BackportIosApi.swift */,
 				7CCD02C62438962B00B1669F /* ArrayExtentions.swift */,
+				7C63965A27D72FC500062DE4 /* BackportIosApi.swift */,
 				7C8BF081248ECEB30004603A /* DateExtensions.swift */,
 				7CB1769224564289005CEEA6 /* FileManagerExtensions.swift */,
+				7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */,
 				7C74B8512125BE4700988F1C /* NotificationNamesExtention.swift */,
+				7C6011492547345100A0EFC5 /* ObservableExtension.swift */,
 				7CB60F3E249FFD0200F4D20B /* StringExtension.swift */,
 				7CE61CB02426B75B0038717C /* UIColorExtentions.swift */,
+				7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */,
 				7CE3551F248C254B007C9685 /* UIImageViewExtensions.swift */,
 				7CBEFA5F240D68DC00FEEA05 /* UILabelExtentions.swift */,
 				7C98410524A4EAD700B51AA0 /* UINavigationControllerExtensions.swift */,
+				7C047EE627EE054100E5363B /* UITableViewCellExtensions.swift */,
 				7C0A334824A91A9100EF33D0 /* UITableViewExtensions.swift */,
 				7CCD02CE243A7EF400B1669F /* UIViewControllerExtentions.swift */,
 				7C495526244E4B3B0057648A /* UIViewExtensions.swift */,
-				7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */,
-				7C65304F253F75ED0011A91E /* MutableObservableArrayExtension.swift */,
-				7C6011492547345100A0EFC5 /* ObservableExtension.swift */,
-				7C047EE627EE054100E5363B /* UITableViewCellExtensions.swift */,
+				7CCCC8222922E08100C63102 /* UIEdgeInsetsExtensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1714,6 +1717,7 @@
 				7CF75F21244B42EE00F5C089 /* PatreonAPI.swift in Sources */,
 				7CDD30FA24DC7355000C38F6 /* UIFontExtensions.swift in Sources */,
 				7CB1769324564289005CEEA6 /* FileManagerExtensions.swift in Sources */,
+				7CCCC8232922E08100C63102 /* UIEdgeInsetsExtensions.swift in Sources */,
 				7C99E365237B3CB900FB66F0 /* TextFieldCell.swift in Sources */,
 				7C5D7684230335A4002E1352 /* FilesBrowserController.swift in Sources */,
 				7CCD310A249D479900ECF631 /* NetworkPreferencesController.swift in Sources */,

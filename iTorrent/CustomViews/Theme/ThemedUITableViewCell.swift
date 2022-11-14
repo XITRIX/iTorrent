@@ -27,9 +27,6 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
                 frame.origin.x += left
                 frame.size.width -= left + right
-
-                layoutMargins.left = left
-                layoutMargins.right = right
             }
             super.frame = frame
 
@@ -41,9 +38,38 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         }
     }
 
+    var defaultMargins: UIEdgeInsets {
+        let res: UIEdgeInsets
+
+        if #available(iOS 11.0, *) {
+            let system = tableView?.parentViewController?.systemMinimumLayoutMargins
+            res = UIEdgeInsets(system ?? .init(top: 0, leading: 16, bottom: 0, trailing: 16))
+        } else {
+            res = .init(top: 0, left: 16, bottom: 0, right: 16)
+        }
+
+        return res
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
+    }
+
+    override var layoutMargins: UIEdgeInsets {
+        get { defaultMargins }
+        set { super.layoutMargins = defaultMargins }
+    }
+
+    @available(iOS 11.0, *)
+    override var directionalLayoutMargins: NSDirectionalEdgeInsets {
+        get { .init(defaultMargins) }
+        set { super.directionalLayoutMargins = .init(defaultMargins) }
+    }
+
+    override var preservesSuperviewLayoutMargins: Bool {
+        get { false }
+        set { super.preservesSuperviewLayoutMargins = false }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -95,10 +121,13 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         super.layoutSubviews()
 
         for subview in subviews {
-            if subview != contentView {
+            if subview != contentView, subview.frame.height < 3 {
                 if subview.frame.width == frame.width {
                     subview.isHidden = insetStyle
                 } else {
+                    let margins = defaultMargins
+                    let subviewFrame = subview.frame
+                    subview.frame = .init(x: margins.left, y: subviewFrame.minY, width: frame.width - margins.left, height: subviewFrame.height)
                     subview.isHidden = false
                 }
             }

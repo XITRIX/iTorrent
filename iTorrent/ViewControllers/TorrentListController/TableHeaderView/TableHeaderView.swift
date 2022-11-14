@@ -19,6 +19,7 @@ class TableHeaderView: UITableViewHeaderFooterView, Themed {
         super.awakeFromNib()
         NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
         themeUpdate()
+        setupFont()
         
         if #available(iOS 14.0, *) {
             var backgroundConfig = UIBackgroundConfiguration.clear()
@@ -33,5 +34,13 @@ class TableHeaderView: UITableViewHeaderFooterView, Themed {
     
     @objc func themeUpdate() {
         background.effect = UIBlurEffect(style: Themes.current.blurEffect)
+    }
+
+    func setupFont() {
+        let font = UIFont.systemFont(ofSize: 15)
+        if #available(iOS 11.0, *) {
+            let fontMetrics = UIFontMetrics(forTextStyle: .body)
+            title.font = fontMetrics.scaledFont(for: font)
+        }
     }
 }
