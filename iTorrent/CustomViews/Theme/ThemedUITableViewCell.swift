@@ -61,17 +61,6 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         set { super.layoutMargins = defaultMargins }
     }
 
-    @available(iOS 11.0, *)
-    override var directionalLayoutMargins: NSDirectionalEdgeInsets {
-        get { .init(defaultMargins) }
-        set { super.directionalLayoutMargins = .init(defaultMargins) }
-    }
-
-    override var preservesSuperviewLayoutMargins: Bool {
-        get { false }
-        set { super.preservesSuperviewLayoutMargins = false }
-    }
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

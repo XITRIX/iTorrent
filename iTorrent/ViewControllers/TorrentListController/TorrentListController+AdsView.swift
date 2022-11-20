@@ -33,7 +33,7 @@ extension TorrentListController {
 }
 
 extension TorrentListController: GADBannerViewDelegate {
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
         adsLoaded = false
 
         bannerView.isHidden = true

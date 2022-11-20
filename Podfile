@@ -1,6 +1,6 @@
 #plugin 'cocoapods-binary'
 
-platform :ios, '9.3'
+platform :ios, '11.0'
 #enable_bitcode_for_prebuilt_frameworks!
 #keep_source_code_for_prebuilt_frameworks!
 #all_binary!
@@ -13,10 +13,10 @@ target 'iTorrent' do
   pod 'DeepDiff'
   pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
   pod 'Google-Mobile-Ads-SDK'
-  pod 'Firebase/Core', "~> 6.30.0"
+  pod 'Firebase/Core'
   pod 'Firebase/Performance'
   pod 'FirebaseCrashlytics'
-  pod 'AppCenter', "~> 4.0.0"
+  pod 'AppCenter'
   pod 'Bond'
 end
 

@@ -21,7 +21,8 @@ class PopupViewController: ThemedUIViewController {
     
     var dismissAction: (() -> ())?
     var customAction: (() -> ())?
-    
+
+    private var contentController: UIViewController?
     private var contentView: UIView
     private var contentHeight: CGFloat
     
@@ -34,6 +35,7 @@ class PopupViewController: ThemedUIViewController {
     }
     
     init(_ content: UIViewController, contentHeight: CGFloat) {
+        self.contentController = content
         self.contentView = content.view
         self.contentHeight = contentHeight
         
@@ -74,8 +76,13 @@ class PopupViewController: ThemedUIViewController {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         containerView.addSubview(contentView)
+        
+        if let controller = contentController {
+            addChild(controller)
+            controller.didMove(toParent: self)
+        }
         
         contentView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
