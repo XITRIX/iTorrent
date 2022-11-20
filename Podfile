@@ -21,28 +21,30 @@ target 'iTorrent' do
 end
 
 post_install do |installer|
-	installer.pods_project.targets.each do |target|
-		if target.name == "Pods-[Name of Project]"
+  installer.pods_project.targets.each do |target|
+    if target.name == "Pods-[Name of Project]"
       puts "Updating #{target.name} to exclude Crashlytics/Fabric"
       target.build_configurations.each do |config|
-        xcconfig_path = config.base_configuration_reference.real_path
+       	xcconfig_path = config.base_configuration_reference.real_path
         xcconfig = File.read(xcconfig_path)
         xcconfig.sub!('-framework "Crashlytics"', '')
         xcconfig.sub!('-framework "Fabric"', '')
         new_xcconfig = xcconfig + 'OTHER_LDFLAGS[sdk=iphone*] = -framework "Crashlytics" -framework "Fabric"'
         File.open(xcconfig_path, "w") { |file| file << new_xcconfig }
       end
-    end
-		target.build_configurations.each do |config|
-			config.build_settings['ENABLE_BITCODE'] = 'YES'
-      			config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-		end
-	end
+    end	
 
-	#fix MarqueeLabel IBDesignable error
-	installer.pods_project.build_configurations.each do |config|
-    		config.build_settings.delete('CODE_SIGNING_ALLOWED')
-    		config.build_settings.delete('CODE_SIGNING_REQUIRED')
-  	end
+    #fix M1 build
+    target.build_configurations.each do |config|
+      config.build_settings['ENABLE_BITCODE'] = 'YES'
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+  end
+
+  #fix MarqueeLabel IBDesignable error
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings.delete('CODE_SIGNING_ALLOWED')
+    config.build_settings.delete('CODE_SIGNING_REQUIRED')
+  end
 end
 
