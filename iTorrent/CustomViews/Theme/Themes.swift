@@ -81,7 +81,7 @@ class Themes {
         }
 
         theme.append(ColorPalett())
-        theme.append(darkTheme)
+        theme.append(darkTheme.applyIOS13Colors())
     }
 
     static var current: ColorPalett {
@@ -124,5 +124,19 @@ struct ColorPalett: Equatable {
         } else {
             blurEffect = .extraLight
         }
+
+        applyIOS13Colors()
+    }
+
+    @discardableResult
+    mutating func applyIOS13Colors() -> Self {
+        if #available(iOS 13, *) {
+            backgroundMain = .systemBackground
+            backgroundSecondary = .secondarySystemBackground
+            backgroundTertiary = .tertiarySystemBackground
+            groupedBackgroundMain = .systemGroupedBackground
+            groupedBackgroundSecondary = .secondarySystemGroupedBackground
+        }
+        return self
     }
 }
