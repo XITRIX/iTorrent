@@ -20,6 +20,10 @@ target 'iTorrent' do
   pod 'Bond'
 end
 
+#target 'iTorrent-ProgressWidgetExtension' do
+#  use_frameworks!
+#end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     if target.name == "Pods-[Name of Project]"

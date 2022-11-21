@@ -9,10 +9,15 @@
 			<key>orderHint</key>
 			<integer>30</integer>
 		</dict>
-		<key>iTorrent-Transmission.xcscheme_^#shared#^_</key>
+		<key>iTorrent-ProgressWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>26</integer>
+		</dict>
+		<key>iTorrent-Transmission.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
 		</dict>
 		<key>iTorrent.xcscheme_^#shared#^_</key>
 		<dict>

@@ -64,7 +64,7 @@ class Themes {
         darkTheme.storageBarOther = UIColor(hex: "#929296")!
         darkTheme.storageBarEmpty = UIColor(hex: "#333333")!
         darkTheme.actionButtonColor = .orange
-        darkTheme.tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
+        darkTheme.tintColor = .mainColor
         darkTheme.statusBarStyle = .lightContent
         darkTheme.barStyle = .blackTranslucent
         darkTheme.keyboardAppearence = .dark
@@ -106,7 +106,7 @@ struct ColorPalett: Equatable {
     var storageBarOther = UIColor(hex: "#d0d1d5")!
     var storageBarEmpty = UIColor(hex: "#f1f2f6")!
     var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-    var tintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
+    var tintColor = UIColor.mainColor
     var statusBarStyle: UIStatusBarStyle = .default
     var barStyle: UIBarStyle = .default
     var blurEffect: UIBlurEffect.Style
