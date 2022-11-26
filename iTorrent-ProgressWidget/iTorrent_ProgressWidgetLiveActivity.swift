@@ -11,8 +11,9 @@ import WidgetKit
 import SwiftUI
 
 public struct iTorrent_ProgressWidgetAttributes: ActivityAttributes {
-    public init(name: String) {
+    public init(name: String, hash: String) {
         self.name = name
+        self.hash = hash
     }
 
     public struct ContentState: Codable, Hashable {
@@ -32,7 +33,7 @@ public struct iTorrent_ProgressWidgetAttributes: ActivityAttributes {
 
     // Fixed non-changing properties about your activity go here!
     public var name: String
-//    public var hash: String
+    public var hash: String
 }
 
 @available(iOS 16.1, *)
@@ -49,6 +50,7 @@ struct iTorrent_ProgressWidgetLiveActivity: Widget {
                 ProgressView(value: context.state.progress)
                     .progressViewStyle(.linear)
             }
+            .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
             .tint(Color(uiColor: .mainColor))
             .padding()
 //            .activityBackgroundTint(Color.cyan)
@@ -82,7 +84,7 @@ struct iTorrent_ProgressWidgetLiveActivity: Widget {
             } minimal: {
                 Text("\(String(format: "%.2f", context.state.progress * 100))%")
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
+            .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
             .keylineTint(Color(uiColor: .mainColor))
         }
     }

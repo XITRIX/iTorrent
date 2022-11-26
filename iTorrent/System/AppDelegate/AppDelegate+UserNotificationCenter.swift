@@ -44,17 +44,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     semaphore.wait()
 
                     DispatchQueue.main.async {
-                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
+                        AppDelegate.openTorrentDetailsViewController(withHash: hash, sender: self)
                     }
                 }
             } else {
-                openTorrentDetailsViewController(withHash: hash, sender: self)
+                AppDelegate.openTorrentDetailsViewController(withHash: hash, sender: self)
             }
         }
         completionHandler()
     }
 
-    func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
+    static func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
         let viewController = TorrentDetailsController()
         if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             viewController.managerHash = hash
@@ -62,6 +62,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 if splitViewController.viewControllers.count > 1,
                     let nvc = splitViewController.viewControllers[1] as? UINavigationController
                 {
+                    if let details = nvc.topViewController as? TorrentDetailsController,
+                       details.managerHash == hash
+                    { return }
+
                     nvc.show(viewController, sender: sender)
                 } else {
                     let navController = Utils.instantiateNavigationController(viewController)
@@ -69,6 +73,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     splitViewController.showDetailViewController(navController, sender: sender)
                 }
             } else {
+                if let nvc = splitViewController.viewControllers.first as? UINavigationController,
+                   let details = nvc.topViewController as? TorrentDetailsController,
+                   details.managerHash == hash
+                { return }
+                
                 splitViewController.showDetailViewController(viewController, sender: sender)
             }
         }

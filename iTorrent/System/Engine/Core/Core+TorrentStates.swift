@@ -35,7 +35,9 @@ extension Core {
                                                 hash: manager.hash)
 
             if UserPreferences.badgeKey && AppDelegate.backgrounded {
-                UIApplication.shared.applicationIconBadgeNumber += 1
+                DispatchQueue.main.async {
+                    UIApplication.shared.applicationIconBadgeNumber += 1
+                }
             }
             
             return
@@ -48,7 +50,9 @@ extension Core {
                                                 hash: manager.hash)
 
             if UserPreferences.badgeKey && AppDelegate.backgrounded {
-                UIApplication.shared.applicationIconBadgeNumber += 1
+                DispatchQueue.main.async {
+                    UIApplication.shared.applicationIconBadgeNumber += 1
+                }
             }
             
             return
@@ -78,28 +82,38 @@ private extension Core {
 
     func showLiveActivity(with manager: TorrentModel) {
         if #available(iOS 16.1, *) {
-            let attributes = iTorrent_ProgressWidgetAttributes(name: manager.title)
+            let attributes = iTorrent_ProgressWidgetAttributes(name: manager.title, hash: manager.hash)
             let contentState = getState(from: manager)
 
-            do {
-                _ = try Activity<iTorrent_ProgressWidgetAttributes>.request(attributes: attributes, contentState: contentState, pushType: .none)
-            } catch {
-                print(error.localizedDescription)
+            DispatchQueue.main.async {
+                do {
+                    _ = try Activity<iTorrent_ProgressWidgetAttributes>.request(attributes: attributes, contentState: contentState, pushType: .none)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
 
     func update(with manager: TorrentModel) {
         if #available(iOS 16.1, *) {
-            Task {
-                for activity in Activity<iTorrent_ProgressWidgetAttributes>.activities {
-                    if activity.attributes.name == manager.title {
-                        if manager.displayState == .downloading {
-                            let contentState = getState(from: manager)
-                            await activity.update(using: contentState, alertConfiguration: .none)
-                        } else {
-                            await activity.end(dismissalPolicy: .immediate)
+            DispatchQueue.main.async {
+                Task(priority: .userInitiated) {
+                    for activity in Activity<iTorrent_ProgressWidgetAttributes>.activities {
+                        if activity.attributes.name == manager.title {
+                            if manager.displayState == .downloading {
+                                let contentState = self.getState(from: manager)
+                                await activity.update(using: contentState)
+                                return
+                            } else {
+                                await activity.end(dismissalPolicy: .immediate)
+                                return
+                            }
                         }
+                    }
+
+                    if manager.displayState == .downloading {
+                        self.showLiveActivity(with: manager)
                     }
                 }
             }

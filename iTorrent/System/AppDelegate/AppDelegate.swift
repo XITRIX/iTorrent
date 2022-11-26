@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Path: " + url.path)
         if url.absoluteString.hasPrefix("magnet:") {
             Core.shared.addMagnet(url.absoluteString)
+        } else if url.absoluteString.hasPrefix("iTorrent:hash:") {
+            AppDelegate.openTorrentDetailsViewController(withHash: url.absoluteString.replacingOccurrences(of: "iTorrent:hash:", with: ""), sender: self)
         } else {
             let openInPlace = options[.openInPlace] as? Bool ?? false
             Core.shared.addTorrentFromFile(url, openInPlace: openInPlace)
