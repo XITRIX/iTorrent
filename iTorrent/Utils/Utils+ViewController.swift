@@ -49,8 +49,7 @@ extension Utils {
     }
 
     public static func createEmptyViewController() -> UIViewController {
-        let view = ThemedUIViewController()
-        return view
+        EmptyViewController()
     }
 
     public static func openUrl(_ url: String) {

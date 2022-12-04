@@ -42,13 +42,13 @@ extension AppDelegate {
 ////            svc.delegate = self
 ////            svc.preferredDisplayMode = .allVisible
 //        } else {
-            let svc = ThemedUISplitViewController()
-            svc.viewControllers = [nvc]
-            window?.rootViewController = svc
-            window?.makeKeyAndVisible()
+        let svc = ThemedUISplitViewController()
+        svc.viewControllers = [nvc, Utils.createEmptyViewController()]
+        window?.rootViewController = svc
+        window?.makeKeyAndVisible()
 
-            svc.delegate = self
-            svc.preferredDisplayMode = .allVisible
+        svc.delegate = self
+        svc.preferredDisplayMode = .allVisible
 //        }
     }
 }

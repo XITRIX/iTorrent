@@ -289,6 +289,10 @@
 		7CA2E84E2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */; };
 		7CA545D8253F0F77002A9DBE /* RssSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA545D7253F0F77002A9DBE /* RssSearchDataSource.swift */; };
 		7CAAEA3523F5D505007D014B /* TimeLimitPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */; };
+		7CAD02CC293D3168008FE071 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD02CA293D3168008FE071 /* EmptyViewController.swift */; };
+		7CAD02CD293D3168008FE071 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD02CA293D3168008FE071 /* EmptyViewController.swift */; };
+		7CAD02CE293D3168008FE071 /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAD02CB293D3168008FE071 /* EmptyViewController.xib */; };
+		7CAD02CF293D3168008FE071 /* EmptyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CAD02CB293D3168008FE071 /* EmptyViewController.xib */; };
 		7CAF077E248591AA00AAB4FB /* DiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF077D248591AA00AAB4FB /* DiffableDataSource.swift */; };
 		7CAF07802485B97D00AAB4FB /* TorrentListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF077F2485B97D00AAB4FB /* TorrentListDataSource.swift */; };
 		7CAFB54022DA442C00A4B666 /* ThemedUISplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */; };
@@ -538,6 +542,8 @@
 		7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UserNotificationCenter.swift"; sourceTree = "<group>"; };
 		7CA545D7253F0F77002A9DBE /* RssSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchDataSource.swift; sourceTree = "<group>"; };
 		7CAAEA3423F5D505007D014B /* TimeLimitPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLimitPicker.swift; sourceTree = "<group>"; };
+		7CAD02CA293D3168008FE071 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		7CAD02CB293D3168008FE071 /* EmptyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyViewController.xib; sourceTree = "<group>"; };
 		7CAF077D248591AA00AAB4FB /* DiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSource.swift; sourceTree = "<group>"; };
 		7CAF077F2485B97D00AAB4FB /* TorrentListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListDataSource.swift; sourceTree = "<group>"; };
 		7CAFB53F22DA442C00A4B666 /* ThemedUISplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUISplitViewController.swift; sourceTree = "<group>"; };
@@ -1012,6 +1018,15 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		7CAD02C9293D3150008FE071 /* EmptyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7CAD02CA293D3168008FE071 /* EmptyViewController.swift */,
+				7CAD02CB293D3168008FE071 /* EmptyViewController.xib */,
+			);
+			path = EmptyViewController;
+			sourceTree = "<group>";
+		};
 		7CAF077C2485917C00AAB4FB /* DiffableDataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1069,6 +1084,7 @@
 		7CB8083320AAEDE200F76931 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CAD02C9293D3150008FE071 /* EmptyViewController */,
 				7CD71417248BD61200A24E98 /* RssReaderController */,
 				7C97E5022436991C004923D8 /* TorrentListController */,
 				7CB9BBA82378680000C8F05E /* PreferencesControllers */,
@@ -1468,6 +1484,7 @@
 				7C2F9E2225AFA4F500CC61F8 /* GoogleService-Info.plist in Resources */,
 				7C2F9E2325AFA4F500CC61F8 /* FileManagerTitleView.xib in Resources */,
 				7C2F9E2425AFA4F500CC61F8 /* PopupViewController.xib in Resources */,
+				7CAD02CF293D3168008FE071 /* EmptyViewController.xib in Resources */,
 				7C2F9E2525AFA4F500CC61F8 /* RssItemCell.xib in Resources */,
 				7C2F9E2625AFA4F500CC61F8 /* SwitchCell.xib in Resources */,
 				7C2F9E2725AFA4F500CC61F8 /* Version.ver in Resources */,
@@ -1504,6 +1521,7 @@
 				7C27A1A420B223630065238C /* GoogleService-Info.plist in Resources */,
 				7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */,
 				7C6530562540B35D0011A91E /* PopupViewController.xib in Resources */,
+				7CAD02CE293D3168008FE071 /* EmptyViewController.xib in Resources */,
 				7CD71429248C150400A24E98 /* RssItemCell.xib in Resources */,
 				7CFDDCCB235BA3940008EBEA /* SwitchCell.xib in Resources */,
 				7C27A16820B0B9040065238C /* Version.ver in Resources */,
@@ -1694,6 +1712,7 @@
 				7C2F9DA325AFA4F500CC61F8 /* PatreonAPI.swift in Sources */,
 				7C2F9DA425AFA4F500CC61F8 /* UIFontExtensions.swift in Sources */,
 				7C2F9DA525AFA4F500CC61F8 /* FileManagerExtensions.swift in Sources */,
+				7CAD02CD293D3168008FE071 /* EmptyViewController.swift in Sources */,
 				7C2F9DA625AFA4F500CC61F8 /* TextFieldCell.swift in Sources */,
 				7C2F9DA725AFA4F500CC61F8 /* FilesBrowserController.swift in Sources */,
 				7C2F9DA825AFA4F500CC61F8 /* NetworkPreferencesController.swift in Sources */,
@@ -1952,6 +1971,7 @@
 				7C60114825472FC500A0EFC5 /* Cache.swift in Sources */,
 				7C97E4FF2434E76A004923D8 /* SAViewControllers.swift in Sources */,
 				7C10D350232189C200B5ED9A /* DatasetPicker.swift in Sources */,
+				7CAD02CC293D3168008FE071 /* EmptyViewController.swift in Sources */,
 				7C7D0AB420D8EA2C001B08E5 /* AppDelegate.swift in Sources */,
 				7C97E4F62433A783004923D8 /* FileProviderDelegate.swift in Sources */,
 				7C46747F24883F0000ABC838 /* TorrentListViewModel.swift in Sources */,

@@ -28,8 +28,7 @@ class ThemedUINavigationController: SANavigationController, Themed {
         let theme = Themes.current
 
         if #available(iOS 13.0, *) {
-            let interface = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
-            overrideUserInterfaceStyle = interface
+            overrideUserInterfaceStyle = theme.currentInterfaceStyle
         }
 
         navigationBar.barStyle = theme.barStyle

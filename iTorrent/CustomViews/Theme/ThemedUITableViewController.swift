@@ -23,7 +23,7 @@ class ThemedUITableViewController: InsetableTableViewController, Themed {
         let theme = Themes.current
 
         if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme.overrideUserInterfaceStyle!)!
+            overrideUserInterfaceStyle = theme.currentInterfaceStyle
         }
 
         setNeedsStatusBarAppearanceUpdate()

@@ -53,7 +53,7 @@ class Themes {
         darkTheme.tertiaryText = UIColor(red: 115 / 255, green: 115 / 255, blue: 115 / 255, alpha: 1)
         darkTheme.selectedText = UIColor(red: 1, green: 1, blue: 120 / 255, alpha: 1)
         darkTheme.backgroundMain = UIColor.black
-        darkTheme.backgroundSecondary = UIColor(red: 55 / 255, green: 55 / 255, blue: 55 / 255, alpha: 1)
+        darkTheme.backgroundSecondary = UIColor(red: 28 / 255, green: 28 / 255, blue: 30 / 255, alpha: 1)
         darkTheme.backgroundTertiary = UIColor(red: 55 / 255, green: 55 / 255, blue: 55 / 255, alpha: 1)
         darkTheme.groupedBackgroundMain = UIColor.black
         darkTheme.groupedBackgroundSecondary = UIColor(red: 28 / 255, green: 28 / 255, blue: 30 / 255, alpha: 1)
@@ -95,7 +95,7 @@ struct ColorPalett: Equatable {
     var tertiaryText = UIColor(red: 140 / 255, green: 140 / 255, blue: 140 / 255, alpha: 1)
     var selectedText = UIColor(red: 0 / 255, green: 0 / 255, blue: 135 / 255, alpha: 1)
     var backgroundMain = UIColor.white
-    var backgroundSecondary = UIColor(red: 239 / 255, green: 239 / 255, blue: 244 / 255, alpha: 1)
+    var backgroundSecondary = UIColor(red: 242 / 255, green: 241 / 255, blue: 246 / 255, alpha: 1)
     var backgroundTertiary = UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 1)
     var groupedBackgroundMain = UIColor(red: 242 / 255, green: 241 / 255, blue: 246 / 255, alpha: 1)
     var groupedBackgroundSecondary = UIColor.white
@@ -138,5 +138,11 @@ struct ColorPalett: Equatable {
             groupedBackgroundSecondary = .secondarySystemGroupedBackground
         }
         return self
+    }
+
+    @available(iOS 12.0, *)
+    var currentInterfaceStyle: UIUserInterfaceStyle {
+        let interface = UIUserInterfaceStyle(rawValue: overrideUserInterfaceStyle!)!
+        return UserPreferences.autoTheme ? UIUserInterfaceStyle.unspecified : interface
     }
 }
