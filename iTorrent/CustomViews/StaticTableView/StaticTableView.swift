@@ -100,7 +100,7 @@ class StaticTableView: ThemedUITableView {
 class StaticTableViewDataSource: DiffableDataSource<Section, CellModelHolder> {
     var useInsertStyle: Bool?
     
-    private var useInsertStyleValue: Bool {
+    fileprivate var useInsertStyleValue: Bool {
         useInsertStyle ?? false
     }
     
@@ -108,14 +108,16 @@ class StaticTableViewDataSource: DiffableDataSource<Section, CellModelHolder> {
         guard let snapshot = snapshot else { return nil }
         let res = snapshot.sectionIdentifiers[section].headerFunc?() ?? Localize.get(snapshot.sectionIdentifiers[section].header)
         if res.isEmpty { return nil }
-        return "\(useInsertStyleValue ? "      " : "")\(res)"
+        return res.uppercased()
+//        return "\(useInsertStyleValue ? "      " : "")\(res)"
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let snapshot = snapshot else { return nil }
         let res = snapshot.sectionIdentifiers[section].footerFunc?() ?? Localize.get(snapshot.sectionIdentifiers[section].footer)
         if res.isEmpty { return nil }
-        return "\(useInsertStyleValue ? "      " : "")\(res)"
+        return res
+//        return "\(useInsertStyleValue ? "      " : "")\(res)"
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -134,5 +136,25 @@ extension StaticTableView: UITableViewDelegate {
         let model = presentableData[indexPath.section].rowModels[indexPath.row]
         model.cell.tapAction?()
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let dataSource = tableView.dataSource as? StaticTableViewDataSource,
+              let res = dataSource.tableView(tableView, titleForHeaderInSection: section)
+        else { return nil }
+
+        let header = StaticHeaderFooterView(tableView, dataSource)
+        header.text = res
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let dataSource = tableView.dataSource as? StaticTableViewDataSource,
+              let res = dataSource.tableView(tableView, titleForFooterInSection: section)
+        else { return nil }
+
+        let header = StaticHeaderFooterView(tableView, dataSource)
+        header.text = res
+        return header
     }
 }

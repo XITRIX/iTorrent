@@ -67,6 +67,8 @@
 	<string>Allow, if you want to be able to save files to Photos app</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
+	<key>NSSupportsLiveActivitiesFrequentUpdates</key>
+	<true/>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Support developer, allow personalized ads.</string>
 	<key>UIBackgroundModes</key>

@@ -13,7 +13,7 @@ import SwiftUI
 @main
 struct iTorrent_ProgressWidgetBundle: WidgetBundle {
     var body: some Widget {
-        iTorrent_ProgressWidget()
+//        iTorrent_ProgressWidget()
         iTorrent_ProgressWidgetLiveActivity()
     }
 }
