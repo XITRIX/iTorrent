@@ -42,8 +42,8 @@ extension AppDelegate {
 ////            svc.delegate = self
 ////            svc.preferredDisplayMode = .allVisible
 //        } else {
-        let svc = ThemedUISplitViewController()
-        svc.viewControllers = [nvc, Utils.createEmptyViewController()]
+        let svc = SplitViewController()
+        svc.viewControllers = [nvc]
         window?.rootViewController = svc
         window?.makeKeyAndVisible()
 

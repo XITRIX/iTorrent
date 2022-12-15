@@ -15,6 +15,8 @@
 		7C0A334B24A94DA800EF33D0 /* TorrentPeersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0A334A24A94DA800EF33D0 /* TorrentPeersController.swift */; };
 		7C0D2F1D20F77F7100B7FBC6 /* FileManagerTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */; };
 		7C0D2F1F20F77F9B00B7FBC6 /* FileManagerTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */; };
+		7C0E1B1A294B4252006C4B8E /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0E1B19294B4252006C4B8E /* SplitViewController.swift */; };
+		7C0E1B1B294B4252006C4B8E /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0E1B19294B4252006C4B8E /* SplitViewController.swift */; };
 		7C10D350232189C200B5ED9A /* DatasetPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10D34F232189C200B5ED9A /* DatasetPicker.swift */; };
 		7C1682C224A8F7F200B04169 /* PeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1682C024A8F7F200B04169 /* PeerCell.swift */; };
 		7C1682C324A8F7F200B04169 /* PeerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C1682C124A8F7F200B04169 /* PeerCell.xib */; };
@@ -439,6 +441,7 @@
 		7C0A334A24A94DA800EF33D0 /* TorrentPeersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TorrentPeersController.swift; sourceTree = "<group>"; };
 		7C0D2F1C20F77F7100B7FBC6 /* FileManagerTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileManagerTitleView.xib; sourceTree = "<group>"; };
 		7C0D2F1E20F77F9B00B7FBC6 /* FileManagerTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTitleView.swift; sourceTree = "<group>"; };
+		7C0E1B19294B4252006C4B8E /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		7C10D34F232189C200B5ED9A /* DatasetPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasetPicker.swift; sourceTree = "<group>"; };
 		7C1682C024A8F7F200B04169 /* PeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerCell.swift; sourceTree = "<group>"; };
 		7C1682C124A8F7F200B04169 /* PeerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeerCell.xib; sourceTree = "<group>"; };
@@ -695,6 +698,14 @@
 				7CE35523248D1439007C9685 /* TintView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		7C0E1B18294B423E006C4B8E /* SplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7C0E1B19294B4252006C4B8E /* SplitViewController.swift */,
+			);
+			path = SplitViewController;
 			sourceTree = "<group>";
 		};
 		7C10D34A232188B200B5ED9A /* PopupView */ = {
@@ -1084,6 +1095,7 @@
 		7CB8083320AAEDE200F76931 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7C0E1B18294B423E006C4B8E /* SplitViewController */,
 				7CAD02C9293D3150008FE071 /* EmptyViewController */,
 				7CD71417248BD61200A24E98 /* RssReaderController */,
 				7C97E5022436991C004923D8 /* TorrentListController */,
@@ -1770,6 +1782,7 @@
 				7C2F9DDD25AFA4F500CC61F8 /* Dialog.swift in Sources */,
 				7C2F9DDE25AFA4F500CC61F8 /* SwitchCell.swift in Sources */,
 				7C2F9DDF25AFA4F500CC61F8 /* RssFeedProvider.swift in Sources */,
+				7C0E1B1B294B4252006C4B8E /* SplitViewController.swift in Sources */,
 				7C2F9DE025AFA4F500CC61F8 /* StaticTableView.swift in Sources */,
 				7C2F9DE125AFA4F500CC61F8 /* PatronNameCell.swift in Sources */,
 				7C5CA42E292C01FD007C5183 /* Utils+ViewController.swift in Sources */,
@@ -1880,6 +1893,7 @@
 				7C4B10AB20E18B8500440E74 /* ButtonCell.swift in Sources */,
 				7CD7141D248BFE5D00A24E98 /* RssCannelCell.swift in Sources */,
 				7CBC7766231961C20075A685 /* UserPreferences.swift in Sources */,
+				7C0E1B1A294B4252006C4B8E /* SplitViewController.swift in Sources */,
 				7CB9BBAC23786CF500C8F05E /* StaticTableViewController.swift in Sources */,
 				7CE61CB9242915E20038717C /* PortionBarLabels.swift in Sources */,
 				7CCD494A22A6DC990061FEE5 /* ThemedUINavigationController.swift in Sources */,
