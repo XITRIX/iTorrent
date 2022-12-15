@@ -33,7 +33,7 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
             if #available(iOS 11, *) {
                 cornerRadiusMask(tableView: tableView, indexPath: indexPath)
             } else {
-                self.layer.mask = cutEdgesMask(tableView: tableView, indexPath: indexPath)
+                layer.mask = cutEdgesMask(tableView: tableView, indexPath: indexPath)
             }
         }
     }
@@ -43,7 +43,11 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
         if #available(iOS 11.0, *) {
             let system = tableView?.parentViewController?.systemMinimumLayoutMargins
-            res = UIEdgeInsets(system ?? .init(top: 0, leading: 16, bottom: 0, trailing: 16))
+            if let system, system != .zero {
+                res = UIEdgeInsets(system)
+            } else {
+                res = tableView?.layoutMargins ?? .init(top: 0, left: 16, bottom: 0, right: 16)
+            }
         } else {
             res = .init(top: 0, left: 16, bottom: 0, right: 16)
         }
