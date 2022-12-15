@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+extension UITableView {
+    var layoutSafeMargins: UIEdgeInsets {
+        let safes = safeAreaInsetsBack
+        var margins = layoutMargins
+
+        margins.left = safes.left > 0 ? safes.left : margins.left
+        margins.right = safes.right > 0 ? safes.right : margins.right
+
+        return margins
+    }
+}
+
 class ThemedUITableViewCell: UITableViewCell, Themed {
     private let cornerRadius: CGFloat = 12.0
     var insetStyle: Bool! = false
@@ -22,8 +34,8 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
 
             var frame = newValue
 
-            let left = tableView?.layoutMargins.left ?? 0
-            let right = tableView?.layoutMargins.right ?? 0
+            let left = tableView?.layoutSafeMargins.left ?? 0
+            let right = tableView?.layoutSafeMargins.right ?? 0
 
             frame.origin.x += left
             frame.size.width -= left + right

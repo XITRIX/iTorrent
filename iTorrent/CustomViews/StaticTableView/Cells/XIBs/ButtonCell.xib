@@ -15,11 +15,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03D-cX-Ygx">
+                        <rect key="frame" x="343" y="5.5" width="51" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="nUm-uX-QcU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Tgi-DS-jwq">
-                        <rect key="frame" x="20" y="8" width="374" height="28"/>
+                        <rect key="frame" x="20" y="9" width="315" height="26"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0Y-Sw-e7A">
-                                <rect key="frame" x="0.0" y="1" width="26" height="26"/>
+                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="cYv-BZ-HRs"/>
                                     <constraint firstAttribute="width" constant="26" id="cyd-Qs-0Ng"/>
@@ -32,25 +40,24 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYW-Y3-9kH" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                <rect key="frame" x="42" y="4" width="265" height="20.5"/>
+                                <rect key="frame" x="42" y="3" width="273" height="20.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03D-cX-Ygx">
-                                <rect key="frame" x="323" y="0.0" width="51" height="28"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Tgi-DS-jwq" secondAttribute="bottom" constant="8" id="02z-CP-5O0"/>
                     <constraint firstItem="Tgi-DS-jwq" firstAttribute="leading" secondItem="VQI-qy-PBd" secondAttribute="leadingMargin" id="4Nu-GP-Z29"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Tgi-DS-jwq" secondAttribute="trailing" id="ayv-qK-aH5"/>
+                    <constraint firstItem="03D-cX-Ygx" firstAttribute="centerY" secondItem="VQI-qy-PBd" secondAttribute="centerY" id="FJz-97-Xmq"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="03D-cX-Ygx" secondAttribute="trailing" id="YO1-ao-l4b"/>
                     <constraint firstItem="Tgi-DS-jwq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VQI-qy-PBd" secondAttribute="top" constant="8" id="esl-Mo-fWl"/>
+                    <constraint firstItem="03D-cX-Ygx" firstAttribute="leading" secondItem="Tgi-DS-jwq" secondAttribute="trailing" constant="8" id="eyg-4e-LFk"/>
                     <constraint firstItem="Tgi-DS-jwq" firstAttribute="centerY" secondItem="VQI-qy-PBd" secondAttribute="centerY" id="hiO-TE-tfZ"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="03D-cX-Ygx" secondAttribute="bottom" constant="5" id="mIJ-j7-WsP"/>
+                    <constraint firstItem="03D-cX-Ygx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VQI-qy-PBd" secondAttribute="top" constant="5" id="rzr-yC-4s0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -62,6 +69,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Info" width="26" height="26"/>
+        <image name="Info" width="52" height="52"/>
     </resources>
 </document>

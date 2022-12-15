@@ -30,8 +30,6 @@
 		7C224C50294B736900E01DB9 /* iTorrent_ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C224C4E294B733F00E01DB9 /* iTorrent_ProgressWidgetAttributes.swift */; };
 		7C224C53294B911100E01DB9 /* StaticHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C224C52294B911100E01DB9 /* StaticHeaderFooterView.swift */; };
 		7C224C54294B911100E01DB9 /* StaticHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C224C52294B911100E01DB9 /* StaticHeaderFooterView.swift */; };
-		7C224C56294B911A00E01DB9 /* StaticHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C224C55294B911A00E01DB9 /* StaticHeaderFooterView.xib */; };
-		7C224C57294B911A00E01DB9 /* StaticHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C224C55294B911A00E01DB9 /* StaticHeaderFooterView.xib */; };
 		7C26E338243244890012D455 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26E337243244890012D455 /* Core.swift */; };
 		7C26E34A243272F60012D455 /* Core+GlobalVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26E349243272F60012D455 /* Core+GlobalVars.swift */; };
 		7C26E34E24327D250012D455 /* Core+TorrentStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C26E34D24327D250012D455 /* Core+TorrentStates.swift */; };
@@ -458,7 +456,6 @@
 		7C1EBD0621E4BA6000EAAF55 /* TableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableHeaderView.xib; sourceTree = "<group>"; };
 		7C224C4E294B733F00E01DB9 /* iTorrent_ProgressWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTorrent_ProgressWidgetAttributes.swift; sourceTree = "<group>"; };
 		7C224C52294B911100E01DB9 /* StaticHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticHeaderFooterView.swift; sourceTree = "<group>"; };
-		7C224C55294B911A00E01DB9 /* StaticHeaderFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticHeaderFooterView.xib; sourceTree = "<group>"; };
 		7C26E337243244890012D455 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		7C26E349243272F60012D455 /* Core+GlobalVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+GlobalVars.swift"; sourceTree = "<group>"; };
 		7C26E34D24327D250012D455 /* Core+TorrentStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Core+TorrentStates.swift"; sourceTree = "<group>"; };
@@ -758,7 +755,6 @@
 			isa = PBXGroup;
 			children = (
 				7C224C52294B911100E01DB9 /* StaticHeaderFooterView.swift */,
-				7C224C55294B911A00E01DB9 /* StaticHeaderFooterView.xib */,
 			);
 			path = HeaderFooter;
 			sourceTree = "<group>";
@@ -1509,7 +1505,6 @@
 				7C2F9E1C25AFA4F500CC61F8 /* PlaceHolderView.xib in Resources */,
 				7C2F9E1D25AFA4F500CC61F8 /* ButtonCell.xib in Resources */,
 				7C2F9E1E25AFA4F500CC61F8 /* FileCell.xib in Resources */,
-				7C224C57294B911A00E01DB9 /* StaticHeaderFooterView.xib in Resources */,
 				7C2F9E1F25AFA4F500CC61F8 /* RssChannelCell.xib in Resources */,
 				7C2F9E2025AFA4F500CC61F8 /* InfoPlist.strings in Resources */,
 				7C2F9E2125AFA4F500CC61F8 /* TableHeaderView.xib in Resources */,
@@ -1547,7 +1542,6 @@
 				7CCE8D7724AB9F7900C914BA /* PlaceHolderView.xib in Resources */,
 				7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */,
 				7C80F74624334AC2005C4050 /* FileCell.xib in Resources */,
-				7C224C56294B911A00E01DB9 /* StaticHeaderFooterView.xib in Resources */,
 				7CD7141E248BFE5D00A24E98 /* RssChannelCell.xib in Resources */,
 				7CCD02E4243E7D2B00B1669F /* InfoPlist.strings in Resources */,
 				7C1EBD0721E4BA6000EAAF55 /* TableHeaderView.xib in Resources */,

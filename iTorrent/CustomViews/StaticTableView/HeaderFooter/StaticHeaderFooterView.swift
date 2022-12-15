@@ -22,12 +22,6 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         self.dataSource = dataSource
         super.init(reuseIdentifier: nil)
 
-        guard let view = UINib(nibName: "\(Self.self)", bundle: .main).instantiate(withOwner: self).first as? UIView
-        else { fatalError("\(Self.self) Xib not instantiate") }
-
-        addSubview(view)
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.frame = bounds
     }
 
     @available(*, unavailable)
@@ -49,7 +43,9 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
             } else {
                 res = tableView.layoutMargins
             }
-            textLabel.frame.origin.x = res.left + tableView.layoutMargins.left
+
+            let leftPoint = convert(.init(x: res.left + tableView.layoutSafeMargins.left, y: 0), to: textLabel.superview)
+            textLabel.frame.origin.x = leftPoint.x
         }
     }
 }
