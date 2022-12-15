@@ -16,18 +16,18 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     private var indexPath: IndexPath!
 
     override var frame: CGRect {
-        get {
-            super.frame
-        }
+        get { super.frame }
         set {
-            var frame = newValue
-            if insetStyle {
-                let left = tableView?.layoutMargins.left ?? 0
-                let right = tableView?.layoutMargins.right ?? 0
+            guard insetStyle else { return super.frame = newValue }
 
-                frame.origin.x += left
-                frame.size.width -= left + right
-            }
+            var frame = newValue
+
+            let left = tableView?.layoutMargins.left ?? 0
+            let right = tableView?.layoutMargins.right ?? 0
+
+            frame.origin.x += left
+            frame.size.width -= left + right
+
             super.frame = frame
 
             if #available(iOS 11, *) {

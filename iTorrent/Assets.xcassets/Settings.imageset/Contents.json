@@ -1,9 +1,6 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "filename" : "gear_25.png",
       "idiom" : "universal",
       "scale" : "1x"

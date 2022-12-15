@@ -9,16 +9,12 @@
 import UIKit
 
 class StaticHeaderFooterView: UITableViewHeaderFooterView {
-    @IBOutlet private var label: UILabel!
     private let dataSource: StaticTableViewDataSource
     private let tableView: UITableView
 
     var text: String? {
-        get { label.text }
-        set {
-            label.text = newValue
-            textLabel?.text = newValue
-        }
+        get { textLabel?.text }
+        set { textLabel?.text = newValue }
     }
 
     init(_ tableView: UITableView, _ dataSource: StaticTableViewDataSource) {
@@ -45,8 +41,6 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         guard let textLabel
         else { return }
 
-        var frame = textLabel.convert(textLabel.bounds, to: self)
-
         if dataSource.useInsertStyle == true {
             let res: UIEdgeInsets
             let system = tableView.parentViewController?.systemMinimumLayoutMargins
@@ -55,8 +49,7 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
             } else {
                 res = tableView.layoutMargins
             }
-            frame.origin.x += res.left
+            textLabel.frame.origin.x = res.left + tableView.layoutMargins.left
         }
-        label.frame = frame
     }
 }
