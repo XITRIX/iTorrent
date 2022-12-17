@@ -68,6 +68,16 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
             separatorView.isHidden = true
         }
     }
+
+    override func layoutMarginsDidChange() {
+        super.layoutMarginsDidChange()
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        else { return }
+
+        layout.sectionInset.left = layoutMargins.left
+        layout.sectionInset.right = layoutMargins.right
+    }
     
     @objc func themeUpdate() {
         fxView.effect = UIBlurEffect(style: Themes.current.blurEffect)
