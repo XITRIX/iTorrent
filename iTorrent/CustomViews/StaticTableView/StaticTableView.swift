@@ -9,7 +9,7 @@
 import UIKit
 
 class StaticTableView: ThemedUITableView {
-    var useInsertStyle: Bool? {
+    var useInsertStyle: Bool = false {
         didSet {
             diffDataSource?.useInsertStyle = useInsertStyle
         }
@@ -38,7 +38,8 @@ class StaticTableView: ThemedUITableView {
 
     override func setup() {
         super.setup()
-        
+
+        cellLayoutMarginsFollowReadableWidth = true
         register(SegueCell.nib, forCellReuseIdentifier: SegueCell.name)
         register(SwitchCell.nib, forCellReuseIdentifier: SwitchCell.name)
         register(ButtonCell.nib, forCellReuseIdentifier: ButtonCell.name)
@@ -98,7 +99,7 @@ class StaticTableView: ThemedUITableView {
 }
 
 class StaticTableViewDataSource: DiffableDataSource<Section, CellModelHolder> {
-    var useInsertStyle: Bool?
+    var useInsertStyle: Bool = false
     
     fileprivate var useInsertStyleValue: Bool {
         useInsertStyle ?? false
@@ -143,7 +144,7 @@ extension StaticTableView: UITableViewDelegate {
               let res = dataSource.tableView(tableView, titleForHeaderInSection: section)
         else { return nil }
 
-        let header = StaticHeaderFooterView(tableView, dataSource)
+        let header = StaticHeaderFooterView(tableView as! StaticTableView, dataSource)
         header.text = res
         return header
     }
@@ -153,7 +154,7 @@ extension StaticTableView: UITableViewDelegate {
               let res = dataSource.tableView(tableView, titleForFooterInSection: section)
         else { return nil }
 
-        let header = StaticHeaderFooterView(tableView, dataSource)
+        let header = StaticHeaderFooterView(tableView as! StaticTableView, dataSource)
         header.text = res
         return header
     }

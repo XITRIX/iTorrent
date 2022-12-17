@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sTv-ZB-4Dn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NKf-mn-LyC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -78,7 +78,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="iTorrent" id="LWt-Fg-NIP">
                         <rightBarButtonItems>
-                            <barButtonItem image="Sort" id="PEX-83-hjX"/>
+                            <barButtonItem image="Order" id="PEX-83-hjX"/>
                             <barButtonItem image="Rss" id="4Jm-fU-xor"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -86,6 +86,18 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1926" y="812"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="dWb-gu-4ci">
+            <objects>
+                <splitViewController allowDoubleColumnStyle="YES" preferredDisplayMode="twoBeside" id="NKf-mn-LyC" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="WIg-R6-dOP" kind="relationship" relationship="masterViewController" id="97b-dL-9Q9"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j9P-VV-n7I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="812"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O8X-QQ-P4S">
@@ -106,11 +118,14 @@
             <point key="canvasLocation" x="1186" y="812"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="97b-dL-9Q9"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.29803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
+        <image name="Order" width="25" height="25"/>
         <image name="Rss" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
-        <image name="Sort" width="25" height="25"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

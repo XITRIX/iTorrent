@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -77,8 +76,10 @@
                         <color key="backgroundColor" systemColor="systemRedColor"/>
                         <constraints>
                             <constraint firstItem="LGf-YX-NL4" firstAttribute="centerY" secondItem="pG0-OV-yX0" secondAttribute="centerY" id="3yd-CD-KMo"/>
-                            <constraint firstAttribute="height" constant="20" id="Bfx-E8-7Td"/>
+                            <constraint firstItem="LGf-YX-NL4" firstAttribute="top" secondItem="pG0-OV-yX0" secondAttribute="top" constant="2" id="9uW-iP-jSg"/>
+                            <constraint firstAttribute="bottom" secondItem="LGf-YX-NL4" secondAttribute="bottom" constant="2" id="GXn-hF-rSU"/>
                             <constraint firstAttribute="trailing" secondItem="LGf-YX-NL4" secondAttribute="trailing" constant="6" id="YOa-UB-fUm"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="aTH-Pe-ERj"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="dmy-Wo-UhA"/>
                             <constraint firstItem="LGf-YX-NL4" firstAttribute="leading" secondItem="pG0-OV-yX0" secondAttribute="leading" constant="6" id="hfz-q8-cFX"/>
                         </constraints>

@@ -269,6 +269,7 @@
 "Download content of folder" = "Download content of folder";
 "Download" = "Download";
 "Don't Download" = "Don't Download";
+"Open" = "Open";
 "Share" = "Share";
 "Show in Files" = "Show in Files";
 "AddTorrentController.MemoryWarning.Title" = "Warning";

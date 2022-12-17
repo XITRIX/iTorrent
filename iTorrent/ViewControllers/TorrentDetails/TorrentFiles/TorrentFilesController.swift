@@ -100,7 +100,8 @@ class TorrentFilesController: ThemedUIViewController {
         
         fileProvider = FileProviderTableDataSource(tableView: tableView, path: path, data: files)
         fileProvider.delegate = self
-        
+
+        tableView.cellLayoutMarginsFollowReadableWidth = true
         tableView.allowsSelection = true
         tableView.allowsSelectionDuringEditing = true
         tableView.allowsMultipleSelectionDuringEditing = true

@@ -73,8 +73,14 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     }
 
     override var layoutMargins: UIEdgeInsets {
-        get { defaultMargins }
-        set { super.layoutMargins = defaultMargins }
+        get {
+            guard insetStyle else { return super.layoutMargins }
+            return defaultMargins
+        }
+        set {
+            guard insetStyle else { return super.layoutMargins = newValue }
+            super.layoutMargins = defaultMargins
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -124,6 +130,8 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
     // Remove section top and bottom separators
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        guard insetStyle else { return }
 
         for subview in subviews {
             if subview != contentView, subview.frame.height < 3 {

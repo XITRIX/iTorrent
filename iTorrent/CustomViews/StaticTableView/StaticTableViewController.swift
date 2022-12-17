@@ -9,9 +9,9 @@
 import UIKit
 
 class StaticTableViewController: ThemedUIViewController {
-    var useInsertStyle: Bool? {
+    var useInsertStyle: Bool {
         if #available(iOS 15, *) { return true }
-        return nil
+        return false
     }
     
     override var toolBarIsHidden: Bool? {

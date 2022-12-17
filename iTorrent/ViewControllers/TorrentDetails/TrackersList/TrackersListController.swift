@@ -63,6 +63,7 @@ class TrackersListController: ThemedUIViewController {
 
         TorrentSdk.scrapeTracker(hash: managerHash)
 
+        tableView.cellLayoutMarginsFollowReadableWidth = true
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.dataSource = self
         tableView.delegate = self

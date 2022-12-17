@@ -35,6 +35,8 @@ class RssChannelController: ThemedUITableViewController {
         super.viewDidLoad()
         
         title = model.title
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(RssItemCell.nib, forCellReuseIdentifier: RssItemCell.id)
         
         if #available(iOS 14.0, *) {
