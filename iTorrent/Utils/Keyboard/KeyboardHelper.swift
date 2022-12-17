@@ -22,20 +22,15 @@ class KeyboardHelper: NSObject {
     
     private let disposalBag = DisposeBag()
     private let panRecognizer: UIPanGestureRecognizer
-    
-    private let defaultFrame: CGRect
+
     private let frameVariable: Observable<CGRect>
     
     override init() {
-        defaultFrame = CGRect(
-            x: 0,
-            y: UIApplication.shared.keyWindow!.bounds.height,
-            width: UIApplication.shared.keyWindow!.bounds.width,
-            height: 0
-        )
-        frameVariable = Observable<CGRect>(defaultFrame)
+        frameVariable = Observable<CGRect>(.zero)
         panRecognizer = UIPanGestureRecognizer()
         super.init()
+
+        frameVariable.value = defaultFrame
         
         panRecognizer.addTarget(self, action: #selector(pan))
         panRecognizer.delegate = self
@@ -51,6 +46,14 @@ class KeyboardHelper: NSObject {
             self.visibleHeight.value = max(UIApplication.shared.keyWindow!.bounds.height - frame.origin.y, 0)
             self.isHidden.value = self.visibleHeight.value <= 0
         }.dispose(in: disposalBag)
+    }
+
+    private var defaultFrame: CGRect {
+        .init(
+            x: 0,
+            y: UIApplication.shared.keyWindow?.bounds.height ?? 0,
+            width: UIApplication.shared.keyWindow?.bounds.width ?? 0,
+            height: 0)
     }
     
     @objc private func frameChanged(_ notification: Notification) {
