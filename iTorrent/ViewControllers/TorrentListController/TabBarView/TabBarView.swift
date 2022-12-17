@@ -71,12 +71,13 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
 
     override func layoutMarginsDidChange() {
         super.layoutMarginsDidChange()
-        
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout,
+              let margins = parentViewController?.systemMinimumLayoutMargins
         else { return }
 
-        layout.sectionInset.left = layoutMargins.left
-        layout.sectionInset.right = layoutMargins.right
+        layout.sectionInset.left = margins.leading
+        layout.sectionInset.right = margins.trailing
     }
     
     @objc func themeUpdate() {
