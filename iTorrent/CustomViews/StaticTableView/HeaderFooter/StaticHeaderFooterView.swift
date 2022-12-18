@@ -72,48 +72,18 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         return res
     }
 
-    override var layoutMargins: UIEdgeInsets {
-        get {
-            guard tableView.useInsertStyle
-            else { return super.layoutMargins }
-
-            var old = super.layoutMargins
-            let def = defaultMargins
-
-            old.left = def.left
-            old.right = def.right
-
-            return old
-        }
-        set { super.layoutMargins = newValue }
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
 
-//        guard let textLabel
-//        else { return }
-//
-//        if dataSource.useInsertStyle == true {
-//            let res: UIEdgeInsets
-//            let system = tableView.parentViewController?.systemMinimumLayoutMargins
-//            if let system, system != .zero {
-//                res = UIEdgeInsets(system)
-//            } else {
-//                res = tableView.layoutMargins
-//            }
-//
-//            let leftPoint = convert(.init(x: res.left + tableView.layoutSafeMargins.left, y: 0), to: textLabel.superview)
-//            textLabel.frame.origin.x = leftPoint.x
-//        }
+        guard tableView.useInsertStyle
+        else { return }
+
+        var old = super.layoutMargins
+        let def = defaultMargins
+
+        old.left = def.left
+        old.right = def.right
+
+        layoutMargins = old
     }
 }
-
-//extension StaticHeaderFooterView {
-//    var tableView: UITableView? {
-//        var superview = self
-//        while superview != nil {
-//
-//        }
-//    }
-//}

@@ -24,6 +24,10 @@ class KeyboardHelper: NSObject {
     private let panRecognizer: UIPanGestureRecognizer
 
     private let frameVariable: Observable<CGRect>
+
+    private var windowHeight: CGFloat {
+        UIApplication.shared.keyWindow?.bounds.height ?? 0
+    }
     
     override init() {
         frameVariable = Observable<CGRect>(.zero)
@@ -43,7 +47,7 @@ class KeyboardHelper: NSObject {
             guard let self = self else { return }
 
             self.frame.value = frame
-            self.visibleHeight.value = max(UIApplication.shared.keyWindow!.bounds.height - frame.origin.y, 0)
+            self.visibleHeight.value = max(self.windowHeight - frame.origin.y, 0)
             self.isHidden.value = self.visibleHeight.value <= 0
         }.dispose(in: disposalBag)
     }
@@ -64,7 +68,7 @@ class KeyboardHelper: NSObject {
         let frame = rectValue?.cgRectValue ?? defaultFrame
         if frame.origin.y < 0 { // if went to wrong frame
             var newFrame = frame
-            newFrame.origin.y = UIApplication.shared.keyWindow!.bounds.height - newFrame.height
+            newFrame.origin.y = windowHeight - newFrame.height
             frameVariable.value = newFrame
         }
         frameVariable.value = frame
@@ -78,7 +82,7 @@ class KeyboardHelper: NSObject {
         let frame = rectValue?.cgRectValue ?? defaultFrame
         if frame.origin.y < 0 { // if went to wrong frame
             var newFrame = frame
-            newFrame.origin.y = UIApplication.shared.keyWindow!.bounds.height
+            newFrame.origin.y = windowHeight
             frameVariable.value = newFrame
         }
         frameVariable.value = frame
@@ -87,11 +91,11 @@ class KeyboardHelper: NSObject {
     @objc private func pan(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard gestureRecognizer.state == .changed,
             let window = UIApplication.shared.windows.first,
-            frameVariable.value.origin.y < UIApplication.shared.keyWindow!.bounds.height
+            frameVariable.value.origin.y < windowHeight
         else { return }
         let origin = gestureRecognizer.location(in: window)
         var newFrame = frameVariable.value
-        newFrame.origin.y = max(origin.y, UIApplication.shared.keyWindow!.bounds.height - frameVariable.value.height)
+        newFrame.origin.y = max(origin.y, windowHeight - frameVariable.value.height)
         frameVariable.value = newFrame
     }
 }
