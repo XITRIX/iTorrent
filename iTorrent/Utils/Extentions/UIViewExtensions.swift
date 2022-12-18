@@ -20,4 +20,26 @@ extension UIView {
             }
         }
     }
+
+    var parentViewController: UIViewController? {
+        // Starts from next (As we know self is not a UIViewController).
+        var parentResponder: UIResponder? = self.next
+        while parentResponder != nil {
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+            parentResponder = parentResponder?.next
+        }
+        return nil
+    }
 }
+
+extension UIView {
+    func parentView<T: UIView>(of type: T.Type) -> T? {
+        guard let view = superview else {
+            return nil
+        }
+        return (view as? T) ?? view.parentView(of: T.self)
+    }
+}
+

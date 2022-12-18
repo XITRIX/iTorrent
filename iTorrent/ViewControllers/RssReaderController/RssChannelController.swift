@@ -35,10 +35,17 @@ class RssChannelController: ThemedUITableViewController {
         super.viewDidLoad()
         
         title = model.title
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(RssItemCell.nib, forCellReuseIdentifier: RssItemCell.id)
         
-        let button = UIBarButtonItem(image: UIImage(named: "Share"), style: .plain, target: self, action: #selector(openLink))
-        navigationItem.setRightBarButton(button, animated: false)
+        if #available(iOS 14.0, *) {
+            let button = UIBarButtonItem(title: nil, image: #imageLiteral(resourceName: "More2"), primaryAction: nil, menu: createMenu())
+            navigationItem.setRightBarButton(button, animated: false)
+        } else {
+            let button = UIBarButtonItem(image: #imageLiteral(resourceName: "More2"), style: .plain, target: self, action: #selector(openLink))
+            navigationItem.setRightBarButton(button, animated: false)
+        }
         
         // MARQUEE LABEL
         let label = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44), duration: 8.0, fadeLength: 10)
@@ -46,23 +53,55 @@ class RssChannelController: ThemedUITableViewController {
         label.textAlignment = NSTextAlignment.center
         label.textColor = Themes.current.mainText
         label.trailingBuffer = 44
-        label.text = model.displayTitle
+        model.customTitle.observeNext(with: { _ in
+            label.text = self.model.displayTitle
+        }).dispose(in: bag)
         navigationItem.titleView = label
+    }
+    
+    @available(iOS 13.0, *)
+    func createMenu() -> UIMenu {
+        var actions = [
+            UIAction(title: "RssChannelController.ReadAll".localized, image: UIImage(systemName: "checkmark.circle"), handler: { _ in self.readAll() })
+        ]
+        if let link = self.model.link {
+            actions.append(UIAction(title: "Open in Safari".localized, image: UIImage(systemName: "safari"), handler: { _ in UIApplication.shared.openURL(link) }))
+        }
+        return UIMenu(children: actions)
     }
     
     @objc func openLink() {
         let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
-        let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
-            UIApplication.shared.openURL(self.model.link)
+        let readAll = UIAlertAction(title: "RssChannelController.ReadAll".localized, style: .default) { _ in
+            self.readAll()
         }
-        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
+        let openInSafari = UIAlertAction(title: "Open in Safari".localized, style: .default) { _ in
+            if let link = self.model.link {
+                UIApplication.shared.openURL(link)
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
         
-        dialog.addAction(openInSafari)
+        dialog.addAction(readAll)
+        if self.model.link != nil {
+            dialog.addAction(openInSafari)
+        }
         dialog.addAction(cancel)
         
         present(dialog, animated: true)
+    }
+    
+    func readAll() {
+        for i in 0 ..< model.items.count {
+            model.items[i].readed = true
+            model.items[i].new = false
+        }
+        
+        tableView.indexPathsForVisibleRows?.forEach { indexPath in
+            (tableView.cellForRow(at: indexPath) as! RssItemCell).setModel(model.items[indexPath.row])
+        }
     }
 }
 

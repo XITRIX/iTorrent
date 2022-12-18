@@ -10,6 +10,10 @@ import UIKit
 
 extension TorrentListController {
     func searchbarUpdateTheme(_ theme: ColorPalett) {
+        guard let searchController = searchController else {
+            return
+        }
+        
         searchController.searchBar.keyboardAppearance = theme.keyboardAppearence
         searchController.searchBar.barStyle = theme.barStyle
         searchController.searchBar.tintColor = view.tintColor
@@ -24,30 +28,72 @@ extension TorrentListController {
             tableView.backgroundView = back
         }
     }
-    
+
     var searchControllerInsideNavigation: Bool {
         if #available(iOS 11.0, *) {
             return true
         }
         return false
     }
-    
+
     func initializeSearchView() {
+        var resultController: UITableViewController?
+        if #available(iOS 13.0, *) {
+            resultController = SearchTableViewController()
+        }
+
+        searchController = UISearchController(searchResultsController: resultController)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = Localize.get("Search")
+        searchController.searchBar.placeholder = "Search".localized
+        searchController.searchBar.delegate = self
         if #available(iOS 11.0, *),
-            searchControllerInsideNavigation {
+            searchControllerInsideNavigation
+        {
             navigationItem.searchController = searchController
         } else {
             tableView.tableHeaderView = searchController.searchBar
+        }
+
+        if #available(iOS 13.0, *) {
+            rssSearchDataSource = RssSearchDataSource(tableView: resultController!.tableView, searchBar: searchController.searchBar)
+            resultController?.tableView.dataSource = rssSearchDataSource
+            resultController?.tableView.delegate = rssSearchDataSource
+            
+            if RssFeedProvider.shared.rssModels.count > 0 {
+                searchController.searchBar.scopeButtonTitles = ["Torrents", "RSS"]
+            } else {
+                searchController.searchBar.scopeButtonTitles = nil
+            }
+
+            searchController.showsSearchResultsController = false
+        }
+    }
+}
+
+extension TorrentListController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if #available(iOS 13.0, *) {
+            searchController.showsSearchResultsController = selectedScope > 0
         }
     }
 }
 
 extension TorrentListController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel.searchFilter.variable = searchController.searchBar.text
+        viewModel.searchFilter.value = searchController.searchBar.text
         viewModel.update()
+    }
+}
+
+class SearchTableViewController: ThemedUITableViewController {
+    override func themeUpdate() {
+        super.themeUpdate()
+        view.backgroundColor = Themes.current.backgroundMain
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.keyboardDismissMode = .onDrag
     }
 }

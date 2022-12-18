@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SizePicker: PopupView, Themed {
+class SizePicker: PopupViewController {
     var action: ((Int64) -> ())?
     var dismissA: ((Int64) -> ())?
     var picker: UIPickerView!
@@ -34,19 +34,14 @@ class SizePicker: PopupView, Themed {
 
     var sizes = ["MB", "GB"]
 
-    @objc func themeUpdate() {
-        let theme = Themes.current
-        fxView.effect = UIBlurEffect(style: theme.blurEffect)
-        if #available(iOS 11, *) {
-        } else {
-            fxView.backgroundColor = theme.backgroundMain
-        }
+    @objc override func themeUpdate() {
+        super.themeUpdate()
         picker.reloadAllComponents()
     }
 
     init(defaultValue: Int64, dataSelected: ((Int64) -> ())? = nil, dismissAction: ((Int64) -> ())? = nil) {
         self.picker = UIPickerView()
-        super.init(contentView: picker, contentHeight: 180)
+        super.init(picker, contentHeight: 180)
 
         self.action = dataSelected
         self.dismissA = dismissAction
@@ -63,22 +58,10 @@ class SizePicker: PopupView, Themed {
             picker.selectRow(0, inComponent: 1, animated: true)
             picker.selectRow(Int(def / 128), inComponent: 0, animated: true)
         }
-
-        setupView()
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
-    }
-
-    func setupView() {
-        NotificationCenter.default.addObserver(self, selector: #selector(themeUpdate), name: Themes.updateNotification, object: nil)
-        themeUpdate()
-    }
-
-    override func dismiss() {
-        super.dismiss()
+    override func dismiss(animationOnly: Bool = false) {
+        super.dismiss(animationOnly: animationOnly)
         dismissA?(result)
     }
 }

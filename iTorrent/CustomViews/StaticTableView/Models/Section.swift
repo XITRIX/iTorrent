@@ -12,24 +12,24 @@ struct Section: Hashable, DiffAware {
     var rowModels: [CellModelHolder] = []
     var header: String = ""
     var footer: String = ""
-    var headerFunc: (() -> (String))?
-    var footerFunc: (() -> (String))?
-    
+    var headerFunc: (() -> String)?
+    var footerFunc: (() -> String)?
+
     init(rowModels: [CellModelProtocol] = [],
          header: String = "",
          footer: String = "",
-         headerFunc: (() -> (String))? = nil,
-         footerFunc: (() -> (String))? = nil) {
-        self.rowModels = rowModels.map{CellModelHolder(cell: $0)}
+         headerFunc: (() -> String)? = nil,
+         footerFunc: (() -> String)? = nil) {
+        self.rowModels = rowModels.map { CellModelHolder(cell: $0) }
         self.header = header
         self.footer = footer
         self.headerFunc = headerFunc
         self.footerFunc = footerFunc
-        
+
         id = UUID().hashValue
         updateText()
     }
-    
+
     mutating func updateText() {
         header = headerFunc?() ?? header
         footer = footerFunc?() ?? footer

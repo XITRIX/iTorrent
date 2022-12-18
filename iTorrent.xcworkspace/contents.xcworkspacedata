@@ -5,6 +5,9 @@
       location = "group:iTorrent.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:../ITorrent_Transmission_Framework/ITorrentTransmissionFramework.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

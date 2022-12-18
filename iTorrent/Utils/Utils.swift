@@ -6,22 +6,68 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
-import Foundation
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
-import UIKit
+#endif
+import ObjectiveC.runtime
+
+//var ObserverKey: UInt8 = 0
+//public extension NSObject {
+//    static func oldOSPatch() {
+//        let originalSelector = #selector(NSObject.addObserver(_:forKeyPath:options:context:))
+//        let swizzledSelector = #selector(NSObject.swizzled_addObserver(observer:forKeyPath:options:context:))
+//
+//        let originalMethod = class_getInstanceMethod(self, originalSelector)
+//        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+//        if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+//            // switch implementation..
+//            method_exchangeImplementations(originalMethod, swizzledMethod)
+//        }
+//
+//        let doriginalSelector = #selector("dealloc")
+//        let dswizzledSelector = #selector(NSObject.swizzled_dealloc)
+//
+//        let doriginalMethod = class_getInstanceMethod(self, doriginalSelector)
+//        let dswizzledMethod = class_getInstanceMethod(self, dswizzledSelector)
+//        if let doriginalMethod = doriginalMethod, let dswizzledMethod = dswizzledMethod {
+//            // switch implementation..
+//            method_exchangeImplementations(doriginalMethod, dswizzledMethod)
+//        }
+//    }
+//
+//    @objc func swizzled_addObserver(observer: NSObject, forKeyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?) {
+//        var observerSet = objc_getAssociatedObject(self, &ObserverKey) as? NSMutableSet
+//        if observerSet == nil {
+//            observerSet = NSMutableSet()
+//            objc_setAssociatedObject(self, &ObserverKey, observerSet, .OBJC_ASSOCIATION_RETAIN)
+//        }
+//        // store all observer info into a set.
+//        observerSet?.add([observer, forKeyPath])
+//
+//        swizzled_addObserver(observer: observer, forKeyPath: forKeyPath, options: options, context: context) // this will call the origin impl
+//    }
+//
+//    @objc func swizzled_dealloc() {
+//        let observerSet = objc_getAssociatedObject(self, &ObserverKey) as? NSMutableSet
+//        objc_setAssociatedObject(self, &ObserverKey, nil, .OBJC_ASSOCIATION_RETAIN)
+//        if let observerSet = observerSet {
+//            for arr in observerSet {
+//                if let arr = arr as? NSArray,
+//                    arr.count == 2,
+//                    let obj = arr[0] as? NSObject,
+//                    let path = arr[1] as? String
+//                {
+//                    // remove all observers before self is deallocated.
+//                    removeObserver(obj, forKeyPath: path)
+//                }
+//            }
+//        }
+//    }
+//}
 
 class Utils {
-    public static func interfacesForTorrentName() -> String {
-        UserPreferences.onlyVpn ?
-            "Settings.Network.Interface.VpnOnly".localized :
-            "Settings.Network.Interface.AnyInterface".localized
-    }
-    
-    public static func interfacesForTorrent(vpnOnly: Bool) -> String {
-        let interfaces = interfaceNames()
-        return vpnOnly ? interfaces.filter { $0.starts(with: "utun") }.joined(separator: ",") : ""
-    }
-    
     public static func interfaceNames() -> [String] {
         let MAX_INTERFACES = 128
 
@@ -38,34 +84,6 @@ class Utils {
 
         interfaceNamePtr.deallocate()
         return interfaceNames
-    }
-
-    public static var topViewController: UIViewController? {
-        var vc = UIApplication.shared.keyWindow?.rootViewController
-        while vc?.presentedViewController != nil {
-            vc = vc?.presentedViewController
-        }
-        return vc
-    }
-
-    public static var rootViewController: UIViewController {
-        UIApplication.shared.keyWindow!.rootViewController!
-    }
-
-    public static var mainStoryboard: UIStoryboard = {
-        UIStoryboard(name: "Main", bundle: nil)
-    }()
-
-    public static func instantiate<T: UIViewController>(_ viewController: String) -> T {
-        mainStoryboard.instantiateViewController(withIdentifier: viewController) as! T
-    }
-
-    public static func instantiateNavigationController(_ rootViewController: UIViewController? = nil) -> UINavigationController {
-        let nvc = instantiate("NavigationController") as UINavigationController
-        if let vc = rootViewController {
-            nvc.viewControllers = [vc]
-        }
-        return nvc
     }
 
     public static func downloadingTimeRemainText(speedInBytes: Int64, fileSize: Int64, downloadedSize: Int64) -> String {
@@ -128,11 +146,6 @@ class Utils {
         }
     }
 
-    public static func createEmptyViewController() -> UIViewController {
-        let view = ThemedUIViewController()
-        return view
-    }
-
     public static func getWiFiAddress() -> String? {
         var address: String?
 
@@ -183,16 +196,6 @@ class Utils {
             }
         }
         return body(cStrings)
-    }
-
-    public static func openUrl(_ url: String) {
-        if let url = URL(string: url) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.openURL(url)
-            }
-        }
     }
 
     public static func getFileByName(_ array: [FileModel], file: FileModel) -> FileModel? {

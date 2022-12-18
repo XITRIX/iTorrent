@@ -6,8 +6,10 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import Bond
 import Foundation
 import SwiftyXMLParser
+import ReactiveKit
 
 class RssFeedProvider {
     enum RssError: LocalizedError {
@@ -24,25 +26,23 @@ class RssFeedProvider {
         }
     }
 
-    private let disposalBag = DisposalBag()
+    private let disposalBag = DisposeBag()
     public static let shared = RssFeedProvider()
 
-    var rssModels = Box<[RssModel]>([])
-    var isRssUpdates = Box<Bool>(false)
+    var rssModels = MutableObservableArray<RssModel>([])
 
     init() {
         loadFromDisk()
         fetchUpdates()
-        rssModels.bind { models in
-            self.isRssUpdates.variable = models.contains(where: { !$0.muteNotifications && $0.updatesCount > 0 })
+        rssModels.observeNext { models in
             self.saveToDisk()
-        }.dispose(with: disposalBag)
+        }.dispose(in: disposalBag)
     }
 
     func fetchUpdates(completion: (([RssModel: [RssItemModel]]) -> Void)? = nil) {
         var res = [RssModel: [RssItemModel]]()
         DispatchQueue.global(qos: .background).async {
-            for feed in self.rssModels.variable {
+            for feed in self.rssModels.collection {
                 if let result = try? self.loadFeedAsync(feed.xmlLink) {
                     let updates = feed.update(result)
                     if updates.count > 0 {
@@ -51,8 +51,8 @@ class RssFeedProvider {
                 }
             }
 
-            self.rssModels.notifyUpdate()
             DispatchQueue.main.async {
+                self.rssModels.notifyUpdate()
                 completion?(res)
             }
         }
@@ -64,7 +64,7 @@ class RssFeedProvider {
             return
         }
 
-        if rssModels.variable.contains(where: { $0.xmlLink == url }) {
+        if rssModels.collection.contains(where: { $0.xmlLink == url }) {
             completion?(.failure(RssError.feedExists))
             return
         }
@@ -72,7 +72,7 @@ class RssFeedProvider {
         loadFeed(url) { result in
             switch result {
             case .success(let model):
-                self.rssModels.variable.insert(model, at: 0)
+                self.rssModels.insert(model, at: 0)
             case .failure:
                 break
             }
@@ -80,9 +80,11 @@ class RssFeedProvider {
         }
     }
 
-    func removeFeeds(_ feedsUrl: [URL]) {
-        rssModels.multiplyUpdate {
-            rssModels.variable.removeAll(where: { feedsUrl.contains($0.link) })
+    func removeFeeds(_ feedModels: [RssModel]) {
+        for url in feedModels {
+            if let index = rssModels.collection.firstIndex(of: url) {
+                rssModels.remove(at: index)
+            }
         }
     }
 
@@ -118,7 +120,7 @@ class RssFeedProvider {
 extension RssFeedProvider {
     func saveToDisk() {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(rssModels.variable) {
+        if let encoded = try? encoder.encode(rssModels.value.collection) {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: "RssFeed")
         }
@@ -129,7 +131,7 @@ extension RssFeedProvider {
         if let rssFeed = defaults.object(forKey: "RssFeed") as? Data {
             let decoder = JSONDecoder()
             if let loadedRssFeed = try? decoder.decode([RssModel].self, from: rssFeed) {
-                rssModels.variable = loadedRssFeed
+                rssModels.replace(with: loadedRssFeed)
             }
         }
     }

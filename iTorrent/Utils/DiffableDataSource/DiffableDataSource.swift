@@ -212,7 +212,7 @@ struct DataSnapshot<SectionIdentifierType, ItemIdentifierType> where SectionIden
         }
     }
     
-    public mutating func appendItems(_ identifiers: [ItemIdentifierType], toSection sectionIdentifier: SectionIdentifierType? = nil) {
+    public mutating func appendItems<T: Sequence>(_ identifiers: T, toSection sectionIdentifier: SectionIdentifierType? = nil) where T.Iterator.Element == ItemIdentifierType {
         if let sectionIdentifier = sectionIdentifier {
             itemsDictionary[sectionIdentifier]?.append(contentsOf: identifiers)
         }
@@ -263,6 +263,6 @@ struct DataSnapshot<SectionIdentifierType, ItemIdentifierType> where SectionIden
 
 fileprivate extension Int {
     func toIndexPath(section: Int) -> IndexPath {
-        return IndexPath(item: self, section: section)
+        IndexPath(item: self, section: section)
     }
 }

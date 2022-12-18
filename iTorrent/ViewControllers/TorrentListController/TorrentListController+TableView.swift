@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 extension TorrentListController {
@@ -18,6 +23,10 @@ extension TorrentListController {
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 82
         tableView.rowHeight = UITableView.automaticDimension
+
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
         
         torrentListDataSource = TorrentListDataSource(self, tableView: tableView) { (tableView, indexPath, model) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TorrentCell
@@ -90,7 +99,7 @@ extension TorrentListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if !UserPreferences.sortingSections,
             let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TabBarView.id) as? TabBarView {
-            cell.setModel(self, selected: viewModel.stateFilter.variable)
+            cell.setModel(self, selected: viewModel.stateFilter.value)
             return cell
         }
         if let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableHeaderView.id) as? TableHeaderView {
@@ -98,6 +107,54 @@ extension TorrentListController: UITableViewDelegate {
             return cell
         }
         return nil
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if #available(iOS 15.0, *) {
+//            let safe = tableView.adjustedContentInset.top
+//            let offset = scrollView.contentOffset.y
+            let alpha = getNavBarAlpha() ?? 1// min(max(0, offset + safe), 4) / 4
+            
+            if !UserPreferences.sortingSections,
+                let header = tableView.headerView(forSection: 0) as? TabBarView {
+                header.backgroundFxView.alpha = alpha
+            } else {
+                updateHeadersBackground()
+            }
+//        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        if #available(iOS 15.0, *) {
+            updateHeadersBackground()
+//        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+//        if #available(iOS 15.0, *) {
+            updateHeadersBackground()
+//        }
+    }
+    
+//    @available(iOS 15.0, *)
+    func updateHeadersBackground() {
+//        let offset = tableView.contentOffset.y
+//        let safe = tableView.adjustedContentInset.top
+        let alpha = getNavBarAlpha() ?? 1// min(max(0, offset + safe), 4) / 4
+        for i in 0 ..< tableView.numberOfSections {
+            guard let header = tableView.headerView(forSection: i) as? TableHeaderView
+            else { continue }
+            
+            header.background.alpha = alpha
+        }
+    }
+
+    func getNavBarAlpha() -> CGFloat? {
+        // Try to get navbar backlayer
+        guard let navBar = navigationController?.navigationBar.subviews.first?.subviews.first
+        else { return nil }
+
+        return navBar.alpha
     }
     
     @available(iOS 13.0, *)
@@ -166,7 +223,7 @@ extension TorrentListController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
-        return tableView.isEditing
+        tableView.isEditing
     }
     
     func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
@@ -176,7 +233,7 @@ extension TorrentListController: UITableViewDelegate {
 
 extension TorrentListController: TabBarViewDelegate {
     func filterSelected(_ state: TorrentState) {
-        viewModel.stateFilter.variable = state
+        viewModel.stateFilter.value = state
         viewModel.update()
     }
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+import Bond
 import UIKit
 
 protocol NavigationProtocol {
@@ -13,6 +14,17 @@ protocol NavigationProtocol {
 }
 
 class SAViewController: UIViewController, NavigationProtocol {
+    let observableIsEditing = Observable<Bool>(false)
+    
+    override var isEditing: Bool {
+        get {
+            observableIsEditing.value
+        }
+        set {
+            observableIsEditing.value = newValue
+        }
+    }
+    
     var toolBarIsHidden: Bool? {
         nil
     }
@@ -20,7 +32,8 @@ class SAViewController: UIViewController, NavigationProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let nav = navigationController as? SANavigationController,
-            nav.viewControllers.last == self {
+           nav.viewControllers.last == self
+        {
             nav.locker = false
         }
     }
@@ -32,6 +45,11 @@ class SAViewController: UIViewController, NavigationProtocol {
             navigationController?.setToolbarHidden(toolBarIsHidden, animated: false)
         }
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        isEditing = editing
+    }
 }
 
 class SATableViewController: UITableViewController, NavigationProtocol {
@@ -42,7 +60,8 @@ class SATableViewController: UITableViewController, NavigationProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let nav = navigationController as? SANavigationController,
-            nav.viewControllers.last == self {
+           nav.viewControllers.last == self
+        {
             nav.locker = false
         }
     }

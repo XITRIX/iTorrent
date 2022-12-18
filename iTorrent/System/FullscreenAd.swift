@@ -11,30 +11,31 @@ import GoogleMobileAds
 import UIKit
 
 class FullscreenAd: NSObject {
-    var interstitial: GADInterstitial!
+    private var interstitial: GADInterstitialAd?
     static let shared = FullscreenAd(id: "ca-app-pub-3833820876743264/8966239009")
 
     var showed = UserPreferences.disableAds || (UserPreferences.patreonCredentials?.hideFSAds ?? true)
+    private let id: String
 
     init(id: String) {
+        self.id = id
         super.init()
-
-        interstitial = GADInterstitial(adUnitID: id)
-        interstitial.delegate = self
     }
 
     func load() {
         if !showed {
-            interstitial.load(GADRequest())
             showed = true
-        }
-    }
-}
+            GADInterstitialAd.load(withAdUnitID: id, request: GADRequest()) { [weak self] interstitial, error in
+                guard let self,
+                    error == nil
+                else {
+                    self?.showed = false
+                    return
+                }
 
-extension FullscreenAd: GADInterstitialDelegate {
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: UIApplication.shared.keyWindow!.rootViewController!)
+                self.interstitial = interstitial
+                interstitial?.present(fromRootViewController: UIApplication.shared.keyWindow!.rootViewController!)
+            }
         }
     }
 }

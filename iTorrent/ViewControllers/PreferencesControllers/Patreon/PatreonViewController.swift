@@ -55,6 +55,12 @@ class PatreonViewController: ThemedUIViewController {
         super.viewDidLoad()
         Localization()
         updateButtonsState(animated: false)
+
+        if #available(iOS 13.0, *) {
+            backplates.forEach { $0.layer.cornerCurve = .continuous }
+            patronButton.layer.cornerCurve = .continuous
+            connectButton.layer.cornerCurve = .continuous
+        }
         
         let alignedFlowLayout = patronsCollectionView.collectionViewLayout as? AlignedCollectionViewFlowLayout
         alignedFlowLayout?.horizontalAlignment = .left

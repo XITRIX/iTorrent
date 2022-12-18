@@ -28,11 +28,9 @@ class RssFeedController: ThemedUIViewController {
         UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(removeRss))
     }()
     
-    let disposalBag = DisposalBag()
-    
     var dataSource: RssFeedDataSource!
     
-    var channelSetupView: PopupView?
+    var channelSetupView: PopupViewController?
     
     override var toolBarIsHidden: Bool? {
         !isEditing || channelSetupView != nil
@@ -93,24 +91,24 @@ class RssFeedController: ThemedUIViewController {
         
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.register(RssChannelCell.nib, forCellReuseIdentifier: RssChannelCell.id)
-        tableView.estimatedRowHeight = 59
+        tableView.estimatedRowHeight = 58
         tableView.rowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = dataSource
         
-        RssFeedProvider.shared.rssModels.bind { [weak self] new in
+        RssFeedProvider.shared.rssModels.observeNext(with: { [weak self] new in
             guard let self = self else { return }
             
-            self.placeholder.isHidden = new.count != 0
+            self.placeholder.isHidden = new.collection.count != 0
             
             var snapshot = DataSnapshot<String, RssModel>()
             snapshot.appendSections([""])
-            snapshot.appendItems(new, toSection: "")
+            snapshot.appendItems(new.collection, toSection: "")
             self.dataSource.apply(snapshot, animateInitial: false) {
                 self.editModeUpdate()
                 self.tableView.visibleCells.forEach { ($0 as! RssChannelCell).updateCellView() }
             }
-        }.dispose(with: disposalBag)
+        }).dispose(in: bag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,6 +124,7 @@ class RssFeedController: ThemedUIViewController {
     @objc func refresh() {
         RssFeedProvider.shared.fetchUpdates { _ in
             self.refreshControl?.endRefreshing()
+            self.tableView.reloadData()
         }
     }
     
@@ -169,11 +168,11 @@ class RssFeedController: ThemedUIViewController {
         guard let selected = tableView.indexPathsForSelectedRows else { return }
         
         let message = selected.compactMap { dataSource.snapshot?.getItem(from: $0)?.title }.joined(separator: "\n")
-        let urls = selected.compactMap { dataSource.snapshot?.getItem(from: $0)?.link }
+        let rssModels = selected.compactMap { dataSource.snapshot?.getItem(from: $0) }
         let alert = ThemedUIAlertController(title: Localize.get("RssFeedController.RemoveTitle"), message: message, preferredStyle: .alert)
         
         let delete = UIAlertAction(title: Localize.get("Remove"), style: .destructive) { _ in
-            RssFeedProvider.shared.removeFeeds(urls)
+            RssFeedProvider.shared.removeFeeds(rssModels)
         }
         let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
         
@@ -228,9 +227,9 @@ class RssFeedDataSource: DiffableDataSource<String, RssModel> {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         super.tableView(tableView, moveRowAt: sourceIndexPath, to: destinationIndexPath)
-        RssFeedProvider.shared.rssModels.updateWithoutNotify {
-            let itemToMove = RssFeedProvider.shared.rssModels.variable.remove(at: sourceIndexPath.row)
-            RssFeedProvider.shared.rssModels.variable.insert(itemToMove, at: destinationIndexPath.row)
-        }
+//        RssFeedProvider.shared.rssModels.updateWithoutNotify {
+            let itemToMove = RssFeedProvider.shared.rssModels.remove(at: sourceIndexPath.row)
+            RssFeedProvider.shared.rssModels.insert(itemToMove, at: destinationIndexPath.row)
+//        }
     }
 }

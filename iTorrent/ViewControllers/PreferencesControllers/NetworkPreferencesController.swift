@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class NetworkPreferencesController: StaticTableViewController {
@@ -23,7 +28,8 @@ class NetworkPreferencesController: StaticTableViewController {
         title = Localize.get("Settings.Network.Header")
         
         weak var weakSelf = self
-
+        
+        // -MARK: Network
         var network = [CellModelProtocol]()
         network.append(SwitchCell.Model(title: "Settings.Network.DHT", defaultValue: { UserPreferences.enableDht }, hint: "Settings.Network.DHT.Hint") { switcher in
             UserPreferences.enableDht = switcher.isOn
@@ -47,13 +53,14 @@ class NetworkPreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: network, header: "Settings.Network.Protocols"))
         
+        // -MARK: Port
         var port = [CellModelProtocol]()
         port.append(SwitchCell.Model(title: "Settings.Network.DefauldPort", defaultValue: { UserPreferences.defaultPort }, hint: "Settings.Network.DefauldPort.Hint") { switcher in
             UserPreferences.defaultPort = switcher.isOn
             TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
             weakSelf?.updateData()
         })
-        port.append(TextFieldCell.Model(title: "Settings.Network.PortFirst", placeholder: "6881", defaultValue: { String(UserPreferences.portRangeFirst) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }) { port in
+        port.append(TextFieldCell.Model(title: "Settings.Network.PortFirst", placeholder: "6881", defaultValue: { String(UserPreferences.portRangeFirst) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }, textEditEndAction: { port in
             var iPort: Int
             if let port = Int(port) {
                 iPort = port
@@ -62,15 +69,15 @@ class NetworkPreferencesController: StaticTableViewController {
             }
             
             UserPreferences.portRangeFirst = iPort
-
+            
             if UserPreferences.portRangeSecond - iPort < 0 {
                 UserPreferences.portRangeSecond = iPort + 10
             }
-
+            
             weakSelf?.updateData()
             TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-        })
-        port.append(TextFieldCell.Model(title: "Settings.Network.PortSecond", placeholder: "6891", defaultValue: { String(UserPreferences.portRangeSecond) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }) { port in
+        }))
+        port.append(TextFieldCell.Model(title: "Settings.Network.PortSecond", placeholder: "6891", defaultValue: { String(UserPreferences.portRangeSecond) }, keyboardType: .numberPad, hiddenCondition: { UserPreferences.defaultPort }, textEditEndAction: { port in
             var iPort: Int
             if let port = Int(port) {
                 iPort = port
@@ -83,10 +90,48 @@ class NetworkPreferencesController: StaticTableViewController {
             }
             
             UserPreferences.portRangeSecond = iPort
-
+            
             weakSelf?.updateData()
             TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-        })
+        }))
         data.append(Section(rowModels: port, header: "Settings.Network.Port"))
+        
+        // -MARK: Interface
+        var interface = [CellModelProtocol]()
+        interface.append(ButtonCell.Model(title: "Settings.Network.Interface.Title", hint: "Settings.Network.Interface.Hint", buttonTitleFunc: { UserPreferences.interfaceType.name }, action: { button in
+            let alert = ThemedUIAlertController(title: "Settings.Network.Interface.Select".localized, message: nil, preferredStyle: .actionSheet)
+            
+            func setInterface(type: InterfaceType) {
+                UserPreferences.interfaceType = type
+                weakSelf?.updateData()
+            }
+            
+            alert.addAction(UIAlertAction(title: InterfaceType.all.name, style: .default, handler: { _ in setInterface(type: .all) }))
+            alert.addAction(UIAlertAction(title: InterfaceType.primary.name, style: .default, handler: { _ in setInterface(type: .primary) }))
+            alert.addAction(UIAlertAction(title: InterfaceType.vpnOnly.name, style: .default, handler: { _ in setInterface(type: .vpnOnly) }))
+            alert.addAction(UIAlertAction(title: "InterfaceType.Manual".localized, style: .default, handler: { _ in
+                let manual = ThemedUIAlertController(title: nil, message: "Settings.Network.Interface.SelectInterface".localized, preferredStyle: .actionSheet)
+                Utils.interfaceNames().forEach { interface in
+                    manual.addAction(UIAlertAction(title: interface, style: .default, handler: { _ in
+                        setInterface(type: .manual(name: interface))
+                    }))
+                }
+                manual.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+                
+                manual.popoverPresentationController?.sourceView = button.superview
+                manual.popoverPresentationController?.sourceRect = button.superview!.frame
+                manual.popoverPresentationController?.permittedArrowDirections = [.left]
+                
+                weakSelf?.present(manual, animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+            
+            alert.popoverPresentationController?.sourceView = button.superview
+            alert.popoverPresentationController?.sourceRect = button.superview!.frame
+            alert.popoverPresentationController?.permittedArrowDirections = [.left]
+            
+            weakSelf?.present(alert, animated: true)
+        }))
+        data.append(Section(rowModels: interface, header: "Settings.Network.Interface"))
     }
 }

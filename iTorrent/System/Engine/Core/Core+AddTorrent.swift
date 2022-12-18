@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 extension Core {
@@ -40,9 +45,12 @@ extension Core {
         }
 
         DispatchQueue.global(qos: .background).async {
-            while self.state != .InProgress {
-                sleep(1)
-            }
+            let semaphore = DispatchSemaphore(value: 1)
+            self.state.observeNext { state in
+                if state == .InProgress { semaphore.signal() }
+            }.dispose(in: self.bag)
+            semaphore.wait()
+            
             DispatchQueue.main.async {
                 let dest = Core.tempFile
                 do {
@@ -83,12 +91,16 @@ extension Core {
     func addMagnet(_ magnetLink: String) {
         if magnetLink.starts(with: "magnet:") {
             DispatchQueue.global(qos: .background).async {
-                while self.state != .InProgress {
-                    sleep(1)
-                }
+                let semaphore = DispatchSemaphore(value: 1)
+                self.state.observeNext { state in
+                    if state == .InProgress { semaphore.signal() }
+                }.dispose(in: self.bag)
+                semaphore.wait()
+                
                 DispatchQueue.main.async {
                     if let hash = TorrentSdk.getMagnetHash(magnetUrl: magnetLink),
-                        self.torrents[hash] != nil {
+                        self.torrents[hash] != nil
+                    {
                         Dialog.show(title: "This torrent already exists",
                                     message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))")
                     } else if let hash = TorrentSdk.addMagnet(magnetUrl: magnetLink) {
@@ -136,6 +148,29 @@ extension Core {
             Dialog.show(presenter,
                         title: "Error",
                         message: "Wrong link, check it and try again!")
+        }
+    }
+
+    func getTorrent(by url: String, result: @escaping (Result<String, MessageError>) -> ()) {
+        Utils.checkFolderExist(path: Core.configFolder)
+
+        if let url = URL(string: url) {
+            Downloader.load(url: url, to: URL(fileURLWithPath: Core.tempFile), completion: {
+                let hash = TorrentSdk.getTorrentFileHash(torrentPath: Core.tempFile)
+                if hash == nil || hash == "-1" {
+                    return result(.failure(.error("Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari".localized)))
+                }
+
+                if Core.shared.torrents[hash!] != nil {
+                    return result(.failure(.error("\(Localize.get("Torrent with hash:")) \"\(hash!)\" \(Localize.get("already exists in download queue"))")))
+                }
+
+                result(.success(Core.tempFile))
+            }, errorAction: {
+                result(.failure(.error("Please, open this link in Safari, and send .torrent file from there".localized)))
+            })
+        } else {
+            result(.failure(.error("Wrong link, check it and try again!".localized)))
         }
     }
 }

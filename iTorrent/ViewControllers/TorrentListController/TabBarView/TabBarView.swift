@@ -6,15 +6,23 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class TabBarView: UITableViewHeaderFooterView, Themed {
     static let id = "TabBarView"
     static let nib = UINib(nibName: id, bundle: Bundle.main)
     
+    
+    @IBOutlet var backgroundFxView: UIView!
     @IBOutlet var fxView: UIVisualEffectView!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var separatorView: UIView!
     weak var delegate: TabBarViewDelegate?
     
     var selected = IndexPath(item: 0, section: 0)
@@ -47,13 +55,33 @@ class TabBarView: UITableViewHeaderFooterView, Themed {
             sub?.backgroundColor = .clear
             sub = sub?.subviews.first
         }
+        
+        if #available(iOS 14.0, *) {
+            var backgroundConfig = UIBackgroundConfiguration.clear()
+            backgroundConfig.backgroundColor = .clear
+            backgroundConfiguration = backgroundConfig
+        }
+        
+        if #available(iOS 15.0, *) {
+            backgroundFxView.alpha = 0
+        } else {
+            separatorView.isHidden = true
+        }
+    }
+
+    override func layoutMarginsDidChange() {
+        super.layoutMarginsDidChange()
+
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout,
+              let margins = parentViewController?.systemMinimumLayoutMargins
+        else { return }
+
+        layout.sectionInset.left = margins.leading
+        layout.sectionInset.right = margins.trailing
     }
     
     @objc func themeUpdate() {
         fxView.effect = UIBlurEffect(style: Themes.current.blurEffect)
-        if #available(iOS 14, *) {
-            fxView.backgroundColor = Themes.current.sectionHeaderColor
-        }
     }
     
     private func selectItem(at indexPath: IndexPath, animated: Bool = true) {
@@ -107,7 +135,7 @@ extension TabBarView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 0, height: 44)
+        CGSize(width: 0, height: 44)
     }
 }
 

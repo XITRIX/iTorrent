@@ -6,34 +6,50 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+import QuickLook
 import UIKit
 
 class FileCell: ThemedUITableViewCell, UpdatableModel {
     static let id = "FileCell"
     static let nib = UINib(nibName: id, bundle: Bundle.main)
-    
+
     @IBOutlet var title: UILabel!
     @IBOutlet var size: UILabel!
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var prioritySwitch: UISwitch!
     @IBOutlet var progressBar: SegmentedProgressView!
-    
+
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var editingConstraint: NSLayoutConstraint!
     var editingConstraintValue: CGFloat {
         isEditing ? 13 : 70
     }
-    
+
     weak var model: FileModel!
-    
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        if #available(iOS 14, *) {
+            shareButton.menu = createShareMenu()
+            shareButton.showsMenuAsPrimaryAction = true
+        } else {
+            shareButton.addTarget(self, action: #selector(shareAction), for: .touchUpInside)
+        }
+    }
+
     func setModel(_ model: FileModel) {
         self.model = model
         updateModel()
-        
+
         setEditing(isEditing, animated: false)
     }
-    
+
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         editingConstraint.constant = editingConstraintValue
@@ -43,7 +59,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
             self.layoutIfNeeded()
         }
     }
-    
+
     func updateModel() {
         title.text = model.name
         if model.isPreview {
@@ -64,7 +80,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         }
         setSwitchColor()
     }
-    
+
     func setSwitchColor() {
         switch model.priority {
         case .dontDownload:
@@ -73,36 +89,42 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         case .lowPriority:
             prioritySwitch.setOn(true, animated: true)
             prioritySwitch.onTintColor = #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1)
-        case .mediumPriority:
-            prioritySwitch.setOn(true, animated: true)
-            prioritySwitch.onTintColor = UIColor.orange
         case .normalPriority:
             prioritySwitch.setOn(true, animated: true)
             prioritySwitch.onTintColor = nil
+        case .highPriority:
+            prioritySwitch.setOn(true, animated: true)
+            prioritySwitch.onTintColor = UIColor.orange
         @unknown default:
             fatalError()
         }
     }
-    
+
     func onClick() {
         let downloaded = model.downloadedBytes == model.size
         if downloaded {
-            share()
+            open()
         } else {
             prioritySwitch.setOn(!prioritySwitch.isOn, animated: true)
             model.priority = prioritySwitch.isOn ? .normalPriority : .dontDownload
             setSwitchColor()
-            
+
             if #available(iOS 10.0, *) {
                 let generator = UIImpactFeedbackGenerator(style: .light)
                 generator.impactOccurred()
             }
         }
     }
-    
+
+    func open() {
+        let vc = QLPreviewController()
+        vc.dataSource = self
+        Utils.topViewController?.present(vc, animated: true)
+    }
+
     func share() {
         let controller = ThemedUIAlertController(title: nil, message: model.name, preferredStyle: .actionSheet)
-        let share = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default) { _ in
+        let share = UIAlertAction(title: "Share".localized, style: .default) { _ in
             let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
             let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
             if shareController.popoverPresentationController != nil {
@@ -130,6 +152,9 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
         //
         //            UIApplication.shared.keyWindow?.rootViewController?.present(deleteController, animated: true)
         //        }
+        let open = UIAlertAction(title: "Open".localized, style: .default) { [self] _ in
+            self.open()
+        }
         let showOnFiles = UIAlertAction(title: "Show in Files".localized, style: .default) { _ in
             let spath = ((Core.rootFolder + self.model.path.path) as NSString).deletingLastPathComponent
             let path = NSURL(fileURLWithPath: spath, isDirectory: false)
@@ -139,24 +164,68 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
                 UIApplication.shared.openURL(url)
             }
         }
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel)
+        controller.addAction(open)
         controller.addAction(share)
         // controller.addAction(delete)
         if #available(iOS 11, *) {
             controller.addAction(showOnFiles)
         }
         controller.addAction(cancel)
-        
+
         if controller.popoverPresentationController != nil {
             controller.popoverPresentationController?.sourceView = shareButton
             controller.popoverPresentationController?.sourceRect = shareButton.bounds
             controller.popoverPresentationController?.permittedArrowDirections = .right
         }
-        
+
         Utils.topViewController?.present(controller, animated: true)
     }
-    
-    @IBAction func shareAction(_ sender: Any) {
+
+    @available(iOS 14, *)
+    func createShareMenu() -> UIMenu {
+        let open = UIAction(title: "Open".localized) { _ in
+            self.open()
+        }
+
+        let share = UIAction(title: "Share".localized) { _ in
+            let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
+            let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
+            if shareController.popoverPresentationController != nil {
+                shareController.popoverPresentationController?.sourceView = self.shareButton
+                shareController.popoverPresentationController?.sourceRect = self.shareButton.bounds
+                shareController.popoverPresentationController?.permittedArrowDirections = .any
+            }
+            Utils.topViewController?.present(shareController, animated: true)
+        }
+
+        let showOnFiles = UIAction(title: "Show in Files".localized) { _ in
+            let spath = ((Core.rootFolder + self.model.path.path) as NSString).deletingLastPathComponent
+            let path = NSURL(fileURLWithPath: spath, isDirectory: false)
+            var components = URLComponents(url: path as URL, resolvingAgainstBaseURL: false)
+            components?.scheme = "shareddocuments"
+            if let url = components?.url {
+                UIApplication.shared.openURL(url)
+            }
+        }
+
+        return UIMenu(title: "", children: [open, share, showOnFiles])
+    }
+
+    @objc func shareAction(_ sender: Any) {
+        if #available(iOS 14, *) { return }
         share()
+    }
+}
+
+extension FileCell: QLPreviewControllerDataSource {
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        1
+    }
+
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        let spath = Core.rootFolder + model.path.path
+        let path = NSURL(fileURLWithPath: spath, isDirectory: false)
+        return path as QLPreviewItem
     }
 }

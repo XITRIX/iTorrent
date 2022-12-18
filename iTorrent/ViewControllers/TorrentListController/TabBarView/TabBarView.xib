@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,14 +14,37 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqq-40-XdF">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJ5-cj-Nhn">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dCc-TU-XNP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="regular"/>
-                </visualEffectView>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqq-40-XdF">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dCc-TU-XNP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtQ-X1-bGs">
+                            <rect key="frame" x="0.0" y="43.666666666666664" width="414" height="0.3333333333333357"/>
+                            <color key="backgroundColor" systemColor="separatorColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.29999999999999999" id="iaX-Dl-zdZ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="YtQ-X1-bGs" secondAttribute="bottom" id="3I0-Ks-hIx"/>
+                        <constraint firstAttribute="trailing" secondItem="Bqq-40-XdF" secondAttribute="trailing" id="Dkd-yC-pZT"/>
+                        <constraint firstItem="YtQ-X1-bGs" firstAttribute="leading" secondItem="xJ5-cj-Nhn" secondAttribute="leading" id="EjV-uy-9wL"/>
+                        <constraint firstItem="Bqq-40-XdF" firstAttribute="leading" secondItem="xJ5-cj-Nhn" secondAttribute="leading" id="RmP-2T-tqE"/>
+                        <constraint firstItem="Bqq-40-XdF" firstAttribute="top" secondItem="xJ5-cj-Nhn" secondAttribute="top" id="Sac-4F-ZD5"/>
+                        <constraint firstAttribute="bottom" secondItem="Bqq-40-XdF" secondAttribute="bottom" id="X2D-Ya-kpQ"/>
+                        <constraint firstAttribute="trailing" secondItem="YtQ-X1-bGs" secondAttribute="trailing" id="i1F-rA-3zd"/>
+                    </constraints>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Psc-nG-iJr">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -40,20 +63,27 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Psc-nG-iJr" secondAttribute="bottom" id="2to-wb-vmu"/>
-                <constraint firstItem="Bqq-40-XdF" firstAttribute="top" secondItem="Ict-dT-htk" secondAttribute="top" id="DXg-cb-JXc"/>
-                <constraint firstItem="Bqq-40-XdF" firstAttribute="leading" secondItem="Ict-dT-htk" secondAttribute="leading" id="Goi-Bf-iUo"/>
+                <constraint firstItem="xJ5-cj-Nhn" firstAttribute="bottom" secondItem="rh2-oE-IZH" secondAttribute="bottom" id="8wK-l2-aDK"/>
                 <constraint firstItem="Psc-nG-iJr" firstAttribute="top" secondItem="Ict-dT-htk" secondAttribute="top" id="VgQ-xf-gOr"/>
                 <constraint firstAttribute="trailing" secondItem="Psc-nG-iJr" secondAttribute="trailing" id="WjZ-K9-znb"/>
-                <constraint firstAttribute="bottom" secondItem="Bqq-40-XdF" secondAttribute="bottom" id="bMi-jd-K5c"/>
+                <constraint firstItem="xJ5-cj-Nhn" firstAttribute="top" secondItem="rh2-oE-IZH" secondAttribute="top" id="apb-qq-KMX"/>
                 <constraint firstItem="Psc-nG-iJr" firstAttribute="leading" secondItem="Ict-dT-htk" secondAttribute="leading" id="dBG-Xs-fZX"/>
-                <constraint firstAttribute="trailing" secondItem="Bqq-40-XdF" secondAttribute="trailing" id="n3f-gd-oNs"/>
+                <constraint firstItem="xJ5-cj-Nhn" firstAttribute="trailing" secondItem="Ict-dT-htk" secondAttribute="trailing" id="eiC-FT-dG3"/>
+                <constraint firstItem="xJ5-cj-Nhn" firstAttribute="leading" secondItem="Ict-dT-htk" secondAttribute="leading" id="xLg-lk-QgB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backgroundFxView" destination="xJ5-cj-Nhn" id="k5T-ye-Nxj"/>
                 <outlet property="collectionView" destination="Psc-nG-iJr" id="QC8-4Q-qeB"/>
                 <outlet property="fxView" destination="Bqq-40-XdF" id="9Vy-iB-bQD"/>
+                <outlet property="separatorView" destination="YtQ-X1-bGs" id="bCw-Cj-2yW"/>
             </connections>
             <point key="canvasLocation" x="598.55072463768124" y="218.47826086956525"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

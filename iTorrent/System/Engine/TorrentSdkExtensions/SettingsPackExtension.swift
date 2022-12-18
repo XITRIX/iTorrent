@@ -7,7 +7,12 @@
 //
 
 import Foundation
+
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
 
 extension SettingsPack {
     static var userPrefered: SettingsPack {
@@ -18,7 +23,10 @@ extension SettingsPack {
                      enableUtp: UserPreferences.enableUtp,
                      enableUpnp: UserPreferences.enableUpnp,
                      enableNatpmp: UserPreferences.enableNatpmp,
-                     interfaceType: .all, //UserPreferences.interface, //Utils.interfacesForTorrent(vpnOnly: UserPreferences.onlyVpn),
+                     maxActiveTorrents: UserPreferences.maxActiveTorrents,
+                     maxUplodingTorrents: UserPreferences.maxUplodingTorrents,
+                     maxDownloadingTorrents: UserPreferences.maxDownloadingTorrents,
+                     interfaceType: UserPreferences.interfaceType,
                      portRangeFirst: !UserPreferences.defaultPort ?
                          UserPreferences.portRangeFirst :
                          6881,

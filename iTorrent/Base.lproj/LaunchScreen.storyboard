@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sTv-ZB-4Dn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NKf-mn-LyC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,14 +31,14 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="mxH-oa-Au5"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="92R-qq-5KW" firstAttribute="top" secondItem="jhP-4p-gRD" secondAttribute="top" id="2VG-DU-bEj"/>
                             <constraint firstItem="92R-qq-5KW" firstAttribute="leading" secondItem="jhP-4p-gRD" secondAttribute="leading" id="Xfe-sq-NXa"/>
                             <constraint firstAttribute="trailing" secondItem="92R-qq-5KW" secondAttribute="trailing" priority="750" id="eZr-iX-ozk"/>
                             <constraint firstAttribute="bottom" secondItem="92R-qq-5KW" secondAttribute="bottom" id="qK9-x0-f6e"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="mxH-oa-Au5"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6t-nr-zZ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -65,7 +65,8 @@
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9xf-T1-IaV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="0hh-wx-u2o"/>
                             <constraint firstItem="9xf-T1-IaV" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="6GC-Pf-WO9"/>
@@ -73,12 +74,11 @@
                             <constraint firstItem="9xf-T1-IaV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="lhU-mp-XSm"/>
                             <constraint firstItem="hz9-wB-biS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ruW-Zt-nTP"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="iTorrent" id="LWt-Fg-NIP">
                         <rightBarButtonItems>
-                            <barButtonItem image="Sort" id="PEX-83-hjX"/>
+                            <barButtonItem image="Order" id="PEX-83-hjX"/>
                             <barButtonItem image="Rss" id="4Jm-fU-xor"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -86,6 +86,18 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1926" y="812"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="dWb-gu-4ci">
+            <objects>
+                <splitViewController allowDoubleColumnStyle="YES" preferredDisplayMode="twoBeside" id="NKf-mn-LyC" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="WIg-R6-dOP" kind="relationship" relationship="masterViewController" id="97b-dL-9Q9"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j9P-VV-n7I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="812"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O8X-QQ-P4S">
@@ -106,10 +118,19 @@
             <point key="canvasLocation" x="1186" y="812"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="97b-dL-9Q9"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.29803921568627451" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
+        <image name="Order" width="25" height="25"/>
         <image name="Rss" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
-        <image name="Sort" width="25" height="25"/>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

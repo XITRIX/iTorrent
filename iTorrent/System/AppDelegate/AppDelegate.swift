@@ -6,10 +6,16 @@
 //  Copyright © 2018  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
+import ITorrentFramework
+#endif
+
 import AdSupport
 import AppTrackingTransparency
-import ITorrentFramework
 import UIKit
+// import ObjectiveC
 
 #if !targetEnvironment(macCatalyst)
 import FirebaseCore
@@ -29,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+//        ObjC.oldOSPatch()
 
         #if !targetEnvironment(macCatalyst)
         // Crash on iOS 9
@@ -41,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        // GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "0e836d6d9e4873bf2acac60f6e5de207" ]
         #endif
 
         pushNotificationsInit(application)
@@ -82,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Path: " + url.path)
         if url.absoluteString.hasPrefix("magnet:") {
             Core.shared.addMagnet(url.absoluteString)
+        } else if url.absoluteString.hasPrefix("iTorrent:hash:") {
+            AppDelegate.openTorrentDetailsViewController(withHash: url.absoluteString.replacingOccurrences(of: "iTorrent:hash:", with: ""), sender: self)
         } else {
             let openInPlace = options[.openInPlace] as? Bool ?? false
             Core.shared.addTorrentFromFile(url, openInPlace: openInPlace)
@@ -116,16 +126,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         RssFeedProvider.shared.fetchUpdates { updates in
             if updates.keys.count > 0 {
-                let text = updates.keys
-                    .filter { !$0.muteNotifications }
-                    .map { updates[$0]! }
-                    .reduce([], +)
-                    .compactMap { $0.title }
-                    .joined(separator: "\n")
+                let unmuted = updates.keys
+                    .filter { !$0.muteNotifications.value }
 
-                NotificationHelper.showNotification(title: Localize.get("RssFeedProvider.Notification.Title"),
-                                                    body: text,
-                                                    hash: "RSS")
+                if unmuted.count > 0 {
+                    let text = unmuted
+                        .map { updates[$0]! }
+                        .reduce([], +)
+                        .compactMap { $0.title }
+                        .joined(separator: "\n")
+
+                    NotificationHelper.showNotification(title: Localize.get("RssFeedProvider.Notification.Title"),
+                                                        body: text,
+                                                        hash: "RSS")
+                }
                 completionHandler(.newData)
             } else {
                 completionHandler(.noData)

@@ -8,42 +8,32 @@
 
 import UIKit
 
-class DatasetPicker: PopupView, Themed {
+class DatasetPicker: PopupViewController {
     var data: [[String]]!
     var action: ((String) -> ())!
+    
+    var picker: UIPickerView
 
-    func themeUpdate() { }
+    override func themeUpdate() {
+        super.themeUpdate()
+        picker.reloadAllComponents()
+    }
 
     init(data: [[String]], dataSelected: @escaping (String) -> ()) {
-        let picker = UIPickerView()
-        super.init(contentView: picker, contentHeight: 180)
+        picker = UIPickerView()
+        super.init(picker, contentHeight: 180)
 
         self.data = data
         self.action = dataSelected
 
         picker.dataSource = self
         picker.delegate = self
-
-        setupView()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
-    func setupView() {
-        themeUpdate()
     }
 }
 
 extension DatasetPicker: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data[component].count
+        data[component].count
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

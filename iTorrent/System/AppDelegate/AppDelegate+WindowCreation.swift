@@ -25,30 +25,18 @@ extension AppDelegate {
 
     func rootWindowInit() {
         self.window = AppDelegate.createWindow()
+        window?.tintColor = .mainColor
 
         let nvc = Utils.instantiate("TorrentListController").embedInNavigation()
         if #available(iOS 11.0, *) {
             nvc.navigationBar.prefersLargeTitles = true
         }
-//        if #available(iOS 14, *) {
-//            let svc = UISplitViewController(style: .doubleColumn)
-//            svc.preferredSplitBehavior = .tile
-////            svc.viewControllers = [nvc]
-//            svc.setViewController(nvc, for: .primary)
-//            svc.setViewController(ThemedUIViewController(), for: .secondary)
-//            window?.rootViewController = svc
-//            window?.makeKeyAndVisible()
-//
-////            svc.delegate = self
-////            svc.preferredDisplayMode = .allVisible
-//        } else {
-            let svc = ThemedUISplitViewController()
-            svc.viewControllers = [nvc]
-            window?.rootViewController = svc
-            window?.makeKeyAndVisible()
+        let svc = SplitViewController()
+        svc.viewControllers = [nvc]
+        window?.rootViewController = svc
+        window?.makeKeyAndVisible()
 
-            svc.delegate = self
-            svc.preferredDisplayMode = .allVisible
-//        }
+        svc.delegate = self
+        svc.preferredDisplayMode = .allVisible
     }
 }

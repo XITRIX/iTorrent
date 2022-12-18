@@ -9,7 +9,6 @@
 import UIKit
 
 class MvvmViewController<T: ViewModel>: ThemedUIViewController {
-    let disposalBag = DisposalBag()
     var viewModel: T!
 
     override func viewDidLoad() {
@@ -19,22 +18,22 @@ class MvvmViewController<T: ViewModel>: ThemedUIViewController {
         setupViews()
         binding()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.viewWillAppear()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.viewDidAppear()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         viewModel.viewWillDisappear()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.viewDidDisappear()
@@ -43,8 +42,10 @@ class MvvmViewController<T: ViewModel>: ThemedUIViewController {
     func initializeViewModel() -> T {
         T()
     }
-    
-    func setupViews() {}
 
-    func binding() {}
+    func setupViews() {
+    }
+
+    func binding() {
+    }
 }

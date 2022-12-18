@@ -6,7 +6,12 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class PreferencesController: StaticTableViewController {
@@ -14,7 +19,7 @@ class PreferencesController: StaticTableViewController {
         true
     }
 
-    var onScreenPopup: PopupView?
+    var onScreenPopup: PopupViewController?
 
     deinit {
         print("PreferencesController Deinit")
@@ -22,10 +27,10 @@ class PreferencesController: StaticTableViewController {
 
     override func initSections() {
         title = Localize.get("Settings.Title")
-        
+
         weak var weakSelf = self
 
-        // APPEARANCE
+        // -MARK: APPEARANCE
         var appearance = [CellModelProtocol]()
         appearance.append(SegueCell.Model(weakSelf, title: "Settings.Order", controllerType: SortingPreferencesController.self))
         if #available(iOS 13, *) {
@@ -49,7 +54,7 @@ class PreferencesController: StaticTableViewController {
                                                        }
                                                        weakSelf?.updateData()
                                                    }
-                }))
+                                               }))
         } else {
             UserPreferences.autoTheme = false
         }
@@ -62,10 +67,10 @@ class PreferencesController: StaticTableViewController {
                     CircularAnimation.animate(startingPoint: switcher.superview!.convert(switcher.center, to: nil))
                     weakSelf?.navigationController?.view.isUserInteractionEnabled = true
                 }
-        })
+            })
         data.append(Section(rowModels: appearance, header: "Settings.Appearance.Header"))
 
-        // STORAGE
+        // -MARK: STORAGE
         var storage = [CellModelProtocol]()
         storage.append(StoragePropertyCell.Model())
         storage.append(SwitchCell.Model(title: "Settings.Storage.Allocate", defaultValue: { UserPreferences.storagePreallocation }, hint: "Settings.Storage.Allocate.Hint") { switcher in
@@ -74,7 +79,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: storage, header: "Settings.Storage.Header"))
 
-        // BACKGROUND
+        // -MARK: BACKGROUND
         var background = [CellModelProtocol]()
         background.append(SwitchCell.Model(title: "Settings.BackgroundEnable", defaultValue: { UserPreferences.background }) { switcher in
             UserPreferences.background = switcher.isOn
@@ -99,14 +104,14 @@ class PreferencesController: StaticTableViewController {
                     UserPreferences.seedBackgroundWarning = false
                     UserPreferences.backgroundSeedKey = false
                 }
-        })
+            })
         background.append(ButtonCell.Model(title: "Settings.ZeroSpeedLimit",
                                            hint: Localize.get("Settings.ZeroSpeedLimit.Hint"),
                                            buttonTitleFunc: {
                                                UserPreferences.zeroSpeedLimit == 0 ?
                                                    NSLocalizedString("Disabled", comment: "") :
                                                    "\(UserPreferences.zeroSpeedLimit / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit / 60))"
-                }) { button in
+                                           }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
                 weakSelf?.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
                     if res == 0 {
@@ -117,17 +122,69 @@ class PreferencesController: StaticTableViewController {
                 }, dismissAction: { res in
                     UserPreferences.zeroSpeedLimit = res
                 })
-                weakSelf?.onScreenPopup?.show(weakSelf)
-        })
-        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) //, footer: "Settings.BackgroundFooter"))
 
-        // SPEED LIMITATION
+                guard let self = weakSelf else { return }
+                self.onScreenPopup?.show(in: self)
+            })
+        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) // , footer: "Settings.BackgroundFooter"))
+
+        // -MARK: ACTIVITY LIMITATION
+        var activity = [CellModelProtocol]()
+        activity.append(ButtonCell.Model(title: "Settings.TorrentsLimit",
+                                         buttonTitleFunc: { TorrentLimitPicker.toString(UserPreferences.maxActiveTorrents) },
+                                         action: { button in
+                                             weakSelf?.onScreenPopup?.dismiss()
+                                             weakSelf?.onScreenPopup = TorrentLimitPicker(defaultValue: UserPreferences.maxActiveTorrents, dataSelected: { res in
+                                                 button.setTitle(TorrentLimitPicker.toString(res), for: .normal)
+                                             }, dismissAction: { res in
+                                                 UserPreferences.maxActiveTorrents = res
+                                                 TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                                             })
+
+                                             guard let self = weakSelf
+                                             else { return }
+                                             self.onScreenPopup?.show(in: self)
+                                         }))
+        activity.append(ButtonCell.Model(title: "Settings.TorrentsDownLimit",
+                                         buttonTitleFunc: { TorrentLimitPicker.toString(UserPreferences.maxDownloadingTorrents) },
+                                         action: { button in
+                                             weakSelf?.onScreenPopup?.dismiss()
+                                             weakSelf?.onScreenPopup = TorrentLimitPicker(defaultValue: UserPreferences.maxDownloadingTorrents, dataSelected: { res in
+                                                 button.setTitle(TorrentLimitPicker.toString(res), for: .normal)
+                                             }, dismissAction: { res in
+                                                 UserPreferences.maxDownloadingTorrents = res
+                                                 TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                                             })
+
+                                             guard let self = weakSelf
+                                             else { return }
+                                             self.onScreenPopup?.show(in: self)
+                                         }))
+        activity.append(ButtonCell.Model(title: "Settings.TorrentsUpLimit",
+                                         buttonTitleFunc: { TorrentLimitPicker.toString(UserPreferences.maxUplodingTorrents) },
+                                         action: { button in
+                                             weakSelf?.onScreenPopup?.dismiss()
+                                             weakSelf?.onScreenPopup = TorrentLimitPicker(defaultValue: UserPreferences.maxUplodingTorrents, dataSelected: { res in
+                                                 button.setTitle(TorrentLimitPicker.toString(res), for: .normal)
+                                             }, dismissAction: { res in
+                                                 UserPreferences.maxUplodingTorrents = res
+                                                 TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                                             })
+
+                                             guard let self = weakSelf
+                                             else { return }
+                                             self.onScreenPopup?.show(in: self)
+                                         }))
+        data.append(Section(rowModels: activity, header: "Settings.QueueLimitHeader"))
+
+        // -MARK: SPEED LIMITATION
         var speed = [CellModelProtocol]()
+
         speed.append(ButtonCell.Model(title: "Settings.DownLimit",
                                       buttonTitleFunc: { UserPreferences.downloadLimit == 0 ?
                                           NSLocalizedString("Unlimited", comment: "") :
                                           Utils.getSizeText(size: Int64(UserPreferences.downloadLimit), decimals: true) + "/S"
-                }) { button in
+                                      }) { button in
                 weakSelf?.onScreenPopup?.dismiss()
                 weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.downloadLimit), dataSelected: { res in
                     if res == 0 {
@@ -138,40 +195,48 @@ class PreferencesController: StaticTableViewController {
                 }, dismissAction: { res in
                     UserPreferences.downloadLimit = Int(res)
                     TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                })
+
+                guard let self = weakSelf
+                else { return }
+                self.onScreenPopup?.show(in: self)
             })
-                weakSelf?.onScreenPopup?.show(weakSelf)
-        })
-        speed.append(ButtonCell.Model(title: "Settings.UpLimit",
-                                      buttonTitleFunc: { UserPreferences.uploadLimit == 0 ?
-                                          NSLocalizedString("Unlimited", comment: "") :
-                                          Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
-                }) { button in
-                weakSelf?.onScreenPopup?.dismiss()
-                weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit), dataSelected: { res in
-                    if res == 0 {
-                        button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
-                    } else {
-                        button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
-                    }
-                }, dismissAction: { res in
-                    UserPreferences.uploadLimit = Int(res)
-                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-            })
-                weakSelf?.onScreenPopup?.show(weakSelf)
+        speed.append(ButtonCell.Model(title: "Settings.UpLimit", buttonTitleFunc: {
+            UserPreferences.uploadLimit == 0 ? NSLocalizedString("Unlimited",
+                                                                 comment: "") : Utils.getSizeText(size: Int64(UserPreferences.uploadLimit), decimals: true) + "/S"
+        }) { button in
+            weakSelf?.onScreenPopup?.dismiss()
+            weakSelf?.onScreenPopup = SpeedPicker(defaultValue: Int64(UserPreferences.uploadLimit),
+                                                  dataSelected: { res in
+                                                      if res == 0 {
+                                                          button.setTitle(NSLocalizedString("Unlimited", comment: ""), for: .normal)
+                                                      } else {
+                                                          button.setTitle(Utils.getSizeText(size: res, decimals: true) + "/S", for: .normal)
+                                                      }
+                                                  },
+                                                  dismissAction: { res in
+                                                      UserPreferences.uploadLimit = Int(res)
+                                                      TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
+                                                  })
+            guard let self = weakSelf
+            else { return }
+            self.onScreenPopup?.show(in: self)
         })
         data.append(Section(rowModels: speed, header: "Settings.SpeedHeader"))
-
-        // DATA SHARING
+        // -MARK: DATA SHARING
         var ftp = [CellModelProtocol]()
-        ftp.append(SwitchCell.Model(title: "Settings.FTPEnable", defaultValue: { UserPreferences.ftpKey }, hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
-            UserPreferences.ftpKey = switcher.isOn
-            switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
-            weakSelf?.updateData(animated: false)
-        })
-        ftp.append(SegueCell.Model(weakSelf, title: "Settings.FTP.Settings", controllerType: WebDavPreferencesController.self))
-        data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> (String) in
-            if UserPreferences.ftpKey,
-                UserPreferences.webServerEnabled {
+        ftp.append(SwitchCell.Model(title: "Settings.FTPEnable",
+                                    defaultValue: { UserPreferences.ftpKey },
+                                    hint: Localize.get("Settings.FTPEnable.Hint")) { switcher in
+                UserPreferences.ftpKey = switcher.isOn
+                switcher.isOn ? Core.shared.startFileSharing() : Core.shared.stopFileSharing()
+                weakSelf?.updateData(animated: false)
+            })
+        ftp.append(SegueCell.Model(weakSelf,
+                                   title: "Settings.FTP.Settings",
+                                   controllerType: WebDavPreferencesController.self))
+        data.append(Section(rowModels: ftp, header: "Settings.FTPHeader", footerFunc: { () -> String in
+            if UserPreferences.ftpKey, UserPreferences.webServerEnabled {
                 let addr = Core.shared.webUploadServer.serverURL // Utils.getWiFiAddress()
                 if let addr = addr?.absoluteString {
                     return UserPreferences.ftpKey ? Localize.get("Settings.FTP.Message") + addr : ""
@@ -183,44 +248,14 @@ class PreferencesController: StaticTableViewController {
             }
         }))
 
-        // NETWORK
+        // -MARK: NETWORK
 
         var network = [CellModelProtocol]()
         network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Proxy", controllerType: ProxyPreferencesController.self))
         network.append(SegueCell.Model(weakSelf, title: "Settings.Network.Connection", controllerType: NetworkPreferencesController.self))
-//        network.append(ButtonCell.Model(title: "Settings.Network.Interface", buttonTitleFunc: {UserPreferences.interface == "" ? "All" : UserPreferences.interface}, action: { button in
-//            let alert = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-////            alert.addAction(UIAlertAction(title: "Settings.Network.Interface.AnyInterface".localized, style: .default, handler: { _ in
-////                UserPreferences.onlyVpn = false
-////                button.setTitle(Utils.interfacesForTorrentName(), for: .normal)
-////                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-////            }))
-////            alert.addAction(UIAlertAction(title: "Settings.Network.Interface.VpnOnly".localized, style: .default, handler: { _ in
-////                UserPreferences.onlyVpn = true
-////                button.setTitle(Utils.interfacesForTorrentName(), for: .normal)
-////                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-////            }))
-//            alert.addAction(UIAlertAction(title: "All", style: .default, handler: { _ in
-//                UserPreferences.interface = ""
-//                button.setTitle("All", for: .normal)
-//                TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-//            }))
-//            Utils.interfaceNames().forEach { interface in
-//                alert.addAction(UIAlertAction(title: interface, style: .default, handler: { _ in
-//                    UserPreferences.interface = interface
-//                    button.setTitle(interface, for: .normal)
-//                    TorrentSdk.applySettingsPack(settingsPack: SettingsPack.userPrefered)
-//                }))
-//            }
-//            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
-//            alert.popoverPresentationController?.sourceView = button.superview
-//            alert.popoverPresentationController?.sourceRect = button.superview!.frame
-//            alert.popoverPresentationController?.permittedArrowDirections = [.left]
-//            self.present(alert, animated: true)
-//        }))
         data.append(Section(rowModels: network, header: "Settings.Network.Header"))
 
-        // NOTIFICATIONS
+        // -MARK: NOTIFICATIONS
         var notifications = [CellModelProtocol]()
         notifications.append(SwitchCell.Model(title: "Settings.NotifyFinishLoad", defaultValue: { UserPreferences.notificationsKey }) { switcher in
             UserPreferences.notificationsKey = switcher.isOn
@@ -236,7 +271,7 @@ class PreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: notifications, header: "Settings.NotifyHeader"))
 
-        // UPDATES
+        // -MARK: UPDATES
         var updates = [CellModelProtocol]()
         updates.append(ButtonCell.Model(title: "Settings.UpdateSite", buttonTitle: "Settings.UpdateSite.Open") { _ in
             Utils.openUrl("https://github.com/XITRIX/iTorrent")
@@ -244,10 +279,15 @@ class PreferencesController: StaticTableViewController {
         updates.append(UpdateInfoCell.Model(tapAction: {
             weakSelf?.present(Dialog.createUpdateLogs(forced: true)!, animated: true)
         }))
-        let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)
-        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: NSLocalizedString("Current app version: ", comment: "") + (version ?? "Unknown")))
+        let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!).trimmingCharacters(in: .whitespacesAndNewlines)
+        #if TRANSMISSION
+        let core = "TR"
+        #else
+        let core = "LT"
+        #endif
+        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: "iTorrent v\(version ?? "Unknown") \(core)core"))
 
-        // DONATES
+        // -MARK: DONATES
         var donates = [CellModelProtocol]()
         donates.append(SegueCell.Model(title: "Settings.DonateCard.DonatePlatforms") {
             let alert = ThemedUIAlertController(title: Localize.get("Settings.DonateCard.DonatePlatforms.Title"), message: "", preferredStyle: .alert)
@@ -274,7 +314,7 @@ class PreferencesController: StaticTableViewController {
             }
             let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
 
-            alert.addAction(card)
+//            alert.addAction(card)
             alert.addAction(paypal)
             alert.addAction(cancel)
 
@@ -282,12 +322,17 @@ class PreferencesController: StaticTableViewController {
         })
         donates.append(SegueCell.Model(weakSelf, title: "Patreon", segueViewId: "PatreonViewController"))
         data.append(Section(rowModels: donates, header: "Settings.DonateHeader", footer: "Settings.DonateFooter"))
-        
-        // DEBUG
+
+        // -MARK: DEBUG
 //        var debug = [CellModelProtocol]()
 //        debug.append(ButtonCell.Model(title: "Interfaces", buttonTitle: "Show", action: { _ in
-//            let interfaces = Utils.interfaceNames()
-//            Dialog.show(title: "Interfaces", message: interfaces.joined(separator: "\n"))
+//            //            let interfaces = Utils.interfaceNames()
+//            //            Dialog.show(title: "Interfaces", message: interfaces.joined(separator: "\n"))
+//            //            let vc = Utils.instantiate("RssChannelSetupController") as! RssChannelSetupController
+//            //            vc.model = RssFeedProvider.shared.rssModels.collection.first
+//            //            let popup = PopupViewController(vc, contentHeight: 200)
+//            //            popup.show(in: self)
+        ////            TestPopup().show(in: self)
 //        }))
 //        data.append(Section(rowModels: debug, header: "Debug"))
     }

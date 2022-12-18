@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 extension TorrentListController {
@@ -123,4 +128,4 @@ extension TorrentListController {
             sender.title = NSLocalizedString("Select All", comment: "")
         }
     }
-}
+} 

@@ -6,7 +6,12 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import MarqueeLabel
 import UIKit
 import WebKit
@@ -72,12 +77,13 @@ class RssItemController: ThemedUIViewController {
             navigationItem.largeTitleDisplayMode = .never
         }
         
-        let button = UIBarButtonItem(image: UIImage(named: "Share"), style: .plain, target: self, action: #selector(openLink))
+        let button = UIBarButtonItem(image: #imageLiteral(resourceName: "Safari"), style: .plain, target: self, action: #selector(openLink))
         navigationItem.setRightBarButton(button, animated: false)
         
         webView = WKWebView(frame: view.frame)
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.backgroundColor = Themes.current.backgroundSecondary
+        webView.scrollView.keyboardDismissMode = .onDrag
         view.addSubview(webView)
         
         // MARQUEE LABEL
@@ -106,6 +112,17 @@ class RssItemController: ThemedUIViewController {
             Dialog.withButton(self, title: "RssItemController.PinMagnet", okTitle: "Download") {
                 TorrentSdk.addMagnet(magnetUrl: self.model.link.absoluteString)
             }
+        } else {
+            Core.shared.getTorrent(by: model.link.absoluteString) { result in
+                switch result {
+                case .failure: break
+                case .success(let url):
+                    Dialog.withButton(self, title: "RssItemController.PinTorrent", okTitle: "Download") {
+                        let controller = AddTorrentController(filePath: url)
+                        self.present(controller.embedInNavigation(), animated: true)
+                    }
+                }
+            }
         }
     }
     
@@ -117,18 +134,20 @@ class RssItemController: ThemedUIViewController {
     }
     
     @objc func openLink() {
-        let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        UIApplication.shared.openURL(self.model.link)
         
-        let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
-            UIApplication.shared.openURL(self.model.link)
-        }
-        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
-        
-        dialog.addAction(openInSafari)
-        dialog.addAction(cancel)
-        
-        present(dialog, animated: true)
+//        let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+//        
+//        let openInSafari = UIAlertAction(title: Localize.get("Open in Safari"), style: .default) { _ in
+//            UIApplication.shared.openURL(self.model.link)
+//        }
+//        let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
+//        
+//        dialog.addAction(openInSafari)
+//        dialog.addAction(cancel)
+//        
+//        present(dialog, animated: true)
     }
 }
 
@@ -136,7 +155,8 @@ extension RssItemController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
             if let url = navigationAction.request.url,
-                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.canOpenURL(url)
+            {
                 if url.absoluteString.hasSuffix(".torrent") {
                     Core.shared.addFromUrl(url.absoluteString, presenter: self)
                 } else {

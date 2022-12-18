@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyViewController" customModule="iTorrent" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKt-cS-BkR">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XJh-jA-scg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTorrentGrey" translatesAutoresizingMaskIntoConstraints="NO" id="WrG-zC-IV2">
+                                <rect key="frame" x="106.66666666666669" y="348.66666666666669" width="180" height="180.00000000000006"/>
+                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="RiB-jO-9vS"/>
+                                    <constraint firstAttribute="width" constant="180" id="sUu-wH-I1A"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="34v-FN-bc4"/>
+                        <constraints>
+                            <constraint firstItem="WrG-zC-IV2" firstAttribute="centerY" secondItem="34v-FN-bc4" secondAttribute="centerY" id="Q8c-lG-37y"/>
+                            <constraint firstItem="WrG-zC-IV2" firstAttribute="centerX" secondItem="34v-FN-bc4" secondAttribute="centerX" id="cES-Sy-GQH"/>
+                        </constraints>
+                    </view>
+                    <vibrancyEffect style="fill">
+                        <blurEffect style="regular"/>
+                    </vibrancyEffect>
+                </visualEffectView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="kKt-cS-BkR" secondAttribute="trailing" id="Fje-P5-UTv"/>
+                <constraint firstAttribute="bottom" secondItem="kKt-cS-BkR" secondAttribute="bottom" id="bup-uk-C3G"/>
+                <constraint firstItem="kKt-cS-BkR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cSK-u4-1C1"/>
+                <constraint firstItem="kKt-cS-BkR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kOS-xH-Cfe"/>
+            </constraints>
+            <point key="canvasLocation" x="92" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iTorrentGrey" width="1024" height="1024"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

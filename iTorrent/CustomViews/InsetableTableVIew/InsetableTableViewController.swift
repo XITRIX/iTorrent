@@ -27,7 +27,7 @@ class InsetableTableViewController: SATableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let res = super.tableView(tableView, titleForHeaderInSection: section) {
+        if let res = super.tableView(tableView, titleForHeaderInSection: section){
             return "\(useInsertStyleValue ? "      " : "")\(res)"
         }
         return nil
@@ -36,6 +36,7 @@ class InsetableTableViewController: SATableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let res = super.tableView(tableView, cellForRowAt: indexPath) as! ThemedUITableViewCell
         res.insetStyle = useInsertStyleValue
+        res.setTableView(tableView)
         if useInsertStyleValue {
             res.setInsetParams(tableView: tableView, indexPath: indexPath)
         }

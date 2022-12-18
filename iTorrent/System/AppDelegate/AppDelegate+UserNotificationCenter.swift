@@ -22,7 +22,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             UIApplication.shared.cancelAllLocalNotifications()
         }
     }
-    
+
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .badge, .sound])
@@ -35,29 +35,37 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 return
             }
 
-            if Core.shared.state != .InProgress {
+            if Core.shared.state.value != .InProgress {
                 DispatchQueue.global(qos: .background).async {
-                    while Core.shared.state != .InProgress {
-                        sleep(1)
-                    }
+                    let semaphore = DispatchSemaphore(value: 1)
+                    Core.shared.state.observeNext { state in
+                        if state == .InProgress { semaphore.signal() }
+                    }.dispose(in: self.bag)
+                    semaphore.wait()
+
                     DispatchQueue.main.async {
-                        self.openTorrentDetailsViewController(withHash: hash, sender: self)
+                        AppDelegate.openTorrentDetailsViewController(withHash: hash, sender: self)
                     }
                 }
             } else {
-                openTorrentDetailsViewController(withHash: hash, sender: self)
+                AppDelegate.openTorrentDetailsViewController(withHash: hash, sender: self)
             }
         }
         completionHandler()
     }
 
-    func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
+    static func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
         let viewController = TorrentDetailsController()
         if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             viewController.managerHash = hash
             if !splitViewController.isCollapsed {
                 if splitViewController.viewControllers.count > 1,
-                    let nvc = splitViewController.viewControllers[1] as? UINavigationController {
+                    let nvc = splitViewController.viewControllers[1] as? UINavigationController
+                {
+                    if let details = nvc.topViewController as? TorrentDetailsController,
+                       details.managerHash == hash
+                    { return }
+
                     nvc.show(viewController, sender: sender)
                 } else {
                     let navController = Utils.instantiateNavigationController(viewController)
@@ -65,6 +73,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     splitViewController.showDetailViewController(navController, sender: sender)
                 }
             } else {
+                if let nvc = splitViewController.viewControllers.first as? UINavigationController,
+                   let details = nvc.topViewController as? TorrentDetailsController,
+                   details.managerHash == hash
+                { return }
+                
                 splitViewController.showDetailViewController(viewController, sender: sender)
             }
         }

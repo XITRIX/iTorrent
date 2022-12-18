@@ -6,7 +6,12 @@
 //  Copyright © 2019  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 class UserPreferences {
@@ -27,29 +32,31 @@ class UserPreferences {
     @PreferenceItem("sectionsSortingOrder", [3, 7, 8, 6, 2, 4, 5, 9, 1]) static var sectionsSortingOrder: [Int]
     @PreferenceItem("themeNum", 0) static var themeNum: Int
     @PreferenceItem("zeroSpeedLimit", 60) static var zeroSpeedLimit: Int
+    @PreferenceItem("maxActiveTorrents", 5) static var maxActiveTorrents: Int
+    @PreferenceItem("maxUplodingTorrents", 3) static var maxUplodingTorrents: Int
+    @PreferenceItem("maxDownloadingTorrents", 3) static var maxDownloadingTorrents: Int
     @PreferenceItem("downloadLimit", 0) static var downloadLimit: Int
     @PreferenceItem("uploadLimit", 0) static var uploadLimit: Int
     @PreferenceItem("seedBackgroundWarning", false) static var seedBackgroundWarning: Bool
     @PreferenceItem("storagePreallocation", false) static var storagePreallocation: Bool
 
-    @PreferenceItem("SortingType", 0) static var sortingType: Int
+    @PreferenceData("SortingType", .dateAdded) static var sortingType: SortingTypes
     @PreferenceItem("SortingSections2", false) static var sortingSections: Bool
     
-    //network
+    // -MARK: network
     @PreferenceItem("enableDht", true) static var enableDht: Bool
     @PreferenceItem("enableLsd", true) static var enableLsd: Bool
     @PreferenceItem("enableUtp", true) static var enableUtp: Bool
     @PreferenceItem("enableUpnp", true) static var enableUpnp: Bool
     @PreferenceItem("enableNatpmp", true) static var enableNatpmp: Bool
     
-    @PreferenceItem("onlyVpn", false) static var onlyVpn: Bool
-    @PreferenceItem("interface", "") static var interface: String
+    @PreferenceData("interfaceType", .all) static var interfaceType: InterfaceType
     
     @PreferenceItem("defaultPort", true) static var defaultPort: Bool
     @PreferenceItem("portRangeFirst", 6881) static var portRangeFirst: Int
     @PreferenceItem("portRangeSecond", 6891) static var portRangeSecond: Int
     
-    //proxy
+    // -MARK: proxy
     @PreferenceData("proxyType", ProxyType.none) static var proxyType: ProxyType!
     @PreferenceItem("proxyRequiresAuth", false) static var proxyRequiresAuth: Bool
     @PreferenceItem("proxyHostname", "") static var proxyHostname: String
@@ -68,7 +75,7 @@ class UserPreferences {
     private static let localVersion = (try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!)) ?? ""
     @PreferenceItem("versionNews" + localVersion, false) static var versionNews: Bool
 
-    /// Patreon
+    // -MARK: Patreon
     @PreferenceData("patreonAccessToken", "") static var patreonAccessToken: String?
     @PreferenceData("patreonRefreshToken", "") static var patreonRefreshToken: String?
     

@@ -121,7 +121,7 @@ class PatreonAPI: NSObject
     
     var isAuthenticated: Bool
     {
-        return UserPreferences.patreonAccessToken != nil
+        UserPreferences.patreonAccessToken != nil
     }
     
     private var authenticationSession: UIViewController?
@@ -255,46 +255,41 @@ extension PatreonAPI
                     
                     let patrons = response.data.map { (response) -> Patron in
                         let patron = Patron(response: response)
-                        
-                        for tierID in response.relationships?.currently_entitled_tiers.data ?? []
-                        {
-                            guard let tier = tiersByIdentifier[tierID.id] else { continue }
+
+                        for tierID in response.relationships?.currently_entitled_tiers.data ?? [] {
+                            guard let tier = tiersByIdentifier[tierID.id]
+                            else { continue }
                             patron.benefits.formUnion(tier.benefits)
                         }
-                        
+
                         return patron
                     }
                     // .filter { $0.benefits.contains(where: { $0.type == .credits }) }
-                    
+
                     allPatrons.append(contentsOf: patrons)
-                    
-                    if let nextURL = response.links?["next"]
-                    {
+
+                    if let nextURL = response.links?["next"] {
                         fetchPatrons(url: nextURL)
-                    }
-                    else
-                    {
+                    } else {
                         completion(.success(allPatrons))
                     }
                 }
             }
         }
-        
+
         fetchPatrons(url: requestURL)
     }
-    
-    func fetchPledgeHistory(completion: ((Result<Void, Swift.Error>) -> Void)? = nil)
-    {
-        guard let acсount = UserPreferences.patreonAccount,
-            let id = acсount.id else
-        {
+
+    func fetchPledgeHistory(completion: ((Result<Void, Swift.Error>) -> Void)? = nil) {
+        guard let account = UserPreferences.patreonAccount, let id = account.id
+        else {
             completion?(.failure(Error.notAuthenticated))
             return
         }
-        
+
         var components = URLComponents(string: "/api/oauth2/v2/members/\(id)")!
         components.queryItems = [URLQueryItem(name: "include", value: "pledge_history")]
-        
+
         let requestURL = components.url(relativeTo: self.baseURL)!
         let request = URLRequest(url: requestURL)
         print(requestURL.absoluteString)

@@ -9,11 +9,11 @@
 import UIKit
 
 class StaticTableViewController: ThemedUIViewController {
-    var useInsertStyle: Bool? {
-        nil
+    var useInsertStyle: Bool {
+        if #available(iOS 15, *) { return true }
+        return false
     }
     
-    let disposalBag = DisposalBag()
     override var toolBarIsHidden: Bool? {
         true
     }
@@ -72,7 +72,7 @@ class StaticTableViewController: ThemedUIViewController {
         updateData()
         
         #if !targetEnvironment(macCatalyst)
-        KeyboardHelper.shared.visibleHeight.bind { [weak self] height in
+        KeyboardHelper.shared.visibleHeight.observeNext { [weak self] height in
             guard let self = self else { return }
             
             let offset = self.tableView.contentOffset
@@ -81,7 +81,7 @@ class StaticTableViewController: ThemedUIViewController {
                 self.tableView.scrollIndicatorInsets.bottom = height
                 self.tableView.contentOffset = offset
             }
-        }.dispose(with: disposalBag)
+        }.dispose(in: bag)
         #endif
     }
     

@@ -142,6 +142,11 @@
 "Settings.BackgroundHeader" = "Фоновая загрузка";
 "Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
 
+"Settings.QueueLimitHeader" = "Лимиты очерёдности торрентов";
+"Settings.TorrentsLimit" = "Активных торрентов";
+"Settings.TorrentsDownLimit" = "Активных загрузок";
+"Settings.TorrentsUpLimit" = "Активных отдач";
+
 "Settings.ZeroSpeedLimit" = "Нулевая скорость";
 "Settings.ZeroSpeedLimit.Hint" = "Если в течение некоторого времени скорость загрузки равна нулю, приложение остановит работу в фоне, чтобы предотвратить бесполезную разрядку батареи";
 "Settings.DownLimit" = "Лимит загрузки";
@@ -193,8 +198,15 @@
 "Settings.Network.PortFirst" = "Начальный";
 "Settings.Network.PortSecond" = "Конечный";
 "Settings.Network.Interface" = "Сетевой интерфейс";
-"Settings.Network.Interface.VpnOnly" = "VPN только";
-"Settings.Network.Interface.AnyInterface" = "Любой";
+"Settings.Network.Interface.Title" = "Режим";
+"Settings.Network.Interface.Hint" = "#ADD HINT#";
+"Settings.Network.Interface.Select" = "Выберите режим интерфейса";
+"Settings.Network.Interface.SelectInterface" = "Выберите интерфейс";
+
+"InterfaceType.All" = "Все";
+"InterfaceType.Primary" = "Основные";
+"InterfaceType.VpnOnly" = "Только VPN";
+"InterfaceType.Manual" = "Вручную";
 
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";
@@ -259,6 +271,7 @@
 "Download content of folder" = "Содержимное папки";
 "Download" = "Скачать";
 "Don't Download" = "Не скачивать";
+"Open" = "Открыть";
 "Share" = "Поделиться";
 "Show in Files" = "Показать в Файлы";
 "All" = "Всем";
@@ -347,6 +360,7 @@
 // RSS Channel Controller
 "RssChannelController.Seen" = "Просмотрено";
 "RssChannelController.Unseen" = "Не просмотрено";
+"RssChannelController.ReadAll" = "Прочитать всё";
 
 // RSS Item Controller
 "RssItemController.PinTorrent" = "Пост содержит Torrent файл";
@@ -354,4 +368,4 @@
 
 //Version Info
 "info" = " Изменения";
-"UpdateText" = "- Фикс Патреона для iOS 14\n- Libtorrent обновлён до 1.2.10\n--- 1.8.2 ---\n- Добавлена поддержка шрифтов для слабовидящих\n- Переработан iTorrent Framework\n- Некоторые улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";
+"UpdateText" = "\n--- 1.8.3 ---\n- Фикс Патреона для iOS 14\n- Libtorrent обновлён до 1.2.10\n--- 1.8.2 ---\n- Добавлена поддержка шрифтов для слабовидящих\n- Переработан iTorrent Framework\n- Некоторые улучшения интерфейса\n- Исправлено множество ошибок (возможно добавлены новые)";

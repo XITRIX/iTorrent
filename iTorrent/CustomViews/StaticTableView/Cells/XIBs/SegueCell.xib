@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J7G-Cr-F4y" id="DLe-UY-WK9">
-                <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="383.66666666666669" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4s-di-jEq" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="16" y="12.000000000000002" width="350.66666666666669" height="20.666666666666671"/>
+                        <rect key="frame" x="20" y="12.000000000000002" width="355.66666666666669" height="20.666666666666671"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="lMq-YC-Bxg"/>
                         </constraints>
@@ -27,8 +27,8 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="j4s-di-jEq" secondAttribute="trailing" constant="16" id="3hg-jm-urF"/>
-                    <constraint firstItem="j4s-di-jEq" firstAttribute="leading" secondItem="DLe-UY-WK9" secondAttribute="leading" constant="16" id="B6A-2J-ktR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="j4s-di-jEq" secondAttribute="trailing" id="3hg-jm-urF"/>
+                    <constraint firstItem="j4s-di-jEq" firstAttribute="leading" secondItem="DLe-UY-WK9" secondAttribute="leadingMargin" id="B6A-2J-ktR"/>
                     <constraint firstItem="j4s-di-jEq" firstAttribute="top" secondItem="DLe-UY-WK9" secondAttribute="top" constant="12" id="XaU-QW-tsg"/>
                     <constraint firstAttribute="bottom" secondItem="j4s-di-jEq" secondAttribute="bottom" constant="11.5" id="auU-Ry-Lfs"/>
                 </constraints>

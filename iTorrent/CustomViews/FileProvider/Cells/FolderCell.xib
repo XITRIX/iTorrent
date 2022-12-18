@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,22 +14,19 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="344" height="78"/>
+                <rect key="frame" x="0.0" y="0.0" width="344.5" height="78"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D7-3D-mbK">
-                        <rect key="frame" x="314" y="24" width="30" height="30"/>
+                        <rect key="frame" x="306.5" y="24" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Mpx-m8-xsb"/>
                             <constraint firstAttribute="width" constant="30" id="kJw-lz-p7k"/>
                         </constraints>
                         <state key="normal" image="More2"/>
-                        <connections>
-                            <action selector="more:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YKI-aF-p8f"/>
-                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Labelioejrofn jeoijfeori jfoiejr ifoj eiojrfo i" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezc-FQ-zxu" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="55" y="6" width="255" height="50"/>
+                        <rect key="frame" x="60" y="6" width="238.5" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="dUg-4d-8nb"/>
                         </constraints>
@@ -38,14 +35,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Folder" translatesAutoresizingMaskIntoConstraints="NO" id="AAk-OI-x25">
-                        <rect key="frame" x="16" y="15" width="32" height="32"/>
+                        <rect key="frame" x="20" y="15" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="ceX-TE-0ki"/>
                             <constraint firstAttribute="width" constant="32" id="wd4-5f-fvy"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024 MB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6j-79-rzW" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                        <rect key="frame" x="16" y="56" width="321" height="14"/>
+                        <rect key="frame" x="20" y="56" width="316.5" height="14"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -58,15 +55,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="f6j-79-rzW" firstAttribute="top" secondItem="Ezc-FQ-zxu" secondAttribute="bottom" id="4HT-eb-y6W"/>
-                    <constraint firstAttribute="trailing" secondItem="f6j-79-rzW" secondAttribute="trailing" constant="7" id="6E3-WN-JqI"/>
-                    <constraint firstAttribute="trailing" secondItem="Ezc-FQ-zxu" secondAttribute="trailing" constant="34" id="BbV-XN-9jF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="f6j-79-rzW" secondAttribute="trailing" id="6E3-WN-JqI"/>
                     <constraint firstItem="7D7-3D-mbK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RuI-J1-WRB"/>
+                    <constraint firstItem="7D7-3D-mbK" firstAttribute="leading" secondItem="Ezc-FQ-zxu" secondAttribute="trailing" constant="8" id="Uvg-P3-icc"/>
                     <constraint firstItem="AAk-OI-x25" firstAttribute="centerY" secondItem="Ezc-FQ-zxu" secondAttribute="centerY" id="ZY1-NP-gf9"/>
-                    <constraint firstAttribute="trailing" secondItem="7D7-3D-mbK" secondAttribute="trailing" id="bfa-9u-wSY"/>
-                    <constraint firstItem="f6j-79-rzW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hje-Hh-bTg"/>
-                    <constraint firstItem="AAk-OI-x25" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="jGY-y6-31w"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7D7-3D-mbK" secondAttribute="trailing" id="bfa-9u-wSY"/>
+                    <constraint firstItem="f6j-79-rzW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hje-Hh-bTg"/>
+                    <constraint firstItem="AAk-OI-x25" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="jGY-y6-31w"/>
                     <constraint firstAttribute="bottom" secondItem="f6j-79-rzW" secondAttribute="bottom" constant="8" id="nNG-zO-jCG"/>
-                    <constraint firstItem="Ezc-FQ-zxu" firstAttribute="leading" secondItem="AAk-OI-x25" secondAttribute="trailing" constant="7" id="us5-4D-VgZ"/>
+                    <constraint firstItem="Ezc-FQ-zxu" firstAttribute="leading" secondItem="AAk-OI-x25" secondAttribute="trailing" constant="8" id="us5-4D-VgZ"/>
                     <constraint firstItem="Ezc-FQ-zxu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="xIL-3T-jhB"/>
                 </constraints>
             </tableViewCellContentView>
@@ -75,13 +72,12 @@
                 <outlet property="moreButton" destination="7D7-3D-mbK" id="0qy-FJ-8zD"/>
                 <outlet property="size" destination="f6j-79-rzW" id="HWb-yv-OJi"/>
                 <outlet property="title" destination="Ezc-FQ-zxu" id="hz0-Yr-eei"/>
-                <outlet property="titleConstraint" destination="BbV-XN-9jF" id="PHf-Za-BIB"/>
             </connections>
             <point key="canvasLocation" x="163.04347826086959" y="119.19642857142857"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Folder" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="More2" width="30" height="30"/>
+        <image name="More2" width="25" height="25"/>
     </resources>
 </document>

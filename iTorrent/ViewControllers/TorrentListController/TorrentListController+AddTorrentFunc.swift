@@ -6,53 +6,80 @@
 //  Copyright © 2020  XITRIX. All rights reserved.
 //
 
+#if TRANSMISSION
+import ITorrentTransmissionFramework
+#else
 import ITorrentFramework
+#endif
+
 import UIKit
 
 extension TorrentListController {
-    func addTorrent(_ sender: UIBarButtonItem) {
-        let addController = ThemedUIAlertController(title: nil, message: NSLocalizedString("Add from...", comment: ""), preferredStyle: .actionSheet)
+    func addUrl() {
+        Dialog.withTextField(self,
+                             title: "Add from URL",
+                             message: "Please enter the existing torrent's URL below",
+                             textFieldConfiguration: { textField in
+                                 textField.placeholder = "https://"
+
+                                 if #available(iOS 10.0, *),
+                                     UIPasteboard.general.hasStrings,
+                                     let text = UIPasteboard.general.string,
+                                     text.starts(with: "https://") ||
+                                     text.starts(with: "http://") {
+                                     textField.text = UIPasteboard.general.string
+                                 }
+        }) { textField in
+            Core.shared.addFromUrl(textField.text!, presenter: self)
+        }
+    }
+    
+    func addMagnet() {
+        Dialog.withTextField(self,
+                             title: "Add from magnet",
+                             message: "Please enter the magnet link below",
+                             textFieldConfiguration: { textField in
+                                 textField.placeholder = "magnet:"
+
+                                 if #available(iOS 10.0, *),
+                                     UIPasteboard.general.hasStrings,
+                                     UIPasteboard.general.string?.starts(with: "magnet:") ?? false {
+                                     textField.text = UIPasteboard.general.string
+                                 }
+        }) { textField in
+            Utils.checkFolderExist(path: Core.configFolder)
+            if let hash = TorrentSdk.getMagnetHash(magnetUrl: textField.text!),
+                Core.shared.torrents[hash] != nil {
+                Dialog.show(self, title: "This torrent already exists",
+                            message: "\("Torrent with hash:".localized) \"\(hash)\" \("already exists in download queue".localized)")
+            }
+
+            Core.shared.addMagnet(textField.text!)
+        }
+    }
+    
+    @available(iOS 11.0, *)
+    func addFile() {
+        self.present(FilesBrowserController(), animated: true)
+    }
+    
+    @available(iOS 13.0, *)
+    func createMenu() -> UIMenu {
+        UIMenu(title: "Add from...".localized, children: [
+            UIAction(title: "Files".localized, image: UIImage(systemName: "doc.fill.badge.plus"), handler: {_ in self.addFile()}),
+            UIAction(title: "Magnet", image: UIImage(systemName: "link.badge.plus"), handler: {_ in self.addMagnet()}),
+            UIAction(title: "URL", image: UIImage(systemName: "link.badge.plus"), handler: {_ in self.addUrl()}),
+        ])
+    }
+    
+    @objc func addTorrent(_ sender: UIBarButtonItem) {
+        let addController = ThemedUIAlertController(title: nil, message: "Add from...".localized, preferredStyle: .actionSheet)
 
         let addURL = UIAlertAction(title: "URL", style: .default) { _ in
-            Dialog.withTextField(self,
-                                 title: "Add from URL",
-                                 message: "Please enter the existing torrent's URL below",
-                                 textFieldConfiguration: { textField in
-                                     textField.placeholder = "https://"
-
-                                     if #available(iOS 10.0, *),
-                                         UIPasteboard.general.hasStrings,
-                                         let text = UIPasteboard.general.string,
-                                         text.starts(with: "https://") ||
-                                         text.starts(with: "http://") {
-                                         textField.text = UIPasteboard.general.string
-                                     }
-            }) { textField in
-                Core.shared.addFromUrl(textField.text!, presenter: self)
-            }
+            self.addUrl()
         }
         let addMagnet = UIAlertAction(title: "Magnet", style: .default) { _ in
-            Dialog.withTextField(self,
-                                 title: "Add from magnet",
-                                 message: "Please enter the magnet link below",
-                                 textFieldConfiguration: { textField in
-                                     textField.placeholder = "magnet:"
-
-                                     if #available(iOS 10.0, *),
-                                         UIPasteboard.general.hasStrings,
-                                         UIPasteboard.general.string?.starts(with: "magnet:") ?? false {
-                                         textField.text = UIPasteboard.general.string
-                                     }
-            }) { textField in
-                Utils.checkFolderExist(path: Core.configFolder)
-                if let hash = TorrentSdk.getMagnetHash(magnetUrl: textField.text!),
-                    Core.shared.torrents[hash] != nil {
-                    Dialog.show(self, title: "This torrent already exists",
-                                message: "\(Localize.get("Torrent with hash:")) \"\(hash)\" \(Localize.get("already exists in download queue"))")
-                }
-
-                Core.shared.addMagnet(textField.text!)
-            }
+            self.addMagnet()
         }
         let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
 
@@ -93,7 +120,7 @@ extension TorrentListController {
 
         if #available(iOS 11.0, *) {
             let files = UIAlertAction(title: NSLocalizedString("Files", comment: ""), style: .default) { _ in
-                self.present(FilesBrowserController(), animated: true)
+                self.addFile()
             }
             addController.addAction(files)
         }

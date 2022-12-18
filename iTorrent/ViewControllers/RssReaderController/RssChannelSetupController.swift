@@ -36,14 +36,20 @@ class RssChannelSetupController: ThemedUITableViewController {
         localize()
         
         urlLabel.text = model.xmlLink.absoluteString
-        titleLabel.text = model.displayTitle
-        descriptionLabel.text = model.displayDescription
-        notificationSwitch.setOn(!model.muteNotifications, animated: false)
-    }
-    
-    @IBAction func notificationAction(_ sender: UISwitch) {
-        model.muteNotifications = !sender.isOn
-        RssFeedProvider.shared.rssModels.notifyUpdate()
+        
+        model.customTitle.observeNext(with: { _ in
+            self.titleLabel.text = self.model.displayTitle
+        }).dispose(in: bag)
+        
+        model.customDescriotion.observeNext(with: { _ in
+            self.descriptionLabel.text = self.model.displayDescription
+        }).dispose(in: bag)
+        
+        notificationSwitch.setOn(!model.muteNotifications.value, animated: false)
+        notificationSwitch.reactive.controlEvents(.valueChanged).observeNext { [unowned self] _ in
+            model.muteNotifications.value = !notificationSwitch.isOn
+            RssFeedProvider.shared.rssModels.notifyUpdate()
+        }.dispose(in: bag)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -54,18 +60,18 @@ class RssChannelSetupController: ThemedUITableViewController {
         case 1:
             Dialog.withTextField(self, title: Localize.get("RssChannelSetup.Title"), textFieldConfiguration: { textField in
                 textField.placeholder = self.model.title
-                textField.text = self.model.customTitle
+                textField.text = self.model.customTitle.value
             }) { textField in
-                self.model.customTitle = textField.text
+                self.model.customTitle.value = textField.text
                 self.titleLabel.text = self.model.displayTitle
                 RssFeedProvider.shared.rssModels.notifyUpdate()
             }
         case 2:
             Dialog.withTextField(self, title: Localize.get("RssChannelSetup.Description"), textFieldConfiguration: { textField in
                 textField.placeholder = self.model.description
-                textField.text = self.model.customDescriotion
+                textField.text = self.model.customDescriotion.value
             }) { textField in
-                self.model.customDescriotion = textField.text
+                self.model.customDescriotion.value = textField.text
                 self.descriptionLabel.text = self.model.displayDescription
                 RssFeedProvider.shared.rssModels.notifyUpdate()
             }
