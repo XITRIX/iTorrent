@@ -9,6 +9,7 @@
 import UIKit
 
 class StaticTableView: ThemedUITableView {
+    private var longPressGesture: UILongPressGestureRecognizer!
     var useInsertStyle: Bool = false {
         didSet {
             diffDataSource?.useInsertStyle = useInsertStyle
@@ -46,8 +47,10 @@ class StaticTableView: ThemedUITableView {
         register(UpdateInfoCell.nib, forCellReuseIdentifier: UpdateInfoCell.name)
         register(TextFieldCell.nib, forCellReuseIdentifier: TextFieldCell.name)
         register(StoragePropertyCell.nib, forCellReuseIdentifier: StoragePropertyCell.name)
-        
-        addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressRecogniser(_:))))
+
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecogniser(_:)))
+        longPressGesture.delegate = self
+        addGestureRecognizer(longPressGesture)
 
         estimatedRowHeight = 44
         rowHeight = UITableView.automaticDimension
@@ -98,11 +101,24 @@ class StaticTableView: ThemedUITableView {
     }
 }
 
+extension StaticTableView: UIGestureRecognizerDelegate {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == longPressGesture {
+            if let indexPath = indexPathForRow(at: gestureRecognizer.location(in: self)) {
+                let model = presentableData[indexPath.section].rowModels[indexPath.row]
+                return model.cell.longPressAction != nil
+            }
+        }
+
+        return true
+    }
+}
+
 class StaticTableViewDataSource: DiffableDataSource<Section, CellModelHolder> {
     var useInsertStyle: Bool = false
     
     fileprivate var useInsertStyleValue: Bool {
-        useInsertStyle ?? false
+        useInsertStyle
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
