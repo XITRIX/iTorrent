@@ -13,6 +13,10 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
     private let tableView: StaticTableView
     private let label = UILabel()
 
+    var isHeader: Bool = false {
+        didSet { setNeedsLayout() }
+    }
+
     var text: String? {
         get { label.text }
         set { label.text = newValue }
@@ -26,6 +30,8 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         textLabel?.isHidden = true
 
         label.numberOfLines = 0
+        label.setContentHuggingPriority(.required, for: .vertical)
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .footnote)
         if #available(iOS 13.0, *) {
@@ -39,7 +45,7 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
             label.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             label.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             layoutMarginsGuide.trailingAnchor.constraint(equalTo: label.trailingAnchor),
-            layoutMarginsGuide.bottomAnchor.constraint(equalTo: label.bottomAnchor)
+            layoutMarginsGuide.bottomAnchor.constraint(equalTo: label.bottomAnchor, constant: 8)
         ])
     }
 
@@ -66,8 +72,10 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         let left = tableView.layoutSafeMargins.left
         let right = tableView.layoutSafeMargins.right
 
-        res.left += left
-        res.right += right
+        let safeArea = tableView.safeAreaInsets
+
+        res.left += left - safeArea.left
+        res.right += right - safeArea.right
 
         return res
     }
@@ -83,7 +91,9 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
 
         old.left = def.left
         old.right = def.right
+        old.top = isHeader ? 16 : 8
 
         layoutMargins = old
+        label.sizeToFit()
     }
 }

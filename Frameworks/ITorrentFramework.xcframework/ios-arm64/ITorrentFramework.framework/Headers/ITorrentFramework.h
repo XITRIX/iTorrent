@@ -1,19 +1,18 @@
 //
-//  ITorrentFramework.h
-//  ITorrentFramework
+//  iTorrentFramework.h
+//  iTorrentFramework
 //
-//  Created by Daniil Vinogradov on 29.07.2020.
-//  Copyright © 2020 NoNameDude. All rights reserved.
+//  Created by Даниил Виноградов on 09.01.2023.
 //
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for ITorrentFramework.
-FOUNDATION_EXPORT double ITorrentFrameworkVersionNumber;
+//! Project version number for iTorrentFramework.
+FOUNDATION_EXPORT double iTorrentFrameworkVersionNumber;
 
-//! Project version string for ITorrentFramework.
-FOUNDATION_EXPORT const unsigned char ITorrentFrameworkVersionString[];
+//! Project version string for iTorrentFramework.
+FOUNDATION_EXPORT const unsigned char iTorrentFrameworkVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <ITorrentFramework/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <iTorrentFramework/PublicHeader.h>
 
 

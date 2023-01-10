@@ -15,12 +15,19 @@ class SegueCell: ThemedUITableViewCell, PreferenceCellProtocol {
 
     @IBOutlet var title: ThemedUILabel!
 
+    override func themeUpdate() {
+        super.themeUpdate()
+        selectedBackgroundView = nil
+    }
+
     func setModel(_ model: CellModelProtocol) {
         guard let model = model as? Model else {
             return
         }
         title.text = Localize.get(model.title)
         title.font = model.bold ? title.font.bold() : title.font.normal()
+
+        selectionStyle = model.tapAction == nil ? .none : .default
     }
 
     struct Model: CellModelProtocol {

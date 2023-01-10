@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
-// swift-module-flags: -target arm64-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Foundation
 @_exported import ITorrentFramework
@@ -8,34 +8,6 @@ import ITorrentFramework.Private
 import Swift
 import _Concurrency
 import _StringProcessing
-public enum InterfaceType {
-  case all
-  case primary
-  case vpnOnly
-  case manual(name: Swift.String)
-}
-extension ITorrentFramework.InterfaceType : Swift.Codable {
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
-}
-public struct PeerModel : Swift.Hashable {
-  public var port: Swift.Int
-  public var client: Swift.String
-  public var totalDownload: Swift.Int64
-  public var totalUpload: Swift.Int64
-  public var upSpeed: Swift.Int
-  public var downSpeed: Swift.Int
-  public var connectionType: Swift.Int
-  public var progress: Swift.Int
-  public var progressPpm: Swift.Int
-  public var address: Swift.String
-  public init(_ model: ITorrentFramework.Peer)
-  public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: ITorrentFramework.PeerModel, b: ITorrentFramework.PeerModel) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-}
 public class TorrentModel : Swift.Hashable {
   public var title: Swift.String
   public var state: ITorrentFramework.TorrentState
@@ -81,61 +53,34 @@ public class TorrentModel : Swift.Hashable {
     get
   }
 }
-public struct TrackerModel : Swift.Hashable {
-  public var url: Swift.String
-  public var message: Swift.String
-  public var seeders: Swift.Int32
-  public var peers: Swift.Int32
-  public var leechs: Swift.Int32
-  public var working: Swift.Bool
-  public var verified: Swift.Bool
-  public init(_ tracker: ITorrentFramework.Tracker)
-  public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: ITorrentFramework.TrackerModel, b: ITorrentFramework.TrackerModel) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-public class FileModel {
-  public enum TorrentDownloadPriority : Swift.Int {
-    case dontDownload
-    case lowPriority
-    case normalPriority
-    case highPriority
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
-  }
+public class FolderModel {
   public var name: Swift.String
-  public var path: Foundation.URL
+  public var path: Foundation.URL!
   public var size: Swift.Int64
-  public var priority: ITorrentFramework.FileModel.TorrentDownloadPriority
-  public var downloadedBytes: Swift.Int64!
-  public var beginIdx: Swift.Int64!
-  public var endIdx: Swift.Int64!
-  public var pieces: [Swift.Int]!
+  public var downloadedSize: Swift.Int64
   public var isPreview: Swift.Bool
-  public init(file: ITorrentFramework.File, isPreview: Swift.Bool = false)
-  public func update(with file: ITorrentFramework.FileModel)
+  public var files: [ITorrentFramework.FileModel]
+  public init()
   @objc deinit
 }
-public enum TorrentState : Swift.String {
-  case queued
-  case hashing
-  case metadata
-  case downloading
-  case finished
-  case seeding
-  case allocating
-  case checkingFastresume
-  case paused
-  case null
-  public init?(id: Swift.Int)
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
+extension Foundation.NSNotification.Name {
+  public static let torrentsStateChanged: Foundation.Notification.Name
+}
+public struct PeerModel : Swift.Hashable {
+  public var port: Swift.Int
+  public var client: Swift.String
+  public var totalDownload: Swift.Int64
+  public var totalUpload: Swift.Int64
+  public var upSpeed: Swift.Int
+  public var downSpeed: Swift.Int
+  public var connectionType: Swift.Int
+  public var progress: Swift.Int
+  public var progressPpm: Swift.Int
+  public var address: Swift.String
+  public init(_ model: ITorrentFramework.Peer)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: ITorrentFramework.PeerModel, b: ITorrentFramework.PeerModel) -> Swift.Bool
+  public var hashValue: Swift.Int {
     get
   }
 }
@@ -170,16 +115,6 @@ public enum TorrentState : Swift.String {
   public static func popAlerts()
   public static func getStoragePreallocation() -> Swift.Bool
   public static func getPeers(with hash: Swift.String) -> [ITorrentFramework.PeerModel]
-  @objc deinit
-}
-public class FolderModel {
-  public var name: Swift.String
-  public var path: Foundation.URL!
-  public var size: Swift.Int64
-  public var downloadedSize: Swift.Int64
-  public var isPreview: Swift.Bool
-  public var files: [ITorrentFramework.FileModel]
-  public init()
   @objc deinit
 }
 public enum ProxyType : Swift.Int, Swift.CaseIterable, Swift.Codable {
@@ -228,15 +163,80 @@ extension ITorrentFramework.SettingsPack {
   public init(_ native: ITorrentFramework.settings_pack_struct)
   public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
 }
-extension Foundation.NSNotification.Name {
-  public static let torrentsStateChanged: Foundation.Notification.Name
+public struct TrackerModel : Swift.Hashable {
+  public var url: Swift.String
+  public var message: Swift.String
+  public var seeders: Swift.Int32
+  public var peers: Swift.Int32
+  public var leechs: Swift.Int32
+  public var working: Swift.Bool
+  public var verified: Swift.Bool
+  public init(_ tracker: ITorrentFramework.Tracker)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: ITorrentFramework.TrackerModel, b: ITorrentFramework.TrackerModel) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
 }
+public class FileModel {
+  public enum TorrentDownloadPriority : Swift.Int {
+    case dontDownload
+    case lowPriority
+    case normalPriority
+    case highPriority
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public var name: Swift.String
+  public var path: Foundation.URL
+  public var size: Swift.Int64
+  public var priority: ITorrentFramework.FileModel.TorrentDownloadPriority
+  public var downloadedBytes: Swift.Int64!
+  public var beginIdx: Swift.Int64!
+  public var endIdx: Swift.Int64!
+  public var pieces: [Swift.Int]!
+  public var isPreview: Swift.Bool
+  public init(file: ITorrentFramework.File, isPreview: Swift.Bool = false)
+  public func update(with file: ITorrentFramework.FileModel)
+  @objc deinit
+}
+public enum InterfaceType {
+  case all
+  case primary
+  case vpnOnly
+  case manual(name: Swift.String)
+}
+extension ITorrentFramework.InterfaceType : Swift.Codable {
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum TorrentState : Swift.String {
+  case queued
+  case hashing
+  case metadata
+  case downloading
+  case finished
+  case seeding
+  case allocating
+  case checkingFastresume
+  case paused
+  case null
+  public init?(id: Swift.Int)
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension ITorrentFramework.ProxyType : Swift.Equatable {}
+extension ITorrentFramework.ProxyType : Swift.Hashable {}
+extension ITorrentFramework.ProxyType : Swift.RawRepresentable {}
 extension ITorrentFramework.FileModel.TorrentDownloadPriority : Swift.Equatable {}
 extension ITorrentFramework.FileModel.TorrentDownloadPriority : Swift.Hashable {}
 extension ITorrentFramework.FileModel.TorrentDownloadPriority : Swift.RawRepresentable {}
 extension ITorrentFramework.TorrentState : Swift.Equatable {}
 extension ITorrentFramework.TorrentState : Swift.Hashable {}
 extension ITorrentFramework.TorrentState : Swift.RawRepresentable {}
-extension ITorrentFramework.ProxyType : Swift.Equatable {}
-extension ITorrentFramework.ProxyType : Swift.Hashable {}
-extension ITorrentFramework.ProxyType : Swift.RawRepresentable {}

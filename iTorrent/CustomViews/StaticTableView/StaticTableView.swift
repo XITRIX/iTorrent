@@ -145,6 +145,7 @@ extension StaticTableView: UITableViewDelegate {
         else { return nil }
 
         let header = StaticHeaderFooterView(tableView as! StaticTableView, dataSource)
+        header.isHeader = true
         header.text = res
         return header
     }
@@ -154,8 +155,9 @@ extension StaticTableView: UITableViewDelegate {
               let res = dataSource.tableView(tableView, titleForFooterInSection: section)
         else { return nil }
 
-        let header = StaticHeaderFooterView(tableView as! StaticTableView, dataSource)
-        header.text = res
-        return header
+        let footer = StaticHeaderFooterView(tableView as! StaticTableView, dataSource)
+        footer.isHeader = false
+        footer.text = res
+        return footer
     }
 }

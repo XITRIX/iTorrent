@@ -1,9 +1,9 @@
 framework module ITorrentFramework {
-    umbrella header "ITorrentFramework.h"
-    
+    umbrella header "iTorrentFramework.h"
+
     export *
     module * { export * }
-    
+
     explicit module Private {
         header "torrent_headers.h"
         header "result_struct.h"
@@ -12,6 +12,7 @@ framework module ITorrentFramework {
         header "peer_struct.h"
     }
 }
+
 
 module ITorrentFramework.Swift {
   header "ITorrentFramework-Swift.h"

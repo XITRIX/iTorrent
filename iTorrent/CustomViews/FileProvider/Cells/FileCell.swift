@@ -188,7 +188,7 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
             self.open()
         }
 
-        let share = UIAction(title: "Share".localized) { _ in
+        let share = UIAction(title: "Share".localized, image: .init(systemName: "square.and.arrow.up")) { _ in
             let path = NSURL(fileURLWithPath: Core.rootFolder + "/" + self.model.path.path, isDirectory: false)
             let shareController = ThemedUIActivityViewController(activityItems: [path], applicationActivities: nil)
             if shareController.popoverPresentationController != nil {
@@ -199,13 +199,13 @@ class FileCell: ThemedUITableViewCell, UpdatableModel {
             Utils.topViewController?.present(shareController, animated: true)
         }
 
-        let showOnFiles = UIAction(title: "Show in Files".localized) { _ in
+        let showOnFiles = UIAction(title: "Show in Files".localized, image: .init(systemName: "folder")) { _ in
             let spath = ((Core.rootFolder + self.model.path.path) as NSString).deletingLastPathComponent
             let path = NSURL(fileURLWithPath: spath, isDirectory: false)
             var components = URLComponents(url: path as URL, resolvingAgainstBaseURL: false)
             components?.scheme = "shareddocuments"
             if let url = components?.url {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         }
 

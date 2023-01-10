@@ -37,12 +37,6 @@ post_install do |installer|
         File.open(xcconfig_path, "w") { |file| file << new_xcconfig }
       end
     end	
-
-    #fix M1 build
-    target.build_configurations.each do |config|
-      config.build_settings['ENABLE_BITCODE'] = 'YES'
-      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-    end
   end
 
   #fix MarqueeLabel IBDesignable error

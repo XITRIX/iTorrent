@@ -30,6 +30,15 @@ class ButtonCell: ThemedUITableViewCell, PreferenceCellProtocol {
         let theme = Themes.current
         title?.textColor = theme.mainText
         button?.titleLabel?.textColor = theme.tintColor
+        selectedBackgroundView = nil
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if selected {
+            executeAction()
+            setSelected(false, animated: true)
+        }
     }
 
     func setModel(_ model: CellModelProtocol) {
