@@ -286,8 +286,8 @@
 		7C99E366237B3CB900FB66F0 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */; };
 		7C9E0EF3296CD74100EFF686 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8083120AADA8300F76931 /* Utils.swift */; };
 		7C9E0EF5296CD76E00EFF686 /* Utils+Torrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E0EF4296CD76E00EFF686 /* Utils+Torrent.swift */; };
-		7C9E0F17296D623800EFF686 /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; };
-		7C9E0F18296D623800EFF686 /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C9E0F24296DEBBA00EFF686 /* ITorrentFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9E0F20296DEB8F00EFF686 /* ITorrentFramework.xcframework */; };
+		7C9E0F25296DEBBA00EFF686 /* ITorrentFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9E0F20296DEB8F00EFF686 /* ITorrentFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CA2E84C2496B9580010EAB4 /* AppDelegate+SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2E84B2496B9580010EAB4 /* AppDelegate+SplitViewController.swift */; };
 		7CA2E84E2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */; };
 		7CA545D8253F0F77002A9DBE /* RssSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA545D7253F0F77002A9DBE /* RssSearchDataSource.swift */; };
@@ -411,13 +411,13 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7C9E0F19296D623900EFF686 /* Embed Frameworks */ = {
+		7C9E0F26296DEBBA00EFF686 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7C9E0F18296D623800EFF686 /* ITorrentFramework.xcframework in Embed Frameworks */,
+				7C9E0F25296DEBBA00EFF686 /* ITorrentFramework.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,6 +540,7 @@
 		7C99E363237B3CB900FB66F0 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		7C99E364237B3CB900FB66F0 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		7C9E0EF4296CD76E00EFF686 /* Utils+Torrent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utils+Torrent.swift"; sourceTree = "<group>"; };
+		7C9E0F20296DEB8F00EFF686 /* ITorrentFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ITorrentFramework.xcframework; path = Frameworks/ITorrentFramework.xcframework; sourceTree = "<group>"; };
 		7CA2E84B2496B9580010EAB4 /* AppDelegate+SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SplitViewController.swift"; sourceTree = "<group>"; };
 		7CA2E84D2496B99B0010EAB4 /* AppDelegate+UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UserNotificationCenter.swift"; sourceTree = "<group>"; };
 		7CA545D7253F0F77002A9DBE /* RssSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchDataSource.swift; sourceTree = "<group>"; };
@@ -597,7 +598,6 @@
 		7CD71422248C132200A24E98 /* RssChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssChannelController.swift; sourceTree = "<group>"; };
 		7CD71426248C150400A24E98 /* RssItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemCell.swift; sourceTree = "<group>"; };
 		7CD71427248C150400A24E98 /* RssItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssItemCell.xib; sourceTree = "<group>"; };
-		7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ITorrentFramework.xcframework; path = Frameworks/ITorrentFramework.xcframework; sourceTree = "<group>"; };
 		7CDD30F924DC7355000C38F6 /* UIFontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		7CE1604A235B970B00E3F1D9 /* StaticTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTableView.swift; sourceTree = "<group>"; };
 		7CE3551F248C254B007C9685 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
@@ -660,7 +660,7 @@
 			files = (
 				BEA4455F12A1DDE24B36018F /* Pods_iTorrent.framework in Frameworks */,
 				4E212F0DCB350CD7D3C5C85B /* Pods_iTorrent.framework in Frameworks */,
-				7C9E0F17296D623800EFF686 /* ITorrentFramework.xcframework in Frameworks */,
+				7C9E0F24296DEBBA00EFF686 /* ITorrentFramework.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,7 +831,7 @@
 		7C3C694420A75FBF0023396C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CDD0D6224DADB04000C38F6 /* ITorrentFramework.xcframework */,
+				7C9E0F20296DEB8F00EFF686 /* ITorrentFramework.xcframework */,
 				7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */,
 				7C2EF16A292ABF0300CD15C2 /* WidgetKit.framework */,
 				7C2EF16C292ABF0300CD15C2 /* SwiftUI.framework */,
@@ -1409,7 +1409,7 @@
 				7C05FC0A20BBFB2E006E5CFC /* Firebase */,
 				7CD95E5E2370443200C21F81 /* Swiftlint */,
 				7C2EF17E292ABF0400CD15C2 /* Embed Foundation Extensions */,
-				7C9E0F19296D623900EFF686 /* Embed Frameworks */,
+				7C9E0F26296DEBBA00EFF686 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

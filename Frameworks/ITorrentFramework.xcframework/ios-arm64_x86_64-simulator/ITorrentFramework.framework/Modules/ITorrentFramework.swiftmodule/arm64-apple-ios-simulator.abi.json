@@ -365,6 +365,92 @@
           },
           {
             "kind": "Var",
+            "name": "hashes",
+            "printedName": "hashes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Hashes",
+                "printedName": "ITorrentFramework.TorrentModel.Hashes",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ITorrentFramework12TorrentModelC6hashesAC6HashesVvp",
+            "mangledName": "$s17ITorrentFramework12TorrentModelC6hashesAC6HashesVvp",
+            "moduleName": "ITorrentFramework",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hashes",
+                    "printedName": "ITorrentFramework.TorrentModel.Hashes",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12TorrentModelC6hashesAC6HashesVvg",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6hashesAC6HashesVvg",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hashes",
+                    "printedName": "ITorrentFramework.TorrentModel.Hashes",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12TorrentModelC6hashesAC6HashesVvs",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6hashesAC6HashesVvs",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12TorrentModelC6hashesAC6HashesVvM",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6hashesAC6HashesVvM",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "creator",
             "printedName": "creator",
             "children": [
@@ -3188,6 +3274,470 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Hashes",
+            "printedName": "Hashes",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "v1",
+                "printedName": "v1",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvp",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvp",
+                "moduleName": "ITorrentFramework",
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvg",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvg",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvs",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvs",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvM",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v1SSSgvM",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "v2",
+                "printedName": "v2",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvp",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvp",
+                "moduleName": "ITorrentFramework",
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvg",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvg",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvs",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvs",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvM",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2v2SSSgvM",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "hasV1",
+                "printedName": "hasV1",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV5hasV1Sbvp",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV5hasV1Sbvp",
+                "moduleName": "ITorrentFramework",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV5hasV1Sbvg",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV5hasV1Sbvg",
+                    "moduleName": "ITorrentFramework",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "hasV2",
+                "printedName": "hasV2",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV5hasV2Sbvp",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV5hasV2Sbvp",
+                "moduleName": "ITorrentFramework",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV5hasV2Sbvg",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV5hasV2Sbvg",
+                    "moduleName": "ITorrentFramework",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "isHybrid",
+                "printedName": "isHybrid",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV8isHybridSbvp",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV8isHybridSbvp",
+                "moduleName": "ITorrentFramework",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV8isHybridSbvg",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV8isHybridSbvg",
+                    "moduleName": "ITorrentFramework",
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hashes",
+                    "printedName": "ITorrentFramework.TorrentModel.Hashes",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hashes",
+                    "printedName": "ITorrentFramework.TorrentModel.Hashes",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV2eeoiySbAE_AEtFZ",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV2eeoiySbAE_AEtFZ",
+                "moduleName": "ITorrentFramework",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV9hashValueSivp",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV9hashValueSivp",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:17ITorrentFramework12TorrentModelC6HashesV9hashValueSivg",
+                    "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV9hashValueSivg",
+                    "moduleName": "ITorrentFramework",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:17ITorrentFramework12TorrentModelC6HashesV4hash4intoys6HasherVz_tF",
+                "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV4hash4intoys6HasherVz_tF",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:17ITorrentFramework12TorrentModelC6HashesV",
+            "mangledName": "$s17ITorrentFramework12TorrentModelC6HashesV",
+            "moduleName": "ITorrentFramework",
+            "isFromExtension": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              }
+            ]
           }
         ],
         "declKind": "Class",
@@ -4923,6 +5473,53 @@
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "version",
+            "printedName": "version",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ITorrentFramework10TorrentSdkC7versionSSvpZ",
+            "mangledName": "$s17ITorrentFramework10TorrentSdkC7versionSSvpZ",
+            "moduleName": "ITorrentFramework",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework10TorrentSdkC7versionSSvgZ",
+                "mangledName": "$s17ITorrentFramework10TorrentSdkC7versionSSvgZ",
+                "moduleName": "ITorrentFramework",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
           },
           {
             "kind": "Function",
@@ -11234,567 +11831,567 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "StringLiteral",
-      "offset": 235,
+      "offset": 524,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "StringLiteral",
-      "offset": 361,
+      "offset": 650,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "StringLiteral",
-      "offset": 397,
+      "offset": 726,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "StringLiteral",
-      "offset": 433,
+      "offset": 762,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 469,
+      "offset": 798,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 507,
+      "offset": 836,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 549,
+      "offset": 878,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 586,
+      "offset": 915,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 621,
+      "offset": 950,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 668,
+      "offset": 997,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 708,
+      "offset": 1037,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 753,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 791,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 824,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 857,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 893,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 931,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 969,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1010,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1046,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
       "offset": 1082,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1183,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1223,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1259,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1297,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1337,
+      "offset": 1120,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1374,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1412,
+      "offset": 1153,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1186,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1222,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1260,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1298,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1339,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1375,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1411,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1512,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1552,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1588,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1626,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1666,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1703,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1741,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "Array",
-      "offset": 1445,
+      "offset": 1774,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
       "kind": "BooleanLiteral",
-      "offset": 1490,
+      "offset": 1819,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
       "kind": "StringLiteral",
       "offset": 222,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
       "kind": "IntegerLiteral",
       "offset": 280,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
       "kind": "IntegerLiteral",
       "offset": 321,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
       "kind": "BooleanLiteral",
       "offset": 356,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
       "kind": "Array",
       "offset": 397,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Extensions\/NotificationNamesExtension.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Extensions\/NotificationNamesExtension.swift",
       "kind": "StringLiteral",
       "offset": 288,
       "length": 22,
       "value": "\"torrentsStateChanged\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 274,
       "length": 6,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 290,
       "length": 6,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 306,
       "length": 4,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 320,
       "length": 9,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 274,
       "length": 6,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 290,
       "length": 6,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 306,
       "length": 4,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 320,
       "length": 9,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 274,
       "length": 6,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 290,
       "length": 6,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 306,
       "length": 4,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
       "offset": 320,
       "length": 9,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 263,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 292,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 324,
       "length": 1,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 354,
       "length": 1,
       "value": "7"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 263,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 292,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 324,
       "length": 1,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 354,
       "length": 1,
       "value": "7"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 263,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 292,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 324,
       "length": 1,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "IntegerLiteral",
       "offset": 354,
       "length": 1,
       "value": "7"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
       "kind": "BooleanLiteral",
       "offset": 714,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 219,
       "length": 8,
       "value": "\"Queued\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 247,
       "length": 9,
       "value": "\"Hashing\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 277,
       "length": 10,
       "value": "\"Metadata\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 311,
       "length": 13,
       "value": "\"Downloading\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 345,
       "length": 10,
       "value": "\"Finished\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 375,
       "length": 9,
       "value": "\"Seeding\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 407,
       "length": 12,
       "value": "\"Allocating\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 450,
       "length": 21,
       "value": "\"Checking fastresume\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 490,
       "length": 8,
       "value": "\"Paused\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 515,
       "length": 11,
       "value": "\"State.All\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 219,
       "length": 8,
       "value": "\"Queued\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 247,
       "length": 9,
       "value": "\"Hashing\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 277,
       "length": 10,
       "value": "\"Metadata\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 311,
       "length": 13,
       "value": "\"Downloading\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 345,
       "length": 10,
       "value": "\"Finished\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 375,
       "length": 9,
       "value": "\"Seeding\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 407,
       "length": 12,
       "value": "\"Allocating\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 450,
       "length": 21,
       "value": "\"Checking fastresume\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 490,
       "length": 8,
       "value": "\"Paused\""
     },
     {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iOS\/iTorrentNew\/iTorrentFramework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 515,
       "length": 11,

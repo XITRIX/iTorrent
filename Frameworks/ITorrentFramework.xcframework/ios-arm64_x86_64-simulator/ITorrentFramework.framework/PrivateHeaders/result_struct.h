@@ -15,6 +15,8 @@ typedef struct TorrentInfo {
     char * _Nonnull name;
     char * _Nonnull state;
     char * _Nonnull hash;
+    char * _Nullable hashv1;
+    char * _Nullable hashv2;
     char * _Nonnull creator;
     char * _Nonnull comment;
     float progress;

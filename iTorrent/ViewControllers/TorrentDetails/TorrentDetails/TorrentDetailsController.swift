@@ -76,6 +76,7 @@ class TorrentDetailsController: StaticTableViewController {
 
     override func initSections() {
         weak var weakSelf = self
+        unowned var uSelf = self
 
         // STATE
         var state = [CellModelProtocol]()
@@ -138,9 +139,13 @@ class TorrentDetailsController: StaticTableViewController {
 
         // MAIN INFORMATION
         var mainInformation = [CellModelProtocol]()
-        mainInformation.append(DetailCell.Model(title: "Details.Info.Hash", detail: { weakSelf?.manager.hash }, longPressAction: {
-            UIPasteboard.general.string = weakSelf?.manager.hash
+        mainInformation.append(DetailCell.Model(title: "Details.Info.Hash", detail: { weakSelf?.manager.hashes.v1 ?? "None" }, hiddenCondition: { !uSelf.manager.hashes.hasV1 }, longPressAction: {
+            UIPasteboard.general.string = weakSelf?.manager.hashes.v1
             Dialog.withTimer(weakSelf, title: "\("Details.Info.Hash".localized) \("copied".localized)")
+        }))
+        mainInformation.append(DetailCell.Model(title: "Details.Info.Hash".localized + " v2", detail: { weakSelf?.manager.hashes.v2 ?? "None" }, hiddenCondition: { !uSelf.manager.hashes.hasV2 }, longPressAction: {
+            UIPasteboard.general.string = weakSelf?.manager.hashes.v2
+            Dialog.withTimer(weakSelf, title: "\("Details.Info.Hash".localized) v2 \("copied".localized)")
         }))
         mainInformation.append(DetailCell.Model(title: "Details.Info.Creator", detail: { weakSelf?.manager.creator },
                                                 hiddenCondition: { weakSelf?.manager.creator.isEmpty ?? true }, longPressAction: {

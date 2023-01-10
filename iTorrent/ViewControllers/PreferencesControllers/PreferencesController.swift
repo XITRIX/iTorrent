@@ -281,11 +281,11 @@ class PreferencesController: StaticTableViewController {
         }))
         let version = try? String(contentsOf: Bundle.main.url(forResource: "Version", withExtension: "ver")!).trimmingCharacters(in: .whitespacesAndNewlines)
         #if TRANSMISSION
-        let core = "TR"
+        let core = "TRCore"
         #else
-        let core = "LT"
+        let core = "LibTorrent"
         #endif
-        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: "iTorrent v\(version ?? "Unknown") \(core)core"))
+        data.append(Section(rowModels: updates, header: "Settings.UpdateHeader", footer: "iTorrent: v\(version ?? "Unknown") | \(core): v\(TorrentSdk.version)"))
 
         // -MARK: DONATES
         var donates = [CellModelProtocol]()

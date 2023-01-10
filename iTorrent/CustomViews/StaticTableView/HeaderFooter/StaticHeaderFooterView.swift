@@ -92,6 +92,7 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         old.left = def.left
         old.right = def.right
         old.top = isHeader ? 16 : 8
+        old.bottom = 0
 
         layoutMargins = old
         label.sizeToFit()

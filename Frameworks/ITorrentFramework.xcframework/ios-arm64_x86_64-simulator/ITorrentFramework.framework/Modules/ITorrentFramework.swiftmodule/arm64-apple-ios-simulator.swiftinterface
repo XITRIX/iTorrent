@@ -8,11 +8,32 @@ import ITorrentFramework.Private
 import Swift
 import _Concurrency
 import _StringProcessing
+extension ITorrentFramework.TorrentModel {
+  public struct Hashes : Swift.Equatable, Swift.Hashable {
+    public var v1: Swift.String?
+    public var v2: Swift.String?
+    public var hasV1: Swift.Bool {
+      get
+    }
+    public var hasV2: Swift.Bool {
+      get
+    }
+    public var isHybrid: Swift.Bool {
+      get
+    }
+    public static func == (a: ITorrentFramework.TorrentModel.Hashes, b: ITorrentFramework.TorrentModel.Hashes) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
 public class TorrentModel : Swift.Hashable {
   public var title: Swift.String
   public var state: ITorrentFramework.TorrentState
   public var displayState: ITorrentFramework.TorrentState
   public var hash: Swift.String
+  public var hashes: ITorrentFramework.TorrentModel.Hashes
   public var creator: Swift.String
   public var comment: Swift.String
   public var progress: Swift.Float
@@ -86,6 +107,9 @@ public struct PeerModel : Swift.Hashable {
 }
 @_hasMissingDesignatedInitializers public class TorrentSdk {
   public static func initEngine(downloadFolder: Swift.String, configFolder: Swift.String, settingsPack: ITorrentFramework.SettingsPack)
+  public static var version: Swift.String {
+    get
+  }
   public static func applySettingsPack(settingsPack: ITorrentFramework.SettingsPack)
   public static func getTorrents() -> [ITorrentFramework.TorrentModel]
   public static func addTorrent(torrentPath: Swift.String) -> Swift.String?
