@@ -20,9 +20,19 @@ class PeerCell: ThemedUITableViewCell {
 
     @IBOutlet var ipText: UILabel!
     @IBOutlet var progress: UIProgressView!
-    
+    @IBOutlet var speed: UILabel!
+    @IBOutlet var clientName: UILabel!
+
     func setModel(_ model: PeerModel) {
-        ipText.text = "\(model.address):\(model.port)"
+        let address: String
+        if model.address.isIPv6 {
+            address = "[\(model.address)]"
+        } else {
+            address = model.address
+        }
+        ipText.text = "tcp://\(address):\(model.port)"
         progress.progress = Float(model.progress) / 100
+        speed.text = "↓ \(Utils.getSizeText(size: Int64(model.downSpeed)))/s | ↑ \(Utils.getSizeText(size: Int64(model.upSpeed)))/s"
+        clientName.text = model.client
     }
 }

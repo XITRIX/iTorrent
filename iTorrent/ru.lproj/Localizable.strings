@@ -120,6 +120,7 @@
 
 "Details.More.Title" = "Ещё";
 "Details.More.Trackers" = "Трекеры";
+"Details.More.Peers" = "Пиры";
 "Details.More.Files" = "Файлы";
 
 "copied" = "скопирован";
