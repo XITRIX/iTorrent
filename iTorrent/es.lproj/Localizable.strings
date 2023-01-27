@@ -10,13 +10,13 @@
 // Torrent States
 "State.All" = "Todos";
 "Queued" = "En cola";
-"Hashing" = "Hashing";
-"Metadata" = "Metadata";
+"Hashing" = "Calculando hash";
+"Metadata" = "Metadatos";
 "Downloading" = "Descargando";
-"Finished" = "Finalizado";
-"Seeding" = "Compartiendo";
+"Finished" = "Terminado";
+"Seeding" = "Sembrando";
 "Allocating" = "Asignando";
-"Checking fastresume" = "Comprobando fastresume";
+"Checking fastresume" = "Comprobando resumen rápido";
 "Paused" = "Pausado";
 
 //SpeedPicker
@@ -30,62 +30,62 @@
 "Done" = "Hecho";
 "Edit" = "Editar";
 "Select" = "Seleccionar";
-"Select All" = "Seleccionar todo";
-"Deselect" = "Deseleccionar";
+"Select All" = "Seleccionar todos";
+"Deselect" = "Desmarcar";
 "None" = "Ninguno";
 
 "Search" = "Buscar";
 
 "Start" = "Iniciar";
 "Pause" = "Pausar";
-"Delete" = "Delete";
+"Delete" = "Eliminar";
 
-"time remains" = "Tiempo restante";
-"eternity" = "Infinito";
+"time remains" = "tiempo restante";
+"eternity" = "eternidad";
 
 "Add from..." = "Añadir desde...";
 "Add from URL" = "Añadir desde URL";
-"Please enter the existing torrent's URL below" = "Introduzca a continuación la URL del torrent existente";
+"Please enter the existing torrent's URL below" = "Por favor, ingrese la URL del torrent existente a continuación";
 "Error has been occured" = "Se ha producido un error";
-"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "El archivo Torrent está roto o esta URL tiene algún tipo de protección DDOS, puede intentar abrir este enlace en Safari";
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "El archivo torrent está roto o esta URL tiene algún tipo de protección DDOS, puede intentar abrir este enlace en Safari";
 "Open in Safari" = "Abrir en Safari";
 "This torrent already exists" = "Este torrent ya existe";
 "Torrent with hash:" = "Torrent con hash:";
-"already exists in download queue" = "Ya existe en la cola de descargas";
+"already exists in download queue" = "ya existe en la cola de descarga";
 "Please, open this link in Safari, and send .torrent file from there" = "Por favor, abra este enlace en Safari y envíe el archivo .torrent desde allí";
-"Wrong link, check it and try again!" = "Enlace incorrecto, compruébalo e inténtalo de nuevo";
+"Wrong link, check it and try again!" = "Enlace incorrecto, ¡comprúebelo e inténtalo de nuevo!";
 "Add from magnet" = "Añadir desde magnet";
-"Please enter the magnet link below" = "Por favor, introduzca el enlace magnet a continuación";
+"Please enter the magnet link below" = "Por favor, ingrese el enlace magnet a continuación";
 "Close" = "Cerrar";
 "Cancel" = "Cancelar";
 "Error" = "Error";
 
-"Are you sure to remove" = "Estás seguro de eliminar";
-"torrents" = "torrentes";
+"Are you sure to remove" = "¿Estás seguro de eliminar?";
+"torrents" = "torrents";
 "Yes and remove data" = "Sí y eliminar datos";
-"Yes but keep data" = "Sí, pero conserva los datos";
+"Yes but keep data" = "Sí pero mantener datos";
 
 "torrent" = "torrent";
 "Are you sure to remove this magnet torrent?" = "¿Estás seguro de eliminar este torrent magnet?";
-"Remove" = "Quitar";
+"Remove" = "Eliminar";
 
 "Name" = "Nombre";
-"Date Added" = "Añadido el";
-"Date Created" = "Creado el";
+"Date Added" = "Fecha añadida";
+"Date Created" = "Fecha de creación";
 "Size" = "Tamaño";
 "Sort Torrents By:" = "Ordenar torrents por:";
-"Currently sorted by " = "Actualmente ordenados por ";
+"Currently sorted by " = "Actualmente ordenado por ";
 "Disable state sections" = "Desactivar secciones de estado";
 "Enable state sections" = "Activar secciones de estado";
-"MainController.Table.Placeholder.Text" = "¡La lista de descargas está vacía!\nUtilice Safari para descargar archivos torrent o añádalos mediante el botón '+'.";
+"MainController.Table.Placeholder.Text" = "¡La lista de descargas está vacía!\nUtilice Safari para descargar archivos torrent o agregue usando el botón '+'";
 
 //Torrent details
 "Torrent file" = "Archivo torrent";
-"Magnet link" = "Enlace magnético";
-"Magnet link copied to clipboard" = "Enlace magnético copiado al portapapeles";
+"Magnet link" = "Enlace magnet";
+"Magnet link copied to clipboard" = "Enlace magnet copiado al portapapeles";
 "Files" = "Archivos";
-"Trackers" = "Trackers";
-"Details.BackgroundSeeding.Warning" = "Compartir en segundo plano está desactivada, si cierra esta aplicación, la siembra se detendrá. Si no se establece el límite de siembra, la aplicación continuará trabajando en segundo plano indefinidamente, lo que puede agotar la batería";
+"Trackers" = "Rastreadores";
+"Details.BackgroundSeeding.Warning" = "Sembrar en segundo plano está desactivado, si cierras esta aplicación, la siembra se detendrá. ¿Quieres activar la siembra en segundo plano?\nSi no se establece el límite de semilla, la aplicación continuará funcionando en segundo plano de manera indefinida, lo que puede causar agotamiento de la batería.";
 
 "Details.State" = "Estado";
 
@@ -98,9 +98,9 @@
 "Details.Downloading.Sequential" = "Descarga secuencial";
 "Details.Downloading.Progress" = "Progreso";
 
-"Details.Seeding.Title" = "Compartiendo";
-"Details.Seeding.Allow" = "Permitir Compartir";
-"Details.Seeding.Limit" = "Límite de semillas";
+"Details.Seeding.Title" = "Sembrando";
+"Details.Seeding.Allow" = "Permitir siembra";
+"Details.Seeding.Limit" = "Límite de siembra";
 
 "Details.Info.Title" = "Información general";
 "Details.Info.Hash" = "Hash";
@@ -111,15 +111,15 @@
 
 "Details.Transfer.Title" = "Transferencia";
 "Details.Transfer.Total" = "Seleccionado/Total";
-"Details.Transfer.Completed" = "Completada";
-"Details.Transfer.Progress" = "Progreso seleccionado/Total";
-"Details.Transfer.Downloaded" = "Descargada";
+"Details.Transfer.Completed" = "Completado";
+"Details.Transfer.Progress" = "Progreso Seleccionado/Total";
+"Details.Transfer.Downloaded" = "Descargado";
 "Details.Transfer.Uploaded" = "Subido";
-"Details.Transfer.Seeders" = "Seeders";
-"Details.Transfer.Leechers" = "Leechers";
+"Details.Transfer.Seeders" = "Sembradores";
+"Details.Transfer.Leechers" = "Sanguijuelas";
 
 "Details.More.Title" = "Más";
-"Details.More.Trackers" = "Trackers";
+"Details.More.Trackers" = "Rastreadores";
 "Details.More.Files" = "Archivos";
 
 "copied" = "copiado";
@@ -127,56 +127,56 @@
 //Settings Controller
 "Settings.Title" = "Preferencias";
 "Settings.Appearance.Header" = "Apariencia";
-"Settings.Order" = "Orden de las secciones";
+"Settings.Order" = "Orden de sección";
 "Settings.AutoTheme" = "Tema automático";
 "Settings.Theme" = "Modo oscuro";
 
 "Settings.Storage.Header" = "Almacenamiento";
 "Settings.Storage.Available" = "Disponible";
 "Settings.Storage.Allocate" = "Asignar almacenamiento";
-"Settings.Storage.Allocate.Hint" = "Si está activado, iTorrent pre-reservará memoria para los archivos descargados";
+"Settings.Storage.Allocate.Hint" = "Si está habilitado, iTorrent reservará memoria de antemano para los archivos descargados";
 
-"Settings.BackgroundEnable" = "Permitir";
-"Settings.BackgroundSeeding" = "Permitir reproducción";
-"Settings.BackgroundSeeding.Warning" = "Esto permitirá que iTorrent se ejecute en segundo plano indefinidamente, en caso de que algún torrent se esté reproduciendo sin límites, lo que puede causar un consumo significativo de batería. \Tendrá que forzar el cierre de la aplicación para detener esto";
+"Settings.BackgroundEnable" = "Habilitar";
+"Settings.BackgroundSeeding" = "Permitir siembra";
+"Settings.BackgroundSeeding.Warning" = "Esto permitirá que iTorrent funcione en segundo plano de manera indefinida, en caso de que cualquier torrent esté sembrando sin límites, lo que puede causar un agotamiento significativo de la batería. \n\n¡Necesitarás cerrar la aplicación de manera forzosa para detener esto!";
 "Settings.BackgroundHeader" = "Descarga en segundo plano";
-"Settings.BackgroundFooter" = "Activar descarga en segundo plano a través de funciones multimedia";
+"Settings.BackgroundFooter" = "Habilitar la descarga en segundo plano a través de funciones multimedia";
 
 "Settings.QueueLimitHeader" = "Límite de cola de torrents";
 "Settings.TorrentsLimit" = "Torrents activos";
-"Settings.TorrentsDownLimit" = "Torrentes en descarga";
-"Settings.TorrentsUpLimit" = "Subiendo torrents";
+"Settings.TorrentsDownLimit" = "Torrents descargando";
+"Settings.TorrentsUpLimit" = "Torrents subiendo";
 
 "Settings.ZeroSpeedLimit" = "Límite de velocidad cero";
-"Settings.ZeroSpeedLimit.Hint" = "Si la velocidad de descarga es igual a cero durante un tiempo determinado, la aplicación detendrá el procesamiento en segundo plano para evitar el gasto inútil de batería";
+"Settings.ZeroSpeedLimit.Hint" = "Si la velocidad de descarga es igual a cero durante cierto tiempo, la aplicación detendrá el procesamiento en segundo plano para evitar el agotamiento innecesario de la batería";
 "Settings.DownLimit" = "Límite de descarga";
 "Settings.UpLimit" = "Límite de subida";
-"Settings.SpeedHeader" = "Límite de velocidad";
+"Settings.SpeedHeader" = "Limitación de velocidad";
 
 "Settings.FTPEnable" = "Habilitar";
-"Settings.FTPEnable.Hint" = "Utilizando esta configuración, puede habilitar el servidor de archivos al que puede conectarse a través de un navegador Web normal, o cliente WebDav";
-"Settings.FTP.Settings" = "Ajustes";
+"Settings.FTPEnable.Hint" = "Usando esta configuración, puedes habilitar el servidor de archivos al que puedes conectarte a través de un navegador web regular o un cliente WebDav";
+"Settings.FTP.Settings" = "Configuraciones";
 "Settings.FTPBackground" = "Ejecutar en segundo plano";
-"Settings.FTP.Message.NoNetwork" = "Conectarse a WIFI para utilizar la compartición de archivos";
-"Settings.FTP.Message" = "Conectar a: ";
+"Settings.FTP.Message.NoNetwork" = "Conéctate a WIFI para compartir archivos";
+"Settings.FTP.Message" = "Conecta a: ";
 "Settings.FTP.WebDav.Username" = "Nombre de usuario";
 "Settings.FTP.WebDav.Password" = "Contraseña";
 "Settings.FTP.WebDav.Username.Placeholder" = "Nombre de usuario";
 "Settings.FTP.WebDav.Password.Placeholder" = "Contraseña (opcional)";
-"Settings.FTP.WebDav.PassText" = "Reiniciar servidor para aplicar configuración";
+"Settings.FTP.WebDav.PassText" = "Reinicia el servidor para aplicar la configuración";
 "Settings.FTP.WebDav.WebTitle" = "Servidor web";
-"Settings.FTP.WebDav.WebText" = "Utiliza cualquier navegador web para compartir archivos";
+"Settings.FTP.WebDav.WebText" = "Usa cualquier navegador web para compartir archivos";
 "Settings.FTP.WebDav.WebDavTitle" = "Servidor WebDAV";
 "Settings.FTP.WebDav.WebDavPort" = "Puerto";
-"Settings.FTP.WebDav.WebDavText" = "Utilizar cliente WebDAV para conectarse a iTorrent";
+"Settings.FTP.WebDav.WebDavText" = "Usa un cliente WebDAV para conectarte a iTorrent";
 "Settings.FTPHeader" = "Compartir archivos";
 
 "Settings.Network.Header" = "Red";
 "Settings.Network.Proxy" = "Proxy";
-"Settings.Network.Connection" = "Ajustes de conexión";
+"Settings.Network.Connection" = "Configuraciones de conexión";
 "Settings.Network.Proxy.Type.Header" = "Host";
 "Settings.Network.Proxy.Type" = "Tipo de proxy";
-"Settings.Network.Proxy.SelectType" = "Seleccionar tipo de proxy:";
+"Settings.Network.Proxy.SelectType" = "Selecciona el tipo de proxy:";
 "Settings.Network.Proxy.Hostname" = "Nombre de host";
 "Settings.Network.Proxy.Port" = "Puerto";
 "Settings.Network.Proxy.Auth.Header" = "Autorización";
@@ -184,87 +184,88 @@
 "Settings.Network.Proxy.Login" = "Inicio de sesión";
 "Settings.Network.Proxy.Password" = "Contraseña";
 "Settings.Network.Protocols" = "Protocolos de conexión";
-"Settings.Network.DHT" = "Activar DHT";
-"Settings.Network.DHT.Hint" = "Permite que los clientes BitTorrent se encuentren entre sí sin utilizar un tracker. Habilitarlo aumentará el uso de la batería";
+"Settings.Network.DHT" = "Habilitar DHT";
+"Settings.Network.DHT.Hint" = "Permite a los clientes de BitTorrent encontrarse entre sí sin la necesidad de utilizar un seguidor. Al habilitar esto, el consumo de batería aumentará";
 "Settings.Network.LSD" = "Habilitar LSD";
-"Settings.Network.LSD.Hint" = "Está diseñado para soportar el descubrimiento de pares BitTorrent locales, con el objetivo de minimizar el tráfico";
+
+"Settings.Network.LSD.Hint" = "Está diseñado para apoyar la descubrimiento de pares locales de BitTorrent, con el objetivo de minimizar el tráfico";
 "Settings.Network.uTP" = "Habilitar µTP";
-"Settings.Network.uTP.Hint" = "Está diseñado para mitigar la baja latencia y otros problemas de control de congestión que se encuentran en BitTorrent convencional sobre TCP, a la vez que proporciona una entrega fiable y ordenada";
-"Settings.Network.UPnP" = "Activar UPnP";
+"Settings.Network.uTP.Hint" = "Está destinado a mitigar la baja latencia y otros problemas de control de congestión encontrados en el BitTorrent convencional sobre TCP, mientras brinda una entrega confiable y ordenada";
+"Settings.Network.UPnP" = "Habilitar UPnP";
 "Settings.Network.NAT-PMP" = "Habilitar NAT-PMP";
 "Settings.Network.Port" = "Puerto";
-"Settings.Network.DefauldPort" = "Utilizar puerto predeterminado";
-"Settings.Network.DefauldPort.Hint" = "Establece el puerto inicial como [6881] y el final como primero + 10 [6891]";
+"Settings.Network.DefauldPort" = "Usar puerto predeterminado";
+"Settings.Network.DefauldPort.Hint" = "Establece el puerto inicial en [6881] y el puerto final en primer + 10 [6891]";
 "Settings.Network.PortFirst" = "Inicio";
-"Settings.Network.PortSecond" = "Final";
+"Settings.Network.PortSecond" = "Fin";
 "Settings.Network.Interface" = "Interfaz";
 "Settings.Network.Interface.Title" = "Modo";
-"Settings.Network.Interface.Hint" = "#IMPORTANTE\n¡Cualquier cambio en el estado de la red requiere que iTorrent se reinicie!\n\n---Modo Todos---\nPermitirá a iTorrent usar todas las interfaces de dispositivo disponibles, lo que proporciona la máxima velocidad de descarga, pero podría usar datos moviles incluso con wifi conectado\n\n---Modo Principal---\nUsará sólo conexiones primarias, que evita el uso de datos moviles, mientras estas conectado al wifi, pero todavía podría causar fugas de IP si estas usando VPN\n\n---Solo VPN---\nUtilízalo si necesitas conexiones privadas en los trackers, evitará la fuga de IP\n\n---Modo manual---\nSeleccione la interfaz por ti mism@";
+"Settings.Network.Interface.Hint" = "#IMPORTANTE#\nCualquier cambio en el estado de la red requiere que iTorrent se REINICIE!\n\n---Modo completo---\nPermitirá que iTorrent use cada interfaz de dispositivo disponible, lo que brinda la velocidad de descarga máxima, pero podría usar datos moviles incluso con wifi conectado\n\n---Modo primario---\nUsará solo conexiones primarias, lo que evita el uso de datos celulares mientras se usa wifi, pero aún podría causar una fuga de IP si está usando VPN\n\n---Solo VPN---\nÚselo si necesita proporcionar conexiones privadas a rastreadores, evitará la fuga de IP\n\n---Modo manual---\nSeleccione la interfaz usted mismo";
 "Settings.Network.Interface.Select" = "Seleccionar modo de interfaz";
 "Settings.Network.Interface.SelectInterface" = "Seleccionar interfaz";
 
-"InterfaceType.All" = "Todos";
-"InterfaceType.Primary" = "Principal";
-"InterfaceType.VpnOnly" = "Sólo VPN";
+"InterfaceType.All" = "Todo";
+"InterfaceType.Primary" = "Primario";
+"InterfaceType.VpnOnly" = "Solo VPN";
 "InterfaceType.Manual" = "Manual";
 
 "Settings.NotifyFinishLoad" = "Al finalizar la carga";
-"Settings.NotifyFinishSeed" = "Al finalizar la siembra";
-"Settings.NotifyBadge" = "Activar el icono de insignia de la aplicación";
+"Settings.NotifyFinishSeed" = "Al finalizar la semilla";
+"Settings.NotifyBadge" = "Habilitar icono de distintivo de la aplicación";
 "Settings.NotifyHeader" = "Notificaciones";
 
 "Settings.UpdateSite" = "Página en GitHub";
 "Settings.UpdateSite.Open" = "Abrir";
 "Settings.UpdateHeader" = "Actualizaciones";
-"Settings.DonateDisable" = "Desactivar ADS";
+"Settings.DonateDisable" = "Deshabilitar anuncios";
 "Settings.DonateCard" = "NÚMERO DE TARJETA DE CRÉDITO VISA";
 "Settings.DonateCard.Open" = "Abrir";
 "Settings.DonateCard.DonatePlatforms" = "Donar";
-"Settings.DonateCard.DonatePlatforms.Title" = "Seleccione plataforma de donación:";
-"Settings.DonateHeader" = "Dona por donuts";
-"Settings.DonateFooter" = "Enlace con patreon para desactivar ADS";
+"Settings.DonateCard.DonatePlatforms.Title" = "Seleccionar plataforma de donación:";
+"Settings.DonateHeader" = "Donar por donuts";
+"Settings.DonateFooter" = "Enlace con patreon para deshabilitar anuncios";
 
 "Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
 "Settings.Patreon.Creator" = "Creador de iTorrent";
-"Settings.Patreon.Welcome" = "Hola,\npuede apoyar el futuro desarrollo de iTorrent donándome en Patreon. A cambio, recibirá acceso a la versión sin anuncios de la aplicación iTorrent.\n\n¡Gracias por todo su apoyo!";
-"Settings.Patreon.Patron" = "Eres un mecenas";
-"Settings.Patreon.Full" = "Tiene la versión completa";
-"Settings.Patreon.Reward" = "Activado sin anuncios, ¡diviértete!";
-"Settings.Patreon.PatronButton" = "Hazte mecenas";
-"Settings.Patreon.LinkButton" = "Vincular cuenta Patreon";
+"Settings.Patreon.Welcome" = "Hola,\nPuedes apoyar el desarrollo futuro de iTorrent donando en Patreon. A cambio, recibirás acceso a la versión sin anuncios de la aplicación iTorrent.\n\n¡Gracias por todo tu apoyo!";
+"Settings.Patreon.Patron" = "Eres patrocinador";
+"Settings.Patreon.Full" = "Tienes la versión completa";
+"Settings.Patreon.Reward" = "Sin anuncios habilitado, ¡disfruta!";
+"Settings.Patreon.PatronButton" = "Conviértete en patrocinador";
+"Settings.Patreon.LinkButton" = "Enlazar cuenta de Patreon";
 "Settings.Patreon.UnlinkButton" = "Desvincular";
-"Settings.Patreon.UnlinkButton.Text" = "¿Seguro que quieres desvincular tu cuenta Patreon?";
-"Settings.Patreon.UnlinkButton.Action" = "Desvincular cuenta Patreon";
-"Settings.Patreon.Thanks" = "Agradecimiento especial a: ";
-"Settings.Patreon.CopiedID" = "Tu ID de Patreon copiado en el portapapeles";
+"Settings.Patreon.UnlinkButton.Text" = "¿Estás seguro de que deseas desvincular tu cuenta de Patreon?";
+"Settings.Patreon.UnlinkButton.Action" = "Desvincular cuenta de Patreon";
+"Settings.Patreon.Thanks" = "Agradecimientos especiales a:";
+"Settings.Patreon.CopiedID" = "Tu ID de Patreon se ha copiado al portapapeles";
 
 "Settings.Sorting.Revert" = "Revertir";
 
-"Warning" = "Aviso";
-"Enable" = "Activar";
+"Warning" = "Advertencia";
+"Enable" = "Habilitar";
 "Unlimited" = "Ilimitado";
-"Torrent rehash" = "Torrent rehash";
+"Torrent rehash" = "Rehash del torrent";
 "This action will recheck the state of all downloaded files" = "Esta acción volverá a comprobar el estado de todos los archivos descargados";
 "Rehash" = "Rehash";
 
 "Current app version: " = "Versión actual de la aplicación: ";
 "New version " = "Nueva versión ";
 " available" = " disponible";
-"WOW, is it a new inDev build, huh?" = "WOW, ¿es una nueva compilación de inDev, eh?";
+"WOW, is it a new inDev build, huh?" = "¡WOW, ¿es una nueva construcción inDev, huh?";
 "Latest version installed" = "Última versión instalada";
-"Update check failed" = "Comprobación de actualización fallida";
+"Update check failed" = "Error al comprobar actualizaciones";
 "WARNING" = "ADVERTENCIA";
-"Copied CC # to clipboard!" = "¡Copiado CC # al portapapeles!";
+"Copied CC # to clipboard!" = "¡Número de tarjeta de crédito copiado al portapapeles!";
 
 "Supplication" = "Donación";
-"If you enjoy this app, consider supporting the developer by keeping the ads on." = "Si disfrutas con esta aplicación, considera apoyar al desarrollador manteniendo los anuncios activados.\n¡Gracias!";
-"Disable Anyway" = "Desactivar de todos modos";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "Si disfrutas de esta aplicación, considera apoyar al desarrollador manteniendo los anuncios activos.\n¡Gracias!";
+"Disable Anyway" = "Deshabilitar de todos modos";
 
 //Add Torrent Controller
 "Back" = "Atrás";
-"Torrent update detected" = "Detectada actualización de Torrent";
+"Torrent update detected" = "Actualización de torrent detectada";
 "Torrent with name" = "Torrent con nombre";
-"already exists, do you want to apply previous files selection settings to this torrent" = "ya existe, ¿desea aplicar los ajustes de selección de archivos anteriores a este torrent?";
+"already exists, do you want to apply previous files selection settings to this torrent" = "ya existe, ¿quieres aplicar la configuración de selección de archivos anterior a este torrent?";
 "Apply" = "Aplicar";
 "Download content of folder" = "Descargar contenido de la carpeta";
 "Download" = "Descargar";
@@ -273,8 +274,8 @@
 "Share" = "Compartir";
 "Show in Files" = "Mostrar en Archivos";
 "AddTorrentController.MemoryWarning.Title" = "Advertencia";
-"AddTorrentController.MemoryWarning.Message" = "No hay suficiente espacio libre en disco para descargar todos los archivos, libere espacio en disco para continuar";
-"AddTorrentController.MemoryWarning.AddAnyway" = "Añadir de todos modos";
+"AddTorrentController.MemoryWarning.Message" = "No hay suficiente espacio libre en el disco para descargar todos los archivos, libere espacio en el disco para continuar";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Agregar de todos modos";
 
 //Torrent Files Controller
 "TorrentFilesController.Edit" = "Editar";
@@ -282,39 +283,39 @@
 "TorrentFilesController.DeselectAll" = "Deseleccionar todo";
 
 //Trackers List Controller
-"Working" = "Trabajando";
+"Working" = "Funcionando";
 "Inactive" = "Inactivo";
 "Verified" = "Verificado";
-"Add Tracker" = "Añadir Tracker";
-"Enter the full tracker's URL" = "Introduzca la URL completa del tracker";
-"Tracker's URL" = "Introducir URL del tracker";
+"Add Tracker" = "Agregar Tracker";
+"Enter the full tracker's URL" = "Ingresa la URL completa del tracker";
+"Tracker's URL" = "Ingresa la URL del Tracker";
 "Peers" = "Pares";
 "Seeds" = "Semillas";
 "Leechers" = "Sanguijuelas";
-"Are you shure to remove this trackers?" = "¿Estás seguro de quitar este tracker?";
-"Tracker's URL copied to clipboard!" = "¡La URL del tracker copiada en el portapapeles!";
+"Are you shure to remove this trackers?" = "¿Estás seguro de eliminar estos trackers?";
+"Tracker's URL copied to clipboard!" = "¡URL del Tracker copiada al portapapeles!";
 
 //AppDelegate
-"Obtaining Metadata" = "Obteniendo Metadatos";
-"Finish the previous torrent adding before start the new one." = "Termina el torrent anterior añadiendo antes de empezar el nuevo";
-"Error on torrent opening" = "Error al abrir torrent";
-"Error on torrent reading" = "Error en la lectura del torrent";
-"Torrent file opening error has been occured" = "Se ha producido un error en la apertura del archivo Torrent";
-"Wrong magnet link, check it and try again!" = "Enlace magnético incorrecto, compruébalo e inténtalo de nuevo";
+"Obtaining Metadata" = "Obteniendo metadatos";
+"Finish the previous torrent adding before start the new one." = "Termina la adición anterior del torrent antes de comenzar con el nuevo.";
+"Error on torrent opening" = "Error al abrir el torrent";
+"Error on torrent reading" = "Error al leer el torrent";
+"Torrent file opening error has been occured" = "Se ha producido un error al abrir el archivo torrent";
+"Wrong magnet link, check it and try again!" = "Enlace magnetico incorrecto, comprueba y vuelve a intentarlo";
 "Download finished" = "Descarga finalizada";
-" finished downloading" = " terminó de descargar";
-"Seeding finished" = "Siembra finalizada";
-" finished seeding" = " terminó de sembrar";
+" finished downloading" = " finalizó la descarga";
+"Seeding finished" = "Sembrado finalizado";
+" finished seeding" = " finalizó el sembrado";
 
-"This action will recheck the state of all downloaded files for torrents:" = "Esta acción volverá a comprobar el estado de todos los archivos descargados para torrents:";
+"This action will recheck the state of all downloaded files for torrents:" = "Esta acción volverá a comprobar el estado de todos los archivos descargados de los torrents:";
 
 //Background Task
 "BackgroundTask.LowSpeed.Title" = "La velocidad de descarga es baja ";
 "BackgroundTask.LowSpeed.Message" = " se detendrá la descarga en segundo plano para evitar el agotamiento de la batería";
 //News Alerts
-"Dialogs.News.Title" = "¡Atención!";
+"Dialogs.News.Title" = "¡Advertencia!";
 
-"Disabled" = "Desactivado";
+"Disabled" = "Deshabilitado";
 "Hint" = "Sugerencia";
 
 "minute:single" = "minuto";
@@ -322,16 +323,16 @@
 "minute:parent" = "minutos";
 
 // mime
-"mime.video" = "Vídeo";
+"mime.video" = "Video";
 "mime.audio" = "Audio";
 "mime.image" = "Foto";
 "mime.documents" = "Documentos";
 "mime.free" = "Libre";
-"mime.other" = "Otros";
+"mime.other" = "Otro";
 "mime.calculating" = "Calculando...";
 
 // RSS Feed Provider
-"RssFeedProvider.Empty.Text" = "¡Su fuente RSS está vacía! Añada fuentes para recibir alertas de actualización de contenidos";
+"RssFeedProvider.Empty.Text" = "¡Tu feed RSS está vacío!\nAgrega feeds para recibir alertas de actualización de contenido";
 "RssFeedProvider.Notification.Title" = "Actualización RSS:";
 "RssFeedProvider.Error.Unknown" = "Se ha producido un error desconocido";
 "RssFeedProvider.Error.NotValid" = "La URL no es válida";
@@ -339,7 +340,7 @@
 
 // RSS Feed Controller
 "RssFeedController.AddTitle" = "Añadir canal RSS";
-"RssFeedController.RemoveTitle" = "¿Seguro que desea eliminar este canal?";
+"RssFeedController.RemoveTitle" = "¿Está seguro de eliminar este canal RSS:";
 
 // RSS Channel Setup Controller
 "RssChannelSetup.UrlCopied" = "¡La URL de Chanel copiada al portapapeles!";
@@ -354,8 +355,8 @@
 
 // RSS Item Controller
 "RssItemController.PinTorrent" = "Se adjunta archivo Torrent a este post";
-"RssItemController.PinMagnet" = "Se ha adjuntado un enlace magnético a esta entrada";
+"RssItemController.PinMagnet" = "Se adjunta enlace Magnet a este post";
 
 //Version Info
 "info" = "\nRegistro de cambios";
-"UpdateText" = "\n--- 1.9 ---\n- Actualizado para las nuevas versiones de iOS\n- Muchas mejoras y correcciones de la interfaz de usuario";
+"UpdateText" = "\n--- 1.9 ---\n- Actualizado para las versiones más recientes de iOS\n- Muchas correcciones y mejoras en la interfaz de usuario";
