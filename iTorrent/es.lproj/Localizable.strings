@@ -84,7 +84,7 @@
 "Magnet link" = "Enlace magnet";
 "Magnet link copied to clipboard" = "Enlace magnet copiado al portapapeles";
 "Files" = "Archivos";
-"Trackers" = "Rastreadores";
+"Trackers" = "Trackers";
 "Details.BackgroundSeeding.Warning" = "Sembrar en segundo plano está desactivado, si cierras esta aplicación, la siembra se detendrá. ¿Quieres activar la siembra en segundo plano?\nSi no se establece el límite de semilla, la aplicación continuará funcionando en segundo plano de manera indefinida, lo que puede causar agotamiento de la batería.";
 
 "Details.State" = "Estado";
@@ -119,7 +119,7 @@
 "Details.Transfer.Leechers" = "Sanguijuelas";
 
 "Details.More.Title" = "Más";
-"Details.More.Trackers" = "Rastreadores";
+"Details.More.Trackers" = "Trackers";
 "Details.More.Files" = "Archivos";
 
 "copied" = "copiado";
@@ -200,7 +200,7 @@
 "Settings.Network.PortSecond" = "Fin";
 "Settings.Network.Interface" = "Interfaz";
 "Settings.Network.Interface.Title" = "Modo";
-"Settings.Network.Interface.Hint" = "#IMPORTANTE#\nCualquier cambio en el estado de la red requiere que iTorrent se REINICIE!\n\n---Modo completo---\nPermitirá que iTorrent use cada interfaz de dispositivo disponible, lo que brinda la velocidad de descarga máxima, pero podría usar datos moviles incluso con wifi conectado\n\n---Modo primario---\nUsará solo conexiones primarias, lo que evita el uso de datos celulares mientras se usa wifi, pero aún podría causar una fuga de IP si está usando VPN\n\n---Solo VPN---\nÚselo si necesita proporcionar conexiones privadas a rastreadores, evitará la fuga de IP\n\n---Modo manual---\nSeleccione la interfaz usted mismo";
+"Settings.Network.Interface.Hint" = "#IMPORTANTE#\nCualquier cambio en el estado de la red requiere que iTorrent se REINICIE!\n\n---Modo completo---\nPermitirá que iTorrent use cada interfaz de dispositivo disponible, lo que brinda la velocidad de descarga máxima, pero podría usar datos moviles incluso con wifi conectado\n\n---Modo primario---\nUsará solo conexiones primarias, lo que evita el uso de datos celulares mientras se usa wifi, pero aún podría causar una fuga de IP si está usando VPN\n\n---Solo VPN---\nÚselo si necesita proporcionar conexiones privadas a los Trackers, evitará la fuga de IP\n\n---Modo manual---\nSeleccione la interfaz usted mismo";
 "Settings.Network.Interface.Select" = "Seleccionar modo de interfaz";
 "Settings.Network.Interface.SelectInterface" = "Seleccionar interfaz";
 
