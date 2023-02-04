@@ -26,6 +26,7 @@
 
 **Latest dev build:** ([AppCenter](https://install.appcenter.ms/users/x1trix/apps/itorrent/distribution_groups/public)) 
 
+**Latest dev build Unofficial:** ([GitHub Release](https://github.com/Deci8BelioS/iTorrent/releases/latest))
 ## Info
 
 It is an ordinary torrent client for iOS with Files app support.
@@ -52,6 +53,7 @@ Now iTorrent supports the following languages:
 - English
 - Russian
 - Turkish
+- Spanish
 
 If you are fluent in the languages not listed above and want to help with translation, you are welcome!
 
