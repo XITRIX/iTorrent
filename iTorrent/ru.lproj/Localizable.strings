@@ -40,7 +40,7 @@
 "Pause" = "Остановить";
 "Delete" = "Удалить";
 
-"time remains" = "время осталось";
+"time remains" = "времени осталось";
 "eternity" = "вечность";
 
 "Add from..." = "Добавить из...";
@@ -52,7 +52,7 @@
 "This torrent already exists" = "Этот Torrent уже существует";
 "Torrent with hash:" = "Torrent с хэшем:";
 "already exists in download queue" = "уже существует в списке загрузок";
-"Please, open this link in Safari, and send .torrent file from there" = "Откройте эту ссылку в Safari, и отправьте .torrent файл от туда";
+"Please, open this link in Safari, and send .torrent file from there" = "Откройте эту ссылку в Safari и отправьте .torrent файл оттуда";
 "Wrong link, check it and try again!" = "Неверная ссылка, проверьте её и попробуйте ещё раз!";
 "Add from magnet" = "Добавить из magnet";
 "Please enter the magnet link below" = "Введите magnet ссылку ниже";
@@ -62,7 +62,7 @@
 
 "Are you sure to remove" = "Вы уверены что хотите удалить";
 "torrents" = "шт.";
-"Yes and remove data" = "Да и удалить файлы";
+"Yes and remove data" = "Да, и удалить файлы";
 "Yes but keep data" = "Да, но оставить файлы";
 
 "torrent" = "";
@@ -70,11 +70,11 @@
 "Remove" = "Удалить";
 
 "Name" = "Имени";
-"Date Added" = "Дате Добавления";
+"Date Added" = "Дате добавления";
 "Date Created" = "Дате создания";
 "Size" = "Размеру";
 "Sort Torrents By:" = "Сортировать торренты по:";
-"Currently sorted by " = "Сейчас отсортеровано по ";
+"Currently sorted by " = "Сейчас отсортировано по ";
 "Disable state sections" = "Отключить разделение на секции";
 "Enable state sections" = "Включить разделение на секции";
 "MainController.Table.Placeholder.Text" = "Список загрузок пуст!\nИспользуйте Chrome для загрузки торент файлов или добавьте с помощью кнопки '+'";
@@ -85,7 +85,7 @@
 "Magnet link copied to clipboard" = "Magnet ссылка скопирована";
 "Files" = "Файлы";
 "Trackers" = "Трекеры";
-"Details.BackgroundSeeding.Warning" = "Раздача в фоне отключена, если вы закроете приложение, раздача прекратится. Хотите включить фонорую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
+"Details.BackgroundSeeding.Warning" = "Раздача в фоне отключена. Если вы закроете приложение, раздача прекратится. Хотите включить фоновую раздачу?\nЕсли лимит на раздачу не установлен, то приложение будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора.";
 
 "Details.State" = "Состояние";
 
@@ -146,7 +146,7 @@
 "Settings.QueueLimitHeader" = "Лимиты очерёдности торрентов";
 "Settings.TorrentsLimit" = "Активных торрентов";
 "Settings.TorrentsDownLimit" = "Активных загрузок";
-"Settings.TorrentsUpLimit" = "Активных отдач";
+"Settings.TorrentsUpLimit" = "Активных раздач";
 
 "Settings.ZeroSpeedLimit" = "Нулевая скорость";
 "Settings.ZeroSpeedLimit.Hint" = "Если в течение некоторого времени скорость загрузки равна нулю, приложение остановит работу в фоне, чтобы предотвратить бесполезную разрядку батареи";
@@ -283,7 +283,7 @@
 "Medium" = "Средний";
 "Low" = "Низкий";
 "AddTorrentController.MemoryWarning.Title" = "Внимание";
-"AddTorrentController.MemoryWarning.Message" = "Не достаточно свободного места на диске для загрузки файлов, освободите место на диске, что бы продолжить";
+"AddTorrentController.MemoryWarning.Message" = "Недостаточно свободного места на диске для загрузки файлов, освободите место на диске, что бы продолжить";
 "AddTorrentController.MemoryWarning.AddAnyway" = "Продолжить всё равно";
 
 //Torrent Files Controller
@@ -305,7 +305,7 @@
 "Tracker's URL copied to clipboard!" = "URL трекера скопирован!";
 
 //AppDelegate
-"Obtaining Metadata" = "Получение Метадаты";
+"Obtaining Metadata" = "Получение метаданных";
 "Finish the previous torrent adding before start the new one." = "Закончите добавление предыдущего торрента перед добавлением нового.";
 "Error on torrent opening" = "Ошибка при открытии торрента";
 "Error on torrent reading" = "Ошибка при чтении торрента";
@@ -345,12 +345,12 @@
 "RssFeedProvider.Empty.Text" = "Ваша RSS лента пуста!\nДобавьте каналы что бы получать оповещения об обновлении контента";
 "RssFeedProvider.Notification.Title" = "Обновления RSS:";
 "RssFeedProvider.Error.Unknown" = "Неизвестная ошибка";
-"RssFeedProvider.Error.NotValid" = "Не верный URL";
+"RssFeedProvider.Error.NotValid" = "Неверный URL";
 "RssFeedProvider.Error.Exists" = "Этот канал RSS уже добавлен";
 
 // RSS Feed Controller
 "RssFeedController.AddTitle" = "Добавить канал RSS";
-"RssFeedController.RemoveTitle" = "Вы уверены что хотите удалить:";
+"RssFeedController.RemoveTitle" = "Вы уверены, что хотите удалить:";
 
 // RSS Channel Setup Controller
 "RssChannelSetup.UrlCopied" = "URL канала скопирован";
