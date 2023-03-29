@@ -54,6 +54,8 @@ class StaticTableView: ThemedUITableView {
 
         estimatedRowHeight = 44
         rowHeight = UITableView.automaticDimension
+        sectionHeaderHeight = UITableView.automaticDimension
+        sectionFooterHeight = UITableView.automaticDimension
 
         keyboardDismissMode = .interactive
 
