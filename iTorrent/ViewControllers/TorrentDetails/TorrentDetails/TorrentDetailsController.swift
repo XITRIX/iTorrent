@@ -190,11 +190,19 @@ class TorrentDetailsController: StaticTableViewController {
                                             weakSelf?.show(vc, sender: weakSelf)
                                         }
                                     }))
+        more.append(SegueCell.Model(title: "Details.More.Peers",
+                                    bold: true,
+                                    tapAction: {
+                                        if weakSelf?.manager.state != .metadata {
+                                            let vc = TorrentPeersController(hash: uSelf.managerHash)
+                                            weakSelf?.show(vc, sender: weakSelf)
+                                        }
+                                    }))
         more.append(SegueCell.Model(title: "Details.More.Files",
                                     bold: true,
                                     tapAction: {
                                         if weakSelf?.manager.state != .metadata,
-                                            let hash = weakSelf?.managerHash
+                                           let hash = weakSelf?.managerHash
                                         {
                                             let vc = TorrentFilesController(hash: hash)
                                             weakSelf?.show(vc, sender: weakSelf)
@@ -272,8 +280,8 @@ class TorrentDetailsController: StaticTableViewController {
                     present(controller, animated: true)
                 }
             } else if !sender.isOn,
-                manager.isFinished,
-                !manager.isPaused
+                      manager.isFinished,
+                      !manager.isPaused
             {
                 TorrentSdk.stopTorrent(hash: managerHash)
             }
@@ -326,8 +334,8 @@ class TorrentDetailsController: StaticTableViewController {
 
     @objc func removeAction() {
         Core.shared.removeTorrentsUI(hashes: [managerHash], sender: toolbarButtons.remove, direction: .down) {
-            if !(self.splitViewController?.isCollapsed ?? true),
-                let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController
+            if self.splitViewController?.isCollapsed == false,
+               let splitView = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController
             {
                 splitView.showDetailViewController(Utils.createEmptyViewController(), sender: self)
 

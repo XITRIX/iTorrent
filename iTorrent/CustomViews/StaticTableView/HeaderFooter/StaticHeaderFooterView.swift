@@ -89,9 +89,12 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         var old = super.layoutMargins
         let def = defaultMargins
 
+        var headerPadding: Double = 16
+        let footerPadding: Double = 8
+
         old.left = def.left
         old.right = def.right
-        old.top = isHeader ? 16 : 8
+        old.top = isHeader ? headerPadding : footerPadding
         old.bottom = 0
 
         layoutMargins = old

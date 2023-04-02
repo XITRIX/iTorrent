@@ -120,6 +120,7 @@
 
 "Details.More.Title" = "More";
 "Details.More.Trackers" = "Trackers";
+"Details.More.Peers" = "Peers";
 "Details.More.Files" = "Files";
 
 "copied" = "copied";

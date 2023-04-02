@@ -15,8 +15,18 @@ import DeepDiff
 import UIKit
 
 class TorrentPeersController: ThemedUITableViewController {
-    var managerHash: String!
-    var peers: [PeerModel] = []
+    private let managerHash: String
+    private var peers: [PeerModel] = []
+
+    init(hash: String) {
+        managerHash = hash
+        super.init(style: .plain)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override var toolBarIsHidden: Bool? {
         true
@@ -30,8 +40,11 @@ class TorrentPeersController: ThemedUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(PeerCell.nib, forCellReuseIdentifier: PeerCell.id)
+        tableView.cellLayoutMarginsFollowReadableWidth = true
+        tableView.allowsSelection = false
         peers = TorrentSdk.getPeers(with: managerHash)
         tableView.reloadData()
+        title = "Details.More.Peers".localized
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,16 +66,12 @@ class TorrentPeersController: ThemedUITableViewController {
 
         if changes.count > 0 {
             tableView.unifiedPerformBatchUpdates({
-                if res.inserts.count > 0 { tableView.insertRows(at: res.inserts, with: .fade) }
-                if res.deletes.count > 0 { tableView.deleteRows(at: res.deletes, with: .fade) }
+                if res.inserts.count > 0 { tableView.insertRows(at: res.inserts, with: .top) }
+                if res.deletes.count > 0 { tableView.deleteRows(at: res.deletes, with: .top) }
             }, completion: nil)
         }
 
-        res.replaces.forEach { indexPath in
-            if let cell = tableView.cellForRow(at: indexPath) as? PeerCell {
-                cell.setModel(peersNew[indexPath.row])
-            }
-        }
+        reloadVisibleCells()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,5 +82,16 @@ class TorrentPeersController: ThemedUITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: PeerCell.id, for: indexPath) as! PeerCell
         cell.setModel(peers[indexPath.row])
         return cell
+    }
+
+    func reloadVisibleCells() {
+        tableView.visibleCells.forEach { cell in
+            guard let indexPath = tableView.indexPath(for: cell),
+                  let peerCell = cell as? PeerCell
+            else { return }
+
+            let item = peers[indexPath.row]
+            peerCell.setModel(item)
+        }
     }
 }

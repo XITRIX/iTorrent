@@ -16,6 +16,19 @@ import MarqueeLabel
 import UIKit
 import WebKit
 
+private extension UIColor {
+    var rgbString: String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+
+        return "rgb(\(Int(red*255)),\(Int(green*255)),\(Int(blue*255)))"
+    }
+}
+
 class RssItemController: ThemedUIViewController {
     override var toolBarIsHidden: Bool? {
         true
@@ -31,11 +44,11 @@ class RssItemController: ThemedUIViewController {
             <style>
             @media (prefers-color-scheme: dark) {
                 body {
-                    background-color: rgb(55,55,55);
+                    background-color: \(view.backgroundColor!.rgbString);
                     color: white;
                 }
                 a:link {
-                    color: rgb(255,76,43);
+                    color: \(UIColor.mainColor.rgbString);
                 }
                 a:visited {
                     color: #9d57df;
@@ -48,7 +61,7 @@ class RssItemController: ThemedUIViewController {
             <style>
             @media (prefers-color-scheme: light) {
                 a:link {
-                    color: rgb(255,76,43);
+                    color: \(view.tintColor.rgbString);
                 }
                 a:visited {
                     color: #9d57df;
@@ -65,7 +78,8 @@ class RssItemController: ThemedUIViewController {
     
     override func themeUpdate() {
         super.themeUpdate()
-        webView.backgroundColor = Themes.current.backgroundSecondary
+        view.backgroundColor = Themes.current.backgroundMain
+        webView.backgroundColor = Themes.current.backgroundMain
         
         loadHtml()
     }
@@ -134,7 +148,7 @@ class RssItemController: ThemedUIViewController {
     }
     
     @objc func openLink() {
-        UIApplication.shared.openURL(self.model.link)
+        UIApplication.shared.open(self.model.link)
         
 //        let dialog = ThemedUIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 //        dialog.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
