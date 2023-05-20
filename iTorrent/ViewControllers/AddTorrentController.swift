@@ -159,6 +159,7 @@ class AddTorrentController: ThemedUIViewController {
         #if !targetEnvironment(macCatalyst)
         FullscreenAd.shared.load()
         #endif
+        UnityAdsManager.shared.showInterstitialAdIfNotShowed(from: self)
         dismiss(animated: true)
     }
 
@@ -221,6 +222,7 @@ class AddTorrentController: ThemedUIViewController {
         #if !targetEnvironment(macCatalyst)
         FullscreenAd.shared.load()
         #endif
+        UnityAdsManager.shared.showInterstitialAdIfNotShowed(from: self)
     }
 
     func updateWeightLabel() {
@@ -241,6 +243,7 @@ extension AddTorrentController: UIAdaptivePresentationControllerDelegate {
         #if !targetEnvironment(macCatalyst)
         FullscreenAd.shared.load()
         #endif
+        UnityAdsManager.shared.showInterstitialAdIfNotShowed(from: self)
     }
 }
 

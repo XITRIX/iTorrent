@@ -16,6 +16,8 @@ import ITorrentTransmissionFramework
 import ITorrentFramework
 #endif
 
+import UnityAds
+
 import UIKit
 import Bond
 
@@ -27,6 +29,9 @@ class TorrentListController: MvvmViewController<TorrentListViewModel> {
     #else
     @IBOutlet var adsView: UIView!
     #endif
+
+    var unityAdsView: UADSBannerView!
+    @IBOutlet var adsStackView: UIStackView!
 
     @IBOutlet var tableviewPlaceholder: UIView!
     @IBOutlet var tableviewPlaceholderImage: UIImageView!

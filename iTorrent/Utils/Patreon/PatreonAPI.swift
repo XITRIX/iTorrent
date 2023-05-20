@@ -21,6 +21,8 @@ struct PatreonCredentials: Codable {
     var patreonCreatorAccessToken: String
     var campaignID: String
     var hideFSAds: Bool
+    var hideBannerAds: Bool
+    var fsAdsHourPeriod: Int
     var benefits: Benefits
 }
 
@@ -124,7 +126,7 @@ class PatreonAPI: NSObject
         UserPreferences.patreonAccessToken != nil
     }
     
-    private var authenticationSession: UIViewController?
+    private var authenticationSession: SFSafariViewController?
     
     private let session = URLSession(configuration: .ephemeral)
     private let baseURL = URL(string: "https://www.patreon.com/")!
@@ -154,6 +156,13 @@ extension PatreonAPI
         
         self.authenticationSession = SFSafariViewController(url: requestURL)
         self.authenticationSession?.modalPresentationStyle = .pageSheet
+
+        if #available(iOS 10.0, *) {
+            authenticationSession?.preferredControlTintColor = Themes.current.tintColor
+        }
+        if #available(iOS 13.0, *) {
+            authenticationSession?.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!
+        }
         
         PatreonWebServer.shared.run { [weak self] code in
             self?.authenticationSession?.dismiss(animated: true)

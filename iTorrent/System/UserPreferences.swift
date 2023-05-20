@@ -89,6 +89,8 @@ class UserPreferences {
     static var disableAds: Bool {
         UserPreferences.patreonAccount?.hideAds ?? false
     }
+
+    @PreferenceData("fullscreenAdShownDate", nil) static var dateFSAdShown: Date?
 }
 
 class SettingProperty<T> {

@@ -7,6 +7,7 @@ platform :ios, '11.0'
 
 target 'iTorrent' do
   use_frameworks!
+  pod 'UnityAds'
   pod 'MarqueeLabel'
   pod "GCDWebServer/WebUploader", "~> 3.0"
   pod "GCDWebServer/WebDAV", "~> 3.0"

@@ -70,6 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 sleep(1)
                 if !self.openedByFile {
                     FullscreenAd.shared.load()
+                    DispatchQueue.main.async {
+                        if let viewController = self.window?.rootViewController {
+                            UnityAdsManager.shared.showInterstitialAdIfNotShowed(from: viewController)
+                        }
+                    }
                 }
             }
             #endif

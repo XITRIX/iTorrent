@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -123,36 +123,41 @@
                                     <constraint firstItem="tMU-dN-W3p" firstAttribute="leading" secondItem="E7j-3O-T4A" secondAttribute="leading" id="qNU-LP-I5E"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxi-gq-Num" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="799" width="430" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="f9q-nH-fhb"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-3940256099942544/2934735716"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Nac-hC-q9p">
+                                <rect key="frame" x="0.0" y="849" width="430" height="0.0"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxi-gq-Num" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="f9q-nH-fhb"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-3940256099942544/2934735716"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BKM-Z7-QMV">
-                                <rect key="frame" x="196.66666666666663" y="450" width="37" height="37"/>
+                                <rect key="frame" x="196.66666666666666" y="450" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nxi-gq-Num" secondAttribute="bottom" id="9yD-lu-xvj"/>
                             <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="2.5" id="IOs-1r-zKT"/>
-                            <constraint firstItem="nxi-gq-Num" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M23-SY-liw"/>
-                            <constraint firstItem="nxi-gq-Num" firstAttribute="top" relation="greaterThanOrEqual" secondItem="E7j-3O-T4A" secondAttribute="bottom" id="Mvn-oc-kG2"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R2A-HJ-SSf"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SWS-Ke-a9L"/>
                             <constraint firstItem="BKM-Z7-QMV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Tf6-pG-lDm"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Za2-qq-lXh"/>
                             <constraint firstItem="E7j-3O-T4A" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="8" id="aPx-jZ-Piy"/>
+                            <constraint firstItem="Nac-hC-q9p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bZB-mB-XYN"/>
+                            <constraint firstItem="Nac-hC-q9p" firstAttribute="top" relation="greaterThanOrEqual" secondItem="E7j-3O-T4A" secondAttribute="bottom" constant="16" id="exj-F6-v4a"/>
                             <constraint firstAttribute="bottom" secondItem="KYM-MO-AoK" secondAttribute="bottom" id="mVJ-2H-IOE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Nac-hC-q9p" secondAttribute="trailing" id="mr9-CN-iHj"/>
                             <constraint firstItem="KYM-MO-AoK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="q0D-OC-eGZ"/>
-                            <constraint firstAttribute="trailing" secondItem="nxi-gq-Num" secondAttribute="trailing" id="usz-dZ-670"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Nac-hC-q9p" secondAttribute="bottom" id="tuY-zS-qNT"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -183,6 +188,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addTorrentButton" destination="7vm-eg-YZO" id="gl5-mp-n4t"/>
+                        <outlet property="adsStackView" destination="Nac-hC-q9p" id="YXQ-12-qDI"/>
                         <outlet property="adsView" destination="nxi-gq-Num" id="j3U-eP-Jt3"/>
                         <outlet property="loadingIndicator" destination="BKM-Z7-QMV" id="qIk-wH-5TV"/>
                         <outlet property="rssButton" destination="NHt-EX-Ip2" id="9iY-GE-Shk"/>
@@ -311,7 +317,7 @@ Thanks for all your support!</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nu1-26-Pma">
-                                                                <rect key="frame" x="89.666666666666686" y="8" width="210.66666666666663" height="41.666666666666664"/>
+                                                                <rect key="frame" x="89.666666666666671" y="8" width="210.66666666666663" height="41.666666666666664"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="You are a patron" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80q-Ae-sAf" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
                                                                         <rect key="frame" x="40.999999999999986" y="0.0" width="129" height="20.333333333333332"/>
@@ -523,7 +529,7 @@ Thanks for all your support!</string>
                             <color key="backgroundColor" systemColor="separatorColor"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ow8-Ml-edz">
-                            <rect key="frame" x="0.0" y="251.66666158040363" width="430" height="0.0"/>
+                            <rect key="frame" x="0.0" y="253.000005086263" width="430" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
@@ -531,14 +537,14 @@ Thanks for all your support!</string>
                             <tableViewSection id="TS7-vk-Fjx">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="z21-AY-9SM" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50.333333333333343" width="430" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50.333333333333343" width="430" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z21-AY-9SM" id="QYA-FU-hOc">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-Dj-AZt" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11.666666666666666" width="32" height="20.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="32" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -567,14 +573,14 @@ Thanks for all your support!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wFC-eQ-tSC" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="93.666665395100907" width="430" height="43.333332061767564"/>
+                                        <rect key="frame" x="0.0" y="94.00000127156575" width="430" height="43.666667938232408"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wFC-eQ-tSC" id="7iZ-2O-Exf">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNh-58-8Ne" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11.666666666666666" width="33" height="20.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="33" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -602,14 +608,14 @@ Thanks for all your support!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="STw-P8-dN4" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="136.9999974568685" width="430" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="137.66666920979819" width="430" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="STw-P8-dN4" id="nwM-su-8LL">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggn-IC-6GD" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11.666666666666666" width="87.666666666666671" height="20.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="87.666666666666671" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -637,14 +643,14 @@ Thanks for all your support!</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="mNH-tE-WLa" customClass="ThemedUITableViewCell" customModule="iTorrent" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="180.33332951863608" width="430" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="181.33333714803061" width="430" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mNH-tE-WLa" id="9DN-yt-TY4">
-                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notify on update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSm-iV-XGN" customClass="ThemedUILabel" customModule="iTorrent" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="11.666666666666666" width="333" height="20.666666666666671"/>
+                                                    <rect key="frame" x="20" y="11.666666666666664" width="333" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
