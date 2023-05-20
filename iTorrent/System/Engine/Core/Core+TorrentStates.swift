@@ -13,10 +13,11 @@ import ITorrentFramework
 #endif
 
 import ActivityKit
+import WidgetKit
 import iTorrent_ProgressWidgetExtension
 import UIKit
 
-let isLiveActivitiesEnabled = false
+let isLiveActivitiesEnabled = true
 
 extension Core {
     func managersStateUpdate(manager: TorrentModel, oldState: TorrentState) {
@@ -80,7 +81,8 @@ private extension Core {
 
     func getState(from manager: TorrentModel) -> iTorrent_ProgressWidgetAttributes.ContentState {
         .init(progress: Double(manager.progress),
-              speed: manager.downloadRate,
+              downSpeed: manager.downloadRate,
+              upSpeed: manager.uploadRate,
               timeRemainig: Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone),
               timeStamp: Date())
     }

@@ -67,6 +67,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This permission uses only to allow app to download torrents in background and to NOT process any real location data</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This permission uses only to allow app to download torrents in background and to NOT process any real location data</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Allow, if you want to be able to save files to Photos app</string>
 	<key>NSSupportsLiveActivities</key>
@@ -296,6 +300,7 @@
 	<array>
 		<string>audio</string>
 		<string>fetch</string>
+		<string>location</string>
 		<string>processing</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
