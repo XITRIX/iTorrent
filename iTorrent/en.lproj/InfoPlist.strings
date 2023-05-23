@@ -7,3 +7,5 @@
 */
 
 "NSPhotoLibraryAddUsageDescription" = "Allow, if you want to be able to save files to Photos app";
+"NSLocationWhenInUseUsageDescription" = "This permission is ONLY needed for the application to work and download torrent files in the background, iTorrent does NOT process the received geolocation data in any way";
+"NSPhotoLibraryAddUsageDescription" = "This permission is ONLY needed for the application to work and download torrent files in the background, iTorrent does NOT process the received geolocation data in any way";

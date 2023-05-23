@@ -92,7 +92,8 @@ extension Core {
                 }
             }
         }
-        
+
+        removedManager(torrent)
         torrents[hash] = nil
 
         if notify {

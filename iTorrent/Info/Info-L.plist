@@ -68,9 +68,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This permission uses only to allow app to download torrents in background and to NOT process any real location data</string>
+	<string>This permission is ONLY needed for the application to work and download torrent files in the background, iTorrent does NOT process the received geolocation data in any way</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This permission uses only to allow app to download torrents in background and to NOT process any real location data</string>
+	<string>This permission is ONLY needed for the application to work and download torrent files in the background, iTorrent does NOT process the received geolocation data in any way</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Allow, if you want to be able to save files to Photos app</string>
 	<key>NSSupportsLiveActivities</key>

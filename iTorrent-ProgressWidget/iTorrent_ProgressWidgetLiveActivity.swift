@@ -91,8 +91,8 @@ struct iTorrent_ProgressWidgetLiveActivity: Widget {
                         }
                         ProgressView(value: context.state.progress)
                             .progressViewStyle(.linear)
+                            .padding([.leading, .trailing], 8)
                     }
-                    .offset(y: 8)
                     .tint(Color(uiColor: .mainColor))
                 }
             } compactLeading: {

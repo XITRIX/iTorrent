@@ -8,3 +8,5 @@
 */
 
 "NSPhotoLibraryAddUsageDescription" = "Uygulamanın, galeriye kaydetmesine izin ver.";
+"NSLocationWhenInUseUsageDescription" = "This permission uses only to allow app to download torrents in background and to NOT process any real location data";
+"NSPhotoLibraryAddUsageDescription" = "This permission uses only to allow app to download torrents in background and to NOT process any real location data";
