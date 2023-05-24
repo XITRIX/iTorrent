@@ -42,6 +42,8 @@ class UserPreferences {
 
     @PreferenceData("SortingType", .dateAdded) static var sortingType: SortingTypes
     @PreferenceItem("SortingSections2", false) static var sortingSections: Bool
+
+    @PreferenceData("backgroundMode", .location) static var backgroundMode: BackgroundTask.Mode
     
     // -MARK: network
     @PreferenceItem("enableDht", true) static var enableDht: Bool
@@ -89,6 +91,8 @@ class UserPreferences {
     static var disableAds: Bool {
         UserPreferences.patreonAccount?.hideAds ?? false
     }
+
+    @PreferenceData("fullscreenAdShownDate", nil) static var dateFSAdShown: Date?
 }
 
 class SettingProperty<T> {

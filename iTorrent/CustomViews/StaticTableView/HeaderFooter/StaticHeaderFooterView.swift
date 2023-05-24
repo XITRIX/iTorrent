@@ -92,6 +92,10 @@ class StaticHeaderFooterView: UITableViewHeaderFooterView {
         var headerPadding: Double = 16
         let footerPadding: Double = 8
 
+//        if tableView.headerView(forSection: 0) == self {
+//            headerPadding += 16
+//        }
+
         old.left = def.left
         old.right = def.right
         old.top = isHeader ? headerPadding : footerPadding

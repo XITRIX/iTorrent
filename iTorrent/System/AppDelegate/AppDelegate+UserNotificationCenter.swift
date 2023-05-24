@@ -55,6 +55,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     static func openTorrentDetailsViewController(withHash hash: String, sender: Any) {
+        guard Core.shared.torrents.keys.contains(hash) else { return }
+
         let viewController = TorrentDetailsController()
         if let splitViewController = UIApplication.shared.keyWindow?.rootViewController as? UISplitViewController {
             viewController.managerHash = hash

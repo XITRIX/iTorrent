@@ -17,16 +17,18 @@ public struct iTorrent_ProgressWidgetAttributes: ActivityAttributes {
     }
 
     public struct ContentState: Codable, Hashable {
-        public init(progress: Double, speed: Int, timeRemainig: String, timeStamp: Date) {
+        public init(progress: Double, downSpeed: Int, upSpeed: Int, timeRemainig: String, timeStamp: Date) {
             self.progress = progress
-            self.speed = speed
+            self.downSpeed = downSpeed
+            self.upSpeed = upSpeed
             self.timeRemainig = timeRemainig
             self.timeStamp = timeStamp
         }
 
         // Dynamic stateful properties about your activity go here!
         public var progress: Double
-        public var speed: Int
+        public var downSpeed: Int
+        public var upSpeed: Int
         public var timeRemainig: String
         public var timeStamp: Date
     }

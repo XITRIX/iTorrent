@@ -360,4 +360,4 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "\n--- 1.9 ---\n- Updated for newest iOS versions\n- Lots of UI fixes and improvements";
+"UpdateText" = "\n--- 1.9 ---\n- Updated for newest iOS versions\n- LibTorrent updated to 2.0\n- Lots of UI fixes and improvements";

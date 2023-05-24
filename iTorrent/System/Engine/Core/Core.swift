@@ -56,14 +56,15 @@ class Core: NSObject {
     func mainLoop() {
         /// update torrents states
         let res = TorrentSdk.getTorrents()
+
         for torrent in res {
             var torrent = torrent
-            
+
             if let t = torrents[torrent.hash] {
                 let oldState = t.displayState
                 t.update(with: torrent)
                 torrent = t
-                managersStateUpdate(manager: torrent, oldState: oldState)
+                managersStateUpdate(torrent, oldState: oldState)
             } else {
                 torrents[torrent.hash] = torrent
             }
@@ -78,6 +79,7 @@ class Core: NSObject {
         /// remove removed torrents
         let removed = torrents.values.filter {!res.contains($0)}
         for file in removed {
+            removedManager(file)
             torrents[file.hash] = nil
         }
 

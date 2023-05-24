@@ -13,13 +13,14 @@ import ITorrentFramework
 #endif
 
 import ActivityKit
+import WidgetKit
 import iTorrent_ProgressWidgetExtension
 import UIKit
 
-let isLiveActivitiesEnabled = false
+let isLiveActivitiesEnabled = true
 
 extension Core {
-    func managersStateUpdate(manager: TorrentModel, oldState: TorrentState) {
+    func managersStateUpdate(_ manager: TorrentModel, oldState: TorrentState) {
         updateLiveActivity(with: manager, oldState: oldState)
         let newState = manager.displayState
 
@@ -64,8 +65,13 @@ extension Core {
 
         BackgroundTask.shared.checkToStopBackground()
     }
+
+    func removedManager(_ manager: TorrentModel) {
+        dismissLiveActivity(with: manager)
+    }
 }
 
+// MARK: - Live Activity
 private extension Core {
     func updateLiveActivity(with manager: TorrentModel, oldState: TorrentState) {
         guard isLiveActivitiesEnabled else { return }
@@ -74,22 +80,19 @@ private extension Core {
         {
             showLiveActivity(with: manager)
         } else {
-            update(with: manager)
+            updateLiveActivity(with: manager)
         }
     }
 
     func getState(from manager: TorrentModel) -> iTorrent_ProgressWidgetAttributes.ContentState {
         .init(progress: Double(manager.progress),
-              speed: manager.downloadRate,
+              downSpeed: manager.downloadRate,
+              upSpeed: manager.uploadRate,
               timeRemainig: Utils.downloadingTimeRemainText(speedInBytes: Int64(manager.downloadRate), fileSize: manager.totalWanted, downloadedSize: manager.totalWantedDone),
               timeStamp: Date())
     }
 
     func showLiveActivity(with manager: TorrentModel) {
-        if #available(iOS 16.2, *) {
-            print(ActivityAuthorizationInfo().frequentPushEnablementUpdates.makeAsyncIterator())
-        }
-
         if #available(iOS 16.1, *) {
             guard ActivityAuthorizationInfo().areActivitiesEnabled
             else { return }
@@ -107,12 +110,12 @@ private extension Core {
         }
     }
 
-    func update(with manager: TorrentModel) {
+    func updateLiveActivity(with manager: TorrentModel) {
         if #available(iOS 16.1, *) {
             guard ActivityAuthorizationInfo().areActivitiesEnabled
             else { return }
 
-            Task(priority: .background) {
+            Task {
                 for activity in Activity<iTorrent_ProgressWidgetAttributes>.activities {
                     if activity.attributes.name == manager.title {
                         if manager.displayState == .downloading {
@@ -128,6 +131,18 @@ private extension Core {
 
                 if manager.displayState == .downloading {
                     self.showLiveActivity(with: manager)
+                }
+            }
+        }
+    }
+
+    func dismissLiveActivity(with manager: TorrentModel) {
+        if #available(iOS 16.1, *) {
+            Task {
+                for activity in Activity<iTorrent_ProgressWidgetAttributes>.activities {
+                    if activity.attributes.name == manager.title {
+                        await activity.end(dismissalPolicy: .immediate)
+                    }
                 }
             }
         }
