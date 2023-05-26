@@ -85,6 +85,38 @@ class PreferencesController: StaticTableViewController {
             UserPreferences.background = switcher.isOn
             weakSelf?.updateData()
         })
+        background.append(ButtonCell.Model(title: "Settings.BackgroundMode",
+                                           hint: "Settings.BackgroundMode.Hint",
+                                           buttonTitleFunc: {
+                                               UserPreferences.backgroundMode.name
+                                           },
+                                           hiddenCondition: { !UserPreferences.background },
+                                           action: { [weak self] button in
+            guard let self else { return }
+
+            let alert = ThemedUIAlertController(title: "Select background mode".localized, message: nil, preferredStyle: .actionSheet)
+
+            alert.addAction(.init(title: BackgroundTask.Mode.audio.name, style: .default) { _ in
+                UserPreferences.backgroundMode = .audio
+                button.setTitle(BackgroundTask.Mode.audio.name, for: .normal)
+            })
+
+            alert.addAction(.init(title: BackgroundTask.Mode.location.name, style: .default) { _ in
+                UserPreferences.backgroundMode = .location
+                button.setTitle(BackgroundTask.Mode.location.name, for: .normal)
+            })
+
+            alert.addAction(.init(title: "Cancel".localized, style: .cancel))
+
+            if alert.popoverPresentationController != nil {
+                alert.popoverPresentationController?.sourceView = button
+                alert.popoverPresentationController?.sourceRect = button.bounds
+                alert.popoverPresentationController?.permittedArrowDirections = [.up, .down]
+            }
+
+            self.present(alert, animated: true)
+
+                                           }))
         background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding",
                                            defaultValue: { UserPreferences.backgroundSeedKey },
                                            switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1),
@@ -126,7 +158,7 @@ class PreferencesController: StaticTableViewController {
                 guard let self = weakSelf else { return }
                 self.onScreenPopup?.show(in: self)
             })
-        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader")) // , footer: "Settings.BackgroundFooter"))
+        data.append(Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
 
         // -MARK: ACTIVITY LIMITATION
         var activity = [CellModelProtocol]()

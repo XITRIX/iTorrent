@@ -17,33 +17,36 @@ import ITorrentFramework
 
 class BackgroundTask {
     public static let shared = BackgroundTask()
-    private(set) var backgrounding = false
+    var backgrounding: Bool {
+        currentBackgroundMode != nil
+    }
 
     private var player: AVAudioPlayer?
 
     private var locationManager = CLLocationManager()
+    private var currentBackgroundMode: BackgroundTask.Mode?
 
     func stopBackgroundTask() {
-        if backgrounding {
-            NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
-            backgrounding = false
-            switch UserPreferences.backgroundMode {
+        if let currentBackgroundMode {
+            switch currentBackgroundMode {
             case .audio:
                 stopWithAudio()
             case .location:
                 stopWithLocation()
             }
         }
+
+        currentBackgroundMode = nil
     }
 
     func startBackground() -> Bool {
-        if UserPreferences.background {
-            if Core.shared.torrents.values.contains(where: { status -> Bool in
-                BackgroundTask.getBackgroundConditions(status)
-            }) {
-                startBackgroundTask()
-                return true
-            }
+        if UserPreferences.background,
+           Core.shared.torrents.values.contains(where: { status -> Bool in
+               BackgroundTask.getBackgroundConditions(status)
+           })
+        {
+            startBackgroundTask()
+            return true
         }
         return false
     }
@@ -81,12 +84,20 @@ extension BackgroundTask {
     }
 }
 
+extension BackgroundTask.Mode {
+    var name: String {
+        switch self {
+        case .audio:
+            return "BackgroundTask.Mode.Audio".localized
+        case .location:
+            return "BackgroundTask.Mode.Location".localized
+        }
+    }
+}
+
 private extension BackgroundTask {
     func startBackgroundTask() {
         if !backgrounding {
-            NotificationCenter.default.addObserver(self, selector: #selector(interruptedAudio), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
-            backgrounding = true
-
             switch UserPreferences.backgroundMode {
             case .audio:
                 startWithAudio()
@@ -100,6 +111,7 @@ private extension BackgroundTask {
 // MARK: - Location background stuff
 private extension BackgroundTask {
     func startWithLocation() {
+        currentBackgroundMode = .location
         if #available(iOS 14.0, *) {
             locationManager.desiredAccuracy = kCLLocationAccuracyReduced
         } else {
@@ -121,10 +133,13 @@ private extension BackgroundTask {
 // MARK: - Audio background stuff
 private extension BackgroundTask {
     func startWithAudio() {
+        currentBackgroundMode = .audio
+        NotificationCenter.default.addObserver(self, selector: #selector(interruptedAudio), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
         playAudio()
     }
 
     func stopWithAudio() {
+        NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
         player?.stop()
     }
 

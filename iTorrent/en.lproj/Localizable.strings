@@ -138,10 +138,12 @@
 "Settings.Storage.Allocate.Hint" = "If enabled, iTorrent will pre-reserve memory for downloaded files";
 
 "Settings.BackgroundEnable" = "Enable";
+"Settings.BackgroundMode" = "Background mode";
+"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service tto allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location manager";
 "Settings.BackgroundSeeding" = "Allow seeding";
 "Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.BackgroundHeader" = "Background downloading";
-"Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
+"Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions.\nLocation background mode is preferable as more stable. It also supports Live Activities and Dynamic Island progress information, but it requires additional user permission";
 
 "Settings.QueueLimitHeader" = "Torrent Queueing limit";
 "Settings.TorrentsLimit" = "Active torrents";
@@ -312,6 +314,8 @@
 //Background Task
 "BackgroundTask.LowSpeed.Title" = "Download speed is low ";
 "BackgroundTask.LowSpeed.Message" = " will stop background downloading to prevent battery drain";
+"BackgroundTask.Mode.Audio" = "Audio";
+"BackgroundTask.Mode.Location" = "Location";
 
 //News Alerts
 "Dialogs.News.Title" = "Warning!";
@@ -360,4 +364,4 @@
 
 //Version Info
 "info" = " Update info";
-"UpdateText" = "\n--- 1.9 ---\n- Updated for newest iOS versions\n- LibTorrent updated to 2.0\n- Lots of UI fixes and improvements";
+"UpdateText" = "Updated for newest iOS versions\n- LibTorrent updated to 2.0\n- Lots of UI fixes and improvements";
