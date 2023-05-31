@@ -138,7 +138,9 @@ private extension Core {
             }
         }
     }
+}
 
+extension Core {
     func dismissLiveActivity(with manager: TorrentModel) {
         if #available(iOS 16.1, *) {
             Task {
