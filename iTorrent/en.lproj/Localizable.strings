@@ -139,11 +139,11 @@
 
 "Settings.BackgroundEnable" = "Enable";
 "Settings.BackgroundMode" = "Background mode";
-"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service tto allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location manager";
+"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
 "Settings.BackgroundSeeding" = "Allow seeding";
 "Settings.BackgroundSeeding.Warning" = "This will let iTorrent run in in the background indefinitely, in case any torrent is seeding without limits, which can cause significant battery drain. \n\nYou will need to force close the app to stop this!";
 "Settings.BackgroundHeader" = "Background downloading";
-"Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions.\nLocation background mode is preferable as more stable. It also supports Live Activities and Dynamic Island progress information, but it requires additional user permission";
+"Settings.BackgroundFooter" = "Enable downloading in background through multimedia functions";
 
 "Settings.QueueLimitHeader" = "Torrent Queueing limit";
 "Settings.TorrentsLimit" = "Active torrents";

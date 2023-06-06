@@ -139,11 +139,11 @@
 
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundMode" = "Фоновый режим";
-"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service tto allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location manager";
+"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";
-"Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций.\nРежим фоновой загрузки \"Локация\" предпочтителен, как более стабильный, а так же поддерживающий информирование прогресса загрузки через Live Activity и Dynamic Island, но требует дополнительных разрешений";
+"Settings.BackgroundFooter" = "Включает скачивание в фоне с помощью мультимедийных функций";
 
 "Settings.QueueLimitHeader" = "Лимиты очерёдности торрентов";
 "Settings.TorrentsLimit" = "Активных торрентов";
