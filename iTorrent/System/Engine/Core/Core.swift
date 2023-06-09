@@ -132,6 +132,7 @@ class Core: NSObject {
                 body: model.title + Localize.get("BackgroundTask.LowSpeed.Message"),
                 hash: model.hash)
             BackgroundTask.shared.checkToStopBackground()
+            dismissLiveActivity(with: model)
         }
     }
 }

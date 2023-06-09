@@ -21,6 +21,9 @@ let isLiveActivitiesEnabled = true
 
 extension Core {
     func managersStateUpdate(_ manager: TorrentModel, oldState: TorrentState) {
+        guard UserPreferences.backgroundMode == .location
+        else { return }
+
         updateLiveActivity(with: manager, oldState: oldState)
         let newState = manager.displayState
 
@@ -135,7 +138,9 @@ private extension Core {
             }
         }
     }
+}
 
+extension Core {
     func dismissLiveActivity(with manager: TorrentModel) {
         if #available(iOS 16.1, *) {
             Task {

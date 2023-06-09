@@ -138,6 +138,8 @@
 "Settings.Storage.Allocate.Hint" = "Если включено, iTorrent будет предварительно резервировать память под скачиваемые файлы";
 
 "Settings.BackgroundEnable" = "Включить";
+"Settings.BackgroundMode" = "Фоновый режим";
+"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";
@@ -321,6 +323,8 @@
 //Background Task
 "BackgroundTask.LowSpeed.Title" = "Маленькая скорость загрузки ";
 "BackgroundTask.LowSpeed.Message" = " прекратит фоновую загрузку для предотвращения разрядки аккумулятора";
+"BackgroundTask.Mode.Audio" = "Аудио";
+"BackgroundTask.Mode.Location" = "Локация";
 
 //News Alerts
 "Dialogs.News.Title" = "Внимание!";

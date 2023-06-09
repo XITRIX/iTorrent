@@ -69,7 +69,7 @@ extension UnityAdsManager: UnityAdsInitializationDelegate {
     }
 
     func initializationFailed(_ error: UnityAdsInitializationError, withMessage message: String) {
-        print("Unity ADS: initialization failed")
+        print("Unity ADS: initialization failed with \nError: \(error) \nMessage: \(message)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.initializeAds()
         }
