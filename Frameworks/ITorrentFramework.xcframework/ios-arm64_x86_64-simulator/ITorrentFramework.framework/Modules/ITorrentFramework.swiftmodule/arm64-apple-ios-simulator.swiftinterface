@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
 // swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Foundation
@@ -100,7 +100,7 @@ public struct PeerModel : Swift.Hashable {
   public var address: Swift.String
   public init(_ model: ITorrentFramework.Peer)
   public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: ITorrentFramework.PeerModel, b: ITorrentFramework.PeerModel) -> Swift.Bool
+  public static func == (lhs: ITorrentFramework.PeerModel, rhs: ITorrentFramework.PeerModel) -> Swift.Bool
   public var hashValue: Swift.Int {
     get
   }
@@ -234,8 +234,8 @@ public enum InterfaceType {
   case manual(name: Swift.String)
 }
 extension ITorrentFramework.InterfaceType : Swift.Codable {
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public enum TorrentState : Swift.String {
   case queued
