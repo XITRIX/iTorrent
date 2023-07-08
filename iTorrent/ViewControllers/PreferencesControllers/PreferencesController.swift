@@ -92,34 +92,64 @@ class PreferencesController: StaticTableViewController {
                                            },
                                            hiddenCondition: { !UserPreferences.background },
                                            action: { [weak self] button in
-            guard let self else { return }
+                                               guard let self else { return }
 
-            let alert = ThemedUIAlertController(title: "Select background mode".localized, message: nil, preferredStyle: .actionSheet)
+                                               let alert = ThemedUIAlertController(title: "Select background mode".localized, message: nil, preferredStyle: .actionSheet)
 
-            alert.addAction(.init(title: BackgroundTask.Mode.audio.name, style: .default) { _ in
-                UserPreferences.backgroundMode = .audio
-                button.setTitle(BackgroundTask.Mode.audio.name, for: .normal)
-            })
+                                               alert.addAction(.init(title: BackgroundTask.Mode.audio.name, style: .default) { _ in
+                                                   UserPreferences.backgroundMode = .audio
+                                                   button.setTitle(BackgroundTask.Mode.audio.name, for: .normal)
+                                               })
 
-            alert.addAction(.init(title: BackgroundTask.Mode.location.name, style: .default) { _ in
-                UserPreferences.backgroundMode = .location
-                button.setTitle(BackgroundTask.Mode.location.name, for: .normal)
-            })
+                                               alert.addAction(.init(title: BackgroundTask.Mode.location.name, style: .default) { [weak self] _ in
+                                                   guard let self else { return }
 
-            alert.addAction(.init(title: "Cancel".localized, style: .cancel))
+                                                   BackgroundTask.shared.requestPermissions(from: self) { status in
+                                                       if status == .authorizedAlways || status == .authorizedWhenInUse {
+                                                           UserPreferences.backgroundMode = .location
+                                                           button.setTitle(BackgroundTask.Mode.location.name, for: .normal)
+                                                       }
+                                                   }
+                                               })
 
-            if alert.popoverPresentationController != nil {
-                alert.popoverPresentationController?.sourceView = button
-                alert.popoverPresentationController?.sourceRect = button.bounds
-                alert.popoverPresentationController?.permittedArrowDirections = [.up, .down]
-            }
+                                               alert.addAction(.init(title: "Cancel".localized, style: .cancel))
 
-            self.present(alert, animated: true)
+                                               if alert.popoverPresentationController != nil {
+                                                   alert.popoverPresentationController?.sourceView = button
+                                                   alert.popoverPresentationController?.sourceRect = button.bounds
+                                                   alert.popoverPresentationController?.permittedArrowDirections = [.up, .down]
+                                               }
+
+                                               self.present(alert, animated: true)
 
                                            }))
+
+        background.append(ButtonCell.Model(title: "Settings.ZeroSpeedLimit",
+                                           hint: Localize.get("Settings.ZeroSpeedLimit.Hint"),
+                                           buttonTitleFunc: {
+                                               UserPreferences.zeroSpeedLimit == 0 ?
+                                                   NSLocalizedString("Disabled", comment: "") :
+                                                   "\(UserPreferences.zeroSpeedLimit / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit / 60))"
+                                           },
+                                           hiddenCondition: { !UserPreferences.background }) { button in
+                weakSelf?.onScreenPopup?.dismiss()
+                weakSelf?.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
+                    if res == 0 {
+                        button.setTitle(NSLocalizedString("Disabled", comment: ""), for: .normal)
+                    } else {
+                        button.setTitle("\(res / 60) \(Localize.getTermination("minute", res / 60))", for: .normal)
+                    }
+                }, dismissAction: { res in
+                    UserPreferences.zeroSpeedLimit = res
+                })
+
+                guard let self = weakSelf else { return }
+                self.onScreenPopup?.show(in: self)
+            })
         background.append(SwitchCell.Model(title: "Settings.BackgroundSeeding",
                                            defaultValue: { UserPreferences.backgroundSeedKey },
                                            switchColor: #colorLiteral(red: 1, green: 0.2980392157, blue: 0.168627451, alpha: 1),
+                                           hiddenCondition: { !UserPreferences.background },
                                            disableCondition: { !UserPreferences.background }) { switcher in
                 if switcher.isOn {
                     let controller = ThemedUIAlertController(title: Localize.get("WARNING"), message: Localize.get("Settings.BackgroundSeeding.Warning"), preferredStyle: .alert)
@@ -136,27 +166,6 @@ class PreferencesController: StaticTableViewController {
                     UserPreferences.seedBackgroundWarning = false
                     UserPreferences.backgroundSeedKey = false
                 }
-            })
-        background.append(ButtonCell.Model(title: "Settings.ZeroSpeedLimit",
-                                           hint: Localize.get("Settings.ZeroSpeedLimit.Hint"),
-                                           buttonTitleFunc: {
-                                               UserPreferences.zeroSpeedLimit == 0 ?
-                                                   NSLocalizedString("Disabled", comment: "") :
-                                                   "\(UserPreferences.zeroSpeedLimit / 60) \(Localize.getTermination("minute", UserPreferences.zeroSpeedLimit / 60))"
-                                           }) { button in
-                weakSelf?.onScreenPopup?.dismiss()
-                weakSelf?.onScreenPopup = TimeLimitPicker(defaultValue: UserPreferences.zeroSpeedLimit / 60, dataSelected: { res in
-                    if res == 0 {
-                        button.setTitle(NSLocalizedString("Disabled", comment: ""), for: .normal)
-                    } else {
-                        button.setTitle("\(res / 60) \(Localize.getTermination("minute", res / 60))", for: .normal)
-                    }
-                }, dismissAction: { res in
-                    UserPreferences.zeroSpeedLimit = res
-                })
-
-                guard let self = weakSelf else { return }
-                self.onScreenPopup?.show(in: self)
             })
         data.append(Section(rowModels: background, header: "Settings.BackgroundHeader", footer: "Settings.BackgroundFooter"))
 
@@ -331,7 +340,7 @@ class PreferencesController: StaticTableViewController {
                         do {
                             card = try String(contentsOf: url)
                         } catch {
-                            card = "4817760222220562"
+                            card = "5354566480830927"
                         }
 
                         DispatchQueue.main.async {
@@ -346,7 +355,7 @@ class PreferencesController: StaticTableViewController {
             }
             let cancel = UIAlertAction(title: Localize.get("Cancel"), style: .cancel)
 
-//            alert.addAction(card)
+            alert.addAction(card)
             alert.addAction(paypal)
             alert.addAction(cancel)
 
