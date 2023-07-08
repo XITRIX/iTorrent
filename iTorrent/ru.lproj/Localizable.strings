@@ -139,7 +139,8 @@
 
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundMode" = "Фоновый режим";
-"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
+"Settings.BackgroundMode.Select" = "Выберите фоновый режим";
+"Settings.BackgroundMode.Hint" = "Аудио - проигрывает бесшумный аудиофайл, чтобы позволить приложению работать в фоне. Этот режим менее стабилен, однако не требует доболнительных разрешений от пользователя\n\Локация - запускает геолокационный сервис, чтобы позволить приложению работать в фоне. Более стабилен, поддерживает Live Activities и Dynamic Island. Будет окрашивать статусбар в синий из-за использования сервиса геолокаций, однако требует дополнительных разрешений от пользователя. iTorrent НЕ использует НИКАКУЮ информацию из геолокационного сервиса";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";

@@ -139,6 +139,7 @@
 
 "Settings.BackgroundEnable" = "Aktifleştir";
 "Settings.BackgroundMode" = "Background mode";
+"Settings.BackgroundMode.Select" = "Select background mode";
 "Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
 "Settings.BackgroundSeeding" = "Seedlemeye izin ver";
 "Settings.BackgroundSeeding.Warning" = "Bu seçenek iTorrent'in süresiz olarak arkaplanda çalışmasına izin verecektir, bu durumda torrent bir sınırsız bir şekilde seedler, bu durum yüksek pil kullanımına sebebiyet verebilir. \n\nBunu durdurmak için uygulamayı tamamen kapatmanız gerekir!";

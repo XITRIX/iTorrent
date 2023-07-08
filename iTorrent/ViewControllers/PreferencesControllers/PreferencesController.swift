@@ -94,7 +94,7 @@ class PreferencesController: StaticTableViewController {
                                            action: { [weak self] button in
                                                guard let self else { return }
 
-                                               let alert = ThemedUIAlertController(title: "Select background mode".localized, message: nil, preferredStyle: .actionSheet)
+                                               let alert = ThemedUIAlertController(title: "Settings.BackgroundMode.Select".localized, message: nil, preferredStyle: .actionSheet)
 
                                                alert.addAction(.init(title: BackgroundTask.Mode.audio.name, style: .default) { _ in
                                                    UserPreferences.backgroundMode = .audio
