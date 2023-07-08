@@ -141,6 +141,20 @@ public struct PeerModel : Swift.Hashable {
   public static func getPeers(with hash: Swift.String) -> [ITorrentFramework.PeerModel]
   @objc deinit
 }
+public enum EncryptionPolicy : Swift.Int8, Swift.CaseIterable, Swift.Codable {
+  case enabled
+  case forced
+  case disabled
+  public init?(rawValue: Swift.Int8)
+  public typealias AllCases = [ITorrentFramework.EncryptionPolicy]
+  public typealias RawValue = Swift.Int8
+  public static var allCases: [ITorrentFramework.EncryptionPolicy] {
+    get
+  }
+  public var rawValue: Swift.Int8 {
+    get
+  }
+}
 public enum ProxyType : Swift.Int, Swift.CaseIterable, Swift.Codable {
   case none
   case socks4
@@ -163,6 +177,7 @@ public enum ProxyType : Swift.Int, Swift.CaseIterable, Swift.Codable {
 public struct SettingsPack {
   public var downloadLimit: Swift.Int
   public var uploadLimit: Swift.Int
+  public var encryptionPolicy: ITorrentFramework.EncryptionPolicy
   public var enableDht: Swift.Bool
   public var enableLsd: Swift.Bool
   public var enableUtp: Swift.Bool
@@ -185,7 +200,7 @@ public struct SettingsPack {
 }
 extension ITorrentFramework.SettingsPack {
   public init(_ native: ITorrentFramework.settings_pack_struct)
-  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
+  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, encryptionPolicy: ITorrentFramework.EncryptionPolicy, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
 }
 public struct TrackerModel : Swift.Hashable {
   public var url: Swift.String
@@ -255,6 +270,9 @@ public enum TorrentState : Swift.String {
     get
   }
 }
+extension ITorrentFramework.EncryptionPolicy : Swift.Equatable {}
+extension ITorrentFramework.EncryptionPolicy : Swift.Hashable {}
+extension ITorrentFramework.EncryptionPolicy : Swift.RawRepresentable {}
 extension ITorrentFramework.ProxyType : Swift.Equatable {}
 extension ITorrentFramework.ProxyType : Swift.Hashable {}
 extension ITorrentFramework.ProxyType : Swift.RawRepresentable {}
