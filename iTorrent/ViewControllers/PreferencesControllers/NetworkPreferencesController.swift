@@ -25,11 +25,35 @@ class NetworkPreferencesController: StaticTableViewController {
     }
 
     override func initSections() {
-        title = Localize.get("Settings.Network.Header")
-        
+        title = Localize.get("Settings.Network.Connection")
+
         weak var weakSelf = self
-        
-        // -MARK: Network
+
+        // MARK: - Encryption
+        var encryption = [CellModelProtocol]()
+        encryption.append(ButtonCell.Model(title: "Settings.Network.Encryption.Title", hint: "Settings.Network.Encryption.Hint", buttonTitleFunc: { UserPreferences.encryptionPolicy.name }, action: { button in
+            let alert = ThemedUIAlertController(title: "Settings.Network.Encryption.Select".localized, message: nil, preferredStyle: .actionSheet)
+
+            func setEncryption(policy: EncryptionPolicy) {
+                UserPreferences.encryptionPolicy = policy
+                weakSelf?.updateData()
+            }
+
+            alert.addAction(UIAlertAction(title: EncryptionPolicy.enabled.name, style: .default, handler: { _ in setEncryption(policy: .enabled) }))
+            alert.addAction(UIAlertAction(title: EncryptionPolicy.forced.name, style: .default, handler: { _ in setEncryption(policy: .forced) }))
+            alert.addAction(UIAlertAction(title: EncryptionPolicy.disabled.name, style: .default, handler: { _ in setEncryption(policy: .disabled) }))
+
+            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+
+            alert.popoverPresentationController?.sourceView = button.superview
+            alert.popoverPresentationController?.sourceRect = button.superview!.frame
+            alert.popoverPresentationController?.permittedArrowDirections = [.left]
+
+            weakSelf?.present(alert, animated: true)
+        }))
+        data.append(Section(rowModels: encryption, header: "Settings.Network.Encryption"))
+
+        // MARK: - Network
         var network = [CellModelProtocol]()
         network.append(SwitchCell.Model(title: "Settings.Network.DHT", defaultValue: { UserPreferences.enableDht }, hint: "Settings.Network.DHT.Hint") { switcher in
             UserPreferences.enableDht = switcher.isOn
@@ -53,7 +77,7 @@ class NetworkPreferencesController: StaticTableViewController {
         })
         data.append(Section(rowModels: network, header: "Settings.Network.Protocols"))
         
-        // -MARK: Port
+        // MARK: - Port
         var port = [CellModelProtocol]()
         port.append(SwitchCell.Model(title: "Settings.Network.DefauldPort", defaultValue: { UserPreferences.defaultPort }, hint: "Settings.Network.DefauldPort.Hint") { switcher in
             UserPreferences.defaultPort = switcher.isOn
@@ -96,7 +120,7 @@ class NetworkPreferencesController: StaticTableViewController {
         }))
         data.append(Section(rowModels: port, header: "Settings.Network.Port"))
         
-        // -MARK: Interface
+        // MARK: - Interface
         var interface = [CellModelProtocol]()
         interface.append(ButtonCell.Model(title: "Settings.Network.Interface.Title", hint: "Settings.Network.Interface.Hint", buttonTitleFunc: { UserPreferences.interfaceType.name }, action: { button in
             let alert = ThemedUIAlertController(title: "Settings.Network.Interface.Select".localized, message: nil, preferredStyle: .actionSheet)

@@ -27,6 +27,7 @@ extension SettingsPack {
                      maxUplodingTorrents: UserPreferences.maxUplodingTorrents,
                      maxDownloadingTorrents: UserPreferences.maxDownloadingTorrents,
                      interfaceType: UserPreferences.interfaceType,
+                     encryptionPolicy: UserPreferences.encryptionPolicy,
                      portRangeFirst: !UserPreferences.defaultPort ?
                          UserPreferences.portRangeFirst :
                          6881,

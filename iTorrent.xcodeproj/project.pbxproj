@@ -215,6 +215,8 @@
 		7C3C693820A754FB0023396C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693620A754FB0023396C /* Main.storyboard */; };
 		7C3C693A20A754FD0023396C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693920A754FD0023396C /* Assets.xcassets */; };
 		7C3C693D20A754FD0023396C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C3C693B20A754FD0023396C /* LaunchScreen.storyboard */; };
+		7C417D742A59B4800010B6EC /* EncryptionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C417D732A59B4800010B6EC /* EncryptionPolicy.swift */; };
+		7C417D752A59B4850010B6EC /* EncryptionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C417D732A59B4800010B6EC /* EncryptionPolicy.swift */; };
 		7C46747F24883F0000ABC838 /* TorrentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */; };
 		7C46748224883F4000ABC838 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748124883F4000ABC838 /* ViewModel.swift */; };
 		7C46748424883F5900ABC838 /* MvvmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C46748324883F5900ABC838 /* MvvmViewController.swift */; };
@@ -474,6 +476,7 @@
 		7C3C693720A754FB0023396C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C3C693920A754FD0023396C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C3C693C20A754FD0023396C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7C417D732A59B4800010B6EC /* EncryptionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionPolicy.swift; sourceTree = "<group>"; };
 		7C46747E24883F0000ABC838 /* TorrentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListViewModel.swift; sourceTree = "<group>"; };
 		7C46748124883F4000ABC838 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7C46748324883F5900ABC838 /* MvvmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmViewController.swift; sourceTree = "<group>"; };
@@ -876,6 +879,7 @@
 				7C4B71D224D5DC5C00DA0C49 /* SettingsPackExtension.swift */,
 				7C4B71D424D5DFE100DA0C49 /* DiffAwareExtensions.swift */,
 				7C786890251B942800CD61F0 /* InterfaceType.swift */,
+				7C417D732A59B4800010B6EC /* EncryptionPolicy.swift */,
 			);
 			path = TorrentSdkExtensions;
 			sourceTree = "<group>";
@@ -1734,6 +1738,7 @@
 				7CAD02CD293D3168008FE071 /* EmptyViewController.swift in Sources */,
 				7C2F9DA625AFA4F500CC61F8 /* TextFieldCell.swift in Sources */,
 				7C2F9DA725AFA4F500CC61F8 /* FilesBrowserController.swift in Sources */,
+				7C417D752A59B4850010B6EC /* EncryptionPolicy.swift in Sources */,
 				7C2F9DA825AFA4F500CC61F8 /* NetworkPreferencesController.swift in Sources */,
 				7C2F9DA925AFA4F500CC61F8 /* ThemedUITableView.swift in Sources */,
 				7C2F9DAA25AFA4F500CC61F8 /* RssChannelSetupController.swift in Sources */,
@@ -1857,6 +1862,7 @@
 				7C26E3572432838C0012D455 /* CoreState.swift in Sources */,
 				7C46748224883F4000ABC838 /* ViewModel.swift in Sources */,
 				7CA2E84C2496B9580010EAB4 /* AppDelegate+SplitViewController.swift in Sources */,
+				7C417D742A59B4800010B6EC /* EncryptionPolicy.swift in Sources */,
 				7C047EE727EE054100E5363B /* UITableViewCellExtensions.swift in Sources */,
 				7C26E34A243272F60012D455 /* Core+GlobalVars.swift in Sources */,
 				7C0A334924A91A9100EF33D0 /* UITableViewExtensions.swift in Sources */,
