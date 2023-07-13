@@ -38,7 +38,9 @@ typedef struct settings_pack_struct {
     bool enable_utp;
     bool enable_upnp;
     bool enable_natpmp;
-    
+
+    bool enable_pex;
+
     char * _Nonnull outgoing_interfaces;
     char * _Nonnull listen_interfaces;
     

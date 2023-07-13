@@ -183,6 +183,7 @@ public struct SettingsPack {
   public var enableUtp: Swift.Bool
   public var enableUpnp: Swift.Bool
   public var enableNatpmp: Swift.Bool
+  public var enablePex: Swift.Bool
   public var maxActiveTorrents: Swift.Int
   public var maxDownloadingTorrents: Swift.Int
   public var maxUplodingTorrents: Swift.Int
@@ -200,7 +201,7 @@ public struct SettingsPack {
 }
 extension ITorrentFramework.SettingsPack {
   public init(_ native: ITorrentFramework.settings_pack_struct)
-  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, encryptionPolicy: ITorrentFramework.EncryptionPolicy, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
+  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, enablePex: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, encryptionPolicy: ITorrentFramework.EncryptionPolicy, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
 }
 public struct TrackerModel : Swift.Hashable {
   public var url: Swift.String

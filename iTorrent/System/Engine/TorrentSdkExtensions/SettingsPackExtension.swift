@@ -23,6 +23,7 @@ extension SettingsPack {
                      enableUtp: UserPreferences.enableUtp,
                      enableUpnp: UserPreferences.enableUpnp,
                      enableNatpmp: UserPreferences.enableNatpmp,
+                     enablePex: UserPreferences.enablePex,
                      maxActiveTorrents: UserPreferences.maxActiveTorrents,
                      maxUplodingTorrents: UserPreferences.maxUplodingTorrents,
                      maxDownloadingTorrents: UserPreferences.maxDownloadingTorrents,

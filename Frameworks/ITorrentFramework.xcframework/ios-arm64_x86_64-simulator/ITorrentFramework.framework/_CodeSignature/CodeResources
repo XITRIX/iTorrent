@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		RJMiU8JaF8glLMPbe90b1kLqlIs=
+		/LoiRDZzjdp+22v/OufJWSdm67s=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		U4AFUk/qoAZg+8mnlqA7pwC6qJI=
+		msBW2ghFpKZHgZnXXII4IyD2fA8=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -42,19 +42,19 @@
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		U4AFUk/qoAZg+8mnlqA7pwC6qJI=
+		msBW2ghFpKZHgZnXXII4IyD2fA8=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		7B7xdyc0GWREb1I19JJtx4MyNBU=
+		r0N7FJk6zv4Bzv2jWQgPgrxSJCs=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		RJMiU8JaF8glLMPbe90b1kLqlIs=
+		/LoiRDZzjdp+22v/OufJWSdm67s=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		BcS4hmTcz57zEldmcjNm+LNK56o=
+		xjWM4mW99CKY0zmVnCsW83SE/AQ=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -62,11 +62,11 @@
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		BcS4hmTcz57zEldmcjNm+LNK56o=
+		xjWM4mW99CKY0zmVnCsW83SE/AQ=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ag8D2TSp/tMPn7oHDVOmzovj1v8=
+		WFjoGbUTwH3yI/2utdP9LqoxckY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -86,7 +86,7 @@
 		</data>
 		<key>PrivateHeaders/settings_pack_struct.h</key>
 		<data>
-		XfRp0ADVB84DeVDdQ+/e3gTeY5w=
+		KHSqULHGbvrJuAQmpbxLcA2ZM4A=
 		</data>
 		<key>PrivateHeaders/torrent_headers.h</key>
 		<data>
@@ -138,14 +138,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			628y5o1yHtI1XQO85ONs6GrnSjAJKq4f9V9IZBrRD50=
+			XzAbwfYSu1RmVSaFOUomKRpesXHAvfGxfTxrl9N6rME=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VPqs2f2rkeMhbaeZQjWwZId8w3yehRv8sjM/u5d3RX4=
+			Vrx6F/NlRjW0PL/YHWY48g5jM5NLiqzJBNimaxBD9A4=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -159,28 +159,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VPqs2f2rkeMhbaeZQjWwZId8w3yehRv8sjM/u5d3RX4=
+			Vrx6F/NlRjW0PL/YHWY48g5jM5NLiqzJBNimaxBD9A4=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gUZnlt8ZbpmimK664bGuvILbA09LNrFt23DN/IKfN8c=
+			X5veallxE1fn2qT+VipQQYxofSTSGSN0uV7HxWCGp6E=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			628y5o1yHtI1XQO85ONs6GrnSjAJKq4f9V9IZBrRD50=
+			XzAbwfYSu1RmVSaFOUomKRpesXHAvfGxfTxrl9N6rME=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bsdvAcV/SU83n6PZNWsGZly8bQoB6K53Ime0UlwHSs8=
+			7DwjKjl+dFahdvbhCpyAoz3Cs6JbQAcR7CQjXrbjNk8=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -194,14 +194,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bsdvAcV/SU83n6PZNWsGZly8bQoB6K53Ime0UlwHSs8=
+			7DwjKjl+dFahdvbhCpyAoz3Cs6JbQAcR7CQjXrbjNk8=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+/lHbSwBQrb8e+4K/5LRM53knmoN54F1I8Kfz8n9tus=
+			8Dvhq+ELaDjrG+pt0ySxf0qb9yUq9QDQmMGbg04Fdrw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -236,7 +236,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0Wi3492azGsmfadk2N2/D+T48sZxx54ZQwhDoj604q8=
+			3do15LWKS1FgFZJPyhErJkdGQ5QklLWOLH4u7BNwinw=
 			</data>
 		</dict>
 		<key>PrivateHeaders/torrent_headers.h</key>

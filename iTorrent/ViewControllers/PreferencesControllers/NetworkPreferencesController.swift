@@ -41,7 +41,7 @@ class NetworkPreferencesController: StaticTableViewController {
 
             alert.addAction(UIAlertAction(title: EncryptionPolicy.enabled.name, style: .default, handler: { _ in setEncryption(policy: .enabled) }))
             alert.addAction(UIAlertAction(title: EncryptionPolicy.forced.name, style: .default, handler: { _ in setEncryption(policy: .forced) }))
-            alert.addAction(UIAlertAction(title: EncryptionPolicy.disabled.name, style: .default, handler: { _ in setEncryption(policy: .disabled) }))
+            alert.addAction(UIAlertAction(title: EncryptionPolicy.disabled.name, style: .destructive, handler: { _ in setEncryption(policy: .disabled) }))
 
             alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
 
