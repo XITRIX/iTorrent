@@ -51,9 +51,11 @@ class UserPreferences {
     @PreferenceItem("enableUtp", true) static var enableUtp: Bool
     @PreferenceItem("enableUpnp", true) static var enableUpnp: Bool
     @PreferenceItem("enableNatpmp", true) static var enableNatpmp: Bool
-    
+    @PreferenceItem("enablePex", true) static var enablePex: Bool
+
     @PreferenceData("interfaceType", .all) static var interfaceType: InterfaceType
-    
+    @PreferenceData("encryptionPolicy", .enabled) static var encryptionPolicy: EncryptionPolicy
+
     @PreferenceItem("defaultPort", true) static var defaultPort: Bool
     @PreferenceItem("portRangeFirst", 6881) static var portRangeFirst: Int
     @PreferenceItem("portRangeSecond", 6891) static var portRangeSecond: Int

@@ -5323,6 +5323,40 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PeerModel",
+                "printedName": "ITorrentFramework.PeerModel",
+                "usr": "s:17ITorrentFramework9PeerModelV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PeerModel",
+                "printedName": "ITorrentFramework.PeerModel",
+                "usr": "s:17ITorrentFramework9PeerModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:17ITorrentFramework9PeerModelV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s17ITorrentFramework9PeerModelV2eeoiySbAC_ACtFZ",
+            "moduleName": "ITorrentFramework",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Var",
             "name": "hashValue",
             "printedName": "hashValue",
@@ -5360,38 +5394,6 @@
                 "accessorKind": "get"
               }
             ]
-          },
-          {
-            "kind": "Function",
-            "name": "==",
-            "printedName": "==(_:_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "PeerModel",
-                "printedName": "ITorrentFramework.PeerModel",
-                "usr": "s:17ITorrentFramework9PeerModelV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "PeerModel",
-                "printedName": "ITorrentFramework.PeerModel",
-                "usr": "s:17ITorrentFramework9PeerModelV"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:17ITorrentFramework9PeerModelV2eeoiySbAC_ACtFZ",
-            "mangledName": "$s17ITorrentFramework9PeerModelV2eeoiySbAC_ACtFZ",
-            "moduleName": "ITorrentFramework",
-            "static": true,
-            "implicit": true,
-            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Struct",
@@ -6516,6 +6518,343 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "EncryptionPolicy",
+        "printedName": "EncryptionPolicy",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "enabled",
+            "printedName": "enabled",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ITorrentFramework.EncryptionPolicy.Type) -> ITorrentFramework.EncryptionPolicy",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ITorrentFramework.EncryptionPolicy.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EncryptionPolicy",
+                        "printedName": "ITorrentFramework.EncryptionPolicy",
+                        "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:17ITorrentFramework16EncryptionPolicyO7enabledyA2CmF",
+            "mangledName": "$s17ITorrentFramework16EncryptionPolicyO7enabledyA2CmF",
+            "moduleName": "ITorrentFramework"
+          },
+          {
+            "kind": "Var",
+            "name": "forced",
+            "printedName": "forced",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ITorrentFramework.EncryptionPolicy.Type) -> ITorrentFramework.EncryptionPolicy",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ITorrentFramework.EncryptionPolicy.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EncryptionPolicy",
+                        "printedName": "ITorrentFramework.EncryptionPolicy",
+                        "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:17ITorrentFramework16EncryptionPolicyO6forcedyA2CmF",
+            "mangledName": "$s17ITorrentFramework16EncryptionPolicyO6forcedyA2CmF",
+            "moduleName": "ITorrentFramework"
+          },
+          {
+            "kind": "Var",
+            "name": "disabled",
+            "printedName": "disabled",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(ITorrentFramework.EncryptionPolicy.Type) -> ITorrentFramework.EncryptionPolicy",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "ITorrentFramework.EncryptionPolicy.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EncryptionPolicy",
+                        "printedName": "ITorrentFramework.EncryptionPolicy",
+                        "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:17ITorrentFramework16EncryptionPolicyO8disabledyA2CmF",
+            "mangledName": "$s17ITorrentFramework16EncryptionPolicyO8disabledyA2CmF",
+            "moduleName": "ITorrentFramework"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "ITorrentFramework.EncryptionPolicy?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:17ITorrentFramework16EncryptionPolicyO8rawValueACSgs4Int8V_tcfc",
+            "mangledName": "$s17ITorrentFramework16EncryptionPolicyO8rawValueACSgs4Int8V_tcfc",
+            "moduleName": "ITorrentFramework",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int8",
+                "printedName": "Swift.Int8",
+                "usr": "s:s4Int8V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ITorrentFramework16EncryptionPolicyO8rawValues4Int8Vvp",
+            "mangledName": "$s17ITorrentFramework16EncryptionPolicyO8rawValues4Int8Vvp",
+            "moduleName": "ITorrentFramework",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework16EncryptionPolicyO8rawValues4Int8Vvg",
+                "mangledName": "$s17ITorrentFramework16EncryptionPolicyO8rawValues4Int8Vvg",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "allCases",
+            "printedName": "allCases",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[ITorrentFramework.EncryptionPolicy]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ITorrentFramework16EncryptionPolicyO8allCasesSayACGvpZ",
+            "mangledName": "$s17ITorrentFramework16EncryptionPolicyO8allCasesSayACGvpZ",
+            "moduleName": "ITorrentFramework",
+            "static": true,
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[ITorrentFramework.EncryptionPolicy]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EncryptionPolicy",
+                        "printedName": "ITorrentFramework.EncryptionPolicy",
+                        "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework16EncryptionPolicyO8allCasesSayACGvgZ",
+                "mangledName": "$s17ITorrentFramework16EncryptionPolicyO8allCasesSayACGvgZ",
+                "moduleName": "ITorrentFramework",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:17ITorrentFramework16EncryptionPolicyO",
+        "mangledName": "$s17ITorrentFramework16EncryptionPolicyO",
+        "moduleName": "ITorrentFramework",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "enumRawTypeName": "Int8",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CaseIterable",
+            "printedName": "CaseIterable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AllCases",
+                "printedName": "AllCases",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[ITorrentFramework.EncryptionPolicy]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EncryptionPolicy",
+                        "printedName": "ITorrentFramework.EncryptionPolicy",
+                        "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12CaseIterableP",
+            "mangledName": "$ss12CaseIterableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "ProxyType",
         "printedName": "ProxyType",
         "children": [
@@ -7142,6 +7481,91 @@
           },
           {
             "kind": "Var",
+            "name": "encryptionPolicy",
+            "printedName": "encryptionPolicy",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EncryptionPolicy",
+                "printedName": "ITorrentFramework.EncryptionPolicy",
+                "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0Ovp",
+            "mangledName": "$s17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0Ovp",
+            "moduleName": "ITorrentFramework",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0Ovg",
+                "mangledName": "$s17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0Ovg",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EncryptionPolicy",
+                    "printedName": "ITorrentFramework.EncryptionPolicy",
+                    "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0Ovs",
+                "mangledName": "$s17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0Ovs",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0OvM",
+                "mangledName": "$s17ITorrentFramework12SettingsPackV16encryptionPolicyAA010EncryptionF0OvM",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "enableDht",
             "printedName": "enableDht",
             "children": [
@@ -7559,6 +7983,91 @@
                 "declKind": "Accessor",
                 "usr": "s:17ITorrentFramework12SettingsPackV12enableNatpmpSbvM",
                 "mangledName": "$s17ITorrentFramework12SettingsPackV12enableNatpmpSbvM",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "enablePex",
+            "printedName": "enablePex",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:17ITorrentFramework12SettingsPackV9enablePexSbvp",
+            "mangledName": "$s17ITorrentFramework12SettingsPackV9enablePexSbvp",
+            "moduleName": "ITorrentFramework",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12SettingsPackV9enablePexSbvg",
+                "mangledName": "$s17ITorrentFramework12SettingsPackV9enablePexSbvg",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12SettingsPackV9enablePexSbvs",
+                "mangledName": "$s17ITorrentFramework12SettingsPackV9enablePexSbvs",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:17ITorrentFramework12SettingsPackV9enablePexSbvM",
+                "mangledName": "$s17ITorrentFramework12SettingsPackV9enablePexSbvM",
                 "moduleName": "ITorrentFramework",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -8720,7 +9229,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(downloadLimit:uploadLimit:enableDht:enableLsd:enableUtp:enableUpnp:enableNatpmp:maxActiveTorrents:maxUplodingTorrents:maxDownloadingTorrents:interfaceType:portRangeFirst:portRangeSecond:proxyType:proxyRequiresAuth:proxyHostname:proxyPort:proxyUsername:proxyPassword:proxyPeerConnection:)",
+            "printedName": "init(downloadLimit:uploadLimit:enableDht:enableLsd:enableUtp:enableUpnp:enableNatpmp:enablePex:maxActiveTorrents:maxUplodingTorrents:maxDownloadingTorrents:interfaceType:encryptionPolicy:portRangeFirst:portRangeSecond:proxyType:proxyRequiresAuth:proxyHostname:proxyPort:proxyUsername:proxyPassword:proxyPeerConnection:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -8739,6 +9248,12 @@
                 "name": "Int",
                 "printedName": "Swift.Int",
                 "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeNominal",
@@ -8796,6 +9311,12 @@
               },
               {
                 "kind": "TypeNominal",
+                "name": "EncryptionPolicy",
+                "printedName": "ITorrentFramework.EncryptionPolicy",
+                "usr": "s:17ITorrentFramework16EncryptionPolicyO"
+              },
+              {
+                "kind": "TypeNominal",
                 "name": "Int",
                 "printedName": "Swift.Int",
                 "usr": "s:Si"
@@ -8850,8 +9371,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:17ITorrentFramework12SettingsPackV13downloadLimit06uploadF09enableDht0H3Lsd0H3Utp0H4Upnp0H6Natpmp17maxActiveTorrents0n8UplodingP00n11DownloadingP013interfaceType14portRangeFirst0uV6Second05proxyT00Y12RequiresAuth0Y8Hostname0Y4Port0Y8Username0Y8Password0Y14PeerConnectionACSi_SiS5bS3iAA09InterfaceT0OS2iAA05ProxyT0OSbSSSiS2SSbtcfc",
-            "mangledName": "$s17ITorrentFramework12SettingsPackV13downloadLimit06uploadF09enableDht0H3Lsd0H3Utp0H4Upnp0H6Natpmp17maxActiveTorrents0n8UplodingP00n11DownloadingP013interfaceType14portRangeFirst0uV6Second05proxyT00Y12RequiresAuth0Y8Hostname0Y4Port0Y8Username0Y8Password0Y14PeerConnectionACSi_SiS5bS3iAA09InterfaceT0OS2iAA05ProxyT0OSbSSSiS2SSbtcfc",
+            "usr": "s:17ITorrentFramework12SettingsPackV13downloadLimit06uploadF09enableDht0H3Lsd0H3Utp0H4Upnp0H6Natpmp0H3Pex17maxActiveTorrents0o8UplodingQ00o11DownloadingQ013interfaceType16encryptionPolicy14portRangeFirst0xY6Second05proxyU017proxyRequiresAuth13proxyHostname9proxyPort13proxyUsername13proxyPassword19proxyPeerConnectionACSi_SiS6bS3iAA09InterfaceU0OAA010EncryptionW0OS2iAA05ProxyU0OSbSSSiS2SSbtcfc",
+            "mangledName": "$s17ITorrentFramework12SettingsPackV13downloadLimit06uploadF09enableDht0H3Lsd0H3Utp0H4Upnp0H6Natpmp0H3Pex17maxActiveTorrents0o8UplodingQ00o11DownloadingQ013interfaceType16encryptionPolicy14portRangeFirst0xY6Second05proxyU017proxyRequiresAuth13proxyHostname9proxyPort13proxyUsername13proxyPassword19proxyPeerConnectionACSi_SiS6bS3iAA09InterfaceU0OAA010EncryptionW0OS2iAA05ProxyU0OSbSSSiS2SSbtcfc",
             "moduleName": "ITorrentFramework",
             "isFromExtension": true,
             "init_kind": "Designated"
@@ -9794,39 +10315,6 @@
                 "moduleName": "ITorrentFramework"
               },
               {
-                "kind": "Constructor",
-                "name": "init",
-                "printedName": "init(rawValue:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "ITorrentFramework.FileModel.TorrentDownloadPriority?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TorrentDownloadPriority",
-                        "printedName": "ITorrentFramework.FileModel.TorrentDownloadPriority",
-                        "usr": "s:17ITorrentFramework9FileModelC23TorrentDownloadPriorityO"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
-                  }
-                ],
-                "declKind": "Constructor",
-                "usr": "s:17ITorrentFramework9FileModelC23TorrentDownloadPriorityO8rawValueAESgSi_tcfc",
-                "mangledName": "$s17ITorrentFramework9FileModelC23TorrentDownloadPriorityO8rawValueAESgSi_tcfc",
-                "moduleName": "ITorrentFramework",
-                "implicit": true,
-                "init_kind": "Designated"
-              },
-              {
                 "kind": "Var",
                 "name": "rawValue",
                 "printedName": "rawValue",
@@ -9864,6 +10352,39 @@
                     "accessorKind": "get"
                   }
                 ]
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(rawValue:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "ITorrentFramework.FileModel.TorrentDownloadPriority?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "TorrentDownloadPriority",
+                        "printedName": "ITorrentFramework.FileModel.TorrentDownloadPriority",
+                        "usr": "s:17ITorrentFramework9FileModelC23TorrentDownloadPriorityO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:17ITorrentFramework9FileModelC23TorrentDownloadPriorityO8rawValueAESgSi_tcfc",
+                "mangledName": "$s17ITorrentFramework9FileModelC23TorrentDownloadPriorityO8rawValueAESgSi_tcfc",
+                "moduleName": "ITorrentFramework",
+                "implicit": true,
+                "init_kind": "Designated"
               }
             ],
             "declKind": "Enum",
@@ -12041,6 +12562,125 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 1956,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2069,
+      "length": 20,
+      "value": "\"Obtaining Metadata\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2100,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2106,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2174,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2285,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2406,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2489,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 2562,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3472,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3522,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3564,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3616,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3683,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "StringLiteral",
+      "offset": 5349,
+      "length": 6,
+      "value": "\"data\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6227,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6262,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FolderModel.swift",
       "kind": "StringLiteral",
       "offset": 222,
@@ -12076,6 +12716,27 @@
       "value": "[]"
     },
     {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Extensions\/StringExtension.swift",
+      "kind": "IntegerLiteral",
+      "offset": 292,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Utils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 263,
+      "length": 3,
+      "value": "128"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Utils.swift",
+      "kind": "IntegerLiteral",
+      "offset": 433,
+      "length": 1,
+      "value": "1"
+    },
+    {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Extensions\/NotificationNamesExtension.swift",
       "kind": "StringLiteral",
       "offset": 288,
@@ -12083,88 +12744,634 @@
       "value": "\"torrentsStateChanged\""
     },
     {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/PeerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 631,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/PeerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 1001,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 619,
+      "length": 156,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 689,
+      "length": 1,
+      "value": "\" \""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 733,
+      "length": 28,
+      "value": "\"CFBundleShortVersionString\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 774,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 1145,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 2332,
+      "length": 4,
+      "value": "\"-1\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 3275,
+      "length": 4,
+      "value": "\"-1\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3599,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3603,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 4226,
+      "length": 4,
+      "value": "\"-1\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 4632,
+      "length": 4,
+      "value": "\"-1\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 4670,
+      "length": 42,
+      "value": "\"0000000000000000000000000000000000000000\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5548,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "StringLiteral",
+      "offset": 5676,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "BooleanLiteral",
+      "offset": 5820,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6212,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 9087,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 9527,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 9855,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 9859,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 10148,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 10375,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 10379,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/TorrentSdk.swift",
+      "kind": "IntegerLiteral",
+      "offset": 10760,
+      "length": 1,
+      "value": "1"
+    },
+    {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 274,
+      "offset": 285,
       "length": 6,
       "value": "1"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 290,
-      "length": 6,
+      "offset": 301,
+      "length": 8,
       "value": "2"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 306,
-      "length": 4,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
-      "kind": "IntegerLiteral",
-      "offset": 320,
-      "length": 9,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
-      "kind": "IntegerLiteral",
-      "offset": 274,
+      "offset": 285,
       "length": 6,
       "value": "1"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 290,
-      "length": 6,
+      "offset": 301,
+      "length": 8,
       "value": "2"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 306,
-      "length": 4,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
-      "kind": "IntegerLiteral",
-      "offset": 320,
-      "length": 9,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
-      "kind": "IntegerLiteral",
-      "offset": 274,
+      "offset": 285,
       "length": 6,
       "value": "1"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 290,
+      "offset": 301,
+      "length": 8,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 388,
+      "length": 6,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 404,
       "length": 6,
       "value": "2"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 306,
+      "offset": 420,
       "length": 4,
       "value": "3"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
       "kind": "IntegerLiteral",
-      "offset": 320,
+      "offset": 434,
       "length": 9,
       "value": "4"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 555,
+      "length": 6,
+      "value": "\"None\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 572,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 635,
+      "length": 8,
+      "value": "\"SOCKS4\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 654,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 717,
+      "length": 8,
+      "value": "\"SOCKS5\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 736,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 797,
+      "length": 6,
+      "value": "\"HTTP\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 814,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 880,
+      "length": 5,
+      "value": "\"I2P\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 896,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 388,
+      "length": 6,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 404,
+      "length": 6,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 420,
+      "length": 4,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 434,
+      "length": 9,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 388,
+      "length": 6,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 404,
+      "length": 6,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 420,
+      "length": 4,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "IntegerLiteral",
+      "offset": 434,
+      "length": 9,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 3692,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 3757,
+      "length": 5,
+      "value": "\"en0\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 3780,
+      "length": 6,
+      "value": "\"utun\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 3807,
+      "length": 3,
+      "value": "\",\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 3874,
+      "length": 6,
+      "value": "\"utun\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 3901,
+      "length": 3,
+      "value": "\",\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4144,
+      "length": 50,
+      "value": "\"0.0.0.0:\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4170,
+      "length": 1,
+      "value": "\",[::]:\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4193,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4257,
+      "length": 5,
+      "value": "\"en0\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4280,
+      "length": 6,
+      "value": "\"utun\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4294,
+      "length": 25,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4300,
+      "length": 1,
+      "value": "\":\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4318,
+      "length": 23,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4340,
+      "length": 3,
+      "value": "\",\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4407,
+      "length": 6,
+      "value": "\"utun\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4421,
+      "length": 25,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4427,
+      "length": 1,
+      "value": "\":\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4445,
+      "length": 23,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4467,
+      "length": 3,
+      "value": "\",\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4522,
+      "length": 32,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4535,
+      "length": 1,
+      "value": "\":\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 4553,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 5788,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 5907,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/SettingsPack.swift",
+      "kind": "StringLiteral",
+      "offset": 5983,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 636,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 677,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 725,
+      "length": 9,
+      "value": "\"Working\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 745,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 769,
+      "length": 10,
+      "value": "\"Inactive\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 790,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 827,
+      "length": 49,
+      "value": "\", \""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 850,
+      "length": 10,
+      "value": "\"Verified\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 871,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TrackerModel.swift",
+      "kind": "StringLiteral",
+      "offset": 875,
+      "length": 3,
+      "value": "\"\""
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
@@ -12258,6 +13465,62 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "kind": "StringLiteral",
+      "offset": 832,
+      "length": 7,
+      "value": "\"ERROR\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/FileModel.swift",
+      "kind": "StringLiteral",
+      "offset": 867,
+      "length": 3,
+      "value": "\"\/\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/InterfaceType.swift",
+      "kind": "StringLiteral",
+      "offset": 366,
+      "length": 5,
+      "value": "\"all\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/InterfaceType.swift",
+      "kind": "StringLiteral",
+      "offset": 402,
+      "length": 9,
+      "value": "\"primary\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/InterfaceType.swift",
+      "kind": "StringLiteral",
+      "offset": 442,
+      "length": 9,
+      "value": "\"vpnOnly\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/InterfaceType.swift",
+      "kind": "StringLiteral",
+      "offset": 749,
+      "length": 5,
+      "value": "\"all\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/InterfaceType.swift",
+      "kind": "StringLiteral",
+      "offset": 793,
+      "length": 9,
+      "value": "\"primary\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/InterfaceType.swift",
+      "kind": "StringLiteral",
+      "offset": 845,
+      "length": 9,
+      "value": "\"vpnOnly\""
+    },
+    {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
       "kind": "StringLiteral",
       "offset": 219,
@@ -12326,6 +13589,69 @@
       "offset": 515,
       "length": 11,
       "value": "\"State.All\""
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 589,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 620,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 652,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 685,
+      "length": 1,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 721,
+      "length": 1,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 754,
+      "length": 1,
+      "value": "6"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 786,
+      "length": 1,
+      "value": "7"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 821,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",
+      "kind": "IntegerLiteral",
+      "offset": 864,
+      "length": 1,
+      "value": "9"
     },
     {
       "filePath": "\/Users\/xitrix\/Documents\/Dev\/iTorrent_Framework\/iTorrentFramework\/torrentSdk\/Models\/TorrentState.swift",

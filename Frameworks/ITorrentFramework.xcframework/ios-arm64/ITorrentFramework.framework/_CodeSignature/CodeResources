@@ -10,7 +10,7 @@
 		</data>
 		<key>Frameworks/OpenSSL.framework/OpenSSL</key>
 		<data>
-		cL/hpToVkReF+xgcOpPvClpD6BQ=
+		FbzSmP2mO1BFK56pSMCYUeegV8U=
 		</data>
 		<key>Frameworks/OpenSSL.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/ITorrentFramework-Swift.h</key>
 		<data>
-		uf3s7G5OwWmDSIRTVpH/8eOaKTs=
+		yoFw631BN+YNkb9/NYBQZIZ4vxE=
 		</data>
 		<key>Headers/iTorrentFramework.h</key>
 		<data>
@@ -26,27 +26,27 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ciAfJT0z1/5u9MRiYDb3NAb3pRo=
+		ei4Vt/jw/b53qO8EwEp2UKsjAY0=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		cE8q1ojJiqVw2l0VUAssdSy2hSc=
+		/LoiRDZzjdp+22v/OufJWSdm67s=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		6PWpnd1kuBTsxKWXpGR8EmlZTZY=
+		U/MznahC5Xbx9xYvbNm2wYZlrpQ=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		Bmk0EqRqNlMwjuYI6j1nGGOjhgs=
+		YmFNlS8DFOHk5EEiRmNbaPZG4xQ=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		6PWpnd1kuBTsxKWXpGR8EmlZTZY=
+		U/MznahC5Xbx9xYvbNm2wYZlrpQ=
 		</data>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		KIDKCzqBgwGG0/YFrSyuHYlneio=
+		5j2q3OdBiCdxy819tD8UsPYYFBA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>PrivateHeaders/settings_pack_struct.h</key>
 		<data>
-		bav1bL6oqGgqfLy41nj7XDiuRro=
+		KHSqULHGbvrJuAQmpbxLcA2ZM4A=
 		</data>
 		<key>PrivateHeaders/torrent_headers.h</key>
 		<data>
@@ -90,7 +90,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			B8Np+R1BDc7xqXLRmyOC8GLcvAUoiBZRxAAqwUYKjg8=
+			ABJ4wzTG3R3pnosr2x/iSremd5Af56UvAt5UWKYmZrs=
 			</data>
 		</dict>
 		<key>Frameworks/OpenSSL.framework/_CodeSignature/CodeResources</key>
@@ -104,7 +104,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8T/cE1Z3C95DlgebSmBk76+d//YYFCjJXZ/Yo7WRYLU=
+			V1ivpMGlfaUP3eedL6kIM7ZnlzrmQj1MUtqPlMufwlU=
 			</data>
 		</dict>
 		<key>Headers/iTorrentFramework.h</key>
@@ -118,35 +118,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZD6iE/xC8pyDHB8CWOLJwyaZXy1Sry6uzH6NGcME6MM=
+			XzAbwfYSu1RmVSaFOUomKRpesXHAvfGxfTxrl9N6rME=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uH3vX8nwdkVsUBbJC9LHWouYxEklS/RpQ1AmQjoYeKg=
+			vkOEi2spGEAbg0+FFv6eQ8YTx8/7eRS8yGs/WSKbLW0=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cBpWyn7RdNtaQZLGy7lNkmlObTQuLaCNqx2MpO0mv2I=
+			eQqG5pp2DP0XqZ38C1tvN/QVrrngDRwoG/t9qIQMkRE=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uH3vX8nwdkVsUBbJC9LHWouYxEklS/RpQ1AmQjoYeKg=
+			vkOEi2spGEAbg0+FFv6eQ8YTx8/7eRS8yGs/WSKbLW0=
 			</data>
 		</dict>
 		<key>Modules/ITorrentFramework.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IV+t0m1nDcv0istGcvKRtj9AirdcgMIKkp59tkojwLw=
+			6q8Mv4tdKS/Bo5iw1SJqDU5LBQDq1zu060kFLQVUhxI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -181,7 +181,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZBGxD3mqfX9TeURnI0IR/aN1+SK/2L4hwwkGmoi7zs8=
+			3do15LWKS1FgFZJPyhErJkdGQ5QklLWOLH4u7BNwinw=
 			</data>
 		</dict>
 		<key>PrivateHeaders/torrent_headers.h</key>

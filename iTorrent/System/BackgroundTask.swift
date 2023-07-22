@@ -8,6 +8,7 @@
 
 import AVFoundation
 import CoreLocation
+import UIKit
 
 #if TRANSMISSION
 import ITorrentTransmissionFramework
@@ -15,7 +16,7 @@ import ITorrentTransmissionFramework
 import ITorrentFramework
 #endif
 
-class BackgroundTask {
+class BackgroundTask: NSObject {
     public static let shared = BackgroundTask()
     var backgrounding: Bool {
         currentBackgroundMode != nil
@@ -23,8 +24,14 @@ class BackgroundTask {
 
     private var player: AVAudioPlayer?
 
-    private var locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     private var currentBackgroundMode: BackgroundTask.Mode?
+    private var locationManagerCompletion: ((CLAuthorizationStatus) -> ())?
+
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
 
     func stopBackgroundTask() {
         if let currentBackgroundMode {
@@ -111,12 +118,21 @@ private extension BackgroundTask {
 // MARK: - Location background stuff
 private extension BackgroundTask {
     func startWithLocation() {
-        currentBackgroundMode = .location
         if #available(iOS 14.0, *) {
             locationManager.desiredAccuracy = kCLLocationAccuracyReduced
+
+            let status = locationManager.authorizationStatus
+            guard status != .restricted && status != .denied
+            else {
+                UserPreferences.backgroundMode = .audio
+                startWithAudio()
+                return
+            }
         } else {
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         }
+
+        currentBackgroundMode = .location
         locationManager.requestWhenInUseAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
@@ -127,6 +143,28 @@ private extension BackgroundTask {
 
     func stopWithLocation() {
         locationManager.stopUpdatingLocation()
+    }
+}
+
+extension BackgroundTask {
+    func requestPermissions(from context: UIViewController, completion: ((CLAuthorizationStatus) -> ())? = nil) {
+        if #available(iOS 14.0, *) {
+            let status = self.locationManager.authorizationStatus
+
+            if status == .notDetermined {
+                locationManagerCompletion = completion
+                self.locationManager.requestWhenInUseAuthorization()
+                return
+            }
+
+            if status == .restricted || status == .denied {
+                let alert = ThemedUIAlertController(title: "Permission not granted", message: "You rejected location permissions earlier, to allow iTorrent to use location manager go to Settings -> iTonnret and allow it to use location services", preferredStyle: .alert)
+                alert.addAction(.init(title: "OK", style: .cancel))
+                context.present(alert, animated: true)
+            }
+
+            completion?(status)
+        }
     }
 }
 
@@ -168,6 +206,15 @@ private extension BackgroundTask {
             player?.play()
         } catch {
             print(error)
+        }
+    }
+}
+
+extension BackgroundTask: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if #available(iOS 14.0, *) {
+            locationManagerCompletion?(manager.authorizationStatus)
+            locationManagerCompletion = nil
         }
     }
 }

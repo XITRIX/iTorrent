@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Foundation
@@ -100,7 +100,7 @@ public struct PeerModel : Swift.Hashable {
   public var address: Swift.String
   public init(_ model: ITorrentFramework.Peer)
   public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: ITorrentFramework.PeerModel, b: ITorrentFramework.PeerModel) -> Swift.Bool
+  public static func == (lhs: ITorrentFramework.PeerModel, rhs: ITorrentFramework.PeerModel) -> Swift.Bool
   public var hashValue: Swift.Int {
     get
   }
@@ -141,6 +141,20 @@ public struct PeerModel : Swift.Hashable {
   public static func getPeers(with hash: Swift.String) -> [ITorrentFramework.PeerModel]
   @objc deinit
 }
+public enum EncryptionPolicy : Swift.Int8, Swift.CaseIterable, Swift.Codable {
+  case enabled
+  case forced
+  case disabled
+  public init?(rawValue: Swift.Int8)
+  public typealias AllCases = [ITorrentFramework.EncryptionPolicy]
+  public typealias RawValue = Swift.Int8
+  public static var allCases: [ITorrentFramework.EncryptionPolicy] {
+    get
+  }
+  public var rawValue: Swift.Int8 {
+    get
+  }
+}
 public enum ProxyType : Swift.Int, Swift.CaseIterable, Swift.Codable {
   case none
   case socks4
@@ -163,11 +177,13 @@ public enum ProxyType : Swift.Int, Swift.CaseIterable, Swift.Codable {
 public struct SettingsPack {
   public var downloadLimit: Swift.Int
   public var uploadLimit: Swift.Int
+  public var encryptionPolicy: ITorrentFramework.EncryptionPolicy
   public var enableDht: Swift.Bool
   public var enableLsd: Swift.Bool
   public var enableUtp: Swift.Bool
   public var enableUpnp: Swift.Bool
   public var enableNatpmp: Swift.Bool
+  public var enablePex: Swift.Bool
   public var maxActiveTorrents: Swift.Int
   public var maxDownloadingTorrents: Swift.Int
   public var maxUplodingTorrents: Swift.Int
@@ -185,7 +201,7 @@ public struct SettingsPack {
 }
 extension ITorrentFramework.SettingsPack {
   public init(_ native: ITorrentFramework.settings_pack_struct)
-  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
+  public init(downloadLimit: Swift.Int, uploadLimit: Swift.Int, enableDht: Swift.Bool, enableLsd: Swift.Bool, enableUtp: Swift.Bool, enableUpnp: Swift.Bool, enableNatpmp: Swift.Bool, enablePex: Swift.Bool, maxActiveTorrents: Swift.Int, maxUplodingTorrents: Swift.Int, maxDownloadingTorrents: Swift.Int, interfaceType: ITorrentFramework.InterfaceType, encryptionPolicy: ITorrentFramework.EncryptionPolicy, portRangeFirst: Swift.Int, portRangeSecond: Swift.Int, proxyType: ITorrentFramework.ProxyType, proxyRequiresAuth: Swift.Bool, proxyHostname: Swift.String, proxyPort: Swift.Int, proxyUsername: Swift.String, proxyPassword: Swift.String, proxyPeerConnection: Swift.Bool)
 }
 public struct TrackerModel : Swift.Hashable {
   public var url: Swift.String
@@ -234,8 +250,8 @@ public enum InterfaceType {
   case manual(name: Swift.String)
 }
 extension ITorrentFramework.InterfaceType : Swift.Codable {
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public enum TorrentState : Swift.String {
   case queued
@@ -255,6 +271,9 @@ public enum TorrentState : Swift.String {
     get
   }
 }
+extension ITorrentFramework.EncryptionPolicy : Swift.Equatable {}
+extension ITorrentFramework.EncryptionPolicy : Swift.Hashable {}
+extension ITorrentFramework.EncryptionPolicy : Swift.RawRepresentable {}
 extension ITorrentFramework.ProxyType : Swift.Equatable {}
 extension ITorrentFramework.ProxyType : Swift.Hashable {}
 extension ITorrentFramework.ProxyType : Swift.RawRepresentable {}

@@ -139,7 +139,8 @@
 
 "Settings.BackgroundEnable" = "Включить";
 "Settings.BackgroundMode" = "Фоновый режим";
-"Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
+"Settings.BackgroundMode.Select" = "Выберите фоновый режим";
+"Settings.BackgroundMode.Hint" = "Аудио - проигрывает бесшумный аудиофайл, чтобы позволить приложению работать в фоне. Этот режим менее стабилен, однако не требует доболнительных разрешений от пользователя\n\Локация - запускает геолокационный сервис, чтобы позволить приложению работать в фоне. Более стабилен, поддерживает Live Activities и Dynamic Island. Будет окрашивать статусбар в синий из-за использования сервиса геолокаций, однако требует дополнительных разрешений от пользователя. iTorrent НЕ использует НИКАКУЮ информацию из геолокационного сервиса";
 "Settings.BackgroundSeeding" = "Разрешить раздачу";
 "Settings.BackgroundSeeding.Warning" = "Если у вас не стоит лимит на раздачу, тогда iTorrent будет работать в фоне постоянно, что может привести к быстрой разрядке аккумулятора. \n\nВам понадобится закрывать приложение вручную что бы избежать этого!";
 "Settings.BackgroundHeader" = "Фоновая загрузка";
@@ -186,6 +187,10 @@
 "Settings.Network.Proxy.Auth" = "Требуется авторизация";
 "Settings.Network.Proxy.Login" = "Логин";
 "Settings.Network.Proxy.Password" = "Пароль";
+"Settings.Network.Encryption" = "Шифрование";
+"Settings.Network.Encryption.Title" = "Режим";
+"Settings.Network.Encryption.Hint" = "Разрешать: Подключаться к пирам независимо от настройки\n\nТребовать: Подключаться только к пирам с шифрованием протокола\n\nОтключить: Подключаться только к пирам без шифрования протокола";
+"Settings.Network.Encryption.Select" = "Выберите режим шифрования";
 "Settings.Network.Protocols" = "Протоколы соединения";
 "Settings.Network.DHT" = "Включить DHT";
 "Settings.Network.DHT.Hint" = "Позволяет BitTorrent-клиентам найти друг друга без использования трекера. Включение этой опции увеличит использование батареи";
@@ -202,7 +207,7 @@
 "Settings.Network.PortSecond" = "Конечный";
 "Settings.Network.Interface" = "Сетевой интерфейс";
 "Settings.Network.Interface.Title" = "Режим";
-"Settings.Network.Interface.Hint" = "#ADD HINT#";
+"Settings.Network.Interface.Hint" = "#ВАЖНО#\nЛюбая смена сетевого интерфейса требует ПЕРЕЗАГРУЗКИ iTorrent!\n---Все---\nПозволит iTorrent использовать все доступные на девайсе сетевые интерфейсы, что даст максимальную скорость загрузки, но также может использовать сотовые данные даже когда wifi подключен\n---Основные---\nПозволит использовать только основные сетевые интерфейсы, что предотвратит использование сотовых данных при подключенном wifi, но всё ещё может допустить утечки IP адреса при использовании VPN\n---Только VPN---\nИспользуйте если вам надо предоставить приватное соединение до трекеров, предотвратит утечку IP адреса\n---Вручную---\nВыберите сетевой интерфейс самостаятельно";
 "Settings.Network.Interface.Select" = "Выберите режим интерфейса";
 "Settings.Network.Interface.SelectInterface" = "Выберите интерфейс";
 
@@ -210,6 +215,10 @@
 "InterfaceType.Primary" = "Основные";
 "InterfaceType.VpnOnly" = "Только VPN";
 "InterfaceType.Manual" = "Вручную";
+
+"EncryptionPolicy.Enabled" = "Разрешать";
+"EncryptionPolicy.Disabled" = "Отключить";
+"EncryptionPolicy.Forced" = "Требовать";
 
 "Settings.NotifyFinishLoad" = "По окончании загрузки";
 "Settings.NotifyFinishSeed" = "По окончании раздачи";

@@ -9,6 +9,12 @@
 #ifndef settings_pack_struct_h
 #define settings_pack_struct_h
 
+enum encryption_policy_t {
+    enabled,
+    forced,
+    disabled
+};
+
 enum proxy_type_t {
     none,
     socks4,
@@ -24,13 +30,17 @@ typedef struct settings_pack_struct {
     int max_active_torrents_limit;
     int max_upload_torrents_limit;
     int max_download_torrents_limit;
-    
+
+    enum encryption_policy_t encryption_policy;
+
     bool enable_dht;
     bool enable_lsd;
     bool enable_utp;
     bool enable_upnp;
     bool enable_natpmp;
-    
+
+    bool enable_pex;
+
     char * _Nonnull outgoing_interfaces;
     char * _Nonnull listen_interfaces;
     

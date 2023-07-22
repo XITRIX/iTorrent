@@ -139,6 +139,7 @@
 
 "Settings.BackgroundEnable" = "Aktifleştir";
 "Settings.BackgroundMode" = "Background mode";
+"Settings.BackgroundMode.Select" = "Select background mode";
 "Settings.BackgroundMode.Hint" = "Audio - play silent audio to allow app to continue working in background. This mode is less stable but do not require additional permissions\n\nLocation - launch location service to allow app to continue working in background. More stable, supports Live Activities and Dynamic Island. Will show blue status bar because of location service, but requires additional user permission. iTorrent DO NOT use ANY data from location service";
 "Settings.BackgroundSeeding" = "Seedlemeye izin ver";
 "Settings.BackgroundSeeding.Warning" = "Bu seçenek iTorrent'in süresiz olarak arkaplanda çalışmasına izin verecektir, bu durumda torrent bir sınırsız bir şekilde seedler, bu durum yüksek pil kullanımına sebebiyet verebilir. \n\nBunu durdurmak için uygulamayı tamamen kapatmanız gerekir!";
@@ -186,6 +187,10 @@
 "Settings.Network.Proxy.Auth" = "Requires authorization";
 "Settings.Network.Proxy.Login" = "Login";
 "Settings.Network.Proxy.Password" = "Password";
+"Settings.Network.Encryption" = "Encryption";
+"Settings.Network.Encryption.Title" = "Mode";
+"Settings.Network.Encryption.Hint" = "Allow: Connect to peers regardless of setting\n\nRequire: Only connect to peers with protocol encryption\n\nDisable: Only connect to peers without protocol encryption";
+"Settings.Network.Encryption.Select" = "Select encryption mode";
 "Settings.Network.Protocols" = "Connection protocols";
 "Settings.Network.DHT" = "Enable DHT";
 "Settings.Network.DHT.Hint" = "It allows BitTorrent-clients to find each other without the use of tracker. Enabling this will increase the battery usage";
@@ -210,6 +215,10 @@
 "InterfaceType.Primary" = "Primary";
 "InterfaceType.VpnOnly" = "VPN Only";
 "InterfaceType.Manual" = "Manual";
+
+"EncryptionPolicy.Enabled" = "Allow";
+"EncryptionPolicy.Disabled" = "Disable";
+"EncryptionPolicy.Forced" = "Require";
 
 "Settings.NotifyFinishLoad" = "İndirme bittiğinde";
 "Settings.NotifyFinishSeed" = "Seedleme bittiğinde";
