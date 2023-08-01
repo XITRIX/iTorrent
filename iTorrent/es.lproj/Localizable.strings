@@ -6,7 +6,6 @@
   Copyright © 2018  XITRIX. All rights reserved.
 */
 
-
 // Torrent States
 "State.All" = "Todos";
 "Queued" = "En cola";
@@ -25,7 +24,6 @@
 
 //Main Controller
 "of" = "de";
-
 "Add" = "Añadir";
 "Done" = "Hecho";
 "Edit" = "Editar";
@@ -33,16 +31,12 @@
 "Select All" = "Seleccionar todos";
 "Deselect" = "Desmarcar";
 "None" = "Ninguno";
-
 "Search" = "Buscar";
-
 "Start" = "Iniciar";
 "Pause" = "Pausar";
 "Delete" = "Eliminar";
-
 "time remains" = "tiempo restante";
 "eternity" = "eternidad";
-
 "Add from..." = "Añadir desde...";
 "Add from URL" = "Añadir desde URL";
 "Please enter the existing torrent's URL below" = "Por favor, ingrese la URL del torrent existente a continuación";
@@ -59,16 +53,13 @@
 "Close" = "Cerrar";
 "Cancel" = "Cancelar";
 "Error" = "Error";
-
 "Are you sure to remove" = "¿Estás seguro de eliminar?";
 "torrents" = "torrents";
 "Yes and remove data" = "Sí y eliminar datos";
 "Yes but keep data" = "Sí pero mantener datos";
-
 "torrent" = "torrent";
 "Are you sure to remove this magnet torrent?" = "¿Estás seguro de eliminar este torrent magnet?";
 "Remove" = "Eliminar";
-
 "Name" = "Nombre";
 "Date Added" = "Fecha añadida";
 "Date Created" = "Fecha de creación";
@@ -86,29 +77,23 @@
 "Files" = "Archivos";
 "Trackers" = "Trackers";
 "Details.BackgroundSeeding.Warning" = "Sembrar en segundo plano está desactivado, si cierras esta aplicación, la siembra se detendrá. ¿Quieres activar la siembra en segundo plano?\nSi no se establece el límite de semilla, la aplicación continuará funcionando en segundo plano de manera indefinida, lo que puede causar agotamiento de la batería.";
-
 "Details.State" = "Estado";
-
 "Details.Speed.Title" = "Velocidad";
 "Details.Speed.Download" = "Descarga";
 "Details.Speed.Upload" = "Subida";
 "Details.Speed.Remains" = "Tiempo restante";
-
 "Details.Downloading.Title" = "Descargando";
 "Details.Downloading.Sequential" = "Descarga secuencial";
 "Details.Downloading.Progress" = "Progreso";
-
 "Details.Seeding.Title" = "Sembrando";
 "Details.Seeding.Allow" = "Permitir siembra";
 "Details.Seeding.Limit" = "Límite de siembra";
-
 "Details.Info.Title" = "Información general";
 "Details.Info.Hash" = "Hash";
 "Details.Info.Creator" = "Creador";
 "Details.Info.Created" = "Creado el";
 "Details.Info.Added" = "Añadido el";
 "Details.Info.Comment" = "Comentario";
-
 "Details.Transfer.Title" = "Transferencia";
 "Details.Transfer.Total" = "Seleccionado/Total";
 "Details.Transfer.Completed" = "Completado";
@@ -117,11 +102,10 @@
 "Details.Transfer.Uploaded" = "Subido";
 "Details.Transfer.Seeders" = "Sembradores";
 "Details.Transfer.Leechers" = "Sanguijuelas";
-
 "Details.More.Title" = "Más";
 "Details.More.Trackers" = "Trackers";
+"Details.More.Peers" = "Pares";
 "Details.More.Files" = "Archivos";
-
 "copied" = "copiado";
 
 //Settings Controller
@@ -130,29 +114,27 @@
 "Settings.Order" = "Orden de sección";
 "Settings.AutoTheme" = "Tema automático";
 "Settings.Theme" = "Modo oscuro";
-
 "Settings.Storage.Header" = "Almacenamiento";
 "Settings.Storage.Available" = "Disponible";
 "Settings.Storage.Allocate" = "Asignar almacenamiento";
 "Settings.Storage.Allocate.Hint" = "Si está habilitado, iTorrent reservará memoria de antemano para los archivos descargados";
-
 "Settings.BackgroundEnable" = "Habilitar";
+"Settings.BackgroundMode" = "Modo segundo plano";
+"Settings.BackgroundMode.Select" = "Seleccionar modo en segundo plano";
+"Settings.BackgroundMode.Hint" = "Audio - reproduce audio silencioso para permitir que la aplicación continúe funcionando en segundo plano. Este modo es menos estable pero no requiere permisos adicionales.\n\nUbicación - activa el servicio de ubicación para permitir que la aplicación continúe funcionando en segundo plano. Es más estable, admite Actividades en Vivo e Isla Dinámica. Mostrará la barra de estado azul debido al servicio de ubicación, pero requiere permiso adicional del usuario. iTorrent NO utiliza NINGÚN dato del servicio de ubicación.";
 "Settings.BackgroundSeeding" = "Permitir siembra";
 "Settings.BackgroundSeeding.Warning" = "Esto permitirá que iTorrent funcione en segundo plano de manera indefinida, en caso de que cualquier torrent esté sembrando sin límites, lo que puede causar un agotamiento significativo de la batería. \n\n¡Necesitarás cerrar la aplicación de manera forzosa para detener esto!";
 "Settings.BackgroundHeader" = "Descarga en segundo plano";
 "Settings.BackgroundFooter" = "Habilitar la descarga en segundo plano a través de funciones multimedia";
-
 "Settings.QueueLimitHeader" = "Límite de cola de torrents";
 "Settings.TorrentsLimit" = "Torrents activos";
 "Settings.TorrentsDownLimit" = "Torrents descargando";
 "Settings.TorrentsUpLimit" = "Torrents subiendo";
-
 "Settings.ZeroSpeedLimit" = "Límite de velocidad cero";
 "Settings.ZeroSpeedLimit.Hint" = "Si la velocidad de descarga es igual a cero durante cierto tiempo, la aplicación detendrá el procesamiento en segundo plano para evitar el agotamiento innecesario de la batería";
 "Settings.DownLimit" = "Límite de descarga";
 "Settings.UpLimit" = "Límite de subida";
 "Settings.SpeedHeader" = "Limitación de velocidad";
-
 "Settings.FTPEnable" = "Habilitar";
 "Settings.FTPEnable.Hint" = "Usando esta configuración, puedes habilitar el servidor de archivos al que puedes conectarte a través de un navegador web regular o un cliente WebDav";
 "Settings.FTP.Settings" = "Configuraciones";
@@ -170,7 +152,6 @@
 "Settings.FTP.WebDav.WebDavPort" = "Puerto";
 "Settings.FTP.WebDav.WebDavText" = "Usa un cliente WebDAV para conectarte a iTorrent";
 "Settings.FTPHeader" = "Compartir archivos";
-
 "Settings.Network.Header" = "Red";
 "Settings.Network.Proxy" = "Proxy";
 "Settings.Network.Connection" = "Configuraciones de conexión";
@@ -183,11 +164,14 @@
 "Settings.Network.Proxy.Auth" = "Requiere autorización";
 "Settings.Network.Proxy.Login" = "Inicio de sesión";
 "Settings.Network.Proxy.Password" = "Contraseña";
+"Settings.Network.Encryption" = "Cifrado";
+"Settings.Network.Encryption.Title" = "Modo";
+"Settings.Network.Encryption.Hint" = "Permitir: Conectar con otros nodos independientemente de la configuración.\n\nRequerir: Solo conectar con nodos que tengan cifrado de protocolo.\n\nDesactivar: Solo conectar con nodos sin cifrado de protocolo.";
+"Settings.Network.Encryption.Select" = "Seleccionar modo de cifrado";
 "Settings.Network.Protocols" = "Protocolos de conexión";
 "Settings.Network.DHT" = "Habilitar DHT";
 "Settings.Network.DHT.Hint" = "Permite a los clientes de BitTorrent encontrarse entre sí sin la necesidad de utilizar un seguidor. Al habilitar esto, el consumo de batería aumentará";
 "Settings.Network.LSD" = "Habilitar LSD";
-
 "Settings.Network.LSD.Hint" = "Está diseñado para apoyar la descubrimiento de pares locales de BitTorrent, con el objetivo de minimizar el tráfico";
 "Settings.Network.uTP" = "Habilitar µTP";
 "Settings.Network.uTP.Hint" = "Está destinado a mitigar la baja latencia y otros problemas de control de congestión encontrados en el BitTorrent convencional sobre TCP, mientras brinda una entrega confiable y ordenada";
@@ -203,17 +187,17 @@
 "Settings.Network.Interface.Hint" = "#IMPORTANTE#\nCualquier cambio en el estado de la red requiere que iTorrent se REINICIE!\n\n---Modo completo---\nPermitirá que iTorrent use cada interfaz de dispositivo disponible, lo que brinda la velocidad de descarga máxima, pero podría usar datos moviles incluso con wifi conectado\n\n---Modo primario---\nUsará solo conexiones primarias, lo que evita el uso de datos celulares mientras se usa wifi, pero aún podría causar una fuga de IP si está usando VPN\n\n---Solo VPN---\nÚselo si necesita proporcionar conexiones privadas a los Trackers, evitará la fuga de IP\n\n---Modo manual---\nSeleccione la interfaz usted mismo";
 "Settings.Network.Interface.Select" = "Seleccionar modo de interfaz";
 "Settings.Network.Interface.SelectInterface" = "Seleccionar interfaz";
-
 "InterfaceType.All" = "Todo";
 "InterfaceType.Primary" = "Primario";
 "InterfaceType.VpnOnly" = "Solo VPN";
 "InterfaceType.Manual" = "Manual";
-
+"EncryptionPolicy.Enabled" = "Permitir";
+"EncryptionPolicy.Disabled" = "Desactivar";
+"EncryptionPolicy.Forced" = "Requerir";
 "Settings.NotifyFinishLoad" = "Al finalizar la carga";
 "Settings.NotifyFinishSeed" = "Al finalizar la semilla";
 "Settings.NotifyBadge" = "Habilitar icono de distintivo de la aplicación";
 "Settings.NotifyHeader" = "Notificaciones";
-
 "Settings.UpdateSite" = "Página en GitHub";
 "Settings.UpdateSite.Open" = "Abrir";
 "Settings.UpdateHeader" = "Actualizaciones";
@@ -224,7 +208,6 @@
 "Settings.DonateCard.DonatePlatforms.Title" = "Seleccionar plataforma de donación:";
 "Settings.DonateHeader" = "Donar por donuts";
 "Settings.DonateFooter" = "Enlace con patreon para deshabilitar anuncios";
-
 "Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
 "Settings.Patreon.Creator" = "Creador de iTorrent";
 "Settings.Patreon.Welcome" = "Hola,\nPuedes apoyar el desarrollo futuro de iTorrent donando en Patreon. A cambio, recibirás acceso a la versión sin anuncios de la aplicación iTorrent.\n\n¡Gracias por todo tu apoyo!";
@@ -238,25 +221,21 @@
 "Settings.Patreon.UnlinkButton.Action" = "Desvincular cuenta de Patreon";
 "Settings.Patreon.Thanks" = "Agradecimientos especiales a:";
 "Settings.Patreon.CopiedID" = "Tu ID de Patreon se ha copiado al portapapeles";
-
 "Settings.Sorting.Revert" = "Revertir";
-
 "Warning" = "Advertencia";
 "Enable" = "Habilitar";
 "Unlimited" = "Ilimitado";
 "Torrent rehash" = "Rehash del torrent";
 "This action will recheck the state of all downloaded files" = "Esta acción volverá a comprobar el estado de todos los archivos descargados";
 "Rehash" = "Rehash";
-
 "Current app version: " = "Versión actual de la aplicación: ";
 "New version " = "Nueva versión ";
 " available" = " disponible";
-"WOW, is it a new inDev build, huh?" = "¡WOW, ¿es una nueva construcción inDev, huh?";
+"WOW, is it a new inDev build, huh?" = "¡Guau, ¿es una nueva versión en desarrollo, eh?";
 "Latest version installed" = "Última versión instalada";
 "Update check failed" = "Error al comprobar actualizaciones";
 "WARNING" = "ADVERTENCIA";
 "Copied CC # to clipboard!" = "¡Número de tarjeta de crédito copiado al portapapeles!";
-
 "Supplication" = "Donación";
 "If you enjoy this app, consider supporting the developer by keeping the ads on." = "Si disfrutas de esta aplicación, considera apoyar al desarrollador manteniendo los anuncios activos.\n¡Gracias!";
 "Disable Anyway" = "Deshabilitar de todos modos";
@@ -306,18 +285,18 @@
 " finished downloading" = " finalizó la descarga";
 "Seeding finished" = "Sembrado finalizado";
 " finished seeding" = " finalizó el sembrado";
-
 "This action will recheck the state of all downloaded files for torrents:" = "Esta acción volverá a comprobar el estado de todos los archivos descargados de los torrents:";
 
 //Background Task
 "BackgroundTask.LowSpeed.Title" = "La velocidad de descarga es baja ";
 "BackgroundTask.LowSpeed.Message" = " se detendrá la descarga en segundo plano para evitar el agotamiento de la batería";
+"BackgroundTask.Mode.Audio" = "Audio";
+"BackgroundTask.Mode.Location" = "Ubicación";
+
 //News Alerts
 "Dialogs.News.Title" = "¡Advertencia!";
-
 "Disabled" = "Deshabilitado";
 "Hint" = "Sugerencia";
-
 "minute:single" = "minuto";
 "minute:plural" = "minutos";
 "minute:parent" = "minutos";
@@ -358,5 +337,5 @@
 "RssItemController.PinMagnet" = "Se adjunta enlace Magnet a este post";
 
 //Version Info
-"info" = "\nRegistro de cambios";
-"UpdateText" = "\n--- 1.9 ---\n- Actualizado para las versiones más recientes de iOS\n- Muchas correcciones y mejoras en la interfaz de usuario";
+"info" = " Registro de cambios";
+"UpdateText" = "- Actualizado para las nuevas versiones de iOS \n- LibTorrent actualizado a 2.0 \n- Muchas correcciones y mejoras en la interfaz de usuario";
