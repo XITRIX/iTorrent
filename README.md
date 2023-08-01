@@ -1,6 +1,6 @@
 <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/9553519/80646366-3d271680-8a75-11ea-8b60-9c5edd4ffd60.png">
 
-# iTorrent - iOS Torrent client App ([README in Spanish](https://github.com/Deci8BelioS/iTorrent/blob/master/README.es.md))
+# iTorrent - iOS Torrent client App ([README in Spanish](https://github.com/XITRIX/iTorrent/blob/master/README.es.md))
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
 ![](https://app.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
@@ -26,7 +26,6 @@
 
 **Latest dev build:** ([AppCenter](https://install.appcenter.ms/users/x1trix/apps/itorrent/distribution_groups/public)) 
 
-**Latest dev build Unofficial:** ([GitHub Release](https://github.com/Deci8BelioS/iTorrent/releases/latest))
 ## Info
 
 It is an ordinary torrent client for iOS with Files app support.
