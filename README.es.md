@@ -54,7 +54,7 @@ Ahora iTorrent soporta los siguientes idiomas:
 - Inglés
 - Ruso
 - Turco
-- Inglés
+- Español
 
 Si domina alguna de las lenguas que no figuran en la lista anterior y desea colaborar en la traducción, ¡será bienvenido!
 
