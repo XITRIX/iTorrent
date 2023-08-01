@@ -1,6 +1,7 @@
 <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/9553519/80646366-3d271680-8a75-11ea-8b60-9c5edd4ffd60.png">
 
 # iTorrent - Aplicación cliente Torrent para iOS
+**Este archivo Readme podría no estar actualizado, considere revisar el Readme en [**ingles**](README.md)**
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
 ![](https://app.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
@@ -24,9 +25,7 @@
 
 **Última versión estable:** ([GitHub Release](https://github.com/XITRIX/iTorrent/releases/latest))
 
-**Última versión de desarrollo:** ([AppCenter](https://install.appcenter.ms/users/x1trix/apps/itorrent/distribution_groups/public)) 
-
-**Última versión no oficial:** ([GitHub Release](https://github.com/Deci8BelioS/iTorrent/releases/latest))
+**Última versión de desarrollo:** ([AppCenter](https://install.appcenter.ms/users/x1trix/apps/itorrent/distribution_groups/public))
 
 ## Información
 
