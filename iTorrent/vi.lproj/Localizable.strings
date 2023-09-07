@@ -1,0 +1,376 @@
+/* 
+  Localizable.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 20/08/2018.
+  Copyright © 2018  XITRIX. All rights reserved.
+*/
+
+
+// Torrent States
+"State.All" = "Tất cả";
+"Queued" = "Đang chờ";
+"Hashing" = "Đang kiểm tra";
+"Metadata" = "Dữ liệu";
+"Downloading" = "Đang tải xuống";
+"Finished" = "Hoàn thành";
+"Seeding" = "Đang chia sẻ";
+"Allocating" = "Đang phân chia";
+"Checking fastresume" = "Kiểm tra fastresume";
+"Paused" = "Tạm dừng";
+
+//SpeedPicker
+"SpeedPicker.Title" = "Tốc độ tải về KB/s";
+"SpeedPicker.Error" = "Giá trị sai";
+
+//Main Controller
+"of" = "của";
+
+"Add" = "Thêm";
+"Done" = "Xong";
+"Edit" = "Chỉnh sửa";
+"Select" = "Chọn";
+"Select All" = "Chọn Tất cả";
+"Deselect" = "Bỏ chọn";
+"None" = "Không";
+
+"Search" = "Tìm kiếm";
+
+"Start" = "Bắt đầu";
+"Pause" = "Tạm dừng";
+"Delete" = "Xóa";
+
+"time remains" = "thời gian còn lại";
+"eternity" = "vĩnh hằng";
+
+"Add from..." = "Thêm từ...";
+"Add from URL" = "Thêm từ URL";
+"Please enter the existing torrent's URL below" = "Vui lòng nhập URL torrent vào bên dưới";
+"Error has been occured" = "Đã xảy ra lỗi";
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Tệp torrent bị hỏng hoặc URL này có một số loại bảo vệ DDOS, bạn có thể thử mở liên kết này trong Safari";
+"Open in Safari" = "Mở trong Safari";
+"This torrent already exists" = "Torrent này đã tồn tại";
+"Torrent with hash:" = "Torrent với mã băm:";
+"already exists in download queue" = "đã tồn tại trong hàng đợi tải xuống";
+"Please, open this link in Safari, and send .torrent file from there" = "Vui lòng mở liên kết này trong Safari và gửi tệp .torrent từ đó";
+"Wrong link, check it and try again!" = "Liên kết sai, hãy kiểm tra và thử lại!";
+"Add from magnet" = "Thêm từ magnet";
+"Please enter the magnet link below" = "Vui lòng nhập liên kết magnet bên dưới";
+"Close" = "Đóng";
+"Cancel" = "Hủy";
+"Error" = "Lỗi";
+
+"Are you sure to remove" = "Bạn có chắc chắn muốn xóa";
+"torrents" = "torrents";
+"Yes and remove data" = "Có và xóa dữ liệu";
+"Yes but keep data" = "Có nhưng giữ lại dữ liệu";
+
+"torrent" = "torrent";
+"Are you sure to remove this magnet torrent?" = "Bạn có chắc chắn muốn xóa torrent từ magnet này?";
+"Remove" = "Xóa";
+
+"Name" = "Tên";
+"Date Added" = "Ngày Thêm";
+"Date Created" = "Ngày Tạo";
+"Size" = "Kích thước";
+"Sort Torrents By:" = "Sắp xếp Torrent theo:";
+"Currently sorted by " = "Hiện đang sắp xếp theo ";
+"Disable state sections" = "Tắt phần trạng thái";
+"Enable state sections" = "Bật phần trạng thái";
+"MainController.Table.Placeholder.Text" = "Danh sách tải xuống trống rỗng!\nSử dụng Chrome để tải tệp torrent hoặc thêm bằng cách sử dụng nút '+'";
+
+//Torrent details
+"Torrent file" = "Tệp torrent";
+"Magnet link" = "Liên kết magnet";
+"Magnet link copied to clipboard" = "Liên kết magnet đã được sao chép vào clipboard";
+"Files" = "Tệp";
+"Trackers" = "Trackers";
+"Details.BackgroundSeeding.Warning" = "Chia sẻ nền đang bị tắt, nếu bạn đóng ứng dụng này, việc chia sẻ sẽ dừng lại. Bạn có muốn bật chia sẻ nền?\nNếu không đặt giới hạn chia sẻ, ứng dụng sẽ tiếp tục hoạt động ở nền vô hạn, có thể gây tiêu hao pin.";
+
+"Details.State" = "Trạng thái";
+
+"Details.Speed.Title" = "Tốc độ";
+"Details.Speed.Download" = "Tải về";
+"Details.Speed.Upload" = "Tải lên";
+"Details.Speed.Remains" = "Thời gian còn lại";
+
+"Details.Downloading.Title" = "Đang tải xuống";
+"Details.Downloading.Sequential" = "Tải tuần tự";
+"Details.Downloading.Progress" = "Tiến trình";
+
+"Details.Seeding.Title" = "Đang chia sẻ";
+"Details.Seeding.Allow" = "Cho phép chia sẻ";
+"Details.Seeding.Limit" = "Giới hạn chia sẻ";
+
+"Details.Info.Title" = "Thông tin chung";
+"Details.Info.Hash" = "Mã băm";
+"Details.Info.Creator" = "Người tạo";
+"Details.Info.Created" = "Được tạo vào";
+"Details.Info.Added" = "Được thêm vào";
+"Details.Info.Comment" = "Bình luận";
+
+"Details.Transfer.Title" = "Truyền tải";
+"Details.Transfer.Total" = "Đã chọn/Tổng cộng";
+"Details.Transfer.Completed" = "Hoàn thành";
+"Details.Transfer.Progress" = "Tiến trình Đã chọn/Tổng cộng";
+"Details.Transfer.Downloaded" = "Đã tải về";
+"Details.Transfer.Uploaded" = "Đã tải lên";
+"Details.Transfer.Seeders" = "Người chia sẻ";
+"Details.Transfer.Leechers" = "Người leech";
+
+"Details.More.Title" = "Thêm";
+"Details.More.Trackers" = "Trackers";
+"Details.More.Peers" = "Người dùng";
+"Details.More.Files" = "Tệp";
+
+"copied" = "đã sao chép";
+
+//Settings Controller
+"Settings.Title" = "Tùy chọn";
+"Settings.Appearance.Header" = "Giao diện";
+"Settings.Order" = "Thứ tự phần";
+"Settings.AutoTheme" = "Chế độ giao diện tự động";
+"Settings.Theme" = "Chế độ tối";
+
+"Settings.Storage.Header" = "Lưu trữ";
+"Settings.Storage.Available" = "Khả dụng";
+"Settings.Storage.Allocate" = "Phân chia lưu trữ";
+"Settings.Storage.Allocate.Hint" = "Nếu bật, iTorrent sẽ trước tiên đặt trước bộ nhớ cho các tệp đã tải xuống";
+
+"Settings.BackgroundEnable" = "Bật";
+"Settings.BackgroundMode" = "Chế độ nền";
+"Settings.BackgroundMode.Select" = "Chọn chế độ nền";
+"Settings.BackgroundMode.Hint" = "Âm thanh - phát âm thanh yên lặng để cho phép ứng dụng tiếp tục hoạt động dưới nền. Chế độ này kém ổn định nhưng không yêu cầu bổ sung quyền\n\nVị trí - khởi động dịch vụ vị trí để cho phép ứng dụng tiếp tục hoạt động dưới nền. Ổn định hơn, hỗ trợ Hoạt động trực tiếp và Dynamic Island. Sẽ hiển thị thanh trạng thái màu xanh do dịch vụ vị trí, nhưng yêu cầu người dùng cấp quyền đặc thù. iTorrent KHÔNG sử dụng BẤT KỲ dữ liệu nào từ dịch vụ vị trí";
+"Settings.BackgroundSeeding" = "Cho phép chia sẻ nền";
+"Settings.BackgroundSeeding.Warning" = "Điều này sẽ cho phép iTorrent hoạt động dưới nền vô thời hạn, trong trường hợp bất kỳ torrent nào đó đang chia sẻ mà không có giới hạn, có thể gây tiêu hao pin đáng kể. \n\nBạn sẽ cần đóng ứng dụng để ngăn việc này!";
+"Settings.BackgroundHeader" = "Tải xuống dưới nền";
+"Settings.BackgroundFooter" = "Bật tải xuống dưới nền thông qua chức năng đa phương tiện";
+
+"Settings.QueueLimitHeader" = "Giới hạn Hàng đợi Torrent";
+"Settings.TorrentsLimit" = "Torrent hoạt động";
+"Settings.TorrentsDownLimit" = "Torrent đang tải xuống";
+"Settings.TorrentsUpLimit" = "Torrent đang tải lên";
+
+"Settings.ZeroSpeedLimit" = "Giới hạn tốc độ bằng không";
+"Settings.ZeroSpeedLimit.Hint" = "Nếu tốc độ tải về bằng không trong một khoảng thời gian nhất định, ứng dụng sẽ ngừng xử lý nền để ngăn ngừa tiêu hao pin không cần thiết";
+"Settings.DownLimit" = "Giới hạn tải về";
+"Settings.UpLimit" = "Giới hạn tải lên";
+"Settings.SpeedHeader" = "Giới hạn tốc độ";
+
+"Settings.FTPEnable" = "Bật";
+"Settings.FTPEnable.Hint" = "Sử dụng cài đặt này, bạn có thể bật máy chủ tệp mà bạn có thể kết nối thông qua trình duyệt Web thông thường hoặc khách WebDav";
+"Settings.FTP.Settings" = "Cài đặt";
+"Settings.FTPBackground" = "Chạy dưới nền";
+"Settings.FTP.Message.NoNetwork" = "Kết nối với WIFI để sử dụng chia sẻ tệp";
+"Settings.FTP.Message" = "Kết nối đến: ";
+"Settings.FTP.WebDav.Username" = "Tên đăng nhập";
+"Settings.FTP.WebDav.Password" = "Mật khẩu";
+"Settings.FTP.WebDav.Username.Placeholder" = "Tên đăng nhập";
+"Settings.FTP.WebDav.Password.Placeholder" = "Mật khẩu (tùy chọn)";
+"Settings.FTP.WebDav.PassText" = "Khởi động lại máy chủ để áp dụng cài đặt";
+"Settings.FTP.WebDav.WebTitle" = "Máy chủ Web";
+"Settings.FTP.WebDav.WebText" = "Sử dụng bất kỳ trình duyệt web nào để chia sẻ tệp";
+"Settings.FTP.WebDav.WebDavTitle" = "Máy chủ WebDAV";
+"Settings.FTP.WebDav.WebDavPort" = "Cổng";
+"Settings.FTP.WebDav.WebDavText" = "Sử dụng trình duyệt WebDAV để kết nối với iTorrent";
+"Settings.FTPHeader" = "Chia sẻ tệp";
+
+"Settings.Network.Header" = "Mạng";
+"Settings.Network.Proxy" = "Proxy";
+"Settings.Network.Connection" = "Cài đặt kết nối";
+"Settings.Network.Proxy.Type.Header" = "Máy chủ";
+"Settings.Network.Proxy.Type" = "Loại proxy";
+"Settings.Network.Proxy.SelectType" = "Chọn loại proxy:";
+"Settings.Network.Proxy.Hostname" = "Tên máy chủ";
+"Settings.Network.Proxy.Port" = "Cổng";
+"Settings.Network.Proxy.Auth.Header" = "Xác thực";
+"Settings.Network.Proxy.Auth" = "Yêu cầu xác thực";
+"Settings.Network.Proxy.Login" = "Tên đăng nhập";
+"Settings.Network.Proxy.Password" = "Mật khẩu";
+"Settings.Network.Encryption" = "Mã hóa";
+"Settings.Network.Encryption.Title" = "Chế độ";
+"Settings.Network.Encryption.Hint" = "Cho phép: Kết nối với các người dùng không cần xem xét cài đặt\n\nYêu cầu: Chỉ kết nối với các người dùng có mã hóa giao thức\n\nTắt: Chỉ kết nối với các người dùng không có mã hóa giao thức";
+"Settings.Network.Encryption.Select" = "Chọn chế độ mã hóa";
+"Settings.Network.Protocols" = "Giao thức kết nối";
+"Settings.Network.DHT" = "Bật DHT";
+"Settings.Network.DHT.Hint" = "Nó cho phép các máy chủ BitTorrent tìm thấy nhau mà không cần sử dụng máy chủ theo dõi. Bật tính năng này sẽ tăng việc tiêu hao pin";
+"Settings.Network.LSD" = "Bật LSD";
+"Settings.Network.LSD.Hint" = "Nó được thiết kế để hỗ trợ việc phát hiện người dùng BitTorrent cục bộ, nhằm giảm thiểu lưu lượng";
+"Settings.Network.uTP" = "Bật µTP";
+"Settings.Network.uTP.Hint" = "Nó được thiết kế để làm giảm độ trễ kém và các vấn đề kiểm soát tắc nghẽn khác được tìm thấy trong BitTorrent truyền thống qua giao thức TCP, đồng thời cung cấp phát hiện đáng tin cậy, việc giao hàng theo thứ tự";
+"Settings.Network.UPnP" = "Bật UPnP";
+"Settings.Network.NAT-PMP" = "Bật NAT-PMP";
+"Settings.Network.Port" = "Cổng";
+"Settings.Network.DefauldPort" = "Sử dụng cổng mặc định";
+"Settings.Network.DefauldPort.Hint" = "Thiết lập cổng bắt đầu là [6881] và cổng kết thúc là đầu tiên + 10 [6891]";
+"Settings.Network.PortFirst" = "Bắt đầu";
+"Settings.Network.PortSecond" = "Kết thúc";
+"Settings.Network.Interface" = "Giao diện";
+"Settings.Network.Interface.Title" = "Chế độ";
+"Settings.Network.Interface.Hint" = "#QUAN TRỌNG#\nBất kỳ thay đổi trạng thái mạng nào đều yêu cầu iTorrent KHỞI ĐỘNG LẠI!\n---Tất cả các chế độ---\nNó sẽ cho phép iTorrent sử dụng mọi giao diện thiết bị có sẵn, giúp tải về với tốc độ tối đa, nhưng có thể sử dụng dữ liệu di động ngay cả khi kết nối wifi\n---Chế độ chính---\nNó sẽ chỉ sử dụng kết nối chính, ngăn không sử dụng dữ liệu di động trong khi sử dụng wifi, nhưng vẫn có thể gây rò rỉ IP, nếu bạn đang sử dụng VPN\n---Chỉ VPN---\nSử dụng nếu bạn cần cung cấp kết nối riêng tư cho máy chủ theo dõi, nó sẽ ngăn rò rỉ IP\n---Chế độ thủ công---\nChọn giao diện theo cách của bạn";
+"Settings.Network.Interface.Select" = "Chọn chế độ giao diện";
+"Settings.Network.Interface.SelectInterface" = "Chọn giao diện";
+
+"InterfaceType.All" = "Tất cả";
+"InterfaceType.Primary" = "Chính";
+"InterfaceType.VpnOnly" = "Chỉ VPN";
+"InterfaceType.Manual" = "Thủ công";
+
+"EncryptionPolicy.Enabled" = "Cho phép";
+"EncryptionPolicy.Disabled" = "Tắt";
+"EncryptionPolicy.Forced" = "Yêu cầu";
+
+"Settings.NotifyFinishLoad" = "Khi tải hoàn tất";
+"Settings.NotifyFinishSeed" = "Khi chia sẻ hoàn tất";
+"Settings.NotifyBadge" = "Bật biểu tượng ứng dụng";
+"Settings.NotifyHeader" = "Thông báo";
+
+"Settings.UpdateSite" = "Trang trên GitHub";
+"Settings.UpdateSite.Open" = "Mở";
+"Settings.UpdateHeader" = "Cập nhật";
+"Settings.DonateDisable" = "Tắt QUẢNG CÁO";
+"Settings.DonateCard" = "SỐ THẺ TÍN DỤNG VISA";
+"Settings.DonateCard.Open" = "Mở";
+"Settings.DonateCard.DonatePlatforms" = "Quyên góp";
+"Settings.DonateCard.DonatePlatforms.Title" = "Chọn nền tảng quyên góp:";
+"Settings.DonateHeader" = "Quyên góp để có bánh rán";
+"Settings.DonateFooter" = "Liên kết với patreon để tắt QUẢNG CÁO";
+
+"Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
+"Settings.Patreon.Creator" = "Người sáng tạo iTorrent";
+"Settings.Patreon.Welcome" = "Xin chào,\n\nBạn có thể ủng hộ việc phát triển iTorrent trong tương lai bằng cách quyên góp cho tôi trên Patreon. Đổi lại, bạn sẽ nhận được quyền truy cập vào phiên bản iTorrent không có QUẢNG CÁO.\n\nCảm ơn bạn đã ủng hộ!";
+"Settings.Patreon.Patron" = "Bạn là một nhà bảo trợ";
+"Settings.Patreon.Full" = "Bạn có phiên bản đầy đủ";
+"Settings.Patreon.Reward" = "Đã bật QUẢNG CÁO, chúc vui vẻ!";
+"Settings.Patreon.PatronButton" = "Trở thành nhà bảo trợ";
+"Settings.Patreon.LinkButton" = "Liên kết với Patreon";
+"Settings.Patreon.UnlinkButton" = "Hủy liên kết";
+"Settings.Patreon.UnlinkButton.Text" = "Bạn có chắc chắn muốn hủy liên kết tài khoản Patreon của bạn không?";
+"Settings.Patreon.UnlinkButton.Action" = "Hủy liên kết tài khoản Patreon";
+"Settings.Patreon.Thanks" = "Cảm ơn đặc biệt đến:";
+"Settings.Patreon.CopiedID" = "ID Patreon của bạn đã được sao chép vào clipboard";
+
+"Settings.Sorting.Revert" = "Quay lại";
+
+"Warning" = "Cảnh báo";
+"Enable" = "Bật";
+"Unlimited" = "Không giới hạn";
+"Torrent rehash" = "Kiểm tra lại torrent";
+"This action will recheck the state of all downloaded files" = "Hành động này sẽ kiểm tra lại trạng thái của tất cả các tệp đã tải xuống";
+"Rehash" = "Kiểm tra lại";
+
+"Current app version: " = "Phiên bản ứng dụng hiện tại: ";
+"New version " = "Phiên bản mới ";
+" available" = " có sẵn";
+"WOW, is it a new inDev build, huh?" = "WOW, đó có phải là phiên bản inDev mới không?";
+"Latest version installed" = "Phiên bản mới nhất đã được cài đặt";
+"Update check failed" = "Kiểm tra cập nhật thất bại";
+"WARNING" = "CẢNH BÁO";
+"Copied CC # to clipboard!" = "Đã sao chép CC # vào clipboard!";
+
+"Supplication" = "Lời kêu xin";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "Nếu bạn thích ứng dụng này, hãy xem xét ủng hộ nhà phát triển bằng cách bật quảng cáo.\nCảm ơn!";
+"Disable Anyway" = "Vô hiệu hóa Bất cứ lúc nào";
+
+//Add Torrent Controller
+"Back" = "Quay lại";
+"Torrent update detected" = "Phát hiện cập nhật torrent";
+"Torrent with name" = "Torrent có tên";
+"already exists, do you want to apply previous files selection settings to this torrent" = "đã tồn tại, bạn có muốn áp dụng cài đặt lựa chọn tệp trước đó cho torrent này không?";
+"Apply" = "Áp dụng";
+"Download content of folder" = "Tải nội dung của thư mục";
+"Download" = "Tải xuống";
+"Don't Download" = "Không tải xuống";
+"Open" = "Mở";
+"Share" = "Chia sẻ";
+"Show in Files" = "Hiển thị trong Tệp";
+"AddTorrentController.MemoryWarning.Title" = "Cảnh báo";
+"AddTorrentController.MemoryWarning.Message" = "Không đủ dung lượng để tải xuống tất cả các tệp, hãy giải phóng dung lượng để tiếp tục";
+"AddTorrentController.MemoryWarning.AddAnyway" = "Thêm bất chấp";
+
+//Torrent Files Controller
+"TorrentFilesController.Edit" = "Chỉnh sửa";
+"TorrentFilesController.SelectAll" = "Chọn tất cả";
+"TorrentFilesController.DeselectAll" = "Bỏ chọn tất cả";
+
+//Trackers List Controller
+"Working" = "Đang hoạt động";
+"Inactive" = "Không hoạt động";
+"Verified" = "Đã xác minh";
+"Add Tracker" = "Thêm Trình theo dõi";
+"Enter the full tracker's URL" = "Nhập URL đầy đủ của trình theo dõi";
+"Tracker's URL" = "URL Trình theo dõi";
+"Peers" = "Người dùng";
+"Seeds" = "Người chia sẻ";
+"Leechers" = "Người leech";
+"Are you shure to remove this trackers?" = "Bạn có chắc chắn muốn xóa các trình theo dõi này không?";
+"Tracker's URL copied to clipboard!" = "URL Trình theo dõi đã được sao chép vào clipboard!";
+
+//AppDelegate
+"Obtaining Metadata" = "Đang lấy dữ liệu siêu dữ liệu";
+"Finish the previous torrent adding before start the new one." = "Hoàn thành việc thêm torrent trước đó trước khi bắt đầu thêm mới.";
+"Error on torrent opening" = "Lỗi khi mở torrent";
+"Error on torrent reading" = "Lỗi khi đọc torrent";
+"Torrent file opening error has been occured" = "Đã xảy ra lỗi khi mở tệp torrent";
+"Wrong magnet link, check it and try again!" = "Liên kết magnet sai, hãy kiểm tra và thử lại!";
+"Download finished" = "Tải xuống hoàn tất";
+" finished downloading" = " tải xuống hoàn tất";
+"Seeding finished" = "Chia sẻ hoàn tất";
+" finished seeding" = " chia sẻ hoàn tất";
+
+"This action will recheck the state of all downloaded files for torrents:" = "Hành động này sẽ kiểm tra lại trạng thái của tất cả các tệp đã tải xuống cho các torrent:";
+
+//Background Task
+"BackgroundTask.LowSpeed.Title" = "Tốc độ tải thấp ";
+"BackgroundTask.LowSpeed.Message" = " sẽ dừng tải xuống dưới nền để tránh tiêu hao pin";
+"BackgroundTask.Mode.Audio" = "Âm thanh";
+"BackgroundTask.Mode.Location" = "Vị trí";
+
+//News Alerts
+"Dialogs.News.Title" = "Cảnh báo:";
+
+"Disabled" = "Đã tắt";
+"Hint" = "Gợi ý";
+
+"minute:single" = "phút";
+"minute:plural" = "phút";
+"minute:parent" = "phút";
+
+// mime
+"mime.video" = "Video";
+"mime.audio" = "Âm thanh";
+"mime.image" = "Ảnh";
+"mime.documents" = "Tài liệu";
+"mime.free" = "Trống";
+"mime.other" = "Khác";
+"mime.calculating" = "Đang tính toán...";
+
+// RSS Feed Provider
+"RssFeedProvider.Empty.Text" = "Danh sách RSS của bạn trống!\nThêm nguồn để nhận thông báo cập nhật nội dung";
+"RssFeedProvider.Notification.Title" = "Cập nhật RSS:";
+"RssFeedProvider.Error.Unknown" = "Đã xảy ra lỗi không xác định";
+"RssFeedProvider.Error.NotValid" = "URL không hợp lệ";
+"RssFeedProvider.Error.Exists" = "Nguồn RSS này đã tồn tại";
+
+// RSS Feed Controller
+"RssFeedController.AddTitle" = "Thêm Kênh RSS";
+"RssFeedController.RemoveTitle" = "Bạn có chắc chắn muốn xóa những nguồn này:";
+
+// RSS Channel Setup Controller
+"RssChannelSetup.UrlCopied" = "URL của kênh đã được sao chép vào clipboard!";
+"RssChannelSetup.Title" = "Tiêu đề";
+"RssChannelSetup.Description" = "Mô tả";
+"RssChannelSetup.Notify" = "Thông báo khi có cập nhật";
+
+// RSS Channel Controller
+"RssChannelController.Seen" = "Đã xem";
+"RssChannelController.Unseen" = "Chưa xem";
+"RssChannelController.ReadAll" = "Đọc tất cả";
+
+// RSS Item Controller
+"RssItemController.PinTorrent" = "Tệp torrent đính kèm với bài viết này";
+"RssItemController.PinMagnet" = "Liên kết Magnet đính kèm với bài viết này";
+
+//Version Info
+"info" = " Thông tin cập nhật";
+"UpdateText" = "Cập nhật cho các phiên bản iOS mới nhất\n- Cập nhật LibTorrent lên 2.0\n- Rất nhiều sửa lỗi và cải tiến giao diện người dùng";
