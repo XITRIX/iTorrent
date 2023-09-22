@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  iTorrent
+
+  Created by Daniil Vinogradov on 09.04.2020.
+  Copyright © 2020  XITRIX. All rights reserved.
+*/
+
+"NSPhotoLibraryAddUsageDescription" = "Cho phép, nếu bạn muốn có khả năng lưu tệp vào ứng dụng Ảnh.";
+"NSLocationWhenInUseUsageDescription" = "Quyền này CHỈ cần thiết để ứng dụng hoạt động và tải tệp torrent trong nền, iTorrent KHÔNG xử lý bất kỳ dữ liệu vị trí nào nhận được theo bất kỳ cách nào.";
+"NSPhotoLibraryAddUsageDescription" = "Quyền này CHỈ cần thiết để ứng dụng hoạt động và tải tệp torrent trong nền, iTorrent KHÔNG xử lý bất kỳ dữ liệu vị trí nào nhận được theo bất kỳ cách nào.";
