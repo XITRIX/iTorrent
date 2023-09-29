@@ -112,19 +112,67 @@ class TrackersListController: ThemedUIViewController {
     }
 
     @IBAction func addAction(_ sender: UIBarButtonItem) {
-        Dialog.withTextField(self, title: "Add Tracker", message: "Enter the full tracker's URL",
-                             textFieldConfiguration: { textField in
-                                 textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
-        }, okText: "Add") { textField in
-            Utils.checkFolderExist(path: Core.configFolder)
+        
+         Dialog.withTextView(self,
+                             title: "Add Trackers",
+                             message: "Enter tracker URLs separated by blank line",
+                             textViewConfiguration: { textView in
+                                 textView.placeholder = NSLocalizedString("Ex: http://x.x.x.x:8080/announce", comment: "")
+                             },
+                             okText: "Add") { textView in
+            
+                Utils.checkFolderExist(path: Core.configFolder)
 
-            if let _ = URL(string: textField.text!) {
-                print(TorrentSdk.addTrackerToTorrent(hash: self.managerHash, trackerUrl: textField.text!))
-                self.update()
-            } else {
-                Dialog.show(self, title: "Error", message: "Wrong link, check it and try again!")
+                let result = self.parseTorrentTrackersList(textView.text!)
+                let validTrackers = result.0
+                let processedEntries = result.1
+                if validTrackers.isEmpty {
+                    Dialog.show(self, title: "Error", message: "No valid tracker URLs found!\n     processed: \(processedEntries)")
+                } else {
+                    var added_count:Int = 0
+                    for tracker in validTrackers {
+                        let added:Bool = TorrentSdk.addTrackerToTorrent(hash: self.managerHash, trackerUrl: tracker)
+                        if(added){ added_count+=1 }
+                        print("Added Tracker: \(added) trackerUrl: \(tracker)")
+                    }
+                    if(validTrackers.count < processedEntries || added_count < validTrackers.count ){
+                        Dialog.show(self, title: "Warning", message: "Some entries were duplicate/invalid!\n processed: \(processedEntries) added: \(added_count)")
+                    }
+                    self.update()
+                }
+        }
+    }
+    
+    func isValidTrackerURL(_ url: String) -> Bool {
+        // Regular expression pattern to validate a tracker URL
+        let pattern = "^(http|https|udp)://[A-Za-z0-9.-]+(:[0-9]+)?(/[A-Za-z0-9.-]+)*(/[A-Za-z0-9?=&.-]+)*$"
+        
+        if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+            let range = NSRange(location: 0, length: url.utf16.count)
+            if let _ = regex.firstMatch(in: url, options: [], range: range) {
+                if let _ = URL(string: url) {
+                    return true
+                }
             }
         }
+        
+        return false
+    }
+
+    func parseTorrentTrackersList(_ input: String) -> ([String],Int) {
+        // Split the input string into lines, removing empty lines and trimming spaces
+        let entries = input
+            .components(separatedBy: .newlines)
+            .count
+        let lines = input
+            .components(separatedBy: .newlines)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+        
+        // Filter out the valid tracker URLs
+        let validTrackers = lines.filter { isValidTrackerURL($0) }
+        
+        return (validTrackers, entries)
     }
 
     @IBAction func removeAction(_ sender: UIBarButtonItem) {
