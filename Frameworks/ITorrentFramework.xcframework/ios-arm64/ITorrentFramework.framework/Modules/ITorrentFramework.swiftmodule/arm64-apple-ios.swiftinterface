@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.2.1.6 clang-1500.1.0.1.1)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ITorrentFramework
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Foundation
@@ -8,6 +8,7 @@ import ITorrentFramework.Private
 import Swift
 import _Concurrency
 import _StringProcessing
+import _SwiftConcurrencyShims
 extension ITorrentFramework.TorrentModel {
   public struct Hashes : Swift.Equatable, Swift.Hashable {
     public var v1: Swift.String?

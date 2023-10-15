@@ -5,8 +5,10 @@
 	<key>AvailableLibraries</key>
 	<array>
 		<dict>
+			<key>BinaryPath</key>
+			<string>ITorrentFramework.framework/ITorrentFramework</string>
 			<key>LibraryIdentifier</key>
-			<string>ios-arm64</string>
+			<string>xros-arm64-simulator</string>
 			<key>LibraryPath</key>
 			<string>ITorrentFramework.framework</string>
 			<key>SupportedArchitectures</key>
@@ -14,9 +16,13 @@
 				<string>arm64</string>
 			</array>
 			<key>SupportedPlatform</key>
-			<string>ios</string>
+			<string>xros</string>
+			<key>SupportedPlatformVariant</key>
+			<string>simulator</string>
 		</dict>
 		<dict>
+			<key>BinaryPath</key>
+			<string>ITorrentFramework.framework/ITorrentFramework</string>
 			<key>LibraryIdentifier</key>
 			<string>ios-arm64_x86_64-simulator</string>
 			<key>LibraryPath</key>
@@ -30,6 +36,20 @@
 			<string>ios</string>
 			<key>SupportedPlatformVariant</key>
 			<string>simulator</string>
+		</dict>
+		<dict>
+			<key>BinaryPath</key>
+			<string>ITorrentFramework.framework/ITorrentFramework</string>
+			<key>LibraryIdentifier</key>
+			<string>ios-arm64</string>
+			<key>LibraryPath</key>
+			<string>ITorrentFramework.framework</string>
+			<key>SupportedArchitectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>SupportedPlatform</key>
+			<string>ios</string>
 		</dict>
 	</array>
 	<key>CFBundlePackageType</key>
