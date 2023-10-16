@@ -124,8 +124,8 @@ class TrackersListController: ThemedUIViewController {
                 Utils.checkFolderExist(path: Core.configFolder)
 
                 let result = self.parseTorrentTrackersList(textView.text!)
-                let validTrackers = result.0
-                let processedEntries = result.1
+                let validTrackers = result.validTrackers
+                let processedEntries = result.entries
                 if validTrackers.isEmpty {
                     Dialog.show(self, title: "Error", message: "No valid tracker URLs found!\n     processed: \(processedEntries)")
                 } else {
@@ -137,6 +137,8 @@ class TrackersListController: ThemedUIViewController {
                     }
                     if(validTrackers.count < processedEntries || added_count < validTrackers.count ){
                         Dialog.show(self, title: "Warning", message: "Some entries were duplicate/invalid!\n processed: \(processedEntries) added: \(added_count)")
+                    }else{
+                        Dialog.show(self, title: "Info", message: "All valid tracker URLs were added!\n processed: \(processedEntries) added: \(added_count)")
                     }
                     self.update()
                 }
@@ -159,20 +161,17 @@ class TrackersListController: ThemedUIViewController {
         return false
     }
 
-    func parseTorrentTrackersList(_ input: String) -> ([String],Int) {
+    func parseTorrentTrackersList(_ input: String) -> (validTrackers: [String], entries: Int, lines: Int) {
         // Split the input string into lines, removing empty lines and trimming spaces
-        let entries = input
-            .components(separatedBy: .newlines)
-            .count
-        let lines = input
-            .components(separatedBy: .newlines)
+        let lines: [String] = input.components(separatedBy: .newlines)
+        let entries = lines
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
         
         // Filter out the valid tracker URLs
-        let validTrackers = lines.filter { isValidTrackerURL($0) }
+        let validTrackers = entries.filter { isValidTrackerURL($0) }
         
-        return (validTrackers, entries)
+        return (validTrackers, entries.count, lines.count)
     }
 
     @IBAction func removeAction(_ sender: UIBarButtonItem) {
