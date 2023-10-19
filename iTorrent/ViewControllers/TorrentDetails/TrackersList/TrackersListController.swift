@@ -203,9 +203,15 @@ class TrackersListController: ThemedUIViewController {
         }
     }
     
-    func isValidTrackerURL(_ url: String) -> Bool {
+    private func isValidTrackerURL(_ url: String) -> Bool {
         // Regular expression pattern to validate a tracker URL
-        let pattern = "^(http|https|udp)://[A-Za-z0-9.-]+(:[0-9]+)?(/[A-Za-z0-9.-]+)*(/[A-Za-z0-9?=&.-]+)*$"
+        let scheme              = #"https?|udp|ftp|torrent|magnet|ws|wss"#
+        let port                = #":[0-9]+"#
+        let ipv4_addr_domain    = #"[0-9A-Za-z.-]+"#                       // ipv4 addr or domain names
+        let ipv6_addr           = #"\[?[0-9A-Fa-f:]+\]?"#                  // ipv6 addr
+        let path                = #"(/[A-Za-z0-9.-]+)*"#
+        
+        let pattern = "^(\(scheme))://(\(ipv4_addr_domain)|\(ipv6_addr))(\(port))?\(path)?$"
         
         if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
             let range = NSRange(location: 0, length: url.utf16.count)
