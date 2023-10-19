@@ -252,7 +252,7 @@ class TrackersListController: ThemedUIViewController {
     }
 
     @IBAction func removeAction(_ sender: UIBarButtonItem) {
-        let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you shure to remove this trackers?", comment: ""), preferredStyle: .actionSheet)
+        let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you sure to remove this trackers?", comment: ""), preferredStyle: .actionSheet)
         let remove = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
             let urls: [String] = self.tableView.indexPathsForSelectedRows!.map {
                 self.trackers[$0.row].url
