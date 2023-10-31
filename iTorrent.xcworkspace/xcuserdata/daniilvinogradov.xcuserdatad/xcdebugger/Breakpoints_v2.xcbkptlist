@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "84320C93-C684-4CD5-B16C-FA09A0DA1DC0"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67CCD2C5-8C8B-48B8-ACD9-023490E48CB9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MvvmFoundation/MvvmFoundation/Utils/Router/Router.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "register(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "67CCD2C5-8C8B-48B8-ACD9-023490E48CB9 - 1f513289b3a688ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MvvmFoundation.Router.safeResolve&lt;&#x3c4;_0_0 where &#x3c4;_0_0: MvvmFoundation.MvvmViewModelProtocol&gt;(_: &#x3c4;_0_0, from: __C.UICollectionView, at: Foundation.IndexPath, with: Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Optional&lt;MvvmFoundation.MvvmCollectionViewCellProtocol&gt;"
+                  moduleName = "MvvmFoundation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/MvvmFoundation/MvvmFoundation/Utils/Router/Router.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "67CCD2C5-8C8B-48B8-ACD9-023490E48CB9 - 35cc68cedf4da4d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MvvmFoundation.Router.register&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0 == &#x3c4;_0_1.ViewModel, &#x3c4;_0_1: MvvmFoundation.MvvmSwiftUICellProtocol&gt;(&#x3c4;_0_1.Type) -&gt; ()"
+                  moduleName = "MvvmFoundation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/MvvmFoundation/MvvmFoundation/Utils/Router/Router.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "67CCD2C5-8C8B-48B8-ACD9-023490E48CB9 - 3bf17660a30bb8a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; Any in MvvmFoundation.Router.register&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_0_0 == &#x3c4;_0_1.ViewModel, &#x3c4;_0_1: MvvmFoundation.MvvmSwiftUICellProtocol&gt;(&#x3c4;_0_1.Type) -&gt; ()"
+                  moduleName = "MvvmFoundation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/MvvmFoundation/MvvmFoundation/Utils/Router/Router.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "768">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "353DB1DE-CC54-4C37-89DF-DFF24C1F62B7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MvvmFoundation/MvvmFoundation/Utils/Router/Router.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "register(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "BD8E40D9-3966-4981-B4A8-3F7C0AA46C93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "998EE3CD-7D1A-4AEE-9A3F-AB32CEF8E945"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LibTorrent/LibTorrent/Core/Session/Session.mm"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-saveTorrentFileWithInfo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
