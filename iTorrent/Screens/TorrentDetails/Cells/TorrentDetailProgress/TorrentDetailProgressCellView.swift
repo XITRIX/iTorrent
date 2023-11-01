@@ -1,22 +1,22 @@
 //
-//  DetailCellView.swift
+//  TorrentDetailProgressCellView.swift
 //  iTorrent
 //
-//  Created by Daniil Vinogradov on 30/10/2023.
+//  Created by Daniil Vinogradov on 31/10/2023.
 //
 
 import MvvmFoundation
 import SwiftUI
 
-struct DetailCellView: MvvmSwiftUICellProtocol {
-    @ObservedObject var viewModel: DetailCellViewModel
+struct TorrentDetailProgressCellView: MvvmSwiftUICellProtocol {
+    @ObservedObject var viewModel: TorrentDetailProgressCellViewModel
 
     var body: some View {
         HStack {
             Text(viewModel.title)
                 .fontWeight(.semibold)
-            Spacer(minLength: viewModel.spacer)
-            Text(viewModel.detail)
+            Spacer(minLength: 24)
+            ProgressView(value: viewModel.progress)
                 .foregroundStyle(Color(.secondaryAccent))
                 .multilineTextAlignment(.trailing)
         }
@@ -33,5 +33,5 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
 }
 
 #Preview {
-    DetailCellView(viewModel: .init(title: "Title", detail: "Detail"))
+    TorrentDetailProgressCellView(viewModel: .init(title: "Title", progress: 0.5))
 }

@@ -21,7 +21,7 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="nKi-Jc-6MZ" customClass="MvvmCollectionView" customModule="MvvmFoundation">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QHw-of-k4g">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -31,19 +31,19 @@
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
                 <constraint firstItem="nKi-Jc-6MZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BaT-BR-MUB"/>
-                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="IO7-6D-EmD"/>
+                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IO7-6D-EmD"/>
                 <constraint firstAttribute="bottom" secondItem="nKi-Jc-6MZ" secondAttribute="bottom" id="St9-HK-YAf"/>
-                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="wUz-wG-NfV"/>
+                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="wUz-wG-NfV"/>
             </constraints>
             <point key="canvasLocation" x="17.557251908396946" y="20.422535211267608"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

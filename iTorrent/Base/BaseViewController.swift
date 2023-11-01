@@ -10,7 +10,9 @@ import MvvmFoundation
 class BaseViewController<ViewModel: MvvmViewModelProtocol>: MvvmViewController<ViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
-//        title = viewModel.title.value
+        #if os(visionOS)
+        view.backgroundColor = nil
+        #endif
     }
 
     override func viewWillAppear(_ animated: Bool) {

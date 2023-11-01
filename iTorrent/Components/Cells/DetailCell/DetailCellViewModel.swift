@@ -17,10 +17,12 @@ import MvvmFoundation
 class DetailCellViewModel: BaseViewModel, ObservableObject {
     @Published var title: String = ""
     @Published var detail: String = ""
+    @Published var spacer: Double = 0
 
-    init(title: String = "", detail: String = "") {
+    init(title: String = "", detail: String = "", spacer: Double = 24) {
         self.title = title
         self.detail = detail
+        self.spacer = spacer
     }
 
     required init() {

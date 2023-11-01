@@ -17,6 +17,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
     private let addButton = UIBarButtonItem(title: "Add", image: .init(systemName: "plus"))
     private let preferencesButton = UIBarButtonItem(title: "Preferences", image: .init(systemName: "gearshape.fill"))
     private lazy var delegates = Delegates(parent: self)
+    private let searchVC = UISearchController()
 
     private lazy var documentPicker = makeDocumentPicker()
 
@@ -24,6 +25,9 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         super.viewDidLoad()
 
         setup()
+
+        searchVC.searchBar.textDidChangePublisher.assign(to: &viewModel.$searchQuery)
+        searchVC.searchBar.cancelButtonClickedPublisher.map { "" }.assign(to: &viewModel.$searchQuery)
 
         bind(in: disposeBag) {
             viewModel.$sections.sink { [unowned self] sections in
@@ -35,12 +39,19 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             }
         }
 
+        navigationItem.leadingItemGroups.append(.fixedGroup(items: [editButtonItem]))
         toolbarItems = [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         smoothlyDeselectRows(in: collectionView)
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        collectionView.isEditing = editing
+//        collectionView.setEditing(editing, animated: animated)
     }
 }
 
@@ -49,10 +60,17 @@ private extension TorrentListViewController {
         title = viewModel.title
         navigationItem.largeTitleDisplayMode = .always
         setupCollectionView()
+        setupSearch()
     }
 
     func setupCollectionView() {
+        collectionView.allowsMultipleSelectionDuringEditing = true
+    }
 
+    func setupSearch() {
+        searchVC.showsSearchResultsController = false
+        searchVC.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchVC
     }
 }
 

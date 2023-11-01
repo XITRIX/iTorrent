@@ -34,7 +34,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             })),
             fixedSpacing,
             .init(title: "Rehash", image: .init(systemName: "arrow.clockwise"), primaryAction: .init(handler: { [unowned self] _ in
-//                    viewModel.torrentHandle.pause()
+                viewModel.rehash()
             })),
             .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             .init(title: "Delete", image: .init(systemName: "trash"), primaryAction: .init(handler: { [unowned self] _ in

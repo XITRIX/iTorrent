@@ -109,6 +109,38 @@
             endingLineNumber = "376"
             landmarkName = "-saveTorrentFileWithInfo:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "998EE3CD-7D1A-4AEE-9A3F-AB32CEF8E945 - 102538e0015e17c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[Session saveTorrentFileWithInfo:]"
+                  moduleName = "LibTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/LibTorrent/LibTorrent/Core/Session/Session.mm"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "376"
+                  endingLineNumber = "376"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "998EE3CD-7D1A-4AEE-9A3F-AB32CEF8E945 - 102538e0015e17c9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[Session saveTorrentFileWithInfo:]"
+                  moduleName = "LibTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/LibTorrent/LibTorrent/Core/Session/Session.mm"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "376"
+                  endingLineNumber = "376"
+                  offsetFromSymbolStart = "552">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

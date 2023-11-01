@@ -33,10 +33,20 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let uploadModel = DetailCellViewModel(title: "Upload")
     private let timeLeftModel = DetailCellViewModel(title: "Time remains")
 
-    private let hashModel = DetailCellViewModel(title: "Hash")
-    private let hashModelV2 = DetailCellViewModel(title: "Hash V2")
-    private let creatorModel = DetailCellViewModel(title: "Creator")
+    private let progressModel = TorrentDetailProgressCellViewModel(title: "Progress")
+
+    private let hashModel = DetailCellViewModel(title: "Hash", spacer: 80)
+    private let hashModelV2 = DetailCellViewModel(title: "Hash v2", spacer: 80)
+    private let creatorModel = DetailCellViewModel(title: "Creator", spacer: 80)
     private let createdModel = DetailCellViewModel(title: "Created")
+
+    private let selectedModel = DetailCellViewModel(title: "Selected/Total")
+    private let completedModel = DetailCellViewModel(title: "Completed")
+    private let selectedProgressModel = DetailCellViewModel(title: "Progress Selected/Total")
+    private let downloadedModel = DetailCellViewModel(title: "Downloaded")
+    private let uploadedModel = DetailCellViewModel(title: "Uploaded")
+    private let seedersModel = DetailCellViewModel(title: "Seeders")
+    private let leechersModel = DetailCellViewModel(title: "Leechers")
 }
 
 extension TorrentDetailsViewModel {
@@ -47,15 +57,26 @@ extension TorrentDetailsViewModel {
     func pause() {
         torrentHandle.pause()
     }
+
+    func rehash() {
+        alert(title: "Torrent rehash", message: "This action will recheckthe state of all downloaded files", actions: [
+            .init(title: "Cancel", style: .cancel),
+            .init(title: "Rehash", style: .destructive, action: { [unowned self] in
+                torrentHandle.rehash()
+            })
+        ])
+    }
 }
 
 private extension TorrentDetailsViewModel {
     func reload() {
-        stateModel.detail = "\(torrentHandle.state.rawValue) | \(torrentHandle.isPaused ? "Paused" : "Running")"
-        
+        stateModel.detail = "\(torrentHandle.friendlyState.name)"// "\(torrentHandle.state.rawValue) | \(torrentHandle.isPaused ? "Paused" : "Running")"
+
         downloadModel.detail = "\(torrentHandle.downloadRate.bitrateToHumanReadable)/s"
         uploadModel.detail = "\(torrentHandle.uploadRate.bitrateToHumanReadable)/s"
         timeLeftModel.detail = torrentHandle.timeRemains
+
+        progressModel.progress = torrentHandle.progress
 
         if torrentHandle.infoHashes.hasV1 {
             hashModel.detail = torrentHandle.infoHashes.v1.hex
@@ -73,6 +94,14 @@ private extension TorrentDetailsViewModel {
             createdModel.detail = formatter.string(from: created)
         }
 
+        selectedModel.detail = "\(torrentHandle.totalWanted.bitrateToHumanReadable) / \(torrentHandle.total.bitrateToHumanReadable)"
+        completedModel.detail = "\(torrentHandle.totalDone.bitrateToHumanReadable)"
+        selectedProgressModel.detail = "\(String(format: "%.2f", torrentHandle.progress * 100))% / \(String(format: "%.2f", torrentHandle.progressWanted * 100))%"
+        downloadedModel.detail = "\(torrentHandle.totalDownload.bitrateToHumanReadable)"
+        uploadedModel.detail = "\(torrentHandle.totalUpload.bitrateToHumanReadable)"
+        seedersModel.detail = "\(torrentHandle.numberOfSeeds)(\(torrentHandle.numberOfTotalSeeds))"
+        leechersModel.detail = "\(torrentHandle.numberOfLeechers)(\(torrentHandle.numberOfTotalLeechers))"
+
         /// ------
 
         var sections: [MvvmCollectionSectionModel] = []
@@ -84,7 +113,14 @@ private extension TorrentDetailsViewModel {
         sections.append(.init(id: "speed", header: "Speed") {
             downloadModel
             uploadModel
-            timeLeftModel
+            
+            if !torrentHandle.isPaused {
+                timeLeftModel
+            }
+        })
+
+        sections.append(.init(id: "download", header: "Downloading") {
+            progressModel
         })
 //
         sections.append(.init(id: "info", header: "Primary info") {
@@ -102,6 +138,16 @@ private extension TorrentDetailsViewModel {
             if !creatorModel.detail.isEmpty {
                 createdModel
             }
+        })
+
+        sections.append(.init(id: "transfer", header: "Transfer") {
+            selectedModel
+            completedModel
+            selectedProgressModel
+            downloadedModel
+            uploadedModel
+            seedersModel
+            leechersModel
         })
 
         self.sections = sections

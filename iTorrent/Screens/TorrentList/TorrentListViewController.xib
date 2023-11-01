@@ -19,9 +19,9 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HhX-nd-LlB" customClass="MvvmCollectionView" customModule="MvvmFoundation">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HhX-nd-LlB" customClass="MvvmCollectionView" customModule="MvvmFoundation">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c4D-ER-2Z9">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -34,8 +34,8 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="HhX-nd-LlB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8ea-yX-UGw"/>
-                <constraint firstItem="HhX-nd-LlB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vbo-4T-sxk"/>
-                <constraint firstItem="HhX-nd-LlB" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="kK9-2K-Vix"/>
+                <constraint firstItem="HhX-nd-LlB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vbo-4T-sxk"/>
+                <constraint firstItem="HhX-nd-LlB" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="kK9-2K-Vix"/>
                 <constraint firstAttribute="bottom" secondItem="HhX-nd-LlB" secondAttribute="bottom" id="oMF-NQ-How"/>
             </constraints>
             <point key="canvasLocation" x="116.79389312977099" y="19.718309859154932"/>

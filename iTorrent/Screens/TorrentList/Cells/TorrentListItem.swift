@@ -16,10 +16,16 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
 
     var body: some View {
         VStack(alignment: .leading, content: {
+            let percent = "\(String(format: "%.2f", viewModel.torrentHandle.progress * 100))%"
             Text(viewModel.torrentHandle.name)
                 .foregroundStyle(.primary)
-            Text("\(String(format: "%.2f", viewModel.torrentHandle.progress * 100))%")
+                .font(.subheadline.weight(.semibold))
+            Text("\(viewModel.torrentHandle.totalWantedDone.bitrateToHumanReadable) of \(viewModel.torrentHandle.totalWanted.bitrateToHumanReadable) (\(percent))")
                 .foregroundStyle(.secondary)
+                .font(.footnote)
+            Text("\(viewModel.torrentHandle.friendlyState.name)")
+                .foregroundStyle(.secondary)
+                .font(.footnote)
             ProgressView(value: viewModel.torrentHandle.progress)
         })
         .swipeActions {
@@ -36,7 +42,7 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
             cell.contentConfiguration = UIHostingConfiguration {
                 Self(viewModel: itemIdentifier)
             }
-            cell.accessories = [.disclosureIndicator()]
+            cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
         }
     }()
 }

@@ -27,7 +27,7 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
         }
 
         selectAction = { [unowned self] in
-            navigate(to: TorrentDetailsViewModel.self, with: model, by: .show)
+            navigate(to: TorrentDetailsViewModel.self, with: model, by: .detail)
         }
     }
 

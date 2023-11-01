@@ -10,6 +10,9 @@ import Foundation
 extension UInt {
     var bitrateToHumanReadable: String {
         let formatter = ByteCountFormatter()
+        formatter.allowedUnits = .useAll.subtracting(.useBytes)
+        formatter.countStyle = .binary
+        formatter.allowsNonnumericFormatting = false
         return formatter.string(fromByteCount: Int64(self))
     }
 
