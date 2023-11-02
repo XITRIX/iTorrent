@@ -8,9 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TorrentDetailsViewController" customModule="iTorrent" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TorrentFilesViewController" customModule="iTorrent" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="nKi-Jc-6MZ" id="Y0r-Bl-P4R"/>
+                <outlet property="collectionView" destination="2f8-pu-0Uj" id="hVF-y3-EvP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,10 +19,10 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="nKi-Jc-6MZ" customClass="MvvmCollectionView" customModule="MvvmFoundation">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2f8-pu-0Uj" customClass="MvvmCollectionView" customModule="MvvmFoundation">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QHw-of-k4g">
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGW-uV-EYK">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -31,19 +31,19 @@
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BaT-BR-MUB"/>
-                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IO7-6D-EmD"/>
-                <constraint firstAttribute="bottom" secondItem="nKi-Jc-6MZ" secondAttribute="bottom" id="St9-HK-YAf"/>
-                <constraint firstItem="nKi-Jc-6MZ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="wUz-wG-NfV"/>
+                <constraint firstAttribute="bottom" secondItem="2f8-pu-0Uj" secondAttribute="bottom" id="ArG-cB-KHp"/>
+                <constraint firstItem="2f8-pu-0Uj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YVD-Ah-bh4"/>
+                <constraint firstItem="2f8-pu-0Uj" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="Ydz-O8-gpe"/>
+                <constraint firstItem="2f8-pu-0Uj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wwQ-ZQ-Fs3"/>
             </constraints>
-            <point key="canvasLocation" x="17.557251908396946" y="20.422535211267608"/>
+            <point key="canvasLocation" x="104.58015267175573" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

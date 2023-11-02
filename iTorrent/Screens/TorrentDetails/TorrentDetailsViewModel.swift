@@ -5,9 +5,10 @@
 //  Created by Daniil Vinogradov on 30/10/2023.
 //
 
+import Combine
 import LibTorrent
 import MvvmFoundation
-import Combine
+import UIKit
 
 class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private var torrentHandle: TorrentHandle!
@@ -21,8 +22,13 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
 
         reload()
         disposeBag.bind {
-            torrentHandle.updatePublisher.throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true).sink { [unowned self] _ in
-                reload()
+            torrentHandle.updatePublisher
+                .sink { [unowned self] _ in
+                    reload()
+                }
+
+            sequentialModel.$isOn.sink { [unowned self] value in
+                torrentHandle.setSequentialDownload(value)
             }
         }
     }
@@ -33,6 +39,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let uploadModel = DetailCellViewModel(title: "Upload")
     private let timeLeftModel = DetailCellViewModel(title: "Time remains")
 
+    private let sequentialModel = ToggleCellViewModel(title: "Sequential download")
     private let progressModel = TorrentDetailProgressCellViewModel(title: "Progress")
 
     private let hashModel = DetailCellViewModel(title: "Hash", spacer: 80)
@@ -47,9 +54,19 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let uploadedModel = DetailCellViewModel(title: "Uploaded")
     private let seedersModel = DetailCellViewModel(title: "Seeders")
     private let leechersModel = DetailCellViewModel(title: "Leechers")
+
+    private lazy var filesModel = DetailCellViewModel(title: "Files") { [unowned self] in
+        navigate(to: TorrentFilesViewModel.self, with: torrentHandle, by: .show)
+    }
 }
 
 extension TorrentDetailsViewModel {
+    var shareAvailable: AnyPublisher<Bool, Never> {
+        torrentHandle.updatePublisher
+            .map { !$0.torrentFilePath.isNilOrEmpty }
+            .eraseToAnyPublisher()
+    }
+
     func resume() {
         torrentHandle.resume()
     }
@@ -66,16 +83,26 @@ extension TorrentDetailsViewModel {
             })
         ])
     }
+
+    func shareMagnet() {
+        UIPasteboard.general.string = torrentHandle.magnetLink
+        alertWithTimer(message: "Magnet URL copied into clipboard")
+    }
+
+    var torrentFilePath: String? {
+        torrentHandle.torrentFilePath
+    }
 }
 
 private extension TorrentDetailsViewModel {
     func reload() {
-        stateModel.detail = "\(torrentHandle.friendlyState.name)"// "\(torrentHandle.state.rawValue) | \(torrentHandle.isPaused ? "Paused" : "Running")"
+        stateModel.detail = "\(torrentHandle.friendlyState.name)" // "\(torrentHandle.state.rawValue) | \(torrentHandle.isPaused ? "Paused" : "Running")"
 
         downloadModel.detail = "\(torrentHandle.downloadRate.bitrateToHumanReadable)/s"
         uploadModel.detail = "\(torrentHandle.uploadRate.bitrateToHumanReadable)/s"
         timeLeftModel.detail = torrentHandle.timeRemains
 
+        sequentialModel.isOn = torrentHandle.isSequential
         progressModel.progress = torrentHandle.progress
 
         if torrentHandle.infoHashes.hasV1 {
@@ -113,13 +140,14 @@ private extension TorrentDetailsViewModel {
         sections.append(.init(id: "speed", header: "Speed") {
             downloadModel
             uploadModel
-            
+
             if !torrentHandle.isPaused {
                 timeLeftModel
             }
         })
 
         sections.append(.init(id: "download", header: "Downloading") {
+            sequentialModel
             progressModel
         })
 //
@@ -148,6 +176,10 @@ private extension TorrentDetailsViewModel {
             uploadedModel
             seedersModel
             leechersModel
+        })
+
+        sections.append(.init(id: "actions", header: "Actions") {
+            filesModel
         })
 
         self.sections = sections

@@ -14,20 +14,22 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
     var torrentHandle: TorrentHandle!
     @Published var updater: Bool = false
     var selectAction: (() -> Void)?
+    var id: Int { hashValue }
 
     override func prepare(with model: TorrentHandle) {
         torrentHandle = model
 
         disposeBag.bind {
-            torrentHandle.updatePublisher.sink { [unowned self] in
-                withAnimation {
-                    updater.toggle()
+            torrentHandle.updatePublisher
+                .sink { [unowned self] _ in
+//                    withAnimation {
+                        updater.toggle()
+//                    }
                 }
-            }
         }
 
         selectAction = { [unowned self] in
-            navigate(to: TorrentDetailsViewModel.self, with: model, by: .detail)
+            navigate(to: TorrentDetailsViewModel.self, with: model, by: .detail(asRoot: true))
         }
     }
 

@@ -1,24 +1,23 @@
 //
-//  DetailCellView.swift
+//  ToggleCellView.swift
 //  iTorrent
 //
-//  Created by Daniil Vinogradov on 30/10/2023.
+//  Created by Daniil Vinogradov on 02/11/2023.
 //
 
 import MvvmFoundation
 import SwiftUI
 
-struct DetailCellView: MvvmSwiftUICellProtocol {
-    @ObservedObject var viewModel: DetailCellViewModel
+struct ToggleCellView: MvvmSwiftUICellProtocol {
+    @ObservedObject var viewModel: ToggleCellViewModel
 
     var body: some View {
         HStack {
-            Text(viewModel.title)
-                .fontWeight(.semibold)
-            Spacer(minLength: viewModel.spacer)
-            Text(viewModel.detail)
-                .foregroundStyle(Color(.secondaryAccent))
-                .multilineTextAlignment(.trailing)
+//            Spacer(minLength: viewModel.spacer)
+            Toggle(isOn: $viewModel.isOn) {
+                Text(viewModel.title)
+                    .fontWeight(.semibold)
+            }
         }
         #if os(visionOS)
         .frame(minHeight: 44)
@@ -34,5 +33,5 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
 }
 
 #Preview {
-    DetailCellView(viewModel: .init(title: "Title", detail: "Detail"))
+    ToggleCellView(viewModel: .init(title: "Title", isOn: false))
 }

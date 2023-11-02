@@ -13,6 +13,12 @@ extension TorrentHandle {
         case .downloading:
             if isPaused { return .paused }
             else { return .downloading }
+        case .finished:
+            if isPaused { return .finished }
+            else { return .seeding }
+        case .seeding:
+            if isPaused { return .finished }
+            else { return .seeding }
         default:
             return state
         }

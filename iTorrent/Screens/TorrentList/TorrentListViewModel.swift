@@ -13,7 +13,8 @@ class TorrentListViewModel: BaseViewModel {
     @Published var searchQuery: String = ""
     @Published var title: String = ""
 
-    override func binding() {
+    required init() {
+        super.init()
         title = "iTorrent"
         
         TorrentService.shared.$torrents.combineLatest($searchQuery) { torrentHandles, searchQuery in

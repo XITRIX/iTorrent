@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension UInt {
+extension UInt64 {
     var bitrateToHumanReadable: String {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = .useAll.subtracting(.useBytes)

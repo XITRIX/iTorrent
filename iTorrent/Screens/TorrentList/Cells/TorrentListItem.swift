@@ -15,19 +15,19 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
     @ObservedObject var viewModel: TorrentListItemViewModel
 
     var body: some View {
-        VStack(alignment: .leading, content: {
+        VStack(alignment: .leading, spacing: 6) {
             let percent = "\(String(format: "%.2f", viewModel.torrentHandle.progress * 100))%"
             Text(viewModel.torrentHandle.name)
                 .foregroundStyle(.primary)
                 .font(.subheadline.weight(.semibold))
-            Text("\(viewModel.torrentHandle.totalWantedDone.bitrateToHumanReadable) of \(viewModel.torrentHandle.totalWanted.bitrateToHumanReadable) (\(percent))")
-                .foregroundStyle(.secondary)
-                .font(.footnote)
-            Text("\(viewModel.torrentHandle.friendlyState.name)")
-                .foregroundStyle(.secondary)
-                .font(.footnote)
+            VStack(alignment: .leading, spacing: 0) {
+                Text("\(viewModel.torrentHandle.totalWantedDone.bitrateToHumanReadable) of \(viewModel.torrentHandle.totalWanted.bitrateToHumanReadable) (\(percent))")
+                Text("\(viewModel.torrentHandle.friendlyState.name)")
+            }
+            .foregroundStyle(.secondary)
+            .font(.footnote)
             ProgressView(value: viewModel.torrentHandle.progress)
-        })
+        }
         .swipeActions {
             Button(role: .destructive) {
                 TorrentService.shared.removeTorrent(by: viewModel.torrentHandle.infoHashes)

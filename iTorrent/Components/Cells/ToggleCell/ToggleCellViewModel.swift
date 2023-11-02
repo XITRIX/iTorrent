@@ -1,8 +1,8 @@
 //
-//  DetailCellViewModel.swift
+//  ToggleCellViewModel.swift
 //  iTorrent
 //
-//  Created by Daniil Vinogradov on 30/10/2023.
+//  Created by Daniil Vinogradov on 02/11/2023.
 //
 
 import MvvmFoundation
@@ -14,18 +14,17 @@ import MvvmFoundation
 //    }
 // }
 
-class DetailCellViewModel: BaseViewModel, ObservableObject, MvvmSelectableProtocol {
+class ToggleCellViewModel: BaseViewModel, ObservableObject {
     var selectAction: (() -> Void)?
 
     @Published var title: String = ""
-    @Published var detail: String = ""
+    @Published var isOn: Bool = false
     @Published var spacer: Double = 0
 
-    init(title: String = "", detail: String = "", spacer: Double = 24, selectAction: (() -> Void)? = nil) {
+    init(title: String = "", isOn: Bool = false, spacer: Double = 24) {
         self.title = title
-        self.detail = detail
+        self.isOn = isOn
         self.spacer = spacer
-        self.selectAction = selectAction
     }
 
     required init() {

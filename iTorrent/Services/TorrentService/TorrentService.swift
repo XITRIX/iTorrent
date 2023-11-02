@@ -51,7 +51,7 @@ extension TorrentService {
 
 extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.main.sync { [self] in
             torrents.append(torrent)
         }
     }
@@ -65,8 +65,8 @@ extension TorrentService: SessionDelegate {
         guard let existingTorrent = torrents.first(where: { $0.hashValue == torrent.hashValue })
         else { return }
 
-        DispatchQueue.main.async {
-            existingTorrent.updatePublisher.send(())
+        DispatchQueue.main.sync {
+            existingTorrent.updatePublisher.send(existingTorrent)
         }
     }
 
@@ -75,11 +75,11 @@ extension TorrentService: SessionDelegate {
 
 private var TorrentHandleUpdatePublisherKey: UInt8 = 0
 extension TorrentHandle {
-    var updatePublisher: PassthroughSubject<Void, Never> {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<Void, Never>
+    var updatePublisher: PassthroughSubject<TorrentHandle, Never> {
+        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
         else {
-            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<Void, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<Void, Never>
+            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
         }
         return obj
     }
