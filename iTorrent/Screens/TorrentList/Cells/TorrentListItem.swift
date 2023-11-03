@@ -5,9 +5,9 @@
 //  Created by Daniil Vinogradov on 29/10/2023.
 //
 
-import SwiftUI
-import MvvmFoundation
 import LibTorrent
+import MvvmFoundation
+import SwiftUI
 
 struct TorrentListItemView: MvvmSwiftUICellProtocol {
     typealias ViewModel = TorrentListItemViewModel
@@ -30,19 +30,17 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
         }
         .swipeActions {
             Button(role: .destructive) {
-                TorrentService.shared.removeTorrent(by: viewModel.torrentHandle.infoHashes)
+                viewModel.removeTorrent()
             } label: {
                 Image(systemName: "trash")
             }
         }
     }
 
-    static let registration: UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel> = {
-        return .init { cell, indexPath, itemIdentifier in
-            cell.contentConfiguration = UIHostingConfiguration {
-                Self(viewModel: itemIdentifier)
-            }
-            cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
+    static let registration: UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel> = .init { cell, _, itemIdentifier in
+        cell.contentConfiguration = UIHostingConfiguration {
+            Self(viewModel: itemIdentifier)
         }
-    }()
+        cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
+    }
 }

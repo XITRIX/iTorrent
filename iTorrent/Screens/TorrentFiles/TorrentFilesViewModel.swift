@@ -29,15 +29,15 @@ class TorrentFilesViewModel: BaseViewModelWith<TorrentHandle> {
 private extension TorrentFilesViewModel {
     func reload(with torrentHandle: TorrentHandle) {
         let oldItems = sections.first?.items.map { $0 as? TorrentFilesItemViewModel }.compactMap { $0 } ?? []
+        let newFiles = torrentHandle.files
 
-        let items = torrentHandle.files.map { file in
-            if let item = oldItems.first(where: { $0.file.path == file.path }) {
-                item.prepare(with: file)
-                return item
+        guard oldItems.count != newFiles.count else {
+            return oldItems.enumerated().forEach { item in
+                item.element.prepare(with: newFiles[item.offset])
             }
-            return TorrentFilesItemViewModel(with: file)
         }
 
+        let items = torrentHandle.files.map { TorrentFilesItemViewModel(with: $0) }
         self.sections = [.init(id: "files", style: .plain, items: items)]
     }
 }

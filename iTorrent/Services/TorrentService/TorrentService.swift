@@ -40,12 +40,12 @@ extension TorrentService {
         session.addTorrent(file)
     }
 
-    func removeTorrent(by infoHashes: TorrentHashes) {
-        guard let handle = torrents.first(where: { $0.infoHashes == infoHashes }),
-              handle.isValid
+    func removeTorrent(by infoHashes: TorrentHashes, deleteFiles: Bool) {
+        guard let handle = torrents.first(where: { $0.infoHashes == infoHashes })
+//              handle.isValid
         else { return }
 
-        session.removeTorrent(handle, deleteFiles: true)
+        session.removeTorrent(handle, deleteFiles: deleteFiles)
     }
 }
 

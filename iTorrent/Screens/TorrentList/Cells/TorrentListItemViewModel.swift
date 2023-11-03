@@ -36,4 +36,16 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
     override func hash(into hasher: inout Hasher) {
         hasher.combine(torrentHandle)
     }
+
+    func removeTorrent() {
+        alert(title: "Are you sure to remove", message: torrentHandle.name, actions: [
+            .init(title: "Yes and remove data", style: .destructive, action: { [unowned self] in
+                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
+            }),
+            .init(title: "Yes but keep data", style: .default, action: { [unowned self] in
+                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
+            }),
+            .init(title: "Cancel", style: .cancel)
+        ])
+    }
 }

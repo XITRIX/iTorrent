@@ -124,6 +124,7 @@ private extension BaseSplitViewController {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .fontDesign(.rounded)
+                .ignoresSafeArea()
         }
     }
 }

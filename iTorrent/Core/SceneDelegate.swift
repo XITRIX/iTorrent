@@ -10,7 +10,7 @@ import UIKit
 
 class SceneDelegate: MvvmSceneDelegate {
     override func initialSetup() {
-        window?.tintColor = .systemRed
+        window?.tintColor = .accent
     }
 
     override func register(in container: Container) {
