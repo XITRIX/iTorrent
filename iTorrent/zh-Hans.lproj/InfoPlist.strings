@@ -1,12 +1,12 @@
 /* 
-  InfoPlist.strings
+  Localizable.strings
   iTorrent
 
   Created by Daniil Vinogradov on 09.04.2020.
-  Copyright © 2020  XITRIX. All rights reserved.
+  Last Edit by NijiNeko on 10.23.2023.
+  Copyright © 2018  XITRIX. All rights reserved.
 */
 
-"NSPhotoLibraryAddUsageDescription" = "允许以存储文件到照片 App";
-"NSUserTrackingUsageDescription" = "支持开发者，允许个性化广告";
-"BitTorrent Metadata" = "BT 种子元数据";
-"CFBundleName" = "iTorrent 下载器";
+"NSPhotoLibraryAddUsageDescription" = "如果您希望能够将文件保存到照片应用，请允许";
+"NSLocationWhenInUseUsageDescription" = "此权限仅适用于让应用程序在后台工作以下载 Torrent 文件，iTorrent不会以任何方式使用接收到的地理位置数据";
+"NSPhotoLibraryAddUsageDescription" = "此权限仅适用于让应用程序在后台工作以下载 Torrent 文件，iTorrent不会以任何方式使用接收到的地理位置数据";

@@ -2,15 +2,16 @@
   Localizable.strings
   iTorrent
 
-  Created by Daniil Vinogradov on 20/08/2018.
-  Copyright © 2018  XITRIX. All rights reserved.
+  Created by Daniil Vinogradov on 09.04.2020.
+  Last Edit by NijiNeko on 10.23.2023.
+  Copyright © 2018  XITRIX. All rights reserved.
 */
 
 
 // Torrent States
 "State.All" = "全部";
 "Queued" = "队列中";
-"Hashing" = "校验中";
+"Hashing" = "正在校验Hash";
 "Metadata" = "元数据";
 "Downloading" = "下载中";
 "Finished" = "已完成";
@@ -20,8 +21,8 @@
 "Paused" = "已暂停";
 
 //SpeedPicker
-"SpeedPicker.Title" = "速度值 (KB/s)";
-"SpeedPicker.Error" = "错误值";
+"SpeedPicker.Title" = "速度 (KB/s)";
+"SpeedPicker.Error" = "错误的值";
 
 //Main Controller
 "of" = "/";
@@ -32,7 +33,7 @@
 "Select" = "选择";
 "Select All" = "全选";
 "Deselect" = "取消选择";
-"None" = "没有";
+"None" = "空";
 
 "Search" = "搜索";
 
@@ -41,55 +42,55 @@
 "Delete" = "删除";
 
 "time remains" = "剩余时间";
-"eternity" = "无穷";
+"eternity" = "无法预估";
 
-"Add from..." = "从...添加";
+"Add from..." = "从……添加";
 "Add from URL" = "从 URL 添加";
-"Please enter the existing torrent's URL below" = "请输入已有的 Torrent URL";
+"Please enter the existing torrent's URL below" = "请在下面输入现有的 Torrent URL";
 "Error has been occured" = "发生了错误";
-"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "Torrent 文件损坏或该 URL 具有某种 DDOS 保护，你可以尝试在 Safari 打开此链接";
-"Open in Safari" = "在 Safari 中打开";
+"Torrent file is broken or this URL has some sort of DDOS protection, you can try to open this link in Safari" = "此 Torrent 文件可能已损坏或此 URL 可能存在某种DDOS防护，您可以尝试在 Safari 中打开此链接";
+"Open in Safari" = "通过 Safari 打开";
 "This torrent already exists" = "这个 Torrent 已存在";
 "Torrent with hash:" = "Torrent Hash:";
-"already exists in download queue" = "已在下载队列中";
-"Please, open this link in Safari, and send .torrent file from there" = "请在 Safari 中打开这个链接，然后发送 .torrent 文件到这里";
-"Wrong link, check it and try again!" = "错误的链接，检查并重试";
-"Add from magnet" = "从磁力链添加";
-"Please enter the magnet link below" = "请在下方输入磁力链";
+"already exists in download queue" = "已存在于下载队列中";
+"Please, open this link in Safari, and send .torrent file from there" = "请在 Safari 中打开链接，然后将 .torrent 文件发送到这里";
+"Wrong link, check it and try again!" = "链接错误，请检查并重试";
+"Add from magnet" = "从磁力链接添加";
+"Please enter the magnet link below" = "请在下面输入磁力链接";
 "Close" = "关闭";
 "Cancel" = "取消";
 "Error" = "错误";
 
-"Are you sure to remove" = "你确定要删除吗";
-"torrents" = "torrents";
+"Are you sure to remove" = "您确定要删除吗";
+"torrents" = "个 Torrent";
 "Yes and remove data" = "是，且删除数据";
 "Yes but keep data" = "是，但保留数据";
 
-"torrent" = "torrent";
-"Are you sure to remove this magnet torrent?" = "你确定删除这个磁力链 Torrent 吗？";
-"Remove" = "删除";
+"torrent" = "Torrent";
+"Are you sure to remove this magnet torrent?" = "您确定要删除这个磁力链接的 Torrent 吗";
+"Remove" = "Remove";
 
 "Name" = "名称";
 "Date Added" = "添加日期";
 "Date Created" = "创建日期";
 "Size" = "大小";
-"Sort Torrents By:" = "Torrent 的排序方法: ";
-"Currently sorted by " = "当前排序方式：按";
+"Sort Torrents By:" = "Torrents 排序方法:";
+"Currently sorted by " = "当前排序按 ";
 "Disable state sections" = "关闭状态选单";
 "Enable state sections" = "开启状态选单";
-"MainController.Table.Placeholder.Text" = "下载列表为空！\n使用 Chrome 下载 Torrent 文件或使用 '+' 按钮来添加";
+"MainController.Table.Placeholder.Text" = "下载列表为空!\n请使用 Chrome 下载 Torrent 文件或使用'+'号按钮添加";
 
 //Torrent details
 "Torrent file" = "Torrent 文件";
-"Magnet link" = "磁力链";
-"Magnet link copied to clipboard" = "磁力链已拷贝到剪切板";
-"Files" = "文件";
+"Magnet link" = "磁力链接";
+"Magnet link copied to clipboard" = "磁力链接已拷贝到剪贴板";
+"Files" = "文件列表";
 "Trackers" = "Trackers";
-"Details.BackgroundSeeding.Warning" = "后台做种当前已关闭，如果你关闭这个 App，做种将停止。你确定要开启后台做种吗？\n如果没有设定做种限额，那么 App 将一直在后台工作，这可能会导致电池耗尽。";
+"Details.BackgroundSeeding.Warning" = "后台做种当前已关闭，如果您关闭 APP，做种将停止。是否要启用后台做种？\n如果您没有设定做种限制，那么 APP 将一直在后台工作，这可能会导致电池耗尽。";
 
 "Details.State" = "状态";
 
-"Details.Speed.Title" = "标题";
+"Details.Speed.Title" = "速度";
 "Details.Speed.Download" = "下载";
 "Details.Speed.Upload" = "上传";
 "Details.Speed.Remains" = "剩余时间";
@@ -98,73 +99,78 @@
 "Details.Downloading.Sequential" = "顺序下载";
 "Details.Downloading.Progress" = "进度";
 
-"Details.Seeding.Title" = "做种中";
+"Details.Seeding.Title" = "做种";
 "Details.Seeding.Allow" = "允许做种";
-"Details.Seeding.Limit" = "做种限额";
+"Details.Seeding.Limit" = "做种限制";
 
-"Details.Info.Title" = "一般信息";
-"Details.Info.Hash" = "哈希值";
+"Details.Info.Title" = "常规信息";
+"Details.Info.Hash" = "Hash";
 "Details.Info.Creator" = "创建者";
 "Details.Info.Created" = "创建于";
 "Details.Info.Added" = "添加于";
 "Details.Info.Comment" = "备注";
 
 "Details.Transfer.Title" = "传输";
-"Details.Transfer.Total" = "选中/全部";
+"Details.Transfer.Total" = "已选择/全部";
 "Details.Transfer.Completed" = "已完成";
-"Details.Transfer.Progress" = "选中进度/全部进度";
+"Details.Transfer.Progress" = "已选择进度/全部进度";
 "Details.Transfer.Downloaded" = "已下载";
 "Details.Transfer.Uploaded" = "已上传";
-"Details.Transfer.Seeders" = "完成";
+"Details.Transfer.Seeders" = "做种数";
 "Details.Transfer.Leechers" = "下载";
 
 "Details.More.Title" = "更多";
 "Details.More.Trackers" = "Trackers";
+"Details.More.Peers" = "用户";
 "Details.More.Files" = "文件列表";
 
-"copied" = "已拷贝！";
+"copied" = "已拷贝";
 
 //Settings Controller
-"Settings.Title" = "偏好设置";
+"Settings.Title" = "设置";
 "Settings.Appearance.Header" = "外观";
 "Settings.Order" = "排列顺序";
 "Settings.AutoTheme" = "自动切换主题";
 "Settings.Theme" = "深色模式";
 
-"Settings.Storage.Header" = "存储空间";
+"Settings.Storage.Header" = "储存";
 "Settings.Storage.Available" = "可用";
 "Settings.Storage.Allocate" = "预分配空间";
-"Settings.Storage.Allocate.Hint" = "如果开启，iTorrent 将预分配空间给下载文件";
+"Settings.Storage.Allocate.Hint" = "如果启用，iTorrent 将在下载文件前预先分配储存空间";
 
-"Settings.BackgroundEnable" = "开关";
+"Settings.BackgroundEnable" = "启用";
+"Settings.BackgroundMode" = "后台模式";
+"Settings.BackgroundMode.Select" = "选择后台模式";
+"Settings.BackgroundMode.Hint" = "音频模式 - 通过播放无声音频，使应用程序可以在后台继续工作。此模式不太稳定，但不需要额外的权限\n\n位置模式 - 通过启用位置服务，使应用程序可以在后台继续工作。更稳定，支持Live Activities和Dynamic Island。由于使用了位置服务，状态栏将显示为蓝色，而且需要额外的用户权限，iTorrent不会使用定位服务中的任何数据";
 "Settings.BackgroundSeeding" = "允许做种";
-"Settings.BackgroundSeeding.Warning" = "若禁用后台做种，App 进入后台将停止做种。您希望启用后台做种吗？若未设置做种限制，App 会持续在后台做种，可能导致电量耗尽。";
+"Settings.BackgroundSeeding.Warning" = "若禁用后台做种，APP 进入后台后将停止做种。您希望启用后台做种吗？若未设置做种限制，APP 将会持续在后台做种，这可能会导致电量耗尽。";
 "Settings.BackgroundHeader" = "后台下载";
-"Settings.BackgroundFooter" = "通过多媒体功能启动后台下载";
-"Settings.QueueLimitHeader" = "Torrent 队列限制";
-"Settings.TorrentsLimit" = "可用 Torrent";
-"Settings.TorrentsDownLimit" = "下载中的 Torrent ";
-"Settings.TorrentsUpLimit" = "上传中的 Torrent ";
+"Settings.BackgroundFooter" = "通过多媒体功能启用后台下载";
 
-"Settings.ZeroSpeedLimit" = "零速度限额";
-"Settings.ZeroSpeedLimit.Hint" = "如果下载速度在一定时间内为 0，那么应用程序将停止后台处理以防止不必要的电量消耗";
+"Settings.QueueLimitHeader" = "Torrent 队列限制";
+"Settings.TorrentsLimit" = "活跃的 Torrent";
+"Settings.TorrentsDownLimit" = "下载中的 Torrent";
+"Settings.TorrentsUpLimit" = "上传中的 Torrent";
+
+"Settings.ZeroSpeedLimit" = "0速度限制";
+"Settings.ZeroSpeedLimit.Hint" = "如果下载速度在一定时间内为0，那么应用程序将停止后台处理以防止不必要的电量消耗";
 "Settings.DownLimit" = "下载限速";
 "Settings.UpLimit" = "上传限速";
 "Settings.SpeedHeader" = "速度限制";
 
-"Settings.FTPEnable" = "开关";
-"Settings.FTPEnable.Hint" = "通过此设置，你可以启动文件服务器并通过通常的网页浏览器或 WebDav 客户端来进行连接";
-"Settings.FTP.Settings" = "设定";
+"Settings.FTPEnable" = "启用";
+"Settings.FTPEnable.Hint" = "如果启用此设置，你可以启动文件服务器并通过通常的网页浏览器或 WebDav 客户端来进行连接";
+"Settings.FTP.Settings" = "设置";
 "Settings.FTPBackground" = "后台运行";
-"Settings.FTP.Message.NoNetwork" = "连接 WIFI 来使用文件共享";
+"Settings.FTP.Message.NoNetwork" = "连接 WIFI 以使用文件共享";
 "Settings.FTP.Message" = "连接至: ";
-"Settings.FTP.WebDav.Username" = "账号";
+"Settings.FTP.WebDav.Username" = "用户名";
 "Settings.FTP.WebDav.Password" = "密码";
-"Settings.FTP.WebDav.Username.Placeholder" = "账号";
+"Settings.FTP.WebDav.Username.Placeholder" = "用户名";
 "Settings.FTP.WebDav.Password.Placeholder" = "密码 (可选)";
-"Settings.FTP.WebDav.PassText" = "重启服务器来应用设置";
+"Settings.FTP.WebDav.PassText" = "重启服务器以应用设置";
 "Settings.FTP.WebDav.WebTitle" = "Web 服务器";
-"Settings.FTP.WebDav.WebText" = "使用任何网页浏览器来共享文件";
+"Settings.FTP.WebDav.WebText" = "使用任意 Web 浏览器来共享文件";
 "Settings.FTP.WebDav.WebDavTitle" = "WebDAV 服务器";
 "Settings.FTP.WebDav.WebDavPort" = "端口";
 "Settings.FTP.WebDav.WebDavText" = "使用 WebDAV 客户端连接至 iTorrent";
@@ -173,7 +179,7 @@
 "Settings.Network.Header" = "网络";
 "Settings.Network.Proxy" = "代理";
 "Settings.Network.Connection" = "连接设置";
-"Settings.Network.Proxy.Type.Header" = "主机";
+"Settings.Network.Proxy.Type.Header" = "Host";
 "Settings.Network.Proxy.Type" = "代理类型";
 "Settings.Network.Proxy.SelectType" = "选择代理类型: ";
 "Settings.Network.Proxy.Hostname" = "主机名";
@@ -182,20 +188,24 @@
 "Settings.Network.Proxy.Auth" = "需要认证";
 "Settings.Network.Proxy.Login" = "账号";
 "Settings.Network.Proxy.Password" = "密码";
+"Settings.Network.Encryption" = "加密";
+"Settings.Network.Encryption.Title" = "模式";
+"Settings.Network.Encryption.Hint" = "允许: 无论如何都连接到其他用户\n\n要求: 只连接到使用加密协议的用户\n\n禁用: 只连接到不使用加密协议的用户";
+"Settings.Network.Encryption.Select" = "选择加密模式";
 "Settings.Network.Protocols" = "连接协议";
-"Settings.Network.DHT" = "开启 DHT";
-"Settings.Network.DHT.Hint" = "它允许 BitTorrent 客户端不使用 Tracker 即可找到彼此。启动此功能将增加电池用量";
-"Settings.Network.LSD" = "开启 LSD";
+"Settings.Network.DHT" = "启用 DHT";
+"Settings.Network.DHT.Hint" = "它允许 BitTorrent 客户端无需使用 Tracker 即可找到彼此。启动此功能将增加电池用量";
+"Settings.Network.LSD" = "启用 LSD";
 "Settings.Network.LSD.Hint" = "它旨在支持发现本地 BitTorrent 对等节点以最大程度减少流量";
-"Settings.Network.uTP" = "开启 µTP";
-"Settings.Network.uTP.Hint" = "它旨在缓解基于 TCP 的传统 BitTorrent 中存在的不良延迟和其它拥塞控制问题，同时提供可靠有序的交付";
-"Settings.Network.UPnP" = "开启 UPnP";
-"Settings.Network.NAT-PMP" = "开启 NAT-PMP";
+"Settings.Network.uTP" = "启用 µTP";
+"Settings.Network.uTP.Hint" = "它旨在缓解基于 TCP 的传统 BitTorrent 中存在的不良延迟和其它拥塞控制问题，同时提供可靠有序的传输";
+"Settings.Network.UPnP" = "启用 UPnP";
+"Settings.Network.NAT-PMP" = "启用 NAT-PMP";
 "Settings.Network.Port" = "端口";
 "Settings.Network.DefauldPort" = "使用默认端口";
 "Settings.Network.DefauldPort.Hint" = "设定起始端口从 [6881] 到结束端口 (起始端口+10) [6891]";
-"Settings.Network.PortFirst" = "起始";
-"Settings.Network.PortSecond" = "结束";
+"Settings.Network.PortFirst" = "起始端口";
+"Settings.Network.PortSecond" = "结束端口";
 "Settings.Network.Interface" = "接口";
 "Settings.Network.Interface.Title" = "模式";
 "Settings.Network.Interface.Hint" = "#重要#\n任何网络状态的改变都需要重启 iTorrent 来应用！\n---全部模式---\n允许 iTorrent 使用设备上所有可用的接口，并可提供最高的下载速度，但可能导致使用数据流量 (即使已连接 Wi-Fi)\n---主要模式---\n仅使用主要连接，这会阻止在 Wi-Fi 下使用数据流量，但如果在使用 VPN 的情况下可能会导致 IP 地址泄露\n---仅限 VPN---\n如果你需要为 Tracker 提供专用连接，请使用它以防止 IP 泄露\n---手动模式---\n自行选择接口";
@@ -207,71 +217,76 @@
 "InterfaceType.VpnOnly" = "仅限 VPN";
 "InterfaceType.Manual" = "手动";
 
-"Settings.NotifyFinishLoad" = "当完成下载时";
-"Settings.NotifyFinishSeed" = "当完成做种时";
-"Settings.NotifyBadge" = "启用 App 图标通知标记";
+"EncryptionPolicy.Enabled" = "允许";
+"EncryptionPolicy.Disabled" = "禁用";
+"EncryptionPolicy.Forced" = "要求";
+
+"Settings.NotifyFinishLoad" = "下载完成时";
+"Settings.NotifyFinishSeed" = "做种完成时";
+"Settings.NotifyBadge" = "启用 APP 徽标通知";
 "Settings.NotifyHeader" = "通知";
 
 "Settings.UpdateSite" = "GitHub 项目地址";
 "Settings.UpdateSite.Open" = "打开";
 "Settings.UpdateHeader" = "更新";
-"Settings.DonateDisable" = "关闭广告";
-"Settings.DonateCard" = "VISA";
+"Settings.DonateDisable" = "禁用广告";
+"Settings.DonateCard" = "VISA 信用卡号";
 "Settings.DonateCard.Open" = "打开";
 "Settings.DonateCard.DonatePlatforms" = "捐赠";
-"Settings.DonateCard.DonatePlatforms.Title" = "选择捐赠平台: ";
+"Settings.DonateCard.DonatePlatforms.Title" = "选择捐赠平台:";
 "Settings.DonateHeader" = "捐赠甜甜圈";
 "Settings.DonateFooter" = "链接 Patreon 以关闭广告";
 
 "Settings.Patreon.Name" = "XITRIX (Daniil Vinogradov)";
-"Settings.Patreon.Creator" = "iTorrent 的创建者";
-"Settings.Patreon.Welcome" = "你好，\n\n你可以通过 Patreon 捐赠我来支持 iTorrent 的未来发展。作为回报，你将可以获得 iTorrent 应用无广告版本的权限。\n\n感谢你的支持！";
+"Settings.Patreon.Creator" = "iTorrent 的作者";
+"Settings.Patreon.Welcome" = "你好，\n\n你可以通过 Patreon 捐赠我来支持 iTorrent 的未来发展。作为回报，你将可以获得无广告版本的 iTorrent 应用。\n\n感谢你的支持！";
 "Settings.Patreon.Patron" = "你是捐赠者";
 "Settings.Patreon.Full" = "你有完整版";
-"Settings.Patreon.Reward" = "无广告已启动，祝你玩得开心！";
+"Settings.Patreon.Reward" = "无广告已启动，玩得开心！";
 "Settings.Patreon.PatronButton" = "成为捐赠者";
 "Settings.Patreon.LinkButton" = "链接到 Patreon 账号";
 "Settings.Patreon.UnlinkButton" = "取消链接";
 "Settings.Patreon.UnlinkButton.Text" = "你确定取消链接到你的 Patreon 账号？";
 "Settings.Patreon.UnlinkButton.Action" = "取消链接 Patreon 账号";
-"Settings.Patreon.Thanks" = "特别感谢: ";
-"Settings.Patreon.CopiedID" = "你的 Patreon ID 已经拷贝到剪切板";
+"Settings.Patreon.Thanks" = "特别感谢:";
+"Settings.Patreon.CopiedID" = "你的 Patreon ID 已拷贝到剪切板";
 
-"Settings.Sorting.Revert" = "默认";
+"Settings.Sorting.Revert" = "恢复默认";
 
 "Warning" = "警告";
-"Enable" = "开启";
-"Unlimited" = "无限";
-"Torrent rehash" = "重新检查 Torrent 状态";
+"Enable" = "启用";
+"Unlimited" = "无限制";
+"Torrent rehash" = "重新检查 Torrent";
 "This action will recheck the state of all downloaded files" = "此操作将重新检查所有下载文件的状态";
 "Rehash" = "重新检查";
 
-"Current app version: " = "当前 App 版本: ";
+"Current app version: " = "当前 APP 版本: ";
 "New version " = "新版本 ";
-" available" = " 可用";
-"WOW, is it a new inDev build, huh?" = "哇哦，这是正在开发的新版本，对吗？";
-"Latest version installed" = "已安装最新版";
+" available" = "  可用";
+"WOW, is it a new inDev build, huh?" = "哇哦，这是新的正在开发版本，对吗？";
+"Latest version installed" = "已安装最新版本";
 "Update check failed" = "检查更新失败";
 "WARNING" = "警告";
 "Copied CC # to clipboard!" = "已拷贝 CC # 到剪切板！";
 
 "Supplication" = "恳求";
-"If you enjoy this app, consider supporting the developer by keeping the ads on." = "如果你喜欢这个应用程序，请考虑保持开启广告来支持开发者。\n谢谢！";
-"Disable Anyway" = "无论如何都关闭";
+"If you enjoy this app, consider supporting the developer by keeping the ads on." = "如果你喜欢这个应用程序，请考虑保留广告来支持开发者。\n谢谢！";
+"Disable Anyway" = "仍然禁用";
 
 //Add Torrent Controller
 "Back" = "返回";
-"Torrent update detected" = "检测到 Torrent 更新";
+"Torrent update detected" = "检查到 Torrent 更新";
 "Torrent with name" = "Torrent 的名称";
-"already exists, do you want to apply previous files selection settings to this torrent" = "已存在，是否要应用以前的文件选单设置";
+"already exists, do you want to apply previous files selection settings to this torrent" = "已存在，是否将以前的文件选择设置应用于此 Torrent";
 "Apply" = "应用";
 "Download content of folder" = "下载文件夹内容";
 "Download" = "下载";
-"Don't Download" = "不要下载";
+"Don't Download" = "不下载";
+"Open" = "打开";
 "Share" = "分享";
-"Show in Files" = "在文件里显示";
+"Show in Files" = "在文件中显示";
 "AddTorrentController.MemoryWarning.Title" = "警告";
-"AddTorrentController.MemoryWarning.Message" = "磁盘上没有足够的可用空间来下载全部文件，释放磁盘空间以继续";
+"AddTorrentController.MemoryWarning.Message" = "磁盘上没有足够的可用空间来下载所有文件，清理磁盘空间以继续";
 "AddTorrentController.MemoryWarning.AddAnyway" = "仍然添加";
 
 //Torrent Files Controller
@@ -284,34 +299,36 @@
 "Inactive" = "不可用";
 "Verified" = "已验证";
 "Add Tracker" = "添加 Tracker";
-"Enter the fullTracker's URL" = "输入完整 Tracker 的 URL";
+"Enter the full tracker's URL" = "请输入完整 Tracker 的 URL";
 "Tracker's URL" = "输入 Tracker 的 URL";
-"Peers" = "对等节点";
+"Peers" = "用户";
 "Seeds" = "做种";
 "Leechers" = "下载";
-"Are you shure to remove thisTrackers?" = "你确定要删除这个 Tracker 吗？";
-"Tracker's URL copied to clipboard!" = "Tracker 的 URL 已被拷贝到剪切板！";
+"Are you shure to remove this trackers?" = "你确定要删除这个 Tracker 吗？";
+"Tracker's URL copied to clipboard!" = "Tracker 的 URL 已拷贝到剪切板！";
 
 //AppDelegate
 "Obtaining Metadata" = "获取元数据";
-"Finish the previous torrent adding before start the new one." = "完成上个 Torrent 添加后才能添加新的 Torrent";
+"Finish the previous torrent adding before start the new one." = "完成上个 Torrent 添加后才能添加新的 Torrent。";
 "Error on torrent opening" = "打开 Torrent 时发生错误";
 "Error on torrent reading" = "读取 Torrent 时发生错误";
-"Torrent file opening error has been occured" = "在打开 Torrent 文件时发生了错误";
-"Wrong magnet link, check it and try again!" = "错误的磁力链，检查并重试！";
+"Torrent file opening error has been occured" = "打开 Torrent 文件时发生了错误";
+"Wrong magnet link, check it and try again!" = "错误的磁力链接，检查并重试!";
 "Download finished" = "下载完成";
-" finished downloading" = " 已完成下载";
+" finished downloading" = " 下载已完成";
 "Seeding finished" = "做种完成";
-" finished seeding" = " 已完成做种";
+" finished seeding" = " 做种已完成";
 
-"This action will recheck the state of all downloaded files for torrents:" = "此操作将重新检查所有下载种子文件的状态:";
+"This action will recheck the state of all downloaded files for torrents:" = "此操作将重新检查所有下载的 Torrent 文件的状态:";
 
 //Background Task
 "BackgroundTask.LowSpeed.Title" = "下载速度低于 ";
 "BackgroundTask.LowSpeed.Message" = " 将停止后台下载以防止电池耗尽";
+"BackgroundTask.Mode.Audio" = "音频";
+"BackgroundTask.Mode.Location" = "位置";
 
 //News Alerts
-"Dialogs.News.Title" = "警告！";
+"Dialogs.News.Title" = "警告!";
 
 "Disabled" = "关闭";
 "Hint" = "提示";
@@ -327,24 +344,24 @@
 "mime.documents" = "文档";
 "mime.free" = "空闲";
 "mime.other" = "其它";
-"mime.calculating" = "计算中...";
+"mime.calculating" = "计算中……";
 
 // RSS Feed Provider
-"RssFeedProvider.Empty.Text" = "你的 RSS Feed 为空！\n添加 Feeds 来接收更新提醒";
+"RssFeedProvider.Empty.Text" = "你的 RSS 订阅为空！\n添加订阅来接收更新提醒";
 "RssFeedProvider.Notification.Title" = "RSS 更新:";
 "RssFeedProvider.Error.Unknown" = "发生了未知错误";
 "RssFeedProvider.Error.NotValid" = "URL 无效";
-"RssFeedProvider.Error.Exists" = "这个 RSS Feed 已经存在";
+"RssFeedProvider.Error.Exists" = "这个 RSS 订阅已经存在";
 
 // RSS Feed Controller
 "RssFeedController.AddTitle" = "添加 RSS 频道";
-"RssFeedController.RemoveTitle" = "你确定删除这个 Feeds:";
+"RssFeedController.RemoveTitle" = 你确定删除这个订阅:";
 
 // RSS Channel Setup Controller
 "RssChannelSetup.UrlCopied" = "频道的 URL 已经拷贝到剪切板！";
 "RssChannelSetup.Title" = "标题";
 "RssChannelSetup.Description" = "描述";
-"RssChannelSetup.Notify" = "当更新时通知";
+"RssChannelSetup.Notify" = "更新时通知";
 
 // RSS Channel Controller
 "RssChannelController.Seen" = "已读";
@@ -353,8 +370,8 @@
 
 // RSS Item Controller
 "RssItemController.PinTorrent" = "这篇文章中包含 Torrent 文件";
-"RssItemController.PinMagnet" = "这篇文章中包含磁力链";
+"RssItemController.PinMagnet" = "这篇文章中包含磁力链接";
 
 //Version Info
 "info" = " 更新信息";
-"UpdateText" = "\n--- 1.8.3 ---\n- 针对 iOS 14 的 Patreon 修复\n- Libtorrent 版本更新至 1.2.10\n--- 1.8.2 ---\n- 添加文本可访问性支持\n- 巨大的后端重构\n- 小幅 UI 改进\n- 许多 bug 修复 (可能添加了新的)";
+"UpdateText" = "已更新为最新的 iOS 版本\n- LibTorrent 更新至2.0\n- 一些UI改进和修复";
