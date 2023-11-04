@@ -10,15 +10,20 @@ import LibTorrent
 import Combine
 import UIKit
 
-class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, ObservableObject {
+class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, ObservableObject, MvvmSelectableProtocol {
+    var selectAction: (() -> Void)?
     var torrentHandle: TorrentHandle!
     var index: Int = 0
 
     @Published var reload: Bool = false
+    let selected = PassthroughSubject<Void, Never>()
 
     override func prepare(with model: (TorrentHandle, Int)) {
         torrentHandle = model.0
         index = model.1
+        selectAction = { [unowned self] in
+            selected.send(())
+        }
     }
 
     override func hash(into hasher: inout Hasher) {
@@ -36,5 +41,9 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Ob
 
     var path: URL {
         TorrentService.downloadPath.appending(path: file.path)
+    }
+
+    func setPriority(_ priority: FileEntry.Priority) {
+        torrentHandle.setFilePriority(priority, at: index)
     }
 }

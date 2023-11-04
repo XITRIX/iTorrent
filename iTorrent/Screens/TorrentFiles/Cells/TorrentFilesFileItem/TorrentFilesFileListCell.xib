@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="fileImageView" destination="IDT-LC-JLe" id="bYg-eu-J6U"/>
                 <outlet property="progressView" destination="wUc-Ls-xIU" id="uqH-aS-jvT"/>
+                <outlet property="shareButton" destination="UKQ-le-Zb8" id="9Vi-Ez-Zg1"/>
                 <outlet property="subtitleLabel" destination="n0Y-f9-7t9" id="QTW-pv-zD0"/>
                 <outlet property="switchView" destination="TuV-KI-zex" id="eP8-fn-YiI"/>
                 <outlet property="titleLabel" destination="D5t-PK-rT8" id="a83-o6-bIW"/>
@@ -18,7 +19,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="8BD-vQ-Rrb">
-            <rect key="frame" x="0.0" y="0.0" width="366" height="143"/>
+            <rect key="frame" x="0.0" y="0.0" width="366" height="147"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oou-Gd-bVJ">
@@ -45,16 +46,16 @@
                             <rect key="frame" x="56" y="0.0" width="278" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z2r-2t-A7z">
-                                    <rect key="frame" x="0.0" y="0.0" width="213" height="42"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="168.33333333333334" height="42"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5t-PK-rT8">
-                                            <rect key="frame" x="0.0" y="0.0" width="213" height="26.333333333333332"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="168.33333333333334" height="26.333333333333332"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0Y-f9-7t9">
-                                            <rect key="frame" x="0.0" y="26.333333333333332" width="213" height="15.666666666666668"/>
+                                            <rect key="frame" x="0.0" y="26.333333333333332" width="168.33333333333334" height="15.666666666666668"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                             <nil key="highlightedColor"/>
@@ -64,20 +65,32 @@
                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-Ls-xIU">
                                     <rect key="frame" x="0.0" y="46" width="278" height="4"/>
                                 </progressView>
-                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TuV-KI-zex">
-                                    <rect key="frame" x="229" y="9.6666666666666714" width="51" height="31"/>
-                                </switch>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mjF-bn-yGq">
+                                    <rect key="frame" x="180.33333333333334" y="8" width="97.666666666666657" height="34.333333333333336"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TuV-KI-zex">
+                                            <rect key="frame" x="0.0" y="1.6666666666666714" width="51" height="31"/>
+                                        </switch>
+                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKQ-le-Zb8">
+                                            <rect key="frame" x="48.999999999999972" y="0.0" width="48.666666666666657" height="34.333333333333336"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="medium"/>
+                                            </buttonConfiguration>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="wUc-Ls-xIU" firstAttribute="leading" secondItem="RTe-Tc-0Sx" secondAttribute="leading" id="6G0-7E-sX3"/>
                                 <constraint firstItem="z2r-2t-A7z" firstAttribute="top" secondItem="RTe-Tc-0Sx" secondAttribute="top" id="7bI-4d-hjr"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="CW8-P5-1Ye"/>
-                                <constraint firstItem="TuV-KI-zex" firstAttribute="centerY" secondItem="RTe-Tc-0Sx" secondAttribute="centerY" id="Eiu-8B-dfC"/>
                                 <constraint firstAttribute="trailing" secondItem="wUc-Ls-xIU" secondAttribute="trailing" id="ID9-Zm-8hX"/>
                                 <constraint firstAttribute="bottom" secondItem="wUc-Ls-xIU" secondAttribute="bottom" id="KVH-VA-5v8"/>
-                                <constraint firstItem="TuV-KI-zex" firstAttribute="leading" secondItem="z2r-2t-A7z" secondAttribute="trailing" constant="16" id="UZ6-6j-yfm"/>
+                                <constraint firstItem="mjF-bn-yGq" firstAttribute="centerY" secondItem="RTe-Tc-0Sx" secondAttribute="centerY" id="NNd-rK-04d"/>
+                                <constraint firstItem="mjF-bn-yGq" firstAttribute="leading" secondItem="z2r-2t-A7z" secondAttribute="trailing" constant="12" id="Si4-oP-wbC"/>
                                 <constraint firstItem="z2r-2t-A7z" firstAttribute="leading" secondItem="RTe-Tc-0Sx" secondAttribute="leading" id="bzB-h0-t4D"/>
-                                <constraint firstAttribute="trailing" secondItem="TuV-KI-zex" secondAttribute="trailing" id="uVE-s7-D2F"/>
+                                <constraint firstAttribute="trailing" secondItem="mjF-bn-yGq" secondAttribute="trailing" id="oV0-wZ-wZc"/>
                                 <constraint firstItem="wUc-Ls-xIU" firstAttribute="top" secondItem="z2r-2t-A7z" secondAttribute="bottom" constant="4" id="vXK-iK-l9R"/>
                             </constraints>
                         </view>
@@ -92,10 +105,11 @@
                 <constraint firstItem="oou-Gd-bVJ" firstAttribute="trailing" secondItem="8BD-vQ-Rrb" secondAttribute="trailingMargin" id="qmu-bE-LxV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="21.374045801526716" y="268.66197183098592"/>
+            <point key="canvasLocation" x="21.374045801526716" y="267.25352112676057"/>
         </view>
     </objects>
     <resources>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

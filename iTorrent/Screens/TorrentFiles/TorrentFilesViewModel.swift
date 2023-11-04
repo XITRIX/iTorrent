@@ -108,12 +108,13 @@ extension TorrentFilesViewModel {
         .init(with: (torrentHandle, path, path.name))
     }
 
-    func select(at index: Int) {
+    func select(at index: Int) -> Bool {
         switch rootDirectory.storage[keys[index]] {
         case let path as PathNode:
             navigate(to: TorrentFilesViewModel.self, with: .init(torrentHandle: torrentHandle, rootDirectory: path), by: .show)
+            return false
         default:
-            break
+            return true
         }
     }
 }

@@ -60,7 +60,13 @@ private extension TorrentFilesViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            parent.viewModel.select(at: indexPath.item)
+            if let cell = collectionView.cellForItem(at: indexPath) as? TorrentFilesFileListCell {
+                cell.viewModel.selectAction?()
+            }
+            
+            if parent.viewModel.select(at: indexPath.item) {
+                collectionView.deselectItem(at: indexPath, animated: true)
+            }
         }
     }
 }

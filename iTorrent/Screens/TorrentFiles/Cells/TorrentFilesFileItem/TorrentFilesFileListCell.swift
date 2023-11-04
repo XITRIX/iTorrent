@@ -14,22 +14,51 @@ class TorrentFilesFileListCell<VM: TorrentFilesFileItemViewModel>: MvvmCollectio
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var progressView: UIProgressView!
     @IBOutlet private var switchView: UISwitch!
+    @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var fileImageView: UIImageView!
     
     override func initSetup() {
         let font = UIFont.systemFont(ofSize: titleLabel.font!.pointSize, weight: .semibold)
         let fontMetrics = UIFontMetrics(forTextStyle: .subheadline)
         titleLabel.font = fontMetrics.scaledFont(for: font)
+
+        switchView.addTarget(self, action: #selector(switcher), for: .valueChanged)
+        separatorLayoutGuide.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
     }
 
     override func setup(with viewModel: VM) {
         setViewModel(viewModel)
+
         disposeBag.bind {
             viewModel.updatePublisher.sink { [unowned self] _ in
                 reload()
             }
+            viewModel.selected.sink { [unowned self] _ in
+                if progressView.progress >= 1 {
+                    shareAction()
+                } else {
+                    switchView.setOn(!switchView.isOn, animated: true)
+                    switcher(switchView)
+                }
+            }
         }
         reload()
+    }
+
+    func shareAction() {
+        let url = viewModel.path as NSURL
+        let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        if vc.popoverPresentationController != nil {
+//                    vc.popoverPresentationController?.barButtonItem = shareButton
+            vc.popoverPresentationController?.sourceView = shareButton
+            vc.popoverPresentationController?.sourceRect = shareButton.frame
+            vc.popoverPresentationController?.permittedArrowDirections = .any
+        }
+        viewController?.present(vc, animated: true)
+    }
+
+    @objc func switcher(_ sender: UISwitch) {
+        viewModel.setPriority(sender.isOn ? .defaultPriority : .dontDownload)
     }
 }
 
@@ -44,6 +73,8 @@ private extension TorrentFilesFileListCell {
         fileImageView.image = .icon(forFileURL: viewModel.path)
         switchView.isOn = file.priority != .dontDownload
         switchView.onTintColor = file.priority.color
+        shareButton.isHidden = file.progress < 1
+        switchView.isHidden = !shareButton.isHidden
         invalidateIntrinsicContentSize()
     }
 }
@@ -58,7 +89,7 @@ private extension FileEntry.Priority {
     var color: UIColor? {
         switch self {
         case .dontDownload:
-            return .systemGray
+            return nil
         case .defaultPriority:
             return nil
         case .lowPriority:
