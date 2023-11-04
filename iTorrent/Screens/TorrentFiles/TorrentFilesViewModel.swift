@@ -2,42 +2,136 @@
 //  TorrentFilesViewModel.swift
 //  iTorrent
 //
-//  Created by Daniil Vinogradov on 01/11/2023.
+//  Created by Daniil Vinogradov on 03/11/2023.
 //
 
 import LibTorrent
 import MvvmFoundation
 
-class TorrentFilesViewModel: BaseViewModelWith<TorrentHandle> {
+class Node {
+    var name: String = ""
+}
+
+class FileNode: Node {
+    let index: Int
+    init(index: Int, name: String) {
+        self.index = index
+        super.init()
+        self.name = name
+    }
+}
+
+class PathNode: Node {
+//    let name: String
+    var storage: [String: Node] = [:]
+
+    init(name: String) {
+        super.init()
+        self.name = name
+    }
+
+    func append(path: [String], index: Int) {
+        guard path.count > 1
+        else {
+            return storage["./\(index)"] = FileNode(index: index, name: path[0])
+        }
+
+        var path = path
+        let next = path.removeFirst()
+
+        var nextPathNode: PathNode! = storage[next] as? PathNode
+        if nextPathNode == nil {
+            nextPathNode = PathNode(name: next)
+            storage[next] = nextPathNode
+        }
+
+        nextPathNode.append(path: path, index: index)
+    }
+}
+
+extension TorrentFilesViewModel {
+    struct Config {
+        var torrentHandle: TorrentHandle
+        var rootDirectory: PathNode?
+    }
+
+    enum PathItem {
+        case directory([String: Node])
+        case file(Int)
+    }
+}
+
+class TorrentFilesViewModel: BaseViewModelWith<TorrentFilesViewModel.Config> {
     private var torrentHandle: TorrentHandle!
+    private var rootDirectory: PathNode!
+    private var keys: [String]!
 
-    @Published var sections: [MvvmCollectionSectionModel] = []
-
-    override func prepare(with model: TorrentHandle) {
-        torrentHandle = model
-
-        reload(with: model)
-        disposeBag.bind {
-            torrentHandle.updatePublisher
-                .sink { [unowned self] handle in
-                    reload(with: handle)
+    override func prepare(with model: Config) {
+        torrentHandle = model.torrentHandle
+        rootDirectory = model.rootDirectory ?? generateRoot()
+        keys = rootDirectory.storage
+            .sorted(by: { first, second in
+                let f = first.value.name
+                let s = second.value.name
+                return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
+            })
+            .sorted(by: { first, second in
+                if !first.key.starts(with: "./") && !second.key.starts(with: "./") {
+                    let f = first.value.name
+                    let s = second.value.name
+                    return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
                 }
+                return !first.key.starts(with: "./")
+            })
+            .map { $0.key }
+    }
+}
+
+extension TorrentFilesViewModel {
+    var title: String {
+        rootDirectory.name
+    }
+
+    var filesCount: Int {
+        keys.count
+    }
+
+    func node(at index: Int) -> Node {
+        rootDirectory.storage[keys[index]]!
+    }
+
+    func fileModel(for index: Int) -> TorrentFilesFileItemViewModel {
+        .init(with: (torrentHandle, index))
+    }
+
+    func pathModel(for path: PathNode) -> TorrentFilesDictionaryItemViewModel {
+        .init(with: (torrentHandle, path, path.name))
+    }
+
+    func select(at index: Int) {
+        switch rootDirectory.storage[keys[index]] {
+        case let path as PathNode:
+            navigate(to: TorrentFilesViewModel.self, with: .init(torrentHandle: torrentHandle, rootDirectory: path), by: .show)
+        default:
+            break
         }
     }
 }
 
 private extension TorrentFilesViewModel {
-    func reload(with torrentHandle: TorrentHandle) {
-        let oldItems = sections.first?.items.map { $0 as? TorrentFilesItemViewModel }.compactMap { $0 } ?? []
-        let newFiles = torrentHandle.files
+    func generateRoot() -> PathNode {
+        var root: PathNode = .init(name: "")
 
-        guard oldItems.count != newFiles.count else {
-            return oldItems.enumerated().forEach { item in
-                item.element.prepare(with: newFiles[item.offset])
-            }
+        torrentHandle.files.forEach { file in
+            let pathComponents = file.path.components(separatedBy: "/")
+            root.append(path: pathComponents, index: Int(file.index))
         }
 
-        let items = torrentHandle.files.map { TorrentFilesItemViewModel(with: $0) }
-        self.sections = [.init(id: "files", style: .plain, items: items)]
+        if let newRoot = root.storage.first?.value as? PathNode {
+            root = newRoot
+        }
+
+        root.name = "Files"
+        return root
     }
 }

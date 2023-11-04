@@ -56,7 +56,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let leechersModel = DetailCellViewModel(title: "Leechers")
 
     private lazy var filesModel = DetailCellViewModel(title: "Files") { [unowned self] in
-        navigate(to: TorrentFilesViewModel.self, with: torrentHandle, by: .show)
+        navigate(to: TorrentFilesViewModel.self, with: .init(torrentHandle: torrentHandle), by: .show)
     }
 }
 
@@ -189,6 +189,7 @@ private extension TorrentDetailsViewModel {
 extension TorrentHandle {
     var timeRemains: String {
         guard downloadRate > 0 else { return "Eternity" }
+        guard totalWanted >= totalWantedDone else { return "Almost done" }
         return ((totalWanted - totalWantedDone) / downloadRate).timeString
     }
 }

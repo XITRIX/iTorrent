@@ -64,7 +64,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             })),
             .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             .init(title: "Delete", image: .init(systemName: "trash"), primaryAction: .init(handler: { [unowned self] _ in
-//                    viewModel.torrentHandle.pause()
+                pop(animated: true)
             }))
         ]
     }

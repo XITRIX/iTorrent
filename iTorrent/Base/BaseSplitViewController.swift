@@ -61,12 +61,14 @@ class BaseSplitViewController: UISplitViewController {
         }
     }
 
-    override func collapseSecondaryViewController(_ secondaryViewController: UIViewController, for splitViewController: UISplitViewController) {
-        super.collapseSecondaryViewController(secondaryViewController, for: splitViewController)
-    }
+    override func pop(animated: Bool, sender: Any? = nil) {
+        guard let vc = sender as? UIViewController,
+              !isCollapsed
+        else { return super.pop(animated: animated, sender: sender) }
 
-    override func separateSecondaryViewController(for splitViewController: UISplitViewController) -> UIViewController? {
-        super.separateSecondaryViewController(for: splitViewController)
+        if vc == secondaryNavigationController?.viewControllers.first {
+            viewControllers[1] = emptyView
+        }
     }
 }
 

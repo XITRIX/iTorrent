@@ -14,8 +14,8 @@
             filePath = "iTorrent/Base/BaseSplitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "splitViewController(_:collapseSecondary:onto:)"
             landmarkType = "7">
             <Locations>
@@ -92,8 +92,8 @@
             filePath = "../LibTorrent/LibTorrent/Core/TorrentHandle/TorrentHandle.mm"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "-files"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,6 +302,229 @@
                   startingLineNumber = "69"
                   endingLineNumber = "69"
                   offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7E90DDB4-9240-4815-9F04-1C44CEE0FD9E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iTorrent/Screens/TorrentFiles2/Cells/TorrentFilesItem/TorrentFiles2ItemView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7E90DDB4-9240-4815-9F04-1C44CEE0FD9E - 46a641d7ff7803b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iTorrent.TorrentFiles2ItemView.body.getter : some"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles2/Cells/TorrentFilesItem/TorrentFiles2ItemView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "7E90DDB4-9240-4815-9F04-1C44CEE0FD9E - a9c72aabaa225385"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.ProgressView&lt;SwiftUI.EmptyView, SwiftUI.EmptyView&gt;)&gt; in iTorrent.TorrentFiles2ItemView.body.getter : some"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles2/Cells/TorrentFilesItem/TorrentFiles2ItemView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "464">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D181F74-8992-43B9-8854-958E642DB2DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iTorrent/Screens/TorrentFiles2/TorrentFiles2ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D73E2BE-950B-44A1-8D97-F03920C8B521"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iTorrent/Screens/TorrentFiles2/Cells/TorrentFilesItem/TorrentFiles2ItemView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "prepare(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1D73E2BE-950B-44A1-8D97-F03920C8B521 - d24ef6fa4ea4b1b9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iTorrent.DisposableCollectionViewListCell.prepare(with: iTorrent.TorrentFiles2ItemViewModel) -&gt; ()"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles2/Cells/TorrentFilesItem/TorrentFiles2ItemView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "1D73E2BE-950B-44A1-8D97-F03920C8B521 - bf3d2dff20c89b9a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; Swift.Array&lt;Combine.AnyCancellable&gt; in iTorrent.DisposableCollectionViewListCell.prepare(with: iTorrent.TorrentFiles2ItemViewModel) -&gt; ()"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles2/Cells/TorrentFilesItem/TorrentFiles2ItemView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "895406EB-E7B3-49D3-B700-FA1DB282249D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LibTorrent/LibTorrent/Core/Session/Session.mm"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "-alertsLoop"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "895406EB-E7B3-49D3-B700-FA1DB282249D - 5f0d86538607fc6d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[Session alertsLoop]"
+                  moduleName = "LibTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/LibTorrent/LibTorrent/Core/Session/Session.mm"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "680">
+               </Location>
+               <Location
+                  uuid = "895406EB-E7B3-49D3-B700-FA1DB282249D - 5f0d86538607fc0c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[Session alertsLoop]"
+                  moduleName = "LibTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/LibTorrent/LibTorrent/Core/Session/Session.mm"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DC714D5-08E3-4E8E-B3F7-931139A216E4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iTorrent/Screens/TorrentFiles/TorrentFilesViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "prepare(with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9DC714D5-08E3-4E8E-B3F7-931139A216E4 - 8b2011581f526362"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((key: Swift.String, value: iTorrent.Node), (key: Swift.String, value: iTorrent.Node)) -&gt; Swift.Bool in iTorrent.TorrentFilesViewModel.prepare(with: iTorrent.TorrentFilesViewModel.Config) -&gt; ()"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles/TorrentFilesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "9DC714D5-08E3-4E8E-B3F7-931139A216E4 - 656d67937e3ac480"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iTorrent.TorrentFilesViewModel.prepare(with: iTorrent.TorrentFilesViewModel.Config) -&gt; ()"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles/TorrentFilesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "400">
+               </Location>
+               <Location
+                  uuid = "9DC714D5-08E3-4E8E-B3F7-931139A216E4 - 8b2011581f526343"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 ((key: Swift.String, value: iTorrent.Node), (key: Swift.String, value: iTorrent.Node)) -&gt; Swift.Bool in iTorrent.TorrentFilesViewModel.prepare(with: iTorrent.TorrentFilesViewModel.Config) -&gt; ()"
+                  moduleName = "iTorrent"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daniilvinogradov/Documents/Dev/iOS/iTorrent/iTorrent/Screens/TorrentFiles/TorrentFilesViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "132">
                </Location>
             </Locations>
          </BreakpointContent>
