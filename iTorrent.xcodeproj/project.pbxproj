@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		D11333B52AF19C4900FA017E /* TorrentHandle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11333B42AF19C4900FA017E /* TorrentHandle+Extension.swift */; };
 		D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D135C58B2AEF158000440680 /* CombineCocoa */; };
 		D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5942AEFB67000440680 /* BaseNavigationController.swift */; };
@@ -121,6 +122,7 @@
 				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
+				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
 				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
 				D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */,
 			);
@@ -384,6 +386,7 @@
 				D135C58B2AEF158000440680 /* CombineCocoa */,
 				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
 				D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */,
+				7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -414,9 +417,9 @@
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
-				D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */,
 				D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */,
 				7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -812,9 +815,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */ = {
+		7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../MvvmFoundation;
+			relativePath = Submodules/MVVMFoundation;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -838,6 +841,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MvvmFoundation;
+		};
 		D135C58B2AEF158000440680 /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CombineCocoa;
