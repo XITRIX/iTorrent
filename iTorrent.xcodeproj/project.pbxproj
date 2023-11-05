@@ -414,9 +414,9 @@
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
-				D135C58A2AEF158000440680 /* XCLocalSwiftPackageReference "../../CombineCocoa" */,
 				D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */,
 				D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */,
+				7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -812,10 +812,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		D135C58A2AEF158000440680 /* XCLocalSwiftPackageReference "../../CombineCocoa" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../CombineCocoa;
-		};
 		D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../MvvmFoundation;
@@ -823,6 +819,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/XITRIX/CombineCocoa.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/XITRIX/OpenSSL.git";

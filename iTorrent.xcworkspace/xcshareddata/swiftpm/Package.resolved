@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "combinecocoa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/XITRIX/CombineCocoa.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "940c2140f824647d5141fd2475e059c1a45740e4"
+      }
+    },
+    {
       "identity" : "openssl",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/XITRIX/OpenSSL.git",
