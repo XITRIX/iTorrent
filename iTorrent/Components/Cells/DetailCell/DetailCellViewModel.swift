@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 30/10/2023.
 //
 
+import Combine
 import MvvmFoundation
 
 // extension DetailCellViewModel {

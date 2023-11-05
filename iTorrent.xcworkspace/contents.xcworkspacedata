@@ -5,9 +5,6 @@
       location = "group:../LibTorrent/LibTorrent.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../MvvmFoundation/MvvmFoundation.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:iTorrent.xcodeproj">
    </FileRef>
 </Workspace>

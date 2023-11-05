@@ -25,8 +25,6 @@
 		D1A226A72AEEEFDF00669D6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1A226A62AEEEFDF00669D6D /* Assets.xcassets */; };
 		D1A226AA2AEEEFDF00669D6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A226A82AEEEFDF00669D6D /* LaunchScreen.storyboard */; };
 		D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = D1A226B72AEEF05400669D6D /* OpenSSL */; };
-		D1A226D52AEEF73600669D6D /* MvvmFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A226D42AEEF73600669D6D /* MvvmFoundation.framework */; };
-		D1A226D62AEEF73600669D6D /* MvvmFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D1A226D42AEEF73600669D6D /* MvvmFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1A226F22AEF019400669D6D /* TorrentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A226F12AEF019400669D6D /* TorrentService.swift */; };
 		D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A226F32AEF01B700669D6D /* LibTorrent.framework */; };
 		D1A226F52AEF01B700669D6D /* LibTorrent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D1A226F32AEF01B700669D6D /* LibTorrent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -40,6 +38,7 @@
 		D1ACFDC62AF6DB9F0098FF56 /* TorrentFilesFileListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ACFDC42AF6DB9F0098FF56 /* TorrentFilesFileListCell.swift */; };
 		D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1ACFDC52AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib */; };
 		D1ACFDC92AF6ED200098FF56 /* UIImage+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */; };
+		D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */; };
 		D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B538562AF1171900694AFD /* TorrentDetailProgressCellView.swift */; };
 		D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B538582AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift */; };
 		D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */; };
@@ -60,7 +59,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D1A226D62AEEF73600669D6D /* MvvmFoundation.framework in Embed Frameworks */,
 				D1A226F52AEF01B700669D6D /* LibTorrent.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -122,7 +120,7 @@
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
 				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
-				D1A226D52AEEF73600669D6D /* MvvmFoundation.framework in Frameworks */,
+				D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +380,7 @@
 			packageProductDependencies = (
 				D1A226B72AEEF05400669D6D /* OpenSSL */,
 				D135C58B2AEF158000440680 /* CombineCocoa */,
+				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -414,6 +413,7 @@
 			packageReferences = (
 				D1A226B62AEEF05400669D6D /* XCLocalSwiftPackageReference "../../OpenSSL" */,
 				D135C58A2AEF158000440680 /* XCLocalSwiftPackageReference "../../CombineCocoa" */,
+				D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -817,6 +817,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../OpenSSL;
 		};
+		D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../MvvmFoundation;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -827,6 +831,10 @@
 		D1A226B72AEEF05400669D6D /* OpenSSL */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OpenSSL;
+		};
+		D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MvvmFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -18,7 +18,7 @@ class TorrentFilesFileListCell<VM: TorrentFilesFileItemViewModel>: MvvmCollectio
     @IBOutlet private var fileImageView: UIImageView!
     
     override func initSetup() {
-        let font = UIFont.systemFont(ofSize: titleLabel.font!.pointSize, weight: .semibold)
+        let font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         let fontMetrics = UIFontMetrics(forTextStyle: .subheadline)
         titleLabel.font = fontMetrics.scaledFont(for: font)
 
@@ -75,7 +75,6 @@ private extension TorrentFilesFileListCell {
         switchView.onTintColor = file.priority.color
         shareButton.isHidden = file.progress < 1
         switchView.isHidden = !shareButton.isHidden
-        invalidateIntrinsicContentSize()
     }
 }
 
