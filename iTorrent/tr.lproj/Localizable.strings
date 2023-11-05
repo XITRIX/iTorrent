@@ -304,7 +304,7 @@
 "Peers" = "Eşler";
 "Seeds" = "Seedler";
 "Leechers" = "Leechler";
-"Are you shure to remove this trackers?" = "Bu takipçileri kaldırmak istediğinizden emin misiniz?";
+"Are you sure to remove these trackers?" = "Bu takipçileri kaldırmak istediğinizden emin misiniz?";
 "Tracker's URL copied to clipboard!" = "Tracker's URL copied to clipboard!";
 
 //AppDelegate

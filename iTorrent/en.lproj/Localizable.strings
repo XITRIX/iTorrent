@@ -303,7 +303,7 @@
 "Peers" = "Peers";
 "Seeds" = "Seeds";
 "Leechers" = "Leechers";
-"Are you shure to remove this trackers?" = "Are you shure to remove this trackers?";
+"Are you sure to remove these trackers?" = "Are you sure to remove these trackers?";
 "Tracker's URL copied to clipboard!" = "Tracker's URL copied to clipboard!";
 
 //AppDelegate
