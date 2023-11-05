@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "openssl",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/XITRIX/OpenSSL.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "75bc2599ad74161f4fad51fb51493d5c4fd1511e"
+      }
+    }
+  ],
+  "version" : 2
+}

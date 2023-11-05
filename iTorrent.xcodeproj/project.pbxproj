@@ -39,6 +39,7 @@
 		D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1ACFDC52AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib */; };
 		D1ACFDC92AF6ED200098FF56 /* UIImage+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */; };
 		D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */; };
+		D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */; };
 		D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B538562AF1171900694AFD /* TorrentDetailProgressCellView.swift */; };
 		D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B538582AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift */; };
 		D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */; };
@@ -117,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
 				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
@@ -381,6 +383,7 @@
 				D1A226B72AEEF05400669D6D /* OpenSSL */,
 				D135C58B2AEF158000440680 /* CombineCocoa */,
 				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
+				D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -411,9 +414,9 @@
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
-				D1A226B62AEEF05400669D6D /* XCLocalSwiftPackageReference "../../OpenSSL" */,
 				D135C58A2AEF158000440680 /* XCLocalSwiftPackageReference "../../CombineCocoa" */,
 				D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */,
+				D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -813,15 +816,22 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../CombineCocoa;
 		};
-		D1A226B62AEEF05400669D6D /* XCLocalSwiftPackageReference "../../OpenSSL" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../OpenSSL;
-		};
 		D1ACFDD82AF7D55F0098FF56 /* XCLocalSwiftPackageReference "../MvvmFoundation" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../MvvmFoundation;
 		};
 /* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/XITRIX/OpenSSL.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		D135C58B2AEF158000440680 /* CombineCocoa */ = {
@@ -835,6 +845,11 @@
 		D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MvvmFoundation;
+		};
+		D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */;
+			productName = OpenSSL;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
