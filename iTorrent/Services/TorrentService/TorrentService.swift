@@ -19,6 +19,7 @@ class TorrentService {
     static var downloadPath: URL { try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) }
     static var torrentPath: URL { downloadPath.appending(path: "config") }
     static var fastResumePath: URL { downloadPath.appending(path: "config") }
+    static var metadataPath: URL { downloadPath.appending(path: "config") }
 
     private let session: Session = {
         var settings = Session.Settings()
@@ -28,6 +29,13 @@ class TorrentService {
 }
 
 extension TorrentService {
+    func addTorrent(by file: Downloadable) {
+        guard !torrents.contains(where: { file.infoHashes == $0.infoHashes })
+        else { return }
+
+        session.addTorrent(file)
+    }
+
     func addTorrent(by path: URL) {
         defer { path.stopAccessingSecurityScopedResource() }
         guard path.startAccessingSecurityScopedResource(),
@@ -42,9 +50,9 @@ extension TorrentService {
 
     func removeTorrent(by infoHashes: TorrentHashes, deleteFiles: Bool) {
         guard let handle = torrents.first(where: { $0.infoHashes == infoHashes })
-//              handle.isValid
         else { return }
 
+        handle.deleteMetadata()
         session.removeTorrent(handle, deleteFiles: deleteFiles)
     }
 }
@@ -52,6 +60,7 @@ extension TorrentService {
 extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
         DispatchQueue.main.sync { [self] in
+            _ = torrent.metadata
             torrents.append(torrent)
         }
     }

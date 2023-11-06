@@ -23,6 +23,8 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(TorrentListViewController<TorrentListViewModel>.self)
         router.register(TorrentDetailsViewController<TorrentDetailsViewModel>.self)
         router.register(TorrentFilesViewController<TorrentFilesViewModel>.self)
+        router.register(TorrentAddViewController<TorrentAddViewModel>.self)
+        router.register(PreferencesViewController<PreferencesViewModel>.self)
 
         router.register(TorrentListItemView.self)
         router.register(TorrentDetailProgressCellView.self)

@@ -8,11 +8,11 @@
 import MvvmFoundation
 import SwiftUI
 
-class TorrentFilesDictionaryItemViewCell: UICollectionViewListCell {
-    var model: TorrentFilesDictionaryItemViewModel!
+class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: UICollectionViewListCell {
+    var model: VM!
     var disposeBag = DisposeBag()
 
-    func prepare(with model: TorrentFilesDictionaryItemViewModel) {
+    func prepare(with model: VM) {
         self.model = model
 
         accessories = [.disclosureIndicator()]

@@ -18,8 +18,8 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
 
         title = viewModel.title
 
-        collectionView.register(TorrentFilesDictionaryItemViewCell.self, forCellWithReuseIdentifier: TorrentFilesDictionaryItemViewCell.reusableId)
-        collectionView.register(type: TorrentFilesFileListCell.self, hasXib: false)
+        collectionView.register(TorrentFilesDictionaryItemViewCell<TorrentFilesDictionaryItemViewModel>.self, forCellWithReuseIdentifier: TorrentFilesDictionaryItemViewCell<TorrentFilesDictionaryItemViewModel>.reusableId)
+        collectionView.register(type: TorrentFilesFileListCell<TorrentFilesFileItemViewModel>.self, hasXib: false)
 
         collectionView.dataSource = delegates
         collectionView.delegate = delegates
@@ -42,15 +42,11 @@ private extension TorrentFilesViewController {
             let node = parent.viewModel.node(at: indexPath.item)
             switch node {
             case let node as FileNode:
-//                let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell
-//                cell.prepare(with: parent.viewModel.fileModel(for: node.index))
-//                return cell
-
-                let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell
+                let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell<TorrentFilesFileItemViewModel>
                 cell.setup(with: parent.viewModel.fileModel(for: node.index))
                 return cell
             case let node as PathNode:
-                let cell = collectionView.dequeue(for: indexPath) as TorrentFilesDictionaryItemViewCell
+                let cell = collectionView.dequeue(for: indexPath) as TorrentFilesDictionaryItemViewCell<TorrentFilesDictionaryItemViewModel>
                 cell.prepare(with: parent.viewModel.pathModel(for: node))
                 return cell
             default:
@@ -60,7 +56,7 @@ private extension TorrentFilesViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if let cell = collectionView.cellForItem(at: indexPath) as? TorrentFilesFileListCell {
+            if let cell = collectionView.cellForItem(at: indexPath) as? TorrentFilesFileListCell<TorrentFilesFileItemViewModel> {
                 cell.viewModel.selectAction?()
             }
             

@@ -10,12 +10,20 @@ import LibTorrent
 import Combine
 import UIKit
 
-class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, ObservableObject, MvvmSelectableProtocol {
+protocol FileItemViewModelProtocol: MvvmViewModel {
+    var file: FileEntry { get }
+    var updatePublisher: AnyPublisher<TorrentHandle, Never> { get }
+    var selected: PassthroughSubject<Void, Never> { get }
+    var path: URL { get }
+
+    func setPriority(_ priority: FileEntry.Priority)
+}
+
+class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
     var selectAction: (() -> Void)?
     var torrentHandle: TorrentHandle!
     var index: Int = 0
 
-    @Published var reload: Bool = false
     let selected = PassthroughSubject<Void, Never>()
 
     override func prepare(with model: (TorrentHandle, Int)) {

@@ -13,6 +13,7 @@ extension TorrentListViewModel {
     enum Sort: CaseIterable {
         case alphabetically
         case creationDate
+        case addedDate
         case size
     }
 }
@@ -44,6 +45,27 @@ class TorrentListViewModel: BaseViewModel {
     }
 }
 
+extension TorrentListViewModel {
+    func preferencesAction() {
+        navigate(to: PreferencesViewModel.self, by: .show)
+    }
+
+    func addTorrent(by url: URL) {
+        defer { url.stopAccessingSecurityScopedResource() }
+        guard url.startAccessingSecurityScopedResource(),
+              let file = TorrentFile(with: url)
+        else { return }
+
+        guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
+        else {
+            alert(title: "This torrent already exists", message: "Torrent with hash:\n\"\(file.infoHashes.best.hex)\" already exists in download queue", actions: [.init(title: "Close", style: .cancel)])
+            return
+        }
+
+        navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file), by: .present(wrapInNavigation: true))
+    }
+}
+
 private extension Array where Element == TorrentHandle {
     func sorted(by type: TorrentListViewModel.Sort, reverced: Bool) -> [Element] {
         let res = sorted { first, second in
@@ -52,6 +74,8 @@ private extension Array where Element == TorrentHandle {
                 return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
             case .creationDate:
                 return first.creationDate ?? Date() > second.creationDate ?? Date()
+            case .addedDate:
+                return first.metadata.dateAdded > second.metadata.dateAdded
             case .size:
                 return first.totalWanted > second.totalWanted
             }

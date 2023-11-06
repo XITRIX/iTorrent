@@ -22,7 +22,6 @@ class FileNode: Node {
 }
 
 class PathNode: Node {
-//    let name: String
     var storage: [String: Node] = [:]
 
     init(name: String) {

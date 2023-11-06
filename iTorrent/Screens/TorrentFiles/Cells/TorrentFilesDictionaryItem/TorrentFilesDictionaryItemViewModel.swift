@@ -8,10 +8,17 @@
 import Combine
 import Foundation
 import LibTorrent
+import MvvmFoundation
 
-class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, PathNode, String)>, ObservableObject {
+protocol DictionaryItemViewModelProtocol: MvvmViewModelProtocol {
+    var updatePublisher: AnyPublisher<TorrentHandle, Never> { get }
+    var name: String { get }
+    var node: PathNode! { get }
+}
+
+class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, PathNode, String)>, DictionaryItemViewModelProtocol {
     var torrentHandle: TorrentHandle!
-    @Published var name: String = ""
+    var name: String = ""
     var node: PathNode!
 
     override func prepare(with model: (TorrentHandle, PathNode, String)) {

@@ -46,6 +46,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let hashModelV2 = DetailCellViewModel(title: "Hash v2", spacer: 80)
     private let creatorModel = DetailCellViewModel(title: "Creator", spacer: 80)
     private let createdModel = DetailCellViewModel(title: "Created")
+    private let addedModel = DetailCellViewModel(title: "Added")
 
     private let selectedModel = DetailCellViewModel(title: "Selected/Total")
     private let completedModel = DetailCellViewModel(title: "Completed")
@@ -112,14 +113,17 @@ private extension TorrentDetailsViewModel {
             hashModelV2.detail = torrentHandle.infoHashes.v2.hex
         }
         creatorModel.detail = torrentHandle.creator ?? ""
+
+        let formatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd/MM/YYYY"
+            return formatter
+        }()
+
         if let created = torrentHandle.creationDate {
-            let formatter: DateFormatter = {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd/MM/YYYY"
-                return formatter
-            }()
             createdModel.detail = formatter.string(from: created)
         }
+        addedModel.detail = formatter.string(from: torrentHandle.metadata.dateAdded)
 
         selectedModel.detail = "\(torrentHandle.totalWanted.bitrateToHumanReadable) / \(torrentHandle.total.bitrateToHumanReadable)"
         completedModel.detail = "\(torrentHandle.totalDone.bitrateToHumanReadable)"
@@ -137,14 +141,13 @@ private extension TorrentDetailsViewModel {
             stateModel
         })
 
-        sections.append(.init(id: "speed", header: "Speed") {
-            downloadModel
-            uploadModel
-
-            if !torrentHandle.isPaused {
+        if !torrentHandle.isPaused {
+            sections.append(.init(id: "speed", header: "Speed") {
+                downloadModel
+                uploadModel
                 timeLeftModel
-            }
-        })
+            })
+        }
 
         sections.append(.init(id: "download", header: "Downloading") {
             sequentialModel
@@ -166,6 +169,7 @@ private extension TorrentDetailsViewModel {
             if !creatorModel.detail.isEmpty {
                 createdModel
             }
+            addedModel
         })
 
         sections.append(.init(id: "transfer", header: "Transfer") {

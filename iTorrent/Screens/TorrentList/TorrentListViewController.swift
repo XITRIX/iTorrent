@@ -30,13 +30,22 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         searchVC.searchBar.textDidChangePublisher.assign(to: &viewModel.$searchQuery)
         searchVC.searchBar.cancelButtonClickedPublisher.map { "" }.assign(to: &viewModel.$searchQuery)
 
+        addButton.menu = UIMenu(title: "Add from", children: [
+            UIAction(title: "Files", image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
+                present(documentPicker, animated: true)
+            },
+            UIAction(title: "Magnet", image: .init(systemName: "link.badge.plus")) { [unowned self] _ in
+                present(makeMagnetAlert(), animated: true)
+            }
+        ])
+
         disposeBag.bind {
             viewModel.$sections.sink { [unowned self] sections in
                 collectionView.sections.send(sections)
             }
 
-            addButton.tapPublisher.sink { [unowned self] _ in
-                present(documentPicker, animated: true, completion: nil)
+            preferencesButton.tapPublisher.sink { [unowned self] _ in
+                viewModel.preferencesAction()
             }
 
             viewModel.$sortingType.combineLatest(viewModel.$sortingReverced).sink { [unowned self] type, reverced in
@@ -96,7 +105,7 @@ extension TorrentListViewController {
     class Delegates: DelegateObject<TorrentListViewController>, UIDocumentPickerDelegate {
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             guard let url = urls.first else { return }
-            TorrentService.shared.addTorrent(by: url)
+            parent.viewModel.addTorrent(by: url)
         }
     }
 
@@ -107,6 +116,29 @@ extension TorrentListViewController {
         documentPicker.shouldShowFileExtensions = true
         return documentPicker
     }
+
+    func makeMagnetAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Add from magnet", message: "Please enter the magnet link below", preferredStyle: .alert)
+
+        alert.addTextField { textField in
+            textField.placeholder = "magnet:"
+        }
+
+        alert.addAction(.init(title: "Cancel", style: .cancel))
+        alert.addAction(.init(title: "OK", style: .default) { [unowned self] _ in
+            guard let text = alert.textFields?.first?.text,
+                  let url = URL(string: text),
+                  let magnet = MagnetURI(with: url)
+            else {
+                let alert = UIAlertController(title: "Error", message: "Magnet link is not valid", preferredStyle: .alert)
+                alert.addAction(.init(title: "Close", style: .cancel))
+                present(alert, animated: true)
+                return
+            }
+            TorrentService.shared.addTorrent(by: magnet)
+        })
+        return alert
+    }
 }
 
 private extension TorrentListViewModel.Sort {
@@ -116,6 +148,8 @@ private extension TorrentListViewModel.Sort {
             return "Name"
         case .creationDate:
             return "Date Created"
+        case .addedDate:
+            return "Date Added"
         case .size:
             return "Size"
         }

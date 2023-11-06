@@ -47,3 +47,33 @@ extension TorrentHandle.State {
         }
     }
 }
+
+extension TorrentHandle {
+    struct Metadata: Codable {
+        var dateAdded: Date = Date()
+    }
+
+    var metadata: Metadata {
+        let hash = infoHashes.best.hex
+        let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
+        if FileManager.default.fileExists(atPath: url.path()),
+           let data = try? Data(contentsOf: url),
+           let meta = try? JSONDecoder().decode(Metadata.self, from: data)
+        {
+            return meta
+        }
+
+        let meta = Metadata()
+        if let data = try? JSONEncoder().encode(meta) {
+            try? data.write(to: url)
+        }
+
+        return meta
+    }
+
+    func deleteMetadata() {
+        let hash = infoHashes.best.hex
+        let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
+        try? FileManager.default.removeItem(at: url)
+    }
+}
