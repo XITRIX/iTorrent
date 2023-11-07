@@ -7,6 +7,7 @@
 
 import LibTorrent
 import MvvmFoundation
+import Combine
 
 extension TorrentAddViewModel {
     struct Config {
@@ -20,6 +21,8 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
     private var rootDirectory: PathNode!
     private var keys: [String]!
     private(set) var isRoot: Bool = false
+
+    let updatePublisher = CurrentValueRelay<Void>(())
 
     override func prepare(with model: Config) {
         torrentFile = model.torrentFile
@@ -41,6 +44,10 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
             })
             .map { $0.key }
     }
+
+    override func willAppear() {
+        updatePublisher.send(())
+    }
 }
 
 extension TorrentAddViewModel {
@@ -57,11 +64,15 @@ extension TorrentAddViewModel {
     }
 
     func fileModel(for index: Int) -> TorrentAddFileItemViewModel {
-        .init(with: (torrentFile, index))
+        .init(with: (torrentFile, index, { [unowned self] in
+            updatePublisher.send(())
+        }))
     }
 
     func pathModel(for path: PathNode) -> TorrentAddDirectoryItemViewModel {
-        .init(with: (torrentFile, path, path.name))
+        .init(with: (torrentFile, path, path.name, { [unowned self] in
+            updatePublisher.send(())
+        }))
     }
 
     func select(at index: Int) -> Bool {
@@ -81,6 +92,30 @@ extension TorrentAddViewModel {
     func download() {
         TorrentService.shared.addTorrent(by: torrentFile)
         dismiss()
+    }
+
+    func selectAll() {
+        torrentFile.setAllFilesPriority(.defaultPriority)
+        updatePublisher.send(())
+    }
+
+    func deselectAll() {
+        torrentFile.setAllFilesPriority(.dontDownload)
+        updatePublisher.send(())
+    }
+
+    var diskTextPublisher: AnyPublisher<String, Never> {
+        updatePublisher.map { [unowned self] _ in
+            var selected: UInt64 = 0
+            var total: UInt64 = 0
+            torrentFile.files.forEach({ file in
+                total += file.size
+                if file.priority != .dontDownload {
+                    selected += file.size
+                }
+            })
+            return "\(selected.bitrateToHumanReadable) / \(total.bitrateToHumanReadable)"
+        }.eraseToAnyPublisher()
     }
 }
 

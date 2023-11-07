@@ -9,19 +9,22 @@ import Combine
 import LibTorrent
 import MvvmFoundation
 
-class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
+class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int, ()->Void)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
+    var localUpdatePublisher = PassthroughRelay<TorrentHandle>()
     private var torrentFile: TorrentFile!
     private var internalFile: FileEntry!
     private var index: Int = 0
 
     var selectAction: (() -> Void)?
+    var showProgress: Bool { false }
+    var onPriorityUpdated: (() -> Void)?
 
     var file: FileEntry {
         internalFile
     }
 
     var updatePublisher: AnyPublisher<TorrentHandle, Never> {
-        Just(.init()).eraseToAnyPublisher()
+        localUpdatePublisher.eraseToAnyPublisher()
     }
 
     let selected = PassthroughSubject<Void, Never>()
@@ -32,11 +35,13 @@ class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int)>, MvvmSe
 
     func setPriority(_ priority: FileEntry.Priority) {
         torrentFile.setFilePriority(priority, at: index)
+        onPriorityUpdated?()
     }
 
-    override func prepare(with model: (TorrentFile, Int)) {
+    override func prepare(with model: (TorrentFile, Int, ()->Void)) {
         torrentFile = model.0
         index = model.1
+        onPriorityUpdated = model.2
         internalFile = torrentFile.getAt(Int32(index))
         selectAction = { [unowned self] in
             selected.send(())

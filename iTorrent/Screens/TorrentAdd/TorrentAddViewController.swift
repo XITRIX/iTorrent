@@ -11,12 +11,16 @@ import UIKit
 class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: UICollectionView!
     private lazy var delegates = Deletates(parent: self)
-    private let cancelButton = UIBarButtonItem(title: "Cancel")
+    private let cancelButton = UIBarButtonItem(systemItem: .close)
     private let downloadButton = UIBarButtonItem(title: "Download", style: .done, target: nil, action: nil)
+    private let diskLabel = makeDiskLabel()
+    private let moreButton = UIBarButtonItem(title: "More", image: .init(systemName: "ellipsis.circle"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
+
+        moreButton.menu = makeMoreMenu()
 
         collectionView.register(TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>.self, forCellWithReuseIdentifier: TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>.reusableId)
         collectionView.register(type: TorrentFilesFileListCell<TorrentAddFileItemViewModel>.self, hasXib: false)
@@ -26,12 +30,20 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: .init(appearance: .plain))
 
         if viewModel.isRoot {
+            navigationController?.isModalInPresentation = true
+            navigationController?.presentationController?.delegate = delegates
+
             navigationItem.leadingItemGroups.append(.fixedGroup(items: [cancelButton]))
         }
+
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [downloadButton]))
 
-        isModalInPresentation = true
-        navigationController?.presentationController?.delegate = delegates
+        navigationController?.setToolbarHidden(false, animated: false)
+        toolbarItems = [
+            .init(customView: diskLabel),
+            .init(systemItem: .flexibleSpace),
+            moreButton
+        ]
 
         disposeBag.bind {
             cancelButton.tapPublisher.sink { [unowned self] _ in
@@ -40,12 +52,36 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
             downloadButton.tapPublisher.sink { [unowned self] _ in
                 viewModel.download()
             }
+            viewModel.diskTextPublisher.sink { [unowned self] text in
+                diskLabel.text = text
+                diskLabel.sizeToFit()
+            }
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         smoothlyDeselectRows(in: collectionView)
+    }
+}
+
+private extension TorrentAddViewController {
+    static func makeDiskLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .preferredFont(forTextStyle: .callout)
+        return label
+    }
+
+    func makeMoreMenu() -> UIMenu {
+        .init(children: [
+            UIAction(title: "Select All", image: .init(systemName: "checkmark.circle"), handler: { [unowned self] _ in
+                viewModel.selectAll()
+            }),
+            UIAction(title: "Deselect All", image: .init(systemName: "xmark.circle"), attributes: [.destructive], handler: { [unowned self] _ in
+                viewModel.deselectAll()
+            })
+        ])
     }
 }
 
@@ -61,10 +97,20 @@ private extension TorrentAddViewController {
             case let node as FileNode:
                 let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell<TorrentAddFileItemViewModel>
                 cell.setup(with: parent.viewModel.fileModel(for: node.index))
+                cell.disposeBag.bind { [unowned self] in
+                    parent.viewModel.updatePublisher.sink { [weak cell] _ in
+                        cell?.viewModel.localUpdatePublisher.send(.init())
+                    }
+                }
                 return cell
             case let node as PathNode:
                 let cell = collectionView.dequeue(for: indexPath) as TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>
                 cell.prepare(with: parent.viewModel.pathModel(for: node))
+                cell.disposeBag.bind { [unowned self] in
+                    parent.viewModel.updatePublisher.sink { [weak cell] _ in
+                        cell?.model.localUpdatePublisher.send(.init())
+                    }
+                }
                 return cell
             default:
                 return UICollectionViewCell()
@@ -82,12 +128,12 @@ private extension TorrentAddViewController {
         }
 
         func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-            let alert = UIAlertController(title: "Are you sure to dismiss?", message: "Current settings will be lost", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Are you sure to dismiss?", message: "All changes will be lost", preferredStyle: .alert)
             alert.addAction(.init(title: "Cancel", style: .cancel))
             alert.addAction(.init(title: "Dismiss", style: .destructive, handler: { [unowned self] _ in
                 parent.viewModel.dismiss()
             }))
-            parent.present(alert, animated: true)
+            parent.navigationController?.present(alert, animated: true)
         }
     }
 }

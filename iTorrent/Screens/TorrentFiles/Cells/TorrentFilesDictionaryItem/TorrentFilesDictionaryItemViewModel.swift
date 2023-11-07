@@ -14,6 +14,8 @@ protocol DictionaryItemViewModelProtocol: MvvmViewModelProtocol {
     var updatePublisher: AnyPublisher<TorrentHandle, Never> { get }
     var name: String { get }
     var node: PathNode! { get }
+    func setPriority(_ priority: FileEntry.Priority)
+    func getPriority(for index: Int) -> FileEntry.Priority
 }
 
 class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, PathNode, String)>, DictionaryItemViewModelProtocol {
@@ -29,5 +31,13 @@ class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, Pat
 
     var updatePublisher: AnyPublisher<TorrentHandle, Never> {
         torrentHandle.updatePublisher.eraseToAnyPublisher()
+    }
+
+    func setPriority(_ priority: FileEntry.Priority) {
+        torrentHandle.setFilesPriority(priority, at: node.files.map { .init(integerLiteral: $0) })
+    }
+
+    func getPriority(for index: Int) -> FileEntry.Priority {
+        torrentHandle.getFileAt(Int32(index)).priority
     }
 }

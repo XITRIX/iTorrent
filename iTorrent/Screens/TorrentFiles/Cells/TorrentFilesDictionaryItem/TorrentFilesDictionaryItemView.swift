@@ -28,14 +28,18 @@ class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: U
 
     func reload() {
         contentConfiguration = UIHostingConfiguration {
-            TorrentFiles2DictionaryItemView(name: model.name, files: model.node.storage.keys.count)
+            let files = model.node.files
+            let filesNeeded = files.filter { model.getPriority(for: $0) != .dontDownload }
+            return TorrentFiles2DictionaryItemView(name: model.name, filesNeeded: filesNeeded.count, files: files.count, viewModel: model)
         }
     }
 }
 
 struct TorrentFiles2DictionaryItemView: View {
     var name: String
+    var filesNeeded: Int
     var files: Int
+    var viewModel: any DictionaryItemViewModelProtocol
 
     var body: some View {
         HStack(spacing: 12) {
@@ -47,15 +51,25 @@ struct TorrentFiles2DictionaryItemView: View {
                     .lineLimit(2)
                     .foregroundStyle(.primary)
                     .font(.subheadline.weight(.semibold))
-                Text("\(files) items")
+                Text("\(filesNeeded) \\ \(files) items")
                     .foregroundStyle(.secondary)
                     .font(.footnote)
             }
+            Spacer()
+            Menu("", systemImage: "ellipsis.circle") {
+                Button("Deselect All", systemImage: "xmark.circle", role: .destructive) {
+                    viewModel.setPriority(.dontDownload)
+                }
+                Button("Select All", systemImage: "checkmark.circle") {
+                    viewModel.setPriority(.defaultPriority)
+                }
+            }
+
         }
         .frame(minHeight: 54)
     }
 }
 
-#Preview {
-    TorrentFiles2DictionaryItemView(name: "Dictionary", files: 2)
-}
+//#Preview {
+//    TorrentFiles2DictionaryItemView(name: "Dictionary", files: 2, viewModel: <#DictionaryItemViewModelProtocol#>)
+//}

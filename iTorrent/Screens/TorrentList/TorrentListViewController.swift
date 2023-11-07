@@ -48,7 +48,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 viewModel.preferencesAction()
             }
 
-            viewModel.$sortingType.combineLatest(viewModel.$sortingReverced).sink { [unowned self] type, reverced in
+            viewModel.sortingType.combineLatest(viewModel.sortingReverced).sink { [unowned self] type, reverced in
                 updateSortingMenu(with: type, reverced: reverced)
             }
         }
@@ -91,11 +91,11 @@ private extension TorrentListViewController {
     func updateSortingMenu(with selected: ViewModel.Sort, reverced: Bool) {
         sortButton.menu = .init(title: "Sort torrents by:", children:
             ViewModel.Sort.allCases.map { type in UIAction(title: type.name, image: selected == type ? (reverced ? .init(systemName: "chevron.up") : .init(systemName: "chevron.down")) : nil) { [unowned self] _ in
-                if viewModel.sortingType == type {
-                    viewModel.sortingReverced.toggle()
+                if viewModel.sortingType.value == type {
+                    viewModel.sortingReverced.value.toggle()
                 } else {
-                    viewModel.sortingType = type
-                    viewModel.sortingReverced = false
+                    viewModel.sortingType.value = type
+                    viewModel.sortingReverced.value = false
                 }
             }})
     }

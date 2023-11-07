@@ -15,6 +15,7 @@ protocol FileItemViewModelProtocol: MvvmViewModel {
     var updatePublisher: AnyPublisher<TorrentHandle, Never> { get }
     var selected: PassthroughSubject<Void, Never> { get }
     var path: URL { get }
+    var showProgress: Bool { get }
 
     func setPriority(_ priority: FileEntry.Priority)
 }
@@ -25,6 +26,7 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
     var index: Int = 0
 
     let selected = PassthroughSubject<Void, Never>()
+    var showProgress: Bool { true }
 
     override func prepare(with model: (TorrentHandle, Int)) {
         torrentHandle = model.0

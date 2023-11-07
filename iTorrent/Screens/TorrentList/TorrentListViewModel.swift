@@ -10,7 +10,7 @@ import MvvmFoundation
 import SwiftData
 
 extension TorrentListViewModel {
-    enum Sort: CaseIterable {
+    enum Sort: CaseIterable, Codable {
         case alphabetically
         case creationDate
         case addedDate
@@ -22,15 +22,21 @@ class TorrentListViewModel: BaseViewModel {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var searchQuery: String = ""
     @Published var title: String = ""
-    @Published var sortingType: Sort = .alphabetically
-    @Published var sortingReverced: Bool = false
+
+    var sortingType: CurrentValueRelay<Sort> {
+        PreferencesStorage.shared.$torrentListSortType
+    }
+
+    var sortingReverced: CurrentValueRelay<Bool> {
+        PreferencesStorage.shared.$torrentListSortReverced
+    }
 
     required init() {
         super.init()
         title = "iTorrent"
 
         TorrentService.shared.$torrents
-            .combineLatest($searchQuery, $sortingType, $sortingReverced) { torrentHandles, searchQuery, sortingType, sortingReverced in
+            .combineLatest($searchQuery, sortingType, sortingReverced) { torrentHandles, searchQuery, sortingType, sortingReverced in
                 if searchQuery.isEmpty { return torrentHandles.sorted(by: sortingType, reverced: sortingReverced) }
                 return torrentHandles.filter { $0.name.localizedCaseInsensitiveContains(searchQuery) }.sorted(by: sortingType, reverced: sortingReverced)
             }

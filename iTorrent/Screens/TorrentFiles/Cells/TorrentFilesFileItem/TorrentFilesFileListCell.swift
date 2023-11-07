@@ -17,6 +17,7 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
     @IBOutlet private var switchView: UISwitch!
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var fileImageView: UIImageView!
+    @IBOutlet private var noProgressConstraint: NSLayoutConstraint!
 
     private lazy var delegates = Delegates(parent: self)
 
@@ -44,6 +45,9 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
 
     override func setup(with viewModel: VM) {
         setViewModel(viewModel)
+
+        progressView.isHidden = !viewModel.showProgress
+        noProgressConstraint.isActive = !viewModel.showProgress
 
         disposeBag.bind {
             viewModel.updatePublisher.sink { [unowned self] _ in

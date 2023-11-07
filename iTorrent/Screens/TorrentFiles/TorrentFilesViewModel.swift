@@ -10,6 +10,7 @@ import MvvmFoundation
 
 class Node {
     var name: String = ""
+    var files: [Int] { [] }
 }
 
 class FileNode: Node {
@@ -19,6 +20,8 @@ class FileNode: Node {
         super.init()
         self.name = name
     }
+
+    override var files: [Int] { return [index] }
 }
 
 class PathNode: Node {
@@ -45,6 +48,10 @@ class PathNode: Node {
         }
 
         nextPathNode.append(path: path, index: index)
+    }
+
+    override var files: [Int] {
+        storage.values.map { $0.files }.reduce([], +)
     }
 }
 
