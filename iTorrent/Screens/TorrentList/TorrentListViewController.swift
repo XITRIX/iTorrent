@@ -14,9 +14,9 @@ import UIKit
 class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
 
-    private let addButton = UIBarButtonItem(title: "Add", image: .init(systemName: "plus"))
-    private let preferencesButton = UIBarButtonItem(title: "Preferences", image: .init(systemName: "gearshape.fill"))
-    private let sortButton = UIBarButtonItem(title: "Sorting", image: .sort)
+    private let addButton = UIBarButtonItem(title: String(localized: "common.add"), image: .init(systemName: "plus"))
+    private let preferencesButton = UIBarButtonItem(title: String(localized: "preferences"), image: .init(systemName: "gearshape.fill"))
+    private let sortButton = UIBarButtonItem(title: String(localized: "list.sort"), image: .sort)
     private lazy var delegates = Delegates(parent: self)
     private let searchVC = UISearchController()
 
@@ -30,11 +30,11 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         searchVC.searchBar.textDidChangePublisher.assign(to: &viewModel.$searchQuery)
         searchVC.searchBar.cancelButtonClickedPublisher.map { "" }.assign(to: &viewModel.$searchQuery)
 
-        addButton.menu = UIMenu(title: "Add from", children: [
-            UIAction(title: "Files", image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
+        addButton.menu = UIMenu(title: String(localized: "list.add.title"), children: [
+            UIAction(title: String(localized: "list.add.files"), image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
                 present(documentPicker, animated: true)
             },
-            UIAction(title: "Magnet", image: .init(systemName: "link.badge.plus")) { [unowned self] _ in
+            UIAction(title: String(localized: "list.add.magnet"), image: .init(systemName: "link.badge.plus")) { [unowned self] _ in
                 present(makeMagnetAlert(), animated: true)
             }
         ])
@@ -84,12 +84,12 @@ private extension TorrentListViewController {
 
     func setupSearch() {
         searchVC.showsSearchResultsController = false
-        searchVC.searchBar.placeholder = "Search"
+        searchVC.searchBar.placeholder = String(localized: "common.search")
         navigationItem.searchController = searchVC
     }
 
     func updateSortingMenu(with selected: ViewModel.Sort, reverced: Bool) {
-        sortButton.menu = .init(title: "Sort torrents by:", children:
+        sortButton.menu = .init(title: String(localized: "list.sort.title"), children:
             ViewModel.Sort.allCases.map { type in UIAction(title: type.name, image: selected == type ? (reverced ? .init(systemName: "chevron.up") : .init(systemName: "chevron.down")) : nil) { [unowned self] _ in
                 if viewModel.sortingType.value == type {
                     viewModel.sortingReverced.value.toggle()
@@ -118,20 +118,20 @@ extension TorrentListViewController {
     }
 
     func makeMagnetAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "Add from magnet", message: "Please enter the magnet link below", preferredStyle: .alert)
+        let alert = UIAlertController(title: String(localized: "list.add.magnet.title"), message: String(localized: "list.add.magnet.message"), preferredStyle: .alert)
 
         alert.addTextField { textField in
-            textField.placeholder = "magnet:"
+            textField.placeholder = String(localized: "list.add.magnet.placeholder")
         }
 
-        alert.addAction(.init(title: "Cancel", style: .cancel))
-        alert.addAction(.init(title: "OK", style: .default) { [unowned self] _ in
+        alert.addAction(.init(title: String(localized: "common.cancel"), style: .cancel))
+        alert.addAction(.init(title: String(localized: "common.ok"), style: .default) { [unowned self] _ in
             guard let text = alert.textFields?.first?.text,
                   let url = URL(string: text),
                   let magnet = MagnetURI(with: url)
             else {
-                let alert = UIAlertController(title: "Error", message: "Magnet link is not valid", preferredStyle: .alert)
-                alert.addAction(.init(title: "Close", style: .cancel))
+                let alert = UIAlertController(title: String(localized: "common.error"), message: String(localized: "list.add.magnet.error"), preferredStyle: .alert)
+                alert.addAction(.init(title: String(localized: "common.close"), style: .cancel))
                 present(alert, animated: true)
                 return
             }
@@ -145,13 +145,13 @@ private extension TorrentListViewModel.Sort {
     var name: String {
         switch self {
         case .alphabetically:
-            return "Name"
+            return String(localized: "list.sort.name")
         case .creationDate:
-            return "Date Created"
+            return String(localized: "list.sort.creationDate")
         case .addedDate:
-            return "Date Added"
+            return String(localized: "list.sort.addedDate")
         case .size:
-            return "Size"
+            return String(localized: "list.sort.size")
         }
     }
 }

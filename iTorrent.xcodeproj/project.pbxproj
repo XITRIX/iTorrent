@@ -46,6 +46,8 @@
 		D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227082AEF0B6A00669D6D /* TorrentListItemViewModel.swift */; };
 		D1AA00CB2AFA8A9200B74629 /* UserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */; };
 		D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA00CD2AFA8B1000B74629 /* PreferencesStorage.swift */; };
+		D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
+		D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA00D12AFAC95500B74629 /* String+Localized.swift */; };
 		D1ACFDC62AF6DB9F0098FF56 /* TorrentFilesFileListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ACFDC42AF6DB9F0098FF56 /* TorrentFilesFileListCell.swift */; };
 		D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1ACFDC52AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib */; };
 		D1ACFDC92AF6ED200098FF56 /* UIImage+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */; };
@@ -117,6 +119,8 @@
 		D1A227082AEF0B6A00669D6D /* TorrentListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListItemViewModel.swift; sourceTree = "<group>"; };
 		D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultItem.swift; sourceTree = "<group>"; };
 		D1AA00CD2AFA8B1000B74629 /* PreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
+		D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		D1AA00D12AFAC95500B74629 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		D1ACFDC42AF6DB9F0098FF56 /* TorrentFilesFileListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesFileListCell.swift; sourceTree = "<group>"; };
 		D1ACFDC52AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentFilesFileListCell.xib; sourceTree = "<group>"; };
 		D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+File.swift"; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				D19E00252AF045F9000A17A2 /* SpeedFormat.swift */,
 				D1EFCD132AF5A59800D33A7A /* UIViewController+Pop.swift */,
 				D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */,
+				D1AA00D12AFAC95500B74629 /* String+Localized.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -297,13 +302,14 @@
 		D1A226EE2AEF00FB00669D6D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */,
 				D1B5385A2AF1190200694AFD /* iTorrent.entitlements */,
 				D1A2269D2AEEEFCC00669D6D /* AppDelegate.swift */,
 				D1A2269F2AEEEFCC00669D6D /* SceneDelegate.swift */,
 				D1A226A12AEEEFCC00669D6D /* ViewController.swift */,
 				D1A226A32AEEEFCC00669D6D /* Main.storyboard */,
-				D1A226A62AEEEFDF00669D6D /* Assets.xcassets */,
 				D1A226A82AEEEFDF00669D6D /* LaunchScreen.storyboard */,
+				D1A226A62AEEEFDF00669D6D /* Assets.xcassets */,
 				D1A226AB2AEEEFE000669D6D /* Info.plist */,
 			);
 			path = Core;
@@ -313,10 +319,10 @@
 			isa = PBXGroup;
 			children = (
 				D111384C2AF9663F008907F7 /* Preferences */,
-				D11138452AF94633008907F7 /* TorrentAdd */,
 				D1A226F62AEF04C900669D6D /* TorrentList */,
 				D135C5962AEFB94900440680 /* TorrentDetails */,
 				D1EFCD062AF56A3200D33A7A /* TorrentFiles */,
+				D11138452AF94633008907F7 /* TorrentAdd */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -476,6 +482,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
@@ -503,6 +510,7 @@
 				D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */,
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
+				D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */,
 				D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */,
 				D1A226A52AEEEFCC00669D6D /* Main.storyboard in Resources */,
 				D1A226FA2AEF04E200669D6D /* TorrentListViewController.xib in Resources */,
@@ -550,6 +558,7 @@
 				D1707C342AF297C500F1752A /* BaseSplitViewController.swift in Sources */,
 				D1A226FF2AEF056A00669D6D /* BaseViewModel.swift in Sources */,
 				D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */,
+				D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */,
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,
 				D1A226F92AEF04E200669D6D /* TorrentListViewController.swift in Sources */,

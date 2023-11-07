@@ -30,7 +30,11 @@ class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: U
         contentConfiguration = UIHostingConfiguration {
             let files = model.node.files
             let filesNeeded = files.filter { model.getPriority(for: $0) != .dontDownload }
-            return TorrentFiles2DictionaryItemView(name: model.name, filesNeeded: filesNeeded.count, files: files.count, viewModel: model)
+            return TorrentFiles2DictionaryItemView(name: model.name, filesNeeded: filesNeeded.count, files: files.count) { [unowned self] in
+                model.setPriority(.defaultPriority)
+            } deselectAll: { [unowned self] in
+                model.setPriority(.dontDownload)
+            }
         }
     }
 }
@@ -39,7 +43,9 @@ struct TorrentFiles2DictionaryItemView: View {
     var name: String
     var filesNeeded: Int
     var files: Int
-    var viewModel: any DictionaryItemViewModelProtocol
+
+    var selectAll: (() -> Void)?
+    var deselectAll: (() -> Void)?
 
     var body: some View {
         HStack(spacing: 12) {
@@ -56,20 +62,25 @@ struct TorrentFiles2DictionaryItemView: View {
                     .font(.footnote)
             }
             Spacer()
-            Menu("", systemImage: "ellipsis.circle") {
-                Button("Deselect All", systemImage: "xmark.circle", role: .destructive) {
-                    viewModel.setPriority(.dontDownload)
+            Menu {
+                Button("files.deselectAll", systemImage: "xmark.circle", role: .destructive) {
+                    deselectAll?()
                 }
-                Button("Select All", systemImage: "checkmark.circle") {
-                    viewModel.setPriority(.defaultPriority)
+                Button("files.selectAll", systemImage: "checkmark.circle") {
+                    selectAll?()
                 }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .resizable()
+                    .frame(width: 22, height: 22)
             }
+
 
         }
         .frame(minHeight: 54)
     }
 }
 
-//#Preview {
-//    TorrentFiles2DictionaryItemView(name: "Dictionary", files: 2, viewModel: <#DictionaryItemViewModelProtocol#>)
-//}
+#Preview {
+    TorrentFiles2DictionaryItemView(name: "Dictionary", filesNeeded: 3, files: 12)
+}

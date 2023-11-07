@@ -12,7 +12,7 @@ class PreferencesViewController<VM: PreferencesViewModel>: BaseViewController<VM
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        title = String(localized: "preferences")
     }
 
 }

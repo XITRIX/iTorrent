@@ -75,10 +75,10 @@ private extension TorrentAddViewController {
 
     func makeMoreMenu() -> UIMenu {
         .init(children: [
-            UIAction(title: "Select All", image: .init(systemName: "checkmark.circle"), handler: { [unowned self] _ in
+            UIAction(title: "files.selectAll", image: .init(systemName: "checkmark.circle"), handler: { [unowned self] _ in
                 viewModel.selectAll()
             }),
-            UIAction(title: "Deselect All", image: .init(systemName: "xmark.circle"), attributes: [.destructive], handler: { [unowned self] _ in
+            UIAction(title: "files.deselectAll", image: .init(systemName: "xmark.circle"), attributes: [.destructive], handler: { [unowned self] _ in
                 viewModel.deselectAll()
             })
         ])

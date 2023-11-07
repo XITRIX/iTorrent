@@ -20,7 +20,9 @@ private struct GenericControllerView: UIViewControllerRepresentable {
 
 extension View {
     var asController: UIHostingController<Self> {
-        .init(rootView: self)
+        let vc = UIHostingController<Self>(rootView: self)
+        vc.safeAreaRegions = []
+        return vc
     }
 }
 

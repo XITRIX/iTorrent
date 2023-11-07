@@ -122,11 +122,13 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
 private extension BaseSplitViewController {
     struct EmptyView: View {
         var body: some View {
-            Text("iTorrent")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .fontDesign(.rounded)
-                .ignoresSafeArea()
+            ZStack {
+                Text("iTorrent")
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
+                    .fontDesign(.rounded)
+            }
+            .ignoresSafeArea()
         }
     }
 }

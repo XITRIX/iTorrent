@@ -29,19 +29,19 @@ extension TorrentHandle.State {
     var name: String {
         switch self {
         case .checkingFiles:
-            return "Prepairing"
+            return String(localized: "torrent.state.prepairing")
         case .downloadingMetadata:
-            return "Fetching metadata"
+            return String(localized: "torrent.state.fetchingMetadata")
         case .downloading:
-            return "Downloading"
+            return String(localized: "torrent.state.downloading")
         case .finished:
-            return "Done"
+            return String(localized: "torrent.state.done")
         case .seeding:
-            return "Seeding"
+            return String(localized: "torrent.state.seeding")
         case .checkingResumeData:
-            return "Resuming"
+            return String(localized: "torrent.state.resuming")
         case .paused:
-            return "Paused"
+            return String(localized: "torrent.state.paused")
         @unknown default:
             return ""
         }

@@ -49,13 +49,13 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z2r-2t-A7z">
                                     <rect key="frame" x="0.0" y="0.0" width="168.33333333333334" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5t-PK-rT8">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5t-PK-rT8">
                                             <rect key="frame" x="0.0" y="0.0" width="168.33333333333334" height="34.333333333333336"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0Y-f9-7t9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0Y-f9-7t9">
                                             <rect key="frame" x="0.0" y="34.333333333333329" width="168.33333333333334" height="15.666666666666664"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -93,7 +93,7 @@
                                 <constraint firstItem="mjF-bn-yGq" firstAttribute="leading" secondItem="z2r-2t-A7z" secondAttribute="trailing" constant="12" id="Si4-oP-wbC"/>
                                 <constraint firstItem="z2r-2t-A7z" firstAttribute="leading" secondItem="RTe-Tc-0Sx" secondAttribute="leading" id="bzB-h0-t4D"/>
                                 <constraint firstAttribute="trailing" secondItem="mjF-bn-yGq" secondAttribute="trailing" id="oV0-wZ-wZc"/>
-                                <constraint firstItem="wUc-Ls-xIU" firstAttribute="top" secondItem="z2r-2t-A7z" secondAttribute="bottom" priority="250" constant="4" id="vXK-iK-l9R"/>
+                                <constraint firstItem="wUc-Ls-xIU" firstAttribute="top" secondItem="z2r-2t-A7z" secondAttribute="bottom" priority="500" constant="4" id="vXK-iK-l9R"/>
                             </constraints>
                         </view>
                     </subviews>
