@@ -112,23 +112,147 @@ class TrackersListController: ThemedUIViewController {
     }
 
     @IBAction func addAction(_ sender: UIBarButtonItem) {
-        Dialog.withTextField(self, title: "Add Tracker", message: "Enter the full tracker's URL",
-                             textFieldConfiguration: { textField in
-                                 textField.placeholder = NSLocalizedString("Tracker's URL", comment: "")
-        }, okText: "Add") { textField in
-            Utils.checkFolderExist(path: Core.configFolder)
-
-            if let _ = URL(string: textField.text!) {
-                print(TorrentSdk.addTrackerToTorrent(hash: self.managerHash, trackerUrl: textField.text!))
+        
+         Dialog.withTextView(self,
+                             title: "Add Trackers",
+                             message: "Enter tracker URLs separated by blank line",
+                             textViewConfiguration: { textView in
+                                 textView.placeholder = NSLocalizedString("Ex: http://x.x.x.x:8080/announce", comment: "")
+                             },
+                             okText: "Add") { textView in
+            // perform add trackers on a background thread and show progress/result on UI
+            self.performAddTrackers(textView.text!){
                 self.update()
-            } else {
-                Dialog.show(self, title: "Error", message: "Wrong link, check it and try again!")
             }
         }
     }
+    
+    private func performAddTrackers(_ trackers: String, postAddActions: (()->Void)?){
+        
+        let progressViewController = ProgressViewController()
+        // show progress bar on UI Thread and continue until dismissed
+        progressViewController.showProgress(presenter: self)
+    
+        // perform task as async in non-UI (background) Thread
+        DispatchQueue.global().async {
+            var totalProgress:Float = 100.0
+
+            Utils.checkFolderExist(path: Core.configFolder)
+            
+            // parse and retrive valid tracker URLs
+            let consumed:Float = 40.0                   // following operation can update progress by +40
+            totalProgress -= consumed
+            let result = self.parseTorrentTrackersList(trackers, progressViewController, allowedProgress: consumed)
+            
+            let validTrackers = result.validTrackers
+            let processedEntries = result.entries
+            
+            var title,message,stats: String
+            
+            if(validTrackers.isEmpty){
+                title       = "Error"
+                message     = "No valid tracker URLs found!"
+                stats       = "processed: \(processedEntries.count)"
+            } else {
+                let consumed:Float = 10.0                   // following operation can update progress by +10
+                totalProgress -= consumed
+                let trackerUrls = TorrentSdk
+                    .getTrackersByHash(hash: self.managerHash)
+                    .map{ trackerInfo in
+                        trackerInfo.url
+                    }
+                let uniqueTrackers = validTrackers.filter { !trackerUrls.contains($0) }
+                // update the progress
+                progressViewController.setProgress(progressViewController.getProgress()+consumed)
+                
+                // trackerUrls
+                let increment = (totalProgress/Float(uniqueTrackers.count))
+                var added_count:Int = 0
+                for tracker in uniqueTrackers {
+                    let added:Bool = TorrentSdk.addTrackerToTorrent(hash: self.managerHash, trackerUrl: tracker)
+                    if(added){ added_count += 1 }
+                    print("\(added_count). Added Tracker: \(added) trackerUrl: \(tracker)")
+                    // update progress for each operation
+                    progressViewController.setProgress(progressViewController.getProgress()+increment)
+                }
+                print("Total Trackers Added: \(added_count)")
+                stats = "processed: \(processedEntries.count) added: \(added_count)"
+                
+                title   = "Warning"
+                if(validTrackers.count == processedEntries.count && uniqueTrackers.count == 0){
+                    message = "All entries were duplicates!"
+                }else if(validTrackers.count == processedEntries.count && uniqueTrackers.count < validTrackers.count){
+                    message = "Some entries were duplicates!"
+                }else if(validTrackers.count < processedEntries.count && uniqueTrackers.count == validTrackers.count){
+                    message = "Some entries were invalid!"
+                }else if(validTrackers.count < processedEntries.count && uniqueTrackers.count < validTrackers.count){
+                    message = "Some entries were duplicate/invalid!"
+                }else{
+                    // validTrackers.count == processedEntries.count == uniqueTrackers.count
+                    title   = "Info"
+                    message = "All valid tracker URLs were added!"
+                }
+            }
+            progressViewController.consumeRemainingPercentage()    // complete progress to 100 on UI Thread
+            // hide progress on UI Thread
+            progressViewController.hideProgress(animated: false) {
+                // do post add tasks
+                Dialog.show(self, title: title, message: "\(message)\n\(stats)")
+                postAddActions?()
+            }
+        }
+    }
+    
+    private func isValidTrackerURL(_ url: String) -> Bool {
+        // Regular expression pattern to validate a tracker URL
+        let scheme              = #"https?|udp|ftp|torrent|magnet|ws|wss"#
+        let port                = #":[0-9]+"#
+        let ipv4_addr_domain    = #"[0-9A-Za-z.-]+"#                       // ipv4 addr or domain names
+        let ipv6_addr           = #"\[?[0-9A-Fa-f:]+\]?"#                  // ipv6 addr
+        let path                = #"(/[A-Za-z0-9.-]+)*"#
+        
+        let pattern = "^(\(scheme))://(\(ipv4_addr_domain)|\(ipv6_addr))(\(port))?\(path)?$"
+        
+        if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+            let range = NSRange(location: 0, length: url.utf16.count)
+            if let _ = regex.firstMatch(in: url, options: [], range: range) {
+                if let _ = URL(string: url) {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+
+    private func parseTorrentTrackersList(_ input: String,
+                                          _ pvc: ProgressViewController,
+                                          allowedProgress: Float = 100.0
+    ) -> (validTrackers: [String], entries: [String], lines: Int) {
+        // Split the input string into lines, removing empty lines and trimming spaces
+        let lines: [String] = input.components(separatedBy: .newlines)
+        let entries = lines
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+        
+        // update progress status
+        let consumed:Float = 5
+        let remaining:Float = allowedProgress - consumed
+        pvc.setProgress(pvc.getProgress()+consumed)         // bump progress by 5 percentage
+        
+        let increment = (remaining/Float(entries.count))
+        // Filter out the valid tracker URLs (remove duplicates if any by passing through set)
+        let validTrackers = Array(Set(entries.filter {
+            let validity = isValidTrackerURL($0)
+            pvc.setProgress(pvc.getProgress()+increment)    // update the progress
+            return validity
+        }))
+        print("parseTorrentTrackersList() progress: \(pvc.getProgress())")
+        return (validTrackers, entries, lines.count)
+    }
 
     @IBAction func removeAction(_ sender: UIBarButtonItem) {
-        let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you shure to remove this trackers?", comment: ""), preferredStyle: .actionSheet)
+        let controller = ThemedUIAlertController(title: nil, message: NSLocalizedString("Are you sure to remove these trackers?", comment: ""), preferredStyle: .actionSheet)
         let remove = UIAlertAction(title: NSLocalizedString("Remove", comment: ""), style: .destructive) { _ in
             let urls: [String] = self.tableView.indexPathsForSelectedRows!.map {
                 self.trackers[$0.row].url

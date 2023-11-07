@@ -39,6 +39,35 @@ class Dialog {
         presenter?.present(dialog, animated: true)
     }
     
+    static func withTextView(_ presenter: UIViewController?,
+                               title: String? = nil,
+                               message: String? = nil,
+                               textViewConfiguration: ((EditTextView) -> ())?,
+                               cancelText: String = "Close",
+                               okText: String = "OK",
+                               okAction: @escaping (EditTextView) -> ()) {
+        
+        let dialog = ThemedUIAlertController(title: Localize.get(key: title), 
+                                             message: Localize.get(key: message),
+                                             preferredStyle: .alert)
+
+        let editTextView = EditTextView()
+        let editTextController = EditTextViewController(editTextView: editTextView)
+        
+        textViewConfiguration!(editTextView)
+        dialog.setValue(editTextController, forKey: "contentViewController")
+        
+        let cancel = UIAlertAction(title: Localize.get(cancelText), style: .cancel)
+        let ok = UIAlertAction(title: Localize.get(okText), style: .default) { _ in
+            okAction(editTextView)
+        }
+        
+        dialog.addAction(cancel)
+        dialog.addAction(ok)
+        
+        presenter?.present(dialog, animated: true)
+    }
+    
     static func withButton(_ presenter: UIViewController? = Utils.topViewController, title: String? = nil, message: String? = nil, okTitle: String, action: @escaping ()->()) {
         let dialog = ThemedUIAlertController(title: Localize.get(key: title),
                                              message: Localize.get(key: message),
