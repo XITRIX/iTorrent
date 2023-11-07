@@ -100,13 +100,23 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
         else { return nil }
 
         var vcs: [UIViewController] = []
+        let original = nvc.viewControllers
+        var secondStackFound = false
         while nvc.viewControllers.count > 1 {
             guard let vc = nvc.viewControllers.popLast()
             else { break }
 
             vcs.append(vc)
 
-            if vc == detailViewController { break }
+            if vc == detailViewController {
+                secondStackFound = true
+                break
+            }
+        }
+
+        if !secondStackFound {
+            nvc.viewControllers = original
+            vcs = []
         }
 
         if !vcs.isEmpty {
@@ -122,13 +132,11 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
 private extension BaseSplitViewController {
     struct EmptyView: View {
         var body: some View {
-            ZStack {
-                Text("iTorrent")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
-            }
-            .ignoresSafeArea()
+            Text("iTorrent")
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .fontDesign(.rounded)
+                .ignoresSafeArea()
         }
     }
 }
