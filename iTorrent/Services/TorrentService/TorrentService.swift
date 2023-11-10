@@ -6,15 +6,15 @@
 //
 
 import Combine
-import Foundation
 import LibTorrent
+import MvvmFoundation
 
 class TorrentService {
     @Published var torrents: [TorrentHandle] = []
 
     static let shared = TorrentService()
 
-    init() { session.add(self) }
+    init() { setup() }
 
     static var downloadPath: URL { try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) }
     static var torrentPath: URL { downloadPath.appending(path: "config") }
@@ -24,8 +24,10 @@ class TorrentService {
     private let session: Session = {
         var settings = Session.Settings()
         print("Working directory: \(downloadPath.path())")
-        return .init(downloadPath.path(), torrentsPath: torrentPath.path(), fastResumePath: fastResumePath.path(), settings: settings)
+        return .init(downloadPath.path(), torrentsPath: torrentPath.path(), fastResumePath: fastResumePath.path(), settings: .fromPreferences())
     }()
+
+    private let disposeBag = DisposeBag()
 }
 
 extension TorrentService {
@@ -55,6 +57,10 @@ extension TorrentService {
         handle.deleteMetadata()
         session.removeTorrent(handle, deleteFiles: deleteFiles)
     }
+
+    func updateSettings(_ settings: Session.Settings) {
+        session.settings = settings
+    }
 }
 
 extension TorrentService: SessionDelegate {
@@ -82,14 +88,15 @@ extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didErrorOccur error: Error) {}
 }
 
-private var TorrentHandleUpdatePublisherKey: UInt8 = 0
-extension TorrentHandle {
-    var updatePublisher: PassthroughSubject<TorrentHandle, Never> {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
-        else {
-            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
+private extension TorrentService {
+    func setup() {
+        session.add(self)
+        disposeBag.bind {
+            PreferencesStorage.shared.settingsUpdatePublisher.sink { [unowned self] settings in
+                DispatchQueue.main.async { [self] in // Need delay to complete settings apply
+                    session.settings = .fromPreferences()
+                }
+            }
         }
-        return obj
     }
 }

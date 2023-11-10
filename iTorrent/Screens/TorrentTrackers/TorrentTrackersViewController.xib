@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PreferencesViewController" customModule="iTorrent" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TorrentTrackersViewController" customModule="iTorrent" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="lCl-MQ-DTa" id="MPU-ZU-Vqz"/>
+                <outlet property="collectionView" destination="s00-PH-ktC" id="kfH-OT-ez2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,10 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lCl-MQ-DTa" customClass="MvvmCollectionView" customModule="MvvmFoundation">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="s00-PH-ktC" customClass="MvvmCollectionView" customModule="MvvmFoundation">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z0Y-v2-Rm0">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ugZ-ax-Kib">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -34,12 +34,12 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="lCl-MQ-DTa" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="5oY-G3-RX3"/>
-                <constraint firstAttribute="bottom" secondItem="lCl-MQ-DTa" secondAttribute="bottom" id="MbQ-Gd-NuV"/>
-                <constraint firstItem="lCl-MQ-DTa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NYU-OE-CJQ"/>
-                <constraint firstItem="lCl-MQ-DTa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pjE-0x-LcP"/>
+                <constraint firstItem="s00-PH-ktC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2mr-bu-WDb"/>
+                <constraint firstItem="s00-PH-ktC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C66-da-mzY"/>
+                <constraint firstAttribute="bottom" secondItem="s00-PH-ktC" secondAttribute="bottom" id="Fpb-B3-YQe"/>
+                <constraint firstAttribute="trailing" secondItem="s00-PH-ktC" secondAttribute="trailing" id="eTt-Jo-QmY"/>
             </constraints>
-            <point key="canvasLocation" x="136.64122137404578" y="19.718309859154932"/>
+            <point key="canvasLocation" x="102" y="20"/>
         </view>
     </objects>
     <resources>

@@ -75,10 +75,10 @@ private extension TorrentAddViewController {
 
     func makeMoreMenu() -> UIMenu {
         .init(children: [
-            UIAction(title: "files.selectAll", image: .init(systemName: "checkmark.circle"), handler: { [unowned self] _ in
+            UIAction(title: String(localized: "files.selectAll"), image: .init(systemName: "checkmark.circle"), handler: { [unowned self] _ in
                 viewModel.selectAll()
             }),
-            UIAction(title: "files.deselectAll", image: .init(systemName: "xmark.circle"), attributes: [.destructive], handler: { [unowned self] _ in
+            UIAction(title: String(localized: "files.deselectAll"), image: .init(systemName: "xmark.circle"), attributes: [.destructive], handler: { [unowned self] _ in
                 viewModel.deselectAll()
             })
         ])
@@ -128,9 +128,9 @@ private extension TorrentAddViewController {
         }
 
         func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
-            let alert = UIAlertController(title: "Are you sure to dismiss?", message: "All changes will be lost", preferredStyle: .alert)
-            alert.addAction(.init(title: "Cancel", style: .cancel))
-            alert.addAction(.init(title: "Dismiss", style: .destructive, handler: { [unowned self] _ in
+            let alert = UIAlertController(title: String(localized: "add.dismiss.title"), message: String(localized: "add.dismiss.message"), preferredStyle: .alert)
+            alert.addAction(.init(title: String(localized: "common.cancel"), style: .cancel))
+            alert.addAction(.init(title: String(localized: "common.dismiss"), style: .destructive, handler: { [unowned self] _ in
                 parent.viewModel.dismiss()
             }))
             parent.navigationController?.present(alert, animated: true)

@@ -10,10 +10,10 @@ import Foundation
 extension UInt64 {
     var bitrateToHumanReadable: String {
         let formatter = ByteCountFormatter()
-        formatter.allowedUnits = .useAll.subtracting(.useBytes)
-        formatter.countStyle = .binary
+        formatter.allowedUnits = .useAll//.subtracting(.useBytes)
+        formatter.countStyle = .file //.binary
         formatter.allowsNonnumericFormatting = false
-        return formatter.string(fromByteCount: Int64(self))
+        return formatter.string(fromByteCount: Int64(self)).replacingOccurrences(of: "bytes", with: "B")
     }
 
     var timeString: String {

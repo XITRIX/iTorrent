@@ -6,6 +6,19 @@
 //
 
 import LibTorrent
+import Combine
+
+private var TorrentHandleUpdatePublisherKey: UInt8 = 0
+extension TorrentHandle {
+    var updatePublisher: PassthroughSubject<TorrentHandle, Never> {
+        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
+        else {
+            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
+        }
+        return obj
+    }
+}
 
 extension TorrentHandle {
     var friendlyState: State {

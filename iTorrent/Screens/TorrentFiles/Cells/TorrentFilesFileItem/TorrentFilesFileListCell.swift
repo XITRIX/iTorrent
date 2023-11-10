@@ -102,7 +102,7 @@ private extension TorrentFilesFileListCell {
 
         let percent = "\(String(format: "%.2f", file.progress * 100))%"
         titleLabel.text = file.name
-        subtitleLabel.text = "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
+        subtitleLabel.text = progressView.isHidden ? "\(file.size.bitrateToHumanReadable)" : "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
         progressView.progress = file.progress
         fileImageView.image = .icon(forFileURL: viewModel.path)
         switchView.isOn = file.priority != .dontDownload

@@ -25,12 +25,16 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(TorrentFilesViewController<TorrentFilesViewModel>.self)
         router.register(TorrentAddViewController<TorrentAddViewModel>.self)
         router.register(PreferencesViewController<PreferencesViewModel>.self)
+        router.register(TorrentTrackersViewController<TorrentTrackersViewModel>.self)
 
         router.register(TorrentListItemView.self)
         router.register(TorrentDetailProgressCellView.self)
 
         router.register(DetailCellView.self)
         router.register(ToggleCellView.self)
+
+        router.register(PRSwitchView.self)
+        router.register(PRButtonView.self)
     }
 
     override func resolveRootVC(with router: Router) -> UIViewController {

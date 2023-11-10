@@ -25,6 +25,10 @@ class BaseSplitViewController: UISplitViewController {
         let nvc = UINavigationController.resolve()
         nvc.viewControllers = [emptyView]
         showDetailViewController(nvc, sender: self)
+        #else
+        if !isCollapsed {
+            showDetailViewController(emptyView, sender: self)
+        }
         #endif
     }
 

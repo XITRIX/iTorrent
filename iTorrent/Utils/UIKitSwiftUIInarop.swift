@@ -21,7 +21,9 @@ private struct GenericControllerView: UIViewControllerRepresentable {
 extension View {
     var asController: UIHostingController<Self> {
         let vc = UIHostingController<Self>(rootView: self)
-        vc.safeAreaRegions = []
+        if #available(iOS 16.4, *) {
+            vc.safeAreaRegions = []
+        }
         return vc
     }
 }

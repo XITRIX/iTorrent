@@ -45,6 +45,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let hashModel = DetailCellViewModel(title: "Hash", spacer: 80)
     private let hashModelV2 = DetailCellViewModel(title: "Hash v2", spacer: 80)
     private let creatorModel = DetailCellViewModel(title: "Creator", spacer: 80)
+    private let commentModel = DetailCellViewModel(title: "Comment", spacer: 80)
     private let createdModel = DetailCellViewModel(title: "Created")
     private let addedModel = DetailCellViewModel(title: "Added")
 
@@ -56,6 +57,9 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let seedersModel = DetailCellViewModel(title: "Seeders")
     private let leechersModel = DetailCellViewModel(title: "Leechers")
 
+    private lazy var trackersModel = DetailCellViewModel(title: "Trackers") { [unowned self] in
+        navigate(to: TorrentTrackersViewModel.self, with: torrentHandle, by: .show)
+    }
     private lazy var filesModel = DetailCellViewModel(title: "Files") { [unowned self] in
         navigate(to: TorrentFilesViewModel.self, with: .init(torrentHandle: torrentHandle), by: .show)
     }
@@ -113,6 +117,7 @@ private extension TorrentDetailsViewModel {
             hashModelV2.detail = torrentHandle.infoHashes.v2.hex
         }
         creatorModel.detail = torrentHandle.creator ?? ""
+        commentModel.detail = torrentHandle.comment ?? ""
 
         let formatter: DateFormatter = {
             let formatter = DateFormatter()
@@ -166,6 +171,10 @@ private extension TorrentDetailsViewModel {
                 creatorModel
             }
 
+            if !commentModel.detail.isEmpty {
+                commentModel
+            }
+
             if !creatorModel.detail.isEmpty {
                 createdModel
             }
@@ -183,6 +192,7 @@ private extension TorrentDetailsViewModel {
         })
 
         sections.append(.init(id: "actions", header: "Actions") {
+            trackersModel
             filesModel
         })
 
