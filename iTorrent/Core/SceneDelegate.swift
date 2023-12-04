@@ -30,6 +30,8 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(TorrentListItemView.self)
         router.register(TorrentDetailProgressCellView.self)
 
+        router.register(TrackerCellView.self)
+
         router.register(DetailCellView.self)
         router.register(ToggleCellView.self)
 

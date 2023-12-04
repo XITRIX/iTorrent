@@ -26,7 +26,7 @@ private extension TorrentTrackersViewModel {
 
         sections.append(.init(id: "trackers", style: .plain, items:
             torrentHandle.trackers.map { tracker in
-                DetailCellViewModel(title: tracker.trackerUrl)
+                TrackerCellViewModel(with: tracker)
             }))
     }
 }

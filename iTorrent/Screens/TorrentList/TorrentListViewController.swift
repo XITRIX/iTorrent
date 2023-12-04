@@ -66,7 +66,6 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         collectionView.isEditing = editing
-//        collectionView.setEditing(editing, animated: animated)
     }
 }
 

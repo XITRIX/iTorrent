@@ -60,6 +60,8 @@
 		D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1BEC72AFE25AE0030C2A4 /* TorrentTrackersViewController.swift */; };
 		D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1B1BEC82AFE25AE0030C2A4 /* TorrentTrackersViewController.xib */; };
 		D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1BECB2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift */; };
+		D1B1BED02AFE2D760030C2A4 /* TrackerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1BECF2AFE2D760030C2A4 /* TrackerCellView.swift */; };
+		D1B1BED22AFE2D9F0030C2A4 /* TrackerCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1BED12AFE2D9F0030C2A4 /* TrackerCellViewModel.swift */; };
 		D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B538562AF1171900694AFD /* TorrentDetailProgressCellView.swift */; };
 		D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B538582AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift */; };
 		D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */; };
@@ -139,6 +141,8 @@
 		D1B1BEC72AFE25AE0030C2A4 /* TorrentTrackersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentTrackersViewController.swift; sourceTree = "<group>"; };
 		D1B1BEC82AFE25AE0030C2A4 /* TorrentTrackersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentTrackersViewController.xib; sourceTree = "<group>"; };
 		D1B1BECB2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentTrackersViewModel.swift; sourceTree = "<group>"; };
+		D1B1BECF2AFE2D760030C2A4 /* TrackerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCellView.swift; sourceTree = "<group>"; };
+		D1B1BED12AFE2D9F0030C2A4 /* TrackerCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCellViewModel.swift; sourceTree = "<group>"; };
 		D1B538562AF1171900694AFD /* TorrentDetailProgressCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailProgressCellView.swift; sourceTree = "<group>"; };
 		D1B538582AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailProgressCellViewModel.swift; sourceTree = "<group>"; };
 		D1B5385A2AF1190200694AFD /* iTorrent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iTorrent.entitlements; sourceTree = "<group>"; };
@@ -434,11 +438,29 @@
 		D1B1BEC62AFE258F0030C2A4 /* TorrentTrackers */ = {
 			isa = PBXGroup;
 			children = (
+				D1B1BECD2AFE2D610030C2A4 /* Cells */,
 				D1B1BECB2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift */,
 				D1B1BEC72AFE25AE0030C2A4 /* TorrentTrackersViewController.swift */,
 				D1B1BEC82AFE25AE0030C2A4 /* TorrentTrackersViewController.xib */,
 			);
 			path = TorrentTrackers;
+			sourceTree = "<group>";
+		};
+		D1B1BECD2AFE2D610030C2A4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D1B1BECE2AFE2D690030C2A4 /* TrackerCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D1B1BECE2AFE2D690030C2A4 /* TrackerCell */ = {
+			isa = PBXGroup;
+			children = (
+				D1B1BED12AFE2D9F0030C2A4 /* TrackerCellViewModel.swift */,
+				D1B1BECF2AFE2D760030C2A4 /* TrackerCellView.swift */,
+			);
+			path = TrackerCell;
 			sourceTree = "<group>";
 		};
 		D1B538552AF1170100694AFD /* TorrentDetailProgress */ = {
@@ -598,6 +620,7 @@
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				D19E00262AF045F9000A17A2 /* SpeedFormat.swift in Sources */,
+				D1B1BED22AFE2D9F0030C2A4 /* TrackerCellViewModel.swift in Sources */,
 				D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */,
 				D1EFCD142AF5A59800D33A7A /* UIViewController+Pop.swift in Sources */,
 				D11BE54B2AFBA06900780C1B /* PRButtonViewModel.swift in Sources */,
@@ -620,6 +643,7 @@
 				D1ACFDC92AF6ED200098FF56 /* UIImage+File.swift in Sources */,
 				D1707C342AF297C500F1752A /* BaseSplitViewController.swift in Sources */,
 				D1A226FF2AEF056A00669D6D /* BaseViewModel.swift in Sources */,
+				D1B1BED02AFE2D760030C2A4 /* TrackerCellView.swift in Sources */,
 				D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */,
 				D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */,
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,

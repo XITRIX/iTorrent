@@ -8,6 +8,8 @@
 import MvvmFoundation
 
 class BaseViewController<ViewModel: MvvmViewModelProtocol>: MvvmViewController<ViewModel> {
+    var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         #if os(visionOS)
@@ -17,6 +19,6 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: MvvmViewController<V
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setToolbarHidden(toolbarItems?.isEmpty ?? true, animated: animated)
+        navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: false)
     }
 }
