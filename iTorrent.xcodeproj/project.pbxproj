@@ -380,6 +380,9 @@
 		7CFDDCCD235BA46A0008EBEA /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */; };
 		7CFDDCCF235BA4BE0008EBEA /* UpdateInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */; };
 		BEA4455F12A1DDE24B36018F /* Pods_iTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB1768F2454FEBB005CEEA6 /* Pods_iTorrent.framework */; };
+		D14B19A72B2867DE00EC8AEA /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B19A52B2867DE00EC8AEA /* EditTextViewController.swift */; };
+		D14B19A82B2867DE00EC8AEA /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B19A62B2867DE00EC8AEA /* EditTextView.swift */; };
+		D14B19AB2B2868FE00EC8AEA /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B19AA2B2868FE00EC8AEA /* ProgressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -639,6 +642,9 @@
 		7CFDDCCC235BA46A0008EBEA /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		7CFDDCCE235BA4BE0008EBEA /* UpdateInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateInfoCell.xib; sourceTree = "<group>"; };
 		9A310E18B9CBE5A89C0E1A67 /* Pods-iTorrent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTorrent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTorrent/Pods-iTorrent.debug.xcconfig"; sourceTree = "<group>"; };
+		D14B19A52B2867DE00EC8AEA /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
+		D14B19A62B2867DE00EC8AEA /* EditTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
+		D14B19AA2B2868FE00EC8AEA /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -683,6 +689,8 @@
 		7C0D2F1B20F77F5200B7FBC6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				D14B19A92B2868FE00EC8AEA /* ProgressView */,
+				D14B19A42B2867DE00EC8AEA /* EditTextView */,
 				7C4B109720DFDECA00440E74 /* Theme */,
 				7C59F5BA24D62EF9004B2BDE /* InsetableTableVIew */,
 				7CC4368324AB9DF300782145 /* PlaceHolder */,
@@ -1361,6 +1369,23 @@
 			path = XIBs;
 			sourceTree = "<group>";
 		};
+		D14B19A42B2867DE00EC8AEA /* EditTextView */ = {
+			isa = PBXGroup;
+			children = (
+				D14B19A52B2867DE00EC8AEA /* EditTextViewController.swift */,
+				D14B19A62B2867DE00EC8AEA /* EditTextView.swift */,
+			);
+			path = EditTextView;
+			sourceTree = "<group>";
+		};
+		D14B19A92B2868FE00EC8AEA /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				D14B19AA2B2868FE00EC8AEA /* ProgressViewController.swift */,
+			);
+			path = ProgressView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1851,7 +1876,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C8A92C924DAB5CF000A88FA /* AppDelegate+WindowCreation.swift in Sources */,
+				D14B19A72B2867DE00EC8AEA /* EditTextViewController.swift in Sources */,
 				7CCD02D1243A800400B1669F /* TorrentListController+TableView.swift in Sources */,
+				D14B19A82B2867DE00EC8AEA /* EditTextView.swift in Sources */,
 				7C653052253F7ED60011A91E /* MessageError.swift in Sources */,
 				7C0A334B24A94DA800EF33D0 /* TorrentPeersController.swift in Sources */,
 				7C26E338243244890012D455 /* Core.swift in Sources */,
@@ -1955,6 +1982,7 @@
 				7CBD074A244CFACA00F0BCC8 /* PatronNameCell.swift in Sources */,
 				7C26E3542432820A0012D455 /* Core+WebDavServer.swift in Sources */,
 				7CBD0747244CEAFF00F0BCC8 /* ThemedUICollectionViewCell.swift in Sources */,
+				D14B19AB2B2868FE00EC8AEA /* ProgressViewController.swift in Sources */,
 				7CD71419248BD64C00A24E98 /* RssFeedController.swift in Sources */,
 				7CA545D8253F0F77002A9DBE /* RssSearchDataSource.swift in Sources */,
 				7C4B109920DFDEEC00440E74 /* Themes.swift in Sources */,
@@ -2090,7 +2118,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.nonamedude.iTorrent.iTorrent-ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent ProgressWidget Development";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2107,7 +2135,6 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
@@ -2128,7 +2155,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.nonamedude.iTorrent.iTorrent-ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent ProgressWidget Development";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2142,13 +2169,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/iTorrent.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 21.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = D5UQ7XT49T;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2182,8 +2210,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DTRANSMISSION";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent/Utils/Native/iTorrent-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2201,12 +2229,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/iTorrent.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 21.0;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = D5UQ7XT49T;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2239,8 +2268,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DTRANSMISSION";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/iTorrent/Utils/Native/iTorrent-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -2418,7 +2447,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent Development";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -2443,7 +2472,6 @@
 				CODE_SIGN_ENTITLEMENTS = iTorrent/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 23.0;
 				DEVELOPMENT_TEAM = "";
@@ -2479,7 +2507,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nonamedude.iTorrent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent Development";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
