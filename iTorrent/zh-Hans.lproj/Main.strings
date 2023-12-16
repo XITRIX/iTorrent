@@ -1,0 +1,111 @@
+
+/* Class = "UILabel"; text = "Ads-free enabled, have fun!"; ObjectID = "3dp-Er-tz0"; */
+"3dp-Er-tz0.text" = "Ads-free enabled, have fun!";
+
+/* Class = "UILabel"; text = "Patron name"; ObjectID = "3uA-Gc-fcG"; */
+"3uA-Gc-fcG.text" = "Patron name";
+
+/* Class = "UILabel"; text = "Hey for all,\n\nYou can support future development of iTorrent by donating me on Patreon. In return, you'll receive access to the ads-free version of iTorrent app.\n\nThanks for all your support!"; ObjectID = "5Z2-0s-Hte"; */
+"5Z2-0s-Hte.text" = "Hey for all,\n\nYou can support future development of iTorrent by donating me on Patreon. In return, you'll receive access to the ads-free version of iTorrent app.\n\nThanks for all your support!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6f7-B9-PJf"; */
+"6f7-B9-PJf.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Patreon"; ObjectID = "7Iq-VD-EJR"; */
+"7Iq-VD-EJR.title" = "Patreon";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7gY-6c-JgS"; */
+"7gY-6c-JgS.text" = "Label";
+
+/* Class = "UILabel"; text = "You are a patron"; ObjectID = "80q-Ae-sAf"; */
+"80q-Ae-sAf.text" = "You are a patron";
+
+/* Class = "UILabel"; text = "URL"; ObjectID = "8Bh-Dj-AZt"; */
+"8Bh-Dj-AZt.text" = "URL";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "AzQ-xz-c6A"; */
+"AzQ-xz-c6A.text" = "Label";
+
+/* Class = "UIViewController"; title = "iTorrent"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "iTorrent";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CYU-Sm-CHK"; */
+"CYU-Sm-CHK.text" = "Label";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "Ggn-IC-6GD"; */
+"Ggn-IC-6GD.text" = "Description";
+
+/* Class = "UINavigationItem"; title = "iTorrent"; ObjectID = "JmO-fx-ysb"; */
+"JmO-fx-ysb.title" = "iTorrent";
+
+/* Class = "UILabel"; text = "List is empty, go and download something!"; ObjectID = "KnE-OU-dJk"; */
+"KnE-OU-dJk.text" = "List is empty, go and download something!";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "LI9-gV-Pxo"; */
+"LI9-gV-Pxo.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "google.ru"; ObjectID = "MTv-80-dIa"; */
+"MTv-80-dIa.title" = "google.ru";
+
+/* Class = "UILabel"; text = "XITRIX (Daniil Vinogradov)"; ObjectID = "Nu1-d1-rOs"; */
+"Nu1-d1-rOs.text" = "XITRIX (Daniil Vinogradov)";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "RIR-e3-idC"; */
+"RIR-e3-idC.title" = "Edit";
+
+/* Class = "UINavigationItem"; title = "Trackers"; ObjectID = "X5q-UI-XPz"; */
+"X5q-UI-XPz.title" = "Trackers";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "XRX-cN-tcN"; */
+"XRX-cN-tcN.title" = "Item";
+
+/* Class = "UILabel"; text = "Notify on update"; ObjectID = "ZSm-iV-XGN"; */
+"ZSm-iV-XGN.text" = "Notify on update";
+
+/* Class = "UIButton"; normalTitle = "Connect with patreon"; ObjectID = "d6S-dq-bAa"; */
+"d6S-dq-bAa.normalTitle" = "Connect with patreon";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dGO-ld-VzN"; */
+"dGO-ld-VzN.text" = "Label";
+
+/* Class = "UILabel"; text = "Creator of iTorrent"; ObjectID = "dYD-Lc-wfy"; */
+"dYD-Lc-wfy.text" = "Creator of iTorrent";
+
+/* Class = "UITableViewController"; title = "RSS Chanel Setup"; ObjectID = "e7q-mA-zCg"; */
+"e7q-mA-zCg.title" = "RSS Chanel Setup";
+
+/* Class = "UILabel"; text = "Special thanks to:"; ObjectID = "eWp-mz-EXS"; */
+"eWp-mz-EXS.text" = "Special thanks to:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fGp-f9-hrr"; */
+"fGp-f9-hrr.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fjj-Vr-LFF"; */
+"fjj-Vr-LFF.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "j3q-Rb-9Cx"; */
+"j3q-Rb-9Cx.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "k0l-PX-752"; */
+"k0l-PX-752.title" = "Edit";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "kNh-58-8Ne"; */
+"kNh-58-8Ne.text" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "lUK-y0-kWO"; */
+"lUK-y0-kWO.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qTA-ph-5aV"; */
+"qTA-ph-5aV.text" = "Label";
+
+/* Class = "UIViewController"; title = "Patreon"; ObjectID = "vUk-uz-zSp"; */
+"vUk-uz-zSp.title" = "Patreon";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "w2E-cl-SK6"; */
+"w2E-cl-SK6.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Become a patron"; ObjectID = "wop-la-tvj"; */
+"wop-la-tvj.normalTitle" = "Become a patron";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "ySf-OK-NDV"; */
+"ySf-OK-NDV.title" = "Item";

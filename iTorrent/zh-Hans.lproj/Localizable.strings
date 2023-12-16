@@ -355,7 +355,7 @@
 
 // RSS Feed Controller
 "RssFeedController.AddTitle" = "添加 RSS 频道";
-"RssFeedController.RemoveTitle" = 你确定删除这个订阅:";
+"RssFeedController.RemoveTitle" = "你确定删除这个订阅:";
 
 // RSS Channel Setup Controller
 "RssChannelSetup.UrlCopied" = "频道的 URL 已经拷贝到剪切板！";
