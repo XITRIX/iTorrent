@@ -68,7 +68,7 @@
 
 "torrent" = "Torrent";
 "Are you sure to remove this magnet torrent?" = "您确定要删除这个磁力链接的 Torrent 吗";
-"Remove" = "Remove";
+"Remove" = "删除";
 
 "Name" = "名称";
 "Date Added" = "添加日期";
@@ -84,7 +84,7 @@
 "Torrent file" = "Torrent 文件";
 "Magnet link" = "磁力链接";
 "Magnet link copied to clipboard" = "磁力链接已拷贝到剪贴板";
-"Files" = "文件列表";
+"Files" = "文件";
 "Trackers" = "Trackers";
 "Details.BackgroundSeeding.Warning" = "后台做种当前已关闭，如果您关闭 APP，做种将停止。是否要启用后台做种？\n如果您没有设定做种限制，那么 APP 将一直在后台工作，这可能会导致电池耗尽。";
 
@@ -304,7 +304,7 @@
 "Peers" = "用户";
 "Seeds" = "做种";
 "Leechers" = "下载";
-"Are you shure to remove this trackers?" = "你确定要删除这个 Tracker 吗？";
+"Are you sure to remove these trackers?" = "你确定要删除这些 Tracker 吗？";
 "Tracker's URL copied to clipboard!" = "Tracker 的 URL 已拷贝到剪切板！";
 
 //AppDelegate
