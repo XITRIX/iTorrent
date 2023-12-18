@@ -1,7 +1,7 @@
 <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/9553519/80646366-3d271680-8a75-11ea-8b60-9c5edd4ffd60.png">
 
 # iTorrent - iOS Torrent client App
-[**Readme in Spanish**](README.es.md)
+[**Readme in Spanish**](README.es.md) | [**Readme in Chinese**](README.zh-Hans.md)
 
 ![](https://img.shields.io/badge/iOS-9.3+-blue.svg)
 ![](https://app.bitrise.io/app/26ce0756a727335c/status.svg?token=BLhjBICoPvmOtO1nzIVMYQ&branch=master)
@@ -54,6 +54,7 @@ Now iTorrent supports the following languages:
 - Russian
 - Turkish
 - Spanish
+- Simplified Chinese
 
 If you are fluent in the languages not listed above and want to help with translation, you are welcome!
 
