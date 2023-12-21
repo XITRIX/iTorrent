@@ -271,7 +271,7 @@
 "Peers" = "Pares";
 "Seeds" = "Semillas";
 "Leechers" = "Sanguijuelas";
-"Are you shure to remove this trackers?" = "¿Estás seguro de eliminar estos trackers?";
+"Are you sure to remove these trackers?" = "¿Está seguro de eliminar estos trackers?";
 "Tracker's URL copied to clipboard!" = "¡URL del Tracker copiada al portapapeles!";
 
 //AppDelegate
