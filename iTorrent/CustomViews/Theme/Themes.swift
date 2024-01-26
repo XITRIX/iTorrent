@@ -63,6 +63,7 @@ class Themes {
         darkTheme.sectionHeaderColor = UIColor(hex: "#121212")!
         darkTheme.storageBarOther = UIColor(hex: "#929296")!
         darkTheme.storageBarEmpty = UIColor(hex: "#333333")!
+        darkTheme.cellFilled = UIColor(hex: "#3a3a3c")!
         darkTheme.actionButtonColor = .orange
         darkTheme.tintColor = .mainColor
         darkTheme.statusBarStyle = .lightContent
@@ -105,6 +106,7 @@ struct ColorPalett: Equatable {
     var sectionHeaderColor = UIColor(hex: "#f6f6f6")!
     var storageBarOther = UIColor(hex: "#d0d1d5")!
     var storageBarEmpty = UIColor(hex: "#f1f2f6")!
+    var cellFilled = UIColor(hex: "#d1d1d6")!
     var actionButtonColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
     var tintColor = UIColor.mainColor
     var statusBarStyle: UIStatusBarStyle = .default
@@ -136,6 +138,7 @@ struct ColorPalett: Equatable {
             backgroundTertiary = .tertiarySystemBackground
             groupedBackgroundMain = .systemGroupedBackground
             groupedBackgroundSecondary = .secondarySystemGroupedBackground
+            cellFilled = .systemGray4
         }
         return self
     }

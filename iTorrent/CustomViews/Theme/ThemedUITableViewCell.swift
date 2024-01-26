@@ -109,10 +109,10 @@ class ThemedUITableViewCell: UITableViewCell, Themed {
         let bgColorView = UIView()
         if tableView?.style == .plain {
             backgroundColor = theme.backgroundMain
-            bgColorView.backgroundColor = theme.backgroundSecondary
+            bgColorView.backgroundColor = theme.cellFilled
         } else {
             backgroundColor = theme.groupedBackgroundSecondary
-            bgColorView.backgroundColor = theme.backgroundSecondary
+            bgColorView.backgroundColor = theme.cellFilled
         }
         selectedBackgroundView = bgColorView
     }

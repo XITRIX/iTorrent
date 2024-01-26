@@ -35,7 +35,7 @@ class TorrentCell: ThemedUITableViewCell, UpdatableModel {
         status?.textColor = theme.secondaryText
 
         let bgColorView = UIView()
-        bgColorView.backgroundColor = theme.backgroundSecondary
+        bgColorView.backgroundColor = theme.cellFilled
         selectedBackgroundView = bgColorView
     }
 
