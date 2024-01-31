@@ -14,7 +14,6 @@ import ITorrentFramework
 
 import ActivityKit
 import WidgetKit
-import iTorrent_ProgressWidgetExtension
 import UIKit
 
 let isLiveActivitiesEnabled = true
