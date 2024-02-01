@@ -35,8 +35,10 @@ class Core: NSObject {
     
     private override init() {
         super.init()
+        
+        TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder, settingsPack: SettingsPack.userPrefered)
+        
         DispatchQueue.global(qos: .background).async {
-            TorrentSdk.initEngine(downloadFolder: Core.rootFolder, configFolder: Core.configFolder, settingsPack: SettingsPack.userPrefered)
             self.restoreAllTorrents()
             
             let allocateStorage = UserPreferences.storagePreallocation
