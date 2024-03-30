@@ -74,7 +74,7 @@ extension TorrentListViewModel {
 
 private extension Array where Element == TorrentHandle {
     func sorted(by type: TorrentListViewModel.Sort, reverced: Bool) -> [Element] {
-        let res = sorted { first, second in
+        let res = filter(\.isValid).sorted { first, second in
             switch type {
             case .alphabetically:
                 return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending

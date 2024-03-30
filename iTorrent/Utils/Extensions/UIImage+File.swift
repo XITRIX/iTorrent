@@ -17,10 +17,10 @@ extension UIImage {
         let myInteractionController = UIDocumentInteractionController(url: fileURL)
         let allIcons = myInteractionController.icons
 
-        // allIcons is guaranteed to have at least one image
+        // allIcons is guaranteed to have at least one image (fails on Catalyst)
         switch preferredSize {
-        case .smallest: return allIcons.first!
-        case .largest: return allIcons.last!
+        case .smallest: return allIcons.first ?? UIImage()
+        case .largest: return allIcons.last ?? UIImage()
         }
     }
 }

@@ -22,9 +22,7 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
         disposeBag.bind {
             torrentHandle.updatePublisher
                 .sink { [unowned self] _ in
-//                    withAnimation {
-                        updater.toggle()
-//                    }
+                    updater.toggle()
                 }
         }
 

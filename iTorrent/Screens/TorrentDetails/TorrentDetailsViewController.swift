@@ -47,15 +47,14 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
                 viewModel.shareMagnet()
             })
         ])
-//        navigationItem.rightBarButtonItems = [shareButton]
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [shareButton]))
 
         toolbarItems = [
-            .init(title: "Start", image: .init(systemName: "play"), primaryAction: .init(handler: { [unowned self] _ in
+            .init(title: "Start", image: .init(systemName: "play.fill"), primaryAction: .init(handler: { [unowned self] _ in
                 viewModel.resume()
             })),
             fixedSpacing,
-            .init(title: "Pause", image: .init(systemName: "pause"), primaryAction: .init(handler: { [unowned self] _ in
+            .init(title: "Pause", image: .init(systemName: "pause.fill"), primaryAction: .init(handler: { [unowned self] _ in
                 viewModel.pause()
             })),
             fixedSpacing,
