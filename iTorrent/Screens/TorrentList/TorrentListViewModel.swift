@@ -37,8 +37,11 @@ class TorrentListViewModel: BaseViewModel {
 
         TorrentService.shared.$torrents
             .combineLatest($searchQuery, sortingType, sortingReverced) { torrentHandles, searchQuery, sortingType, sortingReverced in
-                if searchQuery.isEmpty { return torrentHandles.sorted(by: sortingType, reverced: sortingReverced) }
-                return torrentHandles.filter { $0.name.localizedCaseInsensitiveContains(searchQuery) }.sorted(by: sortingType, reverced: sortingReverced)
+                var torrentHandles = torrentHandles
+                if !searchQuery.isEmpty {
+                    torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }
+                }
+                return torrentHandles.sorted(by: sortingType, reverced: sortingReverced)
             }
             .map { [unowned self] torrents in
                 [.init(id: "torrents", style: .plain, showsSeparators: true, items: torrents.map {
@@ -48,6 +51,10 @@ class TorrentListViewModel: BaseViewModel {
                 })]
             }
             .assign(to: &$sections)
+    }
+
+    static func searchFilter(_ text: String, by query: String) -> Bool {
+        query.split(separator: " ").allSatisfy { text.localizedCaseInsensitiveContains($0) }
     }
 }
 
