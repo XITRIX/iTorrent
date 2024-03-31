@@ -123,9 +123,12 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
             vcs = []
         }
 
+        nvc.isToolbarHidden = nvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
+
         if !vcs.isEmpty {
             let snvc = UINavigationController.resolve()
             snvc.viewControllers = vcs.reversed()
+            snvc.isToolbarHidden = snvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
             return snvc
         }
 
