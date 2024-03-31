@@ -27,18 +27,18 @@
         }
       }
     },
-    "%lld \\ %lld items" : {
+    "%lld / %lld items" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$lld \\ %2$lld items"
+            "value" : "%1$lld / %2$lld items"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld \\ %2$lld файлов"
+            "value" : "%1$lld / %2$lld файлов"
           }
         }
       }

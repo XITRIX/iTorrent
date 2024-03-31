@@ -15,6 +15,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
 
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var title: String = ""
+    @Published var isPaused: Bool = false
 
     override func prepare(with model: TorrentHandle) {
         torrentHandle = model
@@ -68,7 +69,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
 extension TorrentDetailsViewModel {
     var shareAvailable: AnyPublisher<Bool, Never> {
         torrentHandle.updatePublisher
-            .map { !$0.torrentFilePath.isNilOrEmpty }
+            .map { !$0.snapshot.torrentFilePath.isNilOrEmpty }
             .eraseToAnyPublisher()
     }
 
@@ -90,34 +91,35 @@ extension TorrentDetailsViewModel {
     }
 
     func shareMagnet() {
-        UIPasteboard.general.string = torrentHandle.magnetLink
+        UIPasteboard.general.string = torrentHandle.snapshot.magnetLink
         alertWithTimer(message: "Magnet URL copied into clipboard")
     }
 
     var torrentFilePath: String? {
-        torrentHandle.torrentFilePath
+        torrentHandle.snapshot.torrentFilePath
     }
 }
 
 private extension TorrentDetailsViewModel {
     func reload() {
-        stateModel.detail = "\(torrentHandle.friendlyState.name)" // "\(torrentHandle.state.rawValue) | \(torrentHandle.isPaused ? "Paused" : "Running")"
+        isPaused = torrentHandle.snapshot.isPaused
+        stateModel.detail = "\(torrentHandle.snapshot.friendlyState.name)" // "\(torrentHandle.snapshot.state.rawValue) | \(torrentHandle.snapshot.isPaused ? "Paused" : "Running")"
 
-        downloadModel.detail = "\(torrentHandle.downloadRate.bitrateToHumanReadable)/s"
-        uploadModel.detail = "\(torrentHandle.uploadRate.bitrateToHumanReadable)/s"
-        timeLeftModel.detail = torrentHandle.timeRemains
+        downloadModel.detail = "\(torrentHandle.snapshot.downloadRate.bitrateToHumanReadable)/s"
+        uploadModel.detail = "\(torrentHandle.snapshot.uploadRate.bitrateToHumanReadable)/s"
+        timeLeftModel.detail = torrentHandle.snapshot.timeRemains
 
-        sequentialModel.isOn = torrentHandle.isSequential
-        progressModel.progress = torrentHandle.progress
+        sequentialModel.isOn = torrentHandle.snapshot.isSequential
+        progressModel.progress = torrentHandle.snapshot.progress
 
-        if torrentHandle.infoHashes.hasV1 {
-            hashModel.detail = torrentHandle.infoHashes.v1.hex
+        if torrentHandle.snapshot.infoHashes.hasV1 {
+            hashModel.detail = torrentHandle.snapshot.infoHashes.v1.hex
         }
-        if torrentHandle.infoHashes.hasV2 {
-            hashModelV2.detail = torrentHandle.infoHashes.v2.hex
+        if torrentHandle.snapshot.infoHashes.hasV2 {
+            hashModelV2.detail = torrentHandle.snapshot.infoHashes.v2.hex
         }
-        creatorModel.detail = torrentHandle.creator ?? ""
-        commentModel.detail = torrentHandle.comment ?? ""
+        creatorModel.detail = torrentHandle.snapshot.creator ?? ""
+        commentModel.detail = torrentHandle.snapshot.comment ?? ""
 
         let formatter: DateFormatter = {
             let formatter = DateFormatter()
@@ -125,18 +127,18 @@ private extension TorrentDetailsViewModel {
             return formatter
         }()
 
-        if let created = torrentHandle.creationDate {
+        if let created = torrentHandle.snapshot.creationDate {
             createdModel.detail = formatter.string(from: created)
         }
         addedModel.detail = formatter.string(from: torrentHandle.metadata.dateAdded)
 
-        selectedModel.detail = "\(torrentHandle.totalWanted.bitrateToHumanReadable) / \(torrentHandle.total.bitrateToHumanReadable)"
-        completedModel.detail = "\(torrentHandle.totalDone.bitrateToHumanReadable)"
-        selectedProgressModel.detail = "\(String(format: "%.2f", torrentHandle.progress * 100))% / \(String(format: "%.2f", torrentHandle.progressWanted * 100))%"
-        downloadedModel.detail = "\(torrentHandle.totalDownload.bitrateToHumanReadable)"
-        uploadedModel.detail = "\(torrentHandle.totalUpload.bitrateToHumanReadable)"
-        seedersModel.detail = "\(torrentHandle.numberOfSeeds)(\(torrentHandle.numberOfTotalSeeds))"
-        leechersModel.detail = "\(torrentHandle.numberOfLeechers)(\(torrentHandle.numberOfTotalLeechers))"
+        selectedModel.detail = "\(torrentHandle.snapshot.totalWanted.bitrateToHumanReadable) / \(torrentHandle.snapshot.total.bitrateToHumanReadable)"
+        completedModel.detail = "\(torrentHandle.snapshot.totalDone.bitrateToHumanReadable)"
+        selectedProgressModel.detail = "\(String(format: "%.2f", torrentHandle.snapshot.progress * 100))% / \(String(format: "%.2f", torrentHandle.snapshot.progressWanted * 100))%"
+        downloadedModel.detail = "\(torrentHandle.snapshot.totalDownload.bitrateToHumanReadable)"
+        uploadedModel.detail = "\(torrentHandle.snapshot.totalUpload.bitrateToHumanReadable)"
+        seedersModel.detail = "\(torrentHandle.snapshot.numberOfSeeds)(\(torrentHandle.snapshot.numberOfTotalSeeds))"
+        leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
 
         /// ------
 
@@ -146,7 +148,7 @@ private extension TorrentDetailsViewModel {
             stateModel
         })
 
-        if !torrentHandle.isPaused {
+        if !torrentHandle.snapshot.isPaused {
             sections.append(.init(id: "speed", header: "Speed") {
                 downloadModel
                 uploadModel
@@ -160,10 +162,10 @@ private extension TorrentDetailsViewModel {
         })
 //
         sections.append(.init(id: "info", header: "Primary info") {
-            if torrentHandle.infoHashes.hasV1 {
+            if torrentHandle.snapshot.infoHashes.hasV1 {
                 hashModel
             }
-            if torrentHandle.infoHashes.hasV2 {
+            if torrentHandle.snapshot.infoHashes.hasV2 {
                 hashModelV2
             }
 
@@ -200,7 +202,7 @@ private extension TorrentDetailsViewModel {
     }
 }
 
-extension TorrentHandle {
+extension TorrentHandle.Snapshot {
     var timeRemains: String {
         guard downloadRate > 0 else { return "Eternity" }
         guard totalWanted >= totalWantedDone else { return "Almost done" }

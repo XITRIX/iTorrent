@@ -7,6 +7,7 @@
 
 import MvvmFoundation
 import SwiftUI
+import Combine
 
 class PreferencesViewModel: BaseViewModel {
     let sections = CurrentValueRelay<[MvvmCollectionSectionModel]>([])
@@ -38,10 +39,10 @@ private extension PreferencesViewModel {
                     dismissSelection.send(())
                 }
             })
-            PRButtonViewModel(with: .init(title: "Downloading torrents", value: preferences.$maxUploadingTorrents.map { $0 == 0 ? "Unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
-                textInput(title: "Downloading torrents", placeholder: "Unlimited", defaultValue: "\(preferences.maxUploadingTorrents)", type: .numberPad) { [unowned self] res in
+            PRButtonViewModel(with: .init(title: "Downloading torrents", value: preferences.$maxDownloadingTorrents.map { $0 == 0 ? "Unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
+                textInput(title: "Downloading torrents", placeholder: "Unlimited", defaultValue: "\(preferences.maxDownloadingTorrents)", type: .numberPad) { [unowned self] res in
                     if let res {
-                        preferences.maxUploadingTorrents = Int(res) ?? 0
+                        preferences.maxDownloadingTorrents = Int(res) ?? 0
                     }
                     dismissSelection.send(())
                 }
@@ -58,7 +59,7 @@ private extension PreferencesViewModel {
 
         sections.append(.init(id: "speed limits", header: "Speed limits") {
             PRButtonViewModel(with: .init(title: "Max download speed", value: preferences.$maxDownloadSpeed.map { $0 == 0 ? "Unlimited" : UInt64($0).bitrateToHumanReadable }.eraseToAnyPublisher()) { [unowned self] in
-                textInput(title: "Speed in KB/s", placeholder: "Unlimited", defaultValue: "\(preferences.maxDownloadSpeed / 1024)", type: .numberPad) { [unowned self] res in
+                textInput(title: "Max download speed", message: "Speed in KB/s", placeholder: "Unlimited", defaultValue: "\(preferences.maxDownloadSpeed / 1024)", type: .numberPad) { [unowned self] res in
                     if let res {
                         preferences.maxDownloadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
                     }
@@ -66,13 +67,24 @@ private extension PreferencesViewModel {
                 }
             })
             PRButtonViewModel(with: .init(title: "Max upload speed", value: preferences.$maxUploadSpeed.map { $0 == 0 ? "Unlimited" : UInt64($0).bitrateToHumanReadable }.eraseToAnyPublisher()) { [unowned self] in
-                textInput(title: "Speed in KB/s", placeholder: "Unlimited", defaultValue: "\(preferences.maxUploadSpeed / 1024)", type: .numberPad) { [unowned self] res in
+                textInput(title: "Max upload speed", message: "Speed in KB/s", placeholder: "Unlimited", defaultValue: "\(preferences.maxUploadSpeed / 1024)", type: .numberPad) { [unowned self] res in
                     if let res {
                         preferences.maxUploadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
                     }
                     dismissSelection.send(())
                 }
             })
+        })
+
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
+        let libtorrentVersion = TorrentService.version
+        let version = "iTorrent: v\(appVersion)-\(appBuild) | LibTorrent: v\(libtorrentVersion)"
+        sections.append(.init(id: "version", header: "Version", footer: version, style: .insetGrouped) {
+            PRButtonViewModel(with: .init(title: "GitHub page", value: Just("Open").eraseToAnyPublisher(), selectAction: { [unowned self] in
+                UIApplication.shared.open(.init(string: "https://github.com/XITRIX/iTorrent")!)
+                dismissSelection.send(())
+            }))
         })
     }
 }

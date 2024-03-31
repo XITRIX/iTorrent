@@ -21,9 +21,9 @@ class PreferencesStorage {
 
     @UserDefaultItem("preferencesAllocateMemory", false) var allocateMemory: Bool
 
-    @UserDefaultItem("preferencesMaxActiveTorrents", 0) var maxActiveTorrents: Int
-    @UserDefaultItem("preferencesMaxDownloadingTorrents", 0) var maxDownloadingTorrents: Int
-    @UserDefaultItem("preferencesMaxUploadingTorrents", 0) var maxUploadingTorrents: Int
+    @UserDefaultItem("preferencesMaxActiveTorrents", 4) var maxActiveTorrents: Int
+    @UserDefaultItem("preferencesMaxDownloadingTorrents", 3) var maxDownloadingTorrents: Int
+    @UserDefaultItem("preferencesMaxUploadingTorrents", 3) var maxUploadingTorrents: Int
 
     @UserDefaultItem("preferencesMaxUploadSpeed", 0) var maxUploadSpeed: UInt
     @UserDefaultItem("preferencesMaxDownloadSpeed", 0) var maxDownloadSpeed: UInt

@@ -11,18 +11,25 @@ import MvvmFoundation
 import SwiftUI
 
 class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectableProtocol, ObservableObject, Identifiable {
-    var torrentHandle: TorrentHandle!
-    @Published var updater: Bool = false
+    private var torrentHandle: TorrentHandle!
+//    @Published var updater: Bool = false
     var selectAction: (() -> Void)?
     var id: Int { hashValue }
 
+    @Published var title: String = ""
+    @Published var progressText: String = ""
+    @Published var statusText: String = ""
+    @Published var progress: Double = 0
+
     override func prepare(with model: TorrentHandle) {
         torrentHandle = model
+        updateUI()
 
         disposeBag.bind {
             torrentHandle.updatePublisher
-                .sink { [unowned self] _ in
-                    updater.toggle()
+                .receive(on: DispatchQueue.global(qos: .userInitiated))
+                .sink { [weak self] _ in
+                    self?.updateUI()
                 }
         }
 
@@ -45,5 +52,38 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
             }),
             .init(title: "Cancel", style: .cancel)
         ])
+    }
+}
+
+private extension TorrentListItemViewModel {
+    func updateUI() {
+        guard torrentHandle.isValid else { return }
+
+        let percent = "\(String(format: "%.2f", torrentHandle.progress * 100))%"
+        let title = torrentHandle.name
+        let progressText = "\(torrentHandle.totalWantedDone.bitrateToHumanReadable) of \(torrentHandle.totalWanted.bitrateToHumanReadable) (\(percent))"
+        let statusText = "\(torrentHandle.stateText)"
+        let progress = torrentHandle.progress
+
+        Task {
+            self.title = title
+            self.progressText = progressText
+            self.statusText = statusText
+            self.progress = progress
+        }
+    }
+}
+
+private extension TorrentHandle {
+    var stateText: String {
+        let state = friendlyState
+        var text = "\(state.name)"
+
+        if state == .downloading {
+            text += " - ↓ \(downloadRate.bitrateToHumanReadable)/s"
+            text += " - \(timeRemains)"
+        }
+
+        return text
     }
 }

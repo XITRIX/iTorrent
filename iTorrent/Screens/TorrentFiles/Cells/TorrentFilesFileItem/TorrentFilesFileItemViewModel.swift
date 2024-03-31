@@ -46,7 +46,7 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
     }
 
     var file: FileEntry {
-        torrentHandle.getFileAt(Int32(index))
+        torrentHandle.snapshot.files[index]
     }
 
     var path: URL {

@@ -129,7 +129,7 @@ private extension TorrentFilesViewModel {
     func generateRoot() -> PathNode {
         var root: PathNode = .init(name: "")
 
-        torrentHandle.files.forEach { file in
+        torrentHandle.snapshot.files.forEach { file in
             let pathComponents = file.path.components(separatedBy: "/")
             root.append(path: pathComponents, index: Int(file.index))
         }

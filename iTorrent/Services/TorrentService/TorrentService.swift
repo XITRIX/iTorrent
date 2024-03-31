@@ -13,6 +13,7 @@ class TorrentService {
     @Published var torrents: [TorrentHandle] = []
 
     static let shared = TorrentService()
+    static var version: String { Version.libtorrentVersion }
 
     init() { setup() }
 
@@ -67,6 +68,7 @@ extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
         DispatchQueue.main.sync { [self] in
             _ = torrent.metadata
+            torrent.updateSnapshot()
             torrents.append(torrent)
         }
     }
@@ -80,6 +82,7 @@ extension TorrentService: SessionDelegate {
         guard let existingTorrent = torrents.first(where: { $0.hashValue == torrent.hashValue })
         else { return }
 
+        existingTorrent.updateSnapshot()
         DispatchQueue.main.sync {
             existingTorrent.updatePublisher.send(existingTorrent)
         }

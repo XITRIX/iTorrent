@@ -20,8 +20,8 @@ extension TorrentHandle {
     }
 }
 
-extension TorrentHandle {
-    var friendlyState: State {
+extension TorrentHandle.Snapshot {
+    var friendlyState: TorrentHandle.State {
         switch state {
         case .downloading:
             if isPaused { return .paused }

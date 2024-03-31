@@ -14,6 +14,7 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var progressView: UIProgressView!
+    @IBOutlet private var progressViewPlaceholder: UIView!
     @IBOutlet private var switchView: UISwitch!
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var fileImageView: UIImageView!
@@ -47,11 +48,14 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
         setViewModel(viewModel)
 
         progressView.isHidden = !viewModel.showProgress
-        noProgressConstraint.isActive = !viewModel.showProgress
+        progressViewPlaceholder.isHidden = !viewModel.showProgress
 
         disposeBag.bind {
-            viewModel.updatePublisher.sink { [unowned self] _ in
-                reload()
+            viewModel.updatePublisher
+                .receive(on: DispatchQueue.global(qos: .userInitiated))
+                .sink
+            { [weak self] _ in
+                self?.reload()
             }
             viewModel.selected.sink { [unowned self] _ in
                 if progressView.progress >= 1 {
@@ -101,14 +105,28 @@ private extension TorrentFilesFileListCell {
         let file = viewModel.file
 
         let percent = "\(String(format: "%.2f", file.progress * 100))%"
-        titleLabel.text = file.name
-        subtitleLabel.text = progressView.isHidden ? "\(file.size.bitrateToHumanReadable)" : "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
-        progressView.progress = file.progress
-        fileImageView.image = .icon(forFileURL: viewModel.path)
-        switchView.isOn = file.priority != .dontDownload
-        switchView.onTintColor = file.priority.color
-        shareButton.isHidden = file.progress < 1
-        switchView.isHidden = !shareButton.isHidden
+
+        let title = file.name
+        let subtitle = !viewModel.showProgress ? "\(file.size.bitrateToHumanReadable)" : "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
+        let progress = file.progress
+        let fileImage = UIImage.icon(forFileURL: viewModel.path)
+        let switchIsOn = file.priority != .dontDownload
+        let switchOnTintColor = file.priority.color
+        let shareButtonHiden = file.progress < 1
+        let switchHidden = !shareButtonHiden
+
+        DispatchQueue.main.async { [self] in
+            titleLabel.text = title
+            subtitleLabel.text = subtitle
+            progressView.progress = progress
+            fileImageView.image = fileImage
+            switchView.isOn = switchIsOn
+            switchView.onTintColor = switchOnTintColor
+            shareButton.isHidden = shareButtonHiden
+            switchView.isHidden = switchHidden
+
+            invalidateIntrinsicContentSize()
+        }
     }
 }
 

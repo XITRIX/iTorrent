@@ -136,11 +136,13 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
 private extension BaseSplitViewController {
     struct EmptyView: View {
         var body: some View {
-            Text("iTorrent")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .fontDesign(.rounded)
+            Image(.iTorrentLogo)
+                .foregroundStyle(Color.secondary)
                 .ignoresSafeArea()
         }
     }
 }
+
+#Preview(body: {
+    BaseSplitViewController.EmptyView()
+})

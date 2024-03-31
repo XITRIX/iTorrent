@@ -16,19 +16,18 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            let percent = "\(String(format: "%.2f", viewModel.torrentHandle.progress * 100))%"
-            Text(viewModel.torrentHandle.name)
+            Text(viewModel.title)
                 .foregroundStyle(.primary)
                 .font(.subheadline.weight(.semibold))
             VStack(alignment: .leading, spacing: 0) {
-                Text("\(viewModel.torrentHandle.totalWantedDone.bitrateToHumanReadable) of \(viewModel.torrentHandle.totalWanted.bitrateToHumanReadable) (\(percent))")
-                Text("\(viewModel.torrentHandle.stateText)")
+                Text(viewModel.progressText)
+                Text(viewModel.statusText)
             }
             .lineLimit(1)
             .minimumScaleFactor(0.5)
             .foregroundStyle(.secondary)
             .font(.footnote)
-            ProgressView(value: viewModel.torrentHandle.progress)
+            ProgressView(value: viewModel.progress)
         }
         .swipeActions {
             Button(role: .destructive) {
@@ -44,19 +43,5 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
             Self(viewModel: itemIdentifier)
         }
         cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
-    }
-}
-
-private extension TorrentHandle {
-    var stateText: String {
-        let state = friendlyState
-        var text = "\(state.name)"
-
-        if state == .downloading {
-            text += " - ↓ \(downloadRate.bitrateToHumanReadable)/s"
-            text += " - \(timeRemains)"
-        }
-
-        return text
     }
 }
