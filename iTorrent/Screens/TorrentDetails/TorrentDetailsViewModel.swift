@@ -111,6 +111,7 @@ private extension TorrentDetailsViewModel {
 
         sequentialModel.isOn = torrentHandle.snapshot.isSequential
         progressModel.progress = torrentHandle.snapshot.progress
+        progressModel.segmentedProgress = torrentHandle.snapshot.segmentedProgress
 
         if torrentHandle.snapshot.infoHashes.hasV1 {
             hashModel.detail = torrentHandle.snapshot.infoHashes.v1.hex
@@ -207,5 +208,9 @@ extension TorrentHandle.Snapshot {
         guard downloadRate > 0 else { return "Eternity" }
         guard totalWanted >= totalWantedDone else { return "Almost done" }
         return ((totalWanted - totalWantedDone) / downloadRate).timeString
+    }
+
+    var segmentedProgress: [Double] {
+        pieces.map { $0.doubleValue }
     }
 }

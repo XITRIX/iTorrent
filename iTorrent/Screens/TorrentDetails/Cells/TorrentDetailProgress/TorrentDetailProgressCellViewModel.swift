@@ -10,10 +10,12 @@ import Foundation
 class TorrentDetailProgressCellViewModel: BaseViewModel, ObservableObject {
     @Published var title: String = ""
     @Published var progress: Double = 0
+    @Published var segmentedProgress: [Double] = [0]
 
-    init(title: String = "", progress: Double = 0) {
+    init(title: String = "", progress: Double = 0, segmentedProgress: [Double] = [0]) {
         self.title = title
         self.progress = progress
+        self.segmentedProgress = segmentedProgress
     }
 
     required init() {

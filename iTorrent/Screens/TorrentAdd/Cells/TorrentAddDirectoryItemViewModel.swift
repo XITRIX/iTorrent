@@ -11,6 +11,8 @@ import MvvmFoundation
 
 class TorrentAddDirectoryItemViewModel: BaseViewModelWith<(TorrentFile, PathNode, String, ()->Void)>, DictionaryItemViewModelProtocol {
     let progress: Double? = nil
+    let segmentedProgress: [Double]? = nil
+
     var localUpdatePublisher = PassthroughRelay<TorrentHandle>()
     var torrentFile: TorrentFile!
     var name: String = ""

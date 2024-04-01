@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TorrentFilesFileListCell" customModule="iTorrent" customModuleProvider="target">
             <connections>
                 <outlet property="fileImageView" destination="IDT-LC-JLe" id="bYg-eu-J6U"/>
-                <outlet property="progressView" destination="wUc-Ls-xIU" id="uqH-aS-jvT"/>
+                <outlet property="progressView" destination="PFT-nn-XYI" id="hUE-Fy-LoD"/>
                 <outlet property="progressViewPlaceholder" destination="wkm-wT-OZb" id="N81-5z-5Mf"/>
                 <outlet property="shareButton" destination="UKQ-le-Zb8" id="9Vi-Ez-Zg1"/>
                 <outlet property="subtitleLabel" destination="n0Y-f9-7t9" id="QTW-pv-zD0"/>
@@ -87,19 +87,20 @@
                                         </button>
                                     </subviews>
                                 </stackView>
-                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-Ls-xIU">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PFT-nn-XYI" customClass="UISegmentedProgressView" customModule="iTorrent" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="51.666666666666671" width="278" height="4"/>
-                                </progressView>
+                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="wUc-Ls-xIU" firstAttribute="leading" secondItem="RTe-Tc-0Sx" secondAttribute="leading" id="6G0-7E-sX3"/>
                                 <constraint firstItem="z2r-2t-A7z" firstAttribute="top" secondItem="RTe-Tc-0Sx" secondAttribute="top" id="7bI-4d-hjr"/>
-                                <constraint firstAttribute="trailing" secondItem="wUc-Ls-xIU" secondAttribute="trailing" id="ID9-Zm-8hX"/>
-                                <constraint firstAttribute="bottom" secondItem="wUc-Ls-xIU" secondAttribute="bottom" priority="750" id="KVH-VA-5v8"/>
+                                <constraint firstAttribute="bottom" secondItem="PFT-nn-XYI" secondAttribute="bottom" id="Mnv-3t-I2K"/>
                                 <constraint firstItem="mjF-bn-yGq" firstAttribute="centerY" secondItem="RTe-Tc-0Sx" secondAttribute="centerY" id="NNd-rK-04d"/>
                                 <constraint firstItem="mjF-bn-yGq" firstAttribute="leading" secondItem="z2r-2t-A7z" secondAttribute="trailing" constant="12" id="Si4-oP-wbC"/>
+                                <constraint firstItem="PFT-nn-XYI" firstAttribute="leading" secondItem="RTe-Tc-0Sx" secondAttribute="leading" id="WHQ-mK-CUG"/>
                                 <constraint firstItem="z2r-2t-A7z" firstAttribute="leading" secondItem="RTe-Tc-0Sx" secondAttribute="leading" id="bzB-h0-t4D"/>
                                 <constraint firstAttribute="trailing" secondItem="mjF-bn-yGq" secondAttribute="trailing" id="oV0-wZ-wZc"/>
+                                <constraint firstAttribute="trailing" secondItem="PFT-nn-XYI" secondAttribute="trailing" id="ueO-Ov-PQ9"/>
                                 <constraint firstAttribute="bottom" secondItem="z2r-2t-A7z" secondAttribute="bottom" priority="500" id="vXK-iK-l9R"/>
                             </constraints>
                         </view>
@@ -120,6 +121,11 @@
             <point key="canvasLocation" x="19.847328244274809" y="272.18309859154931"/>
         </view>
     </objects>
+    <designables>
+        <designable name="PFT-nn-XYI">
+            <size key="intrinsicContentSize" width="-1" height="4"/>
+        </designable>
+    </designables>
     <resources>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <systemColor name="secondaryLabelColor">
@@ -127,6 +133,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

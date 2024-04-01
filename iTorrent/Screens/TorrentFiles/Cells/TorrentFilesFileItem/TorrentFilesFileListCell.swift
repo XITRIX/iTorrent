@@ -13,12 +13,11 @@ import UIKit
 class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionViewListCell<VM> {
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
-    @IBOutlet private var progressView: UIProgressView!
+    @IBOutlet private var progressView: UISegmentedProgressView!
     @IBOutlet private var progressViewPlaceholder: UIView!
     @IBOutlet private var switchView: UISwitch!
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var fileImageView: UIImageView!
-    @IBOutlet private var noProgressConstraint: NSLayoutConstraint!
 
     private lazy var delegates = Delegates(parent: self)
 
@@ -58,7 +57,7 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
                 self?.reload()
             }
             viewModel.selected.sink { [unowned self] _ in
-                if progressView.progress >= 1 {
+                if viewModel.file.progress >= 1 {
                     previewAction()
                 } else {
                     switchView.setOn(!switchView.isOn, animated: true)
@@ -108,7 +107,7 @@ private extension TorrentFilesFileListCell {
 
         let title = file.name
         let subtitle = !viewModel.showProgress ? "\(file.size.bitrateToHumanReadable)" : "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
-        let progress = file.progress
+        let progress = file.segmentedProgress
         let fileImage = UIImage.icon(forFileURL: viewModel.path)
         let switchIsOn = file.priority != .dontDownload
         let switchOnTintColor = file.priority.color
@@ -125,7 +124,9 @@ private extension TorrentFilesFileListCell {
             shareButton.isHidden = shareButtonHiden
             switchView.isHidden = switchHidden
 
-            invalidateIntrinsicContentSize()
+            UIView.performWithoutAnimation {
+                invalidateIntrinsicContentSize()
+            }
         }
     }
 }
@@ -146,6 +147,10 @@ private extension TorrentFilesFileListCell {
 private extension FileEntry {
     var progress: Float {
         Float(downloaded) / Float(size)
+    }
+
+    var segmentedProgress: [Double] {
+        pieces.map { $0.doubleValue }
     }
 }
 

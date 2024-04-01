@@ -15,6 +15,7 @@ protocol DictionaryItemViewModelProtocol: MvvmViewModelProtocol {
     var name: String { get }
     var node: PathNode! { get }
     var progress: Double? { get }
+    var segmentedProgress: [Double]? { get }
     func setPriority(_ priority: FileEntry.Priority)
     func getPriority(for index: Int) -> FileEntry.Priority
 }
@@ -49,5 +50,10 @@ class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, Pat
 
         guard toDownload != 0 else { return 1 }
         return Double(downloaded) / Double(toDownload)
+    }
+
+    var segmentedProgress: [Double]? {
+        let files = node.files.map { torrentHandle.snapshot.files[$0] }.filter { $0.priority != .dontDownload }
+        return files.flatMap { $0.pieces.map { $0.doubleValue } }
     }
 }

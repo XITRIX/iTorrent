@@ -35,13 +35,14 @@ class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: U
         }
     }
 
-    private typealias UpdateData = (files: [Int], filesNeeded: [Int], progress: Double?)
+    private typealias UpdateData = (files: [Int], filesNeeded: [Int], progress: Double?, segmentedProgress: [Double])
     private func prepareData() -> UpdateData {
         let files = model.node.files
         let filesNeeded = files.filter { model.getPriority(for: $0) != .dontDownload }
         let progress = model.progress
+        let segmentedProgress = model.segmentedProgress ?? []
 
-        return (files, filesNeeded, progress)
+        return (files, filesNeeded, progress, segmentedProgress)
     }
 
     @MainActor
@@ -50,6 +51,7 @@ class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: U
         viewModel.filesNeeded = data.filesNeeded.count
         viewModel.files = data.files.count
         viewModel.progress = data.progress
+        viewModel.segmentedProgress = data.segmentedProgress
     }
 
     func reload() {
@@ -69,12 +71,14 @@ extension TorrentFiles2DictionaryItemView {
         @Published var filesNeeded: Int = 0
         @Published var files: Int = 0
         @Published var progress: Double? = nil
+        @Published var segmentedProgress: [Double] = []
 
-        init(name: String, filesNeeded: Int, files: Int, progress: Double?) {
+        init(name: String, filesNeeded: Int, files: Int, progress: Double?, segmentedProgress: [Double]) {
             self.name = name
             self.filesNeeded = filesNeeded
             self.files = files
             self.progress = progress
+            self.segmentedProgress = segmentedProgress
         }
 
         init() {}
@@ -131,8 +135,8 @@ struct TorrentFiles2DictionaryItemView: View {
                             .frame(width: 22, height: 22)
                     }
                 }
-                if let progress = model.progress {
-                    ProgressView(value: progress)
+                if model.progress != nil {
+                    SegmentedProgressView(progress: $model.segmentedProgress)
                 }
             }
         }
@@ -141,5 +145,5 @@ struct TorrentFiles2DictionaryItemView: View {
 }
 
 #Preview {
-    TorrentFiles2DictionaryItemView(model: .init(name: "Dictionary", filesNeeded: 3, files: 12, progress: -1))
+    TorrentFiles2DictionaryItemView(model: .init(name: "Dictionary", filesNeeded: 3, files: 12, progress: 0.5, segmentedProgress: [0.5]))
 }

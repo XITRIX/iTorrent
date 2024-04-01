@@ -16,9 +16,14 @@ struct TorrentDetailProgressCellView: MvvmSwiftUICellProtocol {
             Text(viewModel.title)
                 .fontWeight(.semibold)
             Spacer(minLength: 24)
-            ProgressView(value: viewModel.progress)
-                .foregroundStyle(Color(.secondaryAccent))
-                .multilineTextAlignment(.trailing)
+            VStack {
+                ProgressView(value: viewModel.progress)
+                    .foregroundStyle(Color(.secondaryAccent))
+                    .multilineTextAlignment(.trailing)
+                SegmentedProgressView(progress: $viewModel.segmentedProgress)
+                    .frame(height: 4)
+                    .clipShape(Capsule())
+            }
         }
         #if os(visionOS)
         .frame(minHeight: 44)
@@ -33,5 +38,5 @@ struct TorrentDetailProgressCellView: MvvmSwiftUICellProtocol {
 }
 
 #Preview {
-    TorrentDetailProgressCellView(viewModel: .init(title: "Title", progress: 0.5))
+    TorrentDetailProgressCellView(viewModel: .init(title: "Title", progress: 0.5, segmentedProgress: [0.5]))
 }
