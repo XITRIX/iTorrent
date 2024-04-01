@@ -7,6 +7,7 @@
 
 import MvvmFoundation
 import SwiftUI
+import MarqueeLabel
 
 class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
@@ -14,6 +15,8 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
     private let shareButton = UIBarButtonItem(title: "Share", image: .init(systemName: "square.and.arrow.up"))
     private let playButton = UIBarButtonItem()
     private let pauseButton = UIBarButtonItem()
+
+    private let titleLabel = MarqueeLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +80,11 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
                 pop(animated: true)
             }))
         ]
+
+        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        titleLabel.fadeLength = 16
+        titleLabel.text = title
+        navigationItem.titleView = titleLabel
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -1,5 +1,5 @@
 {
-  "originHash" : "aac6b09cb38cadc82afbc002297f1af6360cc450d7f91b44a0b3ea241b5c0dce",
+  "originHash" : "6fc96228a45cf775e76c653a1bcf40a7de42621b70e8629f2544053f50e9f43d",
   "pins" : [
     {
       "identity" : "combinecocoa",
@@ -8,6 +8,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "940c2140f824647d5141fd2475e059c1a45740e4"
+      }
+    },
+    {
+      "identity" : "marqueelabel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cbpowell/MarqueeLabel.git",
+      "state" : {
+        "revision" : "877e810534cda9afabb8143ae319b7c3341b121b",
+        "version" : "4.5.0"
       }
     },
     {

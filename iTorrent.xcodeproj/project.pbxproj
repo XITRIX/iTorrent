@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
+		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		D11138482AF9464E008907F7 /* TorrentAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11138462AF9464E008907F7 /* TorrentAddViewController.swift */; };
 		D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11138472AF9464E008907F7 /* TorrentAddViewController.xib */; };
@@ -168,6 +169,7 @@
 				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
+				7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */,
 				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
 				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
 				D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */,
@@ -544,6 +546,7 @@
 				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
 				D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */,
 				7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */,
+				7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -578,6 +581,7 @@
 				D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */,
 				7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */,
+				7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -1006,6 +1010,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cbpowell/MarqueeLabel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
 		7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/XITRIX/CombineCocoa.git";
@@ -1025,6 +1037,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */;
+			productName = MarqueeLabel;
+		};
 		7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MvvmFoundation;
