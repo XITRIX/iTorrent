@@ -25,10 +25,13 @@ class TorrentService {
     private let session: Session = {
         var settings = Session.Settings()
         print("Working directory: \(downloadPath.path())")
-        return .init(downloadPath.path(), torrentsPath: torrentPath.path(), fastResumePath: fastResumePath.path(), settings: .fromPreferences())
+        return .init(downloadPath.path(), torrentsPath: torrentPath.path(), fastResumePath: fastResumePath.path(), settings: .fromPreferences(with: []))
     }()
 
     private let disposeBag = DisposeBag()
+
+    @Injected private var network: NetworkMonitoringService
+    @Injected private var preferences: PreferencesStorage
 }
 
 extension TorrentService {
@@ -95,11 +98,13 @@ private extension TorrentService {
     func setup() {
         session.add(self)
         disposeBag.bind {
-            PreferencesStorage.shared.settingsUpdatePublisher.sink { [unowned self] settings in
-                DispatchQueue.main.async { [self] in // Need delay to complete settings apply
-                    session.settings = .fromPreferences()
+            preferences.settingsUpdatePublisher
+                .combineLatest(network.$availableInterfaces)
+                .sink { [unowned self] _, interfaces in
+                    DispatchQueue.main.async { [self] in // Need delay to complete settings apply
+                        session.settings = Session.Settings.fromPreferences(with: interfaces.map { $0.name })
+                    }
                 }
-            }
         }
     }
 }

@@ -538,6 +538,46 @@
         }
       }
     },
+    "preferences.network.connection.port" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port"
+          }
+        }
+      }
+    },
+    "preferences.network.connection.port.default" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use default port"
+          }
+        }
+      }
+    },
+    "preferences.network.connection.port.retries" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry range"
+          }
+        }
+      }
+    },
+    "preferences.network.connection.port.value" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom port"
+          }
+        }
+      }
+    },
     "preferences.network.connection.protocols" : {
       "localizations" : {
         "en" : {

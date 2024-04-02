@@ -31,4 +31,13 @@ class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, Observable
         accessories = model.accessories
         selectAction = model.selectAction
     }
+
+    override func isEqual(to other: MvvmViewModel) -> Bool {
+        guard let other = other as? Self else { return false }
+        return title == other.title
+    }
+
+    override func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
 }

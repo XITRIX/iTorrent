@@ -33,7 +33,8 @@ private extension ConnectionPreferencesViewModel {
                         uiAction(from: .enabled),
                         uiAction(from: .forced),
                         uiAction(from: .disabled),
-                    ]), options: .init(tintColor: .tintColor)),
+                    ]), options: .init(tintColor: .tintColor)
+                ),
             ]))
         })
 
@@ -44,10 +45,41 @@ private extension ConnectionPreferencesViewModel {
             PRSwitchViewModel(with: .init(title: %"preferences.network.connection.protocols.upnp", value: preferences.$isUpnpEnabled.binding))
             PRSwitchViewModel(with: .init(title: %"preferences.network.connection.protocols.nat", value: preferences.$isNatEnabled.binding))
         })
+
+        sections.append(.init(id: "port", header: %"preferences.network.connection.port") {
+            PRSwitchViewModel(with: .init(title: %"preferences.network.connection.port.default", value: .init(
+                get: { [preferences] in preferences.portBindRetries < 0 },
+                set: { [weak self] value in self?.setDefaultPortValue(to: value) }
+            )))
+
+            if preferences.portBindRetries >= 0 {
+                PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.value", value: preferences.$port.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
+                    textInput(title: "Custom port", placeholder: "6881", defaultValue: "\(preferences.port)", type: .numberPad) { [unowned self] res in
+                        if let res {
+                            preferences.port = Int(res) ?? 6881
+                        }
+                        dismissSelection.send(())
+                    }
+                })
+                PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.retries", value: preferences.$portBindRetries.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
+                    textInput(title: "Port retries", placeholder: "10", defaultValue: "\(preferences.portBindRetries)", type: .numberPad) { [unowned self] res in
+                        if let res {
+                            preferences.portBindRetries = Int(res) ?? 10
+                        }
+                        dismissSelection.send(())
+                    }
+                })
+            }
+        })
     }
 
     func uiAction(from policy: Session.Settings.EncryptionPolicy) -> UIAction {
         UIAction(title: policy.name, attributes: policy == .disabled ? [.destructive] : [], state: preferences.encryptionPolicy == policy ? .on : .off) { [preferences] _ in preferences.encryptionPolicy = policy }
+    }
+
+    func setDefaultPortValue(to value: Bool) {
+        preferences.portBindRetries = value ? -1 : 10
+        reload()
     }
 }
 

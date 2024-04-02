@@ -24,4 +24,13 @@ class PRSwitchViewModel: BaseViewModelWith<PRSwitchViewModel.Config>, Observable
         title = model.title
         value = model.value
     }
+
+    override func isEqual(to other: MvvmViewModel) -> Bool {
+        guard let other = other as? Self else { return false }
+        return title == other.title
+    }
+
+    override func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+    }
 }

@@ -16,7 +16,9 @@ class SceneDelegate: MvvmSceneDelegate {
     override func register(in container: Container) {
         container.register(type: UINavigationController.self, factory: BaseNavigationController.init)
         container.register(type: UISplitViewController.self, factory: BaseSplitViewController.init)
-        container.registerSingleton(factory: TorrentService.init)
+        container.registerSingleton(factory: { TorrentService.shared })
+        container.registerSingleton(factory: NetworkMonitoringService.init)
+        container.registerSingleton(factory: { PreferencesStorage.shared })
     }
 
     override func routing(in router: Router) {

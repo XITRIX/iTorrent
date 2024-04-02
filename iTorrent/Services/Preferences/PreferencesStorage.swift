@@ -11,7 +11,7 @@ import LibTorrent
 import MvvmFoundation
 
 class PreferencesStorage {
-    private init() {}
+//    private init() {}
     private var disposeBag: [AnyCancellable] = []
 
     static let shared = PreferencesStorage()
@@ -36,6 +36,9 @@ class PreferencesStorage {
 
     @UserDefaultItem("preferencesEncryptionPolicy", .enabled) var encryptionPolicy: Session.Settings.EncryptionPolicy
 
+    @UserDefaultItem("preferencesPort", 6881) var port: Int
+    @UserDefaultItem("preferencesPortBindRetries", -1) var portBindRetries: Int
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($allocateMemory)
@@ -50,15 +53,18 @@ class PreferencesStorage {
             .combineLatest($isUpnpEnabled)
             .combineLatest($isNatEnabled)
             .combineLatest($encryptionPolicy)
+            .combineLatest($port)
+            .combineLatest($portBindRetries)
             .map { _ in }
             .eraseToAnyPublisher()
     }
 }
 
 extension Session.Settings {
-    static func fromPreferences() -> Self {
+    static func fromPreferences(with interfaces: [String]) -> Self {
         let settings = Self()
         let preferences = PreferencesStorage.shared
+
         settings.maxActiveTorrents = preferences.maxActiveTorrents
         settings.maxDownloadingTorrents = preferences.maxDownloadingTorrents
         settings.maxUploadingTorrents = preferences.maxUploadingTorrents
@@ -71,8 +77,17 @@ extension Session.Settings {
         settings.isUtpEnabled = preferences.isUtpEnabled
         settings.isUpnpEnabled = preferences.isUpnpEnabled
         settings.isNatEnabled = preferences.isNatEnabled
-        
+
         settings.encryptionPolicy = preferences.encryptionPolicy
+
+        settings.port = preferences.port
+        settings.portBindRetries = preferences.portBindRetries
+
+        let interfacesToUse = [interfaces.first].compactMap { $0 }
+        settings.outgoingInterfaces = interfacesToUse.joined(separator: ",")
+        settings.listenInterfaces = interfacesToUse.map { "\($0):\(settings.port)" }.joined(separator: ",")
+
+        print("--- \(settings.listenInterfaces)")
 
         return settings
     }
