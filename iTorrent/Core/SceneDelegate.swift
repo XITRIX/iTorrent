@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 29/10/2023.
 //
 
+import LibTorrent
 import MvvmFoundation
 import UIKit
 
@@ -22,7 +23,7 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func routing(in router: Router) {
-        //MARK: Controllers
+        // MARK: Controllers
         router.register(TorrentListViewController<TorrentListViewModel>.self)
         router.register(TorrentDetailsViewController<TorrentDetailsViewModel>.self)
         router.register(TorrentFilesViewController<TorrentFilesViewModel>.self)
@@ -33,7 +34,7 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
 
-        //MARK: Cells
+        // MARK: Cells
         router.register(TorrentListItemView.self)
         router.register(TorrentDetailProgressCellView.self)
 
@@ -54,8 +55,31 @@ class SceneDelegate: MvvmSceneDelegate {
 
         let svc = UISplitViewController.resolve()
         svc.viewControllers = [nvc]
-//        svc.setViewController(nvc, for: .primary)
 
         return svc
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        URLContexts.forEach { context in
+            let url = context.url
+
+            defer { url.stopAccessingSecurityScopedResource() }
+            guard url.startAccessingSecurityScopedResource(),
+                  let file = TorrentFile(with: url)
+            else { return }
+
+            guard let rootViewController = window?.rootViewController
+            else { return }
+
+            guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
+            else {
+                let alert = UIAlertController(title: "This torrent already exists", message: "Torrent with hash:\n\"\(file.infoHashes.best.hex)\" already exists in download queue", preferredStyle: .alert)
+                alert.addAction(.init(title: %"common.close", style: .cancel))
+                rootViewController.present(alert, animated: true)
+                return
+            }
+
+            rootViewController.topPresented.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
+        }
     }
 }

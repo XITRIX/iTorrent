@@ -71,7 +71,7 @@ extension TorrentListViewModel {
 
         guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
         else {
-            alert(title: "This torrent already exists", message: "Torrent with hash:\n\"\(file.infoHashes.best.hex)\" already exists in download queue", actions: [.init(title: "Close", style: .cancel)])
+            alert(title: "This torrent already exists", message: "Torrent with hash:\n\"\(file.infoHashes.best.hex)\" already exists in download queue", actions: [.init(title: %"common.close", style: .cancel)])
             return
         }
 

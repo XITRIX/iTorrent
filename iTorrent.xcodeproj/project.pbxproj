@@ -26,6 +26,7 @@
 		D1352D222BBC33A000104E7B /* BasePreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1352D212BBC33A000104E7B /* BasePreferencesViewController.xib */; };
 		D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D202BBC33A000104E7B /* BasePreferencesViewController.swift */; };
 		D1352D252BBC33AB00104E7B /* BasePreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D242BBC33AB00104E7B /* BasePreferencesViewModel.swift */; };
+		D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D292BBD419D00104E7B /* UIViewController+TopPresented.swift */; };
 		D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D135C58B2AEF158000440680 /* CombineCocoa */; };
 		D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5942AEFB67000440680 /* BaseNavigationController.swift */; };
 		D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */; };
@@ -115,6 +116,7 @@
 		D1352D202BBC33A000104E7B /* BasePreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePreferencesViewController.swift; sourceTree = "<group>"; };
 		D1352D212BBC33A000104E7B /* BasePreferencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasePreferencesViewController.xib; sourceTree = "<group>"; };
 		D1352D242BBC33AB00104E7B /* BasePreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePreferencesViewModel.swift; sourceTree = "<group>"; };
+		D1352D292BBD419D00104E7B /* UIViewController+TopPresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopPresented.swift"; sourceTree = "<group>"; };
 		D135C5942AEFB67000440680 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsViewController.swift; sourceTree = "<group>"; };
 		D135C5982AEFB96100440680 /* TorrentDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentDetailsViewController.xib; sourceTree = "<group>"; };
@@ -273,6 +275,15 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		D1352D282BBD418200104E7B /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D1EFCD132AF5A59800D33A7A /* UIViewController+Pop.swift */,
+				D1352D292BBD419D00104E7B /* UIViewController+TopPresented.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		D135C5962AEFB94900440680 /* TorrentDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,8 +378,8 @@
 		D19E00242AF045DF000A17A2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D1352D282BBD418200104E7B /* UIViewController */,
 				D19E00252AF045F9000A17A2 /* SpeedFormat.swift */,
-				D1EFCD132AF5A59800D33A7A /* UIViewController+Pop.swift */,
 				D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */,
 				D1AA00D12AFAC95500B74629 /* String+Localized.swift */,
 				D1F8BC842AFC405A00A6258C /* MvvmViewModel+Alert.swift */,
@@ -692,6 +703,7 @@
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				D19E00262AF045F9000A17A2 /* SpeedFormat.swift in Sources */,
+				D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */,
 				D1B1BED22AFE2D9F0030C2A4 /* TrackerCellViewModel.swift in Sources */,
 				D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */,
 				D1EFCD142AF5A59800D33A7A /* UIViewController+Pop.swift in Sources */,
