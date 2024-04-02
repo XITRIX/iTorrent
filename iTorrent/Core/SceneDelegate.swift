@@ -20,13 +20,18 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func routing(in router: Router) {
+        //MARK: Controllers
         router.register(TorrentListViewController<TorrentListViewModel>.self)
         router.register(TorrentDetailsViewController<TorrentDetailsViewModel>.self)
         router.register(TorrentFilesViewController<TorrentFilesViewModel>.self)
         router.register(TorrentAddViewController<TorrentAddViewModel>.self)
-        router.register(PreferencesViewController<PreferencesViewModel>.self)
         router.register(TorrentTrackersViewController<TorrentTrackersViewModel>.self)
 
+        router.register(BasePreferencesViewController<PreferencesViewModel>.self)
+        router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
+        router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
+
+        //MARK: Cells
         router.register(TorrentListItemView.self)
         router.register(TorrentDetailProgressCellView.self)
 

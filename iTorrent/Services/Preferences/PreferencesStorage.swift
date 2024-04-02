@@ -28,6 +28,14 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesMaxUploadSpeed", 0) var maxUploadSpeed: UInt
     @UserDefaultItem("preferencesMaxDownloadSpeed", 0) var maxDownloadSpeed: UInt
 
+    @UserDefaultItem("preferencesConnectionDht", true) var isDhtEnabled: Bool
+    @UserDefaultItem("preferencesConnectionLsd", true) var isLsdEnabled: Bool
+    @UserDefaultItem("preferencesConnectionUtp", true) var isUtpEnabled: Bool
+    @UserDefaultItem("preferencesConnectionUpnp", true) var isUpnpEnabled: Bool
+    @UserDefaultItem("preferencesConnectionNatPmp", true) var isNatEnabled: Bool
+
+    @UserDefaultItem("preferencesEncryptionPolicy", .enabled) var encryptionPolicy: Session.Settings.EncryptionPolicy
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($allocateMemory)
@@ -36,6 +44,12 @@ class PreferencesStorage {
             .combineLatest($maxUploadingTorrents)
             .combineLatest($maxUploadSpeed)
             .combineLatest($maxDownloadSpeed)
+            .combineLatest($isDhtEnabled)
+            .combineLatest($isLsdEnabled)
+            .combineLatest($isUtpEnabled)
+            .combineLatest($isUpnpEnabled)
+            .combineLatest($isNatEnabled)
+            .combineLatest($encryptionPolicy)
             .map { _ in }
             .eraseToAnyPublisher()
     }
@@ -48,8 +62,18 @@ extension Session.Settings {
         settings.maxActiveTorrents = preferences.maxActiveTorrents
         settings.maxDownloadingTorrents = preferences.maxDownloadingTorrents
         settings.maxUploadingTorrents = preferences.maxUploadingTorrents
+
         settings.maxUploadSpeed = preferences.maxUploadSpeed
         settings.maxDownloadSpeed = preferences.maxDownloadSpeed
+
+        settings.isDhtEnabled = preferences.isDhtEnabled
+        settings.isLsdEnabled = preferences.isLsdEnabled
+        settings.isUtpEnabled = preferences.isUtpEnabled
+        settings.isUpnpEnabled = preferences.isUpnpEnabled
+        settings.isNatEnabled = preferences.isNatEnabled
+        
+        settings.encryptionPolicy = preferences.encryptionPolicy
+
         return settings
     }
 }

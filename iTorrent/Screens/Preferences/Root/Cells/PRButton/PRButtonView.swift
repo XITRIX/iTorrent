@@ -20,11 +20,16 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
         }
     }
 
-    static var registration: UICollectionView.CellRegistration<UICollectionViewListCell, PRButtonViewModel> = .init { cell, indexPath, itemIdentifier in
+    static var registration: UICollectionView.CellRegistration<MvvmCollectionViewListCell<PRButtonViewModel>, PRButtonViewModel> = .init { cell, indexPath, itemIdentifier in
         cell.contentConfiguration = UIHostingConfiguration {
             Self(viewModel: itemIdentifier)
         }
-//        cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
+
+        bind(in: cell.disposeBag) {
+            itemIdentifier.$accessories.sink { accessories in
+                cell.accessories = accessories
+            }
+        }
     }
 }
 

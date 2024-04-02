@@ -5,14 +5,11 @@
 //  Created by Daniil Vinogradov on 06/11/2023.
 //
 
+import Combine
 import MvvmFoundation
 import SwiftUI
-import Combine
 
-class PreferencesViewModel: BaseViewModel {
-    let sections = CurrentValueRelay<[MvvmCollectionSectionModel]>([])
-    let dismissSelection = PassthroughRelay<Void>()
-
+class PreferencesViewModel: BasePreferencesViewModel {
     required init() {
         super.init()
         reload()
@@ -23,11 +20,13 @@ class PreferencesViewModel: BaseViewModel {
 
 private extension PreferencesViewModel {
     func reload() {
+        title.send(%"preferences")
+        
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections.send(sections) }
 
-        sections.append(.init(id: "memory", header: "Memory") {
-            PRSwitchViewModel(with: .init(title: "Memory allocation", value: preferences.$allocateMemory.binding))
+        sections.append(.init(id: "memory", header: %"preferences.storage") {
+            PRSwitchViewModel(with: .init(title: %"preferences.storage.allocate", value: preferences.$allocateMemory.binding))
         })
 
         sections.append(.init(id: "torrentQueueLimits", header: "Torrent queueing limits") {
@@ -73,6 +72,15 @@ private extension PreferencesViewModel {
                     }
                     dismissSelection.send(())
                 }
+            })
+        })
+
+        sections.append(.init(id: "network", header: %"preferences.network") {
+            PRButtonViewModel(with: .init(title: %"preferences.network.proxy", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: ProxyPreferencesViewModel.self, by: .show)
+            })
+            PRButtonViewModel(with: .init(title: %"preferences.network.connection", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: ConnectionPreferencesViewModel.self, by: .show)
             })
         })
 

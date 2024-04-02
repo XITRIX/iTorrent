@@ -12,8 +12,9 @@ import SwiftUI
 extension PRButtonViewModel {
     struct Config {
         var title: String
-        var value: AnyPublisher<String, Never>
-        var selectAction: () -> Void
+        var value: AnyPublisher<String, Never> = Just("").eraseToAnyPublisher()
+        var accessories: [UICellAccessory] = []
+        var selectAction: () -> Void = {}
     }
 }
 
@@ -22,10 +23,12 @@ class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, Observable
 
     @Published var title = ""
     @Published var value: String = ""
+    @Published var accessories: [UICellAccessory] = []
 
     override func prepare(with model: Config) {
         title = model.title
         model.value.assign(to: &$value)
+        accessories = model.accessories
         selectAction = model.selectAction
     }
 }
