@@ -39,6 +39,14 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesPort", 6881) var port: Int
     @UserDefaultItem("preferencesPortBindRetries", -1) var portBindRetries: Int
 
+    @UserDefaultItem("preferencesProxyType", .none) var proxyType: Session.Settings.ProxyType
+    @UserDefaultItem("preferencesProxyHostname", "") var proxyHostname: String
+    @UserDefaultItem("preferencesProxyHostPort", 8080) var proxyHostPort: Int
+    @UserDefaultItem("preferencesProxyAuthRequired", false) var proxyAuthRequired: Bool
+    @UserDefaultItem("preferencesProxyUsername", "") var proxyUsername: String
+    @UserDefaultItem("preferencesProxyPassword", "") var proxyPassword: String
+    @UserDefaultItem("preferencesProxyPeerConnections", true) var proxyPeerConnections: Bool
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($allocateMemory)
@@ -55,6 +63,13 @@ class PreferencesStorage {
             .combineLatest($encryptionPolicy)
             .combineLatest($port)
             .combineLatest($portBindRetries)
+            .combineLatest($proxyType)
+            .combineLatest($proxyHostname)
+            .combineLatest($proxyHostPort)
+            .combineLatest($proxyAuthRequired)
+            .combineLatest($proxyUsername)
+            .combineLatest($proxyPassword)
+            .combineLatest($proxyPeerConnections)
             .map { _ in }
             .eraseToAnyPublisher()
     }

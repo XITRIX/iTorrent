@@ -32,26 +32,23 @@ private extension PreferencesViewModel {
         sections.append(.init(id: "torrentQueueLimits", header: "Torrent queueing limits") {
             PRButtonViewModel(with: .init(title: "Active torrents", value: preferences.$maxActiveTorrents.map { $0 == 0 ? "Unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: "Active torrents", placeholder: "Unlimited", defaultValue: "\(preferences.maxActiveTorrents)", type: .numberPad) { [unowned self] res in
-                    if let res {
-                        preferences.maxActiveTorrents = Int(res) ?? 0
-                    }
                     dismissSelection.send(())
+                    guard let res else { return }
+                    preferences.maxActiveTorrents = Int(res) ?? 0
                 }
             })
             PRButtonViewModel(with: .init(title: "Downloading torrents", value: preferences.$maxDownloadingTorrents.map { $0 == 0 ? "Unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: "Downloading torrents", placeholder: "Unlimited", defaultValue: "\(preferences.maxDownloadingTorrents)", type: .numberPad) { [unowned self] res in
-                    if let res {
-                        preferences.maxDownloadingTorrents = Int(res) ?? 0
-                    }
                     dismissSelection.send(())
+                    guard let res else { return }
+                    preferences.maxDownloadingTorrents = Int(res) ?? 0
                 }
             })
             PRButtonViewModel(with: .init(title: "Uploading torrents", value: preferences.$maxUploadingTorrents.map { $0 == 0 ? "Unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: "Uploading torrents", placeholder: "Unlimited", defaultValue: "\(preferences.maxUploadingTorrents)", type: .numberPad) { [unowned self] res in
-                    if let res {
-                        preferences.maxUploadingTorrents = Int(res) ?? 0
-                    }
                     dismissSelection.send(())
+                    guard let res else { return }
+                    preferences.maxUploadingTorrents = Int(res) ?? 0
                 }
             })
         })
@@ -59,18 +56,16 @@ private extension PreferencesViewModel {
         sections.append(.init(id: "speed limits", header: "Speed limits") {
             PRButtonViewModel(with: .init(title: "Max download speed", value: preferences.$maxDownloadSpeed.map { $0 == 0 ? "Unlimited" : UInt64($0).bitrateToHumanReadable }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: "Max download speed", message: "Speed in KB/s", placeholder: "Unlimited", defaultValue: "\(preferences.maxDownloadSpeed / 1024)", type: .numberPad) { [unowned self] res in
-                    if let res {
-                        preferences.maxDownloadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
-                    }
                     dismissSelection.send(())
+                    guard let res else { return }
+                    preferences.maxDownloadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
                 }
             })
             PRButtonViewModel(with: .init(title: "Max upload speed", value: preferences.$maxUploadSpeed.map { $0 == 0 ? "Unlimited" : UInt64($0).bitrateToHumanReadable }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: "Max upload speed", message: "Speed in KB/s", placeholder: "Unlimited", defaultValue: "\(preferences.maxUploadSpeed / 1024)", type: .numberPad) { [unowned self] res in
-                    if let res {
-                        preferences.maxUploadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
-                    }
                     dismissSelection.send(())
+                    guard let res else { return }
+                    preferences.maxUploadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
                 }
             })
         })
