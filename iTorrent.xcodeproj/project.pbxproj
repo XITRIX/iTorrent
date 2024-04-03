@@ -27,6 +27,15 @@
 		D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D202BBC33A000104E7B /* BasePreferencesViewController.swift */; };
 		D1352D252BBC33AB00104E7B /* BasePreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D242BBC33AB00104E7B /* BasePreferencesViewModel.swift */; };
 		D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D292BBD419D00104E7B /* UIViewController+TopPresented.swift */; };
+		D1352D2C2BBD6E0E00104E7B /* MemorySpaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D2B2BBD6E0E00104E7B /* MemorySpaceManager.swift */; };
+		D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D2D2BBD6ED300104E7B /* UIColor+Hex.swift */; };
+		D1352D322BBD720C00104E7B /* PRStorageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D302BBD720C00104E7B /* PRStorageCell.swift */; };
+		D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1352D312BBD720C00104E7B /* PRStorageCell.xib */; };
+		D1352D352BBD721700104E7B /* PRStorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D342BBD721700104E7B /* PRStorageViewModel.swift */; };
+		D1352D382BBD73CD00104E7B /* ColoredProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D372BBD73CD00104E7B /* ColoredProgressBarView.swift */; };
+		D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D392BBD747100104E7B /* PortionBarLabels.swift */; };
+		D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D3B2BBD7F8800104E7B /* TorrentMonitoringService.swift */; };
+		D1352D3F2BBD81C000104E7B /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D3E2BBD81C000104E7B /* AppDelegate+Notifications.swift */; };
 		D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D135C58B2AEF158000440680 /* CombineCocoa */; };
 		D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5942AEFB67000440680 /* BaseNavigationController.swift */; };
 		D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */; };
@@ -117,6 +126,15 @@
 		D1352D212BBC33A000104E7B /* BasePreferencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasePreferencesViewController.xib; sourceTree = "<group>"; };
 		D1352D242BBC33AB00104E7B /* BasePreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePreferencesViewModel.swift; sourceTree = "<group>"; };
 		D1352D292BBD419D00104E7B /* UIViewController+TopPresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopPresented.swift"; sourceTree = "<group>"; };
+		D1352D2B2BBD6E0E00104E7B /* MemorySpaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorySpaceManager.swift; sourceTree = "<group>"; };
+		D1352D2D2BBD6ED300104E7B /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		D1352D302BBD720C00104E7B /* PRStorageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRStorageCell.swift; sourceTree = "<group>"; };
+		D1352D312BBD720C00104E7B /* PRStorageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PRStorageCell.xib; sourceTree = "<group>"; };
+		D1352D342BBD721700104E7B /* PRStorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PRStorageViewModel.swift; sourceTree = "<group>"; };
+		D1352D372BBD73CD00104E7B /* ColoredProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredProgressBarView.swift; sourceTree = "<group>"; };
+		D1352D392BBD747100104E7B /* PortionBarLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortionBarLabels.swift; sourceTree = "<group>"; };
+		D1352D3B2BBD7F8800104E7B /* TorrentMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentMonitoringService.swift; sourceTree = "<group>"; };
+		D1352D3E2BBD81C000104E7B /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		D135C5942AEFB67000440680 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsViewController.swift; sourceTree = "<group>"; };
 		D135C5982AEFB96100440680 /* TorrentDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentDetailsViewController.xib; sourceTree = "<group>"; };
@@ -241,6 +259,7 @@
 		D11BE5412AFB83C400780C1B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D1352D2F2BBD71E800104E7B /* PRStorage */,
 				D11BE5472AFBA01700780C1B /* PRButton */,
 				D11BE5422AFB900800780C1B /* PRSwitch */,
 			);
@@ -282,6 +301,35 @@
 				D1352D292BBD419D00104E7B /* UIViewController+TopPresented.swift */,
 			);
 			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		D1352D2F2BBD71E800104E7B /* PRStorage */ = {
+			isa = PBXGroup;
+			children = (
+				D1352D362BBD73C300104E7B /* Views */,
+				D1352D342BBD721700104E7B /* PRStorageViewModel.swift */,
+				D1352D302BBD720C00104E7B /* PRStorageCell.swift */,
+				D1352D312BBD720C00104E7B /* PRStorageCell.xib */,
+			);
+			path = PRStorage;
+			sourceTree = "<group>";
+		};
+		D1352D362BBD73C300104E7B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D1352D372BBD73CD00104E7B /* ColoredProgressBarView.swift */,
+				D1352D392BBD747100104E7B /* PortionBarLabels.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D1352D3D2BBD81AB00104E7B /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				D1A2269D2AEEEFCC00669D6D /* AppDelegate.swift */,
+				D1352D3E2BBD81C000104E7B /* AppDelegate+Notifications.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		D135C5962AEFB94900440680 /* TorrentDetails */ = {
@@ -383,6 +431,7 @@
 				D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */,
 				D1AA00D12AFAC95500B74629 /* String+Localized.swift */,
 				D1F8BC842AFC405A00A6258C /* MvvmViewModel+Alert.swift */,
+				D1352D2D2BBD6ED300104E7B /* UIColor+Hex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -429,9 +478,9 @@
 		D1A226EE2AEF00FB00669D6D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D1352D3D2BBD81AB00104E7B /* AppDelegate */,
 				D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */,
 				D1B5385A2AF1190200694AFD /* iTorrent.entitlements */,
-				D1A2269D2AEEEFCC00669D6D /* AppDelegate.swift */,
 				D1A2269F2AEEEFCC00669D6D /* SceneDelegate.swift */,
 				D1A226A12AEEEFCC00669D6D /* ViewController.swift */,
 				D1A226A32AEEEFCC00669D6D /* Main.storyboard */,
@@ -458,9 +507,11 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D1AA00CC2AFA8B0300B74629 /* Preferences */,
 				D11333B32AF19C3400FA017E /* TorrentService */,
+				D1AA00CC2AFA8B0300B74629 /* Preferences */,
 				7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */,
+				D1352D2B2BBD6E0E00104E7B /* MemorySpaceManager.swift */,
+				D1352D3B2BBD7F8800104E7B /* TorrentMonitoringService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -668,6 +719,7 @@
 				D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */,
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
+				D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */,
 				D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */,
 				D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */,
 				D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */,
@@ -709,6 +761,7 @@
 				D1EFCD142AF5A59800D33A7A /* UIViewController+Pop.swift in Sources */,
 				D11BE54B2AFBA06900780C1B /* PRButtonViewModel.swift in Sources */,
 				D1A226F22AEF019400669D6D /* TorrentService.swift in Sources */,
+				D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */,
 				D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */,
 				D11138482AF9464E008907F7 /* TorrentAddViewController.swift in Sources */,
 				D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */,
@@ -716,12 +769,15 @@
 				D1EFCD122AF572E400D33A7A /* TorrentFilesFileItemViewModel.swift in Sources */,
 				D1EFCD192AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift in Sources */,
 				7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */,
+				D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */,
 				D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */,
 				D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */,
 				D11138572AF976CE008907F7 /* TorrentAddDirectoryItemViewModel.swift in Sources */,
 				D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */,
 				D11BE5492AFBA03D00780C1B /* PRButtonView.swift in Sources */,
+				D1352D322BBD720C00104E7B /* PRStorageCell.swift in Sources */,
 				D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */,
+				D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */,
 				D17733F52BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift in Sources */,
 				D1A227012AEF05A600669D6D /* TorrentListViewModel.swift in Sources */,
 				D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */,
@@ -732,13 +788,17 @@
 				D1A226FF2AEF056A00669D6D /* BaseViewModel.swift in Sources */,
 				D1B1BED02AFE2D760030C2A4 /* TrackerCellView.swift in Sources */,
 				D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */,
+				D1352D352BBD721700104E7B /* PRStorageViewModel.swift in Sources */,
+				D1352D2C2BBD6E0E00104E7B /* MemorySpaceManager.swift in Sources */,
 				D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */,
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,
 				D1A226F92AEF04E200669D6D /* TorrentListViewController.swift in Sources */,
+				D1352D3F2BBD81C000104E7B /* AppDelegate+Notifications.swift in Sources */,
 				D1A226A02AEEEFCC00669D6D /* SceneDelegate.swift in Sources */,
 				D11BE5442AFB901E00780C1B /* PRSwitchView.swift in Sources */,
+				D1352D382BBD73CD00104E7B /* ColoredProgressBarView.swift in Sources */,
 				D1A226FD2AEF04F900669D6D /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

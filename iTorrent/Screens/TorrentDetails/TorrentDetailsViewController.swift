@@ -24,6 +24,13 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
         navigationItem.largeTitleDisplayMode = .never
 
         disposeBag.bind {
+            viewModel.dismissSignal.sink { [unowned self] _ in
+                guard !((splitViewController as? BaseSplitViewController)?.showEmptyDetail() ?? false)
+                else { return }
+                
+                pop(animated: true, sender: self)
+            }
+
             viewModel.$sections.sink { [unowned self] sections in
                 if collectionView.diffDataSource.snapshot().sectionIdentifiers.differs(from: sections) {
                     collectionView.diffDataSource.applyModels(sections)
@@ -77,7 +84,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             })),
             .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             .init(title: "Delete", image: .init(systemName: "trash"), primaryAction: .init(handler: { [unowned self] _ in
-                pop(animated: true)
+                viewModel.removeTorrent()
             }))
         ]
 

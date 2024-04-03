@@ -26,6 +26,7 @@ private extension PreferencesViewModel {
         defer { self.sections.send(sections) }
 
         sections.append(.init(id: "memory", header: %"preferences.storage") {
+            PRStorageViewModel()
             PRSwitchViewModel(with: .init(title: %"preferences.storage.allocate", value: preferences.$allocateMemory.binding))
         })
 

@@ -9,8 +9,16 @@ import Combine
 import LibTorrent
 import MvvmFoundation
 
+extension TorrentService {
+    struct TorrentUpdateModel {
+        let oldSnapshot: TorrentHandle.Snapshot
+        let handle: TorrentHandle
+    }
+}
+
 class TorrentService {
     @Published var torrents: [TorrentHandle] = []
+    var updateNotifier = PassthroughSubject<TorrentUpdateModel, Never>()
 
     static let shared = TorrentService()
     static var version: String { Version.libtorrentVersion }
@@ -69,6 +77,9 @@ extension TorrentService {
 
 extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
+        guard torrents.firstIndex(where: { $0.infoHashes == torrent.infoHashes }) == nil
+        else { return }
+
         DispatchQueue.main.sync { [self] in
             _ = torrent.metadata
             torrent.updateSnapshot()
@@ -78,14 +89,22 @@ extension TorrentService: SessionDelegate {
 
     func torrentManager(_ manager: Session, didRemoveTorrentWithHash hashesData: TorrentHashes) {
         // Already on Main thread
-        torrents.removeAll(where: { $0.infoHashes == hashesData })
+        guard let index = torrents.firstIndex(where: { $0.infoHashes == hashesData })
+        else { return }
+
+        let torrent = torrents[index]
+        torrent.removePublisher.send(torrent)
+        torrents.remove(at: index)
     }
 
     func torrentManager(_ manager: Session, didReceiveUpdateForTorrent torrent: TorrentHandle) {
-        guard let existingTorrent = torrents.first(where: { $0.hashValue == torrent.hashValue })
+        guard let existingTorrent = torrents.first(where: { $0.infoHashes == torrent.infoHashes })
         else { return }
 
+        let oldSnapshot = existingTorrent.snapshot
         existingTorrent.updateSnapshot()
+        updateNotifier.send(.init(oldSnapshot: oldSnapshot, handle: existingTorrent))
+
         DispatchQueue.main.sync {
             existingTorrent.updatePublisher.send(existingTorrent)
         }
@@ -96,7 +115,13 @@ extension TorrentService: SessionDelegate {
 
 private extension TorrentService {
     func setup() {
+        torrents = session.torrents.map { torrent in
+            _ = torrent.metadata
+            torrent.updateSnapshot()
+            return torrent
+        }
         session.add(self)
+
         disposeBag.bind {
             preferences.settingsUpdatePublisher
                 .combineLatest(network.$availableInterfaces)

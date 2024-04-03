@@ -35,22 +35,25 @@ class TorrentListViewModel: BaseViewModel {
         super.init()
         title = "iTorrent"
 
-        TorrentService.shared.$torrents
-            .combineLatest($searchQuery, sortingType, sortingReverced) { torrentHandles, searchQuery, sortingType, sortingReverced in
-                var torrentHandles = torrentHandles
-                if !searchQuery.isEmpty {
-                    torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }
+        Task {
+            try await Task.sleep(for: .seconds(0.1))
+            TorrentService.shared.$torrents
+                .combineLatest($searchQuery, sortingType, sortingReverced) { torrentHandles, searchQuery, sortingType, sortingReverced in
+                    var torrentHandles = torrentHandles
+                    if !searchQuery.isEmpty {
+                        torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }
+                    }
+                    return torrentHandles.sorted(by: sortingType, reverced: sortingReverced)
                 }
-                return torrentHandles.sorted(by: sortingType, reverced: sortingReverced)
-            }
-            .map { [unowned self] torrents in
-                [.init(id: "torrents", style: .plain, showsSeparators: true, items: torrents.map {
-                    let vm = TorrentListItemViewModel(with: $0)
-                    vm.navigationService = navigationService
-                    return vm
-                })]
-            }
-            .assign(to: &$sections)
+                .map { [unowned self] torrents in
+                    [.init(id: "torrents", style: .plain, showsSeparators: true, items: torrents.map {
+                        let vm = TorrentListItemViewModel(with: $0)
+                        vm.navigationService = { [weak self] in self?.navigationService?() }
+                        return vm
+                    })]
+                }
+                .assign(to: &$sections)
+        }
     }
 
     static func searchFilter(_ text: String, by query: String) -> Bool {

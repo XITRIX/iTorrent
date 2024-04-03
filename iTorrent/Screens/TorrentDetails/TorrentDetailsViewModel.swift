@@ -17,6 +17,8 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     @Published var title: String = ""
     @Published var isPaused: Bool = false
 
+    let dismissSignal = PassthroughSubject<Void, Never>()
+
     override func prepare(with model: TorrentHandle) {
         torrentHandle = model
         title = model.name
@@ -27,6 +29,10 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
                 .sink { [unowned self] _ in
                     reload()
                 }
+
+            torrentHandle.removePublisher.sink { [unowned self] _ in
+                dismissSignal.send(())
+            }
 
             sequentialModel.$isOn.sink { [unowned self] value in
                 torrentHandle.setSequentialDownload(value)
@@ -87,6 +93,18 @@ extension TorrentDetailsViewModel {
             .init(title: "Rehash", style: .destructive, action: { [unowned self] in
                 torrentHandle.rehash()
             })
+        ])
+    }
+
+    func removeTorrent() {
+        alert(title: "Are you sure to remove", message: torrentHandle.name, actions: [
+            .init(title: "Yes and remove data", style: .destructive, action: { [unowned self] in
+                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
+            }),
+            .init(title: "Yes but keep data", style: .default, action: { [unowned self] in
+                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
+            }),
+            .init(title: "Cancel", style: .cancel)
         ])
     }
 

@@ -74,6 +74,12 @@ class BaseSplitViewController: UISplitViewController {
             viewControllers[1] = emptyView
         }
     }
+
+    func showEmptyDetail() -> Bool {
+        guard !isCollapsed else { return false }
+        viewControllers[1] = emptyView
+        return true
+    }
 }
 
 private extension BaseSplitViewController {

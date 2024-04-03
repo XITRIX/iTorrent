@@ -20,6 +20,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { TorrentService.shared })
         container.registerSingleton(factory: NetworkMonitoringService.init)
         container.registerSingleton(factory: { PreferencesStorage.shared })
+        container.registerDaemon(factory: TorrentMonitoringService.init)
     }
 
     override func routing(in router: Router) {
@@ -45,6 +46,7 @@ class SceneDelegate: MvvmSceneDelegate {
 
         router.register(PRSwitchView.self)
         router.register(PRButtonView.self)
+        router.register(PRStorageCell.self)
     }
 
     override func resolveRootVC(with router: Router) -> UIViewController {
