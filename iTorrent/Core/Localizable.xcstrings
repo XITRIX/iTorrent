@@ -579,6 +579,16 @@
         }
       }
     },
+    "preferences.appearance" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        }
+      }
+    },
     "preferences.network" : {
       "localizations" : {
         "en" : {
@@ -811,6 +821,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proxy type"
+          }
+        }
+      }
+    },
+    "preferences.notifications" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "preferences.notifications.download" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On loading finished"
+          }
+        }
+      }
+    },
+    "preferences.notifications.seed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On seeding finished"
           }
         }
       }

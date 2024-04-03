@@ -25,6 +25,10 @@ private extension PreferencesViewModel {
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections.send(sections) }
 
+        sections.append(.init(id: "appearance", header: %"preferences.appearance") {
+            PRColorPickerViewModel()
+        })
+
         sections.append(.init(id: "memory", header: %"preferences.storage") {
             PRStorageViewModel()
             PRSwitchViewModel(with: .init(title: %"preferences.storage.allocate", value: preferences.$allocateMemory.binding))
@@ -78,6 +82,11 @@ private extension PreferencesViewModel {
             PRButtonViewModel(with: .init(title: %"preferences.network.connection", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: ConnectionPreferencesViewModel.self, by: .show)
             })
+        })
+
+        sections.append(.init(id: "notifications", header: %"preferences.notifications") {
+            PRSwitchViewModel(with: .init(title: %"preferences.notifications.download", value: preferences.$isDownloadNotificationsEnabled.binding))
+            PRSwitchViewModel(with: .init(title: %"preferences.notifications.seed", value: preferences.$isSeedNotificationsEnabled.binding))
         })
 
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"

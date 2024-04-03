@@ -23,9 +23,18 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
         torrentHandle = model
         title = model.name
 
+        dataUpdate()
         reload()
+
         disposeBag.bind {
             torrentHandle.updatePublisher
+                .sink { [unowned self] _ in
+                    dataUpdate()
+                }
+
+            torrentHandle.updatePublisher
+                .map { $0.snapshot.isPaused }
+                .removeDuplicates()
                 .sink { [unowned self] _ in
                     reload()
                 }
@@ -119,7 +128,7 @@ extension TorrentDetailsViewModel {
 }
 
 private extension TorrentDetailsViewModel {
-    func reload() {
+    func dataUpdate() {
         isPaused = torrentHandle.snapshot.isPaused
         stateModel.detail = "\(torrentHandle.snapshot.friendlyState.name)" // "\(torrentHandle.snapshot.state.rawValue) | \(torrentHandle.snapshot.isPaused ? "Paused" : "Running")"
 
@@ -158,10 +167,11 @@ private extension TorrentDetailsViewModel {
         uploadedModel.detail = "\(torrentHandle.snapshot.totalUpload.bitrateToHumanReadable)"
         seedersModel.detail = "\(torrentHandle.snapshot.numberOfSeeds)(\(torrentHandle.snapshot.numberOfTotalSeeds))"
         leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
+    }
 
-        /// ------
-
+    func reload() {
         var sections: [MvvmCollectionSectionModel] = []
+        defer { self.sections = sections }
 
         sections.append(.init(id: "state") {
             stateModel
@@ -216,8 +226,6 @@ private extension TorrentDetailsViewModel {
             trackersModel
             filesModel
         })
-
-        self.sections = sections
     }
 }
 

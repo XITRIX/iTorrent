@@ -11,7 +11,8 @@ import UIKit
 
 class SceneDelegate: MvvmSceneDelegate {
     override func initialSetup() {
-        window?.tintColor = .accent
+        UIView.enableUIColorsToLayer()
+        window?.tintColor = PreferencesStorage.shared.tintColor
     }
 
     override func register(in container: Container) {
@@ -47,6 +48,7 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(PRSwitchView.self)
         router.register(PRButtonView.self)
         router.register(PRStorageCell.self)
+        router.register(PRColorPickerCell.self)
     }
 
     override func resolveRootVC(with router: Router) -> UIViewController {
@@ -82,6 +84,15 @@ class SceneDelegate: MvvmSceneDelegate {
             }
 
             rootViewController.topPresented.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
+        }
+    }
+
+    
+    override func binding() {
+        bind(in: disposeBag) {
+            PreferencesStorage.shared.$tintColor.sink { [unowned self] color in
+                window!.tintColor = color
+            }
         }
     }
 }

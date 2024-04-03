@@ -5,9 +5,9 @@
 //  Created by Daniil Vinogradov on 30/10/2023.
 //
 
+import MarqueeLabel
 import MvvmFoundation
 import SwiftUI
-import MarqueeLabel
 
 class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
@@ -27,7 +27,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             viewModel.dismissSignal.sink { [unowned self] _ in
                 guard !((splitViewController as? BaseSplitViewController)?.showEmptyDetail() ?? false)
                 else { return }
-                
+
                 pop(animated: true, sender: self)
             }
 
@@ -88,10 +88,17 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             }))
         ]
 
+#if !os(visionOS)
         titleLabel.font = .preferredFont(forTextStyle: .headline)
+#else
+        titleLabel.font = .preferredFont(forTextStyle: .title1)
+#endif
         titleLabel.fadeLength = 16
         titleLabel.text = title
+
+#if !os(visionOS) // Not renders properly on VisionOS
         navigationItem.titleView = titleLabel
+#endif
     }
 
     override func viewWillAppear(_ animated: Bool) {

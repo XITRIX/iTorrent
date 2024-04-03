@@ -9,9 +9,10 @@ import Combine
 import Foundation
 import LibTorrent
 import MvvmFoundation
+import UIKit
 
 class PreferencesStorage {
-//    private init() {}
+    private init() {}
     private var disposeBag: [AnyCancellable] = []
 
     static let shared = PreferencesStorage()
@@ -46,6 +47,11 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesProxyUsername", "") var proxyUsername: String
     @UserDefaultItem("preferencesProxyPassword", "") var proxyPassword: String
     @UserDefaultItem("preferencesProxyPeerConnections", true) var proxyPeerConnections: Bool
+
+    @NSUserDefaultItem("preferencesTintColor", .accent) var tintColor: UIColor
+
+    @UserDefaultItem("preferencesNotificationsDownload", true) var isDownloadNotificationsEnabled: Bool
+    @UserDefaultItem("preferencesNotificationsSeed", true) var isSeedNotificationsEnabled: Bool
 
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())

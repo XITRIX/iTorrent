@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PRColorPickerCell" customModule="iTorrent" customModuleProvider="target">
+            <connections>
+                <outlet property="colorsStack" destination="DDU-5y-wgB" id="i0T-eX-M7W"/>
+                <outlet property="scrollView" destination="yb4-m2-5yW" id="uoz-Iv-4de"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="ihE-qH-FyB">
+            <rect key="frame" x="0.0" y="0.0" width="454" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yb4-m2-5yW">
+                    <rect key="frame" x="0.0" y="0.0" width="454" height="54"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R85-hI-HgX">
+                            <rect key="frame" x="0.0" y="0.0" width="38" height="54"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="DDU-5y-wgB">
+                                    <rect key="frame" x="0.0" y="0.0" width="38" height="54"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRS-fI-mzH" customClass="UIControl">
+                                            <rect key="frame" x="0.0" y="8" width="38" height="38"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ColorWheel" translatesAutoresizingMaskIntoConstraints="NO" id="X76-py-ucU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="38" id="84z-BE-bc0"/>
+                                                <constraint firstAttribute="trailing" secondItem="X76-py-ucU" secondAttribute="trailing" id="Pgx-50-wbF"/>
+                                                <constraint firstAttribute="height" constant="38" id="Y4b-IF-UyP"/>
+                                                <constraint firstItem="X76-py-ucU" firstAttribute="top" secondItem="lRS-fI-mzH" secondAttribute="top" id="YHl-rI-aSK"/>
+                                                <constraint firstAttribute="bottom" secondItem="X76-py-ucU" secondAttribute="bottom" id="lGg-k1-yyM"/>
+                                                <constraint firstItem="X76-py-ucU" firstAttribute="leading" secondItem="lRS-fI-mzH" secondAttribute="leading" id="xIZ-zd-vZ3"/>
+                                            </constraints>
+                                            <connections>
+                                                <action selector="colorPicker:" destination="-1" eventType="touchUpInside" id="GSI-vO-meL"/>
+                                            </connections>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="DDU-5y-wgB" firstAttribute="leading" secondItem="R85-hI-HgX" secondAttribute="leading" id="35r-jx-CMt"/>
+                                <constraint firstAttribute="trailing" secondItem="DDU-5y-wgB" secondAttribute="trailing" id="QrA-eC-j6p"/>
+                                <constraint firstAttribute="bottom" secondItem="DDU-5y-wgB" secondAttribute="bottom" id="UA7-Wc-29A"/>
+                                <constraint firstItem="DDU-5y-wgB" firstAttribute="top" secondItem="R85-hI-HgX" secondAttribute="top" id="dSG-iN-NNY"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="R85-hI-HgX" secondAttribute="bottom" id="Jsj-uD-VIo"/>
+                        <constraint firstAttribute="height" constant="54" id="fNz-ej-hev"/>
+                        <constraint firstAttribute="trailing" secondItem="R85-hI-HgX" secondAttribute="trailing" id="iFB-wl-8eb"/>
+                        <constraint firstItem="R85-hI-HgX" firstAttribute="top" secondItem="yb4-m2-5yW" secondAttribute="top" id="nhr-EQ-zAp"/>
+                        <constraint firstItem="R85-hI-HgX" firstAttribute="leading" secondItem="yb4-m2-5yW" secondAttribute="leading" id="wLL-cn-CrI"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="e04-Av-6rb"/>
+            <constraints>
+                <constraint firstItem="yb4-m2-5yW" firstAttribute="trailing" secondItem="e04-Av-6rb" secondAttribute="trailing" id="8Hr-yI-3CJ"/>
+                <constraint firstItem="yb4-m2-5yW" firstAttribute="top" secondItem="ihE-qH-FyB" secondAttribute="top" id="GUb-Er-xqj"/>
+                <constraint firstItem="yb4-m2-5yW" firstAttribute="leading" secondItem="e04-Av-6rb" secondAttribute="leading" id="Kwa-TQ-GS0"/>
+                <constraint firstAttribute="bottom" secondItem="yb4-m2-5yW" secondAttribute="bottom" id="X1o-ur-qfK"/>
+                <constraint firstItem="R85-hI-HgX" firstAttribute="height" secondItem="ihE-qH-FyB" secondAttribute="height" id="jqe-Ze-p1A"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-503.81679389312973" y="229.92957746478874"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ColorWheel" width="96" height="96"/>
+    </resources>
+</document>

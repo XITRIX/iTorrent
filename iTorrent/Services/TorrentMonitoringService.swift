@@ -23,7 +23,8 @@ class TorrentMonitoringService {
 
 private extension TorrentMonitoringService {
     func checkDoneNotification(with model: TorrentService.TorrentUpdateModel) {
-        guard model.oldSnapshot.state != .checkingFiles,
+        guard PreferencesStorage.shared.isDownloadNotificationsEnabled,
+              model.oldSnapshot.state != .checkingFiles,
               model.oldSnapshot.progressWanted < 1,
               model.handle.snapshot.progressWanted >= 1
         else { return }

@@ -145,12 +145,15 @@ private extension TorrentFilesFileListCell {
 }
 
 private extension FileEntry {
-    var progress: Float {
-        Float(downloaded) / Float(size)
+    var progress: Double {
+        Double(downloaded) / Double(size)
     }
 
     var segmentedProgress: [Double] {
-        pieces.map { $0.doubleValue }
+        let res = pieces.map { $0.doubleValue }
+        if !res.isEmpty { return res }
+
+        return [progress]
     }
 }
 
