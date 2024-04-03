@@ -34,7 +34,8 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             UIAction(title: String(localized: "list.add.files"), image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
                 present(documentPicker, animated: true)
             },
-            UIAction(title: String(localized: "list.add.magnet"), image: .init(systemName: "link.badge.plus")) { [unowned self] _ in
+//            "link.badge.plus"
+            UIAction(title: String(localized: "list.add.magnet"), image: .init(resource: .icMagnet)) { [unowned self] _ in
                 present(makeMagnetAlert(), animated: true)
             }
         ])
