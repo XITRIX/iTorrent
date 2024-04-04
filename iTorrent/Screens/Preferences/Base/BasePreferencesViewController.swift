@@ -9,7 +9,7 @@ import MvvmFoundation
 import UIKit
 
 class BasePreferencesViewController<VM: BasePreferencesViewModel>: BaseViewController<VM> {
-    @IBOutlet private var collectionView: MvvmCollectionView!
+    @IBOutlet private(set) var collectionView: MvvmCollectionView!
 
     override var nibName: String? {
         "\(BasePreferencesViewController.self)".replacingOccurrences(of: "<\(VM.self)>", with: "")

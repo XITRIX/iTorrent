@@ -13,23 +13,28 @@ extension PRButtonViewModel {
     struct Config {
         var title: String
         var value: AnyPublisher<String, Never> = Just("").eraseToAnyPublisher()
+        var canReorder: Bool = false
         var accessories: [UICellAccessory] = []
         var selectAction: () -> Void = {}
     }
 }
 
-class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, ObservableObject, MvvmSelectableProtocol {
+class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, ObservableObject, MvvmSelectableProtocol, MvvmReorderableProtocol {
     var selectAction: (() -> Void)?
 
     @Published var title = ""
     @Published var value: String = ""
+    @Published var canReorder: Bool = false
     @Published var accessories: [UICellAccessory] = []
+
+    var metadata: Any?
 
     override func prepare(with model: Config) {
         title = model.title
         model.value.assign(to: &$value)
         accessories = model.accessories
         selectAction = model.selectAction
+        canReorder = model.canReorder
     }
 
     override func isEqual(to other: MvvmViewModel) -> Bool {

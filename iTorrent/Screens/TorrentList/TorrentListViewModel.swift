@@ -43,26 +43,30 @@ class TorrentListViewModel: BaseViewModel {
         Task {
             try await Task.sleep(for: .seconds(0.1))
 
-            TorrentService.shared.$torrents
-                .combineLatest($searchQuery, sortingType, sortingReverced)
-                .combineLatest(isGroupedByState) { (
-                    a: (torrentHandles: [TorrentHandle], searchQuery: String, sortingType: Sort, sortingReverced: Bool),
-                    isGrouping: Bool
-                ) in
-                    var torrentHandles = a.torrentHandles
-                    if !a.searchQuery.isEmpty {
-                        torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: a.searchQuery) }
-                    }
-                    return (torrentHandles.sorted(by: a.sortingType, reverced: a.sortingReverced), isGrouping)
+            let groupsSortingArray = PreferencesStorage.shared.$torrentListGroupsSortingArray
+
+            Publishers.combineLatest(
+                TorrentService.shared.$torrents,
+                $searchQuery,
+                sortingType,
+                sortingReverced,
+                isGroupedByState,
+                groupsSortingArray
+            ) { torrentHandles, searchQuery, sortingType, sortingReverced, isGrouping, sortingArray in
+                var torrentHandles = torrentHandles
+                if !searchQuery.isEmpty {
+                    torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }
                 }
-                .map { [unowned self] torrents, isGrouping in
-                    if isGrouping {
-                        return makeGroupedSections(with: torrents)
-                    } else {
-                        return makeUngroupedSection(with: torrents)
-                    }
+                return (torrentHandles.sorted(by: sortingType, reverced: sortingReverced), isGrouping, sortingArray)
+            }
+            .map { [unowned self] torrents, isGrouping, sortingArray in
+                if isGrouping {
+                    return makeGroupedSections(with: torrents, by: sortingArray)
+                } else {
+                    return makeUngroupedSection(with: torrents)
                 }
-                .assign(to: &$sections)
+            }
+            .assign(to: &$sections)
         }
     }
 
@@ -101,9 +105,15 @@ private extension TorrentListViewModel {
         })]
     }
 
-    func makeGroupedSections(with torrents: [TorrentHandle]) -> [MvvmCollectionSectionModel] {
-        let dictionary = Dictionary<TorrentHandle.State, [TorrentHandle]>(grouping: torrents, by: \.snapshot.friendlyState)
-        return dictionary.sorted { $0.key.rawValue < $1.key.rawValue }.map { section in
+    static func getStateGroupintIndex(_ state: TorrentHandle.State, from sortingArray: [TorrentHandle.State]) -> Int {
+        let index = sortingArray.firstIndex(of: state)
+        assert(index != nil, "SortingArray missed \(state) state. SortingArray should contain all possible states of \(TorrentHandle.State.self)")
+        return index ?? -1
+    }
+
+    func makeGroupedSections(with torrents: [TorrentHandle], by sortingArray: [TorrentHandle.State]) -> [MvvmCollectionSectionModel] {
+        let dictionary = [TorrentHandle.State: [TorrentHandle]](grouping: torrents, by: \.snapshot.friendlyState)
+        return dictionary.sorted { Self.getStateGroupintIndex($0.key, from: sortingArray) < Self.getStateGroupintIndex($1.key, from: sortingArray) }.map { section in
             MvvmCollectionSectionModel(id: section.key.name, header: section.key.name, style: .plain, items: section.value.map {
                 let vm = TorrentListItemViewModel(with: $0)
                 vm.navigationService = { [weak self] in self?.navigationService?() }

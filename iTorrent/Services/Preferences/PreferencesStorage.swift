@@ -17,9 +17,22 @@ class PreferencesStorage {
 
     static let shared = PreferencesStorage()
 
+    static let defaultTorrentListGroupsSortingArray: [TorrentHandle.State] = [
+        .checkingFiles,
+        .downloadingMetadata,
+        .downloading,
+        .finished,
+        .seeding,
+        .checkingResumeData,
+        .paused
+    ]
+
     @UserDefaultItem("torrentListSortType", .alphabetically) var torrentListSortType: TorrentListViewModel.Sort
     @UserDefaultItem("torrentListSortReverced", false) var torrentListSortReverced: Bool
     @UserDefaultItem("torrentListIsGroubedByState", false) var torrentListGroupedByState: Bool
+
+    @UserDefaultItem("torrentListGroupsSortingArray", PreferencesStorage.defaultTorrentListGroupsSortingArray)
+    var torrentListGroupsSortingArray: [TorrentHandle.State]
 
     @UserDefaultItem("preferencesAllocateMemory", false) var allocateMemory: Bool
 

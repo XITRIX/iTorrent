@@ -27,6 +27,9 @@ private extension PreferencesViewModel {
 
         sections.append(.init(id: "appearance", header: %"preferences.appearance") {
             PRColorPickerViewModel()
+            PRButtonViewModel(with: .init(title: %"preferences.appearance.order", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: PreferencesSectionGroupingViewModel.self, by: .show)
+            })
         })
 
         sections.append(.init(id: "memory", header: %"preferences.storage") {

@@ -184,6 +184,16 @@
         }
       }
     },
+    "common.reset" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
     "common.search" : {
       "localizations" : {
         "en" : {
@@ -595,6 +605,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Appearance"
+          }
+        }
+      }
+    },
+    "preferences.appearance.order" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sections grouping order"
           }
         }
       }

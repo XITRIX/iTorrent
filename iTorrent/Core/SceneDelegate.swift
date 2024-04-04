@@ -35,6 +35,7 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(BasePreferencesViewController<PreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
+        router.register(PreferencesSectionGroupingViewController.self)
 
         // MARK: Cells
         router.register(TorrentListItemView.self)
