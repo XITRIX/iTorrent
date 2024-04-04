@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 29/10/2023.
 //
 
+import Combine
 import LibTorrent
 import MvvmFoundation
 import SwiftData
@@ -23,6 +24,10 @@ class TorrentListViewModel: BaseViewModel {
     @Published var searchQuery: String = ""
     @Published var title: String = ""
 
+    var isGroupedByState: CurrentValueRelay<Bool> {
+        PreferencesStorage.shared.$torrentListGroupedByState
+    }
+
     var sortingType: CurrentValueRelay<Sort> {
         PreferencesStorage.shared.$torrentListSortType
     }
@@ -37,20 +42,25 @@ class TorrentListViewModel: BaseViewModel {
 
         Task {
             try await Task.sleep(for: .seconds(0.1))
+
             TorrentService.shared.$torrents
-                .combineLatest($searchQuery, sortingType, sortingReverced) { torrentHandles, searchQuery, sortingType, sortingReverced in
-                    var torrentHandles = torrentHandles
-                    if !searchQuery.isEmpty {
-                        torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }
+                .combineLatest($searchQuery, sortingType, sortingReverced)
+                .combineLatest(isGroupedByState) { (
+                    a: (torrentHandles: [TorrentHandle], searchQuery: String, sortingType: Sort, sortingReverced: Bool),
+                    isGrouping: Bool
+                ) in
+                    var torrentHandles = a.torrentHandles
+                    if !a.searchQuery.isEmpty {
+                        torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: a.searchQuery) }
                     }
-                    return torrentHandles.sorted(by: sortingType, reverced: sortingReverced)
+                    return (torrentHandles.sorted(by: a.sortingType, reverced: a.sortingReverced), isGrouping)
                 }
-                .map { [unowned self] torrents in
-                    [.init(id: "torrents", style: .plain, showsSeparators: true, items: torrents.map {
-                        let vm = TorrentListItemViewModel(with: $0)
-                        vm.navigationService = { [weak self] in self?.navigationService?() }
-                        return vm
-                    })]
+                .map { [unowned self] torrents, isGrouping in
+                    if isGrouping {
+                        return makeGroupedSections(with: torrents)
+                    } else {
+                        return makeUngroupedSection(with: torrents)
+                    }
                 }
                 .assign(to: &$sections)
         }
@@ -79,6 +89,27 @@ extension TorrentListViewModel {
         }
 
         navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file), by: .present(wrapInNavigation: true))
+    }
+}
+
+private extension TorrentListViewModel {
+    func makeUngroupedSection(with torrents: [TorrentHandle]) -> [MvvmCollectionSectionModel] {
+        [.init(id: "torrents", style: .plain, showsSeparators: true, items: torrents.map {
+            let vm = TorrentListItemViewModel(with: $0)
+            vm.navigationService = { [weak self] in self?.navigationService?() }
+            return vm
+        })]
+    }
+
+    func makeGroupedSections(with torrents: [TorrentHandle]) -> [MvvmCollectionSectionModel] {
+        let dictionary = Dictionary<TorrentHandle.State, [TorrentHandle]>(grouping: torrents, by: \.snapshot.friendlyState)
+        return dictionary.sorted { $0.key.rawValue < $1.key.rawValue }.map { section in
+            MvvmCollectionSectionModel(id: section.key.name, header: section.key.name, style: .plain, items: section.value.map {
+                let vm = TorrentListItemViewModel(with: $0)
+                vm.navigationService = { [weak self] in self?.navigationService?() }
+                return vm
+            })
+        }
     }
 }
 

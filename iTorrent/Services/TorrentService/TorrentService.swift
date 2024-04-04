@@ -80,9 +80,10 @@ extension TorrentService: SessionDelegate {
         guard torrents.firstIndex(where: { $0.infoHashes == torrent.infoHashes }) == nil
         else { return }
 
+        _ = torrent.metadata
+        torrent.updateSnapshot()
+        
         DispatchQueue.main.sync { [self] in
-            _ = torrent.metadata
-            torrent.updateSnapshot()
             torrents.append(torrent)
         }
     }

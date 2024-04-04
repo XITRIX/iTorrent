@@ -438,6 +438,16 @@
         }
       }
     },
+    "list.sort.grouped" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group by state"
+          }
+        }
+      }
+    },
     "list.sort.name" : {
       "localizations" : {
         "en" : {

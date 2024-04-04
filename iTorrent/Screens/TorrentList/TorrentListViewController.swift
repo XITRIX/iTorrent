@@ -49,8 +49,8 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 viewModel.preferencesAction()
             }
 
-            viewModel.sortingType.combineLatest(viewModel.sortingReverced).sink { [unowned self] type, reverced in
-                updateSortingMenu(with: type, reverced: reverced)
+            viewModel.sortingType.combineLatest(viewModel.sortingReverced, viewModel.isGroupedByState).sink { [unowned self] type, reverced, grouped in
+                updateSortingMenu(with: type, reverced: reverced, isGrouped: grouped)
             }
         }
 
@@ -88,16 +88,24 @@ private extension TorrentListViewController {
         navigationItem.searchController = searchVC
     }
 
-    func updateSortingMenu(with selected: ViewModel.Sort, reverced: Bool) {
+    func updateSortingMenu(with selected: ViewModel.Sort, reverced: Bool, isGrouped: Bool) {
         sortButton.menu = .init(title: String(localized: "list.sort.title"), children:
-            ViewModel.Sort.allCases.map { type in UIAction(title: type.name, image: selected == type ? (reverced ? .init(systemName: "chevron.up") : .init(systemName: "chevron.down")) : nil) { [unowned self] _ in
-                if viewModel.sortingType.value == type {
-                    viewModel.sortingReverced.value.toggle()
-                } else {
-                    viewModel.sortingType.value = type
-                    viewModel.sortingReverced.value = false
-                }
-            }})
+            [
+                UIMenu(options: .displayInline, children: ViewModel.Sort.allCases.map { type in UIAction(title: type.name, image: selected == type ? (reverced ? .init(systemName: "chevron.up") : .init(systemName: "chevron.down")) : nil) { [unowned self] _ in
+                    if viewModel.sortingType.value == type {
+                        viewModel.sortingReverced.value.toggle()
+                    } else {
+                        viewModel.sortingType.value = type
+                        viewModel.sortingReverced.value = false
+                    }
+                }}),
+                UIMenu(options: .displayInline, children:
+                    [
+                        UIAction(title: %"list.sort.grouped", image: isGrouped ? .init(systemName: "checkmark") : nil) { [unowned self] _ in
+                            viewModel.isGroupedByState.value.toggle()
+                        }
+                    ])
+            ])
     }
 }
 

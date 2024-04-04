@@ -19,6 +19,7 @@ class PreferencesStorage {
 
     @UserDefaultItem("torrentListSortType", .alphabetically) var torrentListSortType: TorrentListViewModel.Sort
     @UserDefaultItem("torrentListSortReverced", false) var torrentListSortReverced: Bool
+    @UserDefaultItem("torrentListIsGroubedByState", false) var torrentListGroupedByState: Bool
 
     @UserDefaultItem("preferencesAllocateMemory", false) var allocateMemory: Bool
 

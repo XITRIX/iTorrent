@@ -7,7 +7,7 @@
 
 import MvvmFoundation
 
-class BaseViewController<ViewModel: MvvmViewModelProtocol>: MvvmViewController<ViewModel> {
+class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<ViewModel> {
     var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }
 
     override func viewDidLoad() {
