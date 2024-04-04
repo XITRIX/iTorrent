@@ -191,6 +191,12 @@
             "state" : "translated",
             "value" : "Reset"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Сброс"
+          }
         }
       }
     },
@@ -217,6 +223,12 @@
             "state" : "translated",
             "value" : "Disable"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключить"
+          }
         }
       }
     },
@@ -227,6 +239,12 @@
             "state" : "translated",
             "value" : "Allow"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить"
+          }
         }
       }
     },
@@ -236,6 +254,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Require"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требовать"
           }
         }
       }
@@ -455,6 +479,12 @@
             "state" : "translated",
             "value" : "Group by state"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Группировать на секции"
+          }
         }
       }
     },
@@ -514,6 +544,12 @@
             "state" : "translated",
             "value" : "Audio"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Аудио"
+          }
         }
       }
     },
@@ -524,6 +560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calculating..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вычисление..."
           }
         }
       }
@@ -536,6 +578,12 @@
             "state" : "translated",
             "value" : "Documents"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Документы"
+          }
         }
       }
     },
@@ -546,6 +594,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Free"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свободно"
           }
         }
       }
@@ -558,6 +612,12 @@
             "state" : "translated",
             "value" : "Images"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изображения"
+          }
         }
       }
     },
@@ -569,6 +629,12 @@
             "state" : "translated",
             "value" : "Other"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другое"
+          }
         }
       }
     },
@@ -579,6 +645,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Video"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видео"
           }
         }
       }
@@ -606,6 +678,12 @@
             "state" : "translated",
             "value" : "Appearance"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Внешний вид"
+          }
         }
       }
     },
@@ -615,6 +693,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sections grouping order"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порядок секций"
           }
         }
       }
@@ -642,6 +726,12 @@
             "state" : "translated",
             "value" : "Connection settings"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки соединения"
+          }
         }
       }
     },
@@ -651,6 +741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Encryption"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шифрование"
           }
         }
       }
@@ -662,6 +758,12 @@
             "state" : "translated",
             "value" : "Mode"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
         }
       }
     },
@@ -671,6 +773,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Port"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт"
           }
         }
       }
@@ -682,6 +790,12 @@
             "state" : "translated",
             "value" : "Use default port"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартный порт"
+          }
         }
       }
     },
@@ -691,6 +805,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Retry range"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Количество повторений"
           }
         }
       }
@@ -702,6 +822,12 @@
             "state" : "translated",
             "value" : "Custom port"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт"
+          }
         }
       }
     },
@@ -711,6 +837,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Connection protocols"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Протоколы соединения"
           }
         }
       }

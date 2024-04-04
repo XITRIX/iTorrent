@@ -12,7 +12,6 @@ import UIKit
 class SceneDelegate: MvvmSceneDelegate {
     override func initialSetup() {
         UIView.enableUIColorsToLayer()
-        window?.tintColor = PreferencesStorage.shared.tintColor
     }
 
     override func register(in container: Container) {
@@ -92,7 +91,28 @@ class SceneDelegate: MvvmSceneDelegate {
     override func binding() {
         bind(in: disposeBag) {
             PreferencesStorage.shared.$tintColor.sink { [unowned self] color in
-                window!.tintColor = color
+                window?.tintColor = color
+            }
+            PreferencesStorage.shared.$appAppearance.sink { [unowned self] appearance in
+                guard let window else { return }
+
+                let currentAppTheme = window.traitCollection.userInterfaceStyle
+                let currentDeviceTheme = window.windowScene!.traitCollection.userInterfaceStyle
+
+                let animationNeeded: Bool
+                if appearance == .unspecified {
+                    animationNeeded = currentAppTheme != currentDeviceTheme
+                } else {
+                    animationNeeded = currentAppTheme != appearance
+                }
+
+                if animationNeeded {
+                    UIView.transition(with: window, duration: 0.3, options: [.transitionFlipFromRight]) {
+                        window.overrideUserInterfaceStyle = appearance
+                    }
+                } else {
+                    window.overrideUserInterfaceStyle = appearance
+                }
             }
         }
     }

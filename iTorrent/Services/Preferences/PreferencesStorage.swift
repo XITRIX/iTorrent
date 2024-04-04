@@ -62,6 +62,7 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesProxyPassword", "") var proxyPassword: String
     @UserDefaultItem("preferencesProxyPeerConnections", true) var proxyPeerConnections: Bool
 
+    @UserDefaultItem("preferencesApplicationAppearance", .unspecified) var appAppearance: UIUserInterfaceStyle
     @NSUserDefaultItem("preferencesTintColor", .accent) var tintColor: UIColor
 
     @UserDefaultItem("preferencesNotificationsDownload", true) var isDownloadNotificationsEnabled: Bool

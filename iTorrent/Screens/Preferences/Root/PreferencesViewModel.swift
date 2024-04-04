@@ -21,11 +21,22 @@ class PreferencesViewModel: BasePreferencesViewModel {
 private extension PreferencesViewModel {
     func reload() {
         title.send(%"preferences")
-        
+
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections.send(sections) }
 
         sections.append(.init(id: "appearance", header: %"preferences.appearance") {
+#if !os(visionOS)
+            PRButtonViewModel(with: .init(title: "Application theme", value: preferences.$appAppearance.map(\.name).eraseToAnyPublisher(), accessories: [
+                .popUpMenu(
+                    .init(title: "Select app theme", children: [
+                        uiAction(from: .unspecified),
+                        uiAction(from: .light),
+                        uiAction(from: .dark),
+                    ]), options: .init(tintColor: .tintColor)
+                ),
+            ]))
+#endif
             PRColorPickerViewModel()
             PRButtonViewModel(with: .init(title: %"preferences.appearance.order", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: PreferencesSectionGroupingViewModel.self, by: .show)
@@ -102,5 +113,27 @@ private extension PreferencesViewModel {
                 dismissSelection.send(())
             }))
         })
+    }
+
+    func uiAction(from interfaceStyle: UIUserInterfaceStyle) -> UIAction {
+        UIAction(title: interfaceStyle.name, state: preferences.appAppearance == interfaceStyle ? .on : .off) { [preferences] _ in
+            preferences.appAppearance = interfaceStyle
+        }
+    }
+}
+
+private extension UIUserInterfaceStyle {
+    var name: String {
+        switch self {
+        case .unspecified:
+            return "System"
+        case .light:
+            return "Light"
+        case .dark:
+            return "Dark"
+        @unknown default:
+            assertionFailure("Unregistered \(Self.self) enum value is not allowed: \(self)")
+            return ""
+        }
     }
 }
