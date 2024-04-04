@@ -18,6 +18,12 @@
             "state" : "new",
             "value" : "%1$@ %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
         }
       }
     },
@@ -184,6 +190,22 @@
         }
       }
     },
+    "common.open" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть"
+          }
+        }
+      }
+    },
     "common.reset" : {
       "localizations" : {
         "en" : {
@@ -195,7 +217,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Сброс"
+            "value" : " Сбросить"
           }
         }
       }
@@ -703,6 +725,86 @@
         }
       }
     },
+    "preferences.appearance.theme" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application theme"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема приложения"
+          }
+        }
+      }
+    },
+    "preferences.appearance.theme.action" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select app theme"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите тему приложения"
+          }
+        }
+      }
+    },
+    "preferences.appearance.theme.dark" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тёмная"
+          }
+        }
+      }
+    },
+    "preferences.appearance.theme.light" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
+          }
+        }
+      }
+    },
+    "preferences.appearance.theme.system" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авто"
+          }
+        }
+      }
+    },
     "preferences.network" : {
       "localizations" : {
         "en" : {
@@ -763,6 +865,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Режим"
+          }
+        }
+      }
+    },
+    "preferences.network.connection.encryption.mode.action" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select encryption mode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите тип шифрования"
           }
         }
       }
@@ -854,6 +972,12 @@
             "state" : "translated",
             "value" : "Enable DHT"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить DHT"
+          }
         }
       }
     },
@@ -863,6 +987,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable LSD"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить LSD"
           }
         }
       }
@@ -874,6 +1004,12 @@
             "state" : "translated",
             "value" : "Enable µTP"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить µTP"
+          }
         }
       }
     },
@@ -883,6 +1019,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enable UPnP"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить UPnP"
           }
         }
       }
@@ -894,6 +1036,12 @@
             "state" : "translated",
             "value" : "Enable NAT-PMP"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить NAT-PMP"
+          }
         }
       }
     },
@@ -903,6 +1051,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proxy"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прокси"
           }
         }
       }
@@ -914,6 +1068,12 @@
             "state" : "translated",
             "value" : "Authorization"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авторизация"
+          }
         }
       }
     },
@@ -923,6 +1083,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Login"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Логин"
           }
         }
       }
@@ -934,6 +1100,12 @@
             "state" : "translated",
             "value" : "Password"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль"
+          }
         }
       }
     },
@@ -943,6 +1115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Requires authorization"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Требуется авторизация"
           }
         }
       }
@@ -954,6 +1132,12 @@
             "state" : "translated",
             "value" : "Host"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хост"
+          }
         }
       }
     },
@@ -963,6 +1147,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hostname"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя хоста"
           }
         }
       }
@@ -974,6 +1164,12 @@
             "state" : "translated",
             "value" : "Port"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт"
+          }
         }
       }
     },
@@ -983,6 +1179,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proxy type"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип прокси"
+          }
+        }
+      }
+    },
+    "preferences.network.proxy.host.type.action" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select proxy type"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите тип прокси"
           }
         }
       }
@@ -994,6 +1212,12 @@
             "state" : "translated",
             "value" : "Notifications"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оповещения"
+          }
         }
       }
     },
@@ -1003,6 +1227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On loading finished"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По окончании загрузки"
           }
         }
       }
@@ -1014,6 +1244,156 @@
             "state" : "translated",
             "value" : "On seeding finished"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По окончании раздачи"
+          }
+        }
+      }
+    },
+    "preferences.queueLimits" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent queueing limits"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лимиты очерёдности торрентов"
+          }
+        }
+      }
+    },
+    "preferences.queueLimits.active" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active torrents"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активных торрентов"
+          }
+        }
+      }
+    },
+    "preferences.queueLimits.downloading" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading torrents"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активных загрузок"
+          }
+        }
+      }
+    },
+    "preferences.queueLimits.uploading" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uploading torrents"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активных раздач"
+          }
+        }
+      }
+    },
+    "preferences.speedLimits" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speed limits"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ограничение скорости"
+          }
+        }
+      }
+    },
+    "preferences.speedLimits.download" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max download speed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лимит загрузки"
+          }
+        }
+      }
+    },
+    "preferences.speedLimits.hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speed in KB/s"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скорость в КБ/с"
+          }
+        }
+      }
+    },
+    "preferences.speedLimits.unlimited" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключено"
+          }
+        }
+      }
+    },
+    "preferences.speedLimits.upload" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max upload speed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лимит раздачи"
+          }
         }
       }
     },
@@ -1023,6 +1403,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Память"
           }
         }
       }
@@ -1034,6 +1420,12 @@
             "state" : "translated",
             "value" : "Allocate storage"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выделять память"
+          }
         }
       }
     },
@@ -1044,12 +1436,56 @@
             "state" : "translated",
             "value" : "Available"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступно"
+          }
+        }
+      }
+    },
+    "preferences.version" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия"
+          }
+        }
+      }
+    },
+    "preferences.version.github" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub page"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Страница GitHub"
+          }
         }
       }
     },
     "proxyType.http" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "HTTP"
@@ -1064,6 +1500,12 @@
             "state" : "translated",
             "value" : "I2P"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I2P"
+          }
         }
       }
     },
@@ -1073,6 +1515,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "None"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет"
           }
         }
       }
@@ -1084,12 +1532,24 @@
             "state" : "translated",
             "value" : "SOCKS4"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS4"
+          }
         }
       }
     },
     "proxyType.socks5" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS5"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SOCKS5"

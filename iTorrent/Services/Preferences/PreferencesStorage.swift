@@ -51,8 +51,9 @@ class PreferencesStorage {
 
     @UserDefaultItem("preferencesEncryptionPolicy", .enabled) var encryptionPolicy: Session.Settings.EncryptionPolicy
 
+    @UserDefaultItem("preferencesUseDefaultPort", true) var useDefaultPort: Bool
     @UserDefaultItem("preferencesPort", 6881) var port: Int
-    @UserDefaultItem("preferencesPortBindRetries", -1) var portBindRetries: Int
+    @UserDefaultItem("preferencesPortBindRetries", 10) var portBindRetries: Int
 
     @UserDefaultItem("preferencesProxyType", .none) var proxyType: Session.Settings.ProxyType
     @UserDefaultItem("preferencesProxyHostname", "") var proxyHostname: String
@@ -82,6 +83,7 @@ class PreferencesStorage {
             .combineLatest($isUpnpEnabled)
             .combineLatest($isNatEnabled)
             .combineLatest($encryptionPolicy)
+            .combineLatest($useDefaultPort)
             .combineLatest($port)
             .combineLatest($portBindRetries)
             .combineLatest($proxyType)
@@ -116,6 +118,7 @@ extension Session.Settings {
 
         settings.encryptionPolicy = preferences.encryptionPolicy
 
+        settings.useDefaultPort = preferences.useDefaultPort
         settings.port = preferences.port
         settings.portBindRetries = preferences.portBindRetries
 

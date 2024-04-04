@@ -13,6 +13,7 @@ import UIKit
 class ConnectionPreferencesViewModel: BasePreferencesViewModel {
     required init() {
         super.init()
+        binding()
         reload()
     }
 
@@ -29,7 +30,7 @@ private extension ConnectionPreferencesViewModel {
         sections.append(.init(id: "encryption", header: %"preferences.network.connection.encryption") {
             PRButtonViewModel(with: .init(title: %"preferences.network.connection.encryption.mode", value: preferences.$encryptionPolicy.map(\.name).eraseToAnyPublisher(), accessories: [
                 .popUpMenu(
-                    .init(title: "Select encryption mode", children: [
+                    .init(title: %"preferences.network.connection.encryption.mode.action", children: [
                         uiAction(from: .enabled),
                         uiAction(from: .forced),
                         uiAction(from: .disabled),
@@ -47,21 +48,18 @@ private extension ConnectionPreferencesViewModel {
         })
 
         sections.append(.init(id: "port", header: %"preferences.network.connection.port") {
-            PRSwitchViewModel(with: .init(title: %"preferences.network.connection.port.default", value: .init(
-                get: { [preferences] in preferences.portBindRetries < 0 },
-                set: { [weak self] value in self?.setDefaultPortValue(to: value) }
-            )))
+            PRSwitchViewModel(with: .init(title: %"preferences.network.connection.port.default", value: preferences.$useDefaultPort.binding))
 
-            if preferences.portBindRetries >= 0 {
+            if !preferences.useDefaultPort {
                 PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.value", value: preferences.$port.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
-                    textInput(title: "Custom port", placeholder: "6881", defaultValue: "\(preferences.port)", type: .numberPad) { [unowned self] res in
+                    textInput(title: %"preferences.network.connection.port.value", placeholder: "6881", defaultValue: "\(preferences.port)", type: .numberPad) { [unowned self] res in
                         dismissSelection.send(())
                         guard let res else { return }
                         preferences.port = Int(res) ?? 6881
                     }
                 })
-                PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.retries", value: preferences.$portBindRetries.filter { $0 != -1 }.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
-                    textInput(title: "Port retries", placeholder: "10", defaultValue: "\(preferences.portBindRetries)", type: .numberPad) { [unowned self] res in
+                PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.retries", value: preferences.$portBindRetries.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
+                    textInput(title:  %"preferences.network.connection.port.retries", placeholder: "10", defaultValue: "\(preferences.portBindRetries)", type: .numberPad) { [unowned self] res in
                         dismissSelection.send(())
                         guard let res else { return }
                         preferences.portBindRetries = Int(res) ?? 10
@@ -71,13 +69,16 @@ private extension ConnectionPreferencesViewModel {
         })
     }
 
-    func uiAction(from policy: Session.Settings.EncryptionPolicy) -> UIAction {
-        UIAction(title: policy.name, attributes: policy == .disabled ? [.destructive] : [], state: preferences.encryptionPolicy == policy ? .on : .off) { [preferences] _ in preferences.encryptionPolicy = policy }
+    func binding() {
+        disposeBag.bind {
+            preferences.$useDefaultPort.sink { [unowned self] _ in
+                reload()
+            }
+        }
     }
 
-    func setDefaultPortValue(to value: Bool) {
-        preferences.portBindRetries = value ? -1 : 10
-        reload()
+    func uiAction(from policy: Session.Settings.EncryptionPolicy) -> UIAction {
+        UIAction(title: policy.name, attributes: policy == .disabled ? [.destructive] : [], state: preferences.encryptionPolicy == policy ? .on : .off) { [preferences] _ in preferences.encryptionPolicy = policy }
     }
 }
 

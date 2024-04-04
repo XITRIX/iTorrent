@@ -27,6 +27,11 @@ class ColoredProgressBarView: UIView {
         setNeedsDisplay()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        isOpaque = false
+    }
+
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(bounds.size.height)

@@ -15,6 +15,8 @@
 		7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE262BBDD4030069E5A0 /* PRColorPickerViewModel.swift */; };
 		7C5FBE2A2BBDD4030069E5A0 /* PRColorPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C5FBE272BBDD4030069E5A0 /* PRColorPickerCell.xib */; };
 		7C5FBE2C2BBDD6B40069E5A0 /* UIView+LayerColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE2B2BBDD6B40069E5A0 /* UIView+LayerColors.swift */; };
+		7C5FBE2E2BBF3FF80069E5A0 /* PRSwitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C5FBE2D2BBF3FF80069E5A0 /* PRSwitchView.xib */; };
+		7C5FBE312BBF5CAB0069E5A0 /* MinHeightModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE302BBF5CAB0069E5A0 /* MinHeightModifier.swift */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		D1048D852BBE92220027EF2F /* SAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D832BBE92220027EF2F /* SAViewController.swift */; };
 		D1048D862BBE92220027EF2F /* SANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D842BBE92220027EF2F /* SANavigationController.swift */; };
@@ -126,6 +128,8 @@
 		7C5FBE262BBDD4030069E5A0 /* PRColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRColorPickerViewModel.swift; sourceTree = "<group>"; };
 		7C5FBE272BBDD4030069E5A0 /* PRColorPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRColorPickerCell.xib; sourceTree = "<group>"; };
 		7C5FBE2B2BBDD6B40069E5A0 /* UIView+LayerColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LayerColors.swift"; sourceTree = "<group>"; };
+		7C5FBE2D2BBF3FF80069E5A0 /* PRSwitchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PRSwitchView.xib; sourceTree = "<group>"; };
+		7C5FBE302BBF5CAB0069E5A0 /* MinHeightModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinHeightModifier.swift; sourceTree = "<group>"; };
 		D1048D832BBE92220027EF2F /* SAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAViewController.swift; sourceTree = "<group>"; };
 		D1048D842BBE92220027EF2F /* SANavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
 		D1048D8A2BBEB6DE0027EF2F /* CombineLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatest.swift; sourceTree = "<group>"; };
@@ -253,6 +257,14 @@
 			path = PRColorPicker;
 			sourceTree = "<group>";
 		};
+		7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				7C5FBE302BBF5CAB0069E5A0 /* MinHeightModifier.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		D1048D822BBE92040027EF2F /* SANavigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +367,7 @@
 			children = (
 				D11BE5452AFB904600780C1B /* PRSwitchViewModel.swift */,
 				D11BE5432AFB901E00780C1B /* PRSwitchView.swift */,
+				7C5FBE2D2BBF3FF80069E5A0 /* PRSwitchView.xib */,
 			);
 			path = PRSwitch;
 			sourceTree = "<group>";
@@ -520,6 +533,7 @@
 		D19E00242AF045DF000A17A2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */,
 				D173D9DA2BBEED1E00E4F9EB /* Codable */,
 				D1048D872BBEA23C0027EF2F /* Combine */,
 				D1352D282BBD418200104E7B /* UIViewController */,
@@ -817,6 +831,7 @@
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
 				D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */,
+				7C5FBE2E2BBF3FF80069E5A0 /* PRSwitchView.xib in Resources */,
 				D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */,
 				D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */,
 				D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */,
@@ -870,6 +885,7 @@
 				7C5FBE2C2BBDD6B40069E5A0 /* UIView+LayerColors.swift in Sources */,
 				D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */,
 				D1EFCD122AF572E400D33A7A /* TorrentFilesFileItemViewModel.swift in Sources */,
+				7C5FBE312BBF5CAB0069E5A0 /* MinHeightModifier.swift in Sources */,
 				D1EFCD192AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift in Sources */,
 				7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */,
 				7C5FBE282BBDD4030069E5A0 /* PRColorPickerCell.swift in Sources */,

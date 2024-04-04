@@ -21,9 +21,7 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
                 .foregroundStyle(Color(.secondaryAccent))
                 .multilineTextAlignment(.trailing)
         }
-        #if os(visionOS)
-        .frame(minHeight: 44)
-        #endif
+        .systemMinimumHeight()
     }
 
     static let registration: UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel> = .init { cell, _, itemIdentifier in

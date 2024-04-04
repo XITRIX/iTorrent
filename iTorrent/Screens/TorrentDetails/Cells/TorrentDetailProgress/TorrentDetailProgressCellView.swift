@@ -26,9 +26,7 @@ struct TorrentDetailProgressCellView: MvvmSwiftUICellProtocol {
                     .clipShape(Capsule())
             }
         }
-        #if os(visionOS)
-        .frame(minHeight: 44)
-        #endif
+        .systemMinimumHeight()
     }
 
     static let registration: UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel> = .init { cell, _, itemIdentifier in

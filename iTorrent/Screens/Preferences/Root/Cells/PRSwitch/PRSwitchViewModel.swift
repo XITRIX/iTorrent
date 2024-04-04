@@ -20,9 +20,17 @@ class PRSwitchViewModel: BaseViewModelWith<PRSwitchViewModel.Config>, Observable
     @Published var title = ""
     var value: Binding<Bool> = .constant(false)
 
+
     override func prepare(with model: Config) {
         title = model.title
         value = model.value
+//        value = .init(get: {
+//            model.value.wrappedValue
+//        }, set: { [unowned self] value in
+//            model.value.wrappedValue = value
+//            objectWillChange.send()
+////            value2 = value
+//        }) 
     }
 
     override func isEqual(to other: MvvmViewModel) -> Bool {

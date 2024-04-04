@@ -95,6 +95,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
 #endif
         titleLabel.fadeLength = 16
         titleLabel.text = title
+        titleLabel.adjustsFontForContentSizeCategory = true
 
 #if !os(visionOS) // Not renders properly on VisionOS
         navigationItem.titleView = titleLabel

@@ -54,6 +54,11 @@ class PortionBarLabels: UIView {
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setNeedsDisplay()
+    }
+
     private func renderLabels(_ labels: [Item], in rect: CGRect) {
         let midY = bounds.midY
         let indicatorYOffset = midY - (colorIndicatorSize.height / 2)

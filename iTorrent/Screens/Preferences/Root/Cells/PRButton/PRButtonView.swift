@@ -18,6 +18,7 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
             Text(viewModel.value)
                 .foregroundStyle(.tint)
         }
+        .systemMinimumHeight()
     }
 
     static var registration: UICollectionView.CellRegistration<MvvmCollectionViewListCell<PRButtonViewModel>, PRButtonViewModel> = .init { cell, indexPath, itemIdentifier in
@@ -29,6 +30,10 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
             itemIdentifier.$accessories.sink { accessories in
                 cell.accessories = accessories
             }
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [cell] in
+            print("+++ \(cell.frame.height)")
         }
     }
 }
