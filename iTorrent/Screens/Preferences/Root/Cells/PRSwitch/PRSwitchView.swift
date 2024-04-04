@@ -25,10 +25,6 @@ class PRSwitchView<VM: PRSwitchViewModel>: MvvmCollectionViewListCell<VM> {
                 viewModel.value.wrappedValue = isOn
             }
         }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-            print("++-+ \(frame.height)")
-        }
     }
 }
 
@@ -45,11 +41,6 @@ struct PRSwitchView1: MvvmSwiftUICellProtocol {
         cell.contentConfiguration = UIHostingConfiguration {
             Self(viewModel: itemIdentifier)
         }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [cell] in
-            print("++-+ \(cell.frame.height)")
-        }
-//        cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
     }
 }
 

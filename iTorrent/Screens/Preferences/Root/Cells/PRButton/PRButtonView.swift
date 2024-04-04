@@ -31,10 +31,6 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
                 cell.accessories = accessories
             }
         }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [cell] in
-            print("+++ \(cell.frame.height)")
-        }
     }
 }
 

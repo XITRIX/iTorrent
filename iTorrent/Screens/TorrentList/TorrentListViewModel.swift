@@ -98,7 +98,7 @@ extension TorrentListViewModel {
 
 private extension TorrentListViewModel {
     func makeUngroupedSection(with torrents: [TorrentHandle]) -> [MvvmCollectionSectionModel] {
-        [.init(id: "torrents", style: .plain, showsSeparators: true, items: torrents.map {
+        [.init(id: "torrents", style: .platformPlain, showsSeparators: true, items: torrents.map {
             let vm = TorrentListItemViewModel(with: $0)
             vm.navigationService = { [weak self] in self?.navigationService?() }
             return vm
@@ -114,7 +114,7 @@ private extension TorrentListViewModel {
     func makeGroupedSections(with torrents: [TorrentHandle], by sortingArray: [TorrentHandle.State]) -> [MvvmCollectionSectionModel] {
         let dictionary = [TorrentHandle.State: [TorrentHandle]](grouping: torrents, by: \.snapshot.friendlyState)
         return dictionary.sorted { Self.getStateGroupintIndex($0.key, from: sortingArray) < Self.getStateGroupintIndex($1.key, from: sortingArray) }.map { section in
-            MvvmCollectionSectionModel(id: section.key.name, header: section.key.name, style: .plain, items: section.value.map {
+            MvvmCollectionSectionModel(id: section.key.name, header: section.key.name, style: .platformPlain, items: section.value.map {
                 let vm = TorrentListItemViewModel(with: $0)
                 vm.navigationService = { [weak self] in self?.navigationService?() }
                 return vm
