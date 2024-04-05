@@ -68,6 +68,16 @@ class SceneDelegate: MvvmSceneDelegate {
         URLContexts.forEach { context in
             let url = context.url
 
+            // Open by hash from Life Activity
+            if url.absoluteString.hasPrefix("iTorrent:hash:") {
+                let hash = url.absoluteString.replacingOccurrences(of: "iTorrent:hash:", with: "")
+                guard let torrent = TorrentService.shared.torrents.first(where: { $0.infoHashes.best.hex == hash })
+                else { return }
+
+                AppDelegate.showTorrentDetailScreen(with: torrent)
+                return
+            }
+
             defer { url.stopAccessingSecurityScopedResource() }
             guard url.startAccessingSecurityScopedResource(),
                   let file = TorrentFile(with: url)
@@ -102,6 +112,7 @@ class SceneDelegate: MvvmSceneDelegate {
             appAppearanceBind
             backgroundDownloadModeBind
             backgroundStateObserverBind
+            liveActivityBind
         }
     }
 }

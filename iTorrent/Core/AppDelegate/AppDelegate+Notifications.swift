@@ -32,7 +32,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-private extension AppDelegate {
+extension AppDelegate {
     static func showTorrentDetailScreen(with torrentHandle: TorrentHandle) {
         guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first,
               let window = scene.keyWindow,
