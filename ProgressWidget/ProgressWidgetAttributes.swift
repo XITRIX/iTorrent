@@ -5,6 +5,7 @@
 //  Created by Даниил Виноградов on 06.04.2024.
 //
 
+#if canImport(ActivityKit)
 import ActivityKit
 import Foundation
 
@@ -35,3 +36,4 @@ struct ProgressWidgetAttributes: ActivityAttributes {
     public var name: String
     public var hash: String
 }
+#endif

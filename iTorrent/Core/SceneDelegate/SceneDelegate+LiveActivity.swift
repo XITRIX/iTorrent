@@ -5,6 +5,7 @@
 //  Created by Даниил Виноградов on 06.04.2024.
 //
 
+#if canImport(ActivityKit)
 import ActivityKit
 import Combine
 import LibTorrent
@@ -83,3 +84,4 @@ private extension TorrentHandle.Snapshot {
               timeStamp: Date())
     }
 }
+#endif

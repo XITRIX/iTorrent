@@ -62,7 +62,9 @@ private extension LocationBackgroundService {
         guard status != .restricted && status != .denied
         else { return false }
 
+#if !os(visionOS)
         locationManager.allowsBackgroundLocationUpdates = true
+#endif
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.showsBackgroundLocationIndicator = false

@@ -112,7 +112,9 @@ class SceneDelegate: MvvmSceneDelegate {
             appAppearanceBind
             backgroundDownloadModeBind
             backgroundStateObserverBind
+#if canImport(ActivityKit)
             liveActivityBind
+#endif
         }
     }
 }
