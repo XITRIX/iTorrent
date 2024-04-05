@@ -44,15 +44,17 @@ class TorrentListViewModel: BaseViewModel {
             try await Task.sleep(for: .seconds(0.1))
 
             let groupsSortingArray = PreferencesStorage.shared.$torrentListGroupsSortingArray
+            let torrentSectionChanged = TorrentService.shared.updateNotifier.filter { $0.oldSnapshot.friendlyState != $0.handle.snapshot.friendlyState }.map{_ in ()}.prepend([()])
 
             Publishers.combineLatest(
+                torrentSectionChanged,
                 TorrentService.shared.$torrents,
                 $searchQuery,
                 sortingType,
                 sortingReverced,
                 isGroupedByState,
                 groupsSortingArray
-            ) { torrentHandles, searchQuery, sortingType, sortingReverced, isGrouping, sortingArray in
+            ) { _, torrentHandles, searchQuery, sortingType, sortingReverced, isGrouping, sortingArray in
                 var torrentHandles = torrentHandles
                 if !searchQuery.isEmpty {
                     torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }

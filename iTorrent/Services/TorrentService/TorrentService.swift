@@ -75,6 +75,7 @@ extension TorrentService {
     }
 }
 
+// MARK: - SessionDelegate
 extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
         guard torrents.firstIndex(where: { $0.infoHashes == torrent.infoHashes }) == nil
@@ -104,10 +105,11 @@ extension TorrentService: SessionDelegate {
 
         let oldSnapshot = existingTorrent.snapshot
         existingTorrent.updateSnapshot()
-        updateNotifier.send(.init(oldSnapshot: oldSnapshot, handle: existingTorrent))
+        let updateModel = TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: existingTorrent)
+        updateNotifier.send(updateModel)
 
         DispatchQueue.main.sync {
-            existingTorrent.updatePublisher.send(existingTorrent)
+            existingTorrent.updatePublisher.send(updateModel)
         }
     }
 

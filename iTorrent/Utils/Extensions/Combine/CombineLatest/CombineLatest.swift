@@ -49,6 +49,30 @@ public extension Publishers {
                 transform(a, b, c, d.0, d.1, d.2)
             }
     }
+
+    // 7
+    static func combineLatest<A: Publisher, B: Publisher, C: Publisher, D: Publisher, E: Publisher, F: Publisher, G: Publisher, Result>(
+        _ publisher1: A,
+        _ publisher2: B,
+        _ publisher3: C,
+        _ publisher4: D,
+        _ publisher5: E,
+        _ publisher6: F,
+        _ publisher7: G,
+        _ transform: @escaping (A.Output, B.Output, C.Output, D.Output, E.Output, F.Output, G.Output) -> Result
+    ) -> Publishers.Map<Publishers.CombineLatest4<A, B, C, Publishers.CombineLatest4<D, E, F, G>>, Result>
+    where A.Failure == B.Failure,
+          B.Failure == C.Failure,
+          C.Failure == D.Failure,
+          D.Failure == E.Failure,
+          E.Failure == F.Failure,
+          F.Failure == G.Failure
+    {
+        return Publishers.CombineLatest4(publisher1, publisher2, publisher3, Publishers.CombineLatest4(publisher4, publisher5, publisher6, publisher7))
+            .map { a, b, c, d in
+                transform(a, b, c, d.0, d.1, d.2, d.3)
+            }
+    }
 }
 
 public extension Publishers {

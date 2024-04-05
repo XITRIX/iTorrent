@@ -42,7 +42,7 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
     }
 
     var updatePublisher: AnyPublisher<TorrentHandle, Never> {
-        torrentHandle.updatePublisher.eraseToAnyPublisher()
+        torrentHandle.updatePublisher.map { $0.handle }.eraseToAnyPublisher()
     }
 
     var file: FileEntry {

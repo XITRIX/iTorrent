@@ -32,7 +32,7 @@ class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, Pat
     }
 
     var updatePublisher: AnyPublisher<TorrentHandle, Never> {
-        torrentHandle.updatePublisher.eraseToAnyPublisher()
+        torrentHandle.updatePublisher.map { $0.handle }.eraseToAnyPublisher()
     }
 
     func setPriority(_ priority: FileEntry.Priority) {

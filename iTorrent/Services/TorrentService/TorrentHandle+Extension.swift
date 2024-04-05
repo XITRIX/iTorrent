@@ -12,11 +12,11 @@ private var TorrentHandleUpdatePublisherKey: UInt8 = 0
 private var TorrentHandleRemovePublisherKey: UInt8 = 0
 
 extension TorrentHandle {
-    var updatePublisher: PassthroughSubject<TorrentHandle, Never> {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
+    var updatePublisher: PassthroughSubject<TorrentService.TorrentUpdateModel, Never> {
+        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
         else {
-            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
+            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentService.TorrentUpdateModel, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
         }
         return obj
     }

@@ -33,7 +33,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
                 }
 
             torrentHandle.updatePublisher
-                .map { $0.snapshot.isPaused }
+                .map { $0.handle.snapshot.isPaused }
                 .removeDuplicates()
                 .sink { [unowned self] _ in
                     reload()
@@ -84,7 +84,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
 extension TorrentDetailsViewModel {
     var shareAvailable: AnyPublisher<Bool, Never> {
         torrentHandle.updatePublisher
-            .map { !$0.snapshot.torrentFilePath.isNilOrEmpty }
+            .map { !$0.handle.snapshot.torrentFilePath.isNilOrEmpty }
             .eraseToAnyPublisher()
     }
 
