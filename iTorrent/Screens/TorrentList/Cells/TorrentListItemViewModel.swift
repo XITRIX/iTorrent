@@ -42,14 +42,14 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
     }
 
     func removeTorrent() {
-        alert(title: "Are you sure to remove", message: torrentHandle.name, actions: [
-            .init(title: "Yes and remove data", style: .destructive, action: { [unowned self] in
+        alert(title: %"torrent.remove.title", message: torrentHandle.name, actions: [
+            .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
             }),
-            .init(title: "Yes but keep data", style: .default, action: { [unowned self] in
+            .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
             }),
-            .init(title: "Cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel)
         ])
     }
 }

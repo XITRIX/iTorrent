@@ -7,6 +7,7 @@
 
 import MvvmFoundation
 import SwiftUI
+import LibTorrent
 
 class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: UICollectionViewListCell {
     var model: VM!
@@ -56,10 +57,8 @@ class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: U
 
     func reload() {
         contentConfiguration = UIHostingConfiguration {
-            TorrentFiles2DictionaryItemView(model: viewModel) { [unowned self] in
-                model.setPriority(.defaultPriority)
-            } deselectAll: { [unowned self] in
-                model.setPriority(.dontDownload)
+            TorrentFiles2DictionaryItemView(model: viewModel) { [unowned self] priority in
+                model.setPriority(priority)
             }
         }
     }
@@ -88,8 +87,7 @@ extension TorrentFiles2DictionaryItemView {
 struct TorrentFiles2DictionaryItemView: View {
     @ObservedObject var model: Model
 
-    var selectAll: (() -> Void)?
-    var deselectAll: (() -> Void)?
+    var setPrioriries: ((FileEntry.Priority) -> Void)?
 
     var progressText: String {
         var progressText = String(localized: "\(model.filesNeeded) / \(model.files) items")
@@ -122,18 +120,12 @@ struct TorrentFiles2DictionaryItemView: View {
                         }
                     }
                     Spacer()
-                    Menu {
-                        Button("files.deselectAll", systemImage: "xmark.circle", role: .destructive) {
-                            deselectAll?()
-                        }
-                        Button("files.selectAll", systemImage: "checkmark.circle") {
-                            selectAll?()
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                            .resizable()
-                            .frame(width: 22, height: 22)
-                    }
+                    Image(systemName: "ellipsis.circle")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .modifier(PriorityMenu(setPriority: { priority in
+                            setPrioriries?(priority)
+                        }))
                 }
                 if model.progress != nil {
                     SegmentedProgressView(progress: $model.segmentedProgress)

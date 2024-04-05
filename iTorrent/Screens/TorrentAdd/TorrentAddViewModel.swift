@@ -94,13 +94,8 @@ extension TorrentAddViewModel {
         dismiss()
     }
 
-    func selectAll() {
-        torrentFile.setAllFilesPriority(.defaultPriority)
-        updatePublisher.send(())
-    }
-
-    func deselectAll() {
-        torrentFile.setAllFilesPriority(.dontDownload)
+    func setAllFilesPriority(_ priority: FileEntry.Priority) {
+        torrentFile.setAllFilesPriority(priority)
         updatePublisher.send(())
     }
 

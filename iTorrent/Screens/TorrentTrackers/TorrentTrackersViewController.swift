@@ -24,8 +24,8 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
             }
         }
 
-        title = "Trackers"
-        
+        title = %"details.actions.trackers"
+
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [editButtonItem]))
         collectionView.allowsMultipleSelectionDuringEditing = true
 

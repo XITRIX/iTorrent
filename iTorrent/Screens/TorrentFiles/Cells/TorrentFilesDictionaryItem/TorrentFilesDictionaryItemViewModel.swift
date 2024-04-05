@@ -36,7 +36,12 @@ class TorrentFilesDictionaryItemViewModel: BaseViewModelWith<(TorrentHandle, Pat
     }
 
     func setPriority(_ priority: FileEntry.Priority) {
-        torrentHandle.setFilesPriority(priority, at: node.files.map { .init(integerLiteral: $0) })
+        let files = node.files.filter {
+            let file = torrentHandle.snapshot.files[$0]
+            return file.downloaded < file.size || priority != .dontDownload
+        }
+
+        torrentHandle.setFilesPriority(priority, at: files.map { NSNumber.init(integerLiteral: $0) })
     }
 
     func getPriority(for index: Int) -> FileEntry.Priority {

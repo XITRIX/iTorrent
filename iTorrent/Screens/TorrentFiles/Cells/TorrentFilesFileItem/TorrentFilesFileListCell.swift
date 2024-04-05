@@ -15,7 +15,7 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var progressView: UISegmentedProgressView!
     @IBOutlet private var progressViewPlaceholder: UIView!
-    @IBOutlet private var switchView: UISwitch!
+    @IBOutlet private var switchView: UISwitchWithMenu!
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var fileImageView: UIImageView!
 
@@ -29,18 +29,23 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
         switchView.addTarget(self, action: #selector(switcher), for: .valueChanged)
         separatorLayoutGuide.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
 
+        shareButton.contentHorizontalAlignment = .trailing
         shareButton.showsMenuAsPrimaryAction = true
         shareButton.menu = UIMenu(children: [
-            UIAction(title: "Open") { [unowned self] _ in
+            UIAction(title: %"file.open") { [unowned self] _ in
                 previewAction()
             },
-            UIAction(title: "Share", image: .init(systemName: "square.and.arrow.up")) { [unowned self] _ in
+            UIAction(title: %"file.share", image: .init(systemName: "square.and.arrow.up")) { [unowned self] _ in
                 shareAction()
             },
-            UIAction(title: "Show in Files", image: .init(systemName: "folder")) { [unowned self] _ in
+            UIAction(title: %"file.showInFiles", image: .init(systemName: "folder")) { [unowned self] _ in
                 showInFiles()
             }
         ])
+
+        switchView.menu = .makeForChangePriority { [unowned self] priority in
+            viewModel.setPriority(priority)
+        }
     }
 
     override func setup(with viewModel: VM) {

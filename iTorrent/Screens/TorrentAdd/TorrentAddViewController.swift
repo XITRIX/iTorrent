@@ -20,7 +20,9 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
         super.viewDidLoad()
         title = viewModel.title
 
-        moreButton.menu = makeMoreMenu()
+        moreButton.menu = .makeForChangePriority { [unowned self] priority in
+            viewModel.setAllFilesPriority(priority)
+        }
 
         collectionView.register(TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>.self, forCellWithReuseIdentifier: TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>.reusableId)
         collectionView.register(type: TorrentFilesFileListCell<TorrentAddFileItemViewModel>.self, hasXib: false)
@@ -71,17 +73,6 @@ private extension TorrentAddViewController {
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .callout)
         return label
-    }
-
-    func makeMoreMenu() -> UIMenu {
-        .init(children: [
-            UIAction(title: String(localized: "files.selectAll"), image: .init(systemName: "checkmark.circle"), handler: { [unowned self] _ in
-                viewModel.selectAll()
-            }),
-            UIAction(title: String(localized: "files.deselectAll"), image: .init(systemName: "xmark.circle"), attributes: [.destructive], handler: { [unowned self] _ in
-                viewModel.deselectAll()
-            })
-        ])
     }
 }
 

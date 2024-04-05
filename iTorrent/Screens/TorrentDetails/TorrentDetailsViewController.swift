@@ -12,7 +12,7 @@ import SwiftUI
 class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
 
-    private let shareButton = UIBarButtonItem(title: "Share", image: .init(systemName: "square.and.arrow.up"))
+    private let shareButton = UIBarButtonItem(title: %"common.share", image: .init(systemName: "square.and.arrow.up"))
     private let playButton = UIBarButtonItem()
     private let pauseButton = UIBarButtonItem()
 
@@ -47,16 +47,16 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             }
         }
 
-        playButton.primaryAction = .init(title: "Start", image: .init(systemName: "play.fill"), handler: { [unowned self] _ in
+        playButton.primaryAction = .init(title: %"details.start", image: .init(systemName: "play.fill"), handler: { [unowned self] _ in
             viewModel.resume()
         })
 
-        pauseButton.primaryAction = .init(title: "Pause", image: .init(systemName: "pause.fill"), handler: { [unowned self] _ in
+        pauseButton.primaryAction = .init(title: %"details.pause", image: .init(systemName: "pause.fill"), handler: { [unowned self] _ in
             viewModel.pause()
         })
 
-        shareButton.menu = .init(title: "Share", children: [
-            UIAction(title: "Torrent file", image: .init(systemName: "doc"), handler: { [unowned self] _ in
+        shareButton.menu = .init(title: %"common.share", children: [
+            UIAction(title: %"details.share.torrentFile", image: .init(systemName: "doc"), handler: { [unowned self] _ in
                 guard let path = viewModel.torrentFilePath
                 else { return }
 
@@ -68,7 +68,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
                 }
                 present(vc, animated: true)
             }),
-            UIAction(title: "Magnet link", image: .init(systemName: "link"), handler: { [unowned self] _ in
+            UIAction(title: %"details.share.magnet", image: .init(systemName: "link"), handler: { [unowned self] _ in
                 viewModel.shareMagnet()
             })
         ])
@@ -79,11 +79,11 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             fixedSpacing,
             pauseButton,
             fixedSpacing,
-            .init(title: "Rehash", image: .init(systemName: "arrow.clockwise"), primaryAction: .init(handler: { [unowned self] _ in
+            .init(title: %"details.rehash", image: .init(systemName: "arrow.clockwise"), primaryAction: .init(handler: { [unowned self] _ in
                 viewModel.rehash()
             })),
             .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            .init(title: "Delete", image: .init(systemName: "trash"), primaryAction: .init(handler: { [unowned self] _ in
+            .init(title: %"common.delete", image: .init(systemName: "trash"), primaryAction: .init(handler: { [unowned self] _ in
                 viewModel.removeTorrent()
             }))
         ]

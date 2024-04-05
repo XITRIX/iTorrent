@@ -49,34 +49,34 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
         }
     }
 
-    private let stateModel = DetailCellViewModel(title: "State")
+    private let stateModel = DetailCellViewModel(title: %"details.state")
 
-    private let downloadModel = DetailCellViewModel(title: "Download")
-    private let uploadModel = DetailCellViewModel(title: "Upload")
-    private let timeLeftModel = DetailCellViewModel(title: "Time remains")
+    private let downloadModel = DetailCellViewModel(title: %"details.speed.download")
+    private let uploadModel = DetailCellViewModel(title: %"details.speed.upload")
+    private let timeLeftModel = DetailCellViewModel(title: %"details.speed.timeRemains")
 
-    private let sequentialModel = ToggleCellViewModel(title: "Sequential download")
-    private let progressModel = TorrentDetailProgressCellViewModel(title: "Progress")
+    private let sequentialModel = ToggleCellViewModel(title: %"details.downloading.sequential")
+    private let progressModel = TorrentDetailProgressCellViewModel(title: %"details.downloading.progress")
 
-    private let hashModel = DetailCellViewModel(title: "Hash", spacer: 80)
-    private let hashModelV2 = DetailCellViewModel(title: "Hash v2", spacer: 80)
-    private let creatorModel = DetailCellViewModel(title: "Creator", spacer: 80)
-    private let commentModel = DetailCellViewModel(title: "Comment", spacer: 80)
-    private let createdModel = DetailCellViewModel(title: "Created")
-    private let addedModel = DetailCellViewModel(title: "Added")
+    private let hashModel = DetailCellViewModel(title: %"details.info.hash", spacer: 80)
+    private let hashModelV2 = DetailCellViewModel(title: %"details.info.hashV2", spacer: 80)
+    private let creatorModel = DetailCellViewModel(title: %"details.info.creator", spacer: 80)
+    private let commentModel = DetailCellViewModel(title: %"details.info.comment", spacer: 80)
+    private let createdModel = DetailCellViewModel(title: %"details.info.created")
+    private let addedModel = DetailCellViewModel(title: %"details.info.added")
 
-    private let selectedModel = DetailCellViewModel(title: "Selected/Total")
-    private let completedModel = DetailCellViewModel(title: "Completed")
-    private let selectedProgressModel = DetailCellViewModel(title: "Progress Selected/Total")
-    private let downloadedModel = DetailCellViewModel(title: "Downloaded")
-    private let uploadedModel = DetailCellViewModel(title: "Uploaded")
-    private let seedersModel = DetailCellViewModel(title: "Seeders")
-    private let leechersModel = DetailCellViewModel(title: "Leechers")
+    private let selectedModel = DetailCellViewModel(title: %"details.transfer.selectedTotal")
+    private let completedModel = DetailCellViewModel(title: %"details.transfer.completed")
+    private let selectedProgressModel = DetailCellViewModel(title: %"details.transfer.progressSelectedTotal")
+    private let downloadedModel = DetailCellViewModel(title: %"details.transfer.downloaded")
+    private let uploadedModel = DetailCellViewModel(title: %"details.transfer.uploaded")
+    private let seedersModel = DetailCellViewModel(title: %"details.transfer.seeders")
+    private let leechersModel = DetailCellViewModel(title: %"details.transfer.leechers")
 
-    private lazy var trackersModel = DetailCellViewModel(title: "Trackers") { [unowned self] in
+    private lazy var trackersModel = DetailCellViewModel(title: %"details.actions.trackers") { [unowned self] in
         navigate(to: TorrentTrackersViewModel.self, with: torrentHandle, by: .show)
     }
-    private lazy var filesModel = DetailCellViewModel(title: "Files") { [unowned self] in
+    private lazy var filesModel = DetailCellViewModel(title: %"details.actions.files") { [unowned self] in
         navigate(to: TorrentFilesViewModel.self, with: .init(torrentHandle: torrentHandle), by: .show)
     }
 }
@@ -97,29 +97,29 @@ extension TorrentDetailsViewModel {
     }
 
     func rehash() {
-        alert(title: "Torrent rehash", message: "This action will recheckthe state of all downloaded files", actions: [
-            .init(title: "Cancel", style: .cancel),
-            .init(title: "Rehash", style: .destructive, action: { [unowned self] in
+        alert(title: %"details.rehash.title", message: %"details.rehash.message", actions: [
+            .init(title: %"common.cancel", style: .cancel),
+            .init(title: %"details.rehash.action", style: .destructive, action: { [unowned self] in
                 torrentHandle.rehash()
             })
         ])
     }
 
     func removeTorrent() {
-        alert(title: "Are you sure to remove", message: torrentHandle.name, actions: [
-            .init(title: "Yes and remove data", style: .destructive, action: { [unowned self] in
+        alert(title: %"torrent.remove.title", message: torrentHandle.name, actions: [
+            .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
             }),
-            .init(title: "Yes but keep data", style: .default, action: { [unowned self] in
+            .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
             }),
-            .init(title: "Cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel)
         ])
     }
 
     func shareMagnet() {
         UIPasteboard.general.string = torrentHandle.snapshot.magnetLink
-        alertWithTimer(message: "Magnet URL copied into clipboard")
+        alertWithTimer(message: %"details.share.magnetCopy.result")
     }
 
     var torrentFilePath: String? {
@@ -178,19 +178,19 @@ private extension TorrentDetailsViewModel {
         })
 
         if !torrentHandle.snapshot.isPaused {
-            sections.append(.init(id: "speed", header: "Speed") {
+            sections.append(.init(id: "speed", header: %"details.speed") {
                 downloadModel
                 uploadModel
                 timeLeftModel
             })
         }
 
-        sections.append(.init(id: "download", header: "Downloading") {
+        sections.append(.init(id: "download", header: %"details.downloading") {
             sequentialModel
             progressModel
         })
 //
-        sections.append(.init(id: "info", header: "Primary info") {
+        sections.append(.init(id: "info", header: %"details.info") {
             if torrentHandle.snapshot.infoHashes.hasV1 {
                 hashModel
             }
@@ -212,7 +212,7 @@ private extension TorrentDetailsViewModel {
             addedModel
         })
 
-        sections.append(.init(id: "transfer", header: "Transfer") {
+        sections.append(.init(id: "transfer", header: %"details.transfer") {
             selectedModel
             completedModel
             selectedProgressModel
@@ -222,7 +222,7 @@ private extension TorrentDetailsViewModel {
             leechersModel
         })
 
-        sections.append(.init(id: "actions", header: "Actions") {
+        sections.append(.init(id: "actions", header: %"details.actions") {
             trackersModel
             filesModel
         })
@@ -231,7 +231,7 @@ private extension TorrentDetailsViewModel {
 
 extension TorrentHandle.Snapshot {
     var timeRemains: String {
-        guard downloadRate > 0 else { return "Eternity" }
+        guard downloadRate > 0 else { return %"time.infinity" }
         guard totalWanted >= totalWantedDone else { return "Almost done" }
         return ((totalWanted - totalWantedDone) / downloadRate).timeString
     }

@@ -138,7 +138,7 @@ private extension TorrentFilesViewModel {
             root = newRoot
         }
 
-        root.name = "Files"
+        root.name = %"details.actions.files"
         return root
     }
 }

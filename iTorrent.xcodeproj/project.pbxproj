@@ -55,6 +55,8 @@
 		D1707C342AF297C500F1752A /* BaseSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1707C332AF297C500F1752A /* BaseSplitViewController.swift */; };
 		D173D9D92BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9D82BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift */; };
 		D173D9DC2BBEED2B00E4F9EB /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9DB2BBEED2B00E4F9EB /* Codables.swift */; };
+		D173D9DE2BC024DD00E4F9EB /* UISwitchWithMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */; };
+		D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9E02BC0286800E4F9EB /* UIMenu+Priority.swift */; };
 		D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17733ED2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift */; };
 		D17733F52BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17733F42BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift */; };
 		D17871FF2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */; };
@@ -170,6 +172,8 @@
 		D1707C332AF297C500F1752A /* BaseSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSplitViewController.swift; sourceTree = "<group>"; };
 		D173D9D82BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesSectionGroupingViewController.swift; sourceTree = "<group>"; };
 		D173D9DB2BBEED2B00E4F9EB /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
+		D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISwitchWithMenu.swift; sourceTree = "<group>"; };
+		D173D9E02BC0286800E4F9EB /* UIMenu+Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenu+Priority.swift"; sourceTree = "<group>"; };
 		D17733ED2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyPreferencesViewModel.swift; sourceTree = "<group>"; };
 		D17733F42BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionPreferencesViewModel.swift; sourceTree = "<group>"; };
 		D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitSwiftUIInarop.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 		7C5FBE0D2BBB206B0069E5A0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */,
 				7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */,
 			);
 			path = Views;
@@ -448,6 +453,14 @@
 			path = Codable;
 			sourceTree = "<group>";
 		};
+		D173D9DF2BC0285800E4F9EB /* UIMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D173D9E02BC0286800E4F9EB /* UIMenu+Priority.swift */,
+			);
+			path = UIMenu;
+			sourceTree = "<group>";
+		};
 		D17733E62BBC26D8006FC81A /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +546,7 @@
 		D19E00242AF045DF000A17A2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D173D9DF2BC0285800E4F9EB /* UIMenu */,
 				7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */,
 				D173D9DA2BBEED1E00E4F9EB /* Codable */,
 				D1048D872BBEA23C0027EF2F /* Combine */,
@@ -875,6 +889,7 @@
 				D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */,
 				D1B1BED22AFE2D9F0030C2A4 /* TrackerCellViewModel.swift in Sources */,
 				D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */,
+				D173D9DE2BC024DD00E4F9EB /* UISwitchWithMenu.swift in Sources */,
 				D1EFCD142AF5A59800D33A7A /* UIViewController+Pop.swift in Sources */,
 				D11BE54B2AFBA06900780C1B /* PRButtonViewModel.swift in Sources */,
 				D1A226F22AEF019400669D6D /* TorrentService.swift in Sources */,
@@ -917,6 +932,7 @@
 				D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */,
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
+				D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,
 				D1A226F92AEF04E200669D6D /* TorrentListViewController.swift in Sources */,
 				D1352D3F2BBD81C000104E7B /* AppDelegate+Notifications.swift in Sources */,
