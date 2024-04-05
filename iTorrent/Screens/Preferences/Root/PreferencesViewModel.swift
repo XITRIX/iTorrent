@@ -48,6 +48,18 @@ private extension PreferencesViewModel {
             PRSwitchViewModel(with: .init(title: %"preferences.storage.allocate", value: preferences.$allocateMemory.binding))
         })
 
+        sections.append(.init(id: "background", header: %"preferences.background") {
+            PRSwitchViewModel(with: .init(title: %"preferences.background.enable", value: preferences.$isBackgroundDownloadEnabled.binding))
+            PRButtonViewModel(with: .init(title: %"preferences.background.mode", value: preferences.$backgroundMode.map(\.name).eraseToAnyPublisher(), accessories: [
+                .popUpMenu(
+                    .init(title: %"preferences.background.mode.action", children: [
+                        uiAction(from: .audio),
+                        uiAction(from: .location)
+                    ]), options: .init(tintColor: .tintColor)
+                ),
+            ]))
+        })
+
         sections.append(.init(id: "torrentQueueLimits", header: %"preferences.queueLimits") {
             PRButtonViewModel(with: .init(title: %"preferences.queueLimits.active", value: preferences.$maxActiveTorrents.map { $0 == 0 ? %"preferences.speedLimits.unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: %"preferences.queueLimits.active", placeholder: %"preferences.speedLimits.unlimited", defaultValue: "\(preferences.maxActiveTorrents)", type: .numberPad) { [unowned self] res in
@@ -120,6 +132,12 @@ private extension PreferencesViewModel {
             preferences.appAppearance = interfaceStyle
         }
     }
+
+    func uiAction(from backgroundMode: BackgroundService.Mode) -> UIAction {
+        UIAction(title: backgroundMode.name, state: preferences.backgroundMode == backgroundMode ? .on : .off) { [preferences] _ in
+            preferences.backgroundMode = backgroundMode
+        }
+    }
 }
 
 private extension UIUserInterfaceStyle {
@@ -136,4 +154,16 @@ private extension UIUserInterfaceStyle {
             return ""
         }
     }
+}
+
+private extension BackgroundService.Mode {
+    var name: String {
+        switch self {
+        case .audio:
+            return %"preferences.background.mode.audio"
+        case .location:
+            return %"preferences.background.mode.location"
+        }
+    }
+
 }

@@ -69,6 +69,9 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesNotificationsDownload", true) var isDownloadNotificationsEnabled: Bool
     @UserDefaultItem("preferencesNotificationsSeed", true) var isSeedNotificationsEnabled: Bool
 
+    @UserDefaultItem("preferencesBackgroundDownloadEnabled", true) var isBackgroundDownloadEnabled: Bool
+    @UserDefaultItem("preferencesBackgroundMode", .audio) var backgroundMode: BackgroundService.Mode
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($allocateMemory)

@@ -57,6 +57,10 @@
 		D173D9DC2BBEED2B00E4F9EB /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9DB2BBEED2B00E4F9EB /* Codables.swift */; };
 		D173D9DE2BC024DD00E4F9EB /* UISwitchWithMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */; };
 		D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9E02BC0286800E4F9EB /* UIMenu+Priority.swift */; };
+		D173D9E32BC0327D00E4F9EB /* BackgroundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9E22BC0327D00E4F9EB /* BackgroundService.swift */; };
+		D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9E52BC0331300E4F9EB /* AudioBackgroundService.swift */; };
+		D173D9E82BC033CF00E4F9EB /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = D173D9E72BC033CF00E4F9EB /* 3.wav */; };
+		D173D9EC2BC039A700E4F9EB /* LocationBackgroundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9EB2BC039A700E4F9EB /* LocationBackgroundService.swift */; };
 		D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17733ED2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift */; };
 		D17733F52BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17733F42BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift */; };
 		D17871FF2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */; };
@@ -174,6 +178,10 @@
 		D173D9DB2BBEED2B00E4F9EB /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 		D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISwitchWithMenu.swift; sourceTree = "<group>"; };
 		D173D9E02BC0286800E4F9EB /* UIMenu+Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenu+Priority.swift"; sourceTree = "<group>"; };
+		D173D9E22BC0327D00E4F9EB /* BackgroundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundService.swift; sourceTree = "<group>"; };
+		D173D9E52BC0331300E4F9EB /* AudioBackgroundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBackgroundService.swift; sourceTree = "<group>"; };
+		D173D9E72BC033CF00E4F9EB /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
+		D173D9EB2BC039A700E4F9EB /* LocationBackgroundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBackgroundService.swift; sourceTree = "<group>"; };
 		D17733ED2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyPreferencesViewModel.swift; sourceTree = "<group>"; };
 		D17733F42BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionPreferencesViewModel.swift; sourceTree = "<group>"; };
 		D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitSwiftUIInarop.swift; sourceTree = "<group>"; };
@@ -461,6 +469,17 @@
 			path = UIMenu;
 			sourceTree = "<group>";
 		};
+		D173D9E42BC0330600E4F9EB /* BackgroundService */ = {
+			isa = PBXGroup;
+			children = (
+				D173D9E72BC033CF00E4F9EB /* 3.wav */,
+				D173D9E22BC0327D00E4F9EB /* BackgroundService.swift */,
+				D173D9E52BC0331300E4F9EB /* AudioBackgroundService.swift */,
+				D173D9EB2BC039A700E4F9EB /* LocationBackgroundService.swift */,
+			);
+			path = BackgroundService;
+			sourceTree = "<group>";
+		};
 		D17733E62BBC26D8006FC81A /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +651,7 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D173D9E42BC0330600E4F9EB /* BackgroundService */,
 				D11333B32AF19C3400FA017E /* TorrentService */,
 				D1AA00CC2AFA8B0300B74629 /* Preferences */,
 				7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */,
@@ -845,6 +865,7 @@
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
 				D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */,
+				D173D9E82BC033CF00E4F9EB /* 3.wav in Resources */,
 				7C5FBE2E2BBF3FF80069E5A0 /* PRSwitchView.xib in Resources */,
 				D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */,
 				D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */,
@@ -881,6 +902,7 @@
 				D1EFCD172AF6AE1600D33A7A /* TorrentFilesDictionaryItemView.swift in Sources */,
 				D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */,
 				D19E00222AEFFA2A000A17A2 /* DetailCellViewModel.swift in Sources */,
+				D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */,
 				D1352D1E2BBC2F7F00104E7B /* LocalizationAttribute.swift in Sources */,
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
@@ -930,6 +952,7 @@
 				D1352D352BBD721700104E7B /* PRStorageViewModel.swift in Sources */,
 				D1352D2C2BBD6E0E00104E7B /* MemorySpaceManager.swift in Sources */,
 				D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */,
+				D173D9EC2BC039A700E4F9EB /* LocationBackgroundService.swift in Sources */,
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
 				D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */,
@@ -938,6 +961,7 @@
 				D1352D3F2BBD81C000104E7B /* AppDelegate+Notifications.swift in Sources */,
 				D1A226A02AEEEFCC00669D6D /* SceneDelegate.swift in Sources */,
 				D11BE5442AFB901E00780C1B /* PRSwitchView.swift in Sources */,
+				D173D9E32BC0327D00E4F9EB /* BackgroundService.swift in Sources */,
 				D1352D382BBD73CD00104E7B /* ColoredProgressBarView.swift in Sources */,
 				D1A226FD2AEF04F900669D6D /* BaseViewController.swift in Sources */,
 			);
@@ -1096,6 +1120,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1130,6 +1155,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1227,6 +1253,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
