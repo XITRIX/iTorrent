@@ -38,7 +38,7 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
     }
 
     override func hash(into hasher: inout Hasher) {
-        hasher.combine(torrentHandle)
+        hasher.combine(torrentHandle.snapshot.infoHashes.best)
     }
 
     func removeTorrent() {

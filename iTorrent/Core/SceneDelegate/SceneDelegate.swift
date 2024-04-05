@@ -89,49 +89,19 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        if PreferencesStorage.shared.isBackgroundDownloadEnabled {
-            BackgroundService.shared.start()
-        }
+        startBackgroundIfNeeded()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        BackgroundService.shared.stop()
+        stopBackground()
     }
 
     override func binding() {
         bind(in: disposeBag) {
-            PreferencesStorage.shared.$tintColor.sink { [unowned self] color in
-                window?.tintColor = color
-            }
-            PreferencesStorage.shared.$appAppearance.sink { [unowned self] appearance in
-                guard let window else { return }
-
-                let currentAppTheme = window.traitCollection.userInterfaceStyle
-                let currentDeviceTheme = window.windowScene!.traitCollection.userInterfaceStyle
-
-                let animationNeeded: Bool
-                if appearance == .unspecified {
-                    animationNeeded = currentAppTheme != currentDeviceTheme
-                } else {
-                    animationNeeded = currentAppTheme != appearance
-                }
-
-                if animationNeeded {
-                    UIView.transition(with: window, duration: 0.3, options: [.transitionFlipFromRight]) {
-                        window.overrideUserInterfaceStyle = appearance
-                    }
-                } else {
-                    window.overrideUserInterfaceStyle = appearance
-                }
-            }
-            PreferencesStorage.shared.$backgroundMode.sink { mode in
-                Task {
-                    // If fail set audio as unfailable mode
-                    if await !BackgroundService.shared.applyMode(mode) {
-                        PreferencesStorage.shared.backgroundMode = .audio
-                    }
-                }
-            }
+            tintColorBind
+            appAppearanceBind
+            backgroundDownloadModeBind
+            backgroundStateObserverBind
         }
     }
 }

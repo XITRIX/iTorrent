@@ -71,6 +71,7 @@ class PreferencesStorage {
 
     @UserDefaultItem("preferencesBackgroundDownloadEnabled", true) var isBackgroundDownloadEnabled: Bool
     @UserDefaultItem("preferencesBackgroundMode", .audio) var backgroundMode: BackgroundService.Mode
+    @UserDefaultItem("preferencesBackgroundAllowSeeding", true) var isBackgroundSeedingEnabled: Bool
 
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
