@@ -83,18 +83,8 @@ extension TorrentListViewModel {
     }
 
     func addTorrent(by url: URL) {
-        defer { url.stopAccessingSecurityScopedResource() }
-        guard url.startAccessingSecurityScopedResource(),
-              let file = TorrentFile(with: url)
-        else { return }
-
-        guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
-        else {
-            alert(title: "This torrent already exists", message: "Torrent with hash:\n\"\(file.infoHashes.best.hex)\" already exists in download queue", actions: [.init(title: %"common.close", style: .cancel)])
-            return
-        }
-
-        navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file), by: .present(wrapInNavigation: true))
+        guard let navigationService = navigationService?() else { return }
+        TorrentAddViewModel.present(with: url, from: navigationService)
     }
 }
 

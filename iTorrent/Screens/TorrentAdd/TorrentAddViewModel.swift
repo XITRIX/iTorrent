@@ -8,6 +8,7 @@
 import LibTorrent
 import MvvmFoundation
 import Combine
+import UIKit
 
 extension TorrentAddViewModel {
     struct Config {
@@ -129,5 +130,24 @@ private extension TorrentAddViewModel {
 
 //        root.name = "Files"
         return root
+    }
+}
+
+extension TorrentAddViewModel {
+    static func present(with url: URL, from navigationContext: NavigationProtocol) {
+        defer { url.stopAccessingSecurityScopedResource() }
+        guard url.startAccessingSecurityScopedResource(),
+              let file = TorrentFile(with: url)
+        else { return }
+
+        guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
+        else {
+            let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(file.infoHashes.best.hex)_exists", preferredStyle: .alert)
+            alert.addAction(.init(title: %"common.close", style: .cancel))
+            navigationContext.present(alert, animated: true)
+            return
+        }
+
+        navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
     }
 }

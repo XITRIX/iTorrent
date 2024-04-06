@@ -67,34 +67,7 @@ class SceneDelegate: MvvmSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         URLContexts.forEach { context in
             let url = context.url
-
-            // Open by hash from Life Activity
-            if url.absoluteString.hasPrefix("iTorrent:hash:") {
-                let hash = url.absoluteString.replacingOccurrences(of: "iTorrent:hash:", with: "")
-                guard let torrent = TorrentService.shared.torrents.first(where: { $0.infoHashes.best.hex == hash })
-                else { return }
-
-                AppDelegate.showTorrentDetailScreen(with: torrent)
-                return
-            }
-
-            defer { url.stopAccessingSecurityScopedResource() }
-            guard url.startAccessingSecurityScopedResource(),
-                  let file = TorrentFile(with: url)
-            else { return }
-
-            guard let rootViewController = window?.rootViewController
-            else { return }
-
-            guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
-            else {
-                let alert = UIAlertController(title: "This torrent already exists", message: "Torrent with hash:\n\"\(file.infoHashes.best.hex)\" already exists in download queue", preferredStyle: .alert)
-                alert.addAction(.init(title: %"common.close", style: .cancel))
-                rootViewController.present(alert, animated: true)
-                return
-            }
-
-            rootViewController.topPresented.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
+            processURL(url)
         }
     }
 
@@ -107,14 +80,12 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func binding() {
+        bindLiveActivity()
         bind(in: disposeBag) {
             tintColorBind
             appAppearanceBind
             backgroundDownloadModeBind
             backgroundStateObserverBind
-#if canImport(ActivityKit)
-            liveActivityBind
-#endif
         }
     }
 }

@@ -9,15 +9,20 @@
 import ActivityKit
 import Combine
 import LibTorrent
+import UIKit
 
 extension SceneDelegate {
-    var liveActivityBind: AnyCancellable {
-        TorrentService.shared.updateNotifier
-            .throttle(for: .seconds(0.25), scheduler: DispatchQueue.main, latest: true)
-            .filter { _ in PreferencesStorage.shared.backgroundMode == .location }
-            .sink { [unowned self] updateModel in
-                updateLiveActivity(with: updateModel)
-            }
+    func bindLiveActivity() {
+#if canImport(ActivityKit)
+        disposeBag.bind {
+            TorrentService.shared.updateNotifier
+                .throttle(for: .seconds(0.25), scheduler: DispatchQueue.main, latest: true)
+                .filter { _ in PreferencesStorage.shared.backgroundMode == .location }
+                .sink { [unowned self] updateModel in
+                    updateLiveActivity(with: updateModel)
+                }
+        }
+#endif
     }
 }
 

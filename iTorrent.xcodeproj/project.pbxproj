@@ -29,6 +29,7 @@
 		7C5FBE552BC0B3550069E5A0 /* ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */; };
 		7C5FBE562BC0B35C0069E5A0 /* ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */; };
 		7C5FBE582BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE572BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift */; };
+		7C5FBE642BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		D1048D852BBE92220027EF2F /* SAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D832BBE92220027EF2F /* SAViewController.swift */; };
 		D1048D862BBE92220027EF2F /* SANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D842BBE92220027EF2F /* SANavigationController.swift */; };
@@ -182,6 +183,7 @@
 		7C5FBE4D2BC0ADCC0069E5A0 /* ProgressWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProgressWidgetExtension.entitlements; sourceTree = "<group>"; };
 		7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWidgetAttributes.swift; sourceTree = "<group>"; };
 		7C5FBE572BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+LiveActivity.swift"; sourceTree = "<group>"; };
+		7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+URLProcessing.swift"; sourceTree = "<group>"; };
 		D1048D832BBE92220027EF2F /* SAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAViewController.swift; sourceTree = "<group>"; };
 		D1048D842BBE92220027EF2F /* SANavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
 		D1048D8A2BBEB6DE0027EF2F /* CombineLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatest.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				7C5FBE332BC0A15C0069E5A0 /* SceneDelegate+Bindings.swift */,
 				7C5FBE352BC0A24A0069E5A0 /* SceneDelegate+BackgroundDownload.swift */,
 				7C5FBE572BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift */,
+				7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */,
 			);
 			path = SceneDelegate;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				D19E00222AEFFA2A000A17A2 /* DetailCellViewModel.swift in Sources */,
 				D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */,
 				D1352D1E2BBC2F7F00104E7B /* LocalizationAttribute.swift in Sources */,
+				7C5FBE642BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift in Sources */,
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,

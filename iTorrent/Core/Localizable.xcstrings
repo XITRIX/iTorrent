@@ -99,6 +99,38 @@
         }
       }
     },
+    "addTorrent.%@_exists" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent with hash: \"%@\" already exists in download queue"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Торрент с хэшем:\n\"%@\" уже имеется в списке загрузок"
+          }
+        }
+      }
+    },
+    "addTorrent.exists" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This torrent already exists"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот торрент уже добавлен"
+          }
+        }
+      }
+    },
     "common.add" : {
       "localizations" : {
         "en" : {
