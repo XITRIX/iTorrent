@@ -125,6 +125,10 @@ extension TorrentDetailsViewModel {
     var torrentFilePath: String? {
         torrentHandle.snapshot.torrentFilePath
     }
+
+    var infoHashes: TorrentHashes {
+        torrentHandle.snapshot.infoHashes
+    }
 }
 
 private extension TorrentDetailsViewModel {

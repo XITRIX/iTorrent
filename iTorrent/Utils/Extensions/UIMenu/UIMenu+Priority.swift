@@ -40,7 +40,7 @@ struct PriorityMenu: ViewModifier {
                 Button(%"prioriry.default", systemImage: "gauge.with.dots.needle.50percent") {
                     setPriority(.defaultPriority)
                 }
-                Button(%"prioriry.low", systemImage: "checkmark.gauge.with.dots.needle.0percent") {
+                Button(%"prioriry.low", systemImage: "gauge.with.dots.needle.0percent") {
                     setPriority(.lowPriority)
                 }
                 Button(%"prioriry.dontDownload", systemImage: "xmark.circle", role: .destructive) {

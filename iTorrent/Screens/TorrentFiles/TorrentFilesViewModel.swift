@@ -82,7 +82,7 @@ class TorrentFilesViewModel: BaseViewModelWith<TorrentFilesViewModel.Config> {
                 return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
             })
             .sorted(by: { first, second in
-                if !first.key.starts(with: "./") && !second.key.starts(with: "./") {
+                if !first.key.starts(with: "./"), !second.key.starts(with: "./") {
                     let f = first.value.name
                     let s = second.value.name
                     return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
@@ -122,6 +122,24 @@ extension TorrentFilesViewModel {
         default:
             return true
         }
+    }
+
+    func setPriority(_ priority: FileEntry.Priority, at indexPaths: [IndexPath]) {
+        let files = indexPaths.flatMap { indexPath in
+            switch rootDirectory.storage[keys[indexPath.item]] {
+            case let path as PathNode:
+                return path.files
+            case let file as FileNode:
+                return [file.index]
+            default: 
+                return []
+            }
+        }.filter {
+            let file = torrentHandle.snapshot.files[$0]
+            return file.downloaded < file.size || priority != .dontDownload
+        }
+
+        torrentHandle.setFilesPriority(priority, at: files.map { NSNumber.init(integerLiteral: $0) })
     }
 }
 

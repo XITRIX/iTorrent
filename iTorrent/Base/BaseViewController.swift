@@ -6,6 +6,7 @@
 //
 
 import MvvmFoundation
+import UIKit
 
 class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<ViewModel> {
     var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }

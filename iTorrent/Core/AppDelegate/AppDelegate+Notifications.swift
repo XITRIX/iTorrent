@@ -8,6 +8,7 @@
 import LibTorrent
 import UIKit
 import UserNotifications
+import MvvmFoundation
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func registerPushNotifications(_ application: UIApplication) {
@@ -38,6 +39,13 @@ extension AppDelegate {
               let window = scene.keyWindow,
               let viewController = window.rootViewController
         else { return }
+
+        // If same screen already presented, do not show another one
+        if let svc = viewController as? UISplitViewController,
+           let mvvmVC = svc.detailNavigationController?.topViewController as? any MvvmViewControllerProtocol,
+           let viewModel = mvvmVC.viewModel as? TorrentDetailsViewModel,
+           viewModel.infoHashes.best.hex == torrentHandle.snapshot.infoHashes.best.hex
+        { return }
 
         let vc = TorrentDetailsViewModel(with: torrentHandle).resolveVC()
         viewController.navigate(to: vc, by: .detail(asRoot: true))

@@ -46,6 +46,8 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
         switchView.menu = .makeForChangePriority { [unowned self] priority in
             viewModel.setPriority(priority)
         }
+
+        accessories = [.multiselect(displayed: .whenEditing)]
     }
 
     override func setup(with viewModel: VM) {

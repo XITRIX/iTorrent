@@ -19,7 +19,7 @@ class TorrentFilesDictionaryItemViewCell<VM: DictionaryItemViewModelProtocol>: U
     func prepare(with model: VM) {
         self.model = model
 
-        accessories = [.disclosureIndicator()]
+        accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
         updateModel(with: prepareData())
         reload()
 

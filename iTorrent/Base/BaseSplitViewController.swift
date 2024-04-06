@@ -82,7 +82,13 @@ class BaseSplitViewController: UISplitViewController {
     }
 }
 
-private extension BaseSplitViewController {
+extension UISplitViewController {
+    var detailNavigationController: UINavigationController? {
+        secondaryNavigationController ?? primaryNavigationController
+    }
+}
+
+private extension UISplitViewController {
     var primaryNavigationController: UINavigationController? {
         viewControllers.first as? UINavigationController
     }
