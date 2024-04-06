@@ -49,6 +49,9 @@
         }
       }
     },
+    "%lld" : {
+
+    },
     "%lld / %lld items" : {
       "localizations" : {
         "en" : {
@@ -980,6 +983,9 @@
         }
       }
     },
+    "Leechs" : {
+
+    },
     "list.add.files" : {
       "localizations" : {
         "en" : {
@@ -1204,6 +1210,9 @@
         }
       }
     },
+    "Message: %@" : {
+
+    },
     "mime.audio" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1322,6 +1331,9 @@
           }
         }
       }
+    },
+    "Peers" : {
+
     },
     "preferences" : {
       "localizations" : {
@@ -2378,6 +2390,9 @@
           }
         }
       }
+    },
+    "Seeds" : {
+
     },
     "time.infinity" : {
       "localizations" : {

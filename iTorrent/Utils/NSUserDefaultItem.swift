@@ -33,8 +33,10 @@ struct NSUserDefaultItem<Value: NSObject & NSCoding> {
 }
 
 private extension NSUserDefaultItem {
+    static var userDefaults: UserDefaults { UserDefaults(suiteName: "group.itorrent.life-activity") ?? .standard }
+
     static func value(for key: String) -> Value? {
-        guard let data = UserDefaults.standard.data(forKey: key)
+        guard let data = userDefaults.data(forKey: key)
         else { return nil }
         return try? NSKeyedUnarchiver.unarchivedObject(ofClass: Value.self, from: data)
     }
@@ -42,7 +44,7 @@ private extension NSUserDefaultItem {
     static func setValue(_ value: Value, for key: String) {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: true)
-            UserDefaults.standard.set(data, forKey: key)
+            userDefaults.set(data, forKey: key)
         } catch {}
     }
 }

@@ -10,6 +10,14 @@ import SwiftUI
 import WidgetKit
 
 struct ProgressWidgetLiveActivity: Widget {
+    static var userDefaults: UserDefaults { UserDefaults(suiteName: "group.itorrent.life-activity") ?? .standard }
+
+    var tintColor: UIColor {
+        guard let data = Self.userDefaults.data(forKey: "preferencesTintColor")
+        else { return .tintColor }
+        return (try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data)) ?? .tintColor
+    }
+
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: ProgressWidgetAttributes.self) { context in
             // Lock screen/banner UI goes here
@@ -32,7 +40,7 @@ struct ProgressWidgetLiveActivity: Widget {
                     .progressViewStyle(.linear)
             }
             .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
-            .tint(Color(uiColor: .tintColor))
+            .tint(Color(uiColor: tintColor))
             .padding()
         } dynamicIsland: { context in
             DynamicIsland {
@@ -55,21 +63,21 @@ struct ProgressWidgetLiveActivity: Widget {
                             .progressViewStyle(.linear)
                             .padding([.leading, .trailing], 8)
                     }
-                    .tint(Color(uiColor: .tintColor))
+                    .tint(Color(uiColor: tintColor))
                 }
             } compactLeading: {
                 Text("\(context.state.downSpeed.bitrateToHumanReadable)/s")
             } compactTrailing: {
                 ProgressView(value: context.state.progress)
                     .progressViewStyle(.circular)
-                    .tint(Color(uiColor: .tintColor))
+                    .tint(Color(uiColor: tintColor))
             } minimal: {
                 ProgressView(value: context.state.progress)
                     .progressViewStyle(.circular)
-                    .tint(Color(uiColor: .tintColor))
+                    .tint(Color(uiColor: tintColor))
             }
             .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
-            .keylineTint(Color(uiColor: .tintColor))
+            .keylineTint(Color(uiColor: tintColor))
         }
     }
 }

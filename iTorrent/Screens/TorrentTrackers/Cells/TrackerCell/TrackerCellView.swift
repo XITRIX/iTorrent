@@ -12,13 +12,32 @@ struct TrackerCellView: MvvmSwiftUICellProtocol {
     @ObservedObject var viewModel: TrackerCellViewModel
 
     var body: some View {
-        HStack {
+        VStack(alignment: .leading) {
             Text(viewModel.title)
                 .fontWeight(.semibold)
+            HStack {
+                HStack {
+                    Text("Peers")
+                    Text("\(viewModel.peers)")
+                }
+                Spacer()
+                HStack {
+                    Text("Seeds")
+                    Text("\(viewModel.seeds)")
+                }
+                Spacer()
+                HStack {
+                    Text("Leechs")
+                    Text("\(viewModel.leechs)")
+                }
+            }
+            if let message = viewModel.message,
+               !message.isEmpty
+            {
+                Text("Message: \(message)")
+            }
         }
-        #if os(visionOS)
-        .frame(minHeight: 44)
-        #endif
+        .systemMinimumHeight()
     }
 
     static let registration: UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel> = .init { cell, _, itemIdentifier in
@@ -30,5 +49,14 @@ struct TrackerCellView: MvvmSwiftUICellProtocol {
 }
 
 #Preview {
-    TrackerCellView(viewModel: .init())
+    let vm = TrackerCellViewModel()
+    vm.title = "Top tracker"
+    vm.peers = 390
+    vm.leechs = 230
+    vm.seeds = 5200
+
+    vm.message = "Top tracker"
+    return TrackerCellView(viewModel: vm)
+        .frame(maxWidth: .infinity)
+//        .border(Color.blue)
 }

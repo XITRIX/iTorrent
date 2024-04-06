@@ -39,8 +39,10 @@ struct UserDefaultItem<T: Codable> {
 }
 
 private extension UserDefaultItem {
+    static var userDefaults: UserDefaults { UserDefaults(suiteName: "group.itorrent.life-activity") ?? .standard }
+
     static func get(by key: String) -> T? {
-        guard let decoded = UserDefaults.standard.data(forKey: key),
+        guard let decoded = userDefaults.data(forKey: key),
               let res = try? JSONDecoder().decode(T.self, from: decoded)
         else { return nil }
         return res
@@ -48,9 +50,9 @@ private extension UserDefaultItem {
 
     static func set(by key: String, _ value: T?) {
         if let value, let encodedData: Data = try? JSONEncoder().encode(value) {
-            UserDefaults.standard.set(encodedData, forKey: key)
+            userDefaults.set(encodedData, forKey: key)
         } else {
-            UserDefaults.standard.set(nil, forKey: key)
+            userDefaults.set(nil, forKey: key)
         }
     }
 }
