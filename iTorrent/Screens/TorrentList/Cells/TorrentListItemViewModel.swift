@@ -11,7 +11,7 @@ import MvvmFoundation
 import SwiftUI
 
 class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectableProtocol, ObservableObject, Identifiable {
-    private var torrentHandle: TorrentHandle!
+    var torrentHandle: TorrentHandle!
     var selectAction: (() -> Void)?
     var id: Int { hashValue }
 

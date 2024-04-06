@@ -86,6 +86,46 @@ extension TorrentListViewModel {
         guard let navigationService = navigationService?() else { return }
         TorrentAddViewModel.present(with: url, from: navigationService)
     }
+
+    func resumeAllSelected(at indexPaths: [IndexPath]) {
+        let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
+        torrentModels.forEach { $0.torrentHandle.resume() }
+    }
+
+    func pauseAllSelected(at indexPaths: [IndexPath]) {
+        let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
+        torrentModels.forEach { $0.torrentHandle.pause() }
+    }
+
+    func rehashAllSelected(at indexPaths: [IndexPath]) {
+        let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
+
+        alert(title: %"details.rehash.title", message: %"details.rehash.message", actions: [
+            .init(title: %"common.cancel", style: .cancel),
+            .init(title: %"details.rehash.action", style: .destructive, action: {
+                torrentModels.forEach { $0.torrentHandle.rehash() }
+            })
+        ])
+    }
+
+    func deleteAllSelected(at indexPaths: [IndexPath]) {
+        let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
+        let message = torrentModels.map { $0.torrentHandle.snapshot.name }.joined(separator: "\n\n")
+
+        alert(title: %"torrent.remove.title", message: message, actions: [
+            .init(title: %"torrent.remove.action.dropData", style: .destructive, action: {
+                torrentModels.forEach { torrentModel in
+                    TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.infoHashes, deleteFiles: true)
+                }
+            }),
+            .init(title: %"torrent.remove.action.keepData", style: .default, action: {
+                torrentModels.forEach { torrentModel in
+                    TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.infoHashes, deleteFiles: false)
+                }
+            }),
+            .init(title: %"common.cancel", style: .cancel)
+        ])
+    }
 }
 
 private extension TorrentListViewModel {

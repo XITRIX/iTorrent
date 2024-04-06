@@ -17,10 +17,31 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
     private let addButton = UIBarButtonItem(title: String(localized: "common.add"), image: .init(systemName: "plus"))
     private let preferencesButton = UIBarButtonItem(title: String(localized: "preferences"), image: .init(systemName: "gearshape.fill"))
     private let sortButton = UIBarButtonItem(title: String(localized: "list.sort"), image: .sort)
+
+    private let shareButton = UIBarButtonItem(title: %"common.share", image: .init(systemName: "square.and.arrow.up"))
+    private let playButton = UIBarButtonItem()
+    private let pauseButton = UIBarButtonItem()
+    private let rehashButton = UIBarButtonItem()
+    private let deleteButton = UIBarButtonItem()
+
     private lazy var delegates = Delegates(parent: self)
     private let searchVC = UISearchController()
 
     private lazy var documentPicker = makeDocumentPicker()
+
+    private var getToolBarItems: [UIBarButtonItem] {
+        collectionView.isEditing ?
+        [
+            playButton,
+            fixedSpacing,
+            pauseButton,
+            fixedSpacing,
+            rehashButton,
+            .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            deleteButton
+        ] :
+        [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +60,21 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 present(makeMagnetAlert(), animated: true)
             }
         ])
+        playButton.primaryAction = .init(title: %"details.start", image: .init(systemName: "play.fill"), handler: { [unowned self] _ in
+            viewModel.resumeAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
+        })
+
+        pauseButton.primaryAction = .init(title: %"details.pause", image: .init(systemName: "pause.fill"), handler: { [unowned self] _ in
+            viewModel.pauseAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
+        })
+
+        rehashButton.primaryAction = .init(title: %"details.rehash", image: .init(systemName: "arrow.clockwise"), handler: { [unowned self] _ in
+            viewModel.rehashAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
+        })
+
+        deleteButton.primaryAction = .init(title: %"common.delete", image: .init(systemName: "trash"), handler: { [unowned self] _ in
+            viewModel.deleteAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
+        })
 
         disposeBag.bind {
             viewModel.$sections.sink { [unowned self] sections in
@@ -56,7 +92,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
         navigationItem.leadingItemGroups.append(.fixedGroup(items: [editButtonItem]))
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [sortButton]))
-        toolbarItems = [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
+        toolbarItems = getToolBarItems
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +103,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         collectionView.isEditing = editing
+        toolbarItems = getToolBarItems
     }
 }
 
@@ -146,6 +183,14 @@ extension TorrentListViewController {
             TorrentService.shared.addTorrent(by: magnet)
         })
         return alert
+    }
+}
+
+private extension TorrentListViewController {
+    var fixedSpacing: UIBarButtonItem {
+        let item = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        item.width = 44
+        return item
     }
 }
 

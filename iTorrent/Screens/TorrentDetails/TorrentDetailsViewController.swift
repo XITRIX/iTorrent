@@ -15,6 +15,8 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
     private let shareButton = UIBarButtonItem(title: %"common.share", image: .init(systemName: "square.and.arrow.up"))
     private let playButton = UIBarButtonItem()
     private let pauseButton = UIBarButtonItem()
+    private let rehashButton = UIBarButtonItem()
+    private let deleteButton = UIBarButtonItem()
 
     private let titleLabel = MarqueeLabel()
 
@@ -55,6 +57,14 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             viewModel.pause()
         })
 
+        rehashButton.primaryAction = .init(title: %"details.rehash", image: .init(systemName: "arrow.clockwise"), handler: { [unowned self] _ in
+            viewModel.rehash()
+        })
+
+        deleteButton.primaryAction = .init(title: %"common.delete", image: .init(systemName: "trash"), handler: { [unowned self] _ in
+            viewModel.removeTorrent()
+        })
+
         shareButton.menu = .init(title: %"common.share", children: [
             UIAction(title: %"details.share.torrentFile", image: .init(systemName: "doc"), handler: { [unowned self] _ in
                 guard let path = viewModel.torrentFilePath
@@ -79,13 +89,9 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             fixedSpacing,
             pauseButton,
             fixedSpacing,
-            .init(title: %"details.rehash", image: .init(systemName: "arrow.clockwise"), primaryAction: .init(handler: { [unowned self] _ in
-                viewModel.rehash()
-            })),
+            rehashButton,
             .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            .init(title: %"common.delete", image: .init(systemName: "trash"), primaryAction: .init(handler: { [unowned self] _ in
-                viewModel.removeTorrent()
-            }))
+            deleteButton
         ]
 
 #if !os(visionOS)
