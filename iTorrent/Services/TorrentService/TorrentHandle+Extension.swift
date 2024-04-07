@@ -67,6 +67,7 @@ extension TorrentHandle.State {
         case .paused:
             return String(localized: "torrent.state.paused")
         @unknown default:
+            assertionFailure("Unregistered \(Self.self) enum value is not allowed: \(self)")
             return ""
         }
     }

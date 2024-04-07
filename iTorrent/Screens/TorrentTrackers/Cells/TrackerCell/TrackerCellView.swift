@@ -7,34 +7,39 @@
 
 import SwiftUI
 import MvvmFoundation
+import LibTorrent
 
 struct TrackerCellView: MvvmSwiftUICellProtocol {
     @ObservedObject var viewModel: TrackerCellViewModel
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(viewModel.title)
                 .fontWeight(.semibold)
             HStack {
                 HStack {
-                    Text("Peers")
-                    Text("\(viewModel.peers)")
+                    Text("tracker.peers")
+                    Text(viewModel.peers.string)
                 }
                 Spacer()
                 HStack {
-                    Text("Seeds")
-                    Text("\(viewModel.seeds)")
+                    Text("tracker.seeds")
+                    Text(viewModel.seeds.string)
                 }
                 Spacer()
                 HStack {
-                    Text("Leechs")
-                    Text("\(viewModel.leechs)")
+                    Text("tracker.leeches")
+                    Text(viewModel.leeches.string)
                 }
+            }
+            HStack {
+                Text("tracker.state")
+                Text(viewModel.state.name)
             }
             if let message = viewModel.message,
                !message.isEmpty
             {
-                Text("Message: \(message)")
+                Text("tracker.message: \(message)")
             }
         }
         .systemMinimumHeight()
@@ -48,11 +53,40 @@ struct TrackerCellView: MvvmSwiftUICellProtocol {
     }
 }
 
+private extension Int {
+    var string: String {
+        guard self != -1 else { return %"tracker.na" }
+        return "\(self)"
+    }
+}
+
+private extension TorrentTracker.State {
+    var name: String {
+        switch self {
+        case .notContacted:
+            return %"tracker.state.notContacted"
+        case .working:
+            return %"tracker.state.working"
+        case .updating:
+            return %"tracker.state.updating"
+        case .notWorking:
+            return %"tracker.state.notWorking"
+        case .trackerError:
+            return %"tracker.state.trackerError"
+        case .unreachable:
+            return %"tracker.state.unreachable"
+        @unknown default:
+            assertionFailure("Unregistered \(Self.self) enum value is not allowed: \(self)")
+            return ""
+        }
+    }
+}
+
 #Preview {
     let vm = TrackerCellViewModel()
     vm.title = "Top tracker"
     vm.peers = 390
-    vm.leechs = 230
+    vm.leeches = 230
     vm.seeds = 5200
 
     vm.message = "Top tracker"

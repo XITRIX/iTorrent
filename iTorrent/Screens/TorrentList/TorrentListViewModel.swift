@@ -126,6 +126,18 @@ extension TorrentListViewModel {
             .init(title: %"common.cancel", style: .cancel)
         ])
     }
+
+    func removeTorrent(_ torrentHandle: TorrentHandle) {
+        alert(title: %"torrent.remove.title", message: torrentHandle.name, actions: [
+            .init(title: %"torrent.remove.action.dropData", style: .destructive, action: {
+                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
+            }),
+            .init(title: %"torrent.remove.action.keepData", style: .default, action: {
+                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
+            }),
+            .init(title: %"common.cancel", style: .cancel)
+        ])
+    }
 }
 
 private extension TorrentListViewModel {

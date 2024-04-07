@@ -31,16 +31,16 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
     private var getToolBarItems: [UIBarButtonItem] {
         collectionView.isEditing ?
-        [
-            playButton,
-            fixedSpacing,
-            pauseButton,
-            fixedSpacing,
-            rehashButton,
-            .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            deleteButton
-        ] :
-        [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
+            [
+                playButton,
+                fixedSpacing,
+                pauseButton,
+                fixedSpacing,
+                rehashButton,
+                .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                deleteButton
+            ] :
+            [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
     }
 
     override func viewDidLoad() {
@@ -93,6 +93,45 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         navigationItem.leadingItemGroups.append(.fixedGroup(items: [editButtonItem]))
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [sortButton]))
         toolbarItems = getToolBarItems
+
+        collectionView.contextMenuConfigurationForItemsAt = { [unowned self] indexPaths, _ in
+            guard let indexPath = indexPaths.first,
+                  let torrentHandle = (viewModel.sections[indexPath.section].items[indexPath.item] as? TorrentListItemViewModel)?.torrentHandle
+            else { return nil }
+
+            return UIContextMenuConfiguration {
+                TorrentDetailsViewModel.resolveVC(with: torrentHandle)
+            } actionProvider: { _ in
+                let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.isPaused ? [] : .hidden, handler: { _ in
+                    torrentHandle.resume()
+                })
+                let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: !torrentHandle.isPaused ? [] : .hidden, handler: { _ in
+                    torrentHandle.pause()
+                })
+                let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
+                    viewModel.removeTorrent(torrentHandle)
+                }
+
+                return UIMenu(title: torrentHandle.snapshot.name, children: [
+                    start,
+                    pause,
+                    UIMenu(options: .displayInline,
+                           children: [delete])
+                ])
+            }
+        }
+
+        collectionView.willPerformPreviewActionForMenuWith = { [unowned self] _, animator in
+            animator.addCompletion { [self] in
+                if let preview = animator.previewViewController {
+                    viewModel.navigationService?()?.navigate(to: preview, by: .detail(asRoot: true))
+                    if let nav = preview.navigationController as? SANavigationController,
+                        nav.viewControllers.last == preview {
+                        nav.locker = false
+                    }
+                }
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

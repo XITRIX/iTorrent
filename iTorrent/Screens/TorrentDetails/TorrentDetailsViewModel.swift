@@ -183,9 +183,14 @@ private extension TorrentDetailsViewModel {
 
         if !torrentHandle.snapshot.isPaused {
             sections.append(.init(id: "speed", header: %"details.speed") {
-                downloadModel
+                let isSeeding = torrentHandle.snapshot.friendlyState == .seeding
+                if !isSeeding {
+                    downloadModel
+                }
                 uploadModel
-                timeLeftModel
+                if !isSeeding {
+                    timeLeftModel
+                }
             })
         }
 

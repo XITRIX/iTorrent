@@ -9,18 +9,32 @@ import Foundation
 import MvvmFoundation
 import LibTorrent
 
-class TrackerCellViewModel: BaseViewModelWith<TorrentTracker>, ObservableObject {
+class TrackerCellViewModel: BaseViewModelWith<TorrentTracker>, MvvmLongPressProtocol, ObservableObject {
+    var longPressAction: (() -> Void)?
+    
     @Published var title: String = ""
     @Published var message: String?
     @Published var seeds: Int = 0
     @Published var peers: Int = 0
-    @Published var leechs: Int = 0
+    @Published var leeches: Int = 0
+    @Published var state: TorrentTracker.State = .updating
+    @Published var url: String!
 
     override func prepare(with model: TorrentTracker) {
+        url = model.trackerUrl
+        update(with: model)
+    }
+
+    func update(with model: TorrentTracker) {
         title = model.trackerUrl
-        message = model.messages
-        seeds = model.seeders
+        message = model.message
+        seeds = model.seeds
         peers = model.peers
-        leechs = model.leechs
+        leeches = model.leeches
+        state = model.state
+    }
+
+    override func hash(into hasher: inout Hasher) {
+        hasher.combine(url)
     }
 }

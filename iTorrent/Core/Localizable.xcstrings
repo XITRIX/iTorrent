@@ -50,7 +50,20 @@
       }
     },
     "%lld" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "%lld / %lld items" : {
       "localizations" : {
@@ -983,9 +996,6 @@
         }
       }
     },
-    "Leechs" : {
-
-    },
     "list.add.files" : {
       "localizations" : {
         "en" : {
@@ -1210,9 +1220,6 @@
         }
       }
     },
-    "Message: %@" : {
-
-    },
     "mime.audio" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1331,9 +1338,6 @@
           }
         }
       }
-    },
-    "Peers" : {
-
     },
     "preferences" : {
       "localizations" : {
@@ -2391,9 +2395,6 @@
         }
       }
     },
-    "Seeds" : {
-
-    },
     "time.infinity" : {
       "localizations" : {
         "en" : {
@@ -2566,6 +2567,278 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Раздача"
+          }
+        }
+      }
+    },
+    "tracker.leeches" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leeches:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Личи:"
+          }
+        }
+      }
+    },
+    "tracker.message: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Message: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сообщение: %@"
+          }
+        }
+      }
+    },
+    "tracker.na" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N/A"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Н/Д"
+          }
+        }
+      }
+    },
+    "tracker.peers" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peers:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пиры:"
+          }
+        }
+      }
+    },
+    "tracker.seeds" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeds:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сиды:"
+          }
+        }
+      }
+    },
+    "tracker.state" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "State:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Состояние:"
+          }
+        }
+      }
+    },
+    "tracker.state.notContacted" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not contacted"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Связи пока нет"
+          }
+        }
+      }
+    },
+    "tracker.state.notWorking" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not working"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не работает"
+          }
+        }
+      }
+    },
+    "tracker.state.trackerError" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker error"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка"
+          }
+        }
+      }
+    },
+    "tracker.state.unreachable" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unreachable"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не доступен"
+          }
+        }
+      }
+    },
+    "tracker.state.updating" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updating"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновляется"
+          }
+        }
+      }
+    },
+    "tracker.state.working" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Working"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Работает"
+          }
+        }
+      }
+    },
+    "trackers.add.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter tracker URLs separated by blank line"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите URL ссылки трекеров разделённые пустой строкой"
+          }
+        }
+      }
+    },
+    "trackers.add.message.single" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter tracker URL"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите URL ссылку трекера"
+          }
+        }
+      }
+    },
+    "trackers.add.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add trackers"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить трекеры"
+          }
+        }
+      }
+    },
+    "trackers.add.title.single" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add tracker"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить трекеры"
+          }
+        }
+      }
+    },
+    "trackers.remove.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure to remove selected trackers?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены что хотите удалить выбранные терекеры?"
           }
         }
       }

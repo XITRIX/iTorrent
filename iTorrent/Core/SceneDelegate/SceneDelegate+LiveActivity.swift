@@ -10,6 +10,7 @@ import ActivityKit
 import Combine
 import LibTorrent
 import UIKit
+#endif
 
 extension SceneDelegate {
     func bindLiveActivity() {
@@ -26,6 +27,7 @@ extension SceneDelegate {
     }
 }
 
+#if canImport(ActivityKit)
 private extension SceneDelegate {
     func updateLiveActivity(with updateModel: TorrentService.TorrentUpdateModel) {
         if updateModel.oldSnapshot.state != updateModel.handle.snapshot.state,

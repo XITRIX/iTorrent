@@ -27,11 +27,11 @@ struct ProgressWidgetLiveActivity: Widget {
                     Spacer()
                 }
                 HStack {
-                    Text("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓")
-                    Text(" | ")
-                    Text("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑")
+                    Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
+                    Text(String(" | "))
+                    Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
                     Spacer()
-                    Text("\(String(format: "%.2f", context.state.progress * 100))%")
+                    Text(String("\(String(format: "%.2f", context.state.progress * 100))%"))
                 }
                 .font(.subheadline)
                 .foregroundColor(.secondary)
@@ -47,10 +47,10 @@ struct ProgressWidgetLiveActivity: Widget {
                 // Expanded UI goes here.  Compose the expanded UI through
                 // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("\(context.state.downSpeed.bitrateToHumanReadable)/s")
+                    Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s"))
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("\(String(format: "%.2f", context.state.progress * 100))%").padding(.top, 2)
+                    Text(String("\(String(format: "%.2f", context.state.progress * 100))%")).padding(.top, 2)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack {
@@ -66,7 +66,7 @@ struct ProgressWidgetLiveActivity: Widget {
                     .tint(Color(uiColor: tintColor))
                 }
             } compactLeading: {
-                Text("\(context.state.downSpeed.bitrateToHumanReadable)/s")
+                Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s"))
             } compactTrailing: {
                 ProgressView(value: context.state.progress)
                     .progressViewStyle(.circular)
