@@ -22,6 +22,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { PreferencesStorage.shared })
         container.registerSingleton(factory: { BackgroundService.shared })
         container.registerDaemon(factory: TorrentMonitoringService.init)
+        container.registerDaemon(factory: RssFeedProvider.init)
     }
 
     override func routing(in router: Router) {
@@ -37,9 +38,16 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
         router.register(PreferencesSectionGroupingViewController.self)
 
+        router.register(RssListViewController.self)
+        router.register(RssChannelViewController.self)
+        router.register(RssDetailsViewController.self)
+
         // MARK: Cells
         router.register(TorrentListItemView.self)
         router.register(TorrentDetailProgressCellView.self)
+
+        router.register(RssFeedCell.self)
+        router.register(RssChannelItemCell.self)
 
         router.register(TrackerCellView.self)
 

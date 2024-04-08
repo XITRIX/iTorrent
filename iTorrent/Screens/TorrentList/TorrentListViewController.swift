@@ -14,9 +14,10 @@ import UIKit
 class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
 
-    private let addButton = UIBarButtonItem(title: String(localized: "common.add"), image: .init(systemName: "plus"))
-    private let preferencesButton = UIBarButtonItem(title: String(localized: "preferences"), image: .init(systemName: "gearshape.fill"))
-    private let sortButton = UIBarButtonItem(title: String(localized: "list.sort"), image: .sort)
+    private let addButton = UIBarButtonItem(title: %"common.add", image: .init(systemName: "plus"))
+    private let preferencesButton = UIBarButtonItem(title: %"preferences", image: .init(systemName: "gearshape.fill"))
+    private let sortButton = UIBarButtonItem(title: %"list.sort", image: .icSort)
+    private let rssButton = UIBarButtonItem()
 
     private let shareButton = UIBarButtonItem(title: %"common.share", image: .init(systemName: "square.and.arrow.up"))
     private let playButton = UIBarButtonItem()
@@ -51,15 +52,19 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         searchVC.searchBar.textDidChangePublisher.assign(to: &viewModel.$searchQuery)
         searchVC.searchBar.cancelButtonClickedPublisher.map { "" }.assign(to: &viewModel.$searchQuery)
 
-        addButton.menu = UIMenu(title: String(localized: "list.add.title"), children: [
-            UIAction(title: String(localized: "list.add.files"), image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
+        addButton.menu = UIMenu(title: %"list.add.title", children: [
+            UIAction(title: %"list.add.files", image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
                 present(documentPicker, animated: true)
             },
-//            "link.badge.plus"
-            UIAction(title: String(localized: "list.add.magnet"), image: .init(resource: .icMagnet)) { [unowned self] _ in
+            UIAction(title: %"list.add.magnet", image: .init(resource: .icMagnet)) { [unowned self] _ in
                 present(makeMagnetAlert(), animated: true)
             }
         ])
+
+        rssButton.primaryAction = .init(title: %"rssfeed", image: .icRss, handler: { [unowned self] _ in
+            viewModel.showRss()
+        })
+
         playButton.primaryAction = .init(title: %"details.start", image: .init(systemName: "play.fill"), handler: { [unowned self] _ in
             viewModel.resumeAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
         })
@@ -91,7 +96,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         }
 
         navigationItem.leadingItemGroups.append(.fixedGroup(items: [editButtonItem]))
-        navigationItem.trailingItemGroups.append(.fixedGroup(items: [sortButton]))
+        navigationItem.trailingItemGroups.append(.fixedGroup(items: [rssButton, sortButton]))
         toolbarItems = getToolBarItems
 
         collectionView.contextMenuConfigurationForItemsAt = { [unowned self] indexPaths, _ in
@@ -160,12 +165,12 @@ private extension TorrentListViewController {
 
     func setupSearch() {
         searchVC.showsSearchResultsController = false
-        searchVC.searchBar.placeholder = String(localized: "common.search")
+        searchVC.searchBar.placeholder = %"common.search"
         navigationItem.searchController = searchVC
     }
 
     func updateSortingMenu(with selected: ViewModel.Sort, reverced: Bool, isGrouped: Bool) {
-        sortButton.menu = .init(title: String(localized: "list.sort.title"), children:
+        sortButton.menu = .init(title: %"list.sort.title", children:
             [
                 UIMenu(options: .displayInline, children: ViewModel.Sort.allCases.map { type in UIAction(title: type.name, image: selected == type ? (reverced ? .init(systemName: "chevron.up") : .init(systemName: "chevron.down")) : nil) { [unowned self] _ in
                     if viewModel.sortingType.value == type {
@@ -202,20 +207,20 @@ extension TorrentListViewController {
     }
 
     func makeMagnetAlert() -> UIAlertController {
-        let alert = UIAlertController(title: String(localized: "list.add.magnet.title"), message: String(localized: "list.add.magnet.message"), preferredStyle: .alert)
+        let alert = UIAlertController(title: %"list.add.magnet.title", message: %"list.add.magnet.message", preferredStyle: .alert)
 
         alert.addTextField { textField in
-            textField.placeholder = String(localized: "list.add.magnet.placeholder")
+            textField.placeholder = %"list.add.magnet.placeholder"
         }
 
-        alert.addAction(.init(title: String(localized: "common.cancel"), style: .cancel))
-        alert.addAction(.init(title: String(localized: "common.ok"), style: .default) { [unowned self] _ in
+        alert.addAction(.init(title: %"common.cancel", style: .cancel))
+        alert.addAction(.init(title: %"common.ok", style: .default) { [unowned self] _ in
             guard let text = alert.textFields?.first?.text,
                   let url = URL(string: text),
                   let magnet = MagnetURI(with: url)
             else {
-                let alert = UIAlertController(title: String(localized: "common.error"), message: String(localized: "list.add.magnet.error"), preferredStyle: .alert)
-                alert.addAction(.init(title: String(localized: "common.close"), style: .cancel))
+                let alert = UIAlertController(title: %"common.error", message: %"list.add.magnet.error", preferredStyle: .alert)
+                alert.addAction(.init(title: %"common.close", style: .cancel))
                 present(alert, animated: true)
                 return
             }
@@ -237,13 +242,13 @@ private extension TorrentListViewModel.Sort {
     var name: String {
         switch self {
         case .alphabetically:
-            return String(localized: "list.sort.name")
+            return %"list.sort.name"
         case .creationDate:
-            return String(localized: "list.sort.creationDate")
+            return %"list.sort.creationDate"
         case .addedDate:
-            return String(localized: "list.sort.addedDate")
+            return %"list.sort.addedDate"
         case .size:
-            return String(localized: "list.sort.size")
+            return %"list.sort.size"
         }
     }
 }

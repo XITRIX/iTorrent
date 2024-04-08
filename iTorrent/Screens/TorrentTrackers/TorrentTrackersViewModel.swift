@@ -5,9 +5,9 @@
 //  Created by Daniil Vinogradov on 10/11/2023.
 //
 
+import Combine
 import LibTorrent
 import MvvmFoundation
-import Combine
 import UIKit
 
 class TorrentTrackersViewModel: BaseViewModelWith<TorrentHandle> {
@@ -15,10 +15,10 @@ class TorrentTrackersViewModel: BaseViewModelWith<TorrentHandle> {
     private var trackers: [TrackerCellViewModel] = []
 
     @Published var sections: [MvvmCollectionSectionModel] = []
-    @Published var selectingIndexPaths: [IndexPath] = []
+    @Published var selectedIndexPaths: [IndexPath] = []
 
     var isRemoveAvailable: AnyPublisher<Bool, Never> {
-        $selectingIndexPaths.map { !$0.isEmpty }
+        $selectedIndexPaths.map { !$0.isEmpty }
             .eraseToAnyPublisher()
     }
 
@@ -41,12 +41,14 @@ extension TorrentTrackersViewModel {
             result.components(separatedBy: .newlines).forEach { urlString in
                 guard let url = URL(string: urlString) else { return }
                 torrentHandle.addTracker(url.absoluteString)
+                reload()
             }
         }
         #else
         textInput(title: %"trackers.add.title.single", message: %"trackers.add.message.single", placeholder: "http://x.x.x.x:8080/announce", cancel: %"common.cancel", accept: %"common.add") { [unowned self] result in
             guard let url = URL(string: result ?? "") else { return }
             torrentHandle.addTracker(url.absoluteString)
+            reload()
         }
         #endif
     }
@@ -54,12 +56,13 @@ extension TorrentTrackersViewModel {
     func removeSelected() {
         alert(title: %"trackers.remove.title", actions: [
             .init(title: %"common.delete", style: .destructive, action: { [unowned self] in
-                let urls = selectingIndexPaths.compactMap { indexPath in
+                let urls = selectedIndexPaths.compactMap { indexPath in
                     assert(indexPath.section == 0)
                     return trackers[indexPath.item].url
                 }
 
                 torrentHandle.removeTrackers(urls)
+                reload()
             }),
             .init(title: %"common.cancel", style: .cancel)
         ])
@@ -86,12 +89,13 @@ private extension TorrentTrackersViewModel {
                 trackerListChanged = true
             }
         }
-        trackers = newTrackers
 
-        if trackerListChanged || self.trackers.count != trackers.count {
-            sections.append(.init(id: "trackers", style: .plain, items: trackers))
+        if trackerListChanged || trackers.count != newTrackers.count {
+            sections.append(.init(id: "trackers", style: .plain, items: newTrackers))
             self.sections = sections
         }
+
+        trackers = newTrackers
     }
 
 //    func isValidTrackerURL(_ url: String) -> Bool {

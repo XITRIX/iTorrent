@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RssChannelItemCell" customModule="iTorrent" customModuleProvider="target">
+            <connections>
+                <outlet property="newIndicatorView" destination="HkP-gl-Ck4" id="Xj7-pm-KfF"/>
+                <outlet property="timeLabel" destination="8qI-Vl-Mwz" id="IXH-5S-pxO"/>
+                <outlet property="titleLabel" destination="TZy-LS-tKo" id="f5B-hV-Md1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="e3j-zR-Wqo">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QFf-Pg-1BH">
+                    <rect key="frame" x="24" y="8" width="353" height="28"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZy-LS-tKo">
+                            <rect key="frame" x="0.0" y="2.3333333333333339" width="332" height="23.333333333333329"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Hyu-en-YCo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1d" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qI-Vl-Mwz">
+                            <rect key="frame" x="340" y="5.3333333333333339" width="13" height="17.333333333333329"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="QZR-oK-xLH"/>
+                    </constraints>
+                </stackView>
+                <view opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HkP-gl-Ck4">
+                    <rect key="frame" x="8" y="18" width="8" height="8"/>
+                    <color key="backgroundColor" systemColor="tintColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="Hae-4k-y02"/>
+                        <constraint firstAttribute="width" constant="8" id="YqU-1q-qvO"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="QFf-Pg-1BH" secondAttribute="trailing" id="8Ok-0y-eh4"/>
+                <constraint firstItem="HkP-gl-Ck4" firstAttribute="centerY" secondItem="e3j-zR-Wqo" secondAttribute="centerY" id="KJB-gJ-vnC"/>
+                <constraint firstItem="QFf-Pg-1BH" firstAttribute="leading" secondItem="HkP-gl-Ck4" secondAttribute="trailing" constant="8" id="Mdw-Xr-925"/>
+                <constraint firstAttribute="bottom" secondItem="QFf-Pg-1BH" secondAttribute="bottom" constant="8" id="Phu-8j-eYi"/>
+                <constraint firstItem="HkP-gl-Ck4" firstAttribute="leading" secondItem="e3j-zR-Wqo" secondAttribute="leading" constant="8" id="XZA-ll-ccU"/>
+                <constraint firstItem="QFf-Pg-1BH" firstAttribute="top" secondItem="e3j-zR-Wqo" secondAttribute="top" constant="8" id="emO-Ba-jIL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="90.839694656488547" y="-15.492957746478874"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -12,6 +12,7 @@ extension SceneDelegate {
     func processURL(_ url: URL) {
         if tryOpenTorrentDetails(with: url) { return }
         if tryOpenAddTorrent(with: url) { return }
+        if tryOpenRemoteAddTorrent(with: url) { return }
     }
 }
 
@@ -34,9 +35,21 @@ private extension SceneDelegate {
     func tryOpenAddTorrent(with url: URL) -> Bool {
         guard url.absoluteString.hasPrefix("file:///"),
               let rootViewController = window?.rootViewController?.topPresented
-        else { return false }
+        else {
+            return false
+        }
 
         TorrentAddViewModel.present(with: url, from: rootViewController)
+        return true
+    }
+
+    // Add new torrent flow by file remote URL
+    func tryOpenRemoteAddTorrent(with url: URL) -> Bool {
+        guard url.absoluteString.hasPrefix("http"),
+              let rootViewController = window?.rootViewController?.topPresented
+        else { return false }
+
+        TorrentAddViewModel.presentRemote(with: url, from: rootViewController)
         return true
     }
 }

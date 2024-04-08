@@ -1,5 +1,5 @@
 {
-  "originHash" : "a89be9d06cdd07212c417275dec56b90cd521588d8df1daf69fcba4ef6330285",
+  "originHash" : "6a5da8737ee37d506682cd608e169e5d5c7df49e0f5a17c44286e299319af04c",
   "pins" : [
     {
       "identity" : "combinecocoa",
@@ -26,6 +26,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "75bc2599ad74161f4fad51fb51493d5c4fd1511e"
+      }
+    },
+    {
+      "identity" : "swxmlhash",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/drmohundro/SWXMLHash.git",
+      "state" : {
+        "revision" : "a853604c9e9a83ad9954c7e3d2a565273982471f",
+        "version" : "7.0.2"
       }
     }
   ],

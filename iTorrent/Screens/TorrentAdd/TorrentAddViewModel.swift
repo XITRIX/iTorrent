@@ -5,9 +5,9 @@
 //  Created by Daniil Vinogradov on 06/11/2023.
 //
 
+import Combine
 import LibTorrent
 import MvvmFoundation
-import Combine
 import UIKit
 
 extension TorrentAddViewModel {
@@ -104,12 +104,12 @@ extension TorrentAddViewModel {
         updatePublisher.map { [unowned self] _ in
             var selected: UInt64 = 0
             var total: UInt64 = 0
-            torrentFile.files.forEach({ file in
+            torrentFile.files.forEach { file in
                 total += file.size
                 if file.priority != .dontDownload {
                     selected += file.size
                 }
-            })
+            }
             return "\(selected.bitrateToHumanReadable) / \(total.bitrateToHumanReadable)"
         }.eraseToAnyPublisher()
     }
@@ -135,9 +135,11 @@ private extension TorrentAddViewModel {
 
 extension TorrentAddViewModel {
     static func present(with url: URL, from navigationContext: NavigationProtocol) {
+        // TODO: Check if URL root is not the same as Application document root
         defer { url.stopAccessingSecurityScopedResource() }
-        guard url.startAccessingSecurityScopedResource(),
-              let file = TorrentFile(with: url)
+        _ = url.startAccessingSecurityScopedResource()
+
+        guard let file = TorrentFile(with: url)
         else { return }
 
         guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
@@ -149,5 +151,28 @@ extension TorrentAddViewModel {
         }
 
         navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
+    }
+
+    static func presentRemote(with url: URL, from navigationContext: NavigationProtocol, showAlerts: Bool = true) async -> Bool {
+        guard let (data, _) = try? await URLSession.shared.data(from: url) else {
+            if showAlerts {
+                let alert = UIAlertController(title: "Bad URL", message: nil, preferredStyle: .alert)
+                alert.addAction(.init(title: %"common.close", style: .cancel))
+                navigationContext.present(alert, animated: true)
+            }
+            return false
+        }
+
+        guard let torrentFile = TorrentFile(with: data) else {
+            if showAlerts {
+                let alert = UIAlertController(title: "Bad Torrent file", message: nil, preferredStyle: .alert)
+                alert.addAction(.init(title: %"common.close", style: .cancel))
+                navigationContext.present(alert, animated: true)
+            }
+            return false
+        }
+
+        navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true))
+        return true
     }
 }

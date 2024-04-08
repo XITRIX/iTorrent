@@ -26,6 +26,10 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
             viewModel.isRemoveAvailable.sink { [unowned self] available in
                 removeButton.isEnabled = available
             }
+
+            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
+                viewModel.selectedIndexPaths = indexPaths
+            }
         }
 
         title = %"details.actions.trackers"
@@ -34,7 +38,7 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
         collectionView.allowsMultipleSelectionDuringEditing = true
         collectionView.allowsSelection = false
 
-        collectionView.delegate = delegates
+//        collectionView.delegate = delegates
 
         addButton.primaryAction = .init(title: "Add Trackers", image: .init(systemName: "plus"), handler: { [unowned self] _ in
             viewModel.addTrackers()
@@ -56,21 +60,20 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
         super.setEditing(editing, animated: animated)
         collectionView.isEditing = editing
         navigationController?.setToolbarHidden(!editing, animated: true)
-        viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
         collectionView.allowsSelection = editing
     }
 
-    private lazy var delegates = Delegates(parent: self)
+//    private lazy var delegates = Delegates(parent: self)
 }
 
 private extension TorrentTrackersViewController {
-    class Delegates: DelegateObject<TorrentTrackersViewController>, UICollectionViewDelegate {
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            parent.viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
-        }
-
-        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-            parent.viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
-        }
-    }
+//    class Delegates: DelegateObject<TorrentTrackersViewController>, UICollectionViewDelegate {
+//        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//            parent.viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
+//        }
+//
+//        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//            parent.viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
+//        }
+//    }
 }

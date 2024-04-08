@@ -7,6 +7,6 @@
 
 import MvvmFoundation
 
-class BaseViewModel: MvvmViewModel {}
+open class BaseViewModel: MvvmViewModel {}
 
-class BaseViewModelWith<Model>: MvvmViewModelWith<Model> {}
+open class BaseViewModelWith<Model>: MvvmViewModelWith<Model> {}

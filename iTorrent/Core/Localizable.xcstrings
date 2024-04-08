@@ -2395,6 +2395,70 @@
         }
       }
     },
+    "rssfeed" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Feed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Фид"
+          }
+        }
+      }
+    },
+    "rsslist.add.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add RSS Feed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить RSS фид"
+          }
+        }
+      }
+    },
+    "rsslist.remove.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure to remove selected RSS feeds?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите удалить выделенные RSS фиды?"
+          }
+        }
+      }
+    },
+    "rsslist.remove.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove RSS Feeds"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удаление RSS фидов"
+          }
+        }
+      }
+    },
     "time.infinity" : {
       "localizations" : {
         "en" : {
