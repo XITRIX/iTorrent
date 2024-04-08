@@ -10,9 +10,11 @@ import UIKit
 
 extension SceneDelegate {
     func processURL(_ url: URL) {
-        if tryOpenTorrentDetails(with: url) { return }
-        if tryOpenAddTorrent(with: url) { return }
-        if tryOpenRemoteAddTorrent(with: url) { return }
+        Task {
+            if tryOpenTorrentDetails(with: url) { return }
+            if tryOpenAddTorrent(with: url) { return }
+            if await tryOpenRemoteAddTorrent(with: url) { return }
+        }
     }
 }
 
@@ -44,12 +46,11 @@ private extension SceneDelegate {
     }
 
     // Add new torrent flow by file remote URL
-    func tryOpenRemoteAddTorrent(with url: URL) -> Bool {
+    func tryOpenRemoteAddTorrent(with url: URL) async -> Bool {
         guard url.absoluteString.hasPrefix("http"),
               let rootViewController = window?.rootViewController?.topPresented
         else { return false }
 
-        TorrentAddViewModel.presentRemote(with: url, from: rootViewController)
-        return true
+        return await TorrentAddViewModel.presentRemote(with: url, from: rootViewController)
     }
 }

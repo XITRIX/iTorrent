@@ -11,6 +11,7 @@ import MvvmFoundation
 open class BaseCollectionViewModel: BaseViewModel {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var selectedIndexPaths: [IndexPath] = []
+    @Published var refreshTask: (() async -> Void)? = nil
 }
 
 open class BaseCollectionViewModelWith<Model>: BaseCollectionViewModel, MvvmViewModelWithProtocol {

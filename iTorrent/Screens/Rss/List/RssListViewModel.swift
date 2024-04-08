@@ -9,10 +9,7 @@ import Combine
 import Foundation
 import MvvmFoundation
 
-class RssListViewModel: BaseViewModel {
-    @Published var sections: [MvvmCollectionSectionModel] = []
-    @Published var selectedIndexPaths: [IndexPath] = []
-
+class RssListViewModel: BaseCollectionViewModel {
     required init() {
         super.init()
         setup()
@@ -60,6 +57,10 @@ private extension RssListViewModel {
                     }))
                 }))
             }
+        }
+
+        refreshTask = { [weak self] in
+            await self?.rssProvider.fetchUpdates()
         }
     }
 }

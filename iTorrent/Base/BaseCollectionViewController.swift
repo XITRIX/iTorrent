@@ -5,8 +5,8 @@
 //  Created by Даниил Виноградов on 08.04.2024.
 //
 
-import UIKit
 import MvvmFoundation
+import UIKit
 
 class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewController<VM> {
     var collectionView: MvvmCollectionView! { view as? MvvmCollectionView }
@@ -24,6 +24,7 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
         view.backgroundColor = .systemGroupedBackground
 #endif
 
+        refresh.addTarget(self, action: #selector(refreshFunc), for: .valueChanged)
         disposeBag.bind {
             viewModel.$sections.sink { [unowned self] sections in
                 collectionView.diffDataSource.applyModels(sections)
@@ -32,6 +33,17 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
             collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
                 viewModel.selectedIndexPaths = indexPaths
             }
+
+            viewModel.$refreshTask.sink { [unowned self] refreshTask in
+                self.refreshTask = refreshTask
+
+                guard refreshTask != nil else {
+                    collectionView.refreshControl = nil
+                    return
+                }
+
+                collectionView.refreshControl = refresh
+            }
         }
     }
 
@@ -39,4 +51,19 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
         super.viewWillAppear(animated)
         smoothlyDeselectRows(in: collectionView)
     }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        collectionView.isEditing = editing
+    }
+
+    @objc private func refreshFunc() {
+        Task {
+            await refreshTask?()
+            refresh.endRefreshing()
+        }
+    }
+
+    private var refreshTask: (() async -> Void)?
+    private let refresh = UIRefreshControl()
 }

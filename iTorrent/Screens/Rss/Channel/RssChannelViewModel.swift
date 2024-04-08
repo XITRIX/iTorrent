@@ -10,8 +10,10 @@ import MvvmFoundation
 
 class RssChannelViewModel: BaseCollectionViewModelWith<RssModel> {
     @Published var title: String = ""
+    var model: RssModel!
 
     override func prepare(with model: RssModel) {
+        self.model = model
         title = model.title
         disposeBag.bind {
             model.$items.sink { [unowned self] models in

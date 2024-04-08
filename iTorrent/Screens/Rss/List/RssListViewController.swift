@@ -8,8 +8,7 @@
 import MvvmFoundation
 import UIKit
 
-class RssListViewController<VM: RssListViewModel>: BaseViewController<VM> {
-    @IBOutlet private var collectionView: MvvmCollectionView!
+class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<VM> {
     private let addButton = UIBarButtonItem()
     private let removeButton = UIBarButtonItem()
 
@@ -70,7 +69,6 @@ class RssListViewController<VM: RssListViewModel>: BaseViewController<VM> {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        collectionView.isEditing = editing
         navigationController?.setToolbarHidden(!editing, animated: true)
     }
 }

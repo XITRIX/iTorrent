@@ -39,7 +39,6 @@
 		7CAD30202BC34BCE00592990 /* RssFeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */; };
-		7CFEBE6D2BC3E0F40013233F /* RssListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6B2BC3E0F40013233F /* RssListViewController.xib */; };
 		7CFEBE6F2BC3E0FE0013233F /* RssListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */; };
 		7CFEBE732BC3ED480013233F /* RssFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE712BC3ED480013233F /* RssFeedCell.swift */; };
 		7CFEBE742BC3ED480013233F /* RssFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFEBE722BC3ED480013233F /* RssFeedCell.xib */; };
@@ -215,7 +214,6 @@
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
 		7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListViewController.swift; sourceTree = "<group>"; };
-		7CFEBE6B2BC3E0F40013233F /* RssListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssListViewController.xib; sourceTree = "<group>"; };
 		7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListViewModel.swift; sourceTree = "<group>"; };
 		7CFEBE712BC3ED480013233F /* RssFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedCell.swift; sourceTree = "<group>"; };
 		7CFEBE722BC3ED480013233F /* RssFeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssFeedCell.xib; sourceTree = "<group>"; };
@@ -452,7 +450,6 @@
 				7CFEBE702BC3ED220013233F /* Cells */,
 				7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */,
 				7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */,
-				7CFEBE6B2BC3E0F40013233F /* RssListViewController.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1138,7 +1135,6 @@
 				D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */,
 				7C5FBE2A2BBDD4030069E5A0 /* PRColorPickerCell.xib in Resources */,
 				D1A226A52AEEEFCC00669D6D /* Main.storyboard in Resources */,
-				7CFEBE6D2BC3E0F40013233F /* RssListViewController.xib in Resources */,
 				D1352D222BBC33A000104E7B /* BasePreferencesViewController.xib in Resources */,
 				D1A226FA2AEF04E200669D6D /* TorrentListViewController.xib in Resources */,
 			);

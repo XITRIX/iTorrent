@@ -6,6 +6,7 @@
 //
 
 import MvvmFoundation
+import Combine
 
 open class BaseViewModel: MvvmViewModel {}
 

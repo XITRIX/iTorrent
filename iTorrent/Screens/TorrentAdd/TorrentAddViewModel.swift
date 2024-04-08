@@ -153,6 +153,7 @@ extension TorrentAddViewModel {
         navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
     }
 
+    @discardableResult
     static func presentRemote(with url: URL, from navigationContext: NavigationProtocol, showAlerts: Bool = true) async -> Bool {
         guard let (data, _) = try? await URLSession.shared.data(from: url) else {
             if showAlerts {
