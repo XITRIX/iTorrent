@@ -45,7 +45,7 @@ class RssListViewModel: BaseCollectionViewModel {
 
 private extension RssListViewModel {
     func setup() {
-        Task { await rssProvider.fetchUpdates() }
+        Task { [rssProvider] in await rssProvider.fetchUpdates() }
         disposeBag.bind {
             rssProvider.$rssModels.sink { [unowned self] models in
                 var sections: [MvvmCollectionSectionModel] = []

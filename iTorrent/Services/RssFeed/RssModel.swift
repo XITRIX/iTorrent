@@ -74,7 +74,6 @@ class RssModel: Hashable, Codable {
         return description
     }
 
-    @MainActor
     func update() async throws {
         let (data, _) = try await URLSession.shared.data(from: xmlLink)
         guard let contents = String(data: data, encoding: .utf8)
@@ -85,15 +84,14 @@ class RssModel: Hashable, Codable {
         let title = xml["rss"]["channel"]["title"].element?.text
         let description = xml["rss"]["channel"]["description"].element?.text
 
-        self.title = title ?? "RSS Feed"
-        self.description = description
-
+        var localLink: URL?
+        var localLinkImage: URL?
         if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
            let link = URL(string: xmlLink),
            let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink)
         {
-            self.link = link
-            self.linkImage = linkImage
+            localLink = link
+            localLinkImage = linkImage
         }
 
         var newItems = xml["rss"]["channel"]["item"].all.map { xmlItem in
@@ -101,8 +99,14 @@ class RssModel: Hashable, Codable {
         }.filter { !items.contains($0) }
 
         newItems.mutableForEach { $0.new = true }
-        
-        items = newItems + items
+
+        await MainActor.run { [newItems, localLink, localLinkImage] in
+            self.title = title ?? "RSS Feed"
+            self.description = description
+            self.link = localLink
+            self.linkImage = localLinkImage
+            items = newItems + items
+        }
     }
 
     func hash(into hasher: inout Hasher) {
