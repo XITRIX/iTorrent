@@ -16,25 +16,17 @@ class PRStorageCell<VM: PRStorageViewModel>: MvvmCollectionViewListCell<VM> {
     override func setup(with viewModel: VM) {
         progressBarView.layer.cornerRadius = 6
         progressBarView.layer.cornerCurve = .continuous
-        updateBarData()
 
-        MemorySpaceManager.shared.calculateDetailedSections { [weak self] _ in
-            self?.updateBarData()
-        }
-
-        freeSpaceText.text = "\(MemorySpaceManager.freeDiskSpace) \(%"preferences.storage.available")"
-    }
-
-    func updateBarData() {
-        if let progressBarView = progressBarView,
-            let labels = labels {
-            let storage = MemorySpaceManager.shared.storageCategories.map { ($0.category.color, $0.percentage) }
-            progressBarView.setProgress(storage)
-            var res = MemorySpaceManager.shared.storageCategories.map { ($0.category.title, $0.category.color) }
-            if res.count > 4 {
-                res.removeLast()
+        Task { await MemorySpaceManager.shared.update() }
+        
+        disposeBag.bind {
+            MemorySpaceManager.shared.$storageCategories.sink { [unowned self] categories in
+                let storage = categories.map { ($0.category.color, $0.percentage) }
+                progressBarView.setProgress(storage)
+                let res = categories.map { ($0.category.title, $0.category.color) }
+                labels.labels = Array(res.prefix(4))
             }
-            labels.labels = res
         }
+        freeSpaceText.text = "\(MemorySpaceManager.freeDiskSpace) \(%"preferences.storage.available")"
     }
 }

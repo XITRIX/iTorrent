@@ -7,6 +7,7 @@
 
 import CoreLocation
 
+@MainActor
 class LocationBackgroundService: NSObject {
     override init() {
         super.init()
@@ -45,12 +46,6 @@ extension LocationBackgroundService: BackgroundServiceProtocol {
 
         status = locationManager.authorizationStatus
         return status != .restricted && status != .denied && status != .notDetermined
-
-//        if status == .restricted || status == .denied {
-//            let alert = ThemedUIAlertController(title: "Permission not granted", message: "You rejected location permissions earlier, to allow iTorrent to use location manager go to Settings -> iTonnret and allow it to use location services", preferredStyle: .alert)
-//            alert.addAction(.init(title: "OK", style: .cancel))
-//            context.present(alert, animated: true)
-//        }
     }
 }
 
@@ -74,11 +69,13 @@ private extension LocationBackgroundService {
 }
 
 extension LocationBackgroundService: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         guard manager.authorizationStatus != .notDetermined
         else { return }
 
-        continuation?.resume()
-        continuation = nil
+        Task {
+            await continuation?.resume()
+//            continuation = nil
+        }
     }
 }

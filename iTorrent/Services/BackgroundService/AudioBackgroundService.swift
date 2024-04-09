@@ -7,6 +7,7 @@
 
 import AVFoundation
 
+@MainActor
 class AudioBackgroundService {
     private var player: AVAudioPlayer?
 }
@@ -41,7 +42,7 @@ private extension AudioBackgroundService {
             key.getValue(&intValue)
             if intValue == 1 {
                 if !playAudio() {
-                    Task { await stop() }
+                    stop()
                 }
             }
         }

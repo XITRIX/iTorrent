@@ -13,6 +13,7 @@ extension UIImage {
         case largest
     }
 
+    @MainActor 
     public class func icon(forFileURL fileURL: URL, preferredSize: FileIconSize = .smallest) -> UIImage {
         let myInteractionController = UIDocumentInteractionController(url: fileURL)
         let allIcons = myInteractionController.icons

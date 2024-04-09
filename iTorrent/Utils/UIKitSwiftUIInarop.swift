@@ -19,6 +19,7 @@ private struct GenericControllerView: UIViewControllerRepresentable {
 }
 
 extension View {
+    @MainActor
     var asController: UIHostingController<Self> {
         let vc = UIHostingController<Self>(rootView: self)
         if #available(iOS 16.4, *) {

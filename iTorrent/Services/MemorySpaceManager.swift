@@ -10,7 +10,7 @@ import CoreServices
 import UIKit
 import UniformTypeIdentifiers
 
-class MemorySpaceManager {
+public final class MemorySpaceManager: @unchecked Sendable {
     enum FileErrors: Error {
         case BadEnumeration
         case BadResource
@@ -53,7 +53,7 @@ class MemorySpaceManager {
         var percentage: Float
     }
 
-    struct StorageCategory {
+    public struct StorageCategory: Sendable {
         var category: CategoryType
         var segments: [StorageSegment]
         var size: Float {
@@ -71,8 +71,7 @@ class MemorySpaceManager {
 
     public static let shared = MemorySpaceManager()
 
-    var storage: [StorageSegment]
-    var storageCategories: [StorageCategory]
+    @Published public private(set) var storageCategories: [StorageCategory]
 
     private init() {
         let freeSpace = Float(MemorySpaceManager.freeDiskSpaceInBytes)
@@ -89,58 +88,43 @@ class MemorySpaceManager {
 
         storageCategories = []
         storageCategories.append(contentsOf: storage.map { StorageCategory(category: categoryFrom($0.mime), segments: [$0]) })
+
+        Task { await update() }
     }
 
-    private var completionAction: (([StorageCategory]) -> ())?
-    private var inProgress = false
-    func calculateDetailedSections(completion: (([StorageCategory]) -> ())? = nil) {
-        completionAction = completion
-
-        if inProgress { return }
-        inProgress = true
-
-        DispatchQueue.global(qos: .background).async {
-            let freeSpace = Float(MemorySpaceManager.freeDiskSpaceInBytes)
-
-            let usedSpace = MemorySpaceManager.usedDiskSpaceByAppInBytesWithMime
-            let mime = usedSpace.mime.sorted { $0 > $1 }
-
-            let overallSpace = freeSpace + Float(usedSpace.overallSize)
-
-            let freeSpacePercentage = freeSpace / overallSpace
-
-            let storageBuff = mime.map { MemorySpaceManager.StorageSegment(mime: $0.key, size: Float($0.value), percentage: Float($0.value) / overallSpace) }
-
-            self.storage.removeAll()
-            self.storage.append(contentsOf: storageBuff)
-
-            if let otherIdx = self.storage.firstIndex(where: { $0.mime == "other" }) {
-                self.storage.append(self.storage.remove(at: otherIdx))
-            }
-
-            self.storage.append(MemorySpaceManager.StorageSegment(mime: "free", size: freeSpace, percentage: freeSpacePercentage))
-
-            // Category
-            self.storageCategories.removeAll()
-            for segment in self.storage {
-                let category = self.categoryFrom(segment.mime)
-                if let elemIdx = self.self.storageCategories.firstIndex(where: { $0.category == category }) {
-                    self.storageCategories[elemIdx].segments.append(segment)
-                } else {
-                    self.storageCategories.append(MemorySpaceManager.StorageCategory(category: category, segments: [segment]))
-                }
-            }
-            //
-
-            self.storageCategories = self.storageCategories.filter { $0.percentage > 0.005 }
-
-            DispatchQueue.main.async {
-                self.completionAction?(self.storageCategories)
-                self.inProgress = false
-            }
-        }
+    func update() async {
+        guard !isUpdating else { return }
+        isUpdating = true
+        await calculateDetailedSections()
+        isUpdating = false
     }
 
+    private var isUpdating = false
+    private var storage: [StorageSegment]
+}
+
+public extension MemorySpaceManager {
+    // MARK: Get String Value
+
+    static var totalDiskSpace: String {
+        ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+    }
+
+    static var freeDiskSpace: String {
+        ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+    }
+
+    static var usedDiskSpace: String {
+        ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
+    }
+
+    static var usedDiskSpaceByApp: String {
+        ByteCountFormatter.string(fromByteCount: usedDiskSpaceByAppInBytes,
+                                  countStyle: ByteCountFormatter.CountStyle.file)
+    }
+}
+
+private extension MemorySpaceManager {
     func categoryFrom(_ mime: String) -> CategoryType {
         let category = String(mime.split(separator: "/")[0])
 
@@ -162,9 +146,47 @@ class MemorySpaceManager {
         }
     }
 
+    func calculateDetailedSections() async {
+        let freeSpace = Float(MemorySpaceManager.freeDiskSpaceInBytes)
+
+        let usedSpace = MemorySpaceManager.usedDiskSpaceByAppInBytesWithMime
+        let mime = usedSpace.mime.sorted { $0 > $1 }
+
+        let overallSpace = freeSpace + Float(usedSpace.overallSize)
+
+        let freeSpacePercentage = freeSpace / overallSpace
+
+        let storageBuff = mime.map { MemorySpaceManager.StorageSegment(mime: $0.key, size: Float($0.value), percentage: Float($0.value) / overallSpace) }
+
+        storage.removeAll()
+        storage.append(contentsOf: storageBuff)
+
+        if let otherIdx = storage.firstIndex(where: { $0.mime == "other" }) {
+            storage.append(storage.remove(at: otherIdx))
+        }
+
+        storage.append(MemorySpaceManager.StorageSegment(mime: "free", size: freeSpace, percentage: freeSpacePercentage))
+
+        // Category
+        var localStorageCategories: [StorageCategory] = []
+        for segment in storage {
+            let category = categoryFrom(segment.mime)
+            if let elemIdx = localStorageCategories.firstIndex(where: { $0.category == category }) {
+                localStorageCategories[elemIdx].segments.append(segment)
+            } else {
+                localStorageCategories.append(MemorySpaceManager.StorageCategory(category: category, segments: [segment]))
+            }
+        }
+        //
+
+        await MainActor.run { [localStorageCategories] in
+            storageCategories = localStorageCategories.filter { $0.percentage > 0.005 }
+        }
+    }
+
     // MARK: Formatter MB only
 
-    class func MBFormatter(_ bytes: Int64) -> String {
+    static func MBFormatter(_ bytes: Int64) -> String {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = ByteCountFormatter.Units.useMB
         formatter.countStyle = ByteCountFormatter.CountStyle.decimal
@@ -172,28 +194,9 @@ class MemorySpaceManager {
         return formatter.string(fromByteCount: bytes) as String
     }
 
-    // MARK: Get String Value
-
-    class var totalDiskSpace: String {
-        ByteCountFormatter.string(fromByteCount: totalDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
-    }
-
-    class var freeDiskSpace: String {
-        ByteCountFormatter.string(fromByteCount: freeDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
-    }
-
-    class var usedDiskSpace: String {
-        ByteCountFormatter.string(fromByteCount: usedDiskSpaceInBytes, countStyle: ByteCountFormatter.CountStyle.file)
-    }
-
-    class var usedDiskSpaceByApp: String {
-        ByteCountFormatter.string(fromByteCount: usedDiskSpaceByAppInBytes,
-                                  countStyle: ByteCountFormatter.CountStyle.file)
-    }
-
     // MARK: Get raw value
 
-    class var totalDiskSpaceInBytes: Int64 {
+    static var totalDiskSpaceInBytes: Int64 {
         do {
             let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
             let space = (systemAttributes[FileAttributeKey.systemSize] as? NSNumber)?.int64Value
@@ -203,7 +206,7 @@ class MemorySpaceManager {
         }
     }
 
-    class var freeDiskSpaceInBytes: Int64 {
+    static var freeDiskSpaceInBytes: Int64 {
         do {
             let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
             let freeSpace = (systemAttributes[FileAttributeKey.systemFreeSize] as? NSNumber)?.int64Value
@@ -213,7 +216,7 @@ class MemorySpaceManager {
         }
     }
 
-    class var usedDiskSpaceByAppInBytes: Int64 {
+    static var usedDiskSpaceByAppInBytes: Int64 {
         do {
             return try findSizeInBytes(path: TorrentService.downloadPath.path())
         } catch {
@@ -221,7 +224,7 @@ class MemorySpaceManager {
         }
     }
 
-    class var usedDiskSpaceByAppInBytesWithMime: (overallSize: Int64, mime: [String: Int64]) {
+    static var usedDiskSpaceByAppInBytesWithMime: (overallSize: Int64, mime: [String: Int64]) {
         do {
             return try findSizeInBytesWithMime(path: TorrentService.downloadPath.path())
         } catch {
@@ -229,7 +232,7 @@ class MemorySpaceManager {
         }
     }
 
-    class var usedDiskSpaceInBytes: Int64 {
+    static var usedDiskSpaceInBytes: Int64 {
         let usedSpace = totalDiskSpaceInBytes - freeDiskSpaceInBytes
         return usedSpace
     }
