@@ -5,6 +5,7 @@
 //  Created by Даниил Виноградов on 06.04.2024.
 //
 
+#if canImport(ActivityKit)
 import ActivityKit
 import SwiftUI
 import WidgetKit
@@ -88,3 +89,4 @@ struct ProgressWidgetLiveActivity: Widget {
 //    ProgressWidgetAttributes.ContentState(progress: 0.2, downSpeed: 2000, upSpeed: 1000, timeRemainig: "Осталось САСАТБ", timeStamp: .now)
 //    ProgressWidgetAttributes.ContentState(progress: 0.7, downSpeed: 12000000, upSpeed: 1000000, timeRemainig: "Осталось САСАТБ", timeStamp: .now)
 //}
+#endif

@@ -14,7 +14,7 @@ import CoreTelephony
 
 class NetworkMonitoringService {
     @Published var availableInterfaces: [NWInterface] = []
-#if canImport(CoreTelephony)
+#if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
     @Published var cellularState: CTCellularDataRestrictedState = .restrictedStateUnknown
 #endif
 
@@ -24,7 +24,7 @@ class NetworkMonitoringService {
             updateAvailableInterfaces()
         }
 
-#if canImport(CoreTelephony)
+#if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
         cellularData.cellularDataRestrictionDidUpdateNotifier = { [weak self] newState in
             guard let self else { return }
             cellularState = newState
@@ -37,14 +37,14 @@ class NetworkMonitoringService {
     }
 
     private let monitor = NWPathMonitor()
-#if canImport(CoreTelephony)
+#if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
     private let cellularData = CTCellularData()
 #endif
 }
 
 private extension NetworkMonitoringService {
     func updateAvailableInterfaces() {
-#if canImport(CoreTelephony)
+#if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
         let isCellularRestricted = cellularData.restrictedState == .restricted
 #else
         let isCellularRestricted = false

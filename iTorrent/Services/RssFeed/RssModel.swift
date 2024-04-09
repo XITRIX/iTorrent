@@ -37,7 +37,7 @@ class RssModel: Hashable, Codable {
     init(link: URL) async throws {
         xmlLink = link
 
-        let (data, response) = try await URLSession.shared.data(from: xmlLink)
+        let (data, _) = try await URLSession.shared.data(from: xmlLink)
         guard let contents = String(data: data, encoding: .utf8)
         else { throw Error.corruptedData }
 

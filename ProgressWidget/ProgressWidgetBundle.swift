@@ -12,6 +12,8 @@ import WidgetKit
 struct ProgressWidgetBundle: WidgetBundle {
     var body: some Widget {
 //        ProgressWidget()
+#if canImport(ActivityKit)
         ProgressWidgetLiveActivity()
+#endif
     }
 }

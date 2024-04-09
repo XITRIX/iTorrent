@@ -89,7 +89,7 @@ class SceneDelegate: MvvmSceneDelegate {
 
     override func binding() {
         bindLiveActivity()
-        bind(in: disposeBag) {
+        disposeBag.bind {
             tintColorBind
             appAppearanceBind
             backgroundDownloadModeBind
