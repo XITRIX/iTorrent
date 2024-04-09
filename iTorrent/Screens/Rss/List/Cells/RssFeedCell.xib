@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,38 +79,19 @@
                         </label>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebU-f0-7cN">
-                    <rect key="frame" x="333" y="6.6666666666666679" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="44" id="GGL-YK-p78"/>
-                        <constraint firstAttribute="height" constant="44" id="nsg-V7-mjl"/>
-                    </constraints>
-                    <state key="normal">
-                        <imageReference key="image" image="ellipsis.circle" catalog="system" symbolScale="large"/>
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
-                    </state>
-                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailingMargin" secondItem="ebU-f0-7cN" secondAttribute="trailing" id="1ua-tu-J24"/>
-                <constraint firstItem="ebU-f0-7cN" firstAttribute="centerY" secondItem="6PN-eI-ZGF" secondAttribute="centerY" id="9cE-Fi-Ag3"/>
                 <constraint firstAttribute="trailingMargin" secondItem="sJk-R7-M4m" secondAttribute="trailing" id="J8S-eW-vLQ"/>
                 <constraint firstItem="sJk-R7-M4m" firstAttribute="leading" secondItem="6PN-eI-ZGF" secondAttribute="leadingMargin" id="erg-cA-8Us"/>
                 <constraint firstAttribute="bottom" secondItem="sJk-R7-M4m" secondAttribute="bottom" constant="8" id="iKh-BL-0Gh"/>
                 <constraint firstItem="sJk-R7-M4m" firstAttribute="top" secondItem="6PN-eI-ZGF" secondAttribute="top" constant="8" id="lwU-mg-dPX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="ebU-f0-7cN"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="-306.1068702290076" y="283.45070422535213"/>
         </view>
     </objects>
     <resources>
-        <image name="ellipsis.circle" catalog="system" width="128" height="123"/>
         <image name="ic_rss" width="25" height="25"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

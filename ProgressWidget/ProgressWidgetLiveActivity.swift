@@ -82,25 +82,9 @@ struct ProgressWidgetLiveActivity: Widget {
     }
 }
 
-private extension ProgressWidgetAttributes {
-    static var preview: ProgressWidgetAttributes {
-        ProgressWidgetAttributes(name: "World", hash: "")
-    }
-}
-
-private extension ProgressWidgetAttributes.ContentState {
-    static var smiley: ProgressWidgetAttributes.ContentState {
-        ProgressWidgetAttributes.ContentState(progress: 0.2, downSpeed: 2000, upSpeed: 1000, timeRemainig: "Осталось САСАТБ", timeStamp: .now)
-    }
-
-    static var starEyes: ProgressWidgetAttributes.ContentState {
-        ProgressWidgetAttributes.ContentState(progress: 0.7, downSpeed: 12000000, upSpeed: 1000000, timeRemainig: "Осталось САСАТБ", timeStamp: .now)
-    }
-}
-
-#Preview("Notification", as: .content, using: ProgressWidgetAttributes.preview) {
-    ProgressWidgetLiveActivity()
-} contentStates: {
-    ProgressWidgetAttributes.ContentState.smiley
-    ProgressWidgetAttributes.ContentState.starEyes
-}
+//#Preview("Notification", as: .content, using: ProgressWidgetAttributes.preview) {
+//    ProgressWidgetLiveActivity()
+//} contentStates: {
+//    ProgressWidgetAttributes.ContentState(progress: 0.2, downSpeed: 2000, upSpeed: 1000, timeRemainig: "Осталось САСАТБ", timeStamp: .now)
+//    ProgressWidgetAttributes.ContentState(progress: 0.7, downSpeed: 12000000, upSpeed: 1000000, timeRemainig: "Осталось САСАТБ", timeStamp: .now)
+//}
