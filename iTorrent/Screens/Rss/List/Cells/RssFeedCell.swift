@@ -7,6 +7,7 @@
 
 import UIKit
 import MvvmFoundation
+import CombineCocoa
 
 class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
     @IBOutlet private var feedLogoImageView: UIImageView!
@@ -30,6 +31,19 @@ class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
             viewModel.$newCounter.sink { [unowned self] newCounter in
                 newCounterLabel.text = "\(newCounter)"
             }
+            editButton.tapPublisher.sink { _ in
+                viewModel.openPreferences()
+            }
+            viewModel.popoverPreferenceNavigationTransaction.sink { [unowned self] from, to in
+                let nvc = UINavigationController.resolve()
+                let target = nvc
+                target.viewControllers = [to]
+                target.modalPresentationStyle = .popover
+                target.popoverPresentationController?.sourceView = editButton
+                target.popoverPresentationController?.delegate = delegates
+                target.popoverPresentationController?.permittedArrowDirections = [.up, .down, .left]
+                from.present(target, animated: true)
+            }
         }
 
         accessories = [
@@ -42,5 +56,13 @@ class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
         ]
     }
 
-//    edit
+    private lazy var delegates = Delegates(parent: self)
+}
+
+private extension RssFeedCell {
+    class Delegates: DelegateObject<RssFeedCell>, UIPopoverPresentationControllerDelegate {
+        func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+            .none
+        }
+    }
 }

@@ -22,7 +22,9 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
 
         webView = WKWebView()
         webView.backgroundColor = .secondarySystemBackground
+#if !os(visionOS)
         webView.scrollView.keyboardDismissMode = .onDrag
+#endif
         view = webView
     }
 

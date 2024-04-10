@@ -25,6 +25,8 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
     @Published var description: String = ""
     @Published var newCounter: Int = 0
 
+    let popoverPreferenceNavigationTransaction = PassthroughRelay<(from: UIViewController, to: UIViewController)>()
+
     override func prepare(with model: Config) {
         self.model = model.rssModel
         feedLogo = .icRss // TODO: Add real icon
@@ -37,5 +39,13 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
 
     override func hash(into hasher: inout Hasher) {
         hasher.combine(model)
+    }
+
+    func openPreferences() {
+//        navigate(to: RssListPreferencesViewModel.self, with: (), by: .present(wrapInNavigation: true))
+
+        navigate(to: RssListPreferencesViewModel.self, with: (), by: .custom(transaction: { [weak self] from, to in
+            self?.popoverPreferenceNavigationTransaction.send((from, to))
+        }))
     }
 }

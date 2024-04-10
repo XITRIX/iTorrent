@@ -27,6 +27,7 @@ extension RssFeedProvider {
     }
 }
 
+@MainActor
 class RssFeedProvider {
     @Published var rssModels: [RssModel]
 
@@ -58,7 +59,9 @@ extension RssFeedProvider {
         }
 
         let model = try await RssModel(link: url)
-        rssModels.insert(model, at: 0)
+        await MainActor.run {
+            rssModels.insert(model, at: 0)
+        }
         return model
     }
 

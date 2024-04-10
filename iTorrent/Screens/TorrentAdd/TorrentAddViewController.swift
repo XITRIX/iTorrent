@@ -38,6 +38,7 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
             navigationItem.leadingItemGroups.append(.fixedGroup(items: [cancelButton]))
         }
 
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [downloadButton]))
 
         navigationController?.setToolbarHidden(false, animated: false)

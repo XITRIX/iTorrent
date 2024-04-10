@@ -28,7 +28,7 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
         refresh.addTarget(self, action: #selector(refreshFunc), for: .valueChanged)
         disposeBag.bind {
             viewModel.$sections.sink { [unowned self] sections in
-                collectionView.diffDataSource.applyModels(sections)
+                collectionView.sections.send(sections)
             }
 
             collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in

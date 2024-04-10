@@ -41,6 +41,7 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(RssListViewController.self)
         router.register(RssChannelViewController.self)
         router.register(RssDetailsViewController.self)
+        router.register(RssListPreferencesViewController.self)
 
         // MARK: Cells
         router.register(TorrentListItemView.self)
