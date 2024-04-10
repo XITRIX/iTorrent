@@ -9,6 +9,7 @@ import MvvmFoundation
 import SafariServices
 import UIKit
 import WebKit
+import LibTorrent
 
 class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> {
     var webView: WKWebView!
@@ -68,15 +69,14 @@ private extension RssDetailsViewController {
                   UIApplication.shared.canOpenURL(url)
             else { return decisionHandler(.allow) }
 
-            if url.absoluteString.hasSuffix(".torrent") {
-                Task {
-                    if await TorrentAddViewModel.presentRemote(with: url, from: parent, showAlerts: false) == false {
-                        await parent.present(SFSafariViewController(url: url), animated: true)
-                    }
+            Task {
+                if let torrentFile = await TorrentFile(remote: url) {
+                    await TorrentAddViewModel.present(with: torrentFile, from: parent)
+                } else {
+                    await parent.present(SFSafariViewController(url: url), animated: true)
                 }
-            } else {
-                parent.present(SFSafariViewController(url: url), animated: true)
             }
+            
             decisionHandler(.cancel)
         }
     }

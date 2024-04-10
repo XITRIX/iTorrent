@@ -11,6 +11,7 @@ import MvvmFoundation
 class RssChannelItemCell<VM: RssChannelItemCellViewModel>: MvvmCollectionViewListCell<VM> {
     @IBOutlet private var newIndicatorView: UIView!
     @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var timeLabel: UILabel!
     
     override func initSetup() {
@@ -26,7 +27,14 @@ class RssChannelItemCell<VM: RssChannelItemCellViewModel>: MvvmCollectionViewLis
             viewModel.$title.sink { [titleLabel] text in
                 titleLabel?.text = text
             }
-            
+            viewModel.$date.sink { [timeLabel] text in
+                timeLabel?.text = text
+                timeLabel?.isHidden = text == nil
+            }
+            viewModel.$subtitle.sink { [subtitleLabel] text in
+                subtitleLabel?.text = text
+                subtitleLabel?.isHidden = text == nil
+            }
         }
     }
 }

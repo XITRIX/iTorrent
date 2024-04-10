@@ -44,6 +44,8 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
     }
 
+    override var useMarqueeLabel: Bool { false }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

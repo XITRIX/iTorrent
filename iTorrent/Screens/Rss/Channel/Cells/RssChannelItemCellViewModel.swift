@@ -21,17 +21,28 @@ class RssChannelItemCellViewModel: BaseViewModelWith<RssChannelItemCellViewModel
 
 //    private var link: URL!
     @Published var title: String = ""
-    @Published var date: String = ""
+    @Published var subtitle: String?
+    @Published var date: String?
     @Published var isNew: Bool = true
+    private var model: RssItemModel!
 
     override func prepare(with model: Config) {
 //        link = model.rssModel.link
+        self.model = model.rssModel
         title = model.rssModel.title ?? ""
         isNew = model.rssModel.new
         selectAction = model.selectAction
+        if let modelDate = model.rssModel.date {
+            date = Date().offset(from: modelDate)
+        }
     }
 
-//    override func hash(into hasher: inout Hasher) {
-//        hasher.combine(link)
-//    }
+    override func hash(into hasher: inout Hasher) {
+        hasher.combine(model)
+    }
+
+    override func isEqual(to other: MvvmViewModel) -> Bool {
+        guard let other = other as? Self else { return false }
+        return model == other.model
+    }
 }

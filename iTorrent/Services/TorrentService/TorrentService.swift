@@ -43,23 +43,31 @@ class TorrentService {
 }
 
 extension TorrentService {
-    func addTorrent(by file: Downloadable) {
-        guard !torrents.contains(where: { file.infoHashes == $0.infoHashes })
-        else { return }
-
-        session.addTorrent(file)
+    func checkTorrentExists(with hash: TorrentHashes) -> Bool {
+        torrents.contains(where: { $0.infoHashes == hash })
     }
 
-    func addTorrent(by path: URL) {
+    @discardableResult
+    func addTorrent(by file: Downloadable) -> Bool {
+        guard !torrents.contains(where: { file.infoHashes == $0.infoHashes })
+        else { return false }
+
+        session.addTorrent(file)
+        return true
+    }
+
+    @discardableResult
+    func addTorrent(by path: URL) -> Bool {
         defer { path.stopAccessingSecurityScopedResource() }
         guard path.startAccessingSecurityScopedResource(),
               let file = TorrentFile(with: path)
-        else { return }
+        else { return false }
 
         guard !torrents.contains(where: { file.infoHashes == $0.infoHashes })
-        else { return }
+        else { return false }
 
         session.addTorrent(file)
+        return true
     }
 
     func removeTorrent(by infoHashes: TorrentHashes, deleteFiles: Bool) {

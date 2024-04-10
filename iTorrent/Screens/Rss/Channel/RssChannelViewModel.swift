@@ -32,6 +32,6 @@ private extension RssChannelViewModel {
             RssChannelItemCellViewModel(with: .init(rssModel: model, selectAction: { [unowned self] in
                 navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
             }))
-        }))
+        }.removingDuplicates()))
     }
 }

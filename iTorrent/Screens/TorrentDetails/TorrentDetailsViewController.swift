@@ -18,8 +18,6 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
     private let rehashButton = UIBarButtonItem()
     private let deleteButton = UIBarButtonItem()
 
-    private let titleLabel = MarqueeLabel()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
@@ -93,19 +91,6 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             deleteButton
         ]
-
-#if !os(visionOS)
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
-#else
-        titleLabel.font = .preferredFont(forTextStyle: .title1)
-#endif
-        titleLabel.fadeLength = 16
-        titleLabel.text = title
-        titleLabel.adjustsFontForContentSizeCategory = true
-
-#if !os(visionOS) // Not renders properly on VisionOS
-        navigationItem.titleView = titleLabel
-#endif
     }
 
     override func viewWillAppear(_ animated: Bool) {

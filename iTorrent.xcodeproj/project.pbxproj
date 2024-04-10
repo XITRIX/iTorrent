@@ -54,6 +54,7 @@
 		7CFEBE912BC441980013233F /* RssDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE8F2BC441980013233F /* RssDetailsViewController.swift */; };
 		7CFEBE922BC441980013233F /* RssDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CFEBE902BC441980013233F /* RssDetailsViewController.xib */; };
 		7CFEBE942BC441A20013233F /* RssDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE932BC441A20013233F /* RssDetailsViewModel.swift */; };
+		7CFEBEA02BC6F3CD0013233F /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE9F2BC6F3CD0013233F /* Date+Extensions.swift */; };
 		D1048D852BBE92220027EF2F /* SAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D832BBE92220027EF2F /* SAViewController.swift */; };
 		D1048D862BBE92220027EF2F /* SANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D842BBE92220027EF2F /* SANavigationController.swift */; };
 		D1048D8B2BBEB6DE0027EF2F /* CombineLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1048D8A2BBEB6DE0027EF2F /* CombineLatest.swift */; };
@@ -229,6 +230,7 @@
 		7CFEBE8F2BC441980013233F /* RssDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssDetailsViewController.swift; sourceTree = "<group>"; };
 		7CFEBE902BC441980013233F /* RssDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssDetailsViewController.xib; sourceTree = "<group>"; };
 		7CFEBE932BC441A20013233F /* RssDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssDetailsViewModel.swift; sourceTree = "<group>"; };
+		7CFEBE9F2BC6F3CD0013233F /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D1048D832BBE92220027EF2F /* SAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAViewController.swift; sourceTree = "<group>"; };
 		D1048D842BBE92220027EF2F /* SANavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
 		D1048D8A2BBEB6DE0027EF2F /* CombineLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatest.swift; sourceTree = "<group>"; };
@@ -795,6 +797,7 @@
 				D1352D2D2BBD6ED300104E7B /* UIColor+Hex.swift */,
 				7C5FBE2B2BBDD6B40069E5A0 /* UIView+LayerColors.swift */,
 				7CFEBE8C2BC440350013233F /* Array+MutableForEach.swift */,
+				7CFEBE9F2BC6F3CD0013233F /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1181,6 +1184,7 @@
 				7C5FBE642BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift in Sources */,
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */,
+				7CFEBEA02BC6F3CD0013233F /* Date+Extensions.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
 				7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */,

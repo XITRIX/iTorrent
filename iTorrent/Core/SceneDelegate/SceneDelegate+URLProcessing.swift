@@ -48,9 +48,11 @@ private extension SceneDelegate {
     // Add new torrent flow by file remote URL
     func tryOpenRemoteAddTorrent(with url: URL) async -> Bool {
         guard url.absoluteString.hasPrefix("http"),
-              let rootViewController = window?.rootViewController?.topPresented
+              let rootViewController = window?.rootViewController?.topPresented,
+              let torrentFile = await TorrentFile(remote: url)
         else { return false }
 
-        return await TorrentAddViewModel.presentRemote(with: url, from: rootViewController)
+        TorrentAddViewModel.present(with: torrentFile, from: rootViewController)
+        return true
     }
 }
