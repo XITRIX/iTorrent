@@ -40,6 +40,13 @@ class RssListViewModel: BaseCollectionViewModel {
         ])
     }
 
+    func reorderItems(_ viewModels: [MvvmViewModel]) {
+        let rssModels = viewModels.compactMap { $0 as? RssFeedCellViewModel }.compactMap { $0.model }
+        DispatchQueue.main.async { [self] in
+            rssProvider.rssModels = rssModels
+        }
+    }
+
     @Injected private var rssProvider: RssFeedProvider
 }
 

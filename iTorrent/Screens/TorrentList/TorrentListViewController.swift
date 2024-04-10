@@ -60,6 +60,9 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             },
             UIAction(title: %"list.add.magnet", image: .init(resource: .icMagnet)) { [unowned self] _ in
                 present(makeMagnetAlert(), animated: true)
+            },
+            UIAction(title: %"list.add.url", image: .init(systemName: "link.badge.plus")) { [unowned self] _ in
+                present(makeUrlAlert(), animated: true)
             }
         ])
 
@@ -226,7 +229,48 @@ extension TorrentListViewController {
                 present(alert, animated: true)
                 return
             }
+
+            guard !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes) else {
+                let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(magnet.infoHashes.best.hex)_exists", preferredStyle: .alert)
+                alert.addAction(.init(title: %"common.close", style: .cancel))
+                present(alert, animated: true)
+                return
+            }
+
             TorrentService.shared.addTorrent(by: magnet)
+        })
+        return alert
+    }
+
+    func makeUrlAlert() -> UIAlertController {
+        let alert = UIAlertController(title: %"list.add.url.title", message: %"list.add.url.message", preferredStyle: .alert)
+
+        alert.addTextField { textField in
+            textField.placeholder = %"list.add.url.placeholder"
+        }
+
+        alert.addAction(.init(title: %"common.cancel", style: .cancel))
+        alert.addAction(.init(title: %"common.ok", style: .default) { [unowned self] _ in
+            Task {
+                guard let text = alert.textFields?.first?.text,
+                      let url = URL(string: text),
+                      let torrentFile = await TorrentFile(remote: url)
+                else {
+                    let alert = UIAlertController(title: %"common.error", message: %"list.add.url.error", preferredStyle: .alert)
+                    alert.addAction(.init(title: %"common.close", style: .cancel))
+                    present(alert, animated: true)
+                    return
+                }
+
+                guard !TorrentService.shared.checkTorrentExists(with: torrentFile.infoHashes) else {
+                    let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(torrentFile.infoHashes.best.hex)_exists", preferredStyle: .alert)
+                    alert.addAction(.init(title: %"common.close", style: .cancel))
+                    present(alert, animated: true)
+                    return
+                }
+
+                TorrentService.shared.addTorrent(by: torrentFile)
+            }
         })
         return alert
     }

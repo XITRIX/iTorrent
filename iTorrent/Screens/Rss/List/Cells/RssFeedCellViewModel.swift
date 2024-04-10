@@ -15,9 +15,10 @@ extension RssFeedCellViewModel {
     }
 }
 
-class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol {
+class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol, MvvmReorderableProtocol {
     var model: RssModel!
     var selectAction: (() -> Void)?
+    var canReorder: Bool { true }
 
     @Published var feedLogo: UIImage? = nil
     @Published var title: String = ""
@@ -32,5 +33,9 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
         model.rssModel.updatesCount.assign(to: &$newCounter)
 
         selectAction = model.selectAction
+    }
+
+    override func hash(into hasher: inout Hasher) {
+        hasher.combine(model)
     }
 }

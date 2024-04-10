@@ -28,7 +28,6 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
         view.backgroundColor = nil
         #endif
 
-        titleLabel.text = title
         #if !os(visionOS) // Not renders properly on VisionOS
         if useMarqueeLabel {
             navigationItem.titleView = titleLabel

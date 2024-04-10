@@ -17,6 +17,7 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.dragInteractionEnabled = true
 
 #if os(visionOS)
         view.backgroundColor = .secondarySystemBackground

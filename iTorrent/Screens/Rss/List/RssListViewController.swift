@@ -33,6 +33,13 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
             collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
                 viewModel.selectedIndexPaths = indexPaths
             }
+
+            collectionView.diffDataSource.didReorderCells.sink { [unowned self] transaction in
+                guard let firstSection = transaction.finalSnapshot.sectionIdentifiers.first
+                else { return }
+
+                viewModel.reorderItems(transaction.finalSnapshot.itemIdentifiers(inSection: firstSection).map { $0.viewModel })
+            }
         }
 
         title = %"rssfeed"
