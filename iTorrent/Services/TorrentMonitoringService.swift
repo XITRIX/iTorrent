@@ -32,8 +32,8 @@ private extension TorrentMonitoringService {
         let content = UNMutableNotificationContent()
 
         let hash = model.handle.snapshot.infoHashes.best.hex
-        content.title = "Download finished"
-        content.body = model.handle.snapshot.name + " finished downloading"
+        content.title = %"notification.done.title"
+        content.body = %"notification.done.message_\(model.handle.snapshot.name)"
         content.sound = UNNotificationSound.default
         content.userInfo = ["hash": hash]
 

@@ -22,7 +22,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { PreferencesStorage.shared })
         container.registerSingleton(factory: { BackgroundService.shared })
         container.registerDaemon(factory: TorrentMonitoringService.init)
-        container.registerDaemon(factory: RssFeedProvider.init)
+        container.registerDaemon(factory: { RssFeedProvider.init() })
     }
 
     override func routing(in router: Router) {

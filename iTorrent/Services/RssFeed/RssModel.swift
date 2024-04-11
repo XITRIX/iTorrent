@@ -94,7 +94,8 @@ class RssModel: Hashable, Codable {
             }.eraseToAnyPublisher()
     }
 
-    func update() async throws {
+    @discardableResult
+    func update() async throws -> [RssItemModel] {
         let (data, _) = try await URLSession.shared.data(from: xmlLink)
         guard let contents = String(data: data, encoding: .utf8)
         else { throw Error.corruptedData }
@@ -127,6 +128,8 @@ class RssModel: Hashable, Codable {
             self.linkImage = localLinkImage
             items = newItems + items
         }
+
+        return newItems
     }
 
     func hash(into hasher: inout Hasher) {

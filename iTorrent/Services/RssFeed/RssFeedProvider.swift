@@ -31,11 +31,13 @@ extension RssFeedProvider {
 class RssFeedProvider {
     @Published var rssModels: [RssModel]
 
-    init() {
+    init(fetchUpdatesOnInit: Bool = true) {
         rssModels = Self.loadFromDisk()
-        Task { await fetchUpdates() }
         disposalBag.bind {
             $rssModels.sink(receiveValue: Self.saveToDisk)
+        }
+        if fetchUpdatesOnInit {
+            Task { await fetchUpdates() }
         }
     }
 
@@ -47,11 +49,15 @@ class RssFeedProvider {
 }
 
 extension RssFeedProvider {
-    func fetchUpdates() async {
+    @discardableResult
+    func fetchUpdates() async -> [RssModel: [RssItemModel]] {
+        var res: [RssModel: [RssItemModel]] = [:]
         for feed in rssModels {
-            try? await feed.update()
+            if Task.isCancelled { break }
+            res[feed] = try? await feed.update()
         }
         Self.saveToDisk(rssModels)
+        return res
     }
 
     func addFeed(_ url: String) async throws -> RssModel {
