@@ -45,6 +45,10 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
 
                 collectionView.refreshControl = refresh
             }
+
+            viewModel.dismissSelection.sink { [unowned self] _ in
+                collectionView.diffDataSource.deselectItems()
+            }
         }
     }
 

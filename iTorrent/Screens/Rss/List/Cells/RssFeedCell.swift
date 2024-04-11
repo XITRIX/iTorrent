@@ -30,14 +30,16 @@ class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
             }
             viewModel.$newCounter.sink { [unowned self] newCounter in
                 newCounterLabel.text = "\(newCounter)"
+                newCounterLabel.superview?.isHidden = newCounter == 0
             }
             editButton.tapPublisher.sink { _ in
                 viewModel.openPreferences()
             }
             viewModel.popoverPreferenceNavigationTransaction.sink { [unowned self] from, to in
-                let nvc = UINavigationController.resolve()
-                let target = nvc
-                target.viewControllers = [to]
+//                let nvc = UINavigationController.resolve()
+//                let target = nvc
+                let target = to
+//                target.viewControllers = [to]
                 target.modalPresentationStyle = .popover
                 target.popoverPresentationController?.sourceView = editButton
                 target.popoverPresentationController?.delegate = delegates

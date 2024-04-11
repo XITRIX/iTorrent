@@ -30,9 +30,17 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
     override func prepare(with model: Config) {
         self.model = model.rssModel
         feedLogo = .icRss // TODO: Add real icon
-        model.rssModel.$title.assign(to: &$title)
-        model.rssModel.$description.map { $0 ?? "" }.assign(to: &$description)
-        model.rssModel.updatesCount.assign(to: &$newCounter)
+        disposeBag.bind {
+            model.rssModel.displayTitle.sink { [unowned self] text in
+                title = text
+            }
+            model.rssModel.displayDescription.sink { [unowned self] text in
+                description = text
+            }
+            model.rssModel.updatesCount.sink { [unowned self] num in
+                newCounter = num
+            }
+        }
 
         selectAction = model.selectAction
     }
@@ -44,7 +52,7 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
     func openPreferences() {
 //        navigate(to: RssListPreferencesViewModel.self, with: (), by: .present(wrapInNavigation: true))
 
-        navigate(to: RssListPreferencesViewModel.self, with: (), by: .custom(transaction: { [weak self] from, to in
+        navigate(to: RssListPreferencesViewModel.self, with: model, by: .custom(transaction: { [weak self] from, to in
             self?.popoverPreferenceNavigationTransaction.send((from, to))
         }))
     }

@@ -14,6 +14,8 @@ extension PRButtonViewModel {
         var title: String
         var value: AnyPublisher<String, Never> = Just("").eraseToAnyPublisher()
         var canReorder: Bool = false
+        var tinted: Bool = true
+        var singleLine: Bool = false
         var accessories: [UICellAccessory] = []
         var selectAction: () -> Void = {}
     }
@@ -24,6 +26,8 @@ class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, Observable
 
     @Published var title = ""
     @Published var value: String = ""
+    @Published var tinted: Bool = true
+    @Published var singleLine: Bool = false
     @Published var canReorder: Bool = false
     @Published var accessories: [UICellAccessory] = []
 
@@ -35,6 +39,8 @@ class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, Observable
         accessories = model.accessories
         selectAction = model.selectAction
         canReorder = model.canReorder
+        tinted = model.tinted
+        singleLine = model.singleLine
     }
 
     override func isEqual(to other: MvvmViewModel) -> Bool {

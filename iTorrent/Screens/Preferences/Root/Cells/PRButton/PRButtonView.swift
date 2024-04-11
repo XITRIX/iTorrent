@@ -16,7 +16,9 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
             Text(viewModel.title)
             Spacer()
             Text(viewModel.value)
-                .foregroundStyle(.tint)
+                .foregroundStyle(viewModel.tinted ? Color.accentColor : Color.secondary)
+                .lineLimit(viewModel.singleLine ? 1 : nil)
+                .multilineTextAlignment(.trailing)
         }
         .systemMinimumHeight()
     }

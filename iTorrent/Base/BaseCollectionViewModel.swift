@@ -12,6 +12,8 @@ open class BaseCollectionViewModel: BaseViewModel {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var selectedIndexPaths: [IndexPath] = []
     @Published var refreshTask: (() async -> Void)? = nil
+    
+    let dismissSelection = PassthroughRelay<Void>()
 }
 
 open class BaseCollectionViewModelWith<Model>: BaseCollectionViewModel, MvvmViewModelWithProtocol {

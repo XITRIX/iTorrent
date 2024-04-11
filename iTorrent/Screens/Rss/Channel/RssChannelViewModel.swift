@@ -14,8 +14,10 @@ class RssChannelViewModel: BaseCollectionViewModelWith<RssModel> {
 
     override func prepare(with model: RssModel) {
         self.model = model
-        title = model.title
         disposeBag.bind {
+            model.displayTitle.sink { [unowned self] text in
+                title = text
+            }
             model.$items.sink { [unowned self] models in
                 reload(with: models)
             }

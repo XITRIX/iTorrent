@@ -26,9 +26,11 @@ class RssModel: Hashable, Codable {
 
     //
     @Published var customTitle: String? = nil
-    @Published var customDescriotion: String? = nil
+    @Published var customDescription: String? = nil
     @Published var muteNotifications: Bool = false
     //
+
+    private var disposeBag = DisposeBag()
 
     var updatesCount: AnyPublisher<Int, Never> {
         $items.map { $0.filter { $0.new }.count }.eraseToAnyPublisher()
@@ -60,18 +62,36 @@ class RssModel: Hashable, Codable {
         for xmlItem in xml["rss"]["channel"]["item"].all {
             items.append(RssItemModel(xml: xmlItem))
         }
+
+        disposeBag.bind {
+            Publishers.combineLatest(
+                $customTitle,
+                $customDescription,
+                $muteNotifications,
+                $items)
+            { _, _, _, _ in () }
+                .sink { _ in
+                    Task {
+                        await (Mvvm.shared.container.resolve(type: RssFeedProvider.self)).saveState()
+                    }
+                }
+        }
     }
 
-    var displayTitle: String {
-        if let title = customTitle,
-           !title.isEmpty { return title }
-        return title
+    var displayTitle: AnyPublisher<String, Never> {
+        Publishers.CombineLatest($title, $customTitle)
+            .map { title, customTitle in
+                if let customTitle, !customTitle.isEmpty { return customTitle }
+                return title
+            }.eraseToAnyPublisher()
     }
 
-    var displayDescription: String? {
-        if let description = customDescriotion,
-           !description.isEmpty { return description }
-        return description
+    var displayDescription: AnyPublisher<String, Never> {
+        Publishers.CombineLatest($description, $customDescription)
+            .map { description, customDescriotion in
+                if let customDescriotion, !customDescriotion.isEmpty { return customDescriotion }
+                return description ?? ""
+            }.eraseToAnyPublisher()
     }
 
     func update() async throws {
@@ -118,7 +138,7 @@ class RssModel: Hashable, Codable {
             lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.customTitle == rhs.customTitle &&
-            lhs.customDescriotion == rhs.customDescriotion &&
+            lhs.customDescription == rhs.customDescription &&
             lhs.muteNotifications == rhs.muteNotifications &&
             lhs.linkImage == rhs.linkImage &&
             lhs.items == rhs.items

@@ -86,6 +86,24 @@ private extension RssDetailsViewController {
 
 private extension RssDetailsViewController {
     var themedHtmlPart: String {
+#if os(visionOS)
+        return """
+        <style>
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: \(UIColor.systemBackground.rgbString);
+                color: white;
+            }
+            a:link {
+                color: \(UIColor.tintColor.rgbString);
+            }
+            a:visited {
+                color: #9d57df;
+            }
+        }
+        </style>
+        """
+#else
         if traitCollection.userInterfaceStyle == .dark {
             return """
             <style>
@@ -117,6 +135,7 @@ private extension RssDetailsViewController {
             </style>
             """
         }
+#endif
     }
 }
 

@@ -39,6 +39,10 @@ class RssFeedProvider {
         }
     }
 
+    func saveState() {
+        Self.saveToDisk(rssModels)
+    }
+
     private let disposalBag = DisposeBag()
 }
 
@@ -47,6 +51,7 @@ extension RssFeedProvider {
         for feed in rssModels {
             try? await feed.update()
         }
+        Self.saveToDisk(rssModels)
     }
 
     func addFeed(_ url: String) async throws -> RssModel {
