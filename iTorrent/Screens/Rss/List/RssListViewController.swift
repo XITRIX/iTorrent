@@ -55,14 +55,6 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
         removeButton.primaryAction = .init(title: %"rsslist.remove.title", image: .init(systemName: "trash"), handler: { [unowned self] _ in
             viewModel.removeSelected()
         })
-
-        toolbarItems = [
-            .init(systemItem: .flexibleSpace),
-            addButton,
-            .init(systemItem: .flexibleSpace),
-            removeButton,
-            .init(systemItem: .flexibleSpace)
-        ]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +68,14 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        navigationController?.setToolbarHidden(!editing, animated: true)
+        toolbarItems = editing ?
+        [
+            .init(systemItem: .flexibleSpace),
+            addButton,
+            .init(systemItem: .flexibleSpace),
+            removeButton,
+            .init(systemItem: .flexibleSpace)
+        ] : []
+        navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: true)
     }
 }

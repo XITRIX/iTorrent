@@ -135,12 +135,22 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
             vcs = []
         }
 
-        nvc.isToolbarHidden = nvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
+        if let baseVC = nvc.viewControllers.last as? ToolbarHidingProtocol {
+            nvc.isToolbarHidden = baseVC.isToolbarItemsHidden
+        } else {
+            nvc.isToolbarHidden = nvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
+        }
 
         if !vcs.isEmpty {
             let snvc = UINavigationController.resolve()
             snvc.viewControllers = vcs.reversed()
-            snvc.isToolbarHidden = snvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
+
+            if let baseVC = snvc.viewControllers.last as? ToolbarHidingProtocol {
+                nvc.isToolbarHidden = baseVC.isToolbarItemsHidden
+            } else {
+                snvc.isToolbarHidden = snvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
+            }
+
             return snvc
         }
 
