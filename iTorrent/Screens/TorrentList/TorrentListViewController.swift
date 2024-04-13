@@ -66,10 +66,6 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             }
         ])
 
-        rssButton.primaryAction = .init(title: %"rssfeed", image: .icRss, handler: { [unowned self] _ in
-            viewModel.showRss()
-        })
-
         playButton.primaryAction = .init(title: %"details.start", image: .init(systemName: "play.fill"), handler: { [unowned self] _ in
             viewModel.resumeAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
         })
@@ -87,6 +83,12 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         })
 
         disposeBag.bind {
+            viewModel.$hasRssNews.sink { [unowned self] rssHasNews in
+                rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew : .icRss, handler: { [unowned self] _ in
+                    viewModel.showRss()
+                })
+            }
+
             viewModel.$sections.sink { [unowned self] sections in
                 collectionView.sections.send(sections)
             }

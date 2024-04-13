@@ -7,12 +7,14 @@
 
 import Foundation
 import MvvmFoundation
+import UIKit
 
 open class BaseCollectionViewModel: BaseViewModel {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var selectedIndexPaths: [IndexPath] = []
     @Published var refreshTask: (() async -> Void)? = nil
-    
+    @Published var trailingSwipeActionsConfigurationProvider: UICollectionLayoutListConfiguration.SwipeActionsConfigurationProvider?
+
     let dismissSelection = PassthroughRelay<Void>()
 }
 

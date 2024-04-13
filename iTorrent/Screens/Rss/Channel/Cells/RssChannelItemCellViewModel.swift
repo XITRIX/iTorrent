@@ -24,15 +24,21 @@ class RssChannelItemCellViewModel: BaseViewModelWith<RssChannelItemCellViewModel
     @Published var subtitle: String?
     @Published var date: String?
     @Published var isNew: Bool = true
-    private var model: RssItemModel!
+    @Published var isReaded: Bool = false
+    var model: RssItemModel!
 
     override func prepare(with model: Config) {
 //        link = model.rssModel.link
-        self.model = model.rssModel
-        title = model.rssModel.title ?? ""
-        isNew = model.rssModel.new
+        update(with: model.rssModel)
         selectAction = model.selectAction
-        if let modelDate = model.rssModel.date {
+    }
+
+    func update(with rssModel: RssItemModel) {
+        model = rssModel
+        title = rssModel.title ?? ""
+        isNew = rssModel.new
+        isReaded = rssModel.readed
+        if let modelDate = rssModel.date {
             date = Date().offset(from: modelDate)
         }
     }

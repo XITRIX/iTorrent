@@ -23,6 +23,7 @@ class TorrentListViewModel: BaseViewModel {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var searchQuery: String = ""
     @Published var title: String = ""
+    @Published var hasRssNews: Bool = false
 
     var isGroupedByState: CurrentValueRelay<Bool> {
         PreferencesStorage.shared.$torrentListGroupedByState
@@ -45,6 +46,12 @@ class TorrentListViewModel: BaseViewModel {
 
             let groupsSortingArray = PreferencesStorage.shared.$torrentListGroupsSortingArray
             let torrentSectionChanged = TorrentService.shared.updateNotifier.filter { $0.oldSnapshot.friendlyState != $0.handle.snapshot.friendlyState }.map{_ in ()}.prepend([()])
+
+            disposeBag.bind {
+                rssFeedProvider.hasNewsPublisher.sink { [unowned self] value in
+                    hasRssNews = value
+                }
+            }
 
             Publishers.combineLatest(
                 torrentSectionChanged,
@@ -75,6 +82,7 @@ class TorrentListViewModel: BaseViewModel {
     static func searchFilter(_ text: String, by query: String) -> Bool {
         query.split(separator: " ").allSatisfy { text.localizedCaseInsensitiveContains($0) }
     }
+    @Injected private var rssFeedProvider: RssFeedProvider
 }
 
 extension TorrentListViewModel {

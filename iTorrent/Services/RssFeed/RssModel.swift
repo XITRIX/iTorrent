@@ -32,6 +32,10 @@ class RssModel: Hashable, Codable {
 
     private var disposeBag = DisposeBag()
 
+    var hasNewsPublisher: AnyPublisher<Bool, Never> {
+        $items.map { $0.contains(where: { $0.new }) }.eraseToAnyPublisher()
+    }
+
     var updatesCount: AnyPublisher<Int, Never> {
         $items.map { $0.filter { $0.new }.count }.eraseToAnyPublisher()
     }
@@ -194,9 +198,7 @@ struct RssItemModel: Hashable, Codable {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.date == rhs.date &&
-            lhs.link == rhs.link &&
-            lhs.new == rhs.new &&
-            lhs.readed == rhs.readed
+            lhs.link == rhs.link
     }
 
     mutating func update(_ model: RssItemModel) {

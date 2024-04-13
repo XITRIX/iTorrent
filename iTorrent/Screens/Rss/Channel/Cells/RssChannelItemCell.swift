@@ -24,6 +24,9 @@ class RssChannelItemCell<VM: RssChannelItemCellViewModel>: MvvmCollectionViewLis
             viewModel.$isNew.sink { [newIndicatorView] isNew in
                 newIndicatorView?.isHidden = !isNew
             }
+            viewModel.$isReaded.sink { [titleLabel] isReaded in
+                titleLabel?.textColor = isReaded ? .secondaryLabel : .label
+            }
             viewModel.$title.sink { [titleLabel] text in
                 titleLabel?.text = text
             }

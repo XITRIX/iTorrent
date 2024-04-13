@@ -83,6 +83,15 @@ extension RssFeedProvider {
             }
         }
     }
+
+    var hasNewsPublisher: AnyPublisher<Bool, Never> {
+        $rssModels.map { model in
+            Publishers.MergeMany(model.map { $0.$items })
+        }
+        .switchToLatest()
+        .map { $0.contains(where: { $0.new }) }
+        .eraseToAnyPublisher()
+    }
 }
 
 private extension RssFeedProvider {

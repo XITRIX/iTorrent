@@ -35,6 +35,11 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
                 viewModel.selectedIndexPaths = indexPaths
             }
 
+            viewModel.$trailingSwipeActionsConfigurationProvider.sink { [unowned self] provider in
+                collectionView.diffDataSource.trailingSwipeActionsConfigurationProvider = provider
+            }
+
+
             viewModel.$refreshTask.sink { [unowned self] refreshTask in
                 self.refreshTask = refreshTask
 
