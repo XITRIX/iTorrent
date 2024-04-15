@@ -37,7 +37,7 @@ class RssFeedProvider {
             $rssModels.sink(receiveValue: Self.saveToDisk)
         }
         if fetchUpdatesOnInit {
-            Task { await fetchUpdates() }
+            Task { try await fetchUpdates() }
         }
     }
 
@@ -50,11 +50,11 @@ class RssFeedProvider {
 
 extension RssFeedProvider {
     @discardableResult
-    func fetchUpdates() async -> [RssModel: [RssItemModel]] {
+    func fetchUpdates() async throws -> [RssModel: [RssItemModel]] {
         var res: [RssModel: [RssItemModel]] = [:]
         for feed in rssModels {
             if Task.isCancelled { break }
-            res[feed] = try? await feed.update()
+            res[feed] = try await feed.update()
         }
         Self.saveToDisk(rssModels)
         return res

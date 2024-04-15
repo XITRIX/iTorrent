@@ -17,14 +17,14 @@ extension AppDelegate {
             self.handleAppRefresh(task)
         }
 
-        scheduleBackgroundPokemonFetch()
+        scheduleBackgroundRssFetch()
     }
 }
 
 private extension AppDelegate {
-    func scheduleBackgroundPokemonFetch() {
+    func scheduleBackgroundRssFetch() {
         let rssFetchTask = BGAppRefreshTaskRequest(identifier: "com.xitrix.itorrent.refresh")
-        rssFetchTask.earliestBeginDate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())
+        rssFetchTask.earliestBeginDate = nil
         do {
             try BGTaskScheduler.shared.submit(rssFetchTask)
         } catch {
@@ -34,18 +34,23 @@ private extension AppDelegate {
 
     func handleAppRefresh(_ task: BGTask) {
         let updateTask = Task {
-            var news = await RssFeedProvider(fetchUpdatesOnInit: false).fetchUpdates()
-            news = news.filter { !$0.key.muteNotifications && !$0.value.isEmpty }
-            guard !news.isEmpty else { return task.setTaskCompleted(success: true) }
+            do {
+                var news = try await RssFeedProvider(fetchUpdatesOnInit: false).fetchUpdates()
+                news = news.filter { !$0.key.muteNotifications && !$0.value.isEmpty }
+                guard !news.isEmpty else { return task.setTaskCompleted(success: true) }
 
-            let message = news
-                .map { $0.value }
-                .reduce([], +)
-                .compactMap { $0.title }
-                .joined(separator: "\n")
+                let message = news
+                    .map { $0.value }
+                    .reduce([], +)
+                    .compactMap { $0.title }
+                    .joined(separator: "\n")
 
-            rssUpdateNotification(with: message)
-            task.setTaskCompleted(success: true)
+                rssUpdateNotification(with: message)
+                task.setTaskCompleted(success: true)
+            } catch {
+                task.setTaskCompleted(success: false)
+                scheduleBackgroundRssFetch()
+            }
         }
 
         task.expirationHandler = {
