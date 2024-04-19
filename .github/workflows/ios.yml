@@ -27,6 +27,7 @@ jobs:
 
       - name: Install the Apple certificate and provisioning profile
         env:
+          FIREBASE_INFO_PLIST_BASE64: ${{ secrets.FIREBASE_INFO_PLIST_BASE64 }}
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           BUILD_DISTRIB_CERTIFICATE_BASE64: ${{ secrets.BUILD_DISTRIB_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
@@ -37,6 +38,7 @@ jobs:
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
           # create variables
+          FIREBASE_INFO_PLIST_PATH=iTorrent/Core/Assets/GoogleService-Info.plist
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
           CERTIFICATE_DISTRIB_PATH=$RUNNER_TEMP/build_distrib_certificate.p12
           PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
@@ -44,6 +46,9 @@ jobs:
           PP_DISTRIB_PATH=$RUNNER_TEMP/build_pp_distrib.mobileprovision
           PW_PP_DISTRIB_PATH=$RUNNER_TEMP/build_progresswidget_pp_distrib.mobileprovision
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import firebase plist to the project
+          echo -n "$FIREBASE_INFO_PLIST_BASE64" | base64 --decode -o $FIREBASE_INFO_PLIST_PATH
 
           # import certificate and provisioning profile from secrets
           echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
@@ -77,7 +82,7 @@ jobs:
           -scheme "iTorrent" \
           -archivePath $RUNNER_TEMP/itorrent.xcarchive \
           -sdk iphoneos \
-          -configuration RelWithDebInfo \
+          -configuration Release \
           -destination generic/platform=iOS \
           clean archive          
 
