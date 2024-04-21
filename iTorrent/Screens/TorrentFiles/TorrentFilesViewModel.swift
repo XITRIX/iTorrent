@@ -102,6 +102,42 @@ extension TorrentFilesViewModel {
         keys.count
     }
 
+    func canShareSelected(_ indexPaths: [IndexPath]) -> Bool {
+        indexPaths.flatMap { indexPath in
+            switch rootDirectory.storage[keys[indexPath.item]] {
+            case let path as PathNode:
+                return path.files
+            case let file as FileNode:
+                return [file.index]
+            default:
+                return []
+            }
+        }.contains {
+            let file = torrentHandle.snapshot.files[$0]
+            return file.downloaded >= file.size
+        }
+    }
+
+    func canChangePriorityForSelected(_ indexPaths: [IndexPath]) -> Bool {
+        indexPaths.flatMap { indexPath in
+            switch rootDirectory.storage[keys[indexPath.item]] {
+            case let path as PathNode:
+                return path.files
+            case let file as FileNode:
+                return [file.index]
+            default:
+                return []
+            }
+        }.contains {
+            let file = torrentHandle.snapshot.files[$0]
+            return file.downloaded < file.size
+        }
+    }
+
+    func shareSelected(_ indexPaths: [IndexPath]) {
+        alertWithTimer(message: "This feature is not implemented yet")
+    }
+
     func node(at index: Int) -> Node {
         rootDirectory.storage[keys[index]]!
     }
@@ -131,7 +167,7 @@ extension TorrentFilesViewModel {
                 return path.files
             case let file as FileNode:
                 return [file.index]
-            default: 
+            default:
                 return []
             }
         }.filter {
@@ -139,7 +175,7 @@ extension TorrentFilesViewModel {
             return file.downloaded < file.size || priority != .dontDownload
         }
 
-        torrentHandle.setFilesPriority(priority, at: files.map { NSNumber.init(integerLiteral: $0) })
+        torrentHandle.setFilesPriority(priority, at: files.map { NSNumber(integerLiteral: $0) })
     }
 }
 

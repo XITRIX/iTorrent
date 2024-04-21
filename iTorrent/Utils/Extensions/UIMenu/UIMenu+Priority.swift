@@ -10,8 +10,8 @@ import SwiftUI
 import UIKit
 
 extension UIMenu {
-    static func makeForChangePriority(_ setPriority: @escaping (FileEntry.Priority) -> ()) -> UIMenu {
-        .init(title: %"prioriry.change.title", children: [
+    static func makeForChangePriority( options: UIMenu.Options = [], _ setPriority: @escaping (FileEntry.Priority) -> ()) -> UIMenu {
+        .init(title: %"prioriry.change.title", options: options, children: [
             UIAction(title: String(localized: "prioriry.top"), image: .init(systemName: "gauge.with.dots.needle.100percent"), handler: { _ in
                 setPriority(.topPriority)
             }),

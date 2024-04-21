@@ -266,6 +266,6 @@ extension TorrentHandle.Snapshot {
     }
 
     var segmentedProgress: [Double] {
-        pieces.map { $0.doubleValue }
+        pieces?.map { $0.doubleValue } ?? [0]
     }
 }

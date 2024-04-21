@@ -12,6 +12,7 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
     @IBOutlet private var collectionView: UICollectionView!
 
     private lazy var delegates = Deletates(parent: self)
+    private let moreMenuButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +38,47 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         collectionView.isEditing = editing
+
+        reloadMoreMenuButton()
         toolbarItems = editing ?
-            [.init(image: .init(systemName: "ellipsis.circle"), menu: .makeForChangePriority { [unowned self] priority in
-                viewModel.setPriority(priority, at: collectionView.indexPathsForSelectedItems ?? [])
-            })] :
+            [moreMenuButton] :
             []
         navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: true)
+    }
+}
+
+private extension TorrentFilesViewController {
+    func reloadMoreMenuButton() {
+        moreMenuButton.isEnabled = !collectionView.indexPathsForSelectedItems.isNilOrEmpty
+
+        let priorityMenu = UIMenu.makeForChangePriority(options: [.displayInline]) { [unowned self] priority in
+            viewModel.setPriority(priority, at: collectionView.indexPathsForSelectedItems ?? [])
+        }
+
+        let shareAction = UIAction(title: %"common.share", image: .init(systemName: "square.and.arrow.up")) { [unowned self] _ in
+            viewModel.shareSelected(collectionView.indexPathsForSelectedItems ?? [])
+        }
+
+        var menuElements: [UIMenuElement] = []
+
+        if viewModel.canChangePriorityForSelected(collectionView.indexPathsForSelectedItems ?? []) {
+            menuElements.append(priorityMenu)
+        }
+
+        if viewModel.canShareSelected(collectionView.indexPathsForSelectedItems ?? []) {
+            guard !menuElements.isEmpty else {
+                moreMenuButton.menu = nil
+                moreMenuButton.primaryAction = shareAction
+                return
+            }
+            menuElements.append(shareAction)
+        }
+
+        let menu = UIMenu(children: menuElements)
+
+        moreMenuButton.menu = menu
+        moreMenuButton.primaryAction = nil
+        moreMenuButton.image = .init(systemName: "ellipsis.circle")
     }
 }
 
@@ -69,7 +105,9 @@ private extension TorrentFilesViewController {
         }
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            guard !collectionView.isEditing else { return }
+            guard !collectionView.isEditing else {
+                return parent.reloadMoreMenuButton()
+            }
 
             if let cell = collectionView.cellForItem(at: indexPath) as? TorrentFilesFileListCell<TorrentFilesFileItemViewModel> {
                 cell.viewModel.selectAction?()
@@ -78,6 +116,10 @@ private extension TorrentFilesViewController {
             if parent.viewModel.select(at: indexPath.item) {
                 collectionView.deselectItem(at: indexPath, animated: true)
             }
+        }
+
+        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+            parent.reloadMoreMenuButton()
         }
     }
 }

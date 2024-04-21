@@ -21,6 +21,8 @@ class RssChannelViewController<VM: RssChannelViewModel>: BaseCollectionViewContr
 private extension RssChannelViewController {
     func setup() {
         binding()
+        
+        view.backgroundColor = .systemBackground
 
         actionsButton.menu = .init(children: [
             UIAction(title: %"rsschannel.readAll", image: .init(systemName: "checkmark.circle")) { [unowned self] _ in

@@ -117,7 +117,7 @@ extension TorrentService: SessionDelegate {
         updateNotifier.send(updateModel)
 
         DispatchQueue.main.sync {
-            existingTorrent.updatePublisher.send(updateModel)
+            existingTorrent.unthrottledUpdatePublisher.send(updateModel)
         }
     }
 

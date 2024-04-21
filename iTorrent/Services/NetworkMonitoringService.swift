@@ -40,12 +40,12 @@ class NetworkMonitoringService {
         monitor.start(queue: queue)
     }
 
+    private let disposeBag = DisposeBag()
     private let monitor = NWPathMonitor()
 #if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
     private let cellularData = CTCellularData()
-    @Injected private var preferences: PreferencesStorage
-    private let disposeBag = DisposeBag()
 #endif
+    @Injected private var preferences: PreferencesStorage
 }
 
 private extension NetworkMonitoringService {
