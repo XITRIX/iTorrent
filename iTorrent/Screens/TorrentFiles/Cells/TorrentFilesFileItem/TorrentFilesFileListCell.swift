@@ -19,8 +19,6 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var fileImageView: UIImageView!
 
-    private lazy var delegates = Delegates(parent: self)
-
     override func initSetup() {
         let font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         let fontMetrics = UIFontMetrics(forTextStyle: .subheadline)
@@ -33,7 +31,8 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
         shareButton.showsMenuAsPrimaryAction = true
         shareButton.menu = UIMenu(children: [
             UIAction(title: %"file.open") { [unowned self] _ in
-                previewAction()
+                guard let vm = viewModel as? TorrentFilesFileItemViewModel else { return }
+                vm.previewAction?()
             },
             UIAction(title: %"file.share", image: .init(systemName: "square.and.arrow.up")) { [unowned self] _ in
                 shareAction()
@@ -64,21 +63,11 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
                 self?.reload()
             }
             viewModel.selected.sink { [unowned self] _ in
-                if viewModel.file.progress >= 1 {
-                    previewAction()
-                } else {
-                    switchView.setOn(!switchView.isOn, animated: true)
-                    switcher(switchView)
-                }
+                switchView.setOn(!switchView.isOn, animated: true)
+                switcher(switchView)
             }
         }
         reload()
-    }
-
-    func previewAction() {
-        let vc = QLPreviewController()
-        vc.dataSource = delegates
-        viewController?.present(vc, animated: true)
     }
 
     func shareAction() {
@@ -138,24 +127,7 @@ private extension TorrentFilesFileListCell {
     }
 }
 
-private extension TorrentFilesFileListCell {
-    class Delegates: DelegateObject<TorrentFilesFileListCell>, QLPreviewControllerDataSource {
-        func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-            1
-        }
-
-        @MainActor
-        func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-            parent.viewModel.path as NSURL
-        }
-    }
-}
-
 private extension FileEntry {
-    var progress: Double {
-        Double(downloaded) / Double(size)
-    }
-
     var segmentedProgress: [Double] {
         let res = pieces.map { $0.doubleValue }
         if !res.isEmpty { return res }

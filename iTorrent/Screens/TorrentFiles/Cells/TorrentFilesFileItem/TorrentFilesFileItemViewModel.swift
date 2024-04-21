@@ -22,6 +22,8 @@ protocol FileItemViewModelProtocol: MvvmViewModel {
 
 class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
     var selectAction: (() -> Void)?
+    var previewAction: (() -> Void)?
+    
     var torrentHandle: TorrentHandle!
     var index: Int = 0
 
@@ -32,7 +34,11 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
         torrentHandle = model.0
         index = model.1
         selectAction = { [unowned self] in
-            selected.send(())
+            if file.progress >= 1 {
+                previewAction?()
+            } else {
+                selected.send(())
+            }
         }
     }
 
@@ -55,5 +61,11 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
 
     func setPriority(_ priority: FileEntry.Priority) {
         torrentHandle.setFilePriority(priority, at: index)
+    }
+}
+
+extension FileEntry {
+    var progress: Double {
+        Double(downloaded) / Double(size)
     }
 }

@@ -7,11 +7,13 @@
 
 import MvvmFoundation
 import UIKit
+import QuickLook
 
 class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: UICollectionView!
 
-    private lazy var delegates = Deletates(parent: self)
+    private lazy var collectionDelegates = CollectionDeletates(parent: self)
+    private lazy var previewDelegates = PreviewDeletates(parent: self)
     private let moreMenuButton = UIBarButtonItem()
 
     override func viewDidLoad() {
@@ -22,8 +24,8 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
         collectionView.register(TorrentFilesDictionaryItemViewCell<TorrentFilesDictionaryItemViewModel>.self, forCellWithReuseIdentifier: TorrentFilesDictionaryItemViewCell<TorrentFilesDictionaryItemViewModel>.reusableId)
         collectionView.register(type: TorrentFilesFileListCell<TorrentFilesFileItemViewModel>.self, hasXib: false)
 
-        collectionView.dataSource = delegates
-        collectionView.delegate = delegates
+        collectionView.dataSource = collectionDelegates
+        collectionView.delegate = collectionDelegates
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout.list(using: .init(appearance: .plain))
 
         collectionView.allowsMultipleSelectionDuringEditing = true
@@ -83,7 +85,7 @@ private extension TorrentFilesViewController {
 }
 
 private extension TorrentFilesViewController {
-    class Deletates: DelegateObject<TorrentFilesViewController>, UICollectionViewDataSource, UICollectionViewDelegate {
+    class CollectionDeletates: DelegateObject<TorrentFilesViewController>, UICollectionViewDataSource, UICollectionViewDelegate {
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             parent.viewModel.filesCount
         }
@@ -93,7 +95,11 @@ private extension TorrentFilesViewController {
             switch node {
             case let node as FileNode:
                 let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell<TorrentFilesFileItemViewModel>
-                cell.setup(with: parent.viewModel.fileModel(for: node.index))
+                let vm = parent.viewModel.fileModel(for: node.index)
+                vm.previewAction = { [unowned self] in
+                    parent.previewAction(start: node.index)
+                }
+                cell.setup(with: vm)
                 return cell
             case let node as PathNode:
                 let cell = collectionView.dequeue(for: indexPath) as TorrentFilesDictionaryItemViewCell<TorrentFilesDictionaryItemViewModel>
@@ -121,5 +127,28 @@ private extension TorrentFilesViewController {
         func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
             parent.reloadMoreMenuButton()
         }
+    }
+
+    class PreviewDeletates: DelegateObject<TorrentFilesViewController>, QLPreviewControllerDataSource {
+        @MainActor
+        func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+            parent.viewModel.filesForPreview.count
+        }
+
+        @MainActor
+        func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+            let path = parent.viewModel.filesForPreview[index].path
+            return TorrentService.downloadPath.appending(path: path) as NSURL
+        }
+    }
+
+    func previewAction(start fileIndex: Int) {
+        guard let startIndex = viewModel.filesForPreview.firstIndex(where: { $0.index == fileIndex })
+        else { return }
+
+        let vc = QLPreviewController()
+        vc.dataSource = previewDelegates
+        vc.currentPreviewItemIndex = startIndex
+        present(vc, animated: true)
     }
 }

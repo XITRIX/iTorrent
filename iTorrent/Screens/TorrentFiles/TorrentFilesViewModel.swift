@@ -102,6 +102,23 @@ extension TorrentFilesViewModel {
         keys.count
     }
 
+    var filesForPreview: [FileEntry] {
+        keys.flatMap {
+            switch rootDirectory.storage[$0] {
+            case let path as PathNode:
+                return path.files
+            case let file as FileNode:
+                return [file.index]
+            default:
+                return []
+            }
+        }
+        .map { torrentHandle.snapshot.files[$0] }
+        .filter {
+            $0.downloaded >= $0.size
+        }
+    }
+
     func canShareSelected(_ indexPaths: [IndexPath]) -> Bool {
         indexPaths.flatMap { indexPath in
             switch rootDirectory.storage[keys[indexPath.item]] {
