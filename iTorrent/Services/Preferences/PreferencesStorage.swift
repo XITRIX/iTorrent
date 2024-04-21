@@ -43,6 +43,9 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesMaxUploadSpeed", 0) var maxUploadSpeed: UInt
     @UserDefaultItem("preferencesMaxDownloadSpeed", 0) var maxDownloadSpeed: UInt
 
+    @UserDefaultItem("preferencesIsCellularEnabled", false) var isCellularEnabled: Bool
+    @UserDefaultItem("preferencesUseAllAvailableInterfaces", false) var useAllAvailableInterfaces: Bool
+
     @UserDefaultItem("preferencesConnectionDht", true) var isDhtEnabled: Bool
     @UserDefaultItem("preferencesConnectionLsd", true) var isLsdEnabled: Bool
     @UserDefaultItem("preferencesConnectionUtp", true) var isUtpEnabled: Bool
@@ -126,7 +129,10 @@ extension Session.Settings {
         settings.port = preferences.port
         settings.portBindRetries = preferences.portBindRetries
 
-        let interfacesToUse = [interfaces.first].compactMap { $0 }
+        var interfacesToUse = interfaces
+        if !preferences.useAllAvailableInterfaces {
+            interfacesToUse = [interfacesToUse.first].compactMap { $0 }
+        }
         settings.outgoingInterfaces = interfacesToUse.joined(separator: ",")
         settings.listenInterfaces = interfacesToUse.map { "\($0):\(settings.port)" }.joined(separator: ",")
 

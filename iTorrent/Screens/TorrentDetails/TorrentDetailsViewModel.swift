@@ -47,6 +47,26 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
                 torrentHandle.setSequentialDownload(value)
             }
         }
+
+        hashModel.longPressAction = { [unowned self] in
+            UIPasteboard.general.string = hashModel.detail
+            alertWithTimer(message: %"details.copy.hash.title")
+        }
+
+        hashModelV2.longPressAction = { [unowned self] in
+            UIPasteboard.general.string = hashModelV2.detail
+            alertWithTimer(message: %"details.copy.hashV2.title")
+        }
+
+        creatorModel.longPressAction = { [unowned self] in
+            UIPasteboard.general.string = creatorModel.detail
+            alertWithTimer(message: %"details.copy.creator.title")
+        }
+
+        commentModel.longPressAction = { [unowned self] in
+            UIPasteboard.general.string = commentModel.detail
+            alertWithTimer(message: %"details.copy.comment.title")
+        }
     }
 
     private let stateModel = DetailCellViewModel(title: %"details.state")

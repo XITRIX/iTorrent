@@ -91,7 +91,7 @@ extension TorrentService: SessionDelegate {
 
         _ = torrent.metadata
         torrent.updateSnapshot()
-        
+
         DispatchQueue.main.sync { [self] in
             torrents.append(torrent)
         }
@@ -134,13 +134,18 @@ private extension TorrentService {
         session.add(self)
 
         disposeBag.bind {
-            preferences.settingsUpdatePublisher
-                .combineLatest(network.$availableInterfaces)
-                .sink { [unowned self] _, interfaces in
-                    DispatchQueue.main.async { [self] in // Need delay to complete settings apply
-                        session.settings = Session.Settings.fromPreferences(with: interfaces.map { $0.name })
-                    }
+            Publishers.combineLatest(
+                preferences.settingsUpdatePublisher,
+                network.$availableInterfaces,
+                preferences.$useAllAvailableInterfaces
+            ) { _, interfaces, _ in
+                interfaces
+            }
+            .sink { [unowned self] interfaces in
+                DispatchQueue.main.async { [self] in // Need delay to complete settings apply
+                    session.settings = Session.Settings.fromPreferences(with: interfaces.map { $0.name })
                 }
+            }
         }
     }
 }

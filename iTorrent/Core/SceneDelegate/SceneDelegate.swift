@@ -18,9 +18,9 @@ class SceneDelegate: MvvmSceneDelegate {
         container.register(type: UINavigationController.self, factory: BaseNavigationController.init)
         container.register(type: UISplitViewController.self, factory: BaseSplitViewController.init)
         container.registerSingleton(factory: { TorrentService.shared })
-        container.registerSingleton(factory: NetworkMonitoringService.init)
         container.registerSingleton(factory: { PreferencesStorage.shared })
         container.registerSingleton(factory: { BackgroundService.shared })
+        container.registerSingleton(factory: NetworkMonitoringService.init)
         container.registerDaemon(factory: TorrentMonitoringService.init)
         container.registerDaemon(factory: { RssFeedProvider.init() })
     }

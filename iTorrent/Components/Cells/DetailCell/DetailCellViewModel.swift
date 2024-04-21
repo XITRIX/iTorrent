@@ -15,8 +15,9 @@ import MvvmFoundation
 //    }
 // }
 
-class DetailCellViewModel: BaseViewModel, ObservableObject, MvvmSelectableProtocol {
+class DetailCellViewModel: BaseViewModel, ObservableObject, MvvmSelectableProtocol, MvvmLongPressProtocol {
     var selectAction: (() -> Void)?
+    var longPressAction: (() -> Void)?
 
     @Published var title: String = ""
     @Published var detail: String = ""

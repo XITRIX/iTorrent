@@ -5,8 +5,9 @@
 //  Created by Даниил Виноградов on 02.04.2024.
 //
 
-import Foundation
 import Combine
+import Foundation
+import MvvmFoundation
 import Network
 #if canImport(CoreTelephony)
 import CoreTelephony
@@ -19,7 +20,7 @@ class NetworkMonitoringService {
 #endif
 
     init() {
-        monitor.pathUpdateHandler = { [weak self] path in
+        monitor.pathUpdateHandler = { [weak self] _ in
             guard let self else { return }
             updateAvailableInterfaces()
         }
@@ -31,23 +32,28 @@ class NetworkMonitoringService {
             updateAvailableInterfaces()
         }
 #endif
+        preferences.$isCellularEnabled.sink { [unowned self] _ in
+            updateAvailableInterfaces()
+        }.store(in: disposeBag)
 
-        let queue = DispatchQueue.init(label: "monitor queue", qos: .userInitiated)
+        let queue = DispatchQueue(label: "monitor queue", qos: .userInitiated)
         monitor.start(queue: queue)
     }
 
     private let monitor = NWPathMonitor()
 #if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
     private let cellularData = CTCellularData()
+    @Injected private var preferences: PreferencesStorage
+    private let disposeBag = DisposeBag()
 #endif
 }
 
 private extension NetworkMonitoringService {
     func updateAvailableInterfaces() {
 #if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
-        let isCellularRestricted = cellularData.restrictedState == .restricted
+        let isCellularRestricted = cellularData.restrictedState == .restricted || !preferences.isCellularEnabled
 #else
-        let isCellularRestricted = false
+        let isCellularRestricted = !preferences.isCellularEnabled
 #endif
         availableInterfaces = monitor.currentPath.availableInterfaces.filter { $0.type != .cellular || !isCellularRestricted }
     }

@@ -388,6 +388,70 @@
         }
       }
     },
+    "details.copy.comment.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comment copied into clipboard"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комментарий скопирован в буфер обмена"
+          }
+        }
+      }
+    },
+    "details.copy.creator.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creator copied into clipboard"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создатель скопирован в буфер обмена"
+          }
+        }
+      }
+    },
+    "details.copy.hash.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash copied into clipboard"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хэш скопирован в буфер обмена"
+          }
+        }
+      }
+    },
+    "details.copy.hashV2.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash v2 copied into clipboard"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хэш v2 скопирован в буфер обмена"
+          }
+        }
+      }
+    },
     "details.downloading" : {
       "localizations" : {
         "en" : {
@@ -1943,6 +2007,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Включить NAT-PMP"
+          }
+        }
+      }
+    },
+    "preferences.network.interfaces" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interfaces"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Интерфейсы"
+          }
+        }
+      }
+    },
+    "preferences.network.interfaces.allInterfaces" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow parallel connection"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить параллельное соединение"
+          }
+        }
+      }
+    },
+    "preferences.network.interfaces.cellular" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow mobile data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить сотовые данные"
+          }
+        }
+      }
+    },
+    "preferences.network.interfaces.footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allowing parallel connection could increase download speed, but will leak your IP address in case of using VPN."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешение параллельного соединения может повысить скорость скачивания, но приведёт к утечке IP адреса при использовании VPN."
           }
         }
       }

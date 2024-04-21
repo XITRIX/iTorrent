@@ -12,7 +12,7 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
     @IBOutlet private var collectionView: UICollectionView!
     private lazy var delegates = Deletates(parent: self)
     private let cancelButton = UIBarButtonItem(systemItem: .close)
-    private let downloadButton = UIBarButtonItem(title: "Download", style: .done, target: nil, action: nil)
+    private let downloadButton = UIBarButtonItem(title: %"common.download", style: .done, target: nil, action: nil)
     private let diskLabel = makeDiskLabel()
     private let moreButton = UIBarButtonItem(title: "More", image: .init(systemName: "ellipsis.circle"))
 
