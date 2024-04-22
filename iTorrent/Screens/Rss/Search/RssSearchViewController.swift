@@ -11,5 +11,24 @@ class RssSearchViewController<VM: RssSearchViewModel>: BaseCollectionViewControl
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+
+        disposeBag.bind {
+            viewModel.emptyContentType.sink { [unowned self] emptyType in
+                if #available(iOS 17.0, *) {
+                    switch emptyType {
+                    case .noData:
+                        var config = UIContentUnavailableConfiguration.empty()
+                        config.image = .icRss
+                        config.text = %"rssSearch.empty.title"
+                        config.secondaryText = %"rssSearch.empty.subtitle" 
+                        contentUnavailableConfiguration = config
+                    case .badSearch:
+                        contentUnavailableConfiguration = UIContentUnavailableConfiguration.search()
+                    case nil:
+                        contentUnavailableConfiguration = nil
+                    }
+                }
+            }
+        }
     }
 }

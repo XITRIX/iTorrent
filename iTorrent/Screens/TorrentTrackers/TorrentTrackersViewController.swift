@@ -35,8 +35,8 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
                 if #available(iOS 17.0, *) {
                     var config = UIContentUnavailableConfiguration.empty()
                     config.image = .init(systemName: "externaldrive.fill.badge.questionmark")
-                    config.text = "No trackers"
-                    config.secondaryText = "You can add trackers manually by editing this page"
+                    config.text = %"trackers.empty.title" //"No trackers"
+                    config.secondaryText = %"trackers.empty.subtitle" //"You can add trackers manually by editing this page"
                     contentUnavailableConfiguration = isEmpty ? config : nil
                 }
             }

@@ -83,7 +83,7 @@ private extension TorrentTrackersViewModel {
                 let model = TrackerCellViewModel(with: tracker)
                 model.longPressAction = { [unowned self] in
                     UIPasteboard.general.string = tracker.trackerUrl
-                    alertWithTimer(message: "Tracker's URL copied to clipboard!")
+                    alertWithTimer(message: %"trackers.action.copy")
                 }
                 newTrackers.append(model)
                 trackerListChanged = true

@@ -116,11 +116,11 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             if #available(iOS 17.0, *) {
                 viewModel.emptyContentType.sink { [unowned self] emptyType in
                     switch emptyType {
-                    case .noTorrents:
+                    case .noData:
                         var config = UIContentUnavailableConfiguration.empty()
                         config.image = .init(systemName: "fireworks")
-                        config.text = "Welcome to iTorrent"
-                        config.secondaryText = "To add new torrents you can press '+' icon in the bottom-left corner or by opening torrent file directly from Files app or Web Browser"
+                        config.text = %"list.empty.title"
+                        config.secondaryText = %"list.empty.subtitle"
                         contentUnavailableConfiguration = config
                     case .badSearch:
                         contentUnavailableConfiguration = UIContentUnavailableConfiguration.search()

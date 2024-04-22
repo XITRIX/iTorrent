@@ -20,6 +20,18 @@ class RssSearchViewModel: BaseCollectionViewModel {
     @Injected private var rssProvider: RssFeedProvider
 }
 
+extension RssSearchViewModel {
+    var emptyContentType: AnyPublisher<EmptyType?, Never> {
+        Publishers.combineLatest($sections, $searchQuery) { sections, searchQuery in
+            if sections.isEmpty || sections.allSatisfy({ $0.items.isEmpty }) {
+                if !searchQuery.isEmpty { return EmptyType.badSearch }
+                return EmptyType.noData
+            }
+            return nil
+        }.eraseToAnyPublisher()
+    }
+}
+
 private extension RssSearchViewModel {
     func binding() {
         disposeBag.bind {

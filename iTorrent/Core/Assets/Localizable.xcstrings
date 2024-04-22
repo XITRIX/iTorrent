@@ -1268,6 +1268,38 @@
         }
       }
     },
+    "list.empty.subtitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To add new torrents you can press '+' icon in the bottom-left corner or by opening torrent file directly from Files app or Web Browser"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что бы добавить новую загрузку нажмите на иконку '+' в левом нижнем углу или откройте torrent файл напрямую из приложения Файлы или Веб Браузера"
+          }
+        }
+      }
+    },
+    "list.empty.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to iTorrent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добро пожаловать в iTorrent"
+          }
+        }
+      }
+    },
     "list.sort" : {
       "localizations" : {
         "en" : {
@@ -2907,6 +2939,38 @@
         }
       }
     },
+    "rssSearch.empty.subtitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add RSS channels first"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для начала добавьте RSS каналы"
+          }
+        }
+      }
+    },
+    "rssSearch.empty.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No RSS channels"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет RSS каналов"
+          }
+        }
+      }
+    },
     "time.day.single" : {
       "localizations" : {
         "en" : {
@@ -3387,6 +3451,22 @@
         }
       }
     },
+    "trackers.action.copy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker's URL copied to clipboard!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL трекера скопирован в буфер обмена"
+          }
+        }
+      }
+    },
     "trackers.add.message" : {
       "localizations" : {
         "en" : {
@@ -3447,6 +3527,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить трекеры"
+          }
+        }
+      }
+    },
+    "trackers.empty.subtitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can add trackers manually by editing this page"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете добавить трекеры вручную нажав 'Править' на этой странице"
+          }
+        }
+      }
+    },
+    "trackers.empty.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No trackers"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет трекеров"
           }
         }
       }

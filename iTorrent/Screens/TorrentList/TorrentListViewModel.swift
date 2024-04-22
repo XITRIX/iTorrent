@@ -10,17 +10,17 @@ import LibTorrent
 import MvvmFoundation
 import SwiftData
 
+enum EmptyType {
+    case noData
+    case badSearch
+}
+
 extension TorrentListViewModel {
     enum Sort: CaseIterable, Codable {
         case alphabetically
         case creationDate
         case addedDate
         case size
-    }
-
-    enum EmptyType {
-        case noTorrents
-        case badSearch
     }
 }
 
@@ -101,7 +101,7 @@ extension TorrentListViewModel {
         Publishers.combineLatest($sections, $searchQuery) { sections, searchQuery in
             if sections.isEmpty || sections.allSatisfy({ $0.items.isEmpty }) {
                 if !searchQuery.isEmpty { return EmptyType.badSearch }
-                return EmptyType.noTorrents
+                return EmptyType.noData
             }
             return nil
         }.eraseToAnyPublisher()
