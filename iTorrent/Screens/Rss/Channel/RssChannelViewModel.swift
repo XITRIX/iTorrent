@@ -11,6 +11,8 @@ import UIKit
 
 class RssChannelViewModel: BaseCollectionViewModelWith<RssModel> {
     @Published var title: String = ""
+    @Published var searchQuery: String = ""
+
     var model: RssModel!
 
     var items: [RssChannelItemCellViewModel] = []
@@ -21,15 +23,22 @@ class RssChannelViewModel: BaseCollectionViewModelWith<RssModel> {
             model.displayTitle.sink { [unowned self] text in
                 title = text
             }
-            model.$items.sink { [unowned self] models in
+            Publishers.combineLatest(model.$items, $searchQuery) { models, searchQuery in
+                Self.filter(models: models, by: searchQuery)
+            }.sink { [unowned self] models in
                 reload(with: models)
             }
         }
 
         trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
-            let readed = model.items[indexPath.item].readed
+            let itemModel = items[indexPath.item].model
+
+            guard let index = model.items.firstIndex(where: { $0 == itemModel })
+            else { return nil }
+
+            let readed = model.items[index].readed
             let action = UIContextualAction(style: .normal, title: readed ? %"rsschannel.unseen" : %"rsschannel.seen", handler: { [unowned self] _, _, completion in
-                setSeen(!readed, for: indexPath.item)
+                setSeen(!readed, for: index)
                 completion(true)
             })
 //            action.image = readed ? .init(systemName: "eye.slash") : .init(systemName: "eye")
@@ -69,17 +78,17 @@ private extension RssChannelViewModel {
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections = sections }
 
-        items = models.enumerated().map { model in
+        items = models.map { model in
             let vm: RssChannelItemCellViewModel
-            if let existing = items.first(where: { $0.model == model.element }) {
+            if let existing = items.first(where: { $0.model == model }) {
                 vm = existing
             } else {
                 vm = RssChannelItemCellViewModel()
             }
 
-            vm.prepare(with: .init(rssModel: model.element, selectAction: { [unowned self] in
-                setSeen(true, for: model.offset)
-                navigate(to: RssDetailsViewModel.self, with: model.element, by: .detail(asRoot: true))
+            vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self] in
+                setSeen(true, for: model)
+                navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
             }))
 
             return vm
@@ -92,5 +101,12 @@ private extension RssChannelViewModel {
         model.items[index].readed = seen
         model.items[index].new = false
         rssFeedProvider.saveState()
+    }
+
+    static func filter(models: [RssItemModel], by searchQuery: String) -> [RssItemModel] {
+        models.filter { model in
+            searchQuery.split(separator: " ").allSatisfy { (model.title ?? "").localizedCaseInsensitiveContains($0) } ||
+                searchQuery.split(separator: " ").allSatisfy { (model.description ?? "").localizedCaseInsensitiveContains($0) }
+        }
     }
 }

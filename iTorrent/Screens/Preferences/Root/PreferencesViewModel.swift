@@ -63,21 +63,21 @@ private extension PreferencesViewModel {
         sections.append(.init(id: "torrentQueueLimits", header: %"preferences.queueLimits") {
             PRButtonViewModel(with: .init(title: %"preferences.queueLimits.active", value: preferences.$maxActiveTorrents.map { $0 == 0 ? %"preferences.speedLimits.unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: %"preferences.queueLimits.active", placeholder: %"preferences.speedLimits.unlimited", defaultValue: "\(preferences.maxActiveTorrents)", type: .numberPad) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     preferences.maxActiveTorrents = Int(res) ?? 0
                 }
             })
             PRButtonViewModel(with: .init(title: %"preferences.queueLimits.downloading", value: preferences.$maxDownloadingTorrents.map { $0 == 0 ? %"preferences.speedLimits.unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: %"preferences.queueLimits.downloading", placeholder: %"preferences.speedLimits.unlimited", defaultValue: "\(preferences.maxDownloadingTorrents)", type: .numberPad) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     preferences.maxDownloadingTorrents = Int(res) ?? 0
                 }
             })
             PRButtonViewModel(with: .init(title: %"preferences.queueLimits.uploading", value: preferences.$maxUploadingTorrents.map { $0 == 0 ? %"preferences.speedLimits.unlimited" : "\($0)" }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: %"preferences.queueLimits.uploading", placeholder: %"preferences.speedLimits.unlimited", defaultValue: "\(preferences.maxUploadingTorrents)", type: .numberPad) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     preferences.maxUploadingTorrents = Int(res) ?? 0
                 }
@@ -87,14 +87,14 @@ private extension PreferencesViewModel {
         sections.append(.init(id: "speed limits", header: %"preferences.speedLimits") {
             PRButtonViewModel(with: .init(title: %"preferences.speedLimits.download", value: preferences.$maxDownloadSpeed.map { $0 == 0 ? %"preferences.speedLimits.unlimited" : UInt64($0).bitrateToHumanReadable }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: %"preferences.speedLimits.download", message: %"preferences.speedLimits.hint", placeholder: %"preferences.speedLimits.unlimited", defaultValue: "\(preferences.maxDownloadSpeed / 1024)", type: .numberPad) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     preferences.maxDownloadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
                 }
             })
             PRButtonViewModel(with: .init(title: %"preferences.speedLimits.upload", value: preferences.$maxUploadSpeed.map { $0 == 0 ? %"preferences.speedLimits.unlimited" : UInt64($0).bitrateToHumanReadable }.eraseToAnyPublisher()) { [unowned self] in
                 textInput(title: %"preferences.speedLimits.upload", message: %"preferences.speedLimits.hint", placeholder: %"preferences.speedLimits.unlimited", defaultValue: "\(preferences.maxUploadSpeed / 1024)", type: .numberPad) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     preferences.maxUploadSpeed = (UInt(res) ?? 0).multipliedReportingOverflow(by: 1024).partialValue
                 }
@@ -122,7 +122,7 @@ private extension PreferencesViewModel {
         sections.append(.init(id: "version", header: %"preferences.version", footer: version, style: .insetGrouped) {
             PRButtonViewModel(with: .init(title: %"preferences.version.github", value: Just(%"common.open").eraseToAnyPublisher(), selectAction: { [unowned self] in
                 UIApplication.shared.open(.init(string: "https://github.com/XITRIX/iTorrent")!)
-                dismissSelection.send(())
+                dismissSelection.send()
             }))
         })
     }

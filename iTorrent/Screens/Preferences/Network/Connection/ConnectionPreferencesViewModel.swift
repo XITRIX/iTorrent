@@ -60,14 +60,14 @@ private extension ConnectionPreferencesViewModel {
             if !preferences.useDefaultPort {
                 PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.value", value: preferences.$port.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
                     textInput(title: %"preferences.network.connection.port.value", placeholder: "6881", defaultValue: "\(preferences.port)", type: .numberPad) { [unowned self] res in
-                        dismissSelection.send(())
+                        dismissSelection.send()
                         guard let res else { return }
                         preferences.port = Int(res) ?? 6881
                     }
                 })
                 PRButtonViewModel(with: .init(title: %"preferences.network.connection.port.retries", value: preferences.$portBindRetries.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
                     textInput(title:  %"preferences.network.connection.port.retries", placeholder: "10", defaultValue: "\(preferences.portBindRetries)", type: .numberPad) { [unowned self] res in
-                        dismissSelection.send(())
+                        dismissSelection.send()
                         guard let res else { return }
                         preferences.portBindRetries = Int(res) ?? 10
                     }

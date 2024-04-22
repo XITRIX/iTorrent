@@ -12,7 +12,7 @@ import UIKit
 
 class TorrentTrackersViewModel: BaseViewModelWith<TorrentHandle> {
     private var torrentHandle: TorrentHandle!
-    private var trackers: [TrackerCellViewModel] = []
+    @Published var trackers: [TrackerCellViewModel] = []
 
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var selectedIndexPaths: [IndexPath] = []

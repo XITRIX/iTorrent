@@ -37,7 +37,7 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
             if file.progress >= 1 {
                 previewAction?()
             } else {
-                selected.send(())
+                selected.send()
             }
         }
     }

@@ -150,6 +150,8 @@
 		D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */; };
 		D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8862AF3B52E00EB6AFF /* ToggleCellViewModel.swift */; };
 		D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */; };
+		D1DB717D2BD6772A007F9267 /* RssSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB717B2BD6772A007F9267 /* RssSearchViewController.swift */; };
+		D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB717F2BD6773E007F9267 /* RssSearchViewModel.swift */; };
 		D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */; };
 		D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */; };
 		D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */; };
@@ -337,6 +339,8 @@
 		D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCellView.swift; sourceTree = "<group>"; };
 		D1CAB8862AF3B52E00EB6AFF /* ToggleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCellViewModel.swift; sourceTree = "<group>"; };
 		D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUILayoutGuides.swift; sourceTree = "<group>"; };
+		D1DB717B2BD6772A007F9267 /* RssSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchViewController.swift; sourceTree = "<group>"; };
+		D1DB717F2BD6773E007F9267 /* RssSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchViewModel.swift; sourceTree = "<group>"; };
 		D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewController.swift; sourceTree = "<group>"; };
 		D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentFilesViewController.xib; sourceTree = "<group>"; };
 		D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewModel.swift; sourceTree = "<group>"; };
@@ -476,6 +480,7 @@
 		7CFEBE682BC3E0DF0013233F /* Rss */ = {
 			isa = PBXGroup;
 			children = (
+				D1DB717A2BD67707007F9267 /* Search */,
 				7CFEBE692BC3E0E50013233F /* List */,
 				7CFEBE792BC431770013233F /* Channel */,
 				7CFEBE8E2BC441720013233F /* Details */,
@@ -1032,6 +1037,15 @@
 			path = ToggleCell;
 			sourceTree = "<group>";
 		};
+		D1DB717A2BD67707007F9267 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D1DB717F2BD6773E007F9267 /* RssSearchViewModel.swift */,
+				D1DB717B2BD6772A007F9267 /* RssSearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		D1EFCD062AF56A3200D33A7A /* TorrentFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1284,6 +1298,7 @@
 				D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */,
 				D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */,
 				D11138482AF9464E008907F7 /* TorrentAddViewController.swift in Sources */,
+				D1DB717D2BD6772A007F9267 /* RssSearchViewController.swift in Sources */,
 				D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */,
 				7CFEBE7C2BC4318E0013233F /* RssChannelViewController.swift in Sources */,
 				7C5FBE2C2BBDD6B40069E5A0 /* UIView+LayerColors.swift in Sources */,
@@ -1341,6 +1356,7 @@
 				7CFEBEA92BC721D50013233F /* RssListPreferencesViewModel.swift in Sources */,
 				D173D9EC2BC039A700E4F9EB /* LocationBackgroundService.swift in Sources */,
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
+				D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
 				D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,

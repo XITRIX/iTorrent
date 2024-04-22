@@ -44,7 +44,7 @@ class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int, ()->Void
         onPriorityUpdated = model.2
         internalFile = torrentFile.getAt(Int32(index))
         selectAction = { [unowned self] in
-            selected.send(())
+            selected.send()
         }
     }
 }

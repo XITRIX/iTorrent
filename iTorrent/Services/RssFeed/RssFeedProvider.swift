@@ -87,9 +87,10 @@ extension RssFeedProvider {
     var hasNewsPublisher: AnyPublisher<Bool, Never> {
         $rssModels.map { model in
             Publishers.MergeMany(model.map { $0.$items })
+                .collect(model.count)
         }
         .switchToLatest()
-        .map { $0.contains(where: { $0.new }) }
+        .map { $0.flatMap { $0 }.contains(where: { $0.new }) }
         .eraseToAnyPublisher()
     }
 }

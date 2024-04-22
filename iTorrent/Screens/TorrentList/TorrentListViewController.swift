@@ -26,7 +26,11 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
     private let deleteButton = UIBarButtonItem()
 
     private lazy var delegates = Delegates(parent: self)
-    private let searchVC = UISearchController()
+    private lazy var searchVC: UISearchController = {
+        let rssSeacrchViewController = viewModel.rssSearchViewModel.resolveVC()
+        let searchController = UISearchController(searchResultsController: rssSeacrchViewController)
+        return searchController
+    }()
 
     private lazy var documentPicker = makeDocumentPicker()
 
@@ -82,15 +86,19 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             viewModel.deleteAllSelected(at: collectionView.indexPathsForSelectedItems ?? [])
         })
 
+        Task {
+            disposeBag.bind {
+                viewModel.$sections.sink { [unowned self] sections in
+                    collectionView.sections.send(sections)
+                }
+            }
+        }
+
         disposeBag.bind {
             viewModel.$hasRssNews.sink { [unowned self] rssHasNews in
                 rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew : .icRss, handler: { [unowned self] _ in
                     viewModel.showRss()
                 })
-            }
-
-            viewModel.$sections.sink { [unowned self] sections in
-                collectionView.sections.send(sections)
             }
 
             preferencesButton.tapPublisher.sink { [unowned self] _ in
@@ -99,6 +107,27 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
             viewModel.sortingType.combineLatest(viewModel.sortingReverced, viewModel.isGroupedByState).sink { [unowned self] type, reverced, grouped in
                 updateSortingMenu(with: type, reverced: reverced, isGrouped: grouped)
+            }
+
+            searchVC.searchBar.selectedScopeButtonIndexDidChangePublisher.sink { [unowned self] scopeIndex in
+                searchVC.showsSearchResultsController = scopeIndex == 1
+            }
+
+            if #available(iOS 17.0, *) {
+                viewModel.emptyContentType.sink { [unowned self] emptyType in
+                    switch emptyType {
+                    case .noTorrents:
+                        var config = UIContentUnavailableConfiguration.empty()
+                        config.image = .init(systemName: "fireworks")
+                        config.text = "Welcome to iTorrent"
+                        config.secondaryText = "To add new torrents you can press '+' icon in the bottom-left corner or by opening torrent file directly from Files app or Web Browser"
+                        contentUnavailableConfiguration = config
+                    case .badSearch:
+                        contentUnavailableConfiguration = UIContentUnavailableConfiguration.search()
+                    case nil:
+                        contentUnavailableConfiguration = nil
+                    }
+                }
             }
         }
 
@@ -138,7 +167,8 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 if let preview = animator.previewViewController {
                     viewModel.navigationService?()?.navigate(to: preview, by: .detail(asRoot: true))
                     if let nav = preview.navigationController as? SANavigationController,
-                        nav.viewControllers.last == preview {
+                       nav.viewControllers.last == preview
+                    {
                         nav.locker = false
                     }
                 }
@@ -173,6 +203,10 @@ private extension TorrentListViewController {
     func setupSearch() {
         searchVC.showsSearchResultsController = false
         searchVC.searchBar.placeholder = %"common.search"
+
+        searchVC.searchBar.scopeButtonTitles = ["Torrents", "RSS"]
+        searchVC.scopeBarActivation = .onSearchActivation
+
         navigationItem.searchController = searchVC
     }
 

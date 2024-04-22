@@ -1,5 +1,5 @@
 {
-  "originHash" : "37c42e9324ee33b9f6a9d7bc455f47366767f1ed1302bcb1ea1a64c5828a7955",
+  "originHash" : "54b5d2d5b4e5a37bbd421ee37cc930a33407eec339fb949b0ba1a3ae4b4bd1e2",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -25,7 +25,7 @@
       "location" : "https://github.com/XITRIX/CombineCocoa.git",
       "state" : {
         "branch" : "main",
-        "revision" : "940c2140f824647d5141fd2475e059c1a45740e4"
+        "revision" : "c1bd62b53589e053c56958beebb6d9aee1367d5d"
       }
     },
     {

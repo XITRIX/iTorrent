@@ -47,7 +47,7 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
     }
 
     override func willAppear() {
-        updatePublisher.send(())
+        updatePublisher.send()
     }
 }
 
@@ -66,13 +66,13 @@ extension TorrentAddViewModel {
 
     func fileModel(for index: Int) -> TorrentAddFileItemViewModel {
         .init(with: (torrentFile, index, { [unowned self] in
-            updatePublisher.send(())
+            updatePublisher.send()
         }))
     }
 
     func pathModel(for path: PathNode) -> TorrentAddDirectoryItemViewModel {
         .init(with: (torrentFile, path, path.name, { [unowned self] in
-            updatePublisher.send(())
+            updatePublisher.send()
         }))
     }
 
@@ -97,7 +97,7 @@ extension TorrentAddViewModel {
 
     func setAllFilesPriority(_ priority: FileEntry.Priority) {
         torrentFile.setAllFilesPriority(priority)
-        updatePublisher.send(())
+        updatePublisher.send()
     }
 
     var diskTextPublisher: AnyPublisher<String, Never> {

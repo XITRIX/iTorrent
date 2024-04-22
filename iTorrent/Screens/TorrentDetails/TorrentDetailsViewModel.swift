@@ -40,7 +40,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
                 }
 
             torrentHandle.removePublisher.sink { [unowned self] _ in
-                dismissSignal.send(())
+                dismissSignal.send()
             }
 
             sequentialModel.$isOn.sink { [unowned self] value in

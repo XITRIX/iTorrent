@@ -16,6 +16,12 @@ class RssChannelViewController<VM: RssChannelViewModel>: BaseCollectionViewContr
         super.viewDidLoad()
         setup()
     }
+
+    private let searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchBar.placeholder = %"common.search"
+        return searchController
+    }()
 }
 
 private extension RssChannelViewController {
@@ -35,6 +41,7 @@ private extension RssChannelViewController {
             }
         ].compactMap { $0 })
 
+        navigationItem.searchController = searchController
         navigationItem.trailingItemGroups = [.fixedGroup(items: [actionsButton])]
 
         collectionView.contextMenuConfigurationForItemsAt = { [unowned self] indexPaths, _ in
@@ -75,5 +82,8 @@ private extension RssChannelViewController {
                 title = text
             }
         }
+
+        searchController.searchBar.textDidChangePublisher.assign(to: &viewModel.$searchQuery)
+        searchController.searchBar.cancelButtonClickedPublisher.map { "" }.assign(to: &viewModel.$searchQuery)
     }
 }

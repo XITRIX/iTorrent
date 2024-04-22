@@ -17,6 +17,11 @@ extension TorrentListViewModel {
         case addedDate
         case size
     }
+
+    enum EmptyType {
+        case noTorrents
+        case badSearch
+    }
 }
 
 class TorrentListViewModel: BaseViewModel {
@@ -24,6 +29,12 @@ class TorrentListViewModel: BaseViewModel {
     @Published var searchQuery: String = ""
     @Published var title: String = ""
     @Published var hasRssNews: Bool = false
+
+    lazy var rssSearchViewModel: RssSearchViewModel = {
+        let vm = RssSearchViewModel()
+        vm.navigationService = navigationService
+        return vm
+    }()
 
     var isGroupedByState: CurrentValueRelay<Bool> {
         PreferencesStorage.shared.$torrentListGroupedByState
@@ -41,8 +52,8 @@ class TorrentListViewModel: BaseViewModel {
         super.init()
         title = "iTorrent"
 
-        Task {
-            try await Task.sleep(for: .seconds(0.1))
+//        Task {
+//            try await Task.sleep(for: .seconds(0.1))
 
             let groupsSortingArray = PreferencesStorage.shared.$torrentListGroupsSortingArray
             let torrentSectionChanged = TorrentService.shared.updateNotifier.filter { $0.oldSnapshot.friendlyState != $0.handle.snapshot.friendlyState }.map{_ in ()}.prepend([()])
@@ -74,9 +85,9 @@ class TorrentListViewModel: BaseViewModel {
                 } else {
                     return makeUngroupedSection(with: torrents)
                 }
-            }
-            .assign(to: &$sections)
-        }
+            }.assign(to: &$sections)
+            $searchQuery.assign(to: &rssSearchViewModel.$searchQuery)
+//        }
     }
 
     static func searchFilter(_ text: String, by query: String) -> Bool {
@@ -86,6 +97,16 @@ class TorrentListViewModel: BaseViewModel {
 }
 
 extension TorrentListViewModel {
+    var emptyContentType: AnyPublisher<EmptyType?, Never> {
+        Publishers.combineLatest($sections, $searchQuery) { sections, searchQuery in
+            if sections.isEmpty || sections.allSatisfy({ $0.items.isEmpty }) {
+                if !searchQuery.isEmpty { return EmptyType.badSearch }
+                return EmptyType.noTorrents
+            }
+            return nil
+        }.eraseToAnyPublisher()
+    }
+
     func preferencesAction() {
         navigate(to: PreferencesViewModel.self, by: .show)
     }

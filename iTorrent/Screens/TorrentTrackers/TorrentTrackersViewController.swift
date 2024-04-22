@@ -30,6 +30,16 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
             collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
                 viewModel.selectedIndexPaths = indexPaths
             }
+
+            viewModel.$trackers.map { $0.isEmpty }.sink { [unowned self] isEmpty in
+                if #available(iOS 17.0, *) {
+                    var config = UIContentUnavailableConfiguration.empty()
+                    config.image = .init(systemName: "externaldrive.fill.badge.questionmark")
+                    config.text = "No trackers"
+                    config.secondaryText = "You can add trackers manually by editing this page"
+                    contentUnavailableConfiguration = isEmpty ? config : nil
+                }
+            }
         }
 
         title = %"details.actions.trackers"

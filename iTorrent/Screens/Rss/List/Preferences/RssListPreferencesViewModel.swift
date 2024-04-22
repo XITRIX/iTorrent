@@ -18,18 +18,18 @@ class RssListPreferencesViewModel: BaseCollectionViewModelWith<RssModel> {
             PRButtonViewModel(with: .init(title: %"rsslist.preference.url", value: Just(model.xmlLink.absoluteString).eraseToAnyPublisher(), tinted: false, singleLine: true, selectAction: { [unowned self] in
                 UIPasteboard.general.string = model.xmlLink.absoluteString
                 alertWithTimer(title: %"rsslist.preference.urlCopy")
-                dismissSelection.send(())
+                dismissSelection.send()
             }))
             PRButtonViewModel(with: .init(title: %"rsslist.preference.name", value: model.displayTitle, singleLine: true, selectAction: { [unowned self] in
                 textInput(title: %"rsslist.preference.name", placeholder: model.title, defaultValue: model.customTitle) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     model.customTitle = res
                 }
             }))
             PRButtonViewModel(with: .init(title: %"rsslist.preference.description", value: model.displayDescription, singleLine: true, selectAction: { [unowned self] in
                 textInput(title: %"rsslist.preference.description", placeholder: model.description, defaultValue: model.customDescription) { [unowned self] res in
-                    dismissSelection.send(())
+                    dismissSelection.send()
                     guard let res else { return }
                     model.customDescription = res
                 }
