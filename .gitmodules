@@ -4,3 +4,6 @@
 [submodule "Submodules/MVVMFoundation"]
 	path = Submodules/MVVMFoundation
 	url = https://github.com/XITRIX/MVVMFoundation.git
+[submodule "Submodules/GCDWebServer"]
+	path = Submodules/GCDWebServer
+	url = https://github.com/XITRIX/GCDWebServer.git

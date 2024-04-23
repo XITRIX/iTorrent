@@ -152,6 +152,8 @@
 		D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */; };
 		D1DB717D2BD6772A007F9267 /* RssSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB717B2BD6772A007F9267 /* RssSearchViewController.swift */; };
 		D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB717F2BD6773E007F9267 /* RssSearchViewModel.swift */; };
+		D1DB71832BD80318007F9267 /* GCDWebServers in Frameworks */ = {isa = PBXBuildFile; productRef = D1DB71822BD80318007F9267 /* GCDWebServers */; };
+		D1DB71862BD8044F007F9267 /* WebServerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB71852BD8044F007F9267 /* WebServerService.swift */; };
 		D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */; };
 		D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */; };
 		D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */; };
@@ -341,6 +343,7 @@
 		D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUILayoutGuides.swift; sourceTree = "<group>"; };
 		D1DB717B2BD6772A007F9267 /* RssSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchViewController.swift; sourceTree = "<group>"; };
 		D1DB717F2BD6773E007F9267 /* RssSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchViewModel.swift; sourceTree = "<group>"; };
+		D1DB71852BD8044F007F9267 /* WebServerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServerService.swift; sourceTree = "<group>"; };
 		D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewController.swift; sourceTree = "<group>"; };
 		D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentFilesViewController.xib; sourceTree = "<group>"; };
 		D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewModel.swift; sourceTree = "<group>"; };
@@ -372,6 +375,7 @@
 				7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */,
 				7CC411602BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift in Frameworks */,
 				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
+				D1DB71832BD80318007F9267 /* GCDWebServers in Frameworks */,
 				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
 				7CC4115D2BD2DE3800CA8B13 /* FirebaseCrashlytics in Frameworks */,
 				7CC4115B2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -929,6 +933,7 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1DB71842BD80435007F9267 /* WebServer */,
 				7CAD301A2BC3456700592990 /* RssFeed */,
 				D173D9E42BC0330600E4F9EB /* BackgroundService */,
 				D11333B32AF19C3400FA017E /* TorrentService */,
@@ -1046,6 +1051,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		D1DB71842BD80435007F9267 /* WebServer */ = {
+			isa = PBXGroup;
+			children = (
+				D1DB71852BD8044F007F9267 /* WebServerService.swift */,
+			);
+			path = WebServer;
+			sourceTree = "<group>";
+		};
 		D1EFCD062AF56A3200D33A7A /* TorrentFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1123,6 +1136,7 @@
 				7CC4115A2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				7CC4115C2BD2DE3800CA8B13 /* FirebaseCrashlytics */,
 				7CC4115F2BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift */,
+				D1DB71822BD80318007F9267 /* GCDWebServers */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -1163,6 +1177,7 @@
 				7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 				7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 				7CC411592BD2DE3800CA8B13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D1DB71812BD80318007F9267 /* XCLocalSwiftPackageReference "Submodules/GCDWebServer" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -1268,6 +1283,7 @@
 				D173D9DC2BBEED2B00E4F9EB /* Codables.swift in Sources */,
 				D1048D862BBE92220027EF2F /* SANavigationController.swift in Sources */,
 				D1AA00CB2AFA8A9200B74629 /* UserDefaultItem.swift in Sources */,
+				D1DB71862BD8044F007F9267 /* WebServerService.swift in Sources */,
 				D1EFCD172AF6AE1600D33A7A /* TorrentFilesDictionaryItemView.swift in Sources */,
 				D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */,
 				D19E00222AEFFA2A000A17A2 /* DetailCellViewModel.swift in Sources */,
@@ -1862,6 +1878,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Submodules/MVVMFoundation;
 		};
+		D1DB71812BD80318007F9267 /* XCLocalSwiftPackageReference "Submodules/GCDWebServer" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Submodules/GCDWebServer;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1953,6 +1973,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */;
 			productName = OpenSSL;
+		};
+		D1DB71822BD80318007F9267 /* GCDWebServers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GCDWebServers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
