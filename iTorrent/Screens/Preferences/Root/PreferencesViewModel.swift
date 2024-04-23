@@ -12,13 +12,27 @@ import SwiftUI
 class PreferencesViewModel: BasePreferencesViewModel {
     required init() {
         super.init()
+        binding()
         reload()
     }
 
-    private let preferences = PreferencesStorage.shared
+    @Injected private var preferences: PreferencesStorage
+    @Injected private var webServerService: WebServerService
 }
 
 private extension PreferencesViewModel {
+    func binding() {
+        disposeBag.bind {
+            Just(())
+                .combineLatest(webServerService.$isWebServerEnabled)
+                .combineLatest(webServerService.$isWebDavServerEnabled)
+                .receive(on: DispatchQueue.main)
+                .sink { [unowned self] _ in
+                    reload()
+                }
+        }
+    }
+
     func reload() {
         title.send(%"preferences")
 
@@ -101,7 +115,19 @@ private extension PreferencesViewModel {
             })
         })
 
-        sections.append(.init(id: "filesharing", header: %"preferences.sharing") {
+        var arr: [String] = []
+        if let webPort = webServerService.webPort {
+            arr.append("Web:\(webPort)")
+        }
+        if let webDavPort = webServerService.webDavPort {
+            arr.append("WebDav:\(webDavPort)")
+        }
+
+        var footer: String?
+        if !arr.isEmpty, let ip = webServerService.ip {
+            footer = "\(ip)  —  \(arr.joined(separator: " | "))"
+        }
+        sections.append(.init(id: "filesharing", header: %"preferences.sharing", footer: footer) {
             PRSwitchViewModel(with: .init(id: "filesharingswitch", title: %"common.enable", value: preferences.$isFileSharingEnabled.binding))
             PRButtonViewModel(with: .init(id: "filesharingbutton", title: %"preferences", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: FileSharingPreferencesViewModel.self, by: .show)

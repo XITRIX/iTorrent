@@ -11,8 +11,11 @@ import MvvmFoundation
 import UIKit
 
 @MainActor
-class WebServerService {
+class WebServerService: Resolvable {
     init() { binding() }
+
+    @Published var isWebServerEnabled: Bool = false
+    @Published var isWebDavServerEnabled: Bool = false
 
     private var webUploadServer = GCDWebUploader(uploadDirectory: TorrentService.downloadPath.path())
     private var webDAVServer = GCDWebDAVServer(uploadDirectory: TorrentService.downloadPath.path())
@@ -21,6 +24,24 @@ class WebServerService {
     private var backgroundDisposeBag: DisposeBag?
     @Injected private var preferences: PreferencesStorage
     @Injected private var backgroundService: BackgroundService
+}
+
+extension WebServerService {
+    var ip: String? {
+        guard let host = webUploadServer.serverURL?.host() ?? webDAVServer.serverURL?.host()
+        else { return nil }
+        return "http://"+host
+    }
+
+    var webPort: UInt? {
+        guard webUploadServer.isRunning else { return nil }
+        return webUploadServer.port
+    }
+
+    var webDavPort: UInt? {
+        guard webDAVServer.isRunning else { return nil }
+        return webDAVServer.port
+    }
 }
 
 private extension WebServerService {
@@ -96,10 +117,12 @@ private extension WebServerService {
 
                             if webUploadServer.isRunning {
                                 webUploadServer.stop()
+                                isWebServerEnabled = false
                             }
 
                             if webDAVServer.isRunning {
                                 webDAVServer.stop()
+                                isWebDavServerEnabled = false
                             }
 
                             backgroundDisposeBag = nil
@@ -108,10 +131,12 @@ private extension WebServerService {
             } else {
                 if webUploadServer.isRunning {
                     webUploadServer.stop()
+                    isWebServerEnabled = false
                 }
 
                 if webDAVServer.isRunning {
                     webDAVServer.stop()
+                    isWebDavServerEnabled = false
                 }
             }
         } else { // Going foreground
@@ -130,6 +155,7 @@ private extension WebServerService {
 
         if webUploadServer.isRunning {
             webUploadServer.stop()
+            isWebServerEnabled = false
         }
 
         if needToEnable, !webUploadServer.isRunning {
@@ -140,6 +166,7 @@ private extension WebServerService {
                 port += 1
                 localOptions[GCDWebServerOption_Port] = port
             }
+            isWebServerEnabled = true
         }
     }
 
@@ -148,6 +175,7 @@ private extension WebServerService {
 
         if webDAVServer.isRunning {
             webDAVServer.stop()
+            isWebDavServerEnabled = false
         }
 
         if needToEnable, !webDAVServer.isRunning {
@@ -158,6 +186,7 @@ private extension WebServerService {
                 port += 1
                 localOptions[GCDWebServerOption_Port] = port
             }
+            isWebDavServerEnabled = false
         }
     }
 }
