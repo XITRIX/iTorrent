@@ -44,7 +44,8 @@ private extension RssSearchViewModel {
 
             Publishers.combineLatest(rssItems, $searchQuery) { models, searchQuery in
                 Self.filter(models: models, by: searchQuery)
-            }.sink { [unowned self] values in
+            }
+            .sink { [unowned self] values in
                 reload(values)
             }
         }
@@ -77,21 +78,19 @@ private extension RssSearchViewModel {
     }
 
     func setSeen(_ seen: Bool, for itemModel: RssItemModel) {
-        outerLoop: for channel in rssProvider.rssModels {
-            for itemIndex in 0 ..< channel.items.count {
-                guard channel.items[itemIndex] == itemModel else { continue }
-                channel.items[itemIndex].readed = seen
-                channel.items[itemIndex].new = false
-                rssProvider.saveState()
-                break outerLoop
+        Task.detached(priority: .userInitiated) { [rssProvider] in
+        outerLoop: for channel in await rssProvider.rssModels {
+                for itemIndex in 0 ..< channel.items.count {
+                    guard channel.items[itemIndex] == itemModel else { continue }
+                    await MainActor.run {
+                        channel.items[itemIndex].readed = seen
+                        channel.items[itemIndex].new = false
+                        rssProvider.saveState()
+                    }
+                    break outerLoop
+                }
             }
         }
-//        guard let index = model.items.firstIndex(where: { $0 == itemModel })
-//        else { return }
-//
-//        model.items[index].readed = seen
-//        model.items[index].new = false
-//        rssFeedProvider.saveState()
     }
 
     static func filter(models: [RssItemModel], by searchQuery: String) -> [RssItemModel] {
