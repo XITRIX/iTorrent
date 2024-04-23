@@ -54,6 +54,7 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
 #endif
         titleLabel.fadeLength = 16
         titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.textAlignment = .center
         return titleLabel
     }()
 }
