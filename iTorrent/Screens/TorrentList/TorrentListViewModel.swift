@@ -32,7 +32,9 @@ class TorrentListViewModel: BaseViewModel {
 
     lazy var rssSearchViewModel: RssSearchViewModel = {
         let vm = RssSearchViewModel()
-        vm.navigationService = navigationService
+        vm.setNavigationService { [weak self] in
+            self?.navigationService?()
+        }
         return vm
     }()
 
@@ -177,7 +179,7 @@ private extension TorrentListViewModel {
     func makeUngroupedSection(with torrents: [TorrentHandle]) -> [MvvmCollectionSectionModel] {
         [.init(id: "torrents", style: .platformPlain, showsSeparators: true, items: torrents.map {
             let vm = TorrentListItemViewModel(with: $0)
-            vm.navigationService = { [weak self] in self?.navigationService?() }
+            vm.setNavigationService { [weak self] in self?.navigationService?() }
             return vm
         })]
     }
@@ -193,7 +195,7 @@ private extension TorrentListViewModel {
         return dictionary.sorted { Self.getStateGroupintIndex($0.key, from: sortingArray) < Self.getStateGroupintIndex($1.key, from: sortingArray) }.map { section in
             MvvmCollectionSectionModel(id: section.key.name, header: section.key.name, style: .platformPlain, items: section.value.map {
                 let vm = TorrentListItemViewModel(with: $0)
-                vm.navigationService = { [weak self] in self?.navigationService?() }
+                vm.setNavigationService { [weak self] in self?.navigationService?() }
                 return vm
             })
         }

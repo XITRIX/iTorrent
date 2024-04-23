@@ -1279,7 +1279,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Что бы добавить новую загрузку нажмите на иконку '+' в левом нижнем углу или откройте torrent файл напрямую из приложения Файлы или Веб Браузера"
+            "value" : "Для добавления загрузки нажмите '+' в углу экрана или откройте torrent файл из приложения Файлы или Веб Браузера"
           }
         }
       }
@@ -1295,7 +1295,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добро пожаловать в iTorrent"
+            "value" : "Добро пожаловать"
           }
         }
       }
@@ -2064,13 +2064,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow parallel connection"
+            "value" : "Parallel connection"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Разрешить параллельное соединение"
+            "value" : "Параллельное соединение"
           }
         }
       }
@@ -2080,13 +2080,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allow mobile data"
+            "value" : "Mobile data"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Разрешить сотовые данные"
+            "value" : "Сотовые данные"
           }
         }
       }
@@ -2096,13 +2096,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Allowing parallel connection could increase download speed, but will leak your IP address in case of using VPN."
+            "value" : "Parallel connection could increase download speed, but will leak your IP address in case of using VPN."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Разрешение параллельного соединения может повысить скорость скачивания, но приведёт к утечке IP адреса при использовании VPN."
+            "value" : "Параллельное соединение может повысить скорость загрузки, но приведёт к утечке IP адреса при использовании VPN."
           }
         }
       }
@@ -2807,6 +2807,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RSS Фид"
+          }
+        }
+      }
+    },
+    "rssfeed.empty.subtitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can add RSS channels by editing this page"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете добавить RSS каналы нажав 'Править' на этой странице"
           }
         }
       }

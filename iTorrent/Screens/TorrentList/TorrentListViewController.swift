@@ -96,7 +96,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
         disposeBag.bind {
             viewModel.$hasRssNews.sink { [unowned self] rssHasNews in
-                rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew : .icRss, handler: { [unowned self] _ in
+                rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew.withRenderingMode(.alwaysOriginal) : .icRss, handler: { [unowned self] _ in
                     viewModel.showRss()
                 })
             }

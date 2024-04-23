@@ -40,6 +40,16 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
 
                 viewModel.reorderItems(transaction.finalSnapshot.itemIdentifiers(inSection: firstSection).map { $0.viewModel })
             }
+
+            viewModel.isEmpty.sink { [unowned self] isEmpty in
+                if #available(iOS 17.0, *) {
+                    var config = UIContentUnavailableConfiguration.empty()
+                    config.image = .icRss
+                    config.text = %"rssSearch.empty.title"
+                    config.secondaryText = %"rssfeed.empty.subtitle"
+                    contentUnavailableConfiguration = isEmpty ? config : nil
+                }
+            }
         }
 
         title = %"rssfeed"
@@ -69,13 +79,13 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         toolbarItems = editing ?
-        [
-            .init(systemItem: .flexibleSpace),
-            addButton,
-            .init(systemItem: .flexibleSpace),
-            removeButton,
-            .init(systemItem: .flexibleSpace)
-        ] : []
+            [
+                .init(systemItem: .flexibleSpace),
+                addButton,
+                .init(systemItem: .flexibleSpace),
+                removeButton,
+                .init(systemItem: .flexibleSpace)
+            ] : []
         navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: true)
     }
 }

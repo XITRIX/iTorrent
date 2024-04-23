@@ -62,8 +62,10 @@ private extension RssSearchViewModel {
                 vm = RssChannelItemCellViewModel()
             }
 
-            vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self] in
+            vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self, weak vm] in
                 setSeen(true, for: model)
+                vm?.isNew = false
+                vm?.isReaded = true
                 navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
                 dismissSelection.send()
             }))
@@ -75,6 +77,15 @@ private extension RssSearchViewModel {
     }
 
     func setSeen(_ seen: Bool, for itemModel: RssItemModel) {
+        outerLoop: for channel in rssProvider.rssModels {
+            for itemIndex in 0 ..< channel.items.count {
+                guard channel.items[itemIndex] == itemModel else { continue }
+                channel.items[itemIndex].readed = seen
+                channel.items[itemIndex].new = false
+                rssProvider.saveState()
+                break outerLoop
+            }
+        }
 //        guard let index = model.items.firstIndex(where: { $0 == itemModel })
 //        else { return }
 //

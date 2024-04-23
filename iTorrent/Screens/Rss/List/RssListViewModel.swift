@@ -15,6 +15,15 @@ class RssListViewModel: BaseCollectionViewModel {
         setup()
     }
 
+    @Injected private var rssProvider: RssFeedProvider
+}
+
+extension RssListViewModel {
+    var isEmpty: AnyPublisher<Bool, Never> {
+        $sections.map { $0.isEmpty || $0.allSatisfy { $0.items.isEmpty } }
+            .eraseToAnyPublisher()
+    }
+
     var isRemoveAvailable: AnyPublisher<Bool, Never> {
         $selectedIndexPaths.map { !$0.isEmpty }
             .eraseToAnyPublisher()
@@ -46,8 +55,6 @@ class RssListViewModel: BaseCollectionViewModel {
             rssProvider.rssModels = rssModels
         }
     }
-
-    @Injected private var rssProvider: RssFeedProvider
 }
 
 private extension RssListViewModel {
@@ -59,7 +66,7 @@ private extension RssListViewModel {
                 defer { self.sections = sections }
 
                 sections.append(.init(id: "rss", items: models.map { model in
-                    RssFeedCellViewModel.init(with: .init(rssModel: model, selectAction: { [unowned self] in
+                    RssFeedCellViewModel(with: .init(rssModel: model, selectAction: { [unowned self] in
                         navigate(to: RssChannelViewModel.self, with: model, by: .show)
                     }))
                 }))

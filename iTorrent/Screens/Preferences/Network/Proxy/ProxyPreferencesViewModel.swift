@@ -22,7 +22,7 @@ class ProxyPreferencesViewModel: BasePreferencesViewModel {
 private extension ProxyPreferencesViewModel {
     func binding() {
         disposeBag.bind {
-            preferences.$proxyAuthRequired.sink(receiveValue: { [reload] _ in reload() })
+            preferences.$proxyAuthRequired.sink(receiveValue: { [unowned self] _ in reload() })
         }
     }
 
@@ -88,7 +88,7 @@ private extension ProxyPreferencesViewModel {
     }
 
     func uiAction(from proxyType: Session.Settings.ProxyType) -> UIAction {
-        UIAction(title: proxyType.name, state: preferences.proxyType == proxyType ? .on : .off) { [preferences, reload] _ in
+        UIAction(title: proxyType.name, state: preferences.proxyType == proxyType ? .on : .off) { [unowned self] _ in
             preferences.proxyType = proxyType
             reload()
         }
