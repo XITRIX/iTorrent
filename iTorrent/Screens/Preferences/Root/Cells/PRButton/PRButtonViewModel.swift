@@ -11,8 +11,9 @@ import SwiftUI
 
 extension PRButtonViewModel {
     struct Config {
+        var id: String?
         var title: String
-        var value: AnyPublisher<String, Never> = Just("").eraseToAnyPublisher()
+        var value: AnyPublisher<String, Never>?// = Just("").eraseToAnyPublisher()
         var canReorder: Bool = false
         var tinted: Bool = true
         var singleLine: Bool = false
@@ -24,6 +25,7 @@ extension PRButtonViewModel {
 class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, ObservableObject, MvvmSelectableProtocol, MvvmReorderableProtocol {
     var selectAction: (() -> Void)?
 
+    var id: String?
     @Published var title = ""
     @Published var value: String = ""
     @Published var tinted: Bool = true
@@ -34,8 +36,11 @@ class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, Observable
     var metadata: Any?
 
     override func prepare(with model: Config) {
+        id = model.id
         title = model.title
-        model.value.assign(to: &$value)
+        if let value = model.value {
+            value.assign(to: &self.$value)
+        }
         accessories = model.accessories
         selectAction = model.selectAction
         canReorder = model.canReorder
@@ -45,10 +50,11 @@ class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, Observable
 
     override func isEqual(to other: MvvmViewModel) -> Bool {
         guard let other = other as? Self else { return false }
-        return title == other.title
+        return id == other.id && title == other.title
     }
 
     override func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
         hasher.combine(title)
     }
 }

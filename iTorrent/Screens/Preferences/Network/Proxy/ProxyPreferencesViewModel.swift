@@ -53,8 +53,8 @@ private extension ProxyPreferencesViewModel {
                         preferences.proxyHostname = res
                     }
                 })
-                PRButtonViewModel(with: .init(title: %"preferences.network.proxy.host.port", value: preferences.$proxyHostPort.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
-                    textInput(title: %"preferences.network.proxy.host.port", placeholder: "8080", defaultValue: "\(preferences.proxyHostPort)", type: .numberPad) { [unowned self] res in
+                PRButtonViewModel(with: .init(title: %"common.port", value: preferences.$proxyHostPort.map { String($0) }.eraseToAnyPublisher()) { [unowned self] in
+                    textInput(title: %"common.port", placeholder: "8080", defaultValue: "\(preferences.proxyHostPort)", type: .numberPad) { [unowned self] res in
                         dismissSelection.send()
                         guard let res else { return }
                         preferences.proxyHostPort = Int(res) ?? 8080
@@ -68,15 +68,15 @@ private extension ProxyPreferencesViewModel {
                 PRSwitchViewModel(with: .init(title: %"preferences.network.proxy.auth.required", value: preferences.$proxyAuthRequired.binding))
 
                 if preferences.proxyAuthRequired {
-                    PRButtonViewModel(with: .init(title: %"preferences.network.proxy.auth.login", value: preferences.$proxyUsername.eraseToAnyPublisher()) { [unowned self] in
-                        textInput(title: %"preferences.network.proxy.auth.login", placeholder: "admin", defaultValue: "\(preferences.proxyUsername)", type: .URL) { [unowned self] res in
+                    PRButtonViewModel(with: .init(title: %"common.login", value: preferences.$proxyUsername.eraseToAnyPublisher()) { [unowned self] in
+                        textInput(title: %"common.login", placeholder: "admin", defaultValue: "\(preferences.proxyUsername)", type: .URL) { [unowned self] res in
                             dismissSelection.send()
                             guard let res else { return }
                             preferences.proxyUsername = res
                         }
                     })
-                    PRButtonViewModel(with: .init(title: %"preferences.network.proxy.auth.password", value: preferences.$proxyPassword.map { String($0).map { _ in "•" }.joined() }.eraseToAnyPublisher()) { [unowned self] in
-                        textInput(title: %"preferences.network.proxy.auth.password", placeholder: "12345", defaultValue: "\(preferences.proxyPassword)", type: .default, secured: true) { [unowned self] res in
+                    PRButtonViewModel(with: .init(title: %"common.password", value: preferences.$proxyPassword.map { String($0).map { _ in "•" }.joined() }.eraseToAnyPublisher()) { [unowned self] in
+                        textInput(title: %"common.password", placeholder: "12345", defaultValue: "\(preferences.proxyPassword)", type: .default, secured: true) { [unowned self] res in
                             dismissSelection.send()
                             guard let res else { return }
                             preferences.proxyPassword = res

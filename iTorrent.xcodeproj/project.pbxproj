@@ -37,6 +37,7 @@
 		7CAD301C2BC3457900592990 /* RssModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301B2BC3457900592990 /* RssModel.swift */; };
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
 		7CAD30202BC34BCE00592990 /* RssFeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */; };
+		7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */; };
 		7CC411582BD2DCF800CA8B13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */; };
 		7CC4115B2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115A2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		7CC4115D2BD2DE3800CA8B13 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115C2BD2DE3800CA8B13 /* FirebaseCrashlytics */; };
@@ -229,6 +230,7 @@
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
+		7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSharingPreferencesViewModel.swift; sourceTree = "<group>"; };
 		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
@@ -466,6 +468,14 @@
 			path = RssFeed;
 			sourceTree = "<group>";
 		};
+		7CB6F6CC2BD82B8A00D0813B /* FileSharing */ = {
+			isa = PBXGroup;
+			children = (
+				7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */,
+			);
+			path = FileSharing;
+			sourceTree = "<group>";
+		};
 		7CC411562BD2DCC000CA8B13 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +623,7 @@
 		D111384C2AF9663F008907F7 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				7CB6F6CC2BD82B8A00D0813B /* FileSharing */,
 				D1352D1F2BBC338300104E7B /* Base */,
 				D1048D952BBECFA60027EF2F /* Appearance */,
 				D17733E72BBC2C29006FC81A /* Network */,
@@ -1310,6 +1321,7 @@
 				D1EFCD142AF5A59800D33A7A /* UIViewController+Pop.swift in Sources */,
 				D11BE54B2AFBA06900780C1B /* PRButtonViewModel.swift in Sources */,
 				D1A226F22AEF019400669D6D /* TorrentService.swift in Sources */,
+				7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */,
 				7CFEBE942BC441A20013233F /* RssDetailsViewModel.swift in Sources */,
 				D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */,
 				D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */,

@@ -244,6 +244,22 @@
         }
       }
     },
+    "common.enable" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить"
+          }
+        }
+      }
+    },
     "common.error" : {
       "localizations" : {
         "en" : {
@@ -256,6 +272,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка"
+          }
+        }
+      }
+    },
+    "common.login" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Логин"
           }
         }
       }
@@ -292,6 +324,54 @@
         }
       }
     },
+    "common.optional" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опционально"
+          }
+        }
+      }
+    },
+    "common.password" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Password"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль"
+          }
+        }
+      }
+    },
+    "common.port" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Порт"
+          }
+        }
+      }
+    },
     "common.reset" : {
       "localizations" : {
         "en" : {
@@ -303,7 +383,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " Сбросить"
+            "value" : "Сбросить"
           }
         }
       }
@@ -1883,22 +1963,6 @@
         }
       }
     },
-    "preferences.network.connection.port" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Port"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Порт"
-          }
-        }
-      }
-    },
     "preferences.network.connection.port.default" : {
       "localizations" : {
         "en" : {
@@ -2139,38 +2203,6 @@
         }
       }
     },
-    "preferences.network.proxy.auth.login" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Login"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Логин"
-          }
-        }
-      }
-    },
-    "preferences.network.proxy.auth.password" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Password"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пароль"
-          }
-        }
-      }
-    },
     "preferences.network.proxy.auth.required" : {
       "localizations" : {
         "en" : {
@@ -2215,22 +2247,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Имя хоста"
-          }
-        }
-      }
-    },
-    "preferences.network.proxy.host.port" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Port"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Порт"
           }
         }
       }
@@ -2375,6 +2391,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Активных раздач"
+          }
+        }
+      }
+    },
+    "preferences.sharing" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File sharing"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обмен файлами"
+          }
+        }
+      }
+    },
+    "preferences.sharing.authorization" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authorization"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Авторизация"
+          }
+        }
+      }
+    },
+    "preferences.sharing.webdavserver" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WebDav server"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WebDav сервер"
+          }
+        }
+      }
+    },
+    "preferences.sharing.webdavserver.footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use WebDav client to connect to iTorrent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте WebDav клиент для соединения с iTorrent"
+          }
+        }
+      }
+    },
+    "preferences.sharing.webserver" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web server"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web сервер"
+          }
+        }
+      }
+    },
+    "preferences.sharing.webserver.footer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use any web browser for file sharing"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте любой браузер для обмена файлами"
           }
         }
       }

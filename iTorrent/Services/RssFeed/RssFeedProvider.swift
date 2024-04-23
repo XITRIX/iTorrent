@@ -31,7 +31,11 @@ extension RssFeedProvider {
 class RssFeedProvider {
     @Published var rssModels: [RssModel]
 
-    init(fetchUpdatesOnInit: Bool = true) {
+    convenience init() {
+        self.init(fetchUpdatesOnInit: true)
+    }
+
+    init(fetchUpdatesOnInit: Bool) {
         rssModels = Self.loadFromDisk()
         disposalBag.bind {
             $rssModels.sink(receiveValue: Self.saveToDisk)

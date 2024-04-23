@@ -18,12 +18,12 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dragInteractionEnabled = true
-        collectionView.keyboardDismissMode = .interactive
 
 #if os(visionOS)
         view.backgroundColor = .secondarySystemBackground
 #else
         view.backgroundColor = .systemGroupedBackground
+        collectionView.keyboardDismissMode = .interactive
 #endif
 
         refresh.addTarget(self, action: #selector(refreshFunc), for: .valueChanged)

@@ -22,7 +22,8 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { BackgroundService.shared })
         container.registerSingleton(factory: NetworkMonitoringService.init)
         container.registerDaemon(factory: TorrentMonitoringService.init)
-        container.registerDaemon(factory: { RssFeedProvider.init() })
+        container.registerDaemon(factory: RssFeedProvider.init)
+        container.registerDaemon(factory: WebServerService.init)
     }
 
     override func routing(in router: Router) {
@@ -36,6 +37,7 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(BasePreferencesViewController<PreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
+        router.register(BasePreferencesViewController<FileSharingPreferencesViewModel>.self)
         router.register(PreferencesSectionGroupingViewController.self)
 
         router.register(RssListViewController.self)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 protocol BackgroundServiceProtocol {
@@ -23,17 +24,22 @@ extension BackgroundService {
 }
 
 class BackgroundService: BackgroundServiceProtocol {
+    @Published var isRunningPublisher: Bool = false
+
     public static let shared = BackgroundService()
 
     var isRunning: Bool { impl.isRunning }
 
     @discardableResult
     func start() -> Bool {
-        impl.start()
+        let res = impl.start()
+        isRunningPublisher = res
+        return res
     }
 
     func stop() {
         guard isRunning else { return }
+        isRunningPublisher = false
         impl.stop()
     }
 

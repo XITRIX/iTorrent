@@ -54,7 +54,7 @@ private extension ConnectionPreferencesViewModel {
             PRSwitchViewModel(with: .init(title: %"preferences.network.interfaces.allInterfaces", value: preferences.$useAllAvailableInterfaces.binding))
         })
 
-        sections.append(.init(id: "port", header: %"preferences.network.connection.port") {
+        sections.append(.init(id: "port", header: %"common.port") {
             PRSwitchViewModel(with: .init(title: %"preferences.network.connection.port.default", value: preferences.$useDefaultPort.binding))
 
             if !preferences.useDefaultPort {

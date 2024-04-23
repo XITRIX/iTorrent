@@ -76,6 +76,14 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesBackgroundMode", .audio) var backgroundMode: BackgroundService.Mode
     @UserDefaultItem("preferencesBackgroundAllowSeeding", true) var isBackgroundSeedingEnabled: Bool
 
+    @UserDefaultItem("preferencesIsFileSharingEnabled", false) var isFileSharingEnabled: Bool
+    @UserDefaultItem("preferencesIsWebServerEnabled", false) var isWebServerEnabled: Bool
+    @UserDefaultItem("preferencesIsWebDavServerEnabled", false) var isWebDavServerEnabled: Bool
+    @UserDefaultItem("preferencesWebServerPort", 80) var webServerPort: Int
+    @UserDefaultItem("preferencesWebDavServerPort", 81) var webDavServerPort: Int
+    @UserDefaultItem("preferencesWebServerLogin", "") var webServerLogin: String
+    @UserDefaultItem("preferencesWebServerPassword", "") var webServerPassword: String
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($allocateMemory)

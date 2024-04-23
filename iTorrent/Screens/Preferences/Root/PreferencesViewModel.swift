@@ -101,6 +101,13 @@ private extension PreferencesViewModel {
             })
         })
 
+        sections.append(.init(id: "filesharing", header: %"preferences.sharing") {
+            PRSwitchViewModel(with: .init(id: "filesharingswitch", title: %"common.enable", value: preferences.$isFileSharingEnabled.binding))
+            PRButtonViewModel(with: .init(id: "filesharingbutton", title: %"preferences", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: FileSharingPreferencesViewModel.self, by: .show)
+            })
+        })
+
         sections.append(.init(id: "network", header: %"preferences.network") {
             PRButtonViewModel(with: .init(title: %"preferences.network.proxy", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: ProxyPreferencesViewModel.self, by: .show)
