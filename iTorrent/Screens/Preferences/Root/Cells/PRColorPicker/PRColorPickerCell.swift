@@ -35,17 +35,15 @@ class PRColorPickerCell<VM: PRColorPickerViewModel>: MvvmCollectionViewListCell<
         vc.delegate = delegates
         viewController?.present(vc, animated: true)
     }
-
-    @objc private func changeTintColor(_ sender: UIControl) {
-        PreferencesStorage.shared.tintColor = sender.backgroundColor!
-    }
 }
 
 private extension PRColorPickerCell {
     func fillWithColors() {
         for color in colors {
             let view = makeColorView(color)
-            view.addTarget(self, action: #selector(changeTintColor(_:)), for: .touchUpInside)
+            view.addAction(.init { _ in
+                PreferencesStorage.shared.tintColor = color
+            }, for: .touchUpInside)
             colorsStack.addArrangedSubview(view)
         }
 

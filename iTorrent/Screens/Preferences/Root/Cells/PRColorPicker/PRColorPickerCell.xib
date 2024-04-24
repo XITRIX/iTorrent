@@ -81,6 +81,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ColorWheel" width="96" height="96"/>
+        <image name="ColorWheel" width="80" height="80"/>
     </resources>
 </document>
