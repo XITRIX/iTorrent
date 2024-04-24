@@ -3706,6 +3706,22 @@
           }
         }
       }
+    },
+    "webserver.unavailable" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web server is unavailable"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Веб сервер недоступен"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

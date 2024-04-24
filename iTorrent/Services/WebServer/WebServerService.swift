@@ -10,37 +10,80 @@ import GCDWebServers
 import MvvmFoundation
 import UIKit
 
-@MainActor
 class WebServerService: Resolvable {
     init() { binding() }
 
     @Published var isWebServerEnabled: Bool = false
     @Published var isWebDavServerEnabled: Bool = false
 
+    @Published var ip: String?
+    @Published var webPort: UInt?
+    @Published var webDavPort: UInt?
+
     private var webUploadServer = GCDWebUploader(uploadDirectory: TorrentService.downloadPath.path())
     private var webDAVServer = GCDWebDAVServer(uploadDirectory: TorrentService.downloadPath.path())
 
     private let disposeBag = DisposeBag()
     private var backgroundDisposeBag: DisposeBag?
+
     @Injected private var preferences: PreferencesStorage
     @Injected private var backgroundService: BackgroundService
+    @Injected private var networkMonitoringService: NetworkMonitoringService
 }
 
 extension WebServerService {
-    var ip: String? {
-        guard let host = webUploadServer.serverURL?.host() ?? webDAVServer.serverURL?.host()
-        else { return nil }
-        return "http://"+host
+    var connectionHint: AnyPublisher<String, Never> {
+        Publishers.combineLatest(preferences.$isFileSharingEnabled, $ip, $webPort, $webDavPort) { enabled, ip, webPort, webDavPort in
+            guard enabled else { return "" }
+
+            var arr: [String] = []
+            if let webPort = webPort {
+                arr.append("Web:\(webPort)")
+            }
+            if let webDavPort = webDavPort {
+                arr.append("WebDav:\(webDavPort)")
+            }
+
+            // If empty, they disabled
+            guard !arr.isEmpty else { return "" }
+
+            // If not disabled, but no ip - server is unreachable
+            guard let ip else { return %"webserver.unavailable" }
+
+            return "\(ip)  —  \(arr.joined(separator: " | "))"
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+// MARK: Internal publishers
+private extension WebServerService {
+    var ipPublisher: AnyPublisher<String?, Never> {
+        Publishers.combineLatest(
+            $isWebServerEnabled,
+            $isWebDavServerEnabled,
+            networkMonitoringService.$availableInterfaces)
+        { [unowned self] _, _, _ in
+            guard let host = webUploadServer.serverURL?.host() ?? webDAVServer.serverURL?.host()
+            else { return nil }
+            return "http://" + host
+        }
+        .debounce(for: 0.1, scheduler: DispatchQueue.main)
+        .eraseToAnyPublisher()
     }
 
-    var webPort: UInt? {
-        guard webUploadServer.isRunning else { return nil }
-        return webUploadServer.port
+    var webPortPublisher: AnyPublisher<UInt?, Never> {
+        $isWebServerEnabled.map { [unowned self] _ in
+            guard webUploadServer.isRunning else { return nil }
+            return webUploadServer.port
+        }.eraseToAnyPublisher()
     }
 
-    var webDavPort: UInt? {
-        guard webDAVServer.isRunning else { return nil }
-        return webDAVServer.port
+    var webDavPortPublisher: AnyPublisher<UInt?, Never> {
+        $isWebDavServerEnabled.map { [unowned self] _ in
+            guard webDAVServer.isRunning else { return nil }
+            return webDAVServer.port
+        }.eraseToAnyPublisher()
     }
 }
 
@@ -73,38 +116,58 @@ private extension WebServerService {
                 .combineLatest(commonBinding)
                 .combineLatest(preferences.$isWebServerEnabled)
                 .combineLatest(preferences.$webServerPort)
-                .receive(on: DispatchQueue.global(qos: .utility))
                 .sink { [unowned self] _ in
-                    refreshWebServerState()
+                    Task.detached(priority: .utility) { await self.refreshWebServerState() }
                 }
 
             Just(())
                 .combineLatest(commonBinding)
                 .combineLatest(preferences.$isWebDavServerEnabled)
                 .combineLatest(preferences.$webDavServerPort)
-                .receive(on: DispatchQueue.global(qos: .utility))
                 .sink { [unowned self] _ in
-                    refreshWebDavServerState()
+                    Task.detached(priority: .utility) { await self.refreshWebDavServerState() }
                 }
 
             NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)
-                .receive(on: DispatchQueue.global(qos: .utility))
                 .sink { [unowned self] _ in
-                    invalidateBackgroundState(true)
+                    Task.detached(priority: .utility) { await self.invalidateBackgroundState(true) }
                 }
 
             NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
-                .receive(on: DispatchQueue.global(qos: .utility))
                 .sink { [unowned self] _ in
-                    invalidateBackgroundState(false)
+                    Task.detached(priority: .utility) { await self.invalidateBackgroundState(false) }
                 }
         }
+
+        ipPublisher.assign(to: &$ip)
+        webPortPublisher.assign(to: &$webPort)
+        webDavPortPublisher.assign(to: &$webDavPort)
     }
 
-    func invalidateBackgroundState(_ goToBackground: Bool) {
+    @MainActor
+    func invalidateBackgroundState(_ goToBackground: Bool) async {
 //        print("WebService test: \(goToBackground) && \(backgroundService.isRunning)")
 
         backgroundDisposeBag = DisposeBag()
+
+        let suspendServers = { [unowned self] in
+            print("Suspending servers")
+            Task.detached(priority: .utility) { [self] in
+                if webUploadServer.isRunning {
+                    webUploadServer.stop()
+                    await MainActor.run {
+                        isWebServerEnabled = false
+                    }
+                }
+
+                if webDAVServer.isRunning {
+                    webDAVServer.stop()
+                    await MainActor.run {
+                        isWebDavServerEnabled = false
+                    }
+                }
+            }
+        }
 
         if goToBackground { // Going background
             if backgroundService.isRunning {
@@ -114,48 +177,32 @@ private extension WebServerService {
                         .debounce(for: 0.1, scheduler: DispatchQueue.main)
                         .sink { [unowned self] isRunning in
                             guard !isRunning else { return }
-
-                            if webUploadServer.isRunning {
-                                webUploadServer.stop()
-                                isWebServerEnabled = false
-                            }
-
-                            if webDAVServer.isRunning {
-                                webDAVServer.stop()
-                                isWebDavServerEnabled = false
-                            }
-
+                            suspendServers()
                             backgroundDisposeBag = nil
                         }
                 }
             } else {
-                if webUploadServer.isRunning {
-                    webUploadServer.stop()
-                    isWebServerEnabled = false
-                }
-
-                if webDAVServer.isRunning {
-                    webDAVServer.stop()
-                    isWebDavServerEnabled = false
-                }
+                suspendServers()
             }
         } else { // Going foreground
             if !webUploadServer.isRunning {
-                refreshWebServerState()
+                await refreshWebServerState()
             }
 
             if !webDAVServer.isRunning {
-                refreshWebDavServerState()
+                await refreshWebDavServerState()
             }
         }
     }
 
-    func refreshWebServerState() {
+    func refreshWebServerState() async {
         let needToEnable = preferences.isFileSharingEnabled && preferences.isWebServerEnabled
 
         if webUploadServer.isRunning {
             webUploadServer.stop()
-            isWebServerEnabled = false
+            await MainActor.run {
+                isWebServerEnabled = false
+            }
         }
 
         if needToEnable, !webUploadServer.isRunning {
@@ -166,16 +213,20 @@ private extension WebServerService {
                 port += 1
                 localOptions[GCDWebServerOption_Port] = port
             }
-            isWebServerEnabled = true
+            await MainActor.run {
+                isWebServerEnabled = true
+            }
         }
     }
 
-    func refreshWebDavServerState() {
+    func refreshWebDavServerState() async {
         let needToEnable = preferences.isFileSharingEnabled && preferences.isWebDavServerEnabled
 
         if webDAVServer.isRunning {
             webDAVServer.stop()
-            isWebDavServerEnabled = false
+            await MainActor.run {
+                isWebDavServerEnabled = false
+            }
         }
 
         if needToEnable, !webDAVServer.isRunning {
@@ -186,7 +237,9 @@ private extension WebServerService {
                 port += 1
                 localOptions[GCDWebServerOption_Port] = port
             }
-            isWebDavServerEnabled = false
+            await MainActor.run {
+                isWebDavServerEnabled = true
+            }
         }
     }
 }

@@ -27,13 +27,6 @@ class PRSwitchViewModel: BaseViewModelWith<PRSwitchViewModel.Config>, Observable
         id = model.id
         title = model.title
         value = model.value
-//        value = .init(get: {
-//            model.value.wrappedValue
-//        }, set: { [unowned self] value in
-//            model.value.wrappedValue = value
-//            objectWillChange.send()
-////            value2 = value
-//        }) 
     }
 
     override func isEqual(to other: MvvmViewModel) -> Bool {
