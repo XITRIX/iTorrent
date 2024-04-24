@@ -158,6 +158,9 @@
 		D1DB71882BD8FF60007F9267 /* Scheduler+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB71872BD8FF60007F9267 /* Scheduler+Main.swift */; };
 		D1DB718B2BD91606007F9267 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB718A2BD91606007F9267 /* ImageCache.swift */; };
 		D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB718C2BD9165C007F9267 /* ImageLoader.swift */; };
+		D1DB71912BD92238007F9267 /* PatreonPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB718F2BD92238007F9267 /* PatreonPreferencesViewController.swift */; };
+		D1DB71922BD92238007F9267 /* PatreonPreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1DB71902BD92238007F9267 /* PatreonPreferencesViewController.xib */; };
+		D1DB71942BD92242007F9267 /* PatreonPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB71932BD92242007F9267 /* PatreonPreferencesViewModel.swift */; };
 		D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */; };
 		D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */; };
 		D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */; };
@@ -352,6 +355,9 @@
 		D1DB71872BD8FF60007F9267 /* Scheduler+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scheduler+Main.swift"; sourceTree = "<group>"; };
 		D1DB718A2BD91606007F9267 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D1DB718C2BD9165C007F9267 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		D1DB718F2BD92238007F9267 /* PatreonPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonPreferencesViewController.swift; sourceTree = "<group>"; };
+		D1DB71902BD92238007F9267 /* PatreonPreferencesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PatreonPreferencesViewController.xib; sourceTree = "<group>"; };
+		D1DB71932BD92242007F9267 /* PatreonPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonPreferencesViewModel.swift; sourceTree = "<group>"; };
 		D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewController.swift; sourceTree = "<group>"; };
 		D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentFilesViewController.xib; sourceTree = "<group>"; };
 		D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewModel.swift; sourceTree = "<group>"; };
@@ -629,6 +635,7 @@
 		D111384C2AF9663F008907F7 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				D1DB718E2BD92206007F9267 /* Patreon */,
 				7CB6F6CC2BD82B8A00D0813B /* FileSharing */,
 				D1352D1F2BBC338300104E7B /* Base */,
 				D1048D952BBECFA60027EF2F /* Appearance */,
@@ -1087,6 +1094,16 @@
 			path = ImageCache;
 			sourceTree = "<group>";
 		};
+		D1DB718E2BD92206007F9267 /* Patreon */ = {
+			isa = PBXGroup;
+			children = (
+				D1DB71932BD92242007F9267 /* PatreonPreferencesViewModel.swift */,
+				D1DB718F2BD92238007F9267 /* PatreonPreferencesViewController.swift */,
+				D1DB71902BD92238007F9267 /* PatreonPreferencesViewController.xib */,
+			);
+			path = Patreon;
+			sourceTree = "<group>";
+		};
 		D1EFCD062AF56A3200D33A7A /* TorrentFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -1245,6 +1262,7 @@
 				D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */,
 				D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */,
 				D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */,
+				D1DB71922BD92238007F9267 /* PatreonPreferencesViewController.xib in Resources */,
 				7C5FBE2A2BBDD4030069E5A0 /* PRColorPickerCell.xib in Resources */,
 				D1A226A52AEEEFCC00669D6D /* Main.storyboard in Resources */,
 				D1352D222BBC33A000104E7B /* BasePreferencesViewController.xib in Resources */,
@@ -1331,6 +1349,7 @@
 				D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */,
 				7C5FBE362BC0A24A0069E5A0 /* SceneDelegate+BackgroundDownload.swift in Sources */,
 				D1DB71882BD8FF60007F9267 /* Scheduler+Main.swift in Sources */,
+				D1DB71942BD92242007F9267 /* PatreonPreferencesViewModel.swift in Sources */,
 				7CFEBE8D2BC440350013233F /* Array+MutableForEach.swift in Sources */,
 				7C5FBE6F2BC2EF8B0069E5A0 /* EditTextView.swift in Sources */,
 				D1B1BED22AFE2D9F0030C2A4 /* TrackerCellViewModel.swift in Sources */,
@@ -1363,6 +1382,7 @@
 				D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */,
 				D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */,
 				7CFEBEAD2BC88F4C0013233F /* AppDelegate+BackgroundRefresh.swift in Sources */,
+				D1DB71912BD92238007F9267 /* PatreonPreferencesViewController.swift in Sources */,
 				D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */,
 				D1048D8B2BBEB6DE0027EF2F /* CombineLatest.swift in Sources */,
 				D11138572AF976CE008907F7 /* TorrentAddDirectoryItemViewModel.swift in Sources */,
