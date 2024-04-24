@@ -21,6 +21,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { PreferencesStorage.shared })
         container.registerSingleton(factory: { BackgroundService.shared })
         container.registerSingleton(factory: NetworkMonitoringService.init)
+        container.registerSingleton(factory: ImageLoader.init)
         container.registerDaemon(factory: TorrentMonitoringService.init)
         container.registerDaemon(factory: RssFeedProvider.init)
         container.registerDaemon(factory: WebServerService.init)

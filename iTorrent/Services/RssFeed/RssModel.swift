@@ -57,7 +57,7 @@ class RssModel: Hashable, Codable {
 
         if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
            let link = URL(string: xmlLink),
-           let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink)
+           let linkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink)
         {
             self.link = link
             self.linkImage = linkImage
@@ -113,7 +113,7 @@ class RssModel: Hashable, Codable {
         var localLinkImage: URL?
         if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
            let link = URL(string: xmlLink),
-           let linkImage = URL(string: "https://www.google.com/s2/favicons?domain=" + xmlLink)
+           let linkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink)
         {
             localLink = link
             localLinkImage = linkImage

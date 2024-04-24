@@ -156,6 +156,8 @@
 		D1DB71832BD80318007F9267 /* GCDWebServers in Frameworks */ = {isa = PBXBuildFile; productRef = D1DB71822BD80318007F9267 /* GCDWebServers */; };
 		D1DB71862BD8044F007F9267 /* WebServerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB71852BD8044F007F9267 /* WebServerService.swift */; };
 		D1DB71882BD8FF60007F9267 /* Scheduler+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB71872BD8FF60007F9267 /* Scheduler+Main.swift */; };
+		D1DB718B2BD91606007F9267 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB718A2BD91606007F9267 /* ImageCache.swift */; };
+		D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DB718C2BD9165C007F9267 /* ImageLoader.swift */; };
 		D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */; };
 		D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */; };
 		D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */; };
@@ -348,6 +350,8 @@
 		D1DB717F2BD6773E007F9267 /* RssSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssSearchViewModel.swift; sourceTree = "<group>"; };
 		D1DB71852BD8044F007F9267 /* WebServerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServerService.swift; sourceTree = "<group>"; };
 		D1DB71872BD8FF60007F9267 /* Scheduler+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scheduler+Main.swift"; sourceTree = "<group>"; };
+		D1DB718A2BD91606007F9267 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		D1DB718C2BD9165C007F9267 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		D1EFCD072AF56A4C00D33A7A /* TorrentFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewController.swift; sourceTree = "<group>"; };
 		D1EFCD082AF56A4C00D33A7A /* TorrentFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentFilesViewController.xib; sourceTree = "<group>"; };
 		D1EFCD0B2AF56A8900D33A7A /* TorrentFilesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesViewModel.swift; sourceTree = "<group>"; };
@@ -947,6 +951,7 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1DB71892BD915F4007F9267 /* ImageCache */,
 				D1DB71842BD80435007F9267 /* WebServer */,
 				7CAD301A2BC3456700592990 /* RssFeed */,
 				D173D9E42BC0330600E4F9EB /* BackgroundService */,
@@ -1071,6 +1076,15 @@
 				D1DB71852BD8044F007F9267 /* WebServerService.swift */,
 			);
 			path = WebServer;
+			sourceTree = "<group>";
+		};
+		D1DB71892BD915F4007F9267 /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				D1DB718A2BD91606007F9267 /* ImageCache.swift */,
+				D1DB718C2BD9165C007F9267 /* ImageLoader.swift */,
+			);
+			path = ImageCache;
 			sourceTree = "<group>";
 		};
 		D1EFCD062AF56A3200D33A7A /* TorrentFiles */ = {
@@ -1308,7 +1322,9 @@
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */,
 				7CFEBEA02BC6F3CD0013233F /* Date+Extensions.swift in Sources */,
+				D1DB718B2BD91606007F9267 /* ImageCache.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
+				D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
 				7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */,
 				D19E00262AF045F9000A17A2 /* SpeedFormat.swift in Sources */,

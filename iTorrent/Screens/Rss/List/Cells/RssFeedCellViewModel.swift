@@ -29,7 +29,6 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
 
     override func prepare(with model: Config) {
         self.model = model.rssModel
-        feedLogo = .icRss // TODO: Add real icon
         disposeBag.bind {
             model.rssModel.displayTitle.sink { [unowned self] text in
                 title = text
@@ -43,6 +42,13 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
         }
 
         selectAction = model.selectAction
+
+        feedLogo = .icRss
+        if let linkImage = model.rssModel.linkImage {
+            Task {
+                feedLogo = await imageLoader.loadImage(from: linkImage)
+            }
+        }
     }
 
     override func hash(into hasher: inout Hasher) {
@@ -56,4 +62,6 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
             self?.popoverPreferenceNavigationTransaction.send((from, to))
         }))
     }
+
+    @Injected private var imageLoader: ImageLoader
 }

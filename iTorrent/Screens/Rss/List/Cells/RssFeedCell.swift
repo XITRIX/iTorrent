@@ -32,6 +32,9 @@ class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
                 newCounterLabel.text = "\(newCounter)"
                 newCounterLabel.superview?.isHidden = newCounter == 0
             }
+            viewModel.$feedLogo.sink { [unowned self] logo in
+                feedLogoImageView.image = logo
+            }
             editButton.tapPublisher.sink { _ in
                 viewModel.openPreferences()
             }
