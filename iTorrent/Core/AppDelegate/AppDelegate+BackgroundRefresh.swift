@@ -72,5 +72,6 @@ private extension AppDelegate {
         let request = UNNotificationRequest(identifier: "rss", content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request)
+        UIApplication.shared.applicationIconBadgeNumber += 1
     }
 }

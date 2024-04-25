@@ -6,6 +6,7 @@
 //
 
 import MvvmFoundation
+import UIKit
 import UserNotifications
 
 class TorrentMonitoringService {
@@ -42,5 +43,6 @@ private extension TorrentMonitoringService {
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request)
+        UIApplication.shared.applicationIconBadgeNumber += 1
     }
 }

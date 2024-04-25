@@ -2316,6 +2316,7 @@
       }
     },
     "preferences.notifications.seed" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

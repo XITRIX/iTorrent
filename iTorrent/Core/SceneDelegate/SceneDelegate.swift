@@ -86,10 +86,12 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         startBackgroundIfNeeded()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         stopBackground()
     }
 
