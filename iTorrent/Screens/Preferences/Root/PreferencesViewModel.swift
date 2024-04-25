@@ -139,6 +139,12 @@ private extension PreferencesViewModel {
                 dismissSelection.send()
             }))
         })
+
+        sections.append(.init(id: "donations", header: %"preferences.donations") {
+            PRButtonViewModel(with: .init(title: %"preferences.donations.patreon", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: PatreonPreferencesViewModel.self, by: .show)
+            })
+        })
     }
 
     func uiAction(from interfaceStyle: UIUserInterfaceStyle) -> UIAction {

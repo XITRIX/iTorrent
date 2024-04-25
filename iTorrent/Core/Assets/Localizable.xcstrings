@@ -1659,6 +1659,118 @@
         }
       }
     },
+    "patreon.action.link" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect with patreon"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Привязать Patreon аккаунт"
+          }
+        }
+      }
+    },
+    "patreon.action.patron" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Become a patron"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стать патроном"
+          }
+        }
+      }
+    },
+    "patreon.creator.description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creator of iTorrent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создатель iTorrent"
+          }
+        }
+      }
+    },
+    "patreon.creator.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hey for all,\n\nYou can support future development of iTorrent by donating me on Patreon. In return, you'll receive access to the ads-free version of iTorrent app.\n\nThanks for all your support!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Привет всем,  Вы можете поддержать дальнейшую разработку iTorrent задонатив мне на Patreon. Взамен, вы получите доступ к версии приложения iTorrent без рекламы.  Спасибо за вашу поддержку!"
+          }
+        }
+      }
+    },
+    "patreon.creator.name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XITRIX (Daniil Vinogradov)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XITRIX (Даниил Виноградов)"
+          }
+        }
+      }
+    },
+    "patreon.patron.level" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ads-free enabled, have fun!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Реклама отключена!"
+          }
+        }
+      }
+    },
+    "patreon.patron.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are a patron"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы патрон"
+          }
+        }
+      }
+    },
     "preferences" : {
       "localizations" : {
         "en" : {
@@ -1879,6 +1991,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Локация"
+          }
+        }
+      }
+    },
+    "preferences.donations" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donate for donuts"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Донат на еду"
+          }
+        }
+      }
+    },
+    "preferences.donations.patreon" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon"
           }
         }
       }
