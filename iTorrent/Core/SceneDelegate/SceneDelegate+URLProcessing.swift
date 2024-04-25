@@ -13,6 +13,7 @@ extension SceneDelegate {
         Task {
             if tryOpenTorrentDetails(with: url) { return }
             if tryOpenAddTorrent(with: url) { return }
+            if tryOpenAddMagnet(with: url) { return }
             if await tryOpenRemoteAddTorrent(with: url) { return }
         }
     }
@@ -42,6 +43,16 @@ private extension SceneDelegate {
         }
 
         TorrentAddViewModel.present(with: url, from: rootViewController)
+        return true
+    }
+
+    // Add new torrent by Magnet URL
+    func tryOpenAddMagnet(with url: URL) -> Bool {
+        guard url.absoluteString.hasPrefix("magnet:"),
+              let magnet = MagnetURI(with: url)
+        else { return false }
+
+        TorrentService.shared.addTorrent(by: magnet)
         return true
     }
 
