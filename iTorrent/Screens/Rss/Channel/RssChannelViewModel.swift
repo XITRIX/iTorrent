@@ -45,6 +45,14 @@ class RssChannelViewModel: BaseCollectionViewModelWith<RssModel> {
             action.backgroundColor = PreferencesStorage.shared.tintColor
             return .init(actions: [action])
         }
+
+        refreshTask = { [weak self] in
+            do {
+                try await model.update()
+                self?.rssFeedProvider.saveState()
+            }
+            catch {}
+        }
     }
 
     func readAll() {
