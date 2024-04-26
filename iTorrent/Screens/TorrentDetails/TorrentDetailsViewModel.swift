@@ -126,12 +126,12 @@ extension TorrentDetailsViewModel {
     }
 
     func removeTorrent() {
-        alert(title: %"torrent.remove.title", message: torrentHandle.name, actions: [
+        alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
-                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
+                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: true)
             }),
             .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
-                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
+                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
             .init(title: %"common.cancel", style: .cancel)
         ])

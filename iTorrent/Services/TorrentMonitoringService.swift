@@ -43,6 +43,8 @@ private extension TorrentMonitoringService {
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
         UNUserNotificationCenter.current().add(request)
-        UIApplication.shared.applicationIconBadgeNumber += 1
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber += 1
+        }
     }
 }

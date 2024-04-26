@@ -143,10 +143,10 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             return UIContextMenuConfiguration {
                 TorrentDetailsViewModel.resolveVC(with: torrentHandle)
             } actionProvider: { _ in
-                let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.isPaused ? [] : .hidden, handler: { _ in
+                let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.snapshot.isPaused ? [] : .hidden, handler: { _ in
                     torrentHandle.resume()
                 })
-                let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: !torrentHandle.isPaused ? [] : .hidden, handler: { _ in
+                let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: !torrentHandle.snapshot.isPaused ? [] : .hidden, handler: { _ in
                     torrentHandle.pause()
                 })
                 let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in

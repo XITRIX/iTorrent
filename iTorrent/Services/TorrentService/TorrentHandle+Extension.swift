@@ -7,12 +7,33 @@
 
 import LibTorrent
 import Combine
+import MvvmFoundation
 
+private var TorrentHandleUnthrottledUpdatePublisherKey: UInt8 = 0
 private var TorrentHandleUpdatePublisherKey: UInt8 = 0
 private var TorrentHandleRemovePublisherKey: UInt8 = 0
+private var TorrentHandleDisposeBagKey: UInt8 = 0
 
 extension TorrentHandle {
-    var unthrottledUpdatePublisher: PassthroughSubject<TorrentService.TorrentUpdateModel, Never> {
+    var disposeBag: DisposeBag {
+        guard let obj = objc_getAssociatedObject(self, &TorrentHandleDisposeBagKey) as? DisposeBag
+        else {
+            objc_setAssociatedObject(self, &TorrentHandleDisposeBagKey, DisposeBag(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &TorrentHandleDisposeBagKey) as! DisposeBag
+        }
+        return obj
+    }
+
+    var __unthrottledUpdatePublisher: PassthroughSubject<Void, Never> {
+        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUnthrottledUpdatePublisherKey) as? PassthroughSubject<Void, Never>
+        else {
+            objc_setAssociatedObject(self, &TorrentHandleUnthrottledUpdatePublisherKey, PassthroughSubject<Void, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &TorrentHandleUnthrottledUpdatePublisherKey) as! PassthroughSubject<Void, Never>
+        }
+        return obj
+    }
+
+    var __updatePublisher: PassthroughSubject<TorrentService.TorrentUpdateModel, Never> {
         guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
         else {
             objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentService.TorrentUpdateModel, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
@@ -20,11 +41,17 @@ extension TorrentHandle {
         }
         return obj
     }
+    
+    /// Does not contain updated Snapshot yet, it creates before updatePublisher will be fired
+    ///
+    /// Better not use this one, prefer to use `updatePublisher`
+    var unthrottledUpdatePublisher: AnyPublisher<Void, Never> {
+        __unthrottledUpdatePublisher.eraseToAnyPublisher()
+    }
 
+    /// Contains old Snapshot in `TorrentUpdateModel` and updated Snapshot inside of `TorrentHandle` it self
     var updatePublisher: AnyPublisher<TorrentService.TorrentUpdateModel, Never> {
-        unthrottledUpdatePublisher
-            .throttle(for: .seconds(0.25), scheduler: DispatchQueue.main, latest: true)
-            .eraseToAnyPublisher()
+        __updatePublisher.eraseToAnyPublisher()
     }
 
     var removePublisher: PassthroughSubject<TorrentHandle, Never> {

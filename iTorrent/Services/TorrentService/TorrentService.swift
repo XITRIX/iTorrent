@@ -89,8 +89,7 @@ extension TorrentService: SessionDelegate {
         guard torrents.firstIndex(where: { $0.infoHashes == torrent.infoHashes }) == nil
         else { return }
 
-        _ = torrent.metadata
-        torrent.updateSnapshot()
+        torrent.prepareToAdd(into: self)
 
         DispatchQueue.main.sync { [self] in
             torrents.append(torrent)
@@ -111,14 +110,7 @@ extension TorrentService: SessionDelegate {
         guard let existingTorrent = torrents.first(where: { $0.infoHashes == torrent.infoHashes })
         else { return }
 
-        let oldSnapshot = existingTorrent.snapshot
-        existingTorrent.updateSnapshot()
-        let updateModel = TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: existingTorrent)
-        updateNotifier.send(updateModel)
-
-        DispatchQueue.main.sync {
-            existingTorrent.unthrottledUpdatePublisher.send(updateModel)
-        }
+        existingTorrent.__unthrottledUpdatePublisher.send()
     }
 
     func torrentManager(_ manager: Session, didErrorOccur error: Error) {}
@@ -127,8 +119,7 @@ extension TorrentService: SessionDelegate {
 private extension TorrentService {
     func setup() {
         torrents = session.torrents.map { torrent in
-            _ = torrent.metadata
-            torrent.updateSnapshot()
+            torrent.prepareToAdd(into: self)
             return torrent
         }
         session.add(self)
@@ -146,6 +137,29 @@ private extension TorrentService {
                     session.settings = Session.Settings.fromPreferences(with: interfaces.map { $0.name })
                 }
             }
+        }
+    }
+}
+
+private extension TorrentHandle {
+    func prepareToAdd(into torrentServide: TorrentService) {
+        updateSnapshot()
+
+        disposeBag.bind {
+            __unthrottledUpdatePublisher
+                .throttle(for: .seconds(0.1), scheduler: .main, latest: true)
+                .receive(on: .main)
+                .sink { [weak self, weak torrentServide] in
+                    guard let self, let torrentServide else { return }
+
+                    _ = metadata // trigger to generate
+                    let oldSnapshot = snapshot
+                    updateSnapshot()
+                    let updateModel = TorrentService.TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: self)
+                    torrentServide.updateNotifier.send(updateModel)
+
+                    __updatePublisher.send(updateModel)
+                }
         }
     }
 }

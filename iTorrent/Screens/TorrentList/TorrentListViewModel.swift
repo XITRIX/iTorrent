@@ -150,12 +150,12 @@ extension TorrentListViewModel {
         alert(title: %"torrent.remove.title", message: message, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: {
                 torrentModels.forEach { torrentModel in
-                    TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.infoHashes, deleteFiles: true)
+                    TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.snapshot.infoHashes, deleteFiles: true)
                 }
             }),
             .init(title: %"torrent.remove.action.keepData", style: .default, action: {
                 torrentModels.forEach { torrentModel in
-                    TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.infoHashes, deleteFiles: false)
+                    TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.snapshot.infoHashes, deleteFiles: false)
                 }
             }),
             .init(title: %"common.cancel", style: .cancel)
@@ -163,12 +163,12 @@ extension TorrentListViewModel {
     }
 
     func removeTorrent(_ torrentHandle: TorrentHandle) {
-        alert(title: %"torrent.remove.title", message: torrentHandle.name, actions: [
+        alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: {
-                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: true)
+                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: true)
             }),
             .init(title: %"torrent.remove.action.keepData", style: .default, action: {
-                TorrentService.shared.removeTorrent(by: torrentHandle.infoHashes, deleteFiles: false)
+                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
             .init(title: %"common.cancel", style: .cancel)
         ])
