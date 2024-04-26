@@ -99,7 +99,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          repository: XITRIX/xitrix.github.io
+          repository: XITRIX/iTorrent-v2
           token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
           files: |
             ${{ runner.temp }}/build/iTorrent.ipa
