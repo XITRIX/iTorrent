@@ -104,6 +104,20 @@ jobs:
           files: |
             ${{ runner.temp }}/build/iTorrent.ipa
             ${{ runner.temp }}/build/manifest.plist
+
+      - name: Generate AltStore Source
+        run: |
+          swiftc -parse-as-library ./GenerateAltStoreJson.swift
+          ./GenerateAltStoreJson >> ./AltStoreSource.json
+
+      - name: Release AltStore Source
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          repository: XITRIX/xitrix.github.io
+          token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
+          files: |
+            ./AltStoreSource.json
         
       - name: Upload application
         uses: actions/upload-artifact@v3
