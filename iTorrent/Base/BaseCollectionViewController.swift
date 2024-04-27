@@ -26,7 +26,13 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
         collectionView.keyboardDismissMode = .interactive
 #endif
 
-        refresh.addTarget(self, action: #selector(refreshFunc), for: .valueChanged)
+        refresh.addAction(.init { [unowned self] _ in
+            Task {
+                await refreshTask?()
+                refresh.endRefreshing()
+            }
+        }, for: .valueChanged)
+
         disposeBag.bind {
             viewModel.$sections.sink { [unowned self] sections in
                 collectionView.sections.send(sections)
@@ -66,13 +72,6 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         collectionView.isEditing = editing
-    }
-
-    @objc private func refreshFunc() {
-        Task {
-            await refreshTask?()
-            refresh.endRefreshing()
-        }
     }
 
     private var refreshTask: (() async -> Void)?

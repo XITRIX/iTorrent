@@ -17,7 +17,7 @@ class RssModel: Hashable, Codable {
         case corruptedData
     }
 
-    var xmlLink: URL
+    let xmlLink: URL
     @Published var title: String
     @Published var description: String?
     @Published var linkImage: URL?

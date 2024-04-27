@@ -56,11 +56,15 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
     }
 
     func openPreferences() {
-//        navigate(to: RssListPreferencesViewModel.self, with: (), by: .present(wrapInNavigation: true))
-
+#if !os(visionOS)
+        let vc = RssListPreferencesViewModel(with: model).resolveVC()
+        let nvc = UINavigationController(rootViewController: vc)
+        navigationService?()?.navigate(to: nvc, by: .present(wrapInNavigation: false))
+#else
         navigate(to: RssListPreferencesViewModel.self, with: model, by: .custom(transaction: { [weak self] from, to in
             self?.popoverPreferenceNavigationTransaction.send((from, to))
         }))
+#endif
     }
 
     @Injected private var imageLoader: ImageLoader

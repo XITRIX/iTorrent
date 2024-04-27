@@ -13,23 +13,18 @@ class RssListPreferencesViewController<VM: RssListPreferencesViewModel>: BaseCol
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Preferences"
+        title = %"preferences"
 
         // FIXME: Dirty hack for better looking top appearance, should be fixed!!!
         navigationItem.largeTitleDisplayMode = .always
-        collectionView.isScrollEnabled = false
+        collectionView.alwaysBounceVertical = false
         collectionView.dragInteractionEnabled = false
 
         token = collectionView.observe(\.contentSize, options: [.new]) { [unowned self] view, change in
             preferredContentSize = view.contentSize
         }
 
-//        applyBottomSheetDetents(with: collectionView)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        invalidateBottomSheetDetents()
+        applyBottomSheetDetents(with: collectionView)?.store(in: disposeBag)
     }
 
     private var token: NSKeyValueObservation?
