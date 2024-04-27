@@ -24,7 +24,12 @@ class RssListPreferencesViewController<VM: RssListPreferencesViewModel>: BaseCol
             preferredContentSize = view.contentSize
         }
 
+#if !os(visionOS)
+        let close = UIBarButtonItem(systemItem: .close)
+        close.primaryAction = .init { [unowned self] _ in dismiss() }
+        navigationItem.trailingItemGroups = [.fixedGroup(items: [close])]
         applyBottomSheetDetents(with: collectionView)?.store(in: disposeBag)
+#endif
     }
 
     private var token: NSKeyValueObservation?

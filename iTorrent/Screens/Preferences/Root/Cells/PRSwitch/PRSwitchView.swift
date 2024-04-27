@@ -24,6 +24,9 @@ class PRSwitchView<VM: PRSwitchViewModel>: MvvmCollectionViewListCell<VM> {
                 guard viewModel.value.wrappedValue != isOn else { return }
                 viewModel.value.wrappedValue = isOn
             }
+            viewModel.$isDangerous.sink { [unowned self] isDangerous in
+                switchView.onTintColor = isDangerous ? .systemRed : nil
+            }
         }
     }
 }

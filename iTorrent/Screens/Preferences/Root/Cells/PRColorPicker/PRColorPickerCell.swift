@@ -30,7 +30,7 @@ class PRColorPickerCell<VM: PRColorPickerViewModel>: MvvmCollectionViewListCell<
     }
 
     @IBAction func colorPicker(_ sender: UIControl) {
-        let vc = UIColorPickerViewController()
+        let vc = CustomColorPickerViewController()
         vc.selectedColor = PreferencesStorage.shared.tintColor
         vc.delegate = delegates
         viewController?.present(vc, animated: true)
@@ -75,4 +75,29 @@ extension PRColorPickerCell {
             PreferencesStorage.shared.tintColor = color
         }
     }
+}
+
+private class CustomColorPickerViewController: UIColorPickerViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+#if !os(visionOS)
+        guard let sheet = sheetPresentationController else { return }
+        sheet.prefersGrabberVisible = true
+
+
+        sheet.detents = [.custom(resolver: { [unowned self] context in
+            let height = preferredContentSize.height
+            return min(height, context.maximumDetentValue)
+        })]
+
+        publisher(for: \.preferredContentSize).sink(receiveValue: { _ in
+            sheet.animateChanges {
+                sheet.invalidateDetents()
+            }
+        }).store(in: disposeBag)
+#endif
+    }
+
+    private var disposeBag = DisposeBag()
 }

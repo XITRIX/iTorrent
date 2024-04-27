@@ -49,9 +49,9 @@ private extension ConnectionPreferencesViewModel {
 
         sections.append(.init(id: "interfaces", header: %"preferences.network.interfaces", footer: %"preferences.network.interfaces.footer") {
 #if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
-            PRSwitchViewModel(with: .init(title: %"preferences.network.interfaces.cellular", value: preferences.$isCellularEnabled.binding))
+            PRSwitchViewModel(with: .init(title: %"preferences.network.interfaces.cellular", value: preferences.$isCellularEnabled.binding, isDangerous: true))
 #endif
-            PRSwitchViewModel(with: .init(title: %"preferences.network.interfaces.allInterfaces", value: preferences.$useAllAvailableInterfaces.binding))
+            PRSwitchViewModel(with: .init(title: %"preferences.network.interfaces.allInterfaces", value: preferences.$useAllAvailableInterfaces.binding, isDangerous: true))
         })
 
         sections.append(.init(id: "port", header: %"common.port") {
