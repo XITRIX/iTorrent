@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C4CF2F42BDD58870078FEA1 /* UnityAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */; };
+		7C4CF2F52BDD58870078FEA1 /* UnityAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
+		7C4CF2FC2BDE78F50078FEA1 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView.swift */; };
+		7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
@@ -199,6 +204,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7C4CF2F52BDD58870078FEA1 /* UnityAds.xcframework in Embed Frameworks */,
 				D1A226F52AEF01B700669D6D /* LibTorrent.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -207,6 +213,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UnityAds.xcframework; path = Submodules/UnityAds.xcframework; sourceTree = "<group>"; };
+		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
+		7C4CF2FB2BDE78F50078FEA1 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -382,6 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4CF2F42BDD58870078FEA1 /* UnityAds.xcframework in Frameworks */,
 				7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */,
 				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
@@ -400,12 +411,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C4CF2F82BDE711A0078FEA1 /* UnityAds */ = {
+			isa = PBXGroup;
+			children = (
+				7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */,
+			);
+			path = UnityAds;
+			sourceTree = "<group>";
+		};
+		7C4CF2FF2BDE7DF60078FEA1 /* AdView */ = {
+			isa = PBXGroup;
+			children = (
+				7C4CF2FB2BDE78F50078FEA1 /* AdView.swift */,
+			);
+			path = AdView;
+			sourceTree = "<group>";
+		};
 		7C5FBE0D2BBB206B0069E5A0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7C4CF2FF2BDE7DF60078FEA1 /* AdView */,
 				7C5FBE6E2BC2EF8B0069E5A0 /* EditTextView */,
 				D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */,
 				7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */,
+				7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -923,6 +952,7 @@
 		D1A226D32AEEF73600669D6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */,
 				D1A226F32AEF01B700669D6D /* LibTorrent.framework */,
 				D1A226D42AEEF73600669D6D /* MvvmFoundation.framework */,
 				7C5FBE3C2BC0ADC90069E5A0 /* WidgetKit.framework */,
@@ -958,6 +988,7 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7C4CF2F82BDE711A0078FEA1 /* UnityAds */,
 				D1DB71892BD915F4007F9267 /* ImageCache */,
 				D1DB71842BD80435007F9267 /* WebServer */,
 				7CAD301A2BC3456700592990 /* RssFeed */,
@@ -1344,6 +1375,7 @@
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
+				7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */,
 				7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */,
 				D19E00262AF045F9000A17A2 /* SpeedFormat.swift in Sources */,
 				D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */,
@@ -1364,6 +1396,7 @@
 				7CFEBE942BC441A20013233F /* RssDetailsViewModel.swift in Sources */,
 				D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */,
 				D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */,
+				7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */,
 				D11138482AF9464E008907F7 /* TorrentAddViewController.swift in Sources */,
 				D1DB717D2BD6772A007F9267 /* RssSearchViewController.swift in Sources */,
 				D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */,
@@ -1397,6 +1430,7 @@
 				7CFEBE832BC434A10013233F /* BaseCollectionViewController.swift in Sources */,
 				D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */,
 				D17733F52BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift in Sources */,
+				7C4CF2FC2BDE78F50078FEA1 /* AdView.swift in Sources */,
 				D1A227012AEF05A600669D6D /* TorrentListViewModel.swift in Sources */,
 				D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */,
 				7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */,

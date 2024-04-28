@@ -1,0 +1,135 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name UnityAds
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFAudio
+import AVFoundation
+import AdSupport
+import AppTrackingTransparency
+import AudioToolbox.AudioServices
+import AudioToolbox
+import CommonCrypto
+import CoreMotion
+import CoreTelephony
+import CryptoKit
+import Foundation
+import Network
+import QuartzCore
+import StoreKit
+import Swift
+import SystemConfiguration
+import UIKit
+@_exported import UnityAds
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import zlib
+@_hasMissingDesignatedInitializers @objc final public class SDKConfigurationStorageObjcBridge : ObjectiveC.NSObject {
+  @objc final public var configDictionary: [Swift.String : Any] {
+    @objc get
+  }
+  @objc final public func saveSDKConfig(from dictionary: [Swift.String : Any])
+  @objc deinit
+}
+public struct SDKInitializerConfig {
+  public let gameID: Swift.String
+  public let isTestModeEnabled: Swift.Bool
+  public init(gameID: Swift.String, isTestModeEnabled: Swift.Bool)
+}
+extension Foundation.Data {
+  public var isGzipped: Swift.Bool {
+    get
+  }
+}
+extension Swift.Dictionary where Key == Swift.String, Value == Any {
+  @inlinable public func compactMapKeys<T>(_ transform: (Key) throws -> T?) rethrows -> [T : Value] where T : Swift.Hashable {
+        try reduce(into: [:]) { partialResult, element in
+            let newKey = try transform(element.key)
+            guard let key = newKey else { return }
+            partialResult[key] = element.value
+        }
+    }
+}
+extension Swift.Optional {
+  public func filter(if predicate: (Wrapped) -> Swift.Bool) -> Wrapped?
+  public func filter(if predicate: (Wrapped) -> Swift.Bool, default: Wrapped) -> Wrapped?
+  @discardableResult
+  public func `do`(_ work: (Wrapped) -> Swift.Void) -> Wrapped?
+  @discardableResult
+  public func onNone(_ work: () -> Swift.Void) -> Wrapped?
+  @discardableResult
+  public func debug(message: Swift.String? = nil) -> Wrapped?
+}
+extension Swift.Result {
+  @discardableResult
+  @inlinable public func `do`(_ work: (Success) -> Swift.Void) -> Swift.Result<Success, Failure> {
+        if case .success(let val) = self {
+            work(val)
+        }
+        return self
+    }
+  @discardableResult
+  @inlinable public func onFailure(_ work: (Failure) -> Swift.Void) -> Swift.Result<Success, Failure> {
+        if case .failure(let err) = self {
+            work(err)
+        }
+        return self
+    }
+  @inlinable public func sink(_ completion: @escaping (Swift.Result<Success, Failure>) -> Swift.Void) {
+        completion(self)
+    }
+  @inlinable public func sink(_ completion: ((Swift.Result<Success, Failure>) -> Swift.Void)?) {
+        completion?(self)
+    }
+  @inlinable public func recover(_ transform: (Failure) -> Success) -> Swift.Result<Success, Failure> {
+        if case .failure(let err) = self {
+            return .success(transform(err))
+        }
+        return self
+    }
+  @inlinable public func getValue(_ transform: (Failure) -> Success) -> Success {
+        switch self {
+        case .success(let success): return success
+        case .failure( let error): return transform(error)
+        }
+    }
+}
+extension Swift.Result where Failure == any Swift.Error {
+  @inlinable public func tryMap<NewSuccess>(_ transform: (Success) throws -> NewSuccess) -> Swift.Result<NewSuccess, Failure> {
+        switch self {
+        case let .success(val):
+            do {
+                return try .success(transform(val))
+            } catch {
+                return .failure(error)
+            }
+
+        case let .failure(err):
+            return .failure(err)
+        }
+    }
+  @inlinable public func tryFlatMap<NewSuccess>(_ transform: (Success) throws -> Swift.Result<NewSuccess, Failure>) -> Swift.Result<NewSuccess, Failure> {
+        switch self {
+        case let .success(val):
+            do {
+                return try transform(val)
+            } catch {
+                return .failure(error)
+            }
+
+        case let .failure(err):
+            return .failure(err)
+        }
+    }
+}
+@_inheritsConvenienceInitializers @objc final public class LoggerWrapper : ObjectiveC.NSObject {
+  @objc final public func log(_ message: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol UnityError : Swift.Error {
+  var code: Swift.Int { get }
+  var message: Swift.String { get }
+  var description: Swift.String? { get }
+}

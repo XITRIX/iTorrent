@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22503" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22503"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TorrentListViewController" customModule="iTorrent" customModuleProvider="target">
             <connections>
+                <outlet property="adView" destination="JsX-Hm-a5W" id="IG8-uC-yBt"/>
                 <outlet property="collectionView" destination="HhX-nd-LlB" id="LuS-Ub-WHP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,14 +31,20 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JsX-Hm-a5W" customClass="AdView" customModule="iTorrent" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="754" width="393" height="64"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="HhX-nd-LlB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8ea-yX-UGw"/>
+                <constraint firstItem="JsX-Hm-a5W" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottomMargin" id="VEd-DS-7wt"/>
                 <constraint firstItem="HhX-nd-LlB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Vbo-4T-sxk"/>
+                <constraint firstItem="JsX-Hm-a5W" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="bye-R3-1DR"/>
                 <constraint firstItem="HhX-nd-LlB" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="kK9-2K-Vix"/>
                 <constraint firstAttribute="bottom" secondItem="HhX-nd-LlB" secondAttribute="bottom" id="oMF-NQ-How"/>
+                <constraint firstItem="JsX-Hm-a5W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rZq-zh-iq6"/>
             </constraints>
             <point key="canvasLocation" x="116.79389312977099" y="19.718309859154932"/>
         </view>

@@ -13,6 +13,7 @@ import UIKit
 
 class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
+    @IBOutlet private var adView: AdView!
 
     private let addButton = UIBarButtonItem(title: %"common.add", image: .init(systemName: "plus"))
     private let preferencesButton = UIBarButtonItem(title: %"preferences", image: .init(systemName: "gearshape.fill"))
@@ -185,6 +186,11 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         super.setEditing(editing, animated: animated)
         collectionView.isEditing = editing
         toolbarItems = getToolBarItems
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        additionalSafeAreaInsets.bottom = adView.frame.height
     }
 }
 
