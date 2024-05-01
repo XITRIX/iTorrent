@@ -35,12 +35,9 @@ extension RssSearchViewModel {
 private extension RssSearchViewModel {
     func binding() {
         disposeBag.bind {
-            let rssItems = rssProvider.$rssModels.map { model in
-                Publishers.MergeMany(model.map { $0.$items })
-                    .collect(model.count)
+            let rssItems = rssProvider.updatePublisher.map { [rssProvider] _ in
+                rssProvider.rssModels.flatMap { $0.items }
             }
-            .switchToLatest()
-            .map { $0.flatMap { $0 } }
 
             Publishers.combineLatest(rssItems, $searchQuery) { models, searchQuery in
                 Self.filter(models: models, by: searchQuery)
@@ -55,7 +52,9 @@ private extension RssSearchViewModel {
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections = sections }
 
-        items = rssItems.map { model in
+        items = rssItems
+            .sorted(by: { $0.date ?? .distantPast > $1.date ?? .distantPast })
+            .map { model in
             let vm: RssChannelItemCellViewModel
             if let existing = items.first(where: { $0.model == model }) {
                 vm = existing

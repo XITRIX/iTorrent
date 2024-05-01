@@ -30,9 +30,11 @@ extension RssFeedProvider {
 @MainActor
 class RssFeedProvider {
     @Published var rssModels: [RssModel]
+    let updatePublisher = CurrentValueSubject<Void, Never>(())
 
     convenience init() {
         self.init(fetchUpdatesOnInit: true)
+        updatePublisher.send()
     }
 
     init(fetchUpdatesOnInit: Bool) {
@@ -47,6 +49,7 @@ class RssFeedProvider {
 
     func saveState() {
         Self.saveToDisk(rssModels)
+        updatePublisher.send()
     }
 
     private let disposalBag = DisposeBag()
@@ -89,12 +92,8 @@ extension RssFeedProvider {
     }
 
     var hasNewsPublisher: AnyPublisher<Bool, Never> {
-        $rssModels.map { model in
-            Publishers.MergeMany(model.map { $0.$items })
-                .collect(model.count)
-        }
-        .switchToLatest()
-        .map { $0.flatMap { $0 }.contains(where: { $0.new }) }
+        updatePublisher
+            .map { [unowned self] in rssModels.flatMap { $0.items }.contains(where: { $0.new }) }
         .eraseToAnyPublisher()
     }
 }
