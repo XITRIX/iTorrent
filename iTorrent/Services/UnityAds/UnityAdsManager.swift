@@ -7,11 +7,15 @@
 
 import Combine
 import Foundation
-import UnityAds
 import MvvmFoundation
+
+#if canImport(UnityAds)
+import UnityAds
+#endif
 
 @MainActor
 class UnityAdsManager: NSObject {
+#if canImport(UnityAds)
     private static let gameId = "5284803"
     private static let interstitialPlacementId = "Interstitial_iOS"
     static let bannerPlacementId = "Banner_iOS"
@@ -24,8 +28,10 @@ class UnityAdsManager: NSObject {
         super.init()
         registerUnity()
     }
+#endif
 }
 
+#if canImport(UnityAds)
 extension UnityAdsManager: UnityAdsInitializationDelegate, UnityAdsLoadDelegate, UnityAdsShowDelegate {
     func initializationComplete() {
         UnityAds.load(Self.interstitialPlacementId, loadDelegate: self)
@@ -97,3 +103,4 @@ private extension UnityAdsManager {
 //        return !dateExpired || UserPreferences.disableAds || (UserPreferences.patreonCredentials?.hideFSAds ?? true)
     }
 }
+#endif

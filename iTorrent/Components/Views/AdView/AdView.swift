@@ -6,9 +6,13 @@
 //
 
 import UIKit
+
+#if canImport(UnityAds)
 import UnityAds
+#endif
 
 class AdView: BaseView {
+#if canImport(UnityAds)
     override func setup() {
         let bannerView = UADSBannerView(placementId: UnityAdsManager.bannerPlacementId, size: CGSize(width: 320, height: height))
         bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +30,8 @@ class AdView: BaseView {
 
         bannerView.load()
     }
-    
+#endif
+
     var heightConstraint: NSLayoutConstraint!
     let height: Double = 50
 
@@ -35,6 +40,7 @@ class AdView: BaseView {
     }
 }
 
+#if canImport(UnityAds)
 extension AdView: UADSBannerViewDelegate {
     func bannerViewDidError(_ bannerView: UADSBannerView!, error: UADSBannerError!) {
         print("Unity ADS: loading ad with id: \(UnityAdsManager.bannerPlacementId), is failed with error: \(error.localizedDescription)")
@@ -54,3 +60,4 @@ extension AdView: UADSBannerViewDelegate {
 
     func bannerViewDidLeaveApplication(_ bannerView: UADSBannerView!) {}
 }
+#endif

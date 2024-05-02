@@ -36,6 +36,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSLocationDefaultAccuracyReduced</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
