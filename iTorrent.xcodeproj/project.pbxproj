@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
-		7C4CF2FC2BDE78F50078FEA1 /* AdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView.swift */; };
+		7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */; };
 		7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
@@ -135,6 +135,9 @@
 		D1A227012AEF05A600669D6D /* TorrentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227002AEF05A600669D6D /* TorrentListViewModel.swift */; };
 		D1A227072AEF0B2C00669D6D /* TorrentListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227062AEF0B2C00669D6D /* TorrentListItem.swift */; };
 		D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227082AEF0B6A00669D6D /* TorrentListItemViewModel.swift */; };
+		D1A5D0CA2BE52298003E05D5 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */; };
+		D1A5D0CC2BE5269E003E05D5 /* AdView+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D0CB2BE5269E003E05D5 /* AdView+Blank.swift */; };
+		D1A5D0CE2BE52728003E05D5 /* AdView+Google.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D0CD2BE52728003E05D5 /* AdView+Google.swift */; };
 		D1AA00CB2AFA8A9200B74629 /* UserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */; };
 		D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA00CD2AFA8B1000B74629 /* PreferencesStorage.swift */; };
 		D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
@@ -212,7 +215,7 @@
 /* Begin PBXFileReference section */
 		7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UnityAds.xcframework; path = Submodules/UnityAds.xcframework; sourceTree = "<group>"; };
 		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
-		7C4CF2FB2BDE78F50078FEA1 /* AdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdView.swift; sourceTree = "<group>"; };
+		7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Unity.swift"; sourceTree = "<group>"; };
 		7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
@@ -338,6 +341,9 @@
 		D1A227002AEF05A600669D6D /* TorrentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListViewModel.swift; sourceTree = "<group>"; };
 		D1A227062AEF0B2C00669D6D /* TorrentListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListItem.swift; sourceTree = "<group>"; };
 		D1A227082AEF0B6A00669D6D /* TorrentListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListItemViewModel.swift; sourceTree = "<group>"; };
+		D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:CSTR6SUWN9:AdMob, Inc."; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = Submodules/GoogleAdsSdk/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
+		D1A5D0CB2BE5269E003E05D5 /* AdView+Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Blank.swift"; sourceTree = "<group>"; };
+		D1A5D0CD2BE52728003E05D5 /* AdView+Google.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Google.swift"; sourceTree = "<group>"; };
 		D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultItem.swift; sourceTree = "<group>"; };
 		D1AA00CD2AFA8B1000B74629 /* PreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStorage.swift; sourceTree = "<group>"; };
 		D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -393,6 +399,7 @@
 				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
+				D1A5D0CA2BE52298003E05D5 /* GoogleMobileAds.xcframework in Frameworks */,
 				7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */,
 				7CC411602BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift in Frameworks */,
 				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
@@ -418,7 +425,9 @@
 		7C4CF2FF2BDE7DF60078FEA1 /* AdView */ = {
 			isa = PBXGroup;
 			children = (
-				7C4CF2FB2BDE78F50078FEA1 /* AdView.swift */,
+				7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */,
+				D1A5D0CD2BE52728003E05D5 /* AdView+Google.swift */,
+				D1A5D0CB2BE5269E003E05D5 /* AdView+Blank.swift */,
 			);
 			path = AdView;
 			sourceTree = "<group>";
@@ -948,6 +957,7 @@
 		D1A226D32AEEF73600669D6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */,
 				7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */,
 				D1A226F32AEF01B700669D6D /* LibTorrent.framework */,
 				D1A226D42AEEF73600669D6D /* MvvmFoundation.framework */,
@@ -1363,6 +1373,7 @@
 				D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */,
 				D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */,
 				D1352D1E2BBC2F7F00104E7B /* LocalizationAttribute.swift in Sources */,
+				D1A5D0CC2BE5269E003E05D5 /* AdView+Blank.swift in Sources */,
 				7C5FBE642BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift in Sources */,
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */,
@@ -1424,9 +1435,10 @@
 				7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */,
 				D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */,
 				7CFEBE832BC434A10013233F /* BaseCollectionViewController.swift in Sources */,
+				D1A5D0CE2BE52728003E05D5 /* AdView+Google.swift in Sources */,
 				D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */,
 				D17733F52BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift in Sources */,
-				7C4CF2FC2BDE78F50078FEA1 /* AdView.swift in Sources */,
+				7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */,
 				D1A227012AEF05A600669D6D /* TorrentListViewModel.swift in Sources */,
 				D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */,
 				7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */,

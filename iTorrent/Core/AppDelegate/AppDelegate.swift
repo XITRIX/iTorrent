@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 29/10/2023.
 //
 
+import GoogleMobileAds
 import MvvmFoundation
 import UIKit
 
@@ -15,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerPushNotifications(application)
         registerBackgroundRefresh()
         registerRemoteConfig()
+
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
         return true
     }
 

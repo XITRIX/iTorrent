@@ -16,7 +16,7 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
             Text(viewModel.title)
                 .fontWeight(.semibold)
             Spacer(minLength: viewModel.spacer)
-            Text(viewModel.detail)
+            Text(LocalizedStringKey(viewModel.detail))
                 .foregroundStyle(Color.accentColor)
 //                .foregroundStyle(Color.secondaryAccent)
                 .multilineTextAlignment(.trailing)

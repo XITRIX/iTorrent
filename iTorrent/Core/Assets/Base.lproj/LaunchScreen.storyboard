@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cww-4b-8cM">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <device id="retina6_72" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -14,38 +14,72 @@
             <objects>
                 <navigationController toolbarHidden="NO" id="sX7-qJ-YEY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8gB-Dt-H3k">
-                        <rect key="frame" x="0.0" y="59" width="430" height="97"/>
+                        <rect key="frame" x="0.0" y="0.0" width="379" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aqA-n3-JIq">
-                        <rect key="frame" x="0.0" y="849" width="430" height="49"/>
+                        <rect key="frame" x="0.0" y="360" width="379" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="Y5r-dd-xf5" kind="relationship" relationship="rootViewController" id="Oau-vu-hWq"/>
+                        <segue destination="Y5r-dd-xf5" kind="relationship" relationship="rootViewController" id="Fwb-v3-yiO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yEh-Ag-jB3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="504" y="-173"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="8Z6-NM-0d2">
+            <objects>
+                <viewController id="R6T-b2-AGZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dy2-Q1-il0">
+                        <rect key="frame" x="0.0" y="0.0" width="552.66666666666674" height="430"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTorrentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Qz6-oa-DOV">
+                                <rect key="frame" x="148.33333333333331" y="76.666666666666686" width="256" height="256"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="R5h-iN-as9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qz6-oa-DOV" firstAttribute="centerY" secondItem="R5h-iN-as9" secondAttribute="centerY" id="L2r-uw-ySR"/>
+                            <constraint firstItem="Qz6-oa-DOV" firstAttribute="centerX" secondItem="R5h-iN-as9" secondAttribute="centerX" id="aIT-sG-Zwj"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TgL-cd-96F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="497" y="756"/>
+        </scene>
         <!--iTorrent-->
         <scene sceneID="IXq-Fm-zQi">
             <objects>
                 <viewController id="Y5r-dd-xf5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fvy-EN-yWx">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="379" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="JWC-4l-cIs">
-                                <rect key="frame" x="196.66666666666666" y="447.66666666666669" width="37" height="37"/>
+                                <rect key="frame" x="171" y="196.66666666666666" width="37" height="37"/>
                             </activityIndicatorView>
+                            <searchBar contentMode="redraw" preservesSuperviewLayoutMargins="YES" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="vBB-Km-icA">
+                                <rect key="frame" x="0.0" y="36" width="0.0" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y5r-dd-xf5" id="wP9-YK-FhQ"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rDF-JJ-LGk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JWC-4l-cIs" firstAttribute="centerY" secondItem="fvy-EN-yWx" secondAttribute="centerY" id="Eao-2t-3hV"/>
+                            <constraint firstItem="vBB-Km-icA" firstAttribute="top" secondItem="fvy-EN-yWx" secondAttribute="topMargin" constant="-8" id="MjC-Z0-r5j"/>
+                            <constraint firstItem="vBB-Km-icA" firstAttribute="trailing" secondItem="rDF-JJ-LGk" secondAttribute="trailing" id="XJC-YM-TPj"/>
                             <constraint firstItem="JWC-4l-cIs" firstAttribute="centerX" secondItem="rDF-JJ-LGk" secondAttribute="centerX" id="kD5-8K-Vnc"/>
+                            <constraint firstItem="vBB-Km-icA" firstAttribute="leading" secondItem="rDF-JJ-LGk" secondAttribute="leading" id="ylz-gf-p9v"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -54,8 +88,13 @@
                         <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="qMc-KD-V1h"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="iTorrent" largeTitleDisplayMode="always" id="bmc-yK-sej">
-                        <barButtonItem key="rightBarButtonItem" image="Sort" id="f0u-aT-hV9"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Pfp-Zv-tlg"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ic_sort" id="f0u-aT-hV9"/>
+                            <barButtonItem image="ic_rss" id="y0x-9v-7s3"/>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePj-Wc-dxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,6 +107,7 @@
                 <splitViewController preferredDisplayMode="beside" behavior="tile" primaryBackgroundStyle="sidebar" id="Cww-4b-8cM" sceneMemberID="viewController">
                     <connections>
                         <segue destination="sX7-qJ-YEY" kind="relationship" relationship="masterViewController" id="ycx-0U-8ov"/>
+                        <segue destination="R6T-b2-AGZ" kind="relationship" relationship="detailViewController" id="FeV-Ml-dQ7"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QoD-1Y-5iP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -77,10 +117,12 @@
     </scenes>
     <color key="tintColor" name="AccentColor"/>
     <resources>
-        <image name="Sort" width="25" height="25"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="iTorrentLogo" width="256" height="256"/>
+        <image name="ic_rss" width="8" height="8"/>
+        <image name="ic_sort" width="9" height="9"/>
         <namedColor name="AccentColor">
-            <color red="0.94509803921568625" green="0.61960784313725492" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
