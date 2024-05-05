@@ -25,7 +25,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerDaemon(factory: TorrentMonitoringService.init)
         container.registerDaemon(factory: RssFeedProvider.init)
         container.registerDaemon(factory: WebServerService.init)
-        container.registerDaemon(factory: UnityAdsManager.init)
+        container.registerDaemon(factory: AdsManager.init)
     }
 
     override func routing(in router: Router) {

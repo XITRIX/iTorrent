@@ -34,6 +34,8 @@ public extension UIViewController {
                 sheet.invalidateDetents()
             }
         })
+#else
+        return nil
 #endif
     }
 

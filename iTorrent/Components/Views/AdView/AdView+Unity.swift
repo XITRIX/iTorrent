@@ -5,9 +5,8 @@
 //  Created by Даниил Виноградов on 28.04.2024.
 //
 
-import UIKit
-
 #if canImport(UnityAds)
+import UIKit
 import UnityAds
 
 class AdView: BaseView {

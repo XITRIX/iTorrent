@@ -10,6 +10,12 @@
 		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
 		7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */; };
 		7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */; };
+		7C4ED0832BE63D250034B62C /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4ED0822BE63D250034B62C /* FBAudienceNetwork.xcframework */; platformFilter = ios; };
+		7C4ED0852BE6413D0034B62C /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0842BE6413D0034B62C /* AdsManager.swift */; };
+		7C4ED0872BE641B30034B62C /* GoogleAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0862BE641B30034B62C /* GoogleAdsManager.swift */; };
+		7C4ED0892BE6423D0034B62C /* MetaAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */; };
+		7C4ED08B2BE642A50034B62C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */; };
+		7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
@@ -27,7 +33,7 @@
 		7C5FBE422BC0ADC90069E5A0 /* ProgressWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE412BC0ADC90069E5A0 /* ProgressWidgetBundle.swift */; };
 		7C5FBE442BC0ADC90069E5A0 /* ProgressWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE432BC0ADC90069E5A0 /* ProgressWidgetLiveActivity.swift */; };
 		7C5FBE482BC0ADCC0069E5A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5FBE472BC0ADCC0069E5A0 /* Assets.xcassets */; };
-		7C5FBE4C2BC0ADCC0069E5A0 /* ProgressWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7C5FBE3B2BC0ADC90069E5A0 /* ProgressWidgetExtension.appex */; platformFilters = (ios, maccatalyst, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7C5FBE4C2BC0ADCC0069E5A0 /* ProgressWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7C5FBE3B2BC0ADC90069E5A0 /* ProgressWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7C5FBE532BC0B2780069E5A0 /* SpeedFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19E00252AF045F9000A17A2 /* SpeedFormat.swift */; };
 		7C5FBE552BC0B3550069E5A0 /* ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */; };
 		7C5FBE562BC0B35C0069E5A0 /* ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */; };
@@ -135,7 +141,6 @@
 		D1A227012AEF05A600669D6D /* TorrentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227002AEF05A600669D6D /* TorrentListViewModel.swift */; };
 		D1A227072AEF0B2C00669D6D /* TorrentListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227062AEF0B2C00669D6D /* TorrentListItem.swift */; };
 		D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A227082AEF0B6A00669D6D /* TorrentListItemViewModel.swift */; };
-		D1A5D0CA2BE52298003E05D5 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */; };
 		D1A5D0CC2BE5269E003E05D5 /* AdView+Blank.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D0CB2BE5269E003E05D5 /* AdView+Blank.swift */; };
 		D1A5D0CE2BE52728003E05D5 /* AdView+Google.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A5D0CD2BE52728003E05D5 /* AdView+Google.swift */; };
 		D1AA00CB2AFA8A9200B74629 /* UserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */; };
@@ -217,6 +222,12 @@
 		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
 		7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Unity.swift"; sourceTree = "<group>"; };
 		7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7C4ED0822BE63D250034B62C /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = Submodules/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
+		7C4ED0842BE6413D0034B62C /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
+		7C4ED0862BE641B30034B62C /* GoogleAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsManager.swift; sourceTree = "<group>"; };
+		7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaAdsManager.swift; sourceTree = "<group>"; };
+		7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = DEVELOPER_DIR; };
+		7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Meta.swift"; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -395,11 +406,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4ED0832BE63D250034B62C /* FBAudienceNetwork.xcframework in Frameworks */,
 				7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */,
 				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
-				D1A5D0CA2BE52298003E05D5 /* GoogleMobileAds.xcframework in Frameworks */,
+				7C4ED08B2BE642A50034B62C /* AppTrackingTransparency.framework in Frameworks */,
 				7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */,
 				7CC411602BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift in Frameworks */,
 				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
@@ -414,12 +426,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7C4CF2F82BDE711A0078FEA1 /* UnityAds */ = {
+		7C4CF2F82BDE711A0078FEA1 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
+				7C4ED0842BE6413D0034B62C /* AdsManager.swift */,
 				7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */,
+				7C4ED0862BE641B30034B62C /* GoogleAdsManager.swift */,
+				7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */,
 			);
-			path = UnityAds;
+			path = Ads;
 			sourceTree = "<group>";
 		};
 		7C4CF2FF2BDE7DF60078FEA1 /* AdView */ = {
@@ -427,6 +442,7 @@
 			children = (
 				7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */,
 				D1A5D0CD2BE52728003E05D5 /* AdView+Google.swift */,
+				7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */,
 				D1A5D0CB2BE5269E003E05D5 /* AdView+Blank.swift */,
 			);
 			path = AdView;
@@ -957,6 +973,8 @@
 		D1A226D32AEEF73600669D6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */,
+				7C4ED0822BE63D250034B62C /* FBAudienceNetwork.xcframework */,
 				D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */,
 				7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */,
 				D1A226F32AEF01B700669D6D /* LibTorrent.framework */,
@@ -994,7 +1012,7 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				7C4CF2F82BDE711A0078FEA1 /* UnityAds */,
+				7C4CF2F82BDE711A0078FEA1 /* Ads */,
 				D1DB71892BD915F4007F9267 /* ImageCache */,
 				D1DB71842BD80435007F9267 /* WebServer */,
 				7CAD301A2BC3456700592990 /* RssFeed */,
@@ -1384,7 +1402,9 @@
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
 				7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */,
 				7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */,
+				7C4ED0872BE641B30034B62C /* GoogleAdsManager.swift in Sources */,
 				D19E00262AF045F9000A17A2 /* SpeedFormat.swift in Sources */,
+				7C4ED0852BE6413D0034B62C /* AdsManager.swift in Sources */,
 				D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */,
 				7C5FBE362BC0A24A0069E5A0 /* SceneDelegate+BackgroundDownload.swift in Sources */,
 				D1DB71882BD8FF60007F9267 /* Scheduler+Main.swift in Sources */,
@@ -1409,6 +1429,7 @@
 				D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */,
 				7CFEBE7C2BC4318E0013233F /* RssChannelViewController.swift in Sources */,
 				7C5FBE2C2BBDD6B40069E5A0 /* UIView+LayerColors.swift in Sources */,
+				7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */,
 				D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */,
 				7C5FBE742BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift in Sources */,
 				D1EFCD122AF572E400D33A7A /* TorrentFilesFileItemViewModel.swift in Sources */,
@@ -1421,6 +1442,7 @@
 				7C5FBE282BBDD4030069E5A0 /* PRColorPickerCell.swift in Sources */,
 				D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */,
 				D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */,
+				7C4ED0892BE6423D0034B62C /* MetaAdsManager.swift in Sources */,
 				7CFEBEAD2BC88F4C0013233F /* AppDelegate+BackgroundRefresh.swift in Sources */,
 				D1DB71912BD92238007F9267 /* PatreonPreferencesViewController.swift in Sources */,
 				D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */,
@@ -1485,6 +1507,7 @@
 /* Begin PBXTargetDependency section */
 		7C5FBE4B2BC0ADCC0069E5A0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 7C5FBE3A2BC0ADC90069E5A0 /* ProgressWidgetExtension */;
 			targetProxy = 7C5FBE4A2BC0ADCC0069E5A0 /* PBXContainerItemProxy */;
 		};
@@ -1745,9 +1768,11 @@
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -1766,13 +1791,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
@@ -1786,9 +1812,11 @@
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -1807,13 +1835,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
@@ -1894,9 +1923,11 @@
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -1915,13 +1946,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,6,7";
 				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = RelWithDebInfo;

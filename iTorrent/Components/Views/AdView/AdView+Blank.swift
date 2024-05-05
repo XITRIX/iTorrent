@@ -7,6 +7,6 @@
 
 import Foundation
 
-#if !canImport(UnityAds) && !canImport(GoogleMobileAds)
+#if !canImport(UnityAds) && !canImport(GoogleMobileAds) && !canImport(FBAudienceNetwork)
 class AdView: BaseView {}
 #endif
