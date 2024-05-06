@@ -20,8 +20,8 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
                 .foregroundStyle(.primary)
                 .font(.subheadline.weight(.semibold))
             VStack(alignment: .leading, spacing: 0) {
-                Text(viewModel.progressText)
-                Text(viewModel.statusText)
+                Text(String(viewModel.progressText))
+                Text(String(viewModel.statusText))
             }
             .lineLimit(1)
             .minimumScaleFactor(0.5)

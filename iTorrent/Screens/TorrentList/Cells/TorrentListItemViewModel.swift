@@ -58,7 +58,7 @@ private extension TorrentListItemViewModel {
     func updateUI() {
         let percent = "\(String(format: "%.2f", torrentHandle.snapshot.progress * 100))%"
         title = torrentHandle.snapshot.name
-        progressText = "\(torrentHandle.snapshot.totalWantedDone.bitrateToHumanReadable) of \(torrentHandle.snapshot.totalWanted.bitrateToHumanReadable) (\(percent))"
+        progressText = %"\(torrentHandle.snapshot.totalWantedDone.bitrateToHumanReadable) of \(torrentHandle.snapshot.totalWanted.bitrateToHumanReadable) (\(percent))"
         statusText = "\(torrentHandle.snapshot.stateText)"
         progress = torrentHandle.snapshot.progress
     }

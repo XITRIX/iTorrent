@@ -16,6 +16,8 @@
 		7C4ED0892BE6423D0034B62C /* MetaAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */; };
 		7C4ED08B2BE642A50034B62C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */; };
 		7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */; };
+		7C4ED0942BE961A20034B62C /* UIModernBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0932BE961A20034B62C /* UIModernBarButtonItem.swift */; };
+		7C4ED0962BE961DF0034B62C /* BaseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0952BE961DF0034B62C /* BaseControl.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
@@ -228,6 +230,8 @@
 		7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaAdsManager.swift; sourceTree = "<group>"; };
 		7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = DEVELOPER_DIR; };
 		7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Meta.swift"; sourceTree = "<group>"; };
+		7C4ED0932BE961A20034B62C /* UIModernBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModernBarButtonItem.swift; sourceTree = "<group>"; };
+		7C4ED0952BE961DF0034B62C /* BaseControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseControl.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -456,6 +460,8 @@
 				D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */,
 				7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */,
 				7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */,
+				7C4ED0932BE961A20034B62C /* UIModernBarButtonItem.swift */,
+				7C4ED0952BE961DF0034B62C /* BaseControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1380,6 +1386,7 @@
 				D111384B2AF965F1008907F7 /* TorrentAddViewModel.swift in Sources */,
 				D1A226A22AEEEFCC00669D6D /* ViewController.swift in Sources */,
 				D1352D252BBC33AB00104E7B /* BasePreferencesViewModel.swift in Sources */,
+				7C4ED0942BE961A20034B62C /* UIModernBarButtonItem.swift in Sources */,
 				D173D9D92BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift in Sources */,
 				D173D9DC2BBEED2B00E4F9EB /* Codables.swift in Sources */,
 				D1048D862BBE92220027EF2F /* SANavigationController.swift in Sources */,
@@ -1472,6 +1479,7 @@
 				7C5FBE342BC0A15C0069E5A0 /* SceneDelegate+Bindings.swift in Sources */,
 				D1ACFDC92AF6ED200098FF56 /* UIImage+File.swift in Sources */,
 				7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */,
+				7C4ED0962BE961DF0034B62C /* BaseControl.swift in Sources */,
 				D1707C342AF297C500F1752A /* BaseSplitViewController.swift in Sources */,
 				7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */,
 				7C5FBE582BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift in Sources */,
