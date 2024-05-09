@@ -5,17 +5,25 @@ import Foundation
 let rootUrl = "https://raw.githubusercontent.com/XITRIX/iTorrent-v2/main"
 let rootDistrUrl = "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master"
 
-let _screenshots: [String] = [
+let _iphoneStandardScreenshots: [String] = [
     "\(rootDistrUrl)/screenshots/1.PNG",
     "\(rootDistrUrl)/screenshots/2.PNG",
     "\(rootDistrUrl)/screenshots/3.PNG",
     "\(rootDistrUrl)/screenshots/4.PNG",
 ]
 
+let _iphoneEdgeToEdgeScreenshots: [String] = [
+    "\(rootDistrUrl)/screenshots/sidestore/1.png",
+    "\(rootDistrUrl)/screenshots/sidestore/2.png",
+    "\(rootDistrUrl)/screenshots/sidestore/3.png",
+    "\(rootDistrUrl)/screenshots/sidestore/4.png",
+    "\(rootDistrUrl)/screenshots/sidestore/5.png",
+]
+
 // MARK: - AltStore Models
 struct SideStoreScreenshotsModel: Codable {
-    var iphoneStandard: [String]?
-    var iphoneEdgeToEdge: [String]? = _screenshots
+    var iphoneStandard: [String]? = _iphoneStandardScreenshots
+    var iphoneEdgeToEdge: [String]? = _iphoneEdgeToEdgeScreenshots
     var ipad: [String]?
 
     enum CodingKeys: String, CodingKey {
@@ -54,8 +62,8 @@ struct AltStoreAppModel: Codable {
     var iconURL: String = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
     var tintColor: String? = "#D03E43"
     var category: String? = "utilities"
-    var screenshots: [String]? = _screenshots
-    var screenshotURLs: [String]? = _screenshots
+    var screenshots: [String]? = _iphoneStandardScreenshots
+    var screenshotURLs: [String]? = _iphoneEdgeToEdgeScreenshots
     var versions: [AltStoreAppVersionModel]
     var appPermissions: AltStoreAppPermissionModel = .init()
     var permissions: [SideStoreAppPermissionModel] = [

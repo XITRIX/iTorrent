@@ -1,3 +1,5 @@
 xcuserdata
 .DS_Store
 iTorrent/Core/Assets/GoogleService-Info.plist
+GenerateAltStoreJson
+AltStoreSource.json
