@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 24/04/2024.
 //
 
+import Combine
 import SafariServices
 import UIKit
 
@@ -45,8 +46,8 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
         patronMessage.text = %"patreon.patron.level"
 
         becomePatronButton.setTitle(%"patreon.action.patron", for: .normal)
-        linkPatreonButton.setTitle(%"patreon.action.link", for: .normal)
 
+        binding()
         setupActions()
 
 #if os(visionOS)
@@ -56,6 +57,29 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
 }
 
 private extension PatreonPreferencesViewController {
+    func binding() {
+        disposeBag.bind {
+            viewModel.linkButtonTitle.sink { [unowned self] title in
+                linkPatreonButton.setTitle(title, for: .normal)
+            }
+
+            Publishers.combineLatest(
+                viewModel.isPatronPublisher,
+                viewModel.isFullVersionPublisher)
+            { $0 || $1 }.sink { isShown in
+                UIView.animate(withDuration: 0.3) { [self] in
+                    patronBox.isHidden = !isShown
+                }
+            }
+
+            viewModel.isPatronPublisher.sink { [unowned self] isPatron in
+                UIView.animate(withDuration: 0.3) { [self] in
+                    becomePatronButton.isHidden = isPatron
+                }
+            }
+        }
+    }
+
     func setupActions() {
         becomePatronButton.addAction(.init { [unowned self] _ in
             let safari = SFSafariViewController(url: URL(string: "https://patreon.com/xitrix")!)
@@ -65,6 +89,10 @@ private extension PatreonPreferencesViewController {
 #endif
 //            safari.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!
             present(safari, animated: true)
+        }, for: .touchUpInside)
+
+        linkPatreonButton.addAction(.init { [unowned self] _ in
+            viewModel.linkPatreon()
         }, for: .touchUpInside)
     }
 }

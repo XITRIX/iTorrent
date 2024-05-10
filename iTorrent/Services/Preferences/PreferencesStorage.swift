@@ -84,6 +84,9 @@ class PreferencesStorage {
     @UserDefaultItem("preferencesWebServerLogin", "") var webServerLogin: String
     @UserDefaultItem("preferencesWebServerPassword", "") var webServerPassword: String
 
+    @UserDefaultItem("preferencesPatreonAccount", nil) var patreonAccount: PatreonAccount?
+    @UserDefaultItem("preferencesPatreonToken", nil) var patreonToken: PatreonToken?
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($allocateMemory)

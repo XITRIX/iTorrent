@@ -99,6 +99,9 @@
         }
       }
     },
+    "An unknown error occurred." : {
+
+    },
     "common.add" : {
       "localizations" : {
         "en" : {
@@ -1092,6 +1095,9 @@
         }
       }
     },
+    "Invalid access token." : {
+
+    },
     "iTorrent" : {
       "localizations" : {
         "en" : {
@@ -1563,6 +1569,12 @@
         }
       }
     },
+    "No connected Patreon account." : {
+
+    },
+    "No credentials." : {
+
+    },
     "notification.done.message_%@" : {
       "localizations" : {
         "en" : {
@@ -1639,6 +1651,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Стать патроном"
+          }
+        }
+      }
+    },
+    "patreon.action.unlink" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlink"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвязать"
+          }
+        }
+      }
+    },
+    "patreon.action.unlink.button" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlink Patreon Account"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвязать Patreon аккаунт"
+          }
+        }
+      }
+    },
+    "patreon.action.unlink.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to unlink your Patreon account?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите отвязать ваш Patreon аккаунт?"
           }
         }
       }

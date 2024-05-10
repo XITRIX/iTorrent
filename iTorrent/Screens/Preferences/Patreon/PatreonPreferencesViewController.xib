@@ -38,10 +38,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="89B-sj-DtV">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="414.33333333333331"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="569"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Qof-w5-l46">
-                                    <rect key="frame" x="16" y="16" width="361" height="382.33333333333331"/>
+                                    <rect key="frame" x="16" y="16" width="361" height="537"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZLv-xn-0j4">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="306.33333333333331"/>
@@ -125,8 +125,8 @@ Thanks for all your support!</string>
                                                 </view>
                                             </subviews>
                                         </stackView>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i54-hH-OSI">
-                                            <rect key="frame" x="0.0" y="318.33333333333331" width="361" height="74.666666666666686"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i54-hH-OSI">
+                                            <rect key="frame" x="0.0" y="330.33333333333331" width="361" height="74.666666666666686"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="orb-W5-qOm">
                                                     <rect key="frame" x="15.999999999999996" y="8.9999999999999964" width="50.666666666666657" height="56.666666666666657"/>
@@ -174,13 +174,13 @@ Thanks for all your support!</string>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Y7s-s0-o71">
-                                            <rect key="frame" x="0.0" y="330.33333333333331" width="361" height="52"/>
+                                            <rect key="frame" x="0.0" y="429" width="361" height="108"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwK-yg-NrV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="48"/>
                                                     <color key="backgroundColor" systemColor="tintColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="52" id="biX-yi-26w"/>
+                                                        <constraint firstAttribute="height" constant="48" id="biX-yi-26w"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -188,11 +188,11 @@ Thanks for all your support!</string>
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fv-vd-krR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="361" height="52"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fv-vd-krR">
+                                                    <rect key="frame" x="0.0" y="60" width="361" height="48"/>
                                                     <color key="backgroundColor" systemColor="tintColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="52" id="f1U-eY-ccr"/>
+                                                        <constraint firstAttribute="height" constant="48" id="f1U-eY-ccr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -203,7 +203,7 @@ Thanks for all your support!</string>
                                             </subviews>
                                         </stackView>
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-d7-ZPA">
-                                            <rect key="frame" x="0.0" y="382.33333333333331" width="361" height="36"/>
+                                            <rect key="frame" x="0.0" y="537" width="361" height="36"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-Jh-C6C">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
@@ -289,19 +289,19 @@ Thanks for all your support!</string>
         <image name="Xitrix" width="156" height="156"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
