@@ -79,6 +79,14 @@ class SceneDelegate: MvvmSceneDelegate {
         return svc
     }
 
+    override func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        super.scene(scene, willConnectTo: session, options: connectionOptions)
+        connectionOptions.urlContexts.forEach { context in
+            let url = context.url
+            processURL(url)
+        }
+    }
+
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         URLContexts.forEach { context in
             let url = context.url
