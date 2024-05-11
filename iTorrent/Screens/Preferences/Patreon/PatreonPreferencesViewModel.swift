@@ -8,24 +8,59 @@
 import MvvmFoundation
 import Combine
 
+extension PatreonPreferencesViewModel {
+    enum PatreonAccountState: Equatable {
+        case none
+        case auth(PatreonAccount)
+        case loading
+    }
+}
+
 class PatreonPreferencesViewModel: BaseViewModel {
+    let accountState = CurrentValueSubject<PatreonAccountState, Never>(.none)
+
+    required init() {
+        super.init()
+
+        if let patreonAccount = preferencesStorage.patreonAccount {
+            accountState.value = .auth(patreonAccount)
+        } else {
+            accountState.value = .none
+        }
+    }
+
     @Injected private var patreonService: PatreonService
     @Injected private var preferencesStorage: PreferencesStorage
 }
 
 extension PatreonPreferencesViewModel {
     var linkButtonTitle: AnyPublisher<String, Never> {
-        preferencesStorage.$patreonAccount.map { account in
-            if let account {
+        accountState.map { account in
+            switch account {
+            case .auth(let account):
                 return "\(%"patreon.action.unlink") \(account.name)"
-            } else {
+            case .loading:
+                return ""
+            case .none:
                 return %"patreon.action.link"
             }
         }.eraseToAnyPublisher()
     }
 
-    var accountPublisher: AnyPublisher<PatreonAccount?, Never> {
-        preferencesStorage.$patreonAccount.eraseToAnyPublisher()
+    var versionTextPublisher: AnyPublisher<String?, Never> {
+        preferencesStorage.$patreonAccount.map { account -> String? in
+            guard let account else { return nil }
+
+            if account.fullVersion {
+                return %"patreon.status.full"
+            }
+
+            if account.isPatron {
+                return %"patreon.status.parton"
+            }
+
+            return nil
+        }.eraseToAnyPublisher()
     }
 
     var isPatronPublisher: AnyPublisher<Bool, Never> {
@@ -37,18 +72,24 @@ extension PatreonPreferencesViewModel {
     }
 
     func linkPatreon() {
-        if !patreonService.isAuthenticated {
+        if accountState.value == .none {
             guard let context = navigationService?()
             else { return }
             
             Task {
-                try await patreonService.authenticate(from: context)
+                do {
+                    accountState.value = .loading
+                    accountState.value = .auth(try await patreonService.authenticate(from: context))
+                } catch {
+                    accountState.value = .none
+                }
             }
         } else {
             alert(title: %"patreon.action.unlink.title",style: .actionSheet, actions: [
                 .init(title: %"common.cancel", style: .cancel),
                 .init(title: %"patreon.action.unlink.button", style: .destructive) { [unowned self] in
                     try? patreonService.signOut()
+                    accountState.value = .none
                 }
             ])
         }

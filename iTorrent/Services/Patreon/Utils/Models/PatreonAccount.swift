@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import MvvmFoundation
 
 extension PatreonService {
     struct AccountResponse: Decodable {
@@ -42,7 +43,7 @@ extension PatreonService {
     }
 }
 
-class PatreonAccount: Codable {
+class PatreonAccount: Codable, Equatable {
     var identifier: String
 
     var name: String
@@ -50,7 +51,7 @@ class PatreonAccount: Codable {
     var id: String?
 
     var isPatron: Bool
-    var fullVersion: Bool = true
+    lazy var fullVersion: Bool = { PreferencesStorage.resolve().patreonCredentials?.benefits.fullVersion.contains(self.identifier) ?? false }()
 
     var hideAds: Bool { isPatron || fullVersion }
 
@@ -60,7 +61,7 @@ class PatreonAccount: Codable {
         self.identifier = response.data.id
         self.name = response.data.attributes.full_name
         self.firstName = response.data.attributes.first_name
-//        self.fullVersion = false // UserPreferences.patreonCredentials?.benefits.fullVersion.contains(self.identifier) ?? false
+//        self.fullVersion = PreferencesStorage.shared.patreonCredentials?.benefits.fullVersion.contains(self.identifier) ?? false
 
         if let patronResponse = response.included?.first {
             let patron = Patron(response: patronResponse)
@@ -76,7 +77,7 @@ class PatreonAccount: Codable {
         self.name = name
         self.firstName = firstName
         self.isPatron = false
-//        self.fullVersion = false // UserPreferences.patreonCredentials?.benefits.fullVersion.contains(self.identifier) ?? false
+//        self.fullVersion = PreferencesStorage.shared.patreonCredentials?.benefits.fullVersion.contains(self.identifier) ?? false
         self.fixedAccount = true
     }
 
@@ -85,5 +86,9 @@ class PatreonAccount: Codable {
             Tier.Rewards.fullVersion.contains(pledge.attributes.tier_id) &&
                 pledge.attributes.payment_status == "Paid"
         })
+    }
+
+    static func == (lhs: PatreonAccount, rhs: PatreonAccount) -> Bool {
+        lhs.id == rhs.id
     }
 }

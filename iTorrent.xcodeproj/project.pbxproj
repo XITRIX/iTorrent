@@ -18,6 +18,7 @@
 		7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */; };
 		7C4ED0942BE961A20034B62C /* UIModernBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0932BE961A20034B62C /* UIModernBarButtonItem.swift */; };
 		7C4ED0962BE961DF0034B62C /* BaseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0952BE961DF0034B62C /* BaseControl.swift */; };
+		7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0972BEF8B8E0034B62C /* PatreonCredentials.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
@@ -240,6 +241,7 @@
 		7C4ED08C2BE646E40034B62C /* AdView+Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Meta.swift"; sourceTree = "<group>"; };
 		7C4ED0932BE961A20034B62C /* UIModernBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModernBarButtonItem.swift; sourceTree = "<group>"; };
 		7C4ED0952BE961DF0034B62C /* BaseControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseControl.swift; sourceTree = "<group>"; };
+		7C4ED0972BEF8B8E0034B62C /* PatreonCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonCredentials.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -1164,6 +1166,7 @@
 				D1B99D8D2BEE631B00F51514 /* Patron.swift */,
 				D1B99D902BEE631B00F51514 /* Tier.swift */,
 				D1B99D952BEE657F00F51514 /* API.swift */,
+				7C4ED0972BEF8B8E0034B62C /* PatreonCredentials.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1553,6 +1556,7 @@
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
+				7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */,
 				D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,
 				D1A226F92AEF04E200669D6D /* TorrentListViewController.swift in Sources */,

@@ -1767,7 +1767,23 @@
         }
       }
     },
-    "patreon.patron.title" : {
+    "patreon.status.full" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have full version"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У вас полная версия"
+          }
+        }
+      }
+    },
+    "patreon.status.parton" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {

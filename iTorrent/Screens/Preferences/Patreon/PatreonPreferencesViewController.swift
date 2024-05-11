@@ -22,6 +22,7 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
 
     @IBOutlet private var becomePatronButton: UIButton!
     @IBOutlet private var linkPatreonButton: UIButton!
+    @IBOutlet private var linkPatreonLoading: UIActivityIndicatorView!
 
     @IBOutlet private var chatPin: UIImageView!
 
@@ -42,7 +43,6 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
         creatorDescription.text = %"patreon.creator.description"
         creatorMessage.text = %"patreon.creator.message"
 
-        patronTitle.text = %"patreon.patron.title"
         patronMessage.text = %"patreon.patron.level"
 
         becomePatronButton.setTitle(%"patreon.action.patron", for: .normal)
@@ -76,6 +76,18 @@ private extension PatreonPreferencesViewController {
                 UIView.animate(withDuration: 0.3) { [self] in
                     becomePatronButton.isHidden = isPatron
                 }
+            }
+
+            viewModel.accountState.sink { [unowned self] state in
+                if state == .loading {
+                    linkPatreonLoading.startAnimating()
+                } else {
+                    linkPatreonLoading.stopAnimating()
+                }
+            }
+
+            viewModel.versionTextPublisher.sink { [unowned self] title in
+                patronTitle.text = title
             }
         }
     }

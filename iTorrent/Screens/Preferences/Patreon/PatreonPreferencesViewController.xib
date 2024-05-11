@@ -18,14 +18,15 @@
                 <outlet property="creatorMessage" destination="Kkr-v9-0aT" id="xWM-Eq-B7q"/>
                 <outlet property="creatorName" destination="ksX-TD-LMi" id="Gml-i4-dCv"/>
                 <outlet property="linkPatreonButton" destination="0fv-vd-krR" id="1bg-x5-8mA"/>
+                <outlet property="linkPatreonLoading" destination="vqc-BQ-ksK" id="qFy-MB-aHM"/>
                 <outlet property="patronBox" destination="i54-hH-OSI" id="bog-3S-hOk"/>
                 <outlet property="patronMessage" destination="4bs-Gi-Yen" id="yPM-2x-j30"/>
                 <outlet property="patronTitle" destination="gCp-Ge-ehk" id="IDT-lW-XUl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="roundedViews" destination="Px2-S8-Ev4" collectionClass="NSMutableArray" id="qxr-lP-3Gq"/>
                 <outletCollection property="roundedViews" destination="i54-hH-OSI" collectionClass="NSMutableArray" id="Wky-BR-79a"/>
-                <outletCollection property="roundedViews" destination="0fv-vd-krR" collectionClass="NSMutableArray" id="0NW-ch-r7a"/>
                 <outletCollection property="roundedViews" destination="hwK-yg-NrV" collectionClass="NSMutableArray" id="s5s-fb-MNj"/>
+                <outletCollection property="roundedViews" destination="0fv-vd-krR" collectionClass="NSMutableArray" id="0NW-ch-r7a"/>
                 <outletCollection property="roundedViews" destination="0fv-vd-krR" collectionClass="NSMutableArray" id="S1w-wB-6ue"/>
             </connections>
         </placeholder>
@@ -188,18 +189,35 @@ Thanks for all your support!</string>
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fv-vd-krR">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eax-hn-olb">
                                                     <rect key="frame" x="0.0" y="60" width="361" height="48"/>
-                                                    <color key="backgroundColor" systemColor="tintColor"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fv-vd-krR">
+                                                            <rect key="frame" x="0.0" y="0.0" width="361" height="48"/>
+                                                            <color key="backgroundColor" systemColor="tintColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="48" id="f1U-eY-ccr"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="Connect with patreon">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                        </button>
+                                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vqc-BQ-ksK">
+                                                            <rect key="frame" x="170.66666666666666" y="14" width="20" height="20"/>
+                                                            <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="48" id="f1U-eY-ccr"/>
+                                                        <constraint firstItem="0fv-vd-krR" firstAttribute="top" secondItem="eax-hn-olb" secondAttribute="top" id="7CX-mf-mBq"/>
+                                                        <constraint firstItem="vqc-BQ-ksK" firstAttribute="centerY" secondItem="eax-hn-olb" secondAttribute="centerY" id="DDT-8M-ysg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0fv-vd-krR" secondAttribute="trailing" id="IP7-hM-yqL"/>
+                                                        <constraint firstItem="0fv-vd-krR" firstAttribute="leading" secondItem="eax-hn-olb" secondAttribute="leading" id="jmf-Oi-6jC"/>
+                                                        <constraint firstItem="vqc-BQ-ksK" firstAttribute="centerX" secondItem="eax-hn-olb" secondAttribute="centerX" id="kpK-Zw-Y26"/>
+                                                        <constraint firstAttribute="bottom" secondItem="0fv-vd-krR" secondAttribute="bottom" id="qRz-qx-A5S"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Connect with patreon">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                </button>
+                                                </view>
                                             </subviews>
                                         </stackView>
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-d7-ZPA">

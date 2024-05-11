@@ -11,7 +11,7 @@ import LibTorrent
 import MvvmFoundation
 import UIKit
 
-class PreferencesStorage {
+class PreferencesStorage: Resolvable {
     private init() {}
     private var disposeBag: [AnyCancellable] = []
 
@@ -86,6 +86,7 @@ class PreferencesStorage {
 
     @UserDefaultItem("preferencesPatreonAccount", nil) var patreonAccount: PatreonAccount?
     @UserDefaultItem("preferencesPatreonToken", nil) var patreonToken: PatreonToken?
+    @UserDefaultItem("preferencesPatreonCredentials", nil) var patreonCredentials: PatreonCredentials?
 
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
