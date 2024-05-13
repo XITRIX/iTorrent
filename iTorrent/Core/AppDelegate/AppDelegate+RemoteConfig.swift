@@ -5,7 +5,7 @@
 //  Created by Даниил Виноградов on 19.04.2024.
 //
 
-import Foundation
+import UIKit
 #if canImport(FirebaseCore)
 import FirebaseRemoteConfig
 var remoteConfig = RemoteConfig.remoteConfig()
@@ -21,39 +21,56 @@ extension AppDelegate {
 
 #if canImport(FirebaseCore)
 private extension AppDelegate {
-    static var killSwitchFuseKey: String {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-        return "KillSwitchFuze-\(appVersion)"
-    }
-
     func registerKillSwitch() {
-        checkKillSwitch()
-
         remoteConfig.fetchAndActivate { [unowned self] status, error in
             guard error == nil, status == .successFetchedFromRemote else { return }
-            burnKillSwitchFuzeIfNeeded()
-            checkKillSwitch()
+            Task { try await checkKillSwitch() }
         }
 
         remoteConfig.addOnConfigUpdateListener { [unowned self] _, error in
             guard error == nil else { return }
 
             remoteConfig.activate { [unowned self] _, _ in
-                burnKillSwitchFuzeIfNeeded()
-                checkKillSwitch()
+                Task { try await checkKillSwitch() }
             }
         }
     }
 
-    func checkKillSwitch() {
-        guard UserDefaults.standard.bool(forKey: Self.killSwitchFuseKey) else { return }
-        exit(0)
-    }
+    @MainActor
+    func checkKillSwitch() async throws {
+        guard remoteConfig.configValue(forKey: "disabledBuilds").boolValue else { return }
 
-    func burnKillSwitchFuzeIfNeeded() {
-        let config = remoteConfig.configValue(forKey: "disabledBuilds")
-        guard config.boolValue else { return }
-        UserDefaults.standard.set(true, forKey: Self.killSwitchFuseKey)
+        guard let keyWindow = UIApplication.shared.connectedScenes
+            .filter({ $0.activationState == .foregroundActive })
+            .compactMap({ $0 as? UIWindowScene })
+            .first?.windows
+            .first(where: { $0.isKeyWindow }),
+            let topController = keyWindow.rootViewController?.topPresented
+        else {
+            exit(0)
+        }
+
+        let alert = UIAlertController(title: %"expire.title", message: %"expire.message", preferredStyle: .alert)
+        alert.addAction(.init(title: %"expire.update", style: .cancel) { _ in
+            Task {
+                let updateURL: URL 
+                if let remoteURI = remoteConfig.configValue(forKey: "updateURL").stringValue,
+                   let remoteURL = URL(string: remoteURI) {
+                    updateURL = remoteURL
+                } else {
+                    updateURL = URL(string: "https://github.com/XITRIX/iTorrent")!
+                }
+
+                await UIApplication.shared.open(updateURL)
+                try await Task.sleep(for: .seconds(1))
+                exit(0)
+            }
+        })
+        alert.addAction(.init(title: %"expire.exit", style: .destructive) { _ in
+            exit(0)
+        })
+
+        topController.present(alert, animated: true)
     }
 }
 #endif

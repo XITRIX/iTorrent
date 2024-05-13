@@ -99,9 +99,6 @@
         }
       }
     },
-    "An unknown error occurred." : {
-
-    },
     "common.add" : {
       "localizations" : {
         "en" : {
@@ -1047,6 +1044,70 @@
         }
       }
     },
+    "expire.exit" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выход"
+          }
+        }
+      }
+    },
+    "expire.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You need to update the app"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вам надо обновить приложение"
+          }
+        }
+      }
+    },
+    "expire.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build is expired"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сборка просрочена"
+          }
+        }
+      }
+    },
+    "expire.update" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновить"
+          }
+        }
+      }
+    },
     "file.open" : {
       "localizations" : {
         "en" : {
@@ -1094,9 +1155,6 @@
           }
         }
       }
-    },
-    "Invalid access token." : {
-
     },
     "iTorrent" : {
       "localizations" : {
@@ -1569,12 +1627,6 @@
         }
       }
     },
-    "No connected Patreon account." : {
-
-    },
-    "No credentials." : {
-
-    },
     "notification.done.message_%@" : {
       "localizations" : {
         "en" : {
@@ -1747,6 +1799,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "XITRIX (Даниил Виноградов)"
+          }
+        }
+      }
+    },
+    "patreon.error.credentials" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No credentials."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет файла учетных данных."
+          }
+        }
+      }
+    },
+    "patreon.error.notAuthenticated" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No connected Patreon account."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет подключенного аккаунта Patreon."
+          }
+        }
+      }
+    },
+    "patreon.error.token" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid access token."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неверный Access Token"
+          }
+        }
+      }
+    },
+    "patreon.error.unknown" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unknown error occurred."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произошла неизвестная ошибка."
           }
         }
       }

@@ -16,10 +16,10 @@ extension PatreonService {
 
         var errorDescription: String? {
             switch self {
-            case .unknown: return NSLocalizedString("An unknown error occurred.", comment: "")
-            case .notAuthenticated: return NSLocalizedString("No connected Patreon account.", comment: "")
-            case .invalidAccessToken: return NSLocalizedString("Invalid access token.", comment: "")
-            case .noCredentials: return NSLocalizedString("No credentials.", comment: "")
+            case .unknown: return %"patreon.error.unknown"
+            case .notAuthenticated: return %"patreon.error.notAuthenticated"
+            case .invalidAccessToken: return %"patreon.error.token"
+            case .noCredentials: return %"patreon.error.credentials"
             }
         }
     }
