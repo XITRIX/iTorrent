@@ -97,6 +97,9 @@ jobs:
           echo -n "$EXPORT_OPTIONS_PLIST" | base64 --decode -o $EXPORT_OPTS_PATH
           xcodebuild -exportArchive -archivePath $RUNNER_TEMP/itorrent.xcarchive -exportOptionsPlist $EXPORT_OPTS_PATH -exportPath $RUNNER_TEMP/build          
 
+      - name: Move dSYMs
+        run: mv $RUNNER_TEMP/itorrent.xcarchive/dSYMs $RUNNER_TEMP/dSYMs
+
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
@@ -104,6 +107,7 @@ jobs:
           path: |
             ${{ runner.temp }}/build/iTorrent.ipa
             ${{ runner.temp }}/build/manifest.plist
+            ${{ runner.temp }}/dSYMs
           # you can also archive the entire directory 
           # path: ${{ runner.temp }}/build
           retention-days: 3
@@ -115,6 +119,9 @@ jobs:
       - name: Release
         uses: actions/download-artifact@v4
 
+      - name: ZIP dSYMs
+        run: zip -vr dSYMs.zip app/dSYMs/ -x "*.DS_Store"
+
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
@@ -122,8 +129,9 @@ jobs:
           repository: XITRIX/iTorrent-v2
           token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
           files: |
-            app/iTorrent.ipa
-            app/manifest.plist
+            app/build/iTorrent.ipa
+            app/build/manifest.plist
+            dSYMs.zip
 
   altstore_release:
     needs: [github_release]
