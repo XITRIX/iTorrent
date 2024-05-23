@@ -16,7 +16,9 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
 
     override func loadView() {
         let button = UIBarButtonItem(primaryAction: .init(image: .init(systemName: "safari"), handler: { [unowned self] _ in
-            present(SFSafariViewController(url: viewModel.rssModel.link), animated: true)
+            let safariVC = SFSafariViewController(url: viewModel.rssModel.link)
+            safariVC.preferredControlTintColor = .tintColor
+            present(safariVC, animated: true)
         }))
         navigationItem.setRightBarButton(button, animated: false)
 

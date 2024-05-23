@@ -97,7 +97,7 @@ private extension PatreonPreferencesViewController {
             let safari = SFSafariViewController(url: URL(string: "https://patreon.com/xitrix")!)
 #if !os(visionOS)
             safari.modalPresentationStyle = .pageSheet
-            safari.preferredControlTintColor = view.tintColor
+            safari.preferredControlTintColor = .tintColor
 #endif
 //            safari.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!
             present(safari, animated: true)
