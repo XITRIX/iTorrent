@@ -7,6 +7,7 @@
 
 import Combine
 import MvvmFoundation
+import Foundation
 
 class RssSearchViewModel: BaseCollectionViewModel {
     @Published var searchQuery: String = ""
@@ -49,36 +50,38 @@ private extension RssSearchViewModel {
     }
 
     func reload(_ rssItems: [RssItemModel]) {
-        var sections: [MvvmCollectionSectionModel] = []
-        defer { self.sections = sections }
+        // TODO: Need to rewrite this DispatchQueue mess
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            items = rssItems
+                .sorted(by: { $0.date ?? .distantPast > $1.date ?? .distantPast })
+                .map { model in
+                    let vm: RssChannelItemCellViewModel
+                    if let existing = items.first(where: { $0.model == model }) {
+                        vm = existing
+                    } else {
+                        vm = RssChannelItemCellViewModel()
+                    }
 
-        items = rssItems
-            .sorted(by: { $0.date ?? .distantPast > $1.date ?? .distantPast })
-            .map { model in
-            let vm: RssChannelItemCellViewModel
-            if let existing = items.first(where: { $0.model == model }) {
-                vm = existing
-            } else {
-                vm = RssChannelItemCellViewModel()
+                    vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self, weak vm] in
+                        setSeen(true, for: model)
+                        vm?.isNew = false
+                        vm?.isReaded = true
+                        navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
+                        dismissSelection.send()
+                    }))
+
+                    return vm
+                }.removingDuplicates()
+
+            DispatchQueue.main.async { [self] in
+                sections = [.init(id: "rss", style: .plain, items: items)]
             }
-
-            vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self, weak vm] in
-                setSeen(true, for: model)
-                vm?.isNew = false
-                vm?.isReaded = true
-                navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
-                dismissSelection.send()
-            }))
-
-            return vm
-        }.removingDuplicates()
-
-        sections.append(.init(id: "rss", style: .plain, items: items))
+        }
     }
 
     func setSeen(_ seen: Bool, for itemModel: RssItemModel) {
         Task.detached(priority: .userInitiated) { [rssProvider] in
-        outerLoop: for channel in await rssProvider.rssModels {
+            outerLoop: for channel in await rssProvider.rssModels {
                 for itemIndex in 0 ..< channel.items.count {
                     guard channel.items[itemIndex] == itemModel else { continue }
                     await MainActor.run {

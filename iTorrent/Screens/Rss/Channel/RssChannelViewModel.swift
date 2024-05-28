@@ -83,26 +83,28 @@ private extension RssChannelViewModel {
     func reload(with models: [RssItemModel]) {
         guard !ignoreReloadRequests else { return }
 
-        var sections: [MvvmCollectionSectionModel] = []
-        defer { self.sections = sections }
+        // TODO: Need to rewrite this DispatchQueue mess
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            items = models.map { model in
+                let vm: RssChannelItemCellViewModel
+                if let existing = items.first(where: { $0.model == model }) {
+                    vm = existing
+                } else {
+                    vm = RssChannelItemCellViewModel()
+                }
 
-        items = models.map { model in
-            let vm: RssChannelItemCellViewModel
-            if let existing = items.first(where: { $0.model == model }) {
-                vm = existing
-            } else {
-                vm = RssChannelItemCellViewModel()
+                vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self] in
+                    setSeen(true, for: model)
+                    navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
+                }))
+
+                return vm
+            }.removingDuplicates()
+
+            DispatchQueue.main.async { [self] in
+                sections = [.init(id: "rss", style: .plain, items: items)]
             }
-
-            vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self] in
-                setSeen(true, for: model)
-                navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
-            }))
-
-            return vm
-        }.removingDuplicates()
-
-        sections.append(.init(id: "rss", style: .plain, items: items))
+        }
     }
 
     func setSeen(_ seen: Bool, for index: Int) {

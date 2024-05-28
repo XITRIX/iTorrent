@@ -142,18 +142,22 @@ extension TorrentAddViewModel {
         guard let file = TorrentFile(with: url)
         else { return }
 
-        guard !TorrentService.shared.torrents.contains(where: { $0.infoHashes == file.infoHashes })
-        else {
-            let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(file.infoHashes.best.hex)_exists", preferredStyle: .alert)
-            alert.addAction(.init(title: %"common.close", style: .cancel))
-            navigationContext.present(alert, animated: true)
-            return
-        }
-
+        guard !presentAlert(from: navigationContext, ifTorrentExists: file) else { return }
         navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
     }
 
     static func present(with torrentFile: TorrentFile, from navigationContext: NavigationProtocol) {
+        guard !presentAlert(from: navigationContext, ifTorrentExists: torrentFile) else { return }
         navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true))
+    }
+
+    private static func presentAlert(from navigationContext: NavigationProtocol, ifTorrentExists torrentFile: TorrentFile) -> Bool {
+        guard TorrentService.shared.torrents.contains(where: { $0.infoHashes == torrentFile.infoHashes })
+        else { return false }
+
+        let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(torrentFile.infoHashes.best.hex)_exists", preferredStyle: .alert)
+        alert.addAction(.init(title: %"common.close", style: .cancel))
+        navigationContext.present(alert, animated: true)
+        return true
     }
 }

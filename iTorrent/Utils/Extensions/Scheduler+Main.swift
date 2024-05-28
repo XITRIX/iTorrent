@@ -12,4 +12,8 @@ extension Scheduler where Self == DispatchQueue {
     static var main: DispatchQueue {
         DispatchQueue.main
     }
+
+    static func global(qos: DispatchQoS.QoSClass) -> DispatchQueue {
+        DispatchQueue.global(qos: qos)
+    }
 }

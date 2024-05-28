@@ -10,7 +10,6 @@
 		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
 		7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */; };
 		7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */; };
-		7C4ED0832BE63D250034B62C /* FBAudienceNetwork.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4ED0822BE63D250034B62C /* FBAudienceNetwork.xcframework */; platformFilter = ios; };
 		7C4ED0852BE6413D0034B62C /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0842BE6413D0034B62C /* AdsManager.swift */; };
 		7C4ED0872BE641B30034B62C /* GoogleAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0862BE641B30034B62C /* GoogleAdsManager.swift */; };
 		7C4ED0892BE6423D0034B62C /* MetaAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */; };
@@ -49,6 +48,7 @@
 		7CAD301C2BC3457900592990 /* RssModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301B2BC3457900592990 /* RssModel.swift */; };
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
 		7CAD30202BC34BCE00592990 /* RssFeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */; };
+		7CB2639C2C0671320083C052 /* Publisher+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639B2C0671320083C052 /* Publisher+UI.swift */; };
 		7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */; };
 		7CC411582BD2DCF800CA8B13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */; };
 		7CC4115B2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115A2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -271,6 +271,7 @@
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
+		7CB2639B2C0671320083C052 /* Publisher+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+UI.swift"; sourceTree = "<group>"; };
 		7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSharingPreferencesViewModel.swift; sourceTree = "<group>"; };
 		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
@@ -428,7 +429,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C4ED0832BE63D250034B62C /* FBAudienceNetwork.xcframework in Frameworks */,
 				7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */,
 				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
@@ -662,6 +662,7 @@
 			children = (
 				D1048D902BBEC3370027EF2F /* CombineLatest */,
 				7CAD301D2BC347D900592990 /* Published+Codable.swift */,
+				7CB2639B2C0671320083C052 /* Publisher+UI.swift */,
 			);
 			path = Combine;
 			sourceTree = "<group>";
@@ -1474,6 +1475,7 @@
 				7C5FBE6F2BC2EF8B0069E5A0 /* EditTextView.swift in Sources */,
 				D1B1BED22AFE2D9F0030C2A4 /* TrackerCellViewModel.swift in Sources */,
 				D1EFCD0C2AF56A8900D33A7A /* TorrentFilesViewModel.swift in Sources */,
+				7CB2639C2C0671320083C052 /* Publisher+UI.swift in Sources */,
 				7CFEBEA72BC721CB0013233F /* RssListPreferencesViewController.swift in Sources */,
 				D173D9DE2BC024DD00E4F9EB /* UISwitchWithMenu.swift in Sources */,
 				7CAD30202BC34BCE00592990 /* RssFeedProvider.swift in Sources */,
@@ -1855,6 +1857,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1899,6 +1902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2010,6 +2014,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

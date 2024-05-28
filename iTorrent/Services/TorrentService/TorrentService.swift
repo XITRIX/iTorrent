@@ -148,7 +148,7 @@ private extension TorrentHandle {
         disposeBag.bind {
             __unthrottledUpdatePublisher
                 .throttle(for: .seconds(0.1), scheduler: .main, latest: true)
-                .receive(on: .main)
+                .receive(on: DispatchQueue.global(qos: .userInitiated))
                 .sink { [weak self, weak torrentServide] in
                     guard let self, let torrentServide else { return }
 
@@ -156,9 +156,11 @@ private extension TorrentHandle {
                     let oldSnapshot = snapshot
                     updateSnapshot()
                     let updateModel = TorrentService.TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: self)
-                    torrentServide.updateNotifier.send(updateModel)
 
-                    __updatePublisher.send(updateModel)
+                    Task { @MainActor in
+                        torrentServide.updateNotifier.send(updateModel)
+                        self.__updatePublisher.send(updateModel)
+                    }
                 }
         }
     }

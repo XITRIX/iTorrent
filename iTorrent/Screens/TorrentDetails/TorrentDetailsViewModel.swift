@@ -33,7 +33,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
                 }
 
             torrentHandle.updatePublisher
-                .map { $0.handle.snapshot.isPaused }
+                .map { $0.handle.snapshot.friendlyState }
                 .removeDuplicates()
                 .sink { [unowned self] _ in
                     reload()
@@ -201,7 +201,9 @@ private extension TorrentDetailsViewModel {
             stateModel
         })
 
-        if !torrentHandle.snapshot.isPaused {
+        if !torrentHandle.snapshot.isPaused,
+           torrentHandle.snapshot.friendlyState != .checkingFiles
+        {
             sections.append(.init(id: "speed", header: %"details.speed") {
                 let isSeeding = torrentHandle.snapshot.friendlyState == .seeding
                 if !isSeeding {

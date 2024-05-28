@@ -21,20 +21,20 @@ class RssChannelItemCell<VM: RssChannelItemCellViewModel>: MvvmCollectionViewLis
 
     override func setup(with viewModel: VM) {
         disposeBag.bind {
-            viewModel.$isNew.sink { [newIndicatorView] isNew in
+            viewModel.$isNew.uiSink { [newIndicatorView] isNew in
                 newIndicatorView?.isHidden = !isNew
             }
-            viewModel.$isReaded.sink { [titleLabel] isReaded in
+            viewModel.$isReaded.uiSink { [titleLabel] isReaded in
                 titleLabel?.textColor = isReaded ? .secondaryLabel : .label
             }
-            viewModel.$title.sink { [titleLabel] text in
+            viewModel.$title.uiSink { [titleLabel] text in
                 titleLabel?.text = text
             }
-            viewModel.$date.sink { [timeLabel] text in
+            viewModel.$date.uiSink { [timeLabel] text in
                 timeLabel?.text = text
                 timeLabel?.isHidden = text == nil
             }
-            viewModel.$subtitle.sink { [subtitleLabel] text in
+            viewModel.$subtitle.uiSink { [subtitleLabel] text in
                 subtitleLabel?.text = text
                 subtitleLabel?.isHidden = text == nil
             }
