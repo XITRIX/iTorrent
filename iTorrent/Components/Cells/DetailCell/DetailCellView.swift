@@ -12,16 +12,31 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
     @ObservedObject var viewModel: DetailCellViewModel
 
     var body: some View {
-        HStack {
-            Text(viewModel.title)
-                .fontWeight(.semibold)
-            Spacer(minLength: viewModel.spacer)
-            Text(LocalizedStringKey(viewModel.detail))
-                .foregroundStyle(Color.accentColor)
-//                .foregroundStyle(Color.secondaryAccent)
-                .multilineTextAlignment(.trailing)
+        let isHorizontal = viewModel.detail.count < 100
+
+        if isHorizontal {
+            HStack {
+                Text(viewModel.title)
+                    .fontWeight(.semibold)
+                Spacer(minLength: viewModel.spacer)
+                Text(LocalizedStringKey(viewModel.detail))
+                    .foregroundStyle(Color.accentColor)
+                //                .foregroundStyle(Color.secondaryAccent)
+                    .multilineTextAlignment(.trailing)
+            }
+            .systemMinimumHeight()
+        } else {
+            VStack(alignment: .leading) {
+                Text(viewModel.title)
+                    .fontWeight(.semibold)
+                Spacer()
+                Text(LocalizedStringKey(viewModel.detail))
+                    .foregroundStyle(Color.accentColor)
+                //                .foregroundStyle(Color.secondaryAccent)
+            }
+            .padding(.vertical, 4)
+            .systemMinimumHeight()
         }
-        .systemMinimumHeight()
     }
 
     static let registration: UICollectionView.CellRegistration<UICollectionViewListCell, ViewModel> = .init { cell, _, itemIdentifier in
@@ -34,4 +49,29 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
 
 #Preview {
     DetailCellView(viewModel: .init(title: "Title", detail: "Detail"))
+}
+
+struct DynamicStack<Content: View>: View {
+    var horizontalAlignment = HorizontalAlignment.center
+    var verticalAlignment = VerticalAlignment.center
+    var spacing: CGFloat?
+
+    var isHorizontal: () -> Bool
+    @ViewBuilder var content: () -> Content
+
+    var body: some View {
+        if isHorizontal() {
+            HStack(
+                alignment: verticalAlignment,
+                spacing: spacing,
+                content: content
+            )
+        } else {
+            VStack(
+                alignment: horizontalAlignment,
+                spacing: spacing,
+                content: content
+            )
+        }
+    }
 }
