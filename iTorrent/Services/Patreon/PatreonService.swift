@@ -8,7 +8,6 @@
 import Combine
 import Foundation
 import MvvmFoundation
-import SafariServices
 
 struct PatreonToken: Codable {
     var accessToken: String
@@ -23,7 +22,7 @@ class PatreonService {
         }
     }
 
-    private var authenticationSession: SFSafariViewController?
+    private var authenticationSession: BaseSafariViewController?
     private let session = URLSession(configuration: .ephemeral)
 
     private static let redirectUri = "http://127.0.0.1:25565"
@@ -63,14 +62,12 @@ extension PatreonService {
 
         let requestURL = components.url(relativeTo: Self.baseURL)!
 
-        authenticationSession = await SFSafariViewController(url: requestURL)
+        authenticationSession = await BaseSafariViewController(url: requestURL)
 
         await MainActor.run {
             authenticationSession?.modalPresentationStyle = .pageSheet
-            authenticationSession?.preferredControlTintColor = .tintColor
+            context.present(authenticationSession!, animated: true)
         }
-
-        await context.present(authenticationSession!, animated: true)
 
         let code = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<String, Swift.Error>) in
             do {

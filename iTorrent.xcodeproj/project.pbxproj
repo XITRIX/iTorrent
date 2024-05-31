@@ -49,6 +49,7 @@
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
 		7CAD30202BC34BCE00592990 /* RssFeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */; };
 		7CB2639C2C0671320083C052 /* Publisher+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639B2C0671320083C052 /* Publisher+UI.swift */; };
+		7CB2639E2C0A5B420083C052 /* BaseSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */; };
 		7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */; };
 		7CC411582BD2DCF800CA8B13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */; };
 		7CC4115B2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115A2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -272,6 +273,7 @@
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
 		7CB2639B2C0671320083C052 /* Publisher+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+UI.swift"; sourceTree = "<group>"; };
+		7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSafariViewController.swift; sourceTree = "<group>"; };
 		7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSharingPreferencesViewModel.swift; sourceTree = "<group>"; };
 		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
@@ -1072,6 +1074,7 @@
 				D1A226FE2AEF056A00669D6D /* BaseViewModel.swift */,
 				7CFEBE802BC433F90013233F /* BaseCollectionViewModel.swift */,
 				7CFEBE822BC434A10013233F /* BaseCollectionViewController.swift */,
+				7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1532,6 +1535,7 @@
 				7CFEBEAB2BC725E10013233F /* UIViewController+BottomSheet.swift in Sources */,
 				D1B99D932BEE631B00F51514 /* Benefit.swift in Sources */,
 				D11BE5462AFB904600780C1B /* PRSwitchViewModel.swift in Sources */,
+				7CB2639E2C0A5B420083C052 /* BaseSafariViewController.swift in Sources */,
 				D1048D9C2BBECFF40027EF2F /* PreferencesSectionGroupingViewModel.swift in Sources */,
 				D1048D852BBE92220027EF2F /* SAViewController.swift in Sources */,
 				D1B99D862BEE5E5100F51514 /* PatreonService.swift in Sources */,
@@ -1758,7 +1762,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1819,7 +1823,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1835,6 +1839,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1880,6 +1885,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1975,7 +1981,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1992,6 +1998,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

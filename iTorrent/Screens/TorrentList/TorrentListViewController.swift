@@ -88,6 +88,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         })
 
         Task {
+            // Delay to show SearchBar on screen appear
             disposeBag.bind {
                 viewModel.$sections.sink { [unowned self] sections in
                     collectionView.sections.send(sections)
@@ -100,6 +101,15 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew.withRenderingMode(.alwaysOriginal) : .icRss, handler: { [unowned self] _ in
                     viewModel.showRss()
                 })
+            }
+
+            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
+                let torrentHandles = indexPaths.compactMap { (viewModel.sections[$0.section].items[$0.item] as? TorrentListItemViewModel)?.torrentHandle }
+                
+                playButton.isEnabled = torrentHandles.contains(where: { $0.isPaused })
+                pauseButton.isEnabled = torrentHandles.contains(where: { !$0.isPaused })
+                rehashButton.isEnabled = !torrentHandles.isEmpty
+                deleteButton.isEnabled = !torrentHandles.isEmpty
             }
 
             preferencesButton.tapPublisher.sink { [unowned self] _ in

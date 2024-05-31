@@ -30,9 +30,9 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
                 removeButton.isEnabled = available
             }
 
-            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
-                viewModel.selectedIndexPaths = indexPaths
-            }
+//            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
+//                viewModel.selectedIndexPaths = indexPaths
+//            }
 
             collectionView.diffDataSource.didReorderCells.sink { [unowned self] transaction in
                 guard let firstSection = transaction.finalSnapshot.sectionIdentifiers.first

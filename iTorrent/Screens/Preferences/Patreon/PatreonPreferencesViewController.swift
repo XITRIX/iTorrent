@@ -94,12 +94,10 @@ private extension PatreonPreferencesViewController {
 
     func setupActions() {
         becomePatronButton.addAction(.init { [unowned self] _ in
-            let safari = SFSafariViewController(url: URL(string: "https://patreon.com/xitrix")!)
-#if !os(visionOS)
+            let safari = BaseSafariViewController(url: URL(string: "https://patreon.com/xitrix")!)
+//#if !os(visionOS)
             safari.modalPresentationStyle = .pageSheet
-            safari.preferredControlTintColor = .tintColor
-#endif
-//            safari.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: Themes.current.overrideUserInterfaceStyle!)!
+//#endif
             present(safari, animated: true)
         }, for: .touchUpInside)
 

@@ -6,7 +6,6 @@
 //
 
 import MvvmFoundation
-import SafariServices
 import UIKit
 import WebKit
 import LibTorrent
@@ -16,8 +15,7 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
 
     override func loadView() {
         let button = UIBarButtonItem(primaryAction: .init(image: .init(systemName: "safari"), handler: { [unowned self] _ in
-            let safariVC = SFSafariViewController(url: viewModel.rssModel.link)
-            safariVC.preferredControlTintColor = .tintColor
+            let safariVC = BaseSafariViewController(url: viewModel.rssModel.link)
             present(safariVC, animated: true)
         }))
         navigationItem.setRightBarButton(button, animated: false)
@@ -77,7 +75,8 @@ private extension RssDetailsViewController {
                 if let torrentFile = await TorrentFile(remote: url) {
                     await TorrentAddViewModel.present(with: torrentFile, from: parent)
                 } else {
-                    await parent.present(SFSafariViewController(url: url), animated: true)
+                    let safari = await BaseSafariViewController(url: url)
+                    await parent.present(safari, animated: true)
                 }
             }
             

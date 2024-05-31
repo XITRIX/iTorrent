@@ -6,7 +6,6 @@
 //
 
 import MvvmFoundation
-import SafariServices
 import UIKit
 
 class RssChannelViewController<VM: RssChannelViewModel>: BaseCollectionViewController<VM> {
@@ -36,7 +35,8 @@ private extension RssChannelViewController {
             },
             viewModel.model.link.map { url in
                 UIAction(title: %"rsschannel.safari", image: .init(systemName: "safari")) { [unowned self] _ in
-                    present(SFSafariViewController(url: url), animated: true)
+                    let safari = BaseSafariViewController(url: url)
+                    present(safari, animated: true)
                 }
             }
         ].compactMap { $0 })
