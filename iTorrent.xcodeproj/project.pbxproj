@@ -58,6 +58,7 @@
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
+		7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */; };
 		7CFEBE6F2BC3E0FE0013233F /* RssListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */; };
@@ -278,6 +279,7 @@
 		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
+		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListViewController.swift; sourceTree = "<group>"; };
 		7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListViewModel.swift; sourceTree = "<group>"; };
 		7CFEBE712BC3ED480013233F /* RssFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedCell.swift; sourceTree = "<group>"; };
@@ -499,7 +501,9 @@
 		7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */,
 				7C5FBE302BBF5CAB0069E5A0 /* MinHeightModifier.swift */,
+				7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -934,7 +938,6 @@
 			children = (
 				D1048D822BBE92040027EF2F /* SANavigation */,
 				D19E00242AF045DF000A17A2 /* Extensions */,
-				D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */,
 				D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */,
 				D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */,
 				7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */,
@@ -1430,6 +1433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */,
 				D1F8BC852AFC405A00A6258C /* MvvmViewModel+Alert.swift in Sources */,
 				D17871FF2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift in Sources */,
 				D135C59C2AEFB96F00440680 /* TorrentDetailsViewModel.swift in Sources */,

@@ -10,6 +10,8 @@ import SafariServices
 class BaseSafariViewController: SFSafariViewController {
     override init(url URL: URL, configuration: SFSafariViewController.Configuration = .init()) {
         super.init(url: URL, configuration: configuration)
+        #if !os(visionOS)
         preferredControlTintColor = .tintColor
+        #endif
     }
 }
