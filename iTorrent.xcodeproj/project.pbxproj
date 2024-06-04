@@ -57,6 +57,7 @@
 		7CC411602BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115F2BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift */; };
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
+		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */; };
 		7CFEBE6F2BC3E0FE0013233F /* RssListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */; };
@@ -155,7 +156,6 @@
 		D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1ACFDC52AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib */; };
 		D1ACFDC92AF6ED200098FF56 /* UIImage+File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */; };
 		D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */; };
-		D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */; };
 		D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1BEC72AFE25AE0030C2A4 /* TorrentTrackersViewController.swift */; };
 		D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1B1BEC82AFE25AE0030C2A4 /* TorrentTrackersViewController.xib */; };
 		D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1BECB2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift */; };
@@ -432,9 +432,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */,
-				D1ACFDE02AF7DA1D0098FF56 /* OpenSSL in Frameworks */,
 				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
+				7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */,
 				7C4ED08B2BE642A50034B62C /* AppTrackingTransparency.framework in Frameworks */,
 				7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */,
 				7CC411602BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift in Frameworks */,
@@ -1290,7 +1290,6 @@
 				D1A226B72AEEF05400669D6D /* OpenSSL */,
 				D135C58B2AEF158000440680 /* CombineCocoa */,
 				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
-				D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */,
 				7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */,
 				7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */,
 				7CAD30182BC3455800592990 /* SWXMLHash */,
@@ -1298,6 +1297,7 @@
 				7CC4115C2BD2DE3800CA8B13 /* FirebaseCrashlytics */,
 				7CC4115F2BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift */,
 				D1DB71822BD80318007F9267 /* GCDWebServers */,
+				7CF6DA322C0F112B0033D03F /* OpenSSL */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -1332,13 +1332,13 @@
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
-				D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */,
 				7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */,
 				7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 				7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 				7CC411592BD2DE3800CA8B13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D1DB71812BD80318007F9267 /* XCLocalSwiftPackageReference "Submodules/GCDWebServer" */,
+				7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -2109,17 +2109,17 @@
 				minimumVersion = 10.24.0;
 			};
 		};
+		7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/OpenSSL.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.5004;
+			};
+		};
 		7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/XITRIX/CombineCocoa.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/XITRIX/OpenSSL.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -2153,6 +2153,11 @@
 			package = 7CC411592BD2DE3800CA8B13 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
 		};
+		7CF6DA322C0F112B0033D03F /* OpenSSL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */;
+			productName = OpenSSL;
+		};
 		7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MvvmFoundation;
@@ -2168,11 +2173,6 @@
 		D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MvvmFoundation;
-		};
-		D1ACFDDF2AF7DA1D0098FF56 /* OpenSSL */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D1ACFDDE2AF7DA1D0098FF56 /* XCRemoteSwiftPackageReference "OpenSSL" */;
-			productName = OpenSSL;
 		};
 		D1DB71822BD80318007F9267 /* GCDWebServers */ = {
 			isa = XCSwiftPackageProductDependency;

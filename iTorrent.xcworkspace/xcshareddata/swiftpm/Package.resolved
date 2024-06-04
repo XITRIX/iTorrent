@@ -1,5 +1,5 @@
 {
-  "originHash" : "ddc143366b54410011e3a42ff1c9de84eca196df90c66eae4731168522dbd990",
+  "originHash" : "aeee9e26ca123fa14257a478442a190b2a88c0a60b6e3099a9945c57b01b0d03",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -121,10 +121,10 @@
     {
       "identity" : "openssl",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/XITRIX/OpenSSL.git",
+      "location" : "https://github.com/krzyzanowskim/OpenSSL.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "75bc2599ad74161f4fad51fb51493d5c4fd1511e"
+        "revision" : "84a8ae774291a4ab1971e42908d5114d98d4b623",
+        "version" : "3.1.5004"
       }
     },
     {
