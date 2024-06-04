@@ -7,7 +7,6 @@
 
 import AVFoundation
 
-@MainActor
 class AudioBackgroundService {
     private var player: AVAudioPlayer?
 }

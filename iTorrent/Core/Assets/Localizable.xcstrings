@@ -3564,6 +3564,22 @@
         }
       }
     },
+    "torrent.state.checkingFiles" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking Files"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка Файлов"
+          }
+        }
+      }
+    },
     "torrent.state.done" : {
       "localizations" : {
         "en" : {
@@ -3624,22 +3640,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пауза"
-          }
-        }
-      }
-    },
-    "torrent.state.prepairing" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prepairing"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подготовка"
           }
         }
       }

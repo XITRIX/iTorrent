@@ -86,7 +86,7 @@ extension TorrentHandle.State {
     var name: String {
         switch self {
         case .checkingFiles:
-            return String(localized: "torrent.state.prepairing")
+            return String(localized: "torrent.state.checkingFiles")
         case .downloadingMetadata:
             return String(localized: "torrent.state.fetchingMetadata")
         case .downloading:

@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-@MainActor
 protocol BackgroundServiceProtocol {
     var isRunning: Bool { get }
     func start() -> Bool

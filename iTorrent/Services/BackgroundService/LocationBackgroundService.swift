@@ -7,7 +7,6 @@
 
 import CoreLocation
 
-@MainActor
 class LocationBackgroundService: NSObject {
     override init() {
         super.init()
@@ -39,7 +38,7 @@ extension LocationBackgroundService: BackgroundServiceProtocol {
             return status != .denied && status != .restricted
         }
 
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         await withCheckedContinuation { continuation in
             self.continuation = continuation
         }
@@ -74,8 +73,8 @@ extension LocationBackgroundService: CLLocationManagerDelegate {
         else { return }
 
         Task {
-            await continuation?.resume()
-//            continuation = nil
+            continuation?.resume()
+            continuation = nil
         }
     }
 }
