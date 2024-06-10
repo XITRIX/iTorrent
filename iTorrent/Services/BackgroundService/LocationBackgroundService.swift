@@ -61,7 +61,7 @@ private extension LocationBackgroundService {
 #endif
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.showsBackgroundLocationIndicator = false
+        locationManager.showsBackgroundLocationIndicator = PreferencesStorage.shared.isBackgroundLocationIndicatorEnabled
         locationManager.startUpdatingLocation()
         return true
     }

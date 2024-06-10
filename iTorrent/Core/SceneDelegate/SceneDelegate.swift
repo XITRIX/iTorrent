@@ -26,6 +26,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerDaemon(factory: TorrentMonitoringService.init)
         container.registerDaemon(factory: RssFeedProvider.init)
         container.registerDaemon(factory: WebServerService.init)
+        container.registerDaemon(factory: LiveActivityService.init)
         container.registerDaemon(factory: AdsManager.init)
     }
 
@@ -106,7 +107,6 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func binding() {
-        bindLiveActivity()
         disposeBag.bind {
             tintColorBind
             appAppearanceBind

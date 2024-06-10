@@ -35,7 +35,10 @@ struct SideStoreScreenshotsModel: Codable {
 
 struct AltStoreAppPermissionModel: Codable {
     var entitlements: [String] = ["com.apple.security.application-groups"]
-    var privacy: [String: String] = [:]
+    var privacy: [String: String] = [
+        "NSLocationWhenInUseUsageDescription": "More robust alternative to hold app working in background which requires additional permission, enables Dynamic Island progress extension",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This additional permition allows to hide location indicator from status bar during background downloading"
+    ]
 }
 
 struct SideStoreAppPermissionModel: Codable {
@@ -45,6 +48,7 @@ struct SideStoreAppPermissionModel: Codable {
 
 struct AltStoreAppVersionModel: Codable {
     var version: String
+    var buildVersion: String = "1"
     var date: String
     var size: UInt
     var downloadURL: String
@@ -56,8 +60,29 @@ struct AltStoreAppModel: Codable {
     var name: String = "iTorrent"
     var bundleIdentifier: String = "com.xitrix.iTorrent2"
     var developerName: String = "XITRIX"
+    var marketplaceID: String = "6499499971"
     var subtitle: String?
-    var localizedDescription: String = "Torrent client for iOS"
+    var localizedDescription: String = 
+        """
+        It is an ordinary torrent client for iOS with Files app support.
+
+        What can this app do:
+
+        • Download in the background
+        • Sequential download (use VLC to watch films while loading)
+        • Add torrent files from Share menu (Safari and other apps)
+        • Add magnet links directly from Safari
+        • Store files in Files app (iOS 11+)
+        • File sharing directly from app
+        • Download torrent by link
+        • Download torrent by magnet
+        • Send notification on torrent downloaded
+        • WebDav Server
+        • Select files to download or not
+        • Change UI to dark theme
+        • RSS Feed
+        • ???
+        """
     var downloadURL: String
     var iconURL: String = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
     var tintColor: String? = "#D03E43"
@@ -80,6 +105,7 @@ struct AltStoreSourceModel: Codable {
     var iconURL: String? = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
     var headerURL: String? = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
     var website: String? = "https://github.com/XITRIX/iTorrent"
+    var patreonURL: String? = "https://www.patreon.com/xitrix"
     var tintColor: String? = "#D03E43"
     var featuredApps: [String] = ["com.xitrix.iTorrent2"]
     var apps: [AltStoreAppModel]

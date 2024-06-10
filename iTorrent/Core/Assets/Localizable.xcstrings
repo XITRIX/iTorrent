@@ -2075,6 +2075,22 @@
         }
       }
     },
+    "preferences.background.location.indicator.enable" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show location indicator"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показывать индикатор"
+          }
+        }
+      }
+    },
     "preferences.background.mode" : {
       "localizations" : {
         "en" : {
@@ -2680,6 +2696,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Активных раздач"
+          }
+        }
+      }
+    },
+    "preferences.seeding" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeding"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раздача"
+          }
+        }
+      }
+    },
+    "preferences.seeding.stopOnFinish" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop on finish"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить по готовности"
           }
         }
       }

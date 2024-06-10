@@ -36,6 +36,8 @@ class PreferencesStorage: Resolvable {
 
     @UserDefaultItem("preferencesAllocateMemory", false) var allocateMemory: Bool
 
+    @UserDefaultItem("preferencesStopSeedingOnFinish", false) var stopSeedingOnFinish: Bool
+
     @UserDefaultItem("preferencesMaxActiveTorrents", 4) var maxActiveTorrents: Int
     @UserDefaultItem("preferencesMaxDownloadingTorrents", 3) var maxDownloadingTorrents: Int
     @UserDefaultItem("preferencesMaxUploadingTorrents", 3) var maxUploadingTorrents: Int
@@ -75,6 +77,7 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesBackgroundDownloadEnabled", true) var isBackgroundDownloadEnabled: Bool
     @UserDefaultItem("preferencesBackgroundMode", .audio) var backgroundMode: BackgroundService.Mode
     @UserDefaultItem("preferencesBackgroundAllowSeeding", true) var isBackgroundSeedingEnabled: Bool
+    @UserDefaultItem("preferencesBackgroundLocationIndicator", false) var isBackgroundLocationIndicatorEnabled: Bool
 
     @UserDefaultItem("preferencesIsFileSharingEnabled", false) var isFileSharingEnabled: Bool
     @UserDefaultItem("preferencesIsWebServerEnabled", false) var isWebServerEnabled: Bool

@@ -15,6 +15,9 @@ class PreferencesViewModel: BasePreferencesViewModel {
         binding()
         reload()
     }
+    
+    private let colorPickerVM = PRColorPickerViewModel()
+    private let storageVM = PRStorageViewModel()
 
     @Injected private var preferences: PreferencesStorage
     @Injected private var webServerService: WebServerService
@@ -22,6 +25,13 @@ class PreferencesViewModel: BasePreferencesViewModel {
 
 private extension PreferencesViewModel {
     func binding() {
+        disposeBag.bind {
+            preferences.$backgroundMode
+                .receive(on: .main)
+                .sink { [unowned self] _ in
+                reload()
+            }
+        }
     }
 
     func reload() {
@@ -42,14 +52,14 @@ private extension PreferencesViewModel {
                 ),
             ]))
 #endif
-            PRColorPickerViewModel()
+            colorPickerVM
             PRButtonViewModel(with: .init(title: %"preferences.appearance.order", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: PreferencesSectionGroupingViewModel.self, by: .show)
             })
         })
 
         sections.append(.init(id: "memory", header: %"preferences.storage") {
-            PRStorageViewModel()
+            storageVM
             PRSwitchViewModel(with: .init(title: %"preferences.storage.allocate", value: preferences.$allocateMemory.binding))
         })
 
@@ -63,6 +73,14 @@ private extension PreferencesViewModel {
                     ]), options: .init(tintColor: .tintColor)
                 ),
             ]))
+
+            if preferences.backgroundMode == .location {
+                PRSwitchViewModel(with: .init(title: %"preferences.background.location.indicator.enable", value: preferences.$isBackgroundLocationIndicatorEnabled.binding))
+            }
+        })
+
+        sections.append(.init(id: "seeding", header: %"preferences.seeding") {
+            PRSwitchViewModel(with: .init(title: %"preferences.seeding.stopOnFinish", value: preferences.$stopSeedingOnFinish.binding))
         })
 
         sections.append(.init(id: "torrentQueueLimits", header: %"preferences.queueLimits") {

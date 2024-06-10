@@ -39,7 +39,6 @@
 		7C5FBE532BC0B2780069E5A0 /* SpeedFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19E00252AF045F9000A17A2 /* SpeedFormat.swift */; };
 		7C5FBE552BC0B3550069E5A0 /* ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */; };
 		7C5FBE562BC0B35C0069E5A0 /* ProgressWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */; };
-		7C5FBE582BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE572BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift */; };
 		7C5FBE642BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */; };
 		7C5FBE6F2BC2EF8B0069E5A0 /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE6C2BC2EF8B0069E5A0 /* EditTextView.swift */; };
 		7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */; };
@@ -60,6 +59,7 @@
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
 		7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */; };
 		7CF6DA372C0F6D150033D03F /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */; };
+		7CF6DA3E2C0F9DC40033D03F /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */; };
 		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */; };
 		7CFEBE6F2BC3E0FE0013233F /* RssListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */; };
@@ -266,7 +266,6 @@
 		7C5FBE492BC0ADCC0069E5A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C5FBE4D2BC0ADCC0069E5A0 /* ProgressWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProgressWidgetExtension.entitlements; sourceTree = "<group>"; };
 		7C5FBE542BC0B3550069E5A0 /* ProgressWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressWidgetAttributes.swift; sourceTree = "<group>"; };
-		7C5FBE572BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+LiveActivity.swift"; sourceTree = "<group>"; };
 		7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+URLProcessing.swift"; sourceTree = "<group>"; };
 		7C5FBE6C2BC2EF8B0069E5A0 /* EditTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
 		7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +281,7 @@
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityService.swift; sourceTree = "<group>"; };
 		7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListViewController.swift; sourceTree = "<group>"; };
 		7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListViewModel.swift; sourceTree = "<group>"; };
 		7CFEBE712BC3ED480013233F /* RssFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedCell.swift; sourceTree = "<group>"; };
@@ -516,7 +516,6 @@
 				D1A2269F2AEEEFCC00669D6D /* SceneDelegate.swift */,
 				7C5FBE332BC0A15C0069E5A0 /* SceneDelegate+Bindings.swift */,
 				7C5FBE352BC0A24A0069E5A0 /* SceneDelegate+BackgroundDownload.swift */,
-				7C5FBE572BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift */,
 				7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */,
 			);
 			path = SceneDelegate;
@@ -1056,6 +1055,7 @@
 				7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */,
 				D1352D2B2BBD6E0E00104E7B /* MemorySpaceManager.swift */,
 				D1352D3B2BBD7F8800104E7B /* TorrentMonitoringService.swift */,
+				7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1554,7 +1554,6 @@
 				7C4ED0962BE961DF0034B62C /* BaseControl.swift in Sources */,
 				D1707C342AF297C500F1752A /* BaseSplitViewController.swift in Sources */,
 				7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */,
-				7C5FBE582BC0B3EE0069E5A0 /* SceneDelegate+LiveActivity.swift in Sources */,
 				D1A226FF2AEF056A00669D6D /* BaseViewModel.swift in Sources */,
 				7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */,
 				7CFEBE7F2BC431980013233F /* RssChannelViewModel.swift in Sources */,
@@ -1570,6 +1569,7 @@
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
+				7CF6DA3E2C0F9DC40033D03F /* LiveActivityService.swift in Sources */,
 				7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */,
 				D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,

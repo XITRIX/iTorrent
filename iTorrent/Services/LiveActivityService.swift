@@ -1,5 +1,5 @@
 //
-//  SceneDelegate+LiveActivity.swift
+//  LiveActivityService.swift
 //  iTorrent
 //
 //  Created by Даниил Виноградов on 06.04.2024.
@@ -10,14 +10,14 @@ import ActivityKit
 import Combine
 import LibTorrent
 import UIKit
+import MvvmFoundation
 #endif
 
-extension SceneDelegate {
-    func bindLiveActivity() {
+class LiveActivityService {
+    init() {
 #if canImport(ActivityKit)
         disposeBag.bind {
             TorrentService.shared.updateNotifier
-                .throttle(for: .seconds(0.25), scheduler: DispatchQueue.main, latest: true)
                 .filter { _ in PreferencesStorage.shared.backgroundMode == .location }
                 .sink { [unowned self] updateModel in
                     updateLiveActivity(with: updateModel)
@@ -25,25 +25,19 @@ extension SceneDelegate {
         }
 #endif
     }
+    
+    private let disposeBag = DisposeBag()
+    @Injected private var torrentService: TorrentService
 }
 
 #if canImport(ActivityKit)
-private extension SceneDelegate {
+private extension LiveActivityService {
     func updateLiveActivity(with updateModel: TorrentService.TorrentUpdateModel) {
-        if updateModel.oldSnapshot.state != updateModel.handle.snapshot.state,
-           updateModel.handle.snapshot.friendlyState == .downloading
-        {
-            showLiveActivity(with: updateModel.handle.snapshot)
-        } else {
-            updateLiveActivity(with: updateModel.handle.snapshot)
-        }
+        updateLiveActivity(with: updateModel.handle.snapshot)
     }
 
     func showLiveActivity(with snapshot: TorrentHandle.Snapshot) {
         if #available(iOS 16.1, *) {
-            guard ActivityAuthorizationInfo().areActivitiesEnabled
-            else { return }
-
             let attributes = ProgressWidgetAttributes(name: snapshot.name, hash: snapshot.infoHashes.best.hex)
 
             DispatchQueue.main.async {
@@ -65,7 +59,11 @@ private extension SceneDelegate {
                 for activity in Activity<ProgressWidgetAttributes>.activities {
                     if activity.attributes.name == snapshot.name {
                         if snapshot.friendlyState == .downloading {
-                            await activity.update(using: snapshot.toLiveActivityState)
+                            if #available(iOS 16.2, *) {
+                                await activity.update(.init(state: snapshot.toLiveActivityState, staleDate: .now + 10))
+                            } else {
+                                await activity.update(using: snapshot.toLiveActivityState)
+                            }
                             return
                         } else {
                             await activity.end(dismissalPolicy: .immediate)
