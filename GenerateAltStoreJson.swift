@@ -64,7 +64,7 @@ struct AltStoreAppModel: Codable {
     var subtitle: String?
     var localizedDescription: String = 
         """
-        It is an ordinary torrent client for iOS with Files app support.
+        It is an ordinary torrent client for iOS with Files app support and much more.
 
         What can this app do:
 
@@ -72,14 +72,16 @@ struct AltStoreAppModel: Codable {
         • Sequential download (use VLC to watch films while loading)
         • Add torrent files from Share menu (Safari and other apps)
         • Add magnet links directly from Safari
-        • Store files in Files app (iOS 11+)
+        • Store files in Files app
         • File sharing directly from app
-        • Download torrent by link
+        • Download torrent by url
         • Download torrent by magnet
+        • Show progress in Dynamic Island
         • Send notification on torrent downloaded
-        • WebDav Server
-        • Select files to download or not
+        • Web/WebDav Server
+        • Select files download priority
         • Change UI to dark theme
+        • Color personalization
         • RSS Feed
         • ???
         """

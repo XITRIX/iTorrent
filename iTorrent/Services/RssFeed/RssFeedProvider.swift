@@ -27,7 +27,6 @@ extension RssFeedProvider {
     }
 }
 
-@MainActor
 class RssFeedProvider {
     @Published var rssModels: [RssModel]
     let updatePublisher = CurrentValueSubject<Void, Never>(())
