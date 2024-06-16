@@ -43,6 +43,7 @@
 		7C5FBE6F2BC2EF8B0069E5A0 /* EditTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE6C2BC2EF8B0069E5A0 /* EditTextView.swift */; };
 		7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */; };
 		7C5FBE742BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */; };
+		7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */; };
 		7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 7CAD30182BC3455800592990 /* SWXMLHash */; };
 		7CAD301C2BC3457900592990 /* RssModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301B2BC3457900592990 /* RssModel.swift */; };
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
@@ -271,6 +272,8 @@
 		7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MvvmViewModelProtocol+Alert.swift"; sourceTree = "<group>"; };
 		7C609A572C1F1D6400586635 /* Info-EU.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-EU.plist"; sourceTree = "<group>"; };
+		7C609A592C1F2A2700586635 /* iTorrent.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iTorrent.xcconfig; sourceTree = "<group>"; };
+		7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+AVPlayer.swift"; sourceTree = "<group>"; };
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
@@ -518,6 +521,7 @@
 				7C5FBE332BC0A15C0069E5A0 /* SceneDelegate+Bindings.swift */,
 				7C5FBE352BC0A24A0069E5A0 /* SceneDelegate+BackgroundDownload.swift */,
 				7C5FBE632BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift */,
+				7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */,
 			);
 			path = SceneDelegate;
 			sourceTree = "<group>";
@@ -576,6 +580,7 @@
 				D1A226AB2AEEEFE000669D6D /* Info.plist */,
 				7C609A572C1F1D6400586635 /* Info-EU.plist */,
 				7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */,
+				7C609A592C1F2A2700586635 /* iTorrent.xcconfig */,
 				D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */,
 				7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */,
 				D1B5385A2AF1190200694AFD /* iTorrent.entitlements */,
@@ -1464,6 +1469,7 @@
 				D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */,
 				D19E00222AEFFA2A000A17A2 /* DetailCellViewModel.swift in Sources */,
 				D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */,
+				7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */,
 				D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */,
 				D1352D1E2BBC2F7F00104E7B /* LocalizationAttribute.swift in Sources */,
 				D1A5D0CC2BE5269E003E05D5 /* AdView+Blank.swift in Sources */,
@@ -1636,7 +1642,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2.ProgressWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1666,7 +1672,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2.ProgressWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1696,7 +1702,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2.ProgressWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1709,6 +1715,7 @@
 		};
 		7C609A512C1F1D2A00586635 /* RelWithDebInfo-EU */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1789,8 +1796,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTorrent/Core/Assets/Info-EU.plist";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For background downloading purpose ONLY! \n\"Always allow\" mode will allow app to hide blue location indicator from status bar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1802,7 +1807,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
@@ -1835,7 +1840,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2.ProgressWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1848,6 +1853,7 @@
 		};
 		7C609A542C1F1D3100586635 /* Release-EU */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1922,8 +1928,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTorrent/Core/Assets/Info-EU.plist";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For background downloading purpose ONLY! \n\"Always allow\" mode will allow app to hide blue location indicator from status bar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1935,7 +1939,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
@@ -1968,7 +1972,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2.ProgressWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1981,6 +1985,7 @@
 		};
 		D1A226AC2AEEEFE000669D6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -2048,6 +2053,7 @@
 		};
 		D1A226AD2AEEEFE000669D6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -2120,8 +2126,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For background downloading purpose ONLY! \n\"Always allow\" mode will allow app to hide blue location indicator from status bar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2133,7 +2137,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
@@ -2161,8 +2165,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For background downloading purpose ONLY! \n\"Always allow\" mode will allow app to hide blue location indicator from status bar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2174,7 +2176,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
@@ -2190,6 +2192,7 @@
 		};
 		D1CAB88A2AF3EDE500EB6AFF /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -2269,8 +2272,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For background downloading purpose ONLY! \n\"Always allow\" mode will allow app to hide blue location indicator from status bar";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For background downloading purpose ONLY!";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -2282,7 +2283,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xitrix.iTorrent2;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";

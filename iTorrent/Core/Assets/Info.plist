@@ -293,5 +293,9 @@
 			</dict>
 		</dict>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>For background downloading purpose ONLY! \n\&quot;Always allow\&quot; mode will allow app to hide blue location indicator from status bar</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>For background downloading purpose ONLY!</string>
 </dict>
 </plist>

@@ -5,9 +5,10 @@
 //  Created by Daniil Vinogradov on 03/11/2023.
 //
 
+import AVKit
 import MvvmFoundation
-import UIKit
 import QuickLook
+import UIKit
 
 class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: UICollectionView!
@@ -97,7 +98,7 @@ private extension TorrentFilesViewController {
                 let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell<TorrentFilesFileItemViewModel>
                 let vm = parent.viewModel.fileModel(for: node.index)
                 vm.previewAction = { [unowned self] in
-                    parent.previewAction(start: node.index)
+                    parent.openPreview(start: node.index)
                 }
                 cell.setup(with: vm)
                 return cell
@@ -130,25 +131,93 @@ private extension TorrentFilesViewController {
     }
 
     class PreviewDeletates: DelegateObject<TorrentFilesViewController>, QLPreviewControllerDataSource {
-        @MainActor
+//        @MainActor
         func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
             parent.viewModel.filesForPreview.count
         }
 
-        @MainActor
+//        @MainActor
         func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
             let path = parent.viewModel.filesForPreview[index].path
             return TorrentService.downloadPath.appending(path: path) as NSURL
         }
     }
 
-    func previewAction(start fileIndex: Int) {
+    func openPreview(start fileIndex: Int) {
         guard let startIndex = viewModel.filesForPreview.firstIndex(where: { $0.index == fileIndex })
         else { return }
 
+        let path = viewModel.filesForPreview[startIndex].path
+        let url = TorrentService.downloadPath.appending(path: path)
+
+        Task {
+            // Allow to choose be
+            guard await checkFilePlayable(url: url) else {
+                previewAction(start: startIndex)
+                return
+            }
+
+            let alert = UIAlertController(title: "Preview mode", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(.init(title: "Quick Look preview", style: .default) { [self] _ in
+                previewAction(start: startIndex)
+            })
+            alert.addAction(.init(title: "Media player", style: .default) { [self] _ in
+                playerAction(start: startIndex)
+            })
+            alert.addAction(.init(title: %"common.cancel", style: .cancel))
+            present(alert, animated: true)
+        }
+    }
+
+    func previewAction(start startIndex: Int) {
         let vc = QLPreviewController()
         vc.dataSource = previewDelegates
         vc.currentPreviewItemIndex = startIndex
         present(vc, animated: true)
+    }
+
+    func playerAction(start startIndex: Int) {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {}
+
+        let path = viewModel.filesForPreview[startIndex].path
+        let url = TorrentService.downloadPath.appending(path: path)
+        let player = AVPlayer(url: url)
+        let playerController = AVPlayerViewController.resolve()
+        playerController.canStartPictureInPictureAutomaticallyFromInline = true
+        playerController.allowsPictureInPicturePlayback = true
+        playerController.player = player
+
+        let title = AVMutableMetadataItem()
+        title.identifier = .commonIdentifierTitle
+        title.value = (url.deletingPathExtension().lastPathComponent) as NSString
+        title.extendedLanguageTag = "und"
+
+        let artwork = AVMutableMetadataItem()
+        if let imageData = UIImage.icon(forFileURL: url).jpegData(compressionQuality: 1.0) {
+            artwork.identifier = .commonIdentifierArtwork
+            artwork.value = imageData as NSData
+            artwork.dataType = kCMMetadataBaseDataType_JPEG as String
+            artwork.extendedLanguageTag = "und"
+        }
+
+        // Set external metadata for the current AVPlayerItem
+        player.currentItem?.externalMetadata = [title, artwork]
+
+        present(playerController, animated: true)
+    }
+
+    func checkFilePlayable(url: URL) async -> Bool {
+        let disposeBag = DisposeBag()
+        let player = AVPlayer(url: url)
+
+        return await withCheckedContinuation { continuation in
+            player.currentItem?.publisher(for: \.status).sink { status in
+                guard status != .unknown else { return }
+                continuation.resume(returning: status == .readyToPlay)
+            }.store(in: disposeBag)
+        }
     }
 }

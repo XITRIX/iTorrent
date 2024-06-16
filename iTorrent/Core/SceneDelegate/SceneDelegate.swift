@@ -8,6 +8,7 @@
 import LibTorrent
 import MvvmFoundation
 import UIKit
+import AVKit
 
 class SceneDelegate: MvvmSceneDelegate {
     override func initialSetup() {
@@ -15,6 +16,7 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func register(in container: Container) {
+        registerAVPlayer(in: container)
         container.register(type: UINavigationController.self, factory: BaseNavigationController.init)
         container.register(type: UISplitViewController.self, factory: BaseSplitViewController.init)
         container.registerSingleton(factory: { TorrentService.shared })

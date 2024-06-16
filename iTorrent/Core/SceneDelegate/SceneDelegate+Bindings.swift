@@ -40,13 +40,15 @@ extension SceneDelegate {
     }
 
     var backgroundDownloadModeBind: AnyCancellable {
-        PreferencesStorage.shared.$backgroundMode.sink { mode in
-            Task {
-                // If fail set audio as unfailable mode
-                if await !BackgroundService.shared.applyMode(mode) {
-                    PreferencesStorage.shared.backgroundMode = .audio
+        Publishers.CombineLatest(PreferencesStorage.shared.$backgroundMode, PreferencesStorage.shared.$isBackgroundDownloadEnabled)
+            .sink { mode, isBackgroundDownloadEnabled in
+                guard isBackgroundDownloadEnabled else { return }
+                Task {
+                    // If fail set audio as unfailable mode
+                    if await !BackgroundService.shared.applyMode(mode) {
+                        PreferencesStorage.shared.backgroundMode = .audio
+                    }
                 }
             }
-        }
     }
 }

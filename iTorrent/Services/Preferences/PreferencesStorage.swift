@@ -76,7 +76,7 @@ class PreferencesStorage: Resolvable {
 
     @UserDefaultItem("preferencesBackgroundDownloadEnabled", true) var isBackgroundDownloadEnabled: Bool
     @UserDefaultItem("preferencesBackgroundMode", .audio) var backgroundMode: BackgroundService.Mode
-    @UserDefaultItem("preferencesBackgroundAllowSeeding", true) var isBackgroundSeedingEnabled: Bool
+    @UserDefaultItem("preferencesBackgroundAllowSeeding", false) var isBackgroundSeedingEnabled: Bool
     @UserDefaultItem("preferencesBackgroundLocationIndicator", false) var isBackgroundLocationIndicatorEnabled: Bool
 
     @UserDefaultItem("preferencesIsFileSharingEnabled", false) var isFileSharingEnabled: Bool
