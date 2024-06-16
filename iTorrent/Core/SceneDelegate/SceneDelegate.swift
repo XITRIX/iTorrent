@@ -31,6 +31,23 @@ class SceneDelegate: MvvmSceneDelegate {
     }
 
     override func routing(in router: Router) {
+        // MARK: Cells
+        router.register(TorrentListItemView.self)
+        router.register(TorrentDetailProgressCellView.self)
+
+        router.register(RssFeedCell.self)
+        router.register(RssChannelItemCell.self)
+
+        router.register(TrackerCellView.self)
+
+        router.register(DetailCellView.self)
+        router.register(ToggleCellView.self)
+
+        router.register(PRSwitchView.self)
+        router.register(PRButtonView.self)
+        router.register(PRStorageCell.self)
+        router.register(PRColorPickerCell.self)
+
         // MARK: Controllers
         router.register(TorrentListViewController<TorrentListViewModel>.self)
         router.register(TorrentDetailsViewController<TorrentDetailsViewModel>.self)
@@ -50,23 +67,6 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(RssDetailsViewController.self)
         router.register(RssListPreferencesViewController.self)
         router.register(RssSearchViewController.self)
-
-        // MARK: Cells
-        router.register(TorrentListItemView.self)
-        router.register(TorrentDetailProgressCellView.self)
-
-        router.register(RssFeedCell.self)
-        router.register(RssChannelItemCell.self)
-
-        router.register(TrackerCellView.self)
-
-        router.register(DetailCellView.self)
-        router.register(ToggleCellView.self)
-
-        router.register(PRSwitchView.self)
-        router.register(PRButtonView.self)
-        router.register(PRStorageCell.self)
-        router.register(PRColorPickerCell.self)
     }
 
     override func resolveRootVC(with router: Router) -> UIViewController {

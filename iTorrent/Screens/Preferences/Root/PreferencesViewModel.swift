@@ -63,6 +63,7 @@ private extension PreferencesViewModel {
             PRSwitchViewModel(with: .init(title: %"preferences.storage.allocate", value: preferences.$allocateMemory.binding))
         })
 
+#if !IS_EU
         sections.append(.init(id: "background", header: %"preferences.background") {
             PRSwitchViewModel(with: .init(title: %"preferences.background.enable", value: preferences.$isBackgroundDownloadEnabled.binding))
             PRButtonViewModel(with: .init(title: %"preferences.background.mode", value: preferences.$backgroundMode.map(\.name).eraseToAnyPublisher(), accessories: [
@@ -78,6 +79,7 @@ private extension PreferencesViewModel {
                 PRSwitchViewModel(with: .init(title: %"preferences.background.location.indicator.enable", value: preferences.$isBackgroundLocationIndicatorEnabled.binding))
             }
         })
+#endif
 
         sections.append(.init(id: "seeding", header: %"preferences.seeding") {
             PRSwitchViewModel(with: .init(title: %"preferences.seeding.stopOnFinish", value: preferences.$stopSeedingOnFinish.binding))
