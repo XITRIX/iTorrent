@@ -143,12 +143,12 @@ extension TorrentAddViewModel {
         else { return }
 
         guard !presentAlert(from: navigationContext, ifTorrentExists: file) else { return }
-        navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
+        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true)) }
     }
 
     static func present(with torrentFile: TorrentFile, from navigationContext: NavigationProtocol) {
         guard !presentAlert(from: navigationContext, ifTorrentExists: torrentFile) else { return }
-        navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true))
+        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true)) }
     }
 
     private static func presentAlert(from navigationContext: NavigationProtocol, ifTorrentExists torrentFile: TorrentFile) -> Bool {
