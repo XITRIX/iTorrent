@@ -134,7 +134,7 @@ private extension TorrentService {
             }
             .sink { [unowned self] interfaces in
                 DispatchQueue.main.async { [self] in // Need delay to complete settings apply
-                    session.settings = Session.Settings.fromPreferences(with: interfaces.map { $0.name })
+                    session.settings = Session.Settings.fromPreferences(with: interfaces)
                 }
             }
         }

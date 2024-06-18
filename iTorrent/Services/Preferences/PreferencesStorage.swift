@@ -10,11 +10,17 @@ import Foundation
 import LibTorrent
 import MvvmFoundation
 import UIKit
+import Network
 
 class PreferencesStorage: Resolvable {
-    private init() {}
-    private var disposeBag: [AnyCancellable] = []
+    private init() {
+        #if IS_EU
+        // Location mode is not allowed by Apple policy
+        backgroundMode = .audio
+        #endif
+    }
 
+    private var disposeBag: [AnyCancellable] = []
     static let shared = PreferencesStorage()
 
     static let defaultTorrentListGroupsSortingArray: [TorrentHandle.State] = [
@@ -121,7 +127,7 @@ class PreferencesStorage: Resolvable {
 }
 
 extension Session.Settings {
-    static func fromPreferences(with interfaces: [String]) -> Self {
+    static func fromPreferences(with interfaces: [NWInterface]) -> Self {
         let settings = Self()
         let preferences = PreferencesStorage.shared
 
@@ -148,8 +154,9 @@ extension Session.Settings {
         if !preferences.useAllAvailableInterfaces {
             interfacesToUse = [interfacesToUse.first].compactMap { $0 }
         }
-        settings.outgoingInterfaces = interfacesToUse.joined(separator: ",")
-        settings.listenInterfaces = interfacesToUse.map { "\($0):\(settings.port)" }.joined(separator: ",")
+        let interfacesNamesToUse = interfacesToUse.map { $0.name } + ["lo0"]
+        settings.outgoingInterfaces = interfacesNamesToUse.joined(separator: ",")
+        settings.listenInterfaces = interfacesNamesToUse.map { "\($0):\(settings.port)" }.joined(separator: ",")
 
         print("--- \(settings.listenInterfaces)")
 
