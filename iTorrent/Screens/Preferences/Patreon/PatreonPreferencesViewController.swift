@@ -59,26 +59,26 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
 private extension PatreonPreferencesViewController {
     func binding() {
         disposeBag.bind {
-            viewModel.linkButtonTitle.sink { [unowned self] title in
+            viewModel.linkButtonTitle.uiSink { [unowned self] title in
                 linkPatreonButton.setTitle(title, for: .normal)
             }
 
             Publishers.combineLatest(
                 viewModel.isPatronPublisher,
                 viewModel.isFullVersionPublisher)
-            { $0 || $1 }.sink { isShown in
+            { $0 || $1 }.uiSink { isShown in
                 UIView.animate(withDuration: 0.3) { [self] in
                     patronBox.isHidden = !isShown
                 }
             }
 
-            viewModel.isPatronPublisher.sink { [unowned self] isPatron in
+            viewModel.isPatronPublisher.uiSink { [unowned self] isPatron in
                 UIView.animate(withDuration: 0.3) { [self] in
                     becomePatronButton.isHidden = isPatron
                 }
             }
 
-            viewModel.accountState.sink { [unowned self] state in
+            viewModel.accountState.uiSink { [unowned self] state in
                 if state == .loading {
                     linkPatreonLoading.startAnimating()
                 } else {
@@ -86,7 +86,7 @@ private extension PatreonPreferencesViewController {
                 }
             }
 
-            viewModel.versionTextPublisher.sink { [unowned self] title in
+            viewModel.versionTextPublisher.uiSink { [unowned self] title in
                 patronTitle.text = title
             }
         }
