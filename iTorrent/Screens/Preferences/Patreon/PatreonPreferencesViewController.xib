@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -39,10 +39,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="89B-sj-DtV">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="569"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="561"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Qof-w5-l46">
-                                    <rect key="frame" x="16" y="16" width="361" height="537"/>
+                                    <rect key="frame" x="16" y="16" width="361" height="529"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZLv-xn-0j4">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="306.33333333333331"/>
@@ -64,16 +64,16 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="JeP-z3-CKZ">
-                                                            <rect key="frame" x="68" y="0.66666666666666785" width="285" height="50.666666666666657"/>
+                                                            <rect key="frame" x="68" y="4.6666666666666679" width="285" height="42.666666666666657"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XITRIX (Daniil Vinogradov)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="ksX-TD-LMi">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="285" height="24.333333333333332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="285" height="20.333333333333332"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator of iTorrent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjY-6f-cqP">
-                                                                    <rect key="frame" x="0.0" y="27.333333333333336" width="285" height="23.333333333333336"/>
+                                                                    <rect key="frame" x="0.0" y="23.333333333333336" width="285" height="19.333333333333336"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -127,10 +127,10 @@ Thanks for all your support!</string>
                                             </subviews>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i54-hH-OSI">
-                                            <rect key="frame" x="0.0" y="330.33333333333331" width="361" height="74.666666666666686"/>
+                                            <rect key="frame" x="0.0" y="330.33333333333331" width="361" height="66.666666666666686"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="orb-W5-qOm">
-                                                    <rect key="frame" x="15.999999999999996" y="8.9999999999999964" width="50.666666666666657" height="56.666666666666657"/>
+                                                    <rect key="frame" x="15.999999999999996" y="8.9999999999999964" width="42.666666666666657" height="48.666666666666657"/>
                                                     <color key="tintColor" systemColor="systemGreenColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="orb-W5-qOm" secondAttribute="height" multiplier="1:1" id="53z-vC-fyU"/>
@@ -138,16 +138,16 @@ Thanks for all your support!</string>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ylh-WH-518">
-                                                    <rect key="frame" x="75.333333333333329" y="11.999999999999996" width="210.66666666666669" height="50.666666666666657"/>
+                                                    <rect key="frame" x="75.333333333333329" y="11.999999999999996" width="210.66666666666669" height="42.666666666666657"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="You are a patron" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCp-Ge-ehk">
-                                                            <rect key="frame" x="40.666666666666671" y="0.0" width="129" height="24.333333333333332"/>
+                                                            <rect key="frame" x="40.666666666666671" y="0.0" width="129" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Ads-free enabled, have fun!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bs-Gi-Yen">
-                                                            <rect key="frame" x="0.0" y="26.333333333333371" width="210.66666666666666" height="24.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="22.333333333333371" width="210.66666666666666" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
@@ -175,7 +175,7 @@ Thanks for all your support!</string>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Y7s-s0-o71">
-                                            <rect key="frame" x="0.0" y="429" width="361" height="108"/>
+                                            <rect key="frame" x="0.0" y="421" width="361" height="108"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwK-yg-NrV">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="48"/>
@@ -221,7 +221,7 @@ Thanks for all your support!</string>
                                             </subviews>
                                         </stackView>
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-d7-ZPA">
-                                            <rect key="frame" x="0.0" y="537" width="361" height="36"/>
+                                            <rect key="frame" x="0.0" y="529" width="361" height="36"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-Jh-C6C">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
@@ -238,9 +238,9 @@ Thanks for all your support!</string>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="miM-WO-Ldb"/>
                                                     </constraints>
-                                                    <collectionViewLayout key="collectionViewLayout" id="sFG-QR-6He" customClass="AlignedCollectionViewFlowLayout" customModule="iTorrent" customModuleProvider="target"/>
+                                                    <collectionViewLayout key="collectionViewLayout" id="sFG-QR-6He"/>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PatronCell" id="Wjb-mo-Dne" customClass="PatronNameCell" customModule="iTorrent" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PatronCell" id="Wjb-mo-Dne">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kWd-aa-PC9">
