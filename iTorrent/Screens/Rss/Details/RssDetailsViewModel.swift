@@ -32,13 +32,13 @@ private extension RssDetailsViewModel {
                     TorrentService.shared.addTorrent(by: magnet)
                 }
             ])
-        } else if let torrent = await TorrentFile(remote: rssModel.link),
-                  !TorrentService.shared.checkTorrentExists(with: torrent.infoHashes)
+        } else if let file = await TorrentFile(remote: rssModel.link),
+                  !TorrentService.shared.checkTorrentExists(with: file.infoHashes)
         {
             alert(title: %"rssdetail.torrentFound", actions: [
                 .init(title: %"common.cancel", style: .cancel),
                 .init(title: %"common.download", style: .default) { [unowned self] in
-                    navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: torrent), by: .present(wrapInNavigation: true))
+                    navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file), by: .present(wrapInNavigation: true))
                 }
             ])
         }

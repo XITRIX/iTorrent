@@ -36,12 +36,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "For background downloading purpose ONLY! \n\"Always allow\" mode will allow app to hide blue location indicator from status bar"
+            "value" : "For background downloading purpose ONLY! \\n\\\"Always allow\\\" mode will allow app to hide blue location indicator from status bar"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ТОЛЬКО для фоновой загрузки!\nРежим «Всегда разрешать» позволит приложению скрывать синий индикатор местоположения из строки состояния."
           }
         }

@@ -152,7 +152,7 @@ extension TorrentAddViewModel {
     }
 
     private static func presentAlert(from navigationContext: NavigationProtocol, ifTorrentExists torrentFile: TorrentFile) -> Bool {
-        guard TorrentService.shared.torrents.contains(where: { $0.infoHashes == torrentFile.infoHashes })
+        guard TorrentService.shared.torrents.contains(where: { $0.snapshot.infoHashes == torrentFile.infoHashes })
         else { return false }
 
         let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(torrentFile.infoHashes.best.hex)_exists", preferredStyle: .alert)
