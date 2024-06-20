@@ -207,13 +207,13 @@ private extension Array where Element == TorrentHandle {
         let res = filter(\.isValid).sorted { first, second in
             switch type {
             case .alphabetically:
-                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+                return first.snapshot.name.localizedCaseInsensitiveCompare(second.snapshot.name) == .orderedAscending
             case .creationDate:
-                return first.creationDate ?? Date() > second.creationDate ?? Date()
+                return first.snapshot.creationDate ?? Date() > second.snapshot.creationDate ?? Date()
             case .addedDate:
                 return first.metadata.dateAdded > second.metadata.dateAdded
             case .size:
-                return first.totalWanted > second.totalWanted
+                return first.snapshot.totalWanted > second.snapshot.totalWanted
             }
         }
 

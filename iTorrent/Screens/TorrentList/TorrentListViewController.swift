@@ -57,7 +57,10 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         setup()
 
         searchVC.searchBar.textDidChangePublisher.assign(to: &viewModel.$searchQuery)
-        searchVC.searchBar.cancelButtonClickedPublisher.map { "" }.assign(to: &viewModel.$searchQuery)
+        
+        searchVC.searchBar.cancelButtonClickedPublisher
+            .receive(on: .global(qos: .userInitiated))
+            .map { "" }.assign(to: &viewModel.$searchQuery)
 
         addButton.menu = UIMenu(title: %"list.add.title", children: [
             UIAction(title: %"list.add.files", image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
@@ -90,20 +93,20 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         Task {
             // Delay to show SearchBar on screen appear
             disposeBag.bind {
-                viewModel.$sections.sink { [unowned self] sections in
+                viewModel.$sections.uiSink { [unowned self] sections in
                     collectionView.sections.send(sections)
                 }
             }
         }
 
         disposeBag.bind {
-            viewModel.$hasRssNews.sink { [unowned self] rssHasNews in
+            viewModel.$hasRssNews.uiSink { [unowned self] rssHasNews in
                 rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew.withRenderingMode(.alwaysOriginal) : .icRss, handler: { [unowned self] _ in
                     viewModel.showRss()
                 })
             }
 
-            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
+            collectionView.$selectedIndexPaths.uiSink { [unowned self] indexPaths in
                 let torrentHandles = indexPaths.compactMap { (viewModel.sections[$0.section].items[$0.item] as? TorrentListItemViewModel)?.torrentHandle }
                 
                 playButton.isEnabled = torrentHandles.contains(where: { $0.isPaused })
@@ -112,20 +115,20 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 deleteButton.isEnabled = !torrentHandles.isEmpty
             }
 
-            preferencesButton.tapPublisher.sink { [unowned self] _ in
+            preferencesButton.tapPublisher.uiSink { [unowned self] _ in
                 viewModel.preferencesAction()
             }
 
-            viewModel.sortingType.combineLatest(viewModel.sortingReverced, viewModel.isGroupedByState).sink { [unowned self] type, reverced, grouped in
+            viewModel.sortingType.combineLatest(viewModel.sortingReverced, viewModel.isGroupedByState).uiSink { [unowned self] type, reverced, grouped in
                 updateSortingMenu(with: type, reverced: reverced, isGrouped: grouped)
             }
 
-            searchVC.searchBar.selectedScopeButtonIndexDidChangePublisher.sink { [unowned self] scopeIndex in
+            searchVC.searchBar.selectedScopeButtonIndexDidChangePublisher.uiSink { [unowned self] scopeIndex in
                 searchVC.showsSearchResultsController = scopeIndex == 1
             }
 
             if #available(iOS 17.0, *) {
-                viewModel.emptyContentType.sink { [unowned self] emptyType in
+                viewModel.emptyContentType.uiSink { [unowned self] emptyType in
                     switch emptyType {
                     case .noData:
                         var config = UIContentUnavailableConfiguration.empty()

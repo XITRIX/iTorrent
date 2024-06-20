@@ -28,7 +28,7 @@ class UIModernBarButtonItem: UIBarButtonItem {
         self.image = image
 
 #if os(iOS)
-        let image = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(.tintColor.withAlphaComponent(0.25), renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(PreferencesStorage.shared.tintColor.withAlphaComponent(0.25), renderingMode: .alwaysOriginal)
         setBackgroundImage(image, for: .normal, barMetrics: .default)
 #endif
     }

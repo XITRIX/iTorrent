@@ -22,23 +22,23 @@ class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
 
     override func setup(with viewModel: VM) {
         disposeBag.bind {
-            viewModel.$title.sink { [unowned self] title in
+            viewModel.$title.uiSink { [unowned self] title in
                 titleLabel.text = title
             }
-            viewModel.$description.sink { [unowned self] description in
+            viewModel.$description.uiSink { [unowned self] description in
                 descriptionLabel.text = description
             }
-            viewModel.$newCounter.sink { [unowned self] newCounter in
+            viewModel.$newCounter.uiSink { [unowned self] newCounter in
                 newCounterLabel.text = "\(newCounter)"
                 newCounterLabel.superview?.isHidden = newCounter == 0
             }
-            viewModel.$feedLogo.sink { [unowned self] logo in
+            viewModel.$feedLogo.uiSink { [unowned self] logo in
                 feedLogoImageView.image = logo
             }
-            editButton.tapPublisher.sink { _ in
+            editButton.tapPublisher.uiSink { _ in
                 viewModel.openPreferences()
             }
-            viewModel.popoverPreferenceNavigationTransaction.sink { [unowned self] from, to in
+            viewModel.popoverPreferenceNavigationTransaction.uiSink { [unowned self] from, to in
 //                let nvc = UINavigationController.resolve()
 //                let target = nvc
                 let target = to

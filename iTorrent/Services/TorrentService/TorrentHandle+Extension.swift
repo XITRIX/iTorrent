@@ -5,8 +5,8 @@
 //  Created by Daniil Vinogradov on 31/10/2023.
 //
 
-import LibTorrent
 import Combine
+import LibTorrent
 import MvvmFoundation
 
 private var TorrentHandleUnthrottledUpdatePublisherKey: UInt8 = 0
@@ -41,7 +41,7 @@ extension TorrentHandle {
         }
         return obj
     }
-    
+
     /// Does not contain updated Snapshot yet, it creates before updatePublisher will be fired
     ///
     /// Better not use this one, prefer to use `updatePublisher`
@@ -106,18 +106,22 @@ extension TorrentHandle.State {
     }
 }
 
+// MARK: - Metadata
 extension TorrentHandle {
     struct Metadata: Codable {
-        var dateAdded: Date = Date()
+        var dateAdded: Date = .init()
     }
 
     var metadata: Metadata {
-        let hash = infoHashes.best.hex
+        if let _metadata { return _metadata }
+
+        let hash = snapshot.infoHashes.best.hex
         let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
         if FileManager.default.fileExists(atPath: url.path()),
            let data = try? Data(contentsOf: url),
            let meta = try? JSONDecoder().decode(Metadata.self, from: data)
         {
+            _metadata = meta
             return meta
         }
 
@@ -126,12 +130,25 @@ extension TorrentHandle {
             try? data.write(to: url)
         }
 
+        _metadata = meta
         return meta
     }
 
     func deleteMetadata() {
-        let hash = infoHashes.best.hex
+        let hash = snapshot.infoHashes.best.hex
         let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
         try? FileManager.default.removeItem(at: url)
+    }
+}
+
+// MARK: - Metadata cache
+private extension TorrentHandle {
+    private enum Keys {
+        static var metadataKey: Void?
+    }
+
+    var _metadata: Metadata? {
+        get { objc_getAssociatedObject(self, &Keys.metadataKey) as? Metadata }
+        set { objc_setAssociatedObject(self, &Keys.metadataKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
 }
