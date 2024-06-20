@@ -15,7 +15,7 @@ class PreferencesViewModel: BasePreferencesViewModel {
         binding()
         reload()
     }
-    
+
     private let colorPickerVM = PRColorPickerViewModel()
     private let storageVM = PRStorageViewModel()
 
@@ -29,8 +29,8 @@ private extension PreferencesViewModel {
             preferences.$backgroundMode
                 .receive(on: .main)
                 .sink { [unowned self] _ in
-                reload()
-            }
+                    reload()
+                }
         }
     }
 
@@ -70,7 +70,7 @@ private extension PreferencesViewModel {
                 .popUpMenu(
                     .init(title: %"preferences.background.mode.action", children: [
                         uiAction(from: .audio),
-                        uiAction(from: .location)
+                        uiAction(from: .location),
                     ]), options: .init(tintColor: .tintColor)
                 ),
             ]))
@@ -168,14 +168,47 @@ private extension PreferencesViewModel {
     }
 
     func uiAction(from interfaceStyle: UIUserInterfaceStyle) -> UIAction {
-        UIAction(title: interfaceStyle.name, state: preferences.appAppearance == interfaceStyle ? .on : .off) { [preferences] _ in
-            preferences.appAppearance = interfaceStyle
+        UIAction(title: interfaceStyle.name, state: preferences.appAppearance == interfaceStyle ? .on : .off) { [unowned self] _ in
+            updateAppearance(with: interfaceStyle)
         }
     }
 
     func uiAction(from backgroundMode: BackgroundService.Mode) -> UIAction {
         UIAction(title: backgroundMode.name, state: preferences.backgroundMode == backgroundMode ? .on : .off) { [preferences] _ in
             preferences.backgroundMode = backgroundMode
+        }
+    }
+
+    func updateAppearance(with interfaceStyle: UIUserInterfaceStyle) {
+        guard let vc = navigationService?(),
+              let window = vc.view.window
+        else { // Dirty way to access VC
+            preferences.appAppearance = interfaceStyle
+            return
+        }
+
+        let currentAppTheme = window.traitCollection.userInterfaceStyle
+        let currentDeviceTheme = window.windowScene!.traitCollection.userInterfaceStyle
+
+        let animationNeeded: Bool
+        if interfaceStyle == .unspecified {
+            animationNeeded = currentAppTheme != currentDeviceTheme
+        } else {
+            animationNeeded = currentAppTheme != interfaceStyle
+        }
+
+        guard animationNeeded else {
+            preferences.appAppearance = interfaceStyle
+            return
+        }
+
+        window.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [self] in
+            CircularAnimation.animate(startingPoint: .init(x: window.frame.width / 2, y: -60)) {
+                preferences.appAppearance = interfaceStyle
+            } completion: {
+                window.isUserInteractionEnabled = true
+            }
         }
     }
 }
@@ -205,5 +238,4 @@ private extension BackgroundService.Mode {
             return %"preferences.background.mode.location"
         }
     }
-
 }

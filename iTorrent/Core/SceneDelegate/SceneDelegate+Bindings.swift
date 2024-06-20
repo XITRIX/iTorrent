@@ -18,24 +18,7 @@ extension SceneDelegate {
     var appAppearanceBind: AnyCancellable {
         PreferencesStorage.shared.$appAppearance.sink { [unowned self] appearance in
             guard let window else { return }
-
-            let currentAppTheme = window.traitCollection.userInterfaceStyle
-            let currentDeviceTheme = window.windowScene!.traitCollection.userInterfaceStyle
-
-            let animationNeeded: Bool
-            if appearance == .unspecified {
-                animationNeeded = currentAppTheme != currentDeviceTheme
-            } else {
-                animationNeeded = currentAppTheme != appearance
-            }
-
-            if animationNeeded {
-                UIView.transition(with: window, duration: 0.3, options: [.transitionFlipFromRight]) {
-                    window.overrideUserInterfaceStyle = appearance
-                }
-            } else {
-                window.overrideUserInterfaceStyle = appearance
-            }
+            window.overrideUserInterfaceStyle = appearance
         }
     }
 

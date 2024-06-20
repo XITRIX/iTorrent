@@ -57,6 +57,7 @@
 		7CC411602BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115F2BD2FE8700CA8B13 /* FirebaseRemoteConfigSwift */; };
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
+		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
 		7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */; };
 		7CF6DA372C0F6D150033D03F /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */; };
@@ -283,6 +284,7 @@
 		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
+		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityService.swift; sourceTree = "<group>"; };
@@ -950,6 +952,7 @@
 				D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */,
 				D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */,
 				7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */,
+				7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1505,6 +1508,7 @@
 				7CFEBE942BC441A20013233F /* RssDetailsViewModel.swift in Sources */,
 				D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */,
 				D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */,
+				7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */,
 				7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */,
 				D11138482AF9464E008907F7 /* TorrentAddViewController.swift in Sources */,
 				D1DB717D2BD6772A007F9267 /* RssSearchViewController.swift in Sources */,
