@@ -1,4 +1,4 @@
-//#!/usr/bin/swiftc -parse-as-library
+// #!/usr/bin/swiftc -parse-as-library
 
 import Foundation
 
@@ -37,7 +37,7 @@ struct AltStoreAppPermissionModel: Codable {
     var entitlements: [String] = ["com.apple.security.application-groups"]
     var privacy: [String: String] = [
         "NSLocationWhenInUseUsageDescription": "More robust alternative to hold app working in background which requires additional permission, enables Dynamic Island progress extension",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "This additional permition allows to hide location indicator from status bar during background downloading"
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This additional permission allows to hide location indicator from status bar during background downloading",
     ]
 }
 
@@ -60,9 +60,9 @@ struct AltStoreAppModel: Codable {
     var name: String = "iTorrent"
     var bundleIdentifier: String = "com.xitrix.iTorrent2"
     var developerName: String = "XITRIX"
-    var marketplaceID: String = "6499499971"
+    var marketplaceID: String?
     var subtitle: String?
-    var localizedDescription: String = 
+    var localizedDescription: String =
         """
         It is an ordinary torrent client for iOS with Files app support and much more.
 
@@ -86,8 +86,8 @@ struct AltStoreAppModel: Codable {
         • ???
         """
     var downloadURL: String
-    var iconURL: String = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
-    var tintColor: String? = "#D03E43"
+    var iconURL: String = "\(rootDistrUrl)/icon.png"
+    var tintColor: String? = "#F19E69"
     var category: String? = "utilities"
     var screenshots: [String]? = _iphoneStandardScreenshots
     var screenshotURLs: [String]? = _iphoneEdgeToEdgeScreenshots
@@ -96,19 +96,20 @@ struct AltStoreAppModel: Codable {
     var permissions: [SideStoreAppPermissionModel] = [
         .init(type: "network", usageDescription: "Needs to download torrents"),
         .init(type: "background-audio", usageDescription: "Needs to hold app working in background"),
-        .init(type: "location", usageDescription: "More robust alternative to hold app working in background which requires additional permission")]
+        .init(type: "location", usageDescription: "More robust alternative to hold app working in background which requires additional permission"),
+    ]
 }
 
 struct AltStoreSourceModel: Codable {
     var name: String = "iTorrent Source"
     var identifier: String = "com.xitrix.itorrent"
-    var subtitle: String?
+    var subtitle: String? = "Torrent client for iOS"
     var description: String? = "Official source for iTorrent app"
-    var iconURL: String? = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
-    var headerURL: String? = "\(rootUrl)/iTorrent/Core/Assets/Assets.xcassets/AppIcon.appiconset/Untitled.png"
+    var iconURL: String? = "\(rootDistrUrl)/sourceIcon.png"
+    var headerURL: String? = "\(rootDistrUrl)/sourceIcon.png"
     var website: String? = "https://github.com/XITRIX/iTorrent"
     var patreonURL: String? = "https://www.patreon.com/xitrix"
-    var tintColor: String? = "#D03E43"
+    var tintColor: String? = "#F19E69"
     var featuredApps: [String] = ["com.xitrix.iTorrent2"]
     var apps: [AltStoreAppModel]
 }
@@ -128,8 +129,10 @@ struct GitHubReleaseModel: Codable {
 
 // MARK: - App
 @main
-struct AltServerGenerator {
+enum AltServerGenerator {
     static func main() async throws {
+        let withNotarization = CommandLine.arguments.contains(where: { $0 == "eu" })
+
         let url = "https://api.github.com/repos/XITRIX/iTorrent-v2/releases"
         let (data, _) = try await URLSession.shared.data(from: URL(string: url)!)
 
@@ -146,12 +149,14 @@ struct AltServerGenerator {
             return AltStoreAppVersionModel(version: release.name, date: release.publishedAt, size: ipaAsset.size, downloadURL: ipaAsset.browserDownloadUrl)
         }
 
-        let model = AltStoreSourceModel(apps: [
-            .init(
-                downloadURL: versions.first?.downloadURL ?? "",
-                versions: versions
-            )
-        ])
+        let model = AltStoreSourceModel(
+            tintColor: "D03E43",
+            apps: [
+                .init(marketplaceID: withNotarization ? "6499499971" : nil,
+                      downloadURL: versions.first?.downloadURL ?? "",
+                      versions: versions),
+            ]
+        )
 
         let sourceJsonData = try JSONEncoder().encode(model)
         let sourceJson = String(data: sourceJsonData, encoding: .utf8)!
