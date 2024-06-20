@@ -44,12 +44,12 @@ class TorrentService {
 
 extension TorrentService {
     func checkTorrentExists(with hash: TorrentHashes) -> Bool {
-        torrents.contains(where: { $0.infoHashes == hash })
+        torrents.contains(where: { $0.snapshot.infoHashes == hash })
     }
 
     @discardableResult
     func addTorrent(by file: Downloadable) -> Bool {
-        guard !torrents.contains(where: { file.infoHashes == $0.infoHashes })
+        guard !torrents.contains(where: { file.infoHashes == $0.snapshot.infoHashes })
         else { return false }
 
         session.addTorrent(file)
@@ -63,7 +63,7 @@ extension TorrentService {
               let file = TorrentFile(with: path)
         else { return false }
 
-        guard !torrents.contains(where: { file.infoHashes == $0.infoHashes })
+        guard !torrents.contains(where: { file.infoHashes == $0.snapshot.infoHashes })
         else { return false }
 
         session.addTorrent(file)
@@ -71,7 +71,7 @@ extension TorrentService {
     }
 
     func removeTorrent(by infoHashes: TorrentHashes, deleteFiles: Bool) {
-        guard let handle = torrents.first(where: { $0.infoHashes == infoHashes })
+        guard let handle = torrents.first(where: { $0.snapshot.infoHashes == infoHashes })
         else { return }
 
         handle.deleteMetadata()
@@ -86,7 +86,8 @@ extension TorrentService {
 // MARK: - SessionDelegate
 extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
-        guard torrents.firstIndex(where: { $0.infoHashes == torrent.infoHashes }) == nil
+        // Do not use snapshot for 'torrent' because it is not generated yet
+        guard torrents.firstIndex(where: { $0.snapshot.infoHashes == torrent.infoHashes }) == nil
         else { return }
 
         torrent.prepareToAdd(into: self)
@@ -98,7 +99,7 @@ extension TorrentService: SessionDelegate {
 
     func torrentManager(_ manager: Session, didRemoveTorrentWithHash hashesData: TorrentHashes) {
         // Already on Main thread
-        guard let index = torrents.firstIndex(where: { $0.infoHashes == hashesData })
+        guard let index = torrents.firstIndex(where: { $0.snapshot.infoHashes == hashesData })
         else { return }
 
         let torrent = torrents[index]
@@ -107,7 +108,8 @@ extension TorrentService: SessionDelegate {
     }
 
     func torrentManager(_ manager: Session, didReceiveUpdateForTorrent torrent: TorrentHandle) {
-        guard let existingTorrent = torrents.first(where: { $0.infoHashes == torrent.infoHashes })
+        // Do not use snapshot for 'torrent' because it could be not generated yet
+        guard let existingTorrent = torrents.first(where: { $0.snapshot.infoHashes == torrent.infoHashes })
         else { return }
 
         existingTorrent.__unthrottledUpdatePublisher.send()
