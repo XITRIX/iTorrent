@@ -55,6 +55,11 @@ private extension NetworkMonitoringService {
 #else
         let isCellularRestricted = !preferences.isCellularEnabled
 #endif
-        availableInterfaces = monitor.currentPath.availableInterfaces.filter { $0.type != .cellular || !isCellularRestricted }
+
+        let updatedInterfaces = monitor.currentPath.availableInterfaces.filter { $0.type != .cellular || !isCellularRestricted }
+
+        // Do not notify duplicates, otherwise iTorrent will drop connection for nothing
+        guard availableInterfaces != updatedInterfaces else { return }
+        availableInterfaces = updatedInterfaces
     }
 }
