@@ -12,10 +12,13 @@ on:
 jobs:
   build_with_signing:
     runs-on: macos-14
+    strategy:
+      matrix:
+        config: [Release]
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 15.3
+          xcode-version: 15.4
 
       - name: checkout repository
         uses: actions/checkout@v1
@@ -23,7 +26,7 @@ jobs:
           submodules: recursive
 
       - name: Prepare Brew
-        run: brew install boost openssl
+        run: brew install boost
 
       - name: Prepare LibTorrent
         run: ./Submodules/LibTorrent-Swift/make.sh
@@ -85,7 +88,7 @@ jobs:
           -scheme "iTorrent" \
           -archivePath $RUNNER_TEMP/itorrent.xcarchive \
           -sdk iphoneos \
-          -configuration Release \
+          -configuration ${{ matrix.config }} \
           -destination generic/platform=iOS \
           clean archive          
 
@@ -103,7 +106,7 @@ jobs:
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: app
+          name: app-${{ matrix.config }}
           path: |
             ${{ runner.temp }}/build/iTorrent.ipa
             ${{ runner.temp }}/build/manifest.plist
@@ -120,7 +123,12 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: ZIP dSYMs
-        run: zip -vr dSYMs.zip app/dSYMs/ -x "*.DS_Store"
+        run: |
+          zip -vr dSYMs.zip app-Release/dSYMs/ -x "*.DS_Store"
+        # zip -vr dSYMs-EU.zip app-Release-EU/dSYMs/ -x "*.DS_Store"
+
+      # - name: Move for EU
+      #   run: mv app-Release-EU/build/iTorrent.ipa app-Release/build/iTorrent-EU.ipa
 
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -129,9 +137,11 @@ jobs:
           repository: XITRIX/iTorrent-v2
           token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
           files: |
-            app/build/iTorrent.ipa
-            app/build/manifest.plist
+            app-Release/build/iTorrent.ipa
+            app-Release/build/manifest.plist
             dSYMs.zip
+          # app-Release/build/iTorrent-EU.ipa
+          # dSYMs-EU.zip
 
   altstore_release:
     needs: [github_release]
