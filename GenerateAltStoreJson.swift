@@ -48,12 +48,17 @@ struct SideStoreAppPermissionModel: Codable {
 
 struct AltStoreAppVersionModel: Codable {
     var version: String
-    var buildVersion: String = "1"
+    var buildVersion: String? = "1"
     var date: String
     var size: UInt
     var downloadURL: String
     var localizedDescription: String?
     var minOSVersion: String? = "16.0"
+}
+
+struct AltStorePatreonModel: Codable {
+    var pledge: Double
+    var currency: String?
 }
 
 struct AltStoreAppModel: Codable {
@@ -98,6 +103,8 @@ struct AltStoreAppModel: Codable {
         .init(type: "background-audio", usageDescription: "Needs to hold app working in background"),
         .init(type: "location", usageDescription: "More robust alternative to hold app working in background which requires additional permission"),
     ]
+    var patreon: AltStorePatreonModel?
+    var beta: Bool?
 }
 
 struct AltStoreSourceModel: Codable {
@@ -146,15 +153,24 @@ enum AltServerGenerator {
             guard let ipaAsset = release.assets.first(where: { $0.name == "iTorrent.ipa" })
             else { return nil }
 
-            return AltStoreAppVersionModel(version: release.name, date: release.publishedAt, size: ipaAsset.size, downloadURL: ipaAsset.browserDownloadUrl)
+            return AltStoreAppVersionModel(
+                version: release.name.replacingOccurrences(of: "v", with: ""),
+                date: release.publishedAt,
+                size: ipaAsset.size,
+                downloadURL: ipaAsset.browserDownloadUrl
+            )
         }
 
         let model = AltStoreSourceModel(
             tintColor: "D03E43",
             apps: [
-                .init(marketplaceID: withNotarization ? "6499499971" : nil,
-                      downloadURL: versions.first?.downloadURL ?? "",
-                      versions: versions),
+                AltStoreAppModel(
+                    marketplaceID: withNotarization ? "6499499971" : nil,
+                    downloadURL: versions.first?.downloadURL ?? "",
+                    versions: versions,
+                    patreon: .init(pledge: 2),
+                    beta: true
+                ),
             ]
         )
 

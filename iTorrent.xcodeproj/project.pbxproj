@@ -1821,6 +1821,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.3;
 				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1959,6 +1960,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.3;
 				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2163,6 +2165,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.3;
 				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2205,6 +2208,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.3;
 				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2315,6 +2319,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.3;
 				MARKETPLACES = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
