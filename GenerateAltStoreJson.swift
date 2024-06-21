@@ -36,6 +36,7 @@ struct SideStoreScreenshotsModel: Codable {
 struct AltStoreAppPermissionModel: Codable {
     var entitlements: [String] = ["com.apple.security.application-groups"]
     var privacy: [String: String] = [
+        :
         // "NSLocationWhenInUseUsageDescription": "More robust alternative to hold app working in background which requires additional permission, enables Dynamic Island progress extension",
         // "NSLocationAlwaysAndWhenInUseUsageDescription": "This additional permission allows to hide location indicator from status bar during background downloading",
     ]

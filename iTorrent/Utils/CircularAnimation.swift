@@ -9,6 +9,7 @@
 import UIKit
 
 class CircularAnimation {
+    @MainActor
     public static func animate(startingPoint: CGPoint, animation: () -> Void, completion: @escaping () -> Void) {
         let windowScene = UIApplication.shared
             .connectedScenes
