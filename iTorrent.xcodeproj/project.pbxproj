@@ -1638,7 +1638,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
@@ -1655,7 +1655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Distrib";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1670,7 +1670,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
@@ -1687,7 +1687,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Distrib";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1785,7 +1785,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1806,12 +1806,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTorrent/Core/Assets/Info-EU.plist";
@@ -1830,9 +1828,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Distrib";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Distrib";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1850,7 +1847,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
@@ -1867,7 +1864,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Distrib";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1927,7 +1924,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1949,11 +1946,9 @@
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTorrent/Core/Assets/Info-EU.plist";
@@ -1973,7 +1968,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Distrib";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Distrib";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -2074,7 +2068,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2137,7 +2131,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2157,12 +2151,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
@@ -2181,9 +2173,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Distrib";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Distrib";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2204,11 +2195,9 @@
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
@@ -2228,7 +2217,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Distrib";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Distrib";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -2297,7 +2285,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.3;
+				MARKETING_VERSION = 2.0.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2318,12 +2306,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
@@ -2342,9 +2328,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Distrib";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Dev-iTorrent Mac";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Distrib";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
