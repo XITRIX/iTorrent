@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import LibTorrent
 
 protocol BackgroundServiceProtocol {
     var isRunning: Bool { get }
@@ -57,4 +58,22 @@ class BackgroundService: BackgroundServiceProtocol {
     }
 
     private var impl: BackgroundServiceProtocol = AudioBackgroundService()
+}
+
+// MARK: Backgroud requirements
+extension BackgroundService {
+    static var isBackgroundNeeded: Bool {
+        TorrentService.shared.torrents.contains(where: { $0.needBackground })
+    }
+}
+
+extension TorrentHandle.Snapshot {
+    var needBackground: Bool {
+        false
+            || friendlyState == .checkingFiles
+            || friendlyState == .checkingResumeData
+            || friendlyState == .downloading
+            || friendlyState == .downloadingMetadata
+            || (friendlyState == .seeding && PreferencesStorage.shared.isBackgroundSeedingEnabled)
+    }
 }

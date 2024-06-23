@@ -18,7 +18,6 @@ class LiveActivityService {
 #if canImport(ActivityKit)
         disposeBag.bind {
             TorrentService.shared.updateNotifier
-                .filter { _ in PreferencesStorage.shared.backgroundMode == .location }
                 .sink { [unowned self] updateModel in
                     updateLiveActivity(with: updateModel)
                 }

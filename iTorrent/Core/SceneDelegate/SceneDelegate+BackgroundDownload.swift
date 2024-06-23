@@ -10,7 +10,7 @@ import LibTorrent
 
 extension SceneDelegate {
     func startBackgroundIfNeeded() {
-        if PreferencesStorage.shared.isBackgroundDownloadEnabled, Self.isBackgroundNeeded {
+        if PreferencesStorage.shared.isBackgroundDownloadEnabled, BackgroundService.isBackgroundNeeded {
             BackgroundService.shared.start()
         }
     }
@@ -24,25 +24,8 @@ extension SceneDelegate {
             .filter { _ in BackgroundService.shared.isRunning }
             .filter { $0.oldSnapshot.friendlyState != $0.handle.snapshot.friendlyState }
             .sink { _ in
-                guard !Self.isBackgroundNeeded else { return }
+                guard !BackgroundService.isBackgroundNeeded else { return }
                 BackgroundService.shared.stop()
             }
-    }
-}
-
-private extension SceneDelegate {
-    static var isBackgroundNeeded: Bool {
-        TorrentService.shared.torrents.contains(where: { $0.needBackground })
-    }
-}
-
-private extension TorrentHandle.Snapshot {
-    var needBackground: Bool {
-        false
-            || friendlyState == .checkingFiles
-            || friendlyState == .checkingResumeData
-            || friendlyState == .downloading
-            || friendlyState == .downloadingMetadata
-            || (friendlyState == .seeding && PreferencesStorage.shared.isBackgroundSeedingEnabled)
     }
 }

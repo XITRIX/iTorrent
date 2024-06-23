@@ -73,7 +73,7 @@ private extension RssDetailsViewController {
 
             Task {
                 if let torrentFile = await TorrentFile(remote: url) {
-                    await TorrentAddViewModel.present(with: torrentFile, from: parent)
+                    TorrentAddViewModel.present(with: torrentFile, from: parent)
                 } else {
                     let safari = await BaseSafariViewController(url: url)
                     await parent.present(safari, animated: true)

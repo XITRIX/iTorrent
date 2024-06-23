@@ -75,9 +75,7 @@ class RssModel: Hashable, Codable {
                 $items)
             { _, _, _, _ in () }
                 .sink { _ in
-                    Task {
-                        await (Mvvm.shared.container.resolve(type: RssFeedProvider.self)).saveState()
-                    }
+                     (Mvvm.shared.container.resolve(type: RssFeedProvider.self)).saveState()
                 }
         }
     }

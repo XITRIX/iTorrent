@@ -81,7 +81,7 @@ private extension RssSearchViewModel {
 
     func setSeen(_ seen: Bool, for itemModel: RssItemModel) {
         Task.detached(priority: .userInitiated) { [rssProvider] in
-            outerLoop: for channel in await rssProvider.rssModels {
+            outerLoop: for channel in rssProvider.rssModels {
                 for itemIndex in 0 ..< channel.items.count {
                     guard channel.items[itemIndex] == itemModel else { continue }
                     await MainActor.run {
