@@ -28,42 +28,6 @@
           }
         }
       }
-    },
-    "NSLocationAlwaysAndWhenInUseUsageDescription" : {
-      "comment" : "Privacy - Location Always and When In Use Usage Description",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "For background downloading purpose ONLY! \\n\\\"Always allow\\\" mode will allow app to hide blue location indicator from status bar"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ТОЛЬКО для фоновой загрузки!\nРежим «Всегда разрешать» позволит приложению скрывать синий индикатор местоположения из строки состояния."
-          }
-        }
-      }
-    },
-    "NSLocationWhenInUseUsageDescription" : {
-      "comment" : "Privacy - Location When In Use Usage Description",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "For background downloading purpose ONLY!"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ТОЛЬКО для фоновой загрузки!"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

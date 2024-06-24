@@ -274,7 +274,7 @@
 		7C5FBE6C2BC2EF8B0069E5A0 /* EditTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextView.swift; sourceTree = "<group>"; };
 		7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 		7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MvvmViewModelProtocol+Alert.swift"; sourceTree = "<group>"; };
-		7C609A572C1F1D6400586635 /* Info-EU.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-EU.plist"; sourceTree = "<group>"; };
+		7C609A572C1F1D6400586635 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C609A592C1F2A2700586635 /* iTorrent.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iTorrent.xcconfig; sourceTree = "<group>"; };
 		7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+AVPlayer.swift"; sourceTree = "<group>"; };
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
@@ -370,7 +370,6 @@
 		D1A226A42AEEEFCC00669D6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1A226A62AEEEFDF00669D6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1A226A92AEEEFDF00669D6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D1A226AB2AEEEFE000669D6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1A226D42AEEF73600669D6D /* MvvmFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MvvmFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A226F12AEF019400669D6D /* TorrentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentService.swift; sourceTree = "<group>"; };
 		D1A226F32AEF01B700669D6D /* LibTorrent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LibTorrent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -581,8 +580,7 @@
 		7CC411562BD2DCC000CA8B13 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				D1A226AB2AEEEFE000669D6D /* Info.plist */,
-				7C609A572C1F1D6400586635 /* Info-EU.plist */,
+				7C609A572C1F1D6400586635 /* Info.plist */,
 				7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */,
 				7C609A592C1F2A2700586635 /* iTorrent.xcconfig */,
 				D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */,
@@ -1663,70 +1661,6 @@
 			};
 			name = Debug;
 		};
-		7C5FBE502BC0ADCC0069E5A0 /* RelWithDebInfo-SIDE */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ProgressWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ProgressWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = "RelWithDebInfo-SIDE";
-		};
-		7C5FBE512BC0ADCC0069E5A0 /* Release-SIDE */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ProgressWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ProgressWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Distrib";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = "Release-SIDE";
-		};
 		7C609A512C1F1D2A00586635 /* RelWithDebInfo */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
@@ -1812,7 +1746,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iTorrent/Core/Assets/Info-EU.plist";
+				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1951,7 +1885,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
 				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iTorrent/Core/Assets/Info-EU.plist";
+				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2080,68 +2014,6 @@
 			};
 			name = Debug;
 		};
-		D1A226AD2AEEEFE000669D6D /* Release-SIDE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.4;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_STRICT_CONCURRENCY = minimal;
-				SWIFT_VERSION = 5.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release-SIDE";
-		};
 		D1A226AF2AEEEFE000669D6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2185,161 +2057,6 @@
 			};
 			name = Debug;
 		};
-		D1A226B02AEEEFE000669D6D /* Release-SIDE */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
-				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Distrib";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Distrib";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2,6,7";
-				XROS_DEPLOYMENT_TARGET = 1.0;
-			};
-			name = "Release-SIDE";
-		};
-		D1CAB88A2AF3EDE500EB6AFF /* RelWithDebInfo-SIDE */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C609A592C1F2A2700586635 /* iTorrent.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.4;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = minimal;
-				SWIFT_VERSION = 5.0;
-			};
-			name = "RelWithDebInfo-SIDE";
-		};
-		D1CAB88B2AF3EDE500EB6AFF /* RelWithDebInfo-SIDE */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
-				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETPLACES = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Dev";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
-				SUPPORTS_MACCATALYST = YES;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2,6,7";
-				XROS_DEPLOYMENT_TARGET = 1.0;
-			};
-			name = "RelWithDebInfo-SIDE";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2347,37 +2064,31 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C5FBE4F2BC0ADCC0069E5A0 /* Debug */,
-				7C5FBE502BC0ADCC0069E5A0 /* RelWithDebInfo-SIDE */,
 				7C609A532C1F1D2A00586635 /* RelWithDebInfo */,
-				7C5FBE512BC0ADCC0069E5A0 /* Release-SIDE */,
 				7C609A562C1F1D3100586635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-SIDE";
+			defaultConfigurationName = Debug;
 		};
 		D1A226952AEEEFCC00669D6D /* Build configuration list for PBXProject "iTorrent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D1A226AC2AEEEFE000669D6D /* Debug */,
-				D1CAB88A2AF3EDE500EB6AFF /* RelWithDebInfo-SIDE */,
 				7C609A512C1F1D2A00586635 /* RelWithDebInfo */,
-				D1A226AD2AEEEFE000669D6D /* Release-SIDE */,
 				7C609A542C1F1D3100586635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-SIDE";
+			defaultConfigurationName = Debug;
 		};
 		D1A226AE2AEEEFE000669D6D /* Build configuration list for PBXNativeTarget "iTorrent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D1A226AF2AEEEFE000669D6D /* Debug */,
-				D1CAB88B2AF3EDE500EB6AFF /* RelWithDebInfo-SIDE */,
 				7C609A522C1F1D2A00586635 /* RelWithDebInfo */,
-				D1A226B02AEEEFE000669D6D /* Release-SIDE */,
 				7C609A552C1F1D3100586635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-SIDE";
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

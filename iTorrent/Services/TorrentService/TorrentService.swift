@@ -120,18 +120,21 @@ extension TorrentService: SessionDelegate {
 
 private extension TorrentService {
     func setup() {
+        // Pause the core, so it will not deadlock app on making first snapshots
+        session.pause();
         torrents = session.torrents.map { torrent in
             torrent.prepareToAdd(into: self)
             return torrent
         }
+        // After initialization is done we could resume core
+        session.resume();
         session.add(self)
 
         disposeBag.bind {
             Publishers.combineLatest(
                 preferences.settingsUpdatePublisher,
-                network.$availableInterfaces,
-                preferences.$useAllAvailableInterfaces
-            ) { _, interfaces, _ in
+                network.$availableInterfaces
+            ) { _, interfaces in
                 interfaces
             }
             .sink { [unowned self] interfaces in

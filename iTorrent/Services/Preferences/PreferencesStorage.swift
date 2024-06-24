@@ -121,6 +121,7 @@ class PreferencesStorage: Resolvable {
             .combineLatest($proxyUsername)
             .combineLatest($proxyPassword)
             .combineLatest($proxyPeerConnections)
+            .combineLatest($useAllAvailableInterfaces)
             .map { _ in }
             .eraseToAnyPublisher()
     }
