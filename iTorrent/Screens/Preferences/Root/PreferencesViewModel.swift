@@ -82,7 +82,7 @@ private extension PreferencesViewModel {
 #endif
 
         sections.append(.init(id: "seeding", header: %"preferences.seeding") {
-            PRSwitchViewModel(with: .init(title: %"preferences.seeding.stopOnFinish", value: preferences.$stopSeedingOnFinish.binding))
+            PRSwitchViewModel(with: .init(title: %"preferences.seeding.stopOnFinish", value: preferences.$stopSeedingOnFinish.binding, isDangerous: true))
         })
 
         sections.append(.init(id: "torrentQueueLimits", header: %"preferences.queueLimits") {
