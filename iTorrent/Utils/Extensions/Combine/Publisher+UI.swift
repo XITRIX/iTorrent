@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 
+@MainActor
 extension Publisher where Self.Failure == Never {
 
     /// Attaches a subscriber with closure-based behavior to a publisher that never fails and receives on Main Thread if needed.

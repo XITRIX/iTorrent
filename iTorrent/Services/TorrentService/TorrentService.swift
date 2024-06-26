@@ -91,10 +91,7 @@ extension TorrentService: SessionDelegate {
         else { return }
 
         torrent.prepareToAdd(into: self)
-
-        DispatchQueue.main.sync { [self] in
-            torrents.append(torrent)
-        }
+        torrents.append(torrent)
     }
 
     func torrentManager(_ manager: Session, didRemoveTorrentWithHash hashesData: TorrentHashes) {
