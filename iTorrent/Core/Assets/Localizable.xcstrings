@@ -2721,13 +2721,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stop on finish"
+            "value" : "Stop on download finish"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Остановить по готовности"
+            "value" : "Остановить по окончании загрузки"
           }
         }
       }

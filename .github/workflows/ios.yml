@@ -12,9 +12,6 @@ on:
 jobs:
   build_with_signing:
     runs-on: macos-14
-    strategy:
-      matrix:
-        config: [Release]
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -38,9 +35,11 @@ jobs:
           BUILD_DISTRIB_CERTIFICATE_BASE64: ${{ secrets.BUILD_DISTRIB_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
           BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
-          BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64 }}
           BUILD_PROVISION_PROFILE_DISTRIB_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_DISTRIB_BASE64 }}
+          BUILD_PROVISION_PROFILE_PROD_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_PROD_BASE64 }}
+          BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64 }}
           BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_DISTRIB_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_DISTRIB_BASE64 }}
+          BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_PROD_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_PROD_BASE64 }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
           # create variables
@@ -48,9 +47,11 @@ jobs:
           CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
           CERTIFICATE_DISTRIB_PATH=$RUNNER_TEMP/build_distrib_certificate.p12
           PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-          PW_PP_PATH=$RUNNER_TEMP/build_progresswidget_pp.mobileprovision
           PP_DISTRIB_PATH=$RUNNER_TEMP/build_pp_distrib.mobileprovision
+          PP_PROD_PATH=$RUNNER_TEMP/build_pp_prod.mobileprovision
+          PW_PP_PATH=$RUNNER_TEMP/build_progresswidget_pp.mobileprovision
           PW_PP_DISTRIB_PATH=$RUNNER_TEMP/build_progresswidget_pp_distrib.mobileprovision
+          PW_PP_PROD_PATH=$RUNNER_TEMP/build_progresswidget_pp_prod.mobileprovision
           KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
 
           # import firebase plist to the project
@@ -60,9 +61,11 @@ jobs:
           echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
           echo -n "$BUILD_DISTRIB_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_DISTRIB_PATH
           echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
-          echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64" | base64 --decode -o $PW_PP_PATH
           echo -n "$BUILD_PROVISION_PROFILE_DISTRIB_BASE64" | base64 --decode -o $PP_DISTRIB_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_PROD_BASE64" | base64 --decode -o $PP_PROD_PATH
+          echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64" | base64 --decode -o $PW_PP_PATH
           echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_DISTRIB_BASE64" | base64 --decode -o $PW_PP_DISTRIB_PATH
+          echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_PROD_BASE64" | base64 --decode -o $PW_PP_PROD_PATH
 
           # create temporary keychain
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
@@ -77,9 +80,11 @@ jobs:
           # apply provisioning profile
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles  
-          cp $PW_PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles    
-          cp $PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles  
-          cp $PW_PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles        
+          cp $PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PROD_PATH ~/Library/MobileDevice/Provisioning\ Profiles  
+          cp $PW_PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PW_PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PW_PP_PROD_PATH ~/Library/MobileDevice/Provisioning\ Profiles      
 
       - name: build archive
         run: |
@@ -88,65 +93,145 @@ jobs:
           -scheme "iTorrent" \
           -archivePath $RUNNER_TEMP/itorrent.xcarchive \
           -sdk iphoneos \
-          -configuration ${{ matrix.config }} \
+          -configuration Release \
           -destination generic/platform=iOS \
-          clean archive          
+          clean archive     
+      
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: itorrent.xcarchive
+          path: |
+            ${{ runner.temp }}/itorrent.xcarchive
+          retention-days: 3
 
-      - name: export ipa
+  export_ipa:
+    needs: [build_with_signing]
+    runs-on: macos-14
+    strategy:
+      matrix:
+        org: [adhoc, prod] 
+        include:
+          - org: adhoc
+            export_options_plist_secret: EXPORT_OPTIONS_PLIST
+          - org: prod
+            export_options_plist_secret: EXPORT_PROD_OPTIONS_PLIST
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.4
+          
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Install the Apple certificate and provisioning profile
         env:
-          EXPORT_OPTIONS_PLIST: ${{ secrets.EXPORT_OPTIONS_PLIST }}
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          BUILD_DISTRIB_CERTIFICATE_BASE64: ${{ secrets.BUILD_DISTRIB_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          BUILD_PROVISION_PROFILE_DISTRIB_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_DISTRIB_BASE64 }}
+          BUILD_PROVISION_PROFILE_PROD_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_PROD_BASE64 }}
+          BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64 }}
+          BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_DISTRIB_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_DISTRIB_BASE64 }}
+          BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_PROD_BASE64: ${{ secrets.BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_PROD_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          # create variables
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          CERTIFICATE_DISTRIB_PATH=$RUNNER_TEMP/build_distrib_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          PP_DISTRIB_PATH=$RUNNER_TEMP/build_pp_distrib.mobileprovision
+          PP_PROD_PATH=$RUNNER_TEMP/build_pp_prod.mobileprovision
+          PW_PP_PATH=$RUNNER_TEMP/build_progresswidget_pp.mobileprovision
+          PW_PP_DISTRIB_PATH=$RUNNER_TEMP/build_progresswidget_pp_distrib.mobileprovision
+          PW_PP_PROD_PATH=$RUNNER_TEMP/build_progresswidget_pp_prod.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_DISTRIB_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_DISTRIB_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_DISTRIB_BASE64" | base64 --decode -o $PP_DISTRIB_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_PROD_BASE64" | base64 --decode -o $PP_PROD_PATH
+          echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_BASE64" | base64 --decode -o $PW_PP_PATH
+          echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_DISTRIB_BASE64" | base64 --decode -o $PW_PP_DISTRIB_PATH
+          echo -n "$BUILD_PROGRESS_WIDGET_PROVISION_PROFILE_PROD_BASE64" | base64 --decode -o $PW_PP_PROD_PATH
+
+          # create temporary keychain
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import $CERTIFICATE_DISTRIB_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles  
+          cp $PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PROD_PATH ~/Library/MobileDevice/Provisioning\ Profiles  
+          cp $PW_PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PW_PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PW_PP_PROD_PATH ~/Library/MobileDevice/Provisioning\ Profiles      
+
+      - name: Export ipa
+        env:
+          EXPORT_OPTIONS_PLIST: ${{ secrets[matrix.export_options_plist_secret] }}
         run: |
           EXPORT_OPTS_PATH=$RUNNER_TEMP/ExportOptions.plist
           echo -n "$EXPORT_OPTIONS_PLIST" | base64 --decode -o $EXPORT_OPTS_PATH
-          xcodebuild -exportArchive -archivePath $RUNNER_TEMP/itorrent.xcarchive -exportOptionsPlist $EXPORT_OPTS_PATH -exportPath $RUNNER_TEMP/build          
+          xcodebuild -exportArchive -archivePath itorrent.xcarchive -exportOptionsPlist $EXPORT_OPTS_PATH -exportPath $RUNNER_TEMP/build          
 
       - name: Move dSYMs
-        run: mv $RUNNER_TEMP/itorrent.xcarchive/dSYMs $RUNNER_TEMP/dSYMs
+        run: mv itorrent.xcarchive/dSYMs $RUNNER_TEMP/dSYMs
 
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: app-${{ matrix.config }}
+          name: app-Release-${{ matrix.org }}
           path: |
             ${{ runner.temp }}/build/iTorrent.ipa
             ${{ runner.temp }}/build/manifest.plist
             ${{ runner.temp }}/dSYMs
-          # you can also archive the entire directory 
-          # path: ${{ runner.temp }}/build
           retention-days: 3
 
   github_release:
-    needs: [build_with_signing]
+    needs: [export_ipa]
     runs-on: macos-14
     steps:
-      - name: Release
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.4
+          
+      - name: Download artifacts
         uses: actions/download-artifact@v4
 
       - name: ZIP dSYMs
         run: |
-          zip -vr dSYMs.zip app-Release/dSYMs/ -x "*.DS_Store"
-        # zip -vr dSYMs-EU.zip app-Release-EU/dSYMs/ -x "*.DS_Store"
+          zip -vr dSYMs.zip app-Release-adhoc/dSYMs/ -x "*.DS_Store"
 
-      # - name: Move for EU
-      #   run: mv app-Release-EU/build/iTorrent.ipa app-Release/build/iTorrent-EU.ipa
-
-      - name: Release
+      - name: Release to GitHub
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           repository: XITRIX/iTorrent-v2
           token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
           files: |
-            app-Release/build/iTorrent.ipa
-            app-Release/build/manifest.plist
+            app-Release-adhoc/build/iTorrent.ipa
+            app-Release-adhoc/build/manifest.plist
             dSYMs.zip
-          # app-Release/build/iTorrent-EU.ipa
-          # dSYMs-EU.zip
 
   altstore_release:
     needs: [github_release]
     runs-on: macos-14
     steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.4
+          
       - name: checkout repository
         uses: actions/checkout@v1
 
@@ -163,3 +248,26 @@ jobs:
           token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
           files: |
             ./AltStoreSource.json
+
+  appstore_release:
+    needs: [export_ipa]
+    runs-on: macos-14
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 15.4
+          
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Copy P8 KEY from secrets
+        env:
+          PKCS8_KEY: ${{ secrets.APPSTORE_CONNECT_PKCS8_KEY }}
+        run: |
+          mkdir ./private_keys
+          echo -n "$PKCS8_KEY" >> ./private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_KEY_ID }}.p8
+
+      - name: Upload app to TestFlight
+        run: |
+          # xcrun altool --upload-package app-Release-prod/build/iTorrent.ipa --apiKey ${{ secrets.APPSTORE_CONNECT_KEY_ID }} --apiIssuer ${{ secrets.APPSTORE_CONNECT_ISSUER_ID }}
+          xcrun altool --upload-app -f app-Release-prod/build/iTorrent.ipa --apiKey ${{ secrets.APPSTORE_CONNECT_KEY_ID }} --apiIssuer ${{ secrets.APPSTORE_CONNECT_ISSUER_ID }} -t ios
