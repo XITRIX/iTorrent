@@ -40,7 +40,7 @@ struct ProgressWidgetLiveActivity: Widget {
                 // Expanded UI goes here.  Compose the expanded UI through
                 // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
-                    Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s"))
+                    LeadingView(context: context)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     Text(String("\(String(format: "%.2f", context.state.progress * 100))%")).padding(.top, 2)
@@ -59,7 +59,7 @@ struct ProgressWidgetLiveActivity: Widget {
                     .tint(Color(uiColor: tintColor))
                 }
             } compactLeading: {
-                Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s"))
+                LeadingView(context: context)
             } compactTrailing: {
                 ProgressView(value: context.state.progress)
                     .progressViewStyle(.circular)
@@ -90,7 +90,7 @@ struct ProgressWidgetLiveActivity: Widget {
 @available(iOS 18.0, *)
 struct ProgressWidgetLiveActivityWatchSupportContent: View {
     @Environment(\.activityFamily) var activityFamily
-    let context: ActivityViewContext<ProgressWidgetAttributes>
+    @State var context: ActivityViewContext<ProgressWidgetAttributes>
 
     var body: some View {
         if activityFamily == .medium {
@@ -103,9 +103,24 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
                     Spacer()
                 }
                 HStack {
-                    Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
-                    Spacer()
-                    Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
+                    switch context.state.state {
+                    case .checkingFiles:
+                        Text(context.state.state.name)
+                    case .downloadingMetadata:
+                        Text(context.state.state.name)
+                    case .downloading:
+                            Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
+                            Spacer()
+                            Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
+                    case .finished:
+                        Text(context.state.state.name)
+                    case .seeding:
+                        Text(context.state.state.name)
+                    case .checkingResumeData:
+                        Text(context.state.state.name)
+                    case .paused:
+                        Text(context.state.state.name)
+                    }
                 }
                 .font(.caption2)
                 .foregroundColor(.secondary)
@@ -125,7 +140,7 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
 #endif
 
 struct ProgressWidgetLiveActivityContent: View {
-    let context: ActivityViewContext<ProgressWidgetAttributes>
+    @State var context: ActivityViewContext<ProgressWidgetAttributes>
 
     var body: some View {
         VStack(spacing: 8) {
@@ -134,9 +149,25 @@ struct ProgressWidgetLiveActivityContent: View {
                 Spacer()
             }
             HStack {
-                Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
-                Text(String(" | "))
-                Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
+                switch context.state.state {
+                case .checkingFiles:
+                    Text(context.state.state.name)
+                case .downloadingMetadata:
+                    Text(context.state.state.name)
+                case .downloading:
+                    Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
+                    Text(String(" | "))
+                    Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
+                case .finished:
+                    Text(context.state.state.name)
+                case .seeding:
+                    Text(context.state.state.name)
+                case .checkingResumeData:
+                    Text(context.state.state.name)
+                case .paused:
+                    Text(context.state.state.name)
+                }
+
                 Spacer()
                 Text(String("\(String(format: "%.2f", context.state.progress * 100))%"))
             }
@@ -147,6 +178,29 @@ struct ProgressWidgetLiveActivityContent: View {
                 .progressViewStyle(.linear)
         }
         .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
+    }
+}
+
+struct LeadingView: View {
+    @State var context: ActivityViewContext<ProgressWidgetAttributes>
+
+    var body: some View {
+        switch context.state.state {
+        case .downloading:
+            Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s"))
+        case .checkingFiles:
+            Image(systemName: "arrow.triangle.2.circlepath")
+        case .downloadingMetadata:
+            Image(systemName: "arrow.up.arrow.down")
+        case .finished:
+            EmptyView()
+        case .seeding:
+            Image(systemName: "arrow.up.to.line")
+        case .checkingResumeData:
+            Image(systemName: "arrow.triangle.2.circlepath")
+        case .paused:
+            Image(systemName: "pause.fill")
+        }
     }
 }
 

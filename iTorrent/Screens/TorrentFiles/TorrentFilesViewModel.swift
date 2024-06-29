@@ -79,7 +79,7 @@ class TorrentFilesViewModel: BaseViewModelWith<TorrentFilesViewModel.Config> {
             .sorted(by: { first, second in
                 let f = first.value.name
                 let s = second.value.name
-                return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
+                return f.localizedStandardCompare(s) == .orderedAscending
             })
             .sorted(by: { first, second in
                 if !first.key.starts(with: "./"), !second.key.starts(with: "./") {
