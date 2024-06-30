@@ -9,11 +9,14 @@
 import ActivityKit
 import SwiftUI
 import WidgetKit
+import MarqueeText
+
+
 
 struct ProgressWidgetLiveActivity: Widget {
     static var userDefaults: UserDefaults { UserDefaults(suiteName: "group.itorrent.life-activity") ?? .standard }
 
-    var tintColor: UIColor {
+    static var tintColor: UIColor {
         guard let data = Self.userDefaults.data(forKey: "preferencesTintColor")
         else { return .tintColor }
         return (try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data)) ?? .tintColor
@@ -22,19 +25,23 @@ struct ProgressWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         let config = ActivityConfiguration(for: ProgressWidgetAttributes.self) { context in
             // Lock screen/banner UI goes here
-#if swift(>=6)
+
             if #available(iOSApplicationExtension 18, *) {
+#if XCODE16
                 ProgressWidgetLiveActivityWatchSupportContent(context: context)
-                    .tint(Color(uiColor: tintColor))
+                    .tint(Color(uiColor: ProgressWidgetLiveActivity.tintColor))
                     .padding()
-            } else {
-#endif
+#else
                 ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: tintColor))
+                    .tint(Color(uiColor: Self.tintColor))
                     .padding()
-#if swift(>=6)
-            }
 #endif
+
+            } else {      
+                ProgressWidgetLiveActivityContent(context: context)
+                    .tint(Color(uiColor: Self.tintColor))
+                    .padding()
+            }
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through
@@ -43,50 +50,52 @@ struct ProgressWidgetLiveActivity: Widget {
                     LeadingView(context: context)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text(String("\(String(format: "%.2f", context.state.progress * 100))%")).padding(.top, 2)
+                    if context.state.state == .seeding {
+                        Image(systemName: "arrow.up.to.line")
+                    } else {
+                        Text(String("\(String(format: "%.2f", context.state.progress * 100))%")).padding(.top, 2)
+                    }
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack {
                         HStack {
                             Text(context.attributes.name).padding(.top, 2)
                             Spacer()
-                            Text(context.state.timeRemainig)
+                            if context.state.state == .downloading {
+                                Text(context.state.timeRemainig)
+                            }
                         }
                         ProgressView(value: context.state.progress)
                             .progressViewStyle(.linear)
                             .padding([.leading, .trailing], 8)
                     }
-                    .tint(Color(uiColor: tintColor))
+                    .tint(Color(uiColor: Self.tintColor))
                 }
             } compactLeading: {
                 LeadingView(context: context)
             } compactTrailing: {
-                ProgressView(value: context.state.progress)
-                    .progressViewStyle(.circular)
-                    .tint(Color(uiColor: tintColor))
+                TrailingView(context: context)
             } minimal: {
-                ProgressView(value: context.state.progress)
-                    .progressViewStyle(.circular)
-                    .tint(Color(uiColor: tintColor))
+                TrailingView(context: context)
             }
             .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
-            .keylineTint(Color(uiColor: tintColor))
+            .keylineTint(Color(uiColor: Self.tintColor))
         }
 
-#if swift(>=6)
         if #available(iOS 18.0, *) {
+#if XCODE16
             return config.supplementalActivityFamilies([.small])
-        } else {
-#endif
+#else
             return config
-#if swift(>=6)
-        }
 #endif
+        } else {
+            return config
+        }
     }
 
 }
 
-#if swift(>=6)
+#if XCODE16
 @available(iOS 18.0, *)
 struct ProgressWidgetLiveActivityWatchSupportContent: View {
     @Environment(\.activityFamily) var activityFamily
@@ -98,8 +107,12 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
         } else {
             VStack(spacing: 8) {
                 HStack {
-                    Text(context.attributes.name)
-                        .font(.caption)
+                    MarqueeText(
+                        text: context.attributes.name,
+                        font: UIFont.preferredFont(forTextStyle: .caption1),
+                        leftFade: 16,
+                        rightFade: 16,
+                        startDelay: 3)
                     Spacer()
                 }
                 HStack {
@@ -116,6 +129,8 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
                         Text(context.state.state.name)
                     case .seeding:
                         Text(context.state.state.name)
+                        Spacer()
+                        Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
                     case .checkingResumeData:
                         Text(context.state.state.name)
                     case .paused:
@@ -162,6 +177,8 @@ struct ProgressWidgetLiveActivityContent: View {
                     Text(context.state.state.name)
                 case .seeding:
                     Text(context.state.state.name)
+                    Text(String(" | "))
+                    Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
                 case .checkingResumeData:
                     Text(context.state.state.name)
                 case .paused:
@@ -195,11 +212,25 @@ struct LeadingView: View {
         case .finished:
             EmptyView()
         case .seeding:
-            Image(systemName: "arrow.up.to.line")
+            Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s"))
         case .checkingResumeData:
             Image(systemName: "arrow.triangle.2.circlepath")
         case .paused:
             Image(systemName: "pause.fill")
+        }
+    }
+}
+
+struct TrailingView: View {
+    @State var context: ActivityViewContext<ProgressWidgetAttributes>
+
+    var body: some View {
+        if context.state.state == .seeding {
+            Image(systemName: "arrow.up.to.line")
+        } else {
+            ProgressView(value: context.state.progress)
+                .progressViewStyle(.circular)
+                .tint(Color(uiColor: ProgressWidgetLiveActivity.tintColor))
         }
     }
 }

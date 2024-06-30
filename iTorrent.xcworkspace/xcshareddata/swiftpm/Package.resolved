@@ -1,5 +1,5 @@
 {
-  "originHash" : "1f827f6f90cf09c999f724dd03b46655354dd5716554b945fa319f010934b777",
+  "originHash" : "cbc182d54a2a5dee7606af785b33cd6071718eb87c8743e72920c568a401fafd",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -107,6 +107,15 @@
       "state" : {
         "revision" : "877e810534cda9afabb8143ae319b7c3341b121b",
         "version" : "4.5.0"
+      }
+    },
+    {
+      "identity" : "marqueetext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/joekndy/MarqueeText.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
       }
     },
     {

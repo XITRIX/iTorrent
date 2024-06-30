@@ -14,7 +14,7 @@ import Network
 
 class PreferencesStorage: Resolvable {
     private init() {
-        #if IS_EU
+        #if !IS_SUPPORT_LOCATION_BG
         // Location mode is not allowed by Apple policy
         backgroundMode = .audio
         #endif
