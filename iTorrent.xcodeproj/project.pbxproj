@@ -10,6 +10,9 @@
 		7C013DE32C28AA3C0026A11B /* sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C013DE22C28A97F0026A11B /* sound.m4a */; };
 		7C013DE42C2F38AA0026A11B /* LocalizationAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */; };
 		7C013DE52C2F41760026A11B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
+		7C1C08AA2C31F2F800569B45 /* PauseTorrentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */; };
+		7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */; };
+		7C1C08AD2C31FEA400569B45 /* IntentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08AC2C31FEA000569B45 /* IntentsService.swift */; };
 		7C3142D02C317E6400397E82 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 7C3142CF2C317E6400397E82 /* MarqueeText */; };
 		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
 		7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */; };
@@ -55,6 +58,8 @@
 		7CB2639C2C0671320083C052 /* Publisher+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639B2C0671320083C052 /* Publisher+UI.swift */; };
 		7CB2639E2C0A5B420083C052 /* BaseSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */; };
 		7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */; };
+		7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
+		7CBDBAAE2C31EF52008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CC411582BD2DCF800CA8B13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */; };
 		7CC4115B2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115A2BD2DE3800CA8B13 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		7CC4115D2BD2DE3800CA8B13 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, xros, ); productRef = 7CC4115C2BD2DE3800CA8B13 /* FirebaseCrashlytics */; };
@@ -239,6 +244,8 @@
 
 /* Begin PBXFileReference section */
 		7C013DE22C28A97F0026A11B /* sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.m4a; sourceTree = "<group>"; };
+		7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTorrentIntent.swift; sourceTree = "<group>"; };
+		7C1C08AC2C31FEA000569B45 /* IntentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsService.swift; sourceTree = "<group>"; };
 		7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UnityAds.xcframework; path = Submodules/UnityAds.xcframework; sourceTree = "<group>"; };
 		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
 		7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Unity.swift"; sourceTree = "<group>"; };
@@ -286,6 +293,7 @@
 		7CB2639B2C0671320083C052 /* Publisher+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+UI.swift"; sourceTree = "<group>"; };
 		7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSafariViewController.swift; sourceTree = "<group>"; };
 		7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSharingPreferencesViewModel.swift; sourceTree = "<group>"; };
+		7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppGroup.swift"; sourceTree = "<group>"; };
 		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
@@ -465,6 +473,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C1C08AE2C31FEF700569B45 /* IntentsService */ = {
+			isa = PBXGroup;
+			children = (
+				7C1C08AF2C31FEFD00569B45 /* Intents */,
+				7C1C08AC2C31FEA000569B45 /* IntentsService.swift */,
+			);
+			path = IntentsService;
+			sourceTree = "<group>";
+		};
+		7C1C08AF2C31FEFD00569B45 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		7C3142D42C31ED4600397E82 /* LiveActivityService */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */,
+			);
+			path = LiveActivityService;
+			sourceTree = "<group>";
+		};
 		7C4CF2F82BDE711A0078FEA1 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
@@ -958,6 +991,7 @@
 				D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */,
 				7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */,
 				7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */,
+				7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1059,6 +1093,8 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7C1C08AE2C31FEF700569B45 /* IntentsService */,
+				7C3142D42C31ED4600397E82 /* LiveActivityService */,
 				D1B99D842BEE5E4100F51514 /* Patreon */,
 				7C4CF2F82BDE711A0078FEA1 /* Ads */,
 				D1DB71892BD915F4007F9267 /* ImageCache */,
@@ -1070,7 +1106,6 @@
 				7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */,
 				D1352D2B2BBD6E0E00104E7B /* MemorySpaceManager.swift */,
 				D1352D3B2BBD7F8800104E7B /* TorrentMonitoringService.swift */,
-				7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1447,7 +1482,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C1C08AA2C31F2F800569B45 /* PauseTorrentIntent.swift in Sources */,
 				7C5FBE442BC0ADC90069E5A0 /* ProgressWidgetLiveActivity.swift in Sources */,
+				7CBDBAAE2C31EF52008C986B /* UserDefaults+AppGroup.swift in Sources */,
 				7C5FBE422BC0ADC90069E5A0 /* ProgressWidgetBundle.swift in Sources */,
 				7C5FBE532BC0B2780069E5A0 /* SpeedFormat.swift in Sources */,
 				7C5FBE562BC0B35C0069E5A0 /* ProgressWidgetAttributes.swift in Sources */,
@@ -1493,6 +1530,7 @@
 				7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */,
 				7CFEBEA02BC6F3CD0013233F /* Date+Extensions.swift in Sources */,
 				D1DB718B2BD91606007F9267 /* ImageCache.swift in Sources */,
+				7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
@@ -1548,6 +1586,7 @@
 				D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */,
 				D1048D8B2BBEB6DE0027EF2F /* CombineLatest.swift in Sources */,
 				D11138572AF976CE008907F7 /* TorrentAddDirectoryItemViewModel.swift in Sources */,
+				7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */,
 				D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */,
 				D11BE5492AFBA03D00780C1B /* PRButtonView.swift in Sources */,
 				7CFEBE8B2BC439CF0013233F /* RssChannelItemCellViewModel.swift in Sources */,
@@ -1556,6 +1595,7 @@
 				D1352D322BBD720C00104E7B /* PRStorageCell.swift in Sources */,
 				7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */,
 				D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */,
+				7C1C08AD2C31FEA400569B45 /* IntentsService.swift in Sources */,
 				7CFEBE832BC434A10013233F /* BaseCollectionViewController.swift in Sources */,
 				D1A5D0CE2BE52728003E05D5 /* AdView+Google.swift in Sources */,
 				D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */,

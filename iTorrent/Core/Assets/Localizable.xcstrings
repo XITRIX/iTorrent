@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@ of %@ (%@)" : {
       "localizations" : {
         "en" : {
@@ -1152,6 +1155,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Показать в \"Файлы\""
+          }
+        }
+      }
+    },
+    "intent.pauseTorrent.hash.description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash of the Torrent that needs to be stopped"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хэш торрента который требуется остановить"
+          }
+        }
+      }
+    },
+    "intent.pauseTorrent.hash.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent hash"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хэш торрента"
+          }
+        }
+      }
+    },
+    "intent.pauseTorrent.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause Torrent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить торрент"
           }
         }
       }

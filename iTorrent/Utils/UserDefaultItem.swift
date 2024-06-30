@@ -39,7 +39,7 @@ struct UserDefaultItem<T: Codable> {
 }
 
 private extension UserDefaultItem {
-    static var userDefaults: UserDefaults { UserDefaults(suiteName: "group.itorrent.life-activity") ?? .standard }
+    static var userDefaults: UserDefaults { .itorrentGroup }
 
     static func get(by key: String) -> T? {
         guard let decoded = userDefaults.data(forKey: key),

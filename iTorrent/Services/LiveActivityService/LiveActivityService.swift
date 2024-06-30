@@ -13,12 +13,6 @@ import MvvmFoundation
 import UIKit
 #endif
 
-extension UserDefaults {
-    @objc dynamic var greetingsCount: Int {
-        return integer(forKey: "greetingsCount")
-    }
-}
-
 actor LiveActivityService {
     init() {
         disposeBag.bind {
@@ -27,11 +21,6 @@ actor LiveActivityService {
                 .sink { [unowned self] updateModel in
                     Task { await updateLiveActivity(with: updateModel.handle.snapshot) }
                 }
-
-            UserDefaults.standard.publisher(for: <#T##KeyPath<UserDefaults, Value>#>)
-            NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification).sink { notification in
-                notification.
-            }
 #endif
         }
     }

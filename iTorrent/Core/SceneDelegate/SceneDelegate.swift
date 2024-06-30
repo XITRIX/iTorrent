@@ -29,6 +29,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerDaemon(factory: RssFeedProvider.init)
         container.registerDaemon(factory: WebServerService.init)
         container.registerDaemon(factory: LiveActivityService.init)
+        container.registerDaemon(factory: IntentsService.init)
         container.registerDaemon(factory: AdsManager.init)
     }
 

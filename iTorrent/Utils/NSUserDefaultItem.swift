@@ -33,7 +33,7 @@ struct NSUserDefaultItem<Value: NSObject & NSCoding> {
 }
 
 private extension NSUserDefaultItem {
-    static var userDefaults: UserDefaults { UserDefaults(suiteName: "group.itorrent.life-activity") ?? .standard }
+    static var userDefaults: UserDefaults { .itorrentGroup }
 
     static func value(for key: String) -> Value? {
         guard let data = userDefaults.data(forKey: key)
