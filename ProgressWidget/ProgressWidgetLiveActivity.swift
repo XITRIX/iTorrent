@@ -119,22 +119,27 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
                     switch context.state.state {
                     case .checkingFiles:
                         Text(context.state.state.name)
+                        Spacer()
                     case .downloadingMetadata:
                         Text(context.state.state.name)
+                        Spacer()
                     case .downloading:
                             Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
                             Spacer()
                             Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
                     case .finished:
                         Text(context.state.state.name)
+                        Spacer()
                     case .seeding:
                         Text(context.state.state.name)
                         Spacer()
                         Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
                     case .checkingResumeData:
                         Text(context.state.state.name)
+                        Spacer()
                     case .paused:
                         Text(context.state.state.name)
+                        Spacer()
                     }
                 }
                 .font(.caption2)
