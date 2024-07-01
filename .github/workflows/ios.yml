@@ -3,7 +3,7 @@ name: "Build iOS app"
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*.*.*-*"
   # # manual trigger but change to any supported event
   # # see addl: https://www.andrewhoog.com/post/how-to-build-react-native-android-app-with-github-actions/#3-run-build-workflow
   # workflow_dispatch:
@@ -85,6 +85,13 @@ jobs:
           cp $PW_PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PW_PP_DISTRIB_PATH ~/Library/MobileDevice/Provisioning\ Profiles
           cp $PW_PP_PROD_PATH ~/Library/MobileDevice/Provisioning\ Profiles      
+
+      - name: Fix build number
+        run: |
+          VERSION=${GITHUB_REF_NAME//v/}
+          VERSIONPARTS=(${VERSION//-/ })
+          echo "Set project build number to: ${VERSIONPARTS[1]}"
+          xcrun agvtool new-version -all ${VERSIONPARTS[1]}
 
       - name: build archive
         run: |
