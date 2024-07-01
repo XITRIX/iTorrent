@@ -149,6 +149,8 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
                     case .paused:
                         Text(context.state.state.name)
                         Spacer()
+                    case .storageError:
+                        EmptyView()
                     }
                 }
                 .font(.caption2)
@@ -208,6 +210,8 @@ struct ProgressWidgetLiveActivityContent: View {
                     Text(context.state.state.name)
                 case .paused:
                     Text(context.state.state.name)
+                case .storageError:
+                    EmptyView()
                 }
 
                 Spacer()
@@ -253,6 +257,8 @@ struct LeadingView: View {
             Image(systemName: "arrow.triangle.2.circlepath")
         case .paused:
             Image(systemName: "pause.fill")
+        case .storageError:
+            EmptyView()
         }
     }
 }

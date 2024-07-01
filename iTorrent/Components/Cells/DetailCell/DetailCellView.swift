@@ -17,7 +17,8 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
         if isHorizontal {
             HStack {
                 Text(viewModel.title)
-                    .fontWeight(.semibold)
+                    .fontWeight(viewModel.isBold ? .semibold : .regular)
+                    .foregroundStyle(viewModel.isEnabled ? Color.primary : Color.secondary)
                 Spacer(minLength: viewModel.spacer)
                 Text(LocalizedStringKey(viewModel.detail))
                     .foregroundStyle(Color.accentColor)
@@ -43,6 +44,7 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
         cell.contentConfiguration = UIHostingConfiguration {
             Self(viewModel: itemIdentifier)
         }
+        cell.isUserInteractionEnabled = itemIdentifier.isEnabled
         cell.accessories = itemIdentifier.selectAction == nil ? [] : [.disclosureIndicator(displayed: .always)]
     }
 }

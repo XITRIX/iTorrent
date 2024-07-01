@@ -14,6 +14,8 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
     var body: some View {
         HStack {
             Text(viewModel.title)
+                .fontWeight(viewModel.isBold ? .semibold : .regular)
+                .foregroundStyle(viewModel.tintedTitle ? Color.accentColor : Color.primary)
             Spacer()
             Text(viewModel.value)
                 .foregroundStyle(viewModel.tinted ? Color.accentColor : Color.secondary)
@@ -21,6 +23,15 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
                 .multilineTextAlignment(.trailing)
         }
         .systemMinimumHeight()
+        .swipeActions {
+            if let removeAction = viewModel.removeAction {
+                Button(role: .destructive) {
+                    removeAction()
+                } label: {
+                    Image(systemName: "trash")
+                }
+            }
+        }
     }
 
     static var registration: UICollectionView.CellRegistration<MvvmCollectionViewListCell<PRButtonViewModel>, PRButtonViewModel> = .init { cell, indexPath, itemIdentifier in

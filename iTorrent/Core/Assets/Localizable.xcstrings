@@ -102,6 +102,38 @@
         }
       }
     },
+    "addTorrent.storage.manage" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настроить..."
+          }
+        }
+      }
+    },
+    "addTorrent.storage.selected" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите хранилище"
+          }
+        }
+      }
+    },
     "common.add" : {
       "localizations" : {
         "en" : {
@@ -146,6 +178,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "common.continue" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
           }
         }
       }
@@ -647,6 +695,55 @@
         }
       }
     },
+    "details.path" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хранилище"
+          }
+        }
+      }
+    },
+    "details.path.browse" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущее"
+          }
+        }
+      }
+    },
+    "details.path.migrate" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Migrate storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мигрировать хранилище"
+          }
+        }
+      }
+    },
     "details.pause" : {
       "localizations" : {
         "en" : {
@@ -659,6 +756,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пауза"
+          }
+        }
+      }
+    },
+    "details.refreshStorage.fail.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage not found"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хранилище не найдено"
+          }
+        }
+      }
+    },
+    "details.refreshStorage.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent will try to find missing storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent попробует найти утерянное хранилище"
+          }
+        }
+      }
+    },
+    "details.refreshStorage.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Refresh storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перезагрузить хранилище"
           }
         }
       }
@@ -2975,6 +3120,38 @@
         }
       }
     },
+    "preferences.storage.add" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add more..."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить..."
+          }
+        }
+      }
+    },
+    "preferences.storage.add.error.notDirectory" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected path is not a directory"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный путь не является директорией"
+          }
+        }
+      }
+    },
     "preferences.storage.allocate" : {
       "localizations" : {
         "en" : {
@@ -3003,6 +3180,86 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Доступно"
+          }
+        }
+      }
+    },
+    "preferences.storage.storages" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storages"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хранилища"
+          }
+        }
+      }
+    },
+    "preferences.storage.storages.available%lld/%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Available: %1$lld/%2$lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доступно: %1$lld/%2$lld"
+          }
+        }
+      }
+    },
+    "preferences.storage.warning.accept" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I understood, continue"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я понял, продолжить"
+          }
+        }
+      }
+    },
+    "preferences.storage.warning.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In case of using external drives, you should eject it only after closing iTorrent app. Otherwise iTorrent cannot garantee safety storing of your downloaded files and could potentially corrups current states of torrents from ejected drive."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В случае использования внешних дисков извлекать их следует только после закрытия приложения iTorrent. В противном случае iTorrent не может гарантировать безопасное хранение загруженных вами файлов и потенциально может испортить текущее состояние торрентов с извлеченного диска."
+          }
+        }
+      }
+    },
+    "preferences.storage.warning.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WARNING!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ВНИМАНИЕ!"
           }
         }
       }
@@ -3771,6 +4028,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Раздача"
+          }
+        }
+      }
+    },
+    "torrent.state.storageError" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Storage error"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка хранилища"
           }
         }
       }

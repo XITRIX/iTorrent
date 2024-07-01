@@ -22,12 +22,16 @@ class DetailCellViewModel: BaseViewModel, ObservableObject, MvvmSelectableProtoc
     @Published var title: String = ""
     @Published var detail: String = ""
     @Published var spacer: Double = 0
+    @Published var isBold: Bool = true
+    @Published var isEnabled: Bool = true
 
-    init(title: String = "", detail: String = "", spacer: Double = 24, selectAction: (() -> Void)? = nil) {
+    init(title: String = "", detail: String = "", spacer: Double = 24, isBold: Bool = true, isEnabled: Bool = true, selectAction: (() -> Void)? = nil) {
         self.title = title
         self.detail = detail
         self.spacer = spacer
         self.selectAction = selectAction
+        self.isEnabled = isEnabled
+        self.isBold = isBold
     }
 
     required init() {

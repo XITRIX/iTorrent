@@ -41,9 +41,12 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
                 shareButton.isEnabled = available
             }
 
-            viewModel.$isPaused.sink { [unowned self] isPaused in
-                playButton.isEnabled = isPaused
-                pauseButton.isEnabled = !isPaused
+            viewModel.$canResume.sink { [unowned self] canResume in
+                playButton.isEnabled = canResume
+            }
+
+            viewModel.$canPause.sink { [unowned self] canPause in
+                pauseButton.isEnabled = canPause
             }
         }
 

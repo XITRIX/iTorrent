@@ -17,12 +17,22 @@ class TorrentMonitoringService {
         disposeBag.bind {
             torrentService.updateNotifier.sink { [unowned self] updateModel in
                 checkDoneNotification(with: updateModel)
+                checkStorageAvailability(with: updateModel)
             }
         }
     }
 }
 
 private extension TorrentMonitoringService {
+    func checkStorageAvailability(with model: TorrentService.TorrentUpdateModel) {
+        guard let storage = model.handle.storage,
+              !storage.allowed,
+              !model.handle.snapshot.isPaused
+        else { return }
+
+        model.handle.pause()
+    }
+
     func checkDoneNotification(with model: TorrentService.TorrentUpdateModel) {
         guard PreferencesStorage.shared.isDownloadNotificationsEnabled,
               model.oldSnapshot.state != .checkingFiles,

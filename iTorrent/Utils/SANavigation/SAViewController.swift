@@ -20,3 +20,14 @@ class SAViewController<ViewModel: MvvmViewModelProtocol>: MvvmViewController<Vie
         }
     }
 }
+
+class SAHostingViewController<View: MvvmSwiftUIViewProtocol>: MvvmHostingViewController<View> {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let nav = navigationController as? SANavigationController,
+           nav.viewControllers.last == self
+        {
+            nav.locker = false
+        }
+    }
+}

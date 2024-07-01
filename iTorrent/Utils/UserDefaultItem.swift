@@ -13,25 +13,22 @@ import MvvmFoundation
 struct UserDefaultItem<T: Codable> {
     private let key: String
     private let defaultValue: T
-    private let value: CurrentValueSubject<T, Never>
     private let disposeBag = DisposeBag()
 
-    var wrappedValue: T {
-        get { value.value }
-        set { value.value = newValue }
-    }
+    let projectedValue: CurrentValueSubject<T, Never>
 
-    var projectedValue: CurrentValueSubject<T, Never> {
-        value
+    var wrappedValue: T {
+        get { projectedValue.value }
+        set { projectedValue.value = newValue }
     }
 
     init(_ key: String, _ defaultValue: T) {
         self.key = key
         self.defaultValue = defaultValue
-        value = CurrentValueSubject(Self.get(by: key) ?? defaultValue)
+        projectedValue = CurrentValueSubject(Self.get(by: key) ?? defaultValue)
 
         disposeBag.bind {
-            value.sink { value in
+            projectedValue.sink { value in
                 Self.set(by: key, value)
             }
         }

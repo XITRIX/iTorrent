@@ -157,10 +157,10 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
             return UIContextMenuConfiguration {
                 TorrentDetailsViewModel.resolveVC(with: torrentHandle)
             } actionProvider: { _ in
-                let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.snapshot.isPaused ? [] : .hidden, handler: { _ in
+                let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.snapshot.canResume ? [] : .hidden, handler: { _ in
                     torrentHandle.resume()
                 })
-                let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: !torrentHandle.snapshot.isPaused ? [] : .hidden, handler: { _ in
+                let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: torrentHandle.snapshot.canPause ? [] : .hidden, handler: { _ in
                     torrentHandle.pause()
                 })
                 let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
@@ -317,14 +317,7 @@ extension TorrentListViewController {
                     return
                 }
 
-                guard !TorrentService.shared.checkTorrentExists(with: torrentFile.infoHashes) else {
-                    let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(torrentFile.infoHashes.best.hex)_exists", preferredStyle: .alert)
-                    alert.addAction(.init(title: %"common.close", style: .cancel))
-                    present(alert, animated: true)
-                    return
-                }
-
-                TorrentService.shared.addTorrent(by: torrentFile)
+                TorrentAddViewModel.present(with: torrentFile, from: self)
             }
         })
         return alert

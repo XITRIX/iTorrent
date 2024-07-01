@@ -18,6 +18,17 @@ class PreferencesStorage: Resolvable {
         // Location mode is not allowed by Apple policy
         backgroundMode = .audio
         #endif
+
+        // Sanity check for defaultStorage if something went wrong
+        if defaultStorage != nil, !storageScopes.contains(where: { $0.key == defaultStorage }) { defaultStorage = nil }
+
+        // Fix sorting array in case new status appeared
+        if torrentListGroupsSortingArray.count != Self.defaultTorrentListGroupsSortingArray.count {
+            torrentListGroupsSortingArray = Self.defaultTorrentListGroupsSortingArray
+        }
+
+        // TODO: REMOVE LATER!!!
+        isStorageRulesAccepted = false
     }
 
     private var disposeBag: [AnyCancellable] = []
@@ -27,11 +38,16 @@ class PreferencesStorage: Resolvable {
         .checkingFiles,
         .downloadingMetadata,
         .downloading,
-        .finished,
         .seeding,
+        .finished,
         .checkingResumeData,
-        .paused
+        .paused,
+        .storageError
     ]
+
+    @UserDefaultItem("torrentDefaultStorage", nil) var defaultStorage: UUID?
+    @UserDefaultItem("torrentIsStorageRulesAccepted", false) var isStorageRulesAccepted: Bool
+    @UserDefaultItem("torrentStorageScopes", [:]) var storageScopes: [UUID: StorageModel]
 
     @UserDefaultItem("torrentListSortType", .alphabetically) var torrentListSortType: TorrentListViewModel.Sort
     @UserDefaultItem("torrentListSortReverced", false) var torrentListSortReverced: Bool
@@ -99,7 +115,6 @@ class PreferencesStorage: Resolvable {
 
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
-            .combineLatest($allocateMemory)
             .combineLatest($maxActiveTorrents)
             .combineLatest($maxDownloadingTorrents)
             .combineLatest($maxUploadingTorrents)

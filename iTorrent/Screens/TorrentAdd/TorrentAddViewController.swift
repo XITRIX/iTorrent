@@ -11,18 +11,18 @@ import UIKit
 class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: UICollectionView!
     private lazy var delegates = Deletates(parent: self)
+    private lazy var dataPickerDelegate = DataPickerDelegate(parent: self)
     private let cancelButton = UIBarButtonItem(systemItem: .close)
     private let downloadButton = UIModernBarButtonItem(image: .init(systemName: "arrow.down"))
     private let diskLabel = makeDiskLabel()
-    private let moreButton = UIBarButtonItem(title: "More", image: .init(systemName: "ellipsis.circle"))
+    private let priorityButton = UIBarButtonItem(title: %"prioriry.change.title", image: .init(resource: .icSort))
+    private let storageButton = UIBarButtonItem(title: %"addTorrent.storage.selected", image: .init(systemName: "externaldrive"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
 
-        moreButton.menu = .makeForChangePriority { [unowned self] priority in
-            viewModel.setAllFilesPriority(priority)
-        }
+        updateMenu()
 
         collectionView.register(TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>.self, forCellWithReuseIdentifier: TorrentFilesDictionaryItemViewCell<TorrentAddDirectoryItemViewModel>.reusableId)
         collectionView.register(type: TorrentFilesFileListCell<TorrentAddFileItemViewModel>.self, hasXib: false)
@@ -45,7 +45,9 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
         toolbarItems = [
             .init(customView: diskLabel),
             .init(systemItem: .flexibleSpace),
-            moreButton
+            storageButton,
+            .fixedSpace(16),
+            priorityButton
         ]
 
         disposeBag.bind {
@@ -74,6 +76,36 @@ private extension TorrentAddViewController {
         label.textColor = .secondaryLabel
         label.font = .preferredFont(forTextStyle: .callout)
         return label
+    }
+
+    func updateMenu() {
+        priorityButton.menu = UIMenu.makeForChangePriority { [unowned self] priority in
+            viewModel.setAllFilesPriority(priority)
+        }
+        
+        storageButton.menu = UIMenu(
+            title: %"addTorrent.storage.selected",
+            image: .init(systemName: "externaldrive"),
+            children:
+                [
+                    UIAction(title: %"addTorrent.storage.manage") { [unowned self] _ in
+                        viewModel.navigate(to: StoragePreferencesViewModel.self, by: .present(wrapInNavigation: true))
+                    }
+                ] +
+            viewModel.storages.map { storage in
+                var attributes: UIMenuElement.Attributes = []
+                var image: UIImage?
+                
+                if !storage.allowed {
+                    attributes = .disabled
+                    image = .init(systemName: "exclamationmark.triangle.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+                }
+                
+                return UIAction(title: storage.name, image: image, attributes: attributes, state: storage.selected ? .on : .off) { [unowned self] _ in
+                    viewModel.downloadStorage.value = storage.uuid
+                    updateMenu()
+                }
+            })
     }
 }
 
@@ -126,6 +158,14 @@ private extension TorrentAddViewController {
                 parent.viewModel.dismiss()
             }))
             parent.navigationController?.present(alert, animated: true)
+        }
+    }
+}
+
+private extension TorrentAddViewController {
+    class DataPickerDelegate: DelegateObject<TorrentAddViewController>, UIDocumentPickerDelegate {
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            print(urls)
         }
     }
 }

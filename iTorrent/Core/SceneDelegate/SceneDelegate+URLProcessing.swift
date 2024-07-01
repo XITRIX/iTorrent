@@ -27,7 +27,7 @@ private extension SceneDelegate {
         guard url.absoluteString.hasPrefix(prefix) else { return false }
         let hash = url.absoluteString.replacingOccurrences(of: prefix, with: "")
 
-        guard let torrent = TorrentService.shared.torrents.first(where: { $0.snapshot.infoHashes.best.hex == hash })
+        guard let torrent = TorrentService.shared.torrents.values.first(where: { $0.snapshot.infoHashes.best.hex == hash })
         else { return false }
 
         AppDelegate.showTorrentDetailScreen(with: torrent)

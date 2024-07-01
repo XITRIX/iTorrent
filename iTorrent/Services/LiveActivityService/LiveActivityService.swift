@@ -99,13 +99,15 @@ private extension TorrentHandle.State {
             return .checkingResumeData
         case .paused:
             return .paused
+        case .storageError:
+            return .storageError
         @unknown default:
             fatalError("\(ProgressWidgetAttributes.State.self) has no such case \(self)")
         }
     }
 
     var shouldShowLiveActivity: Bool {
-        let notShow: [Self] = [.finished, .paused]
+        let notShow: [Self] = [.finished, .paused, .storageError]
         return !notShow.contains(self)
     }
 }

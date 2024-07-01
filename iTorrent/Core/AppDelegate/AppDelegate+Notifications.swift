@@ -26,7 +26,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         guard let hash = response.notification.request.content.userInfo["hash"] as? String,
-              let torrentHandle = TorrentService.shared.torrents.first(where: { $0.snapshot.infoHashes.best.hex == hash })
+              let torrentHandle = TorrentService.shared.torrents.values.first(where: { $0.snapshot.infoHashes.best.hex == hash })
         else { return }
 
         Self.showTorrentDetailScreen(with: torrentHandle)

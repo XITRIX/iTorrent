@@ -102,6 +102,10 @@ extension TorrentFilesViewModel {
         keys.count
     }
 
+    var downloadPath: URL {
+        torrentHandle.snapshot.downloadPath
+    }
+
     var filesForPreview: [FileEntry] {
         keys.flatMap {
             switch rootDirectory.storage[$0] {

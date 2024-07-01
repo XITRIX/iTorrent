@@ -63,7 +63,7 @@ class BackgroundService: BackgroundServiceProtocol {
 // MARK: Backgroud requirements
 extension BackgroundService {
     static var isBackgroundNeeded: Bool {
-        TorrentService.shared.torrents.contains(where: { $0.snapshot.needBackground })
+        TorrentService.shared.torrents.values.contains(where: { $0.snapshot.needBackground })
     }
 }
 

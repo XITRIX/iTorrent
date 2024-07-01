@@ -51,6 +51,8 @@
 		7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */; };
 		7C5FBE742BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */; };
 		7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */; };
+		7C95B7B42C35DE5C000EC50F /* StoragePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */; };
+		7C95B7B72C385B99000EC50F /* UICellAccessory+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */; };
 		7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 7CAD30182BC3455800592990 /* SWXMLHash */; };
 		7CAD301C2BC3457900592990 /* RssModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301B2BC3457900592990 /* RssModel.swift */; };
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
@@ -205,6 +207,8 @@
 		D1EFCD172AF6AE1600D33A7A /* TorrentFilesDictionaryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD162AF6AE1600D33A7A /* TorrentFilesDictionaryItemView.swift */; };
 		D1EFCD192AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCD182AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift */; };
 		D1F8BC852AFC405A00A6258C /* MvvmViewModel+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F8BC842AFC405A00A6258C /* MvvmViewModel+Alert.swift */; };
+		D1FFC9652C38136600233C2F /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FFC9642C38135F00233C2F /* URL+Extensions.swift */; };
+		D1FFC96C2C382FC900233C2F /* StorageModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FFC96B2C382FBE00233C2F /* StorageModel+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,6 +291,8 @@
 		7C609A572C1F1D6400586635 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C609A592C1F2A2700586635 /* iTorrent.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iTorrent.xcconfig; sourceTree = "<group>"; };
 		7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+AVPlayer.swift"; sourceTree = "<group>"; };
+		7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePreferencesView.swift; sourceTree = "<group>"; };
+		7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICellAccessory+Image.swift"; sourceTree = "<group>"; };
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
@@ -437,6 +443,8 @@
 		D1EFCD162AF6AE1600D33A7A /* TorrentFilesDictionaryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesDictionaryItemView.swift; sourceTree = "<group>"; };
 		D1EFCD182AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesDictionaryItemViewModel.swift; sourceTree = "<group>"; };
 		D1F8BC842AFC405A00A6258C /* MvvmViewModel+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MvvmViewModel+Alert.swift"; sourceTree = "<group>"; };
+		D1FFC9642C38135F00233C2F /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
+		D1FFC96B2C382FBE00233C2F /* StorageModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageModel+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,6 +603,22 @@
 				7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */,
 			);
 			path = MvvmFoundation;
+			sourceTree = "<group>";
+		};
+		7C95B7A32C34B554000EC50F /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		7C95B7B52C385B8E000EC50F /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		7CAD301A2BC3456700592990 /* RssFeed */ = {
@@ -764,6 +788,7 @@
 		D111384C2AF9663F008907F7 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				7C95B7A32C34B554000EC50F /* Storage */,
 				D1DB718E2BD92206007F9267 /* Patreon */,
 				7CB6F6CC2BD82B8A00D0813B /* FileSharing */,
 				D1352D1F2BBC338300104E7B /* Base */,
@@ -786,8 +811,8 @@
 		D11333B32AF19C3400FA017E /* TorrentService */ = {
 			isa = PBXGroup;
 			children = (
+				D1FFC9632C37F44800233C2F /* Extensions */,
 				D1A226F12AEF019400669D6D /* TorrentService.swift */,
-				D11333B42AF19C4900FA017E /* TorrentHandle+Extension.swift */,
 			);
 			path = TorrentService;
 			sourceTree = "<group>";
@@ -999,6 +1024,7 @@
 		D19E00242AF045DF000A17A2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7C95B7B52C385B8E000EC50F /* UIKit */,
 				7C5FBE722BC2F0940069E5A0 /* MvvmFoundation */,
 				D173D9DF2BC0285800E4F9EB /* UIMenu */,
 				7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */,
@@ -1006,6 +1032,7 @@
 				D1048D872BBEA23C0027EF2F /* Combine */,
 				D1352D282BBD418200104E7B /* UIViewController */,
 				D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */,
+				D1FFC9642C38135F00233C2F /* URL+Extensions.swift */,
 				D19E00252AF045F9000A17A2 /* SpeedFormat.swift */,
 				D1ACFDC82AF6ED200098FF56 /* UIImage+File.swift */,
 				D1AA00D12AFAC95500B74629 /* String+Localized.swift */,
@@ -1305,6 +1332,15 @@
 			path = TorrentFilesDictionaryItem;
 			sourceTree = "<group>";
 		};
+		D1FFC9632C37F44800233C2F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D11333B42AF19C4900FA017E /* TorrentHandle+Extension.swift */,
+				D1FFC96B2C382FBE00233C2F /* StorageModel+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1497,6 +1533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */,
+				D1FFC96C2C382FC900233C2F /* StorageModel+Extensions.swift in Sources */,
 				D1F8BC852AFC405A00A6258C /* MvvmViewModel+Alert.swift in Sources */,
 				D17871FF2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift in Sources */,
 				D135C59C2AEFB96F00440680 /* TorrentDetailsViewModel.swift in Sources */,
@@ -1528,6 +1565,7 @@
 				7C5FBE642BC158BC0069E5A0 /* SceneDelegate+URLProcessing.swift in Sources */,
 				D1A2269E2AEEEFCC00669D6D /* AppDelegate.swift in Sources */,
 				7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */,
+				7C95B7B42C35DE5C000EC50F /* StoragePreferencesView.swift in Sources */,
 				7CFEBEA02BC6F3CD0013233F /* Date+Extensions.swift in Sources */,
 				D1DB718B2BD91606007F9267 /* ImageCache.swift in Sources */,
 				7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */,
@@ -1572,6 +1610,7 @@
 				7CAD301C2BC3457900592990 /* RssModel.swift in Sources */,
 				7CFEBE882BC439C30013233F /* RssChannelItemCell.swift in Sources */,
 				7C5FBE312BBF5CAB0069E5A0 /* MinHeightModifier.swift in Sources */,
+				7C95B7B72C385B99000EC50F /* UICellAccessory+Image.swift in Sources */,
 				D1EFCD192AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift in Sources */,
 				D1B99D892BEE613B00F51514 /* PatreonWebServer.swift in Sources */,
 				7CFEBE762BC3ED550013233F /* RssFeedCellViewModel.swift in Sources */,
@@ -1586,6 +1625,7 @@
 				D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */,
 				D1048D8B2BBEB6DE0027EF2F /* CombineLatest.swift in Sources */,
 				D11138572AF976CE008907F7 /* TorrentAddDirectoryItemViewModel.swift in Sources */,
+				D1FFC9652C38136600233C2F /* URL+Extensions.swift in Sources */,
 				7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */,
 				D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */,
 				D11BE5492AFBA03D00780C1B /* PRButtonView.swift in Sources */,
@@ -1706,7 +1746,6 @@
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1748,7 +1787,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1769,7 +1808,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1778,6 +1817,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = RelWithDebInfo;
 		};
@@ -1851,7 +1891,6 @@
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1893,7 +1932,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1909,7 +1948,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1918,6 +1957,7 @@
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1991,7 +2031,6 @@
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Distrib";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2033,7 +2072,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -2054,7 +2093,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.5;
+				MARKETING_VERSION = 2.0.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2063,6 +2102,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};

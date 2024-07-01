@@ -139,7 +139,8 @@ private extension TorrentFilesViewController {
 //        @MainActor
         func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
             let path = parent.viewModel.filesForPreview[index].path
-            return TorrentService.downloadPath.appending(path: path) as NSURL
+            let res = parent.viewModel.downloadPath.appending(path: path).standardized as NSURL
+            return res
         }
     }
 
@@ -148,7 +149,7 @@ private extension TorrentFilesViewController {
         else { return }
 
         let path = viewModel.filesForPreview[startIndex].path
-        let url = TorrentService.downloadPath.appending(path: path)
+        let url = viewModel.downloadPath.appending(path: path)
 
         Task {
             // Allow to choose be
@@ -183,7 +184,7 @@ private extension TorrentFilesViewController {
         } catch {}
 
         let path = viewModel.filesForPreview[startIndex].path
-        let url = TorrentService.downloadPath.appending(path: path)
+        let url = viewModel.downloadPath.appending(path: path)
         let player = AVPlayer(url: url)
         let playerController = AVPlayerViewController.resolve()
         playerController.canStartPictureInPictureAutomaticallyFromInline = true

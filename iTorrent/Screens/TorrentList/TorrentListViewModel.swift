@@ -68,7 +68,7 @@ class TorrentListViewModel: BaseViewModel {
 
             Publishers.combineLatest(
                 torrentSectionChanged,
-                TorrentService.shared.$torrents,
+                TorrentService.shared.$torrents.map { Array($0.values) },
                 $searchQuery,
                 sortingType,
                 sortingReverced,
@@ -124,7 +124,10 @@ extension TorrentListViewModel {
 
     func resumeAllSelected(at indexPaths: [IndexPath]) {
         let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
-        torrentModels.forEach { $0.torrentHandle.resume() }
+        torrentModels.forEach { 
+            guard $0.torrentHandle.snapshot.canResume else { return }
+            $0.torrentHandle.resume()
+        }
     }
 
     func pauseAllSelected(at indexPaths: [IndexPath]) {

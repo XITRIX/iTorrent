@@ -16,6 +16,10 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var title: String = ""
     @Published var isPaused: Bool = false
+    @Published var canResume: Bool = false
+    @Published var canPause: Bool = false
+
+    @Published private var storageError: Bool = false
 
     let dismissSignal = PassthroughSubject<Void, Never>()
 
@@ -45,6 +49,25 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
 
             sequentialModel.$isOn.sink { [unowned self] value in
                 torrentHandle.setSequentialDownload(value)
+            }
+
+            $storageError.removeDuplicates().sink { [unowned self] error in
+                runOnMainThreadIfNeeded { [self] in
+                    downloadPathModel.accessories = error ? 
+                    [
+                        .image(.init(systemName: "exclamationmark.triangle.fill"), options: .init(tintColor: .systemRed))
+                    ] :
+                    [
+//                        .popUpMenu(
+//                            .init(title: %"details.path.migrate", children: [
+//                                UIAction(title: "Default", state: .off) { _ in },
+//                                UIAction(title: "Browse", state: .off) { _ in },
+//                            ]), options: .init(tintColor: .tintColor)
+//                        )
+                    ]
+
+                    downloadPathModel.selectAction = nil //error ? nil : {}
+                }
             }
         }
 
@@ -84,6 +107,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let commentModel = DetailCellViewModel(title: %"details.info.comment", spacer: 80)
     private let createdModel = DetailCellViewModel(title: %"details.info.created")
     private let addedModel = DetailCellViewModel(title: %"details.info.added")
+    private let downloadPath2Model = DetailCellViewModel(title: "Download Path")
 
     private let selectedModel = DetailCellViewModel(title: %"details.transfer.selectedTotal")
     private let completedModel = DetailCellViewModel(title: %"details.transfer.completed")
@@ -93,12 +117,17 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let seedersModel = DetailCellViewModel(title: %"details.transfer.seeders")
     private let leechersModel = DetailCellViewModel(title: %"details.transfer.leechers")
 
+    private lazy var downloadPathModel = PRButtonViewModel(with: .init(title: %"details.path.browse", isBold: true, value: nil))
+
     private lazy var trackersModel = DetailCellViewModel(title: %"details.actions.trackers") { [unowned self] in
         navigate(to: TorrentTrackersViewModel.self, with: torrentHandle, by: .show)
     }
     private lazy var filesModel = DetailCellViewModel(title: %"details.actions.files") { [unowned self] in
         navigate(to: TorrentFilesViewModel.self, with: .init(torrentHandle: torrentHandle), by: .show)
     }
+
+    @Injected private var torrentService: TorrentService
+    @Injected private var preferences: PreferencesStorage
 }
 
 extension TorrentDetailsViewModel {
@@ -117,10 +146,30 @@ extension TorrentDetailsViewModel {
     }
 
     func rehash() {
+        // If Storage is not available, try to reconnect storage
+        if torrentHandle.snapshot.friendlyState == .storageError {
+            return refreshStorage()
+        }
+
         alert(title: %"details.rehash.title", message: %"details.rehash.message", actions: [
             .init(title: %"common.cancel", style: .cancel),
             .init(title: %"details.rehash.action", style: .destructive, action: { [unowned self] in
                 torrentHandle.rehash()
+            }),
+        ])
+    }
+
+    func refreshStorage() {
+        guard let storage = torrentHandle.storage else { return }
+        alert(title: %"details.refreshStorage.title", message: %"details.refreshStorage.message", actions: [
+            .init(title: %"common.cancel", style: .cancel),
+            .init(title: %"common.continue", style: .default, action: { [self] in
+                Task {
+                    guard !torrentService.refreshStorage(storage) else { return }
+                    alert(title: %"common.error", message: %"details.refreshStorage.fail.message", actions: [
+                        .init(title: %"common.close", style: .cancel)
+                    ])
+                }
             })
         ])
     }
@@ -133,7 +182,7 @@ extension TorrentDetailsViewModel {
             .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
-            .init(title: %"common.cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel),
         ])
     }
 
@@ -154,7 +203,11 @@ extension TorrentDetailsViewModel {
 private extension TorrentDetailsViewModel {
     func dataUpdate() {
         isPaused = torrentHandle.snapshot.isPaused
-        stateModel.detail = "\(torrentHandle.snapshot.friendlyState.name)" // "\(torrentHandle.snapshot.state.rawValue) | \(torrentHandle.snapshot.isPaused ? "Paused" : "Running")"
+        canResume = torrentHandle.snapshot.canResume
+        canPause = torrentHandle.snapshot.canPause
+        storageError = torrentHandle.snapshot.friendlyState == .storageError
+
+        stateModel.detail = torrentHandle.snapshot.friendlyState.name
 
         downloadModel.detail = "\(torrentHandle.snapshot.downloadRate.bitrateToHumanReadable)/s"
         uploadModel.detail = "\(torrentHandle.snapshot.uploadRate.bitrateToHumanReadable)/s"
@@ -191,6 +244,11 @@ private extension TorrentDetailsViewModel {
         uploadedModel.detail = "\(torrentHandle.snapshot.totalUpload.bitrateToHumanReadable)"
         seedersModel.detail = "\(torrentHandle.snapshot.numberOfSeeds)(\(torrentHandle.snapshot.numberOfTotalSeeds))"
         leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
+
+        downloadPath2Model.detail = torrentHandle.snapshot.downloadPath.path()
+        downloadPathModel.value = torrentHandle.snapshot.storage.name
+
+        filesModel.isEnabled = torrentHandle.snapshot.friendlyState != .storageError
     }
 
     func reload() {
@@ -252,6 +310,13 @@ private extension TorrentDetailsViewModel {
             seedersModel
             leechersModel
         })
+
+        if !preferences.storageScopes.isEmpty {
+            sections.append(.init(id: "path", header: %"details.path") {
+                //            downloadPath2Model
+                downloadPathModel
+            })
+        }
 
         sections.append(.init(id: "actions", header: %"details.actions") {
             trackersModel

@@ -18,6 +18,7 @@ extension ProgressWidgetAttributes {
         case seeding
         case checkingResumeData
         case paused
+        case storageError
     }
 }
 
@@ -38,6 +39,8 @@ extension ProgressWidgetAttributes.State {
             return %"torrent.state.resuming"
         case .paused:
             return %"torrent.state.paused"
+        case .storageError:
+            return %"torrent.state.storageError"
         }
     }
 }

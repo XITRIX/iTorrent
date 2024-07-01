@@ -57,17 +57,17 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
 
         disposeBag.bind {
             viewModel.updatePublisher
-                .receive(on: DispatchQueue.global(qos: .userInitiated))
+                .receive(on: .global(qos: .userInitiated))
                 .sink
-            { [weak self] _ in
-                self?.reload()
+            { [weak self, viewModel] _ in
+                self?.reload(with: viewModel)
             }
             viewModel.selected.sink { [unowned self] _ in
                 switchView.setOn(!switchView.isOn, animated: true)
                 switcher(switchView)
             }
         }
-        reload()
+        reload(with: viewModel)
     }
 
     func shareAction() {
@@ -96,7 +96,7 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
 }
 
 private extension TorrentFilesFileListCell {
-    func reload() {
+    func reload(with viewModel: VM) {
         let file = viewModel.file
 
         let percent = "\(String(format: "%.2f", file.progress * 100))%"
