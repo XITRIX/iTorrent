@@ -239,13 +239,14 @@ jobs:
         with:
           xcode-version: 15.4
           
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v1
 
+      - name: Build altstore source generator
+        run: xcrun swiftc -parse-as-library ./GenerateAltStoreJson.swift
+
       - name: Generate AltStore Source
-        run: |
-          swiftc -parse-as-library ./GenerateAltStoreJson.swift
-          ./GenerateAltStoreJson >> ./AltStoreSource.json
+        run: ./GenerateAltStoreJson >> ./AltStoreSource.json
 
       - name: Release AltStore Source
         uses: softprops/action-gh-release@v2
