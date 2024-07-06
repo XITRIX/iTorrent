@@ -375,6 +375,22 @@
         }
       }
     },
+    "common.remove" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
     "common.reset" : {
       "localizations" : {
         "en" : {
@@ -3180,6 +3196,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Доступно"
+          }
+        }
+      }
+    },
+    "preferences.storage.remove.message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you will remove storage, all torrents related to it will be unreachable from iTorrent app"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если вы удалите хранилище, все торренты принадлежащие ему будут не доступны из приложения iTorrent  "
+          }
+        }
+      }
+    },
+    "preferences.storage.remove.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove storage"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить хранилище"
           }
         }
       }

@@ -119,14 +119,21 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
                             }
                         }
                     }.swipeActions {
-                        Button(role: .destructive) {
-                            viewModel.preferences.storageScopes[scope.uuid] = nil
-                            if viewModel.preferences.defaultStorage == scope.uuid {
-                                viewModel.preferences.defaultStorage = nil
-                            }
+                        Button {
+                            viewModel.alert(title: %"preferences.storage.remove.title", message: %"preferences.storage.remove.message", actions: [
+                                .init(title: %"common.cancel", style: .cancel),
+                                .init(title: %"common.remove", style: .destructive, action: {
+                                    withAnimation {
+                                        viewModel.preferences.storageScopes[scope.uuid] = nil
+                                        if viewModel.preferences.defaultStorage == scope.uuid {
+                                            viewModel.preferences.defaultStorage = nil
+                                        }
+                                    }
+                                })
+                            ])
                         } label: {
                             Image(systemName: "trash")
-                        }
+                        }.tint(.red)
                     }
                 }
                 if viewModel.customStoragesVM.count < storagesLimit - 1 {
