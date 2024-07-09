@@ -154,8 +154,16 @@ enum AltServerGenerator {
             guard let ipaAsset = release.assets.first(where: { $0.name == "iTorrent.ipa" })
             else { return nil }
 
+            let versionParts = release.name.replacingOccurrences(of: "v", with: "").split(separator: "-")
+            let version = versionParts.first.map { String($0) } ?? "1.0.0"
+            var buildVersion: String?
+            if versionParts.count > 1 {
+                buildVersion = versionParts.last.map { String($0) }
+            }
+
             return AltStoreAppVersionModel(
-                version: release.name.replacingOccurrences(of: "v", with: ""),
+                version: version,
+                buildVersion: buildVersion,
                 date: release.publishedAt,
                 size: ipaAsset.size,
                 downloadURL: ipaAsset.browserDownloadUrl
