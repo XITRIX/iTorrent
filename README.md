@@ -1,3 +1,5 @@
+Git migration to iTorrent 2.0 in progress
+
 [![AltStore Button]][AltStore Link]
 [![SideStore Button]][SideStore Link]
 [![Jailbreak Button]][Jailbreak Link]
