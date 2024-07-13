@@ -2,7 +2,7 @@
 
 import Foundation
 
-let rootUrl = "https://raw.githubusercontent.com/XITRIX/iTorrent-v2/main"
+let rootUrl = "https://raw.githubusercontent.com/XITRIX/iTorrent/main"
 let rootDistrUrl = "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master"
 
 let _iphoneStandardScreenshots: [String] = [
@@ -89,6 +89,8 @@ struct AltStoreAppModel: Codable {
         • Change UI to dark theme
         • Color personalization
         • RSS Feed
+        • Live Activity and Dynamic Island progress bar
+        • Downloading on external drives
         • ???
         """
     var downloadURL: String
@@ -141,7 +143,7 @@ enum AltServerGenerator {
     static func main() async throws {
         let withNotarization = CommandLine.arguments.contains(where: { $0 == "eu" })
 
-        let url = "https://api.github.com/repos/XITRIX/iTorrent-v2/releases"
+        let url = "https://api.github.com/repos/XITRIX/iTorrent/releases"
         let (data, _) = try await URLSession.shared.data(from: URL(string: url)!)
 
         let decoder = JSONDecoder()
