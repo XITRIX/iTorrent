@@ -103,7 +103,13 @@ extension TorrentFilesViewModel {
     }
 
     var downloadPath: URL {
-        torrentHandle.snapshot.downloadPath
+        guard let downloadPath = torrentHandle.snapshot.downloadPath
+        else {
+            assertionFailure("downloadPath cannot be nil for this object")
+            return URL(string: "/")!
+        }
+
+        return downloadPath
     }
 
     var filesForPreview: [FileEntry] {

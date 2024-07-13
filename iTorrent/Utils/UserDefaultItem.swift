@@ -10,26 +10,28 @@ import Foundation
 import MvvmFoundation
 
 @propertyWrapper
-struct UserDefaultItem<T: Codable> {
+struct UserDefaultItem<Value: Codable> {
     private let key: String
-    private let defaultValue: T
     private let disposeBag = DisposeBag()
 
-    let projectedValue: CurrentValueSubject<T, Never>
+    let projectedValue: CurrentValueSubject<Value, Never>
 
-    var wrappedValue: T {
+    var wrappedValue: Value {
         get { projectedValue.value }
         set { projectedValue.value = newValue }
     }
 
-    init(_ key: String, _ defaultValue: T) {
+    init(_ key: String, _ defaultValue: Value) {
         self.key = key
-        self.defaultValue = defaultValue
-        projectedValue = CurrentValueSubject(Self.get(by: key) ?? defaultValue)
+
+        let loadedValue = Self.value(for: key)
+        if loadedValue == nil { Self.setValue(defaultValue, for: key) }
+
+        projectedValue = .init(Self.value(for: key) ?? defaultValue)
 
         disposeBag.bind {
             projectedValue.sink { value in
-                Self.set(by: key, value)
+                Self.setValue(value, for: key)
             }
         }
     }
@@ -38,14 +40,14 @@ struct UserDefaultItem<T: Codable> {
 private extension UserDefaultItem {
     static var userDefaults: UserDefaults { .itorrentGroup }
 
-    static func get(by key: String) -> T? {
+    static func value(for key: String) -> Value? {
         guard let decoded = userDefaults.data(forKey: key),
-              let res = try? JSONDecoder().decode(T.self, from: decoded)
+              let res = try? JSONDecoder().decode(Value.self, from: decoded)
         else { return nil }
         return res
     }
 
-    static func set(by key: String, _ value: T?) {
+    static func setValue(_ value: Value?, for key: String) {
         if let value, let encodedData: Data = try? JSONEncoder().encode(value) {
             userDefaults.set(encodedData, forKey: key)
         } else {

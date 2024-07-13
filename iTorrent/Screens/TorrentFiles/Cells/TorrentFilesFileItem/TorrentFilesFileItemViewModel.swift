@@ -56,7 +56,12 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
     }
 
     var path: URL {
-        torrentHandle.snapshot.downloadPath.appending(path: file.path)
+        guard let downloadPath = torrentHandle.snapshot.downloadPath
+        else {
+            assertionFailure("downloadPath cannot be nil for this object")
+            return URL(string: "/")!
+        }
+        return downloadPath.appending(path: file.path)
     }
 
     func setPriority(_ priority: FileEntry.Priority) {

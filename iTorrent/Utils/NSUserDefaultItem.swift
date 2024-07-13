@@ -5,28 +5,33 @@
 //  Created by Даниил Виноградов on 01.06.2023.
 //
 
+import Combine
 import Foundation
 import MvvmFoundation
 
 @propertyWrapper
 struct NSUserDefaultItem<Value: NSObject & NSCoding> {
-    let key: String
-    let disposeBag = DisposeBag()
+    private let key: String
+    private let disposeBag = DisposeBag()
+
+    let projectedValue: CurrentValueSubject<Value, Never>
 
     var wrappedValue: Value {
         get { projectedValue.value }
-        set { projectedValue.send(newValue) }
+        set { projectedValue.value = newValue }
     }
-
-    let projectedValue: CurrentValueRelay<Value>
 
     init(_ key: String, _ defaultValue: Value) {
         self.key = key
+
+        let loadedValue = Self.value(for: key)
+        if loadedValue == nil { Self.setValue(defaultValue, for: key) }
+
         projectedValue = .init(Self.value(for: key) ?? defaultValue)
 
-        bind(in: disposeBag) {
-            projectedValue.sink { [key] val in
-                Self.setValue(val, for: key)
+        disposeBag.bind {
+            projectedValue.sink { value in
+                Self.setValue(value, for: key)
             }
         }
     }

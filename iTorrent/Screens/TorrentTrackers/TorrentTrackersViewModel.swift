@@ -91,7 +91,7 @@ private extension TorrentTrackersViewModel {
         }
 
         if trackerListChanged || trackers.count != newTrackers.count {
-            sections.append(.init(id: "trackers", style: .plain, items: newTrackers))
+            sections.append(.init(id: "trackers", style: .plain, items: newTrackers.removingDuplicates()))
             self.sections = sections
         }
 

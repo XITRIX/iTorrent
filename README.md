@@ -1,5 +1,7 @@
 Git migration to iTorrent 2.0 in progress
 
+iTorrent 2.0 app is it beta preview state, expect to see some bugs and be ready report about them.
+
 [![AltStore Button]][AltStore Link]
 [![SideStore Button]][SideStore Link]
 [![Jailbreak Button]][Jailbreak Link]

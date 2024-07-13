@@ -245,10 +245,10 @@ private extension TorrentDetailsViewModel {
         seedersModel.detail = "\(torrentHandle.snapshot.numberOfSeeds)(\(torrentHandle.snapshot.numberOfTotalSeeds))"
         leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
 
-        downloadPath2Model.detail = torrentHandle.snapshot.downloadPath.path()
+        downloadPath2Model.detail = torrentHandle.snapshot.downloadPath?.path() ?? ""
         downloadPathModel.value = torrentHandle.snapshot.storage.name
 
-        filesModel.isEnabled = torrentHandle.snapshot.friendlyState != .storageError
+        filesModel.isEnabled = torrentHandle.snapshot.friendlyState != .storageError && torrentHandle.snapshot.hasMetadata
     }
 
     func reload() {

@@ -29,6 +29,8 @@ class PreferencesStorage: Resolvable {
 
         // TODO: REMOVE LATER!!!
         isStorageRulesAccepted = false
+
+
     }
 
     private var disposeBag: [AnyCancellable] = []
