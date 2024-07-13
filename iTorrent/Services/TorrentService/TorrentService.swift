@@ -26,10 +26,10 @@ class TorrentService {
 
     init() { setup() }
 
-    static var downloadPath: URL { try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) }
-    static var torrentPath: URL { downloadPath.appending(path: "config") }
-    static var fastResumePath: URL { downloadPath.appending(path: "config") }
-    static var metadataPath: URL { downloadPath.appending(path: "config") }
+    static let downloadPath: URL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    static let torrentPath: URL = downloadPath.appending(path: "config")
+    static let fastResumePath: URL = downloadPath.appending(path: "config")
+    static let metadataPath: URL = downloadPath.appending(path: "config")
 
     private lazy var session: Session = {
         var settings = Session.Settings()
@@ -105,7 +105,7 @@ extension TorrentService: SessionDelegate {
         torrent.__unthrottledUpdatePublisher.send()
     }
 
-    func torrentManager(_ manager: Session, didErrorOccur error: Error) {}
+    func torrentManager(_ manager: Session, didErrorOccur error: Error) { /* Not implemented yet */ }
 }
 
 private extension TorrentService {

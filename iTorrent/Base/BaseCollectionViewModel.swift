@@ -19,5 +19,5 @@ open class BaseCollectionViewModel: BaseViewModel {
 }
 
 open class BaseCollectionViewModelWith<Model>: BaseCollectionViewModel, MvvmViewModelWithProtocol {
-    open func prepare(with model: Model) { }
+    open func prepare(with model: Model) { /* Override and use instead of `init` to prepare ViewModel */ }
 }

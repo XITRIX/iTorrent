@@ -250,8 +250,8 @@ struct LayoutGuidesModifier: ViewModifier {
     }
 
     final class LayoutGuidesView: UIView {
-      var onLayoutMarginsGuideChange: (EdgeInsets) -> Void = { _ in }
-      var onReadableContentGuideChange: (EdgeInsets) -> Void = { _ in }
+      var onLayoutMarginsGuideChange: (EdgeInsets) -> Void = { _ in /* Ignore */ }
+      var onReadableContentGuideChange: (EdgeInsets) -> Void = { _ in /* Ignore */ }
 
       override func layoutMarginsDidChange() {
         super.layoutMarginsDidChange()

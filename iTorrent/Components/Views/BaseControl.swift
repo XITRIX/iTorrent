@@ -27,7 +27,7 @@ public class BaseControl: UIControl {
         setup()
     }
 
-    open func setup() {}
+    open func setup() { /* Override to setup view */ }
     public var disposeBag = DisposeBag()
 }
 

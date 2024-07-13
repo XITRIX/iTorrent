@@ -139,7 +139,7 @@ class PreferencesStorage: Resolvable {
             .combineLatest($proxyPassword)
             .combineLatest($proxyPeerConnections)
             .combineLatest($useAllAvailableInterfaces)
-            .map { _ in }
+            .map { _ in /* ignore result */ }
             .eraseToAnyPublisher()
     }
 }
