@@ -73,12 +73,16 @@ private extension LiveActivityService {
 
 private extension TorrentHandle.Snapshot {
     var toLiveActivityState: ProgressWidgetAttributes.ContentState {
-        .init(state: friendlyState.toState,
+        let color = PreferencesStorage.shared.tintColor
+        let data = try? NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: true)
+
+        return .init(state: friendlyState.toState,
               progress: progress,
               downSpeed: downloadRate,
               upSpeed: uploadRate,
               timeRemainig: timeRemains,
-              timeStamp: Date())
+              timeStamp: Date(), 
+              color: data)
     }
 }
 

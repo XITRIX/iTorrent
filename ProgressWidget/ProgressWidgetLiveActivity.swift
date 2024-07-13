@@ -21,6 +21,16 @@ struct ProgressWidgetLiveActivity: Widget {
         return (try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data)) ?? .tintColor
     }
 
+    func tintColor(from context: ActivityViewContext<ProgressWidgetAttributes>) -> UIColor {
+        if let colorData = context.state.color,
+           let keyColor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
+        {
+            return keyColor
+        } else {
+            return Self.tintColor
+        }
+    }
+
     var body: some WidgetConfiguration {
         let config = ActivityConfiguration(for: ProgressWidgetAttributes.self) { context in
             // Lock screen/banner UI goes here
@@ -28,17 +38,17 @@ struct ProgressWidgetLiveActivity: Widget {
             if #available(iOS 18, *) {
 #if XCODE16
                 ProgressWidgetLiveActivityWatchSupportContent(context: context)
-                    .tint(Color(uiColor: ProgressWidgetLiveActivity.tintColor))
+                    .tint(Color(uiColor: tintColor(from: context)))
                     .padding()
 #else
                 ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: Self.tintColor))
+                    .tint(Color(uiColor: tintColor(from: context)))
                     .padding()
 #endif
 
             } else {
                 ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: Self.tintColor))
+                    .tint(Color(uiColor: tintColor(from: context)))
                     .padding()
             }
         } dynamicIsland: { context in

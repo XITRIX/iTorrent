@@ -52,13 +52,14 @@ struct ProgressWidgetAttributes: ActivityAttributes {
     }
 
     public struct ContentState: Codable, Hashable {
-        public init(state: State, progress: Double, downSpeed: UInt64, upSpeed: UInt64, timeRemainig: String, timeStamp: Date) {
+        public init(state: State, progress: Double, downSpeed: UInt64, upSpeed: UInt64, timeRemainig: String, timeStamp: Date, color: Data?) {
             self.state = state
             self.progress = progress
             self.downSpeed = downSpeed
             self.upSpeed = upSpeed
             self.timeRemainig = timeRemainig
             self.timeStamp = timeStamp
+            self.color = color
         }
 
         // Dynamic stateful properties about your activity go here!
@@ -68,6 +69,7 @@ struct ProgressWidgetAttributes: ActivityAttributes {
         public var upSpeed: UInt64
         public var timeRemainig: String
         public var timeStamp: Date
+        public var color: Data?
     }
 
     // Fixed non-changing properties about your activity go here!
