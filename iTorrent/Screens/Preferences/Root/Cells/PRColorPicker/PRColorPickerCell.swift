@@ -122,19 +122,22 @@ private class CustomColorPickerViewController: UIColorPickerViewController {
         super.viewDidLoad()
 
 #if !os(visionOS)
-        guard let sheet = sheetPresentationController else { return }
-        sheet.prefersGrabberVisible = true
+        // Custom detents started to be supported for remote view controllers yet from iOS 17
+        if #available(iOS 17, *) {
+            guard let sheet = sheetPresentationController else { return }
+            sheet.prefersGrabberVisible = true
 
-        sheet.detents = [.custom(resolver: { [unowned self] context in
-            let height = preferredContentSize.height
-            return min(height, context.maximumDetentValue)
-        })]
+            sheet.detents = [.custom(resolver: { [unowned self] context in
+                let height = preferredContentSize.height
+                return min(height, context.maximumDetentValue)
+            })]
 
-        publisher(for: \.preferredContentSize).sink(receiveValue: { _ in
-            sheet.animateChanges {
-                sheet.invalidateDetents()
-            }
-        }).store(in: disposeBag)
+            publisher(for: \.preferredContentSize).sink(receiveValue: { _ in
+                sheet.animateChanges {
+                    sheet.invalidateDetents()
+                }
+            }).store(in: disposeBag)
+        }
 #endif
     }
 
