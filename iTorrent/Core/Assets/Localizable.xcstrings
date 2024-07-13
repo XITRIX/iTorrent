@@ -599,6 +599,54 @@
         }
       }
     },
+    "details.files.mediaPlayerPreview" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Media player"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Медиаплеер"
+          }
+        }
+      }
+    },
+    "details.files.previewMode" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview mode"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим превью"
+          }
+        }
+      }
+    },
+    "details.files.quickLookPreview" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Look preview"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Look превью"
+          }
+        }
+      }
+    },
     "details.info" : {
       "localizations" : {
         "en" : {

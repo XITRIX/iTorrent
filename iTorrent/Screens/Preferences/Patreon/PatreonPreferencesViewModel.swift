@@ -7,6 +7,7 @@
 
 import MvvmFoundation
 import Combine
+import UIKit
 
 extension PatreonPreferencesViewModel {
     enum PatreonAccountState: Equatable {
@@ -71,7 +72,7 @@ extension PatreonPreferencesViewModel {
         preferencesStorage.$patreonAccount.map { $0?.fullVersion ?? false }.eraseToAnyPublisher()
     }
 
-    func linkPatreon() {
+    func linkPatreon(from view: UIView) {
         if accountState.value == .none {
             guard let context = navigationService?()
             else { return }
@@ -91,7 +92,7 @@ extension PatreonPreferencesViewModel {
                     try? patreonService.signOut()
                     accountState.value = .none
                 }
-            ])
+            ], sourceView: view)
         }
     }
 }

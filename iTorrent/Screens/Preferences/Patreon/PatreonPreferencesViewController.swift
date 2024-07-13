@@ -102,7 +102,7 @@ private extension PatreonPreferencesViewController {
         }, for: .touchUpInside)
 
         linkPatreonButton.addAction(.init { [unowned self] _ in
-            viewModel.linkPatreon()
+            viewModel.linkPatreon(from: linkPatreonButton)
         }, for: .touchUpInside)
     }
 }

@@ -98,7 +98,7 @@ private extension TorrentFilesViewController {
                 let cell = collectionView.dequeue(for: indexPath) as TorrentFilesFileListCell<TorrentFilesFileItemViewModel>
                 let vm = parent.viewModel.fileModel(for: node.index)
                 vm.previewAction = { [unowned self] in
-                    parent.openPreview(start: node.index)
+                    parent.openPreview(from: indexPath, start: node.index)
                 }
                 cell.setup(with: vm)
                 return cell
@@ -144,8 +144,9 @@ private extension TorrentFilesViewController {
         }
     }
 
-    func openPreview(start fileIndex: Int) {
-        guard let startIndex = viewModel.filesForPreview.firstIndex(where: { $0.index == fileIndex })
+    func openPreview(from indexPath: IndexPath, start fileIndex: Int) {
+        guard let startIndex = viewModel.filesForPreview.firstIndex(where: { $0.index == fileIndex }),
+              let cell = collectionView.cellForItem(at: indexPath)
         else { return }
 
         let path = viewModel.filesForPreview[startIndex].path
@@ -158,14 +159,18 @@ private extension TorrentFilesViewController {
                 return
             }
 
-            let alert = UIAlertController(title: "Preview mode", message: nil, preferredStyle: .actionSheet)
-            alert.addAction(.init(title: "Quick Look preview", style: .default) { [self] _ in
+            let alert = UIAlertController(title: %"details.files.previewMode", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(.init(title: %"details.files.quickLookPreview", style: .default) { [self] _ in
                 previewAction(start: startIndex)
             })
-            alert.addAction(.init(title: "Media player", style: .default) { [self] _ in
+            alert.addAction(.init(title: %"details.files.mediaPlayerPreview", style: .default) { [self] _ in
                 playerAction(start: startIndex)
             })
             alert.addAction(.init(title: %"common.cancel", style: .cancel))
+
+            alert.popoverPresentationController?.sourceView = cell
+            alert.popoverPresentationController?.sourceRect = cell.bounds
+
             present(alert, animated: true)
         }
     }
