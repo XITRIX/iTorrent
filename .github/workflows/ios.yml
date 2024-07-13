@@ -18,7 +18,7 @@ jobs:
           xcode-version: 15.4
 
       - name: checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -216,22 +216,31 @@ jobs:
           xcode-version: 15.4
           
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: pages
 
       - name: Build altstore source generator
         run: xcrun swiftc -parse-as-library ./GenerateAltStoreJson.swift
 
       - name: Generate AltStore Source
-        run: ./GenerateAltStoreJson >> ./AltStoreSource.json
+        run: |
+          rm ./AltStore.json
+          ./GenerateAltStoreJson >> ./AltStore.json
 
-      - name: Release AltStore Source
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "[${GITHUB_REF_NAME}] Update AltStore.json" ./AltStore.json
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          repository: XITRIX/xitrix.github.io
-          token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
-          files: |
-            ./AltStoreSource.json
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: pages
 
   appstore_release:
     needs: [export_ipa]
