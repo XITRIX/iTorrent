@@ -12,17 +12,11 @@ import MarqueeText
 import SwiftUI
 import WidgetKit
 
-struct ProgressWidgetLiveActivity: Widget {
+extension ActivityViewContext<ProgressWidgetAttributes> {
     static var userDefaults: UserDefaults { .itorrentGroup }
 
-    static var tintColor: UIColor {
-        guard let data = Self.userDefaults.data(forKey: "preferencesTintColor")
-        else { return .tintColor }
-        return (try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data)) ?? .tintColor
-    }
-
-    func tintColor(from context: ActivityViewContext<ProgressWidgetAttributes>) -> UIColor {
-        if let colorData = context.state.color,
+    var tintColor: UIColor {
+        if let colorData = state.color,
            let keyColor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData)
         {
             return keyColor
@@ -31,6 +25,14 @@ struct ProgressWidgetLiveActivity: Widget {
         }
     }
 
+    private static var tintColor: UIColor {
+        guard let data = Self.userDefaults.data(forKey: "preferencesTintColor")
+        else { return .tintColor }
+        return (try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: data)) ?? .tintColor
+    }
+}
+
+struct ProgressWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         let config = ActivityConfiguration(for: ProgressWidgetAttributes.self) { context in
             // Lock screen/banner UI goes here
@@ -38,17 +40,17 @@ struct ProgressWidgetLiveActivity: Widget {
             if #available(iOS 18, *) {
 #if XCODE16
                 ProgressWidgetLiveActivityWatchSupportContent(context: context)
-                    .tint(Color(uiColor: tintColor(from: context)))
+                    .tint(Color(uiColor: Self.tintColor(from: context)))
                     .padding()
 #else
                 ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: tintColor(from: context)))
+                    .tint(Color(uiColor: context.tintColor))
                     .padding()
 #endif
 
             } else {
                 ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: tintColor(from: context)))
+                    .tint(Color(uiColor: context.tintColor))
                     .padding()
             }
         } dynamicIsland: { context in
@@ -89,7 +91,7 @@ struct ProgressWidgetLiveActivity: Widget {
                             .progressViewStyle(.linear)
                             .padding([.leading, .trailing], 8)
                     }
-                    .tint(Color(uiColor: Self.tintColor))
+                    .tint(Color(uiColor: context.tintColor))
                 }
             } compactLeading: {
                 LeadingView(context: context)
@@ -99,7 +101,7 @@ struct ProgressWidgetLiveActivity: Widget {
                 TrailingView(context: context)
             }
             .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
-            .keylineTint(Color(uiColor: Self.tintColor))
+            .keylineTint(Color(uiColor: context.tintColor))
         }
 
         if #available(iOS 18.0, *) {
@@ -282,7 +284,7 @@ struct TrailingView: View {
         } else {
             ProgressView(value: context.state.progress)
                 .progressViewStyle(.circular)
-                .tint(Color(uiColor: ProgressWidgetLiveActivity.tintColor))
+                .tint(Color(uiColor: context.tintColor))
         }
     }
 }
