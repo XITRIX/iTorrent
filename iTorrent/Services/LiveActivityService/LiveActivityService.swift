@@ -19,7 +19,7 @@ actor LiveActivityService {
 #if canImport(ActivityKit)
             TorrentService.shared.updateNotifier
                 .sink { [unowned self] updateModel in
-                    Task { await updateLiveActivity(with: updateModel.handle.snapshot) }
+                    Task { await updateLiveActivity(with: updateModel) }
                 }
 #endif
         }
@@ -31,14 +31,16 @@ actor LiveActivityService {
 
 #if canImport(ActivityKit)
 private extension LiveActivityService {
-    func updateLiveActivity(with snapshot: TorrentHandle.Snapshot) async {
+    func updateLiveActivity(with updateModel: TorrentService.TorrentUpdateModel) async {
         if #available(iOS 16.1, *) {
             guard ActivityAuthorizationInfo().areActivitiesEnabled
             else { return }
 
             for activity in Activity<ProgressWidgetAttributes>.activities {
-                if activity.attributes.hash == snapshot.infoHashes.best.hex {
-                    if snapshot.friendlyState.shouldShowLiveActivity {
+                if activity.attributes.hash == updateModel.oldSnapshot.infoHashes.best.hex {
+                    if let snapshot = updateModel.handle?.snapshot,
+                        snapshot.friendlyState.shouldShowLiveActivity
+                    {
                         if #available(iOS 16.2, *) {
                             await activity.update(.init(state: snapshot.toLiveActivityState, staleDate: .now + 10))
                         } else {
@@ -52,7 +54,9 @@ private extension LiveActivityService {
                 }
             }
 
-            if snapshot.friendlyState.shouldShowLiveActivity {
+            if let snapshot = updateModel.handle?.snapshot,
+               snapshot.friendlyState.shouldShowLiveActivity
+            {
                 showLiveActivity(with: snapshot)
             }
         }

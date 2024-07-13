@@ -25,7 +25,9 @@ struct UserDefaultItem<Value: Codable> {
         self.key = key
 
         let loadedValue = Self.value(for: key)
-        if loadedValue == nil { Self.setValue(defaultValue, for: key) }
+        if loadedValue == nil {
+            Self.setValue(defaultValue, for: key)
+        }
 
         projectedValue = .init(Self.value(for: key) ?? defaultValue)
 

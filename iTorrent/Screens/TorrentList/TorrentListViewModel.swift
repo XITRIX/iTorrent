@@ -58,7 +58,7 @@ class TorrentListViewModel: BaseViewModel {
 //            try await Task.sleep(for: .seconds(0.1))
 
             let groupsSortingArray = PreferencesStorage.shared.$torrentListGroupsSortingArray
-            let torrentSectionChanged = TorrentService.shared.updateNotifier.filter { $0.oldSnapshot.friendlyState != $0.handle.snapshot.friendlyState }.map{_ in ()}.prepend([()])
+            let torrentSectionChanged = TorrentService.shared.updateNotifier.filter { $0.oldSnapshot.friendlyState != $0.handle?.snapshot.friendlyState }.map{_ in ()}.prepend([()])
 
             disposeBag.bind {
                 rssFeedProvider.hasNewsPublisher.sink { [unowned self] value in

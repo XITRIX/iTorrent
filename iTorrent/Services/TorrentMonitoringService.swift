@@ -25,30 +25,32 @@ class TorrentMonitoringService {
 
 private extension TorrentMonitoringService {
     func checkStorageAvailability(with model: TorrentService.TorrentUpdateModel) {
-        guard let storage = model.handle.storage,
+        guard let handle = model.handle,
+              let storage = handle.storage,
               !storage.allowed,
-              !model.handle.snapshot.isPaused
+              !handle.snapshot.isPaused
         else { return }
 
-        model.handle.pause()
+        handle.pause()
     }
 
     func checkDoneNotification(with model: TorrentService.TorrentUpdateModel) {
-        guard PreferencesStorage.shared.isDownloadNotificationsEnabled,
+        guard let handle = model.handle,
+              PreferencesStorage.shared.isDownloadNotificationsEnabled,
               model.oldSnapshot.state != .checkingFiles,
               model.oldSnapshot.progressWanted < 1,
-              model.handle.snapshot.progressWanted >= 1
+              handle.snapshot.progressWanted >= 1
         else { return }
 
         if PreferencesStorage.shared.stopSeedingOnFinish {
-            model.handle.pause()
+            handle.pause()
         }
 
         let content = UNMutableNotificationContent()
 
-        let hash = model.handle.snapshot.infoHashes.best.hex
+        let hash = handle.snapshot.infoHashes.best.hex
         content.title = %"notification.done.title"
-        content.body = %"notification.done.message_\(model.handle.snapshot.name)"
+        content.body = %"notification.done.message_\(handle.snapshot.name)"
         content.sound = UNNotificationSound.default
         content.userInfo = ["hash": hash]
 

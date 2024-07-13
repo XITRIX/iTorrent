@@ -13,7 +13,7 @@ import UIKit
 extension TorrentService {
     struct TorrentUpdateModel {
         let oldSnapshot: TorrentHandle.Snapshot
-        let handle: TorrentHandle
+        let handle: TorrentHandle?
     }
 }
 
@@ -66,8 +66,11 @@ extension TorrentService {
         guard let handle = session.torrentsMap[infoHashes]
         else { return }
 
+        let oldSnapshot = handle.snapshot
         handle.deleteMetadata()
         session.removeTorrent(handle, deleteFiles: deleteFiles)
+        let updateModel = TorrentService.TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: nil)
+        updateNotifier.send(updateModel)
     }
 
     func updateSettings(_ settings: Session.Settings) {

@@ -22,7 +22,7 @@ extension SceneDelegate {
     var backgroundStateObserverBind: AnyCancellable {
         TorrentService.shared.updateNotifier
             .filter { _ in BackgroundService.shared.isRunning }
-            .filter { $0.oldSnapshot.friendlyState != $0.handle.snapshot.friendlyState }
+            .filter { $0.oldSnapshot.friendlyState != $0.handle?.snapshot.friendlyState }
             .sink { _ in
                 guard !BackgroundService.isBackgroundNeeded else { return }
                 BackgroundService.shared.stop()
