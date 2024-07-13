@@ -14,11 +14,13 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
     var webView: WKWebView!
 
     override func loadView() {
-        let button = UIBarButtonItem(primaryAction: .init(image: .init(systemName: "safari"), handler: { [unowned self] _ in
-            let safariVC = BaseSafariViewController(url: viewModel.rssModel.link)
-            present(safariVC, animated: true)
-        }))
-        navigationItem.setRightBarButton(button, animated: false)
+        if UIApplication.shared.canOpenURL(viewModel.rssModel.link) {
+            let button = UIBarButtonItem(primaryAction: .init(image: .init(systemName: "safari"), handler: { [unowned self] _ in
+                let safariVC = BaseSafariViewController(url: viewModel.rssModel.link)
+                present(safariVC, animated: true)
+            }))
+            navigationItem.setRightBarButton(button, animated: false)
+        }
 
         webView = WKWebView()
         webView.backgroundColor = .secondarySystemBackground
