@@ -37,7 +37,7 @@ private extension LiveActivityService {
             else { return }
 
             for activity in Activity<ProgressWidgetAttributes>.activities {
-                if activity.attributes.name == snapshot.name {
+                if activity.attributes.hash == snapshot.infoHashes.best.hex {
                     if snapshot.friendlyState.shouldShowLiveActivity {
                         if #available(iOS 16.2, *) {
                             await activity.update(.init(state: snapshot.toLiveActivityState, staleDate: .now + 10))
@@ -60,7 +60,7 @@ private extension LiveActivityService {
 
     func showLiveActivity(with snapshot: TorrentHandle.Snapshot) {
         if #available(iOS 16.1, *) {
-            let attributes = ProgressWidgetAttributes(name: snapshot.name, hash: snapshot.infoHashes.best.hex)
+            let attributes = ProgressWidgetAttributes(hash: snapshot.infoHashes.best.hex)
 
             do {
                 _ = try Activity<ProgressWidgetAttributes>.request(attributes: attributes, contentState: snapshot.toLiveActivityState, pushType: .none)
@@ -76,7 +76,8 @@ private extension TorrentHandle.Snapshot {
         let color = PreferencesStorage.shared.tintColor
         let data = try? NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: true)
 
-        return .init(state: friendlyState.toState,
+        return .init(name: name,
+              state: friendlyState.toState,
               progress: progress,
               downSpeed: downloadRate,
               upSpeed: uploadRate,

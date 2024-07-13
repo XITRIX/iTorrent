@@ -46,13 +46,13 @@ extension ProgressWidgetAttributes.State {
 }
 
 struct ProgressWidgetAttributes: ActivityAttributes {
-    public init(name: String, hash: String) {
-        self.name = name
+    public init(hash: String) {
         self.hash = hash
     }
 
     public struct ContentState: Codable, Hashable {
-        public init(state: State, progress: Double, downSpeed: UInt64, upSpeed: UInt64, timeRemainig: String, timeStamp: Date, color: Data?) {
+        public init(name: String, state: State, progress: Double, downSpeed: UInt64, upSpeed: UInt64, timeRemainig: String, timeStamp: Date, color: Data?) {
+            self.name = name
             self.state = state
             self.progress = progress
             self.downSpeed = downSpeed
@@ -63,6 +63,7 @@ struct ProgressWidgetAttributes: ActivityAttributes {
         }
 
         // Dynamic stateful properties about your activity go here!
+        public var name: String
         public var state: State
         public var progress: Double
         public var downSpeed: UInt64
@@ -73,7 +74,6 @@ struct ProgressWidgetAttributes: ActivityAttributes {
     }
 
     // Fixed non-changing properties about your activity go here!
-    public var name: String
     public var hash: String
 }
 #endif

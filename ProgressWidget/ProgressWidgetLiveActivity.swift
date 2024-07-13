@@ -70,7 +70,7 @@ struct ProgressWidgetLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack {
                         HStack {
-                            Text(context.attributes.name).padding(.top, 2)
+                            Text(context.state.name).padding(.top, 2)
                             Spacer()
                             if context.state.state == .downloading {
                                 Text(context.state.timeRemainig)
@@ -188,7 +188,7 @@ struct ProgressWidgetLiveActivityContent: View {
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                Text(context.attributes.name)
+                Text(context.state.name)
                 Spacer()
 
                 if #available(iOS 17.0, *),
