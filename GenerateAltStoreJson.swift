@@ -165,7 +165,7 @@ enum AltServerGenerator {
 
             return AltStoreAppVersionModel(
                 version: version,
-                buildVersion: buildVersion,
+                buildVersion: buildVersion ?? "1",
                 date: release.publishedAt,
                 size: ipaAsset.size,
                 downloadURL: ipaAsset.browserDownloadUrl
