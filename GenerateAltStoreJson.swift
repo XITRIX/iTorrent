@@ -75,6 +75,8 @@ struct AltStoreAppModel: Codable {
         What can this app do:
 
         • Download in the background
+        • Live Activity and Dynamic Island progress bar
+        • Downloading on external drives
         • Sequential download (use VLC to watch films while loading)
         • Add torrent files from Share menu (Safari and other apps)
         • Add magnet links directly from Safari
@@ -89,8 +91,6 @@ struct AltStoreAppModel: Codable {
         • Change UI to dark theme
         • Color personalization
         • RSS Feed
-        • Live Activity and Dynamic Island progress bar
-        • Downloading on external drives
         • ???
         """
     var downloadURL: String
@@ -142,6 +142,7 @@ struct GitHubReleaseModel: Codable {
 enum AltServerGenerator {
     static func main() async throws {
         let withNotarization = CommandLine.arguments.contains(where: { $0 == "eu" })
+        let notorizationADPUrl = "https://xitrix.github.io/iTorrent/ADP"
 
         let url = "https://api.github.com/repos/XITRIX/iTorrent/releases"
         let (data, _) = try await URLSession.shared.data(from: URL(string: url)!)
@@ -177,7 +178,7 @@ enum AltServerGenerator {
             apps: [
                 AltStoreAppModel(
                     marketplaceID: withNotarization ? "6499499971" : nil,
-                    downloadURL: versions.first?.downloadURL ?? "",
+                    downloadURL: withNotarization ? notorizationADPUrl : versions.first?.downloadURL ?? "",
                     versions: versions,
                     patreon: .init(pledge: 2),
                     beta: true
