@@ -7,11 +7,12 @@
 
 #if canImport(ActivityKit)
 import ActivityKit
+#endif
+
 import Combine
 import LibTorrent
 import MvvmFoundation
 import UIKit
-#endif
 
 actor LiveActivityService {
     init() {

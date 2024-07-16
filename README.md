@@ -8,10 +8,10 @@ iTorrent 2.0 app is it beta preview state, expect to see some bugs and be ready 
 
 
 [AltStore Button]: https://img.shields.io/badge/Download-AltStore-green?style=flat
-[AltStore Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://github.com/XITRIX/xitrix.github.io/releases/latest/download/AltStoreSource.json 'Link with example title.'
+[AltStore Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with AltStore.'
 
 [SideStore Button]: https://img.shields.io/badge/Download-SideStore-purple?style=flat
-[SideStore Link]: https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://github.com/XITRIX/xitrix.github.io/releases/latest/download/AltStoreSource.json 'Link with example title.'
+[SideStore Link]: https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with SideStore.'
 
 [Jailbreak Button]: https://img.shields.io/badge/Download-Jailbreak-red?style=flat
-[Jailbreak Link]: https://intradeus.github.io/http-protocol-redirector?r=itms-services://?action=download-manifest&url=https://github.com/XITRIX/iTorrent-v2/releases/latest/download/manifest.plist 'Link with example title.'
+[Jailbreak Link]: https://intradeus.github.io/http-protocol-redirector?r=itms-services://?action=download-manifest&url=https://github.com/XITRIX/iTorrent/releases/latest/download/manifest.plist 'Download with Jailbreak.'
