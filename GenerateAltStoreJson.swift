@@ -169,7 +169,7 @@ enum AltServerGenerator {
                 buildVersion: buildVersion ?? "1",
                 date: release.publishedAt,
                 size: ipaAsset.size,
-                downloadURL: ipaAsset.browserDownloadUrl
+                downloadURL: withNotarization ? notorizationADPUrl : ipaAsset.browserDownloadUrl
             )
         }
 
