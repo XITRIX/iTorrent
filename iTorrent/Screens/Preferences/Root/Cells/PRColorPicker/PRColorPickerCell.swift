@@ -32,8 +32,6 @@ class PRColorPickerCell<VM: PRColorPickerViewModel>: MvvmCollectionViewListCell<
         fillWithColors()
     }
 
-    override func setup(with viewModel: VM) {}
-
     override func layoutMarginsDidChange() {
         super.layoutMarginsDidChange()
         scrollView.contentInset.left = layoutMargins.left

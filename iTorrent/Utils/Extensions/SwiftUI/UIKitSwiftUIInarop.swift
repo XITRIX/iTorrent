@@ -15,7 +15,7 @@ private struct GenericControllerView: UIViewControllerRepresentable {
         viewController
     }
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { /* Ignore */ }
 }
 
 extension View {

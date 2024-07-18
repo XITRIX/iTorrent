@@ -21,7 +21,7 @@ extension PRButtonViewModel {
         var tinted: Bool = true
         var singleLine: Bool = false
         var accessories: [UICellAccessory] = []
-        var selectAction: (() -> Void)? = {}
+        var selectAction: (() -> Void)? = { /* Replace with nil if button should not allow highlight */ }
     }
 }
 

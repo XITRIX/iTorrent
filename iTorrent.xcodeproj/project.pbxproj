@@ -10,6 +10,7 @@
 		7C013DE32C28AA3C0026A11B /* sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C013DE22C28A97F0026A11B /* sound.m4a */; };
 		7C013DE42C2F38AA0026A11B /* LocalizationAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */; };
 		7C013DE52C2F41760026A11B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
+		7C04A6092C446B4D00FBC649 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */; };
 		7C1C08AA2C31F2F800569B45 /* PauseTorrentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */; };
 		7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */; };
 		7C1C08AD2C31FEA400569B45 /* IntentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08AC2C31FEA000569B45 /* IntentsService.swift */; };
@@ -64,7 +65,6 @@
 		7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */; };
 		7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CBDBAAE2C31EF52008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
-		7CC411582BD2DCF800CA8B13 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */; };
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
@@ -247,13 +247,12 @@
 
 /* Begin PBXFileReference section */
 		7C013DE22C28A97F0026A11B /* sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.m4a; sourceTree = "<group>"; };
+		7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTorrentIntent.swift; sourceTree = "<group>"; };
 		7C1C08AC2C31FEA000569B45 /* IntentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsService.swift; sourceTree = "<group>"; };
-		7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = UnityAds.xcframework; path = Submodules/UnityAds.xcframework; sourceTree = "<group>"; };
 		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
 		7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Unity.swift"; sourceTree = "<group>"; };
 		7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		7C4ED0822BE63D250034B62C /* FBAudienceNetwork.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:V9WTTPBFK9:Meta Platforms, Inc."; lastKnownFileType = wrapper.xcframework; name = FBAudienceNetwork.xcframework; path = Submodules/FBAudienceNetwork.xcframework; sourceTree = "<group>"; };
 		7C4ED0842BE6413D0034B62C /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
 		7C4ED0862BE641B30034B62C /* GoogleAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsManager.swift; sourceTree = "<group>"; };
 		7C4ED0882BE6423D0034B62C /* MetaAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaAdsManager.swift; sourceTree = "<group>"; };
@@ -299,7 +298,6 @@
 		7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSafariViewController.swift; sourceTree = "<group>"; };
 		7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSharingPreferencesViewModel.swift; sourceTree = "<group>"; };
 		7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppGroup.swift"; sourceTree = "<group>"; };
-		7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
@@ -330,8 +328,6 @@
 		D1048D832BBE92220027EF2F /* SAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAViewController.swift; sourceTree = "<group>"; };
 		D1048D842BBE92220027EF2F /* SANavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SANavigationController.swift; sourceTree = "<group>"; };
 		D1048D8A2BBEB6DE0027EF2F /* CombineLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatest.swift; sourceTree = "<group>"; };
-		D1048D8C2BBEB79F0027EF2F /* AbstractCombineLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCombineLatest.swift; sourceTree = "<group>"; };
-		D1048D8E2BBEB8400027EF2F /* Locking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locking.swift; sourceTree = "<group>"; };
 		D1048D912BBEC35B0027EF2F /* CombineLatest5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatest5.swift; sourceTree = "<group>"; };
 		D1048D932BBEC38F0027EF2F /* CombineLatest6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatest6.swift; sourceTree = "<group>"; };
 		D1048D9B2BBECFF40027EF2F /* PreferencesSectionGroupingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesSectionGroupingViewModel.swift; sourceTree = "<group>"; };
@@ -396,7 +392,6 @@
 		D1A227002AEF05A600669D6D /* TorrentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListViewModel.swift; sourceTree = "<group>"; };
 		D1A227062AEF0B2C00669D6D /* TorrentListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListItem.swift; sourceTree = "<group>"; };
 		D1A227082AEF0B6A00669D6D /* TorrentListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentListItemViewModel.swift; sourceTree = "<group>"; };
-		D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:CSTR6SUWN9:AdMob, Inc."; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = Submodules/GoogleAdsSdk/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
 		D1A5D0CB2BE5269E003E05D5 /* AdView+Blank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Blank.swift"; sourceTree = "<group>"; };
 		D1A5D0CD2BE52728003E05D5 /* AdView+Google.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Google.swift"; sourceTree = "<group>"; };
 		D1AA00CA2AFA8A9200B74629 /* UserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultItem.swift; sourceTree = "<group>"; };
@@ -652,7 +647,7 @@
 			isa = PBXGroup;
 			children = (
 				7C609A572C1F1D6400586635 /* Info.plist */,
-				7CC411572BD2DCF800CA8B13 /* GoogleService-Info.plist */,
+				7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */,
 				7C609A592C1F2A2700586635 /* iTorrent.xcconfig */,
 				D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */,
 				7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */,
@@ -761,8 +756,6 @@
 				D1048D8A2BBEB6DE0027EF2F /* CombineLatest.swift */,
 				D1048D912BBEC35B0027EF2F /* CombineLatest5.swift */,
 				D1048D932BBEC38F0027EF2F /* CombineLatest6.swift */,
-				D1048D8C2BBEB79F0027EF2F /* AbstractCombineLatest.swift */,
-				D1048D8E2BBEB8400027EF2F /* Locking.swift */,
 			);
 			path = CombineLatest;
 			sourceTree = "<group>";
@@ -1088,9 +1081,6 @@
 			isa = PBXGroup;
 			children = (
 				7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */,
-				7C4ED0822BE63D250034B62C /* FBAudienceNetwork.xcframework */,
-				D1A5D0C92BE52291003E05D5 /* GoogleMobileAds.xcframework */,
-				7C4CF2F22BDD586C0078FEA1 /* UnityAds.xcframework */,
 				D1A226F32AEF01B700669D6D /* LibTorrent.framework */,
 				D1A226D42AEEF73600669D6D /* MvvmFoundation.framework */,
 				7C5FBE3C2BC0ADC90069E5A0 /* WidgetKit.framework */,
@@ -1476,9 +1466,9 @@
 				D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */,
 				D173D9E82BC033CF00E4F9EB /* 3.wav in Resources */,
 				7C5FBE2E2BBF3FF80069E5A0 /* PRSwitchView.xib in Resources */,
-				7CC411582BD2DCF800CA8B13 /* GoogleService-Info.plist in Resources */,
 				D1AA00D02AFAC7D200B74629 /* Localizable.xcstrings in Resources */,
 				D1ACFDC72AF6DB9F0098FF56 /* TorrentFilesFileListCell.xib in Resources */,
+				7C04A6092C446B4D00FBC649 /* GoogleService-Info.plist in Resources */,
 				D1B1BECA2AFE25AE0030C2A4 /* TorrentTrackersViewController.xib in Resources */,
 				7CF6DA372C0F6D150033D03F /* InfoPlist.xcstrings in Resources */,
 				D1DB71922BD92238007F9267 /* PatreonPreferencesViewController.xib in Resources */,
@@ -1813,7 +1803,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.0.8;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1955,7 +1945,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.0.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2102,7 +2092,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.7;
+				MARKETING_VERSION = 2.0.8;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

@@ -38,7 +38,10 @@ extension LocationBackgroundService: BackgroundServiceProtocol {
             return status != .denied && status != .restricted
         }
 
+#if !os(visionOS)
         locationManager.requestAlwaysAuthorization()
+#endif
+        
         await withCheckedContinuation { continuation in
             self.continuation = continuation
         }

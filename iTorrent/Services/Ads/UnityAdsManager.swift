@@ -13,7 +13,6 @@ import MvvmFoundation
 import UnityAds
 #endif
 
-@MainActor
 class UnityAdsManager: NSObject {
 #if canImport(UnityAds)
     private static let gameId = "5284803"
