@@ -67,9 +67,11 @@ struct AltStoreAppModel: Codable {
     var bundleIdentifier: String = "com.xitrix.iTorrent2"
     var developerName: String = "XITRIX"
     var marketplaceID: String?
-    var subtitle: String?
+    var subtitle: String? = "Torrent client for iOS"
     var localizedDescription: String =
         """
+        iTorrent officially in the AltStore!
+        
         It is an ordinary torrent client for iOS with Files app support and much more.
 
         What can this app do:
@@ -135,6 +137,7 @@ struct GitHubReleaseModel: Codable {
     var name: String
     var publishedAt: String
     var assets: [GitHubAssetModel]
+    var body: String?
 }
 
 // MARK: - App
@@ -169,7 +172,8 @@ enum AltServerGenerator {
                 buildVersion: buildVersion ?? "1",
                 date: release.publishedAt,
                 size: ipaAsset.size,
-                downloadURL: withNotarization ? notorizationADPUrl : ipaAsset.browserDownloadUrl
+                downloadURL: withNotarization ? notorizationADPUrl : ipaAsset.browserDownloadUrl,
+                localizedDescription: release.body
             )
         }
 
