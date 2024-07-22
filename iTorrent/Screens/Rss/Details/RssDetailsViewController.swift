@@ -11,12 +11,12 @@ import WebKit
 import LibTorrent
 
 class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> {
-    var webView: WKWebView!
-    var webViewViewController: UIViewController!
-    @IBOutlet var downloadButtonContainer: UIView!
-    @IBOutlet var downloadButtonNonSafeAreaHolder: UIView!
-    @IBOutlet var downloadButton: UIButton!
-    @IBOutlet var separatorHeight: NSLayoutConstraint!
+    private var webView: WKWebView!
+    private var webViewViewController: UIViewController!
+    @IBOutlet private var downloadButtonContainer: UIView!
+    @IBOutlet private var downloadButtonNonSafeAreaHolder: UIView!
+    @IBOutlet private var downloadButton: UIButton!
+    @IBOutlet private var separatorHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +95,12 @@ private extension RssDetailsViewController {
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.showsHorizontalScrollIndicator = false
+
+        webViewViewController.additionalSafeAreaInsets.left = 8
+        webViewViewController.additionalSafeAreaInsets.right = 8
 
         webView.backgroundColor = .secondarySystemBackground
 #if !os(visionOS)
