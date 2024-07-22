@@ -155,7 +155,7 @@ private extension TorrentAddViewController {
             let alert = UIAlertController(title: String(localized: "add.dismiss.title"), message: String(localized: "add.dismiss.message"), preferredStyle: .alert)
             alert.addAction(.init(title: String(localized: "common.cancel"), style: .cancel))
             alert.addAction(.init(title: String(localized: "common.dismiss"), style: .destructive, handler: { [unowned self] _ in
-                parent.viewModel.dismiss()
+                parent.viewModel.cancel()
             }))
             parent.navigationController?.present(alert, animated: true)
         }

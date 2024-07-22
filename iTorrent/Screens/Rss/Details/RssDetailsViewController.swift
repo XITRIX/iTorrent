@@ -12,27 +12,20 @@ import LibTorrent
 
 class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> {
     var webView: WKWebView!
-
-    override func loadView() {
-        if UIApplication.shared.canOpenURL(viewModel.rssModel.link) {
-            let button = UIBarButtonItem(primaryAction: .init(image: .init(systemName: "safari"), handler: { [unowned self] _ in
-                let safariVC = BaseSafariViewController(url: viewModel.rssModel.link)
-                present(safariVC, animated: true)
-            }))
-            navigationItem.setRightBarButton(button, animated: false)
-        }
-
-        webView = WKWebView()
-        webView.backgroundColor = .secondarySystemBackground
-#if !os(visionOS)
-        webView.scrollView.keyboardDismissMode = .onDrag
-#endif
-        view = webView
-    }
-
+    var webViewViewController: UIViewController!
+    @IBOutlet var downloadButtonContainer: UIView!
+    @IBOutlet var downloadButtonNonSafeAreaHolder: UIView!
+    @IBOutlet var downloadButton: UIButton!
+    @IBOutlet var separatorHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        webViewViewController.additionalSafeAreaInsets.bottom = downloadButtonNonSafeAreaHolder.bounds.height
     }
 
     private lazy var delegates = Delegates(parent: self)
@@ -41,6 +34,8 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
 private extension RssDetailsViewController {
     func setup() {
         navigationItem.largeTitleDisplayMode = .never
+        setupDownloadButton()
+        setupWebView()
         binding()
 
         webView.navigationDelegate = delegates
@@ -49,10 +44,62 @@ private extension RssDetailsViewController {
 
     func binding() {
         disposeBag.bind {
-            viewModel.$title.sink { [unowned self] text in
+            viewModel.$title.uiSink { [unowned self] text in
                 title = text
             }
+            viewModel.$downloadType.uiSink { [unowned self] downloadType in
+                downloadButtonContainer.isHidden = downloadType == nil
+                downloadButton.setTitle(downloadType?.title, for: .normal)
+                downloadButton.isEnabled = downloadType != .added
+                view.layoutSubviews()
+            }
+            downloadButton.tapPublisher.sink { [unowned self] _ in
+                viewModel.download?()
+            }
         }
+    }
+
+    func setupDownloadButton() {
+        separatorHeight.constant = 1 / traitCollection.displayScale
+        downloadButton.configuration?.titleTextAttributesTransformer = .init { attributes in
+            var result = attributes
+            result.font = UIFont.preferredFont(forTextStyle: .headline)
+            return result
+        }
+    }
+
+    func setupWebView() {
+        if let link = viewModel.rssModel.link,
+           UIApplication.shared.canOpenURL(link)
+        {
+            let button = UIBarButtonItem(primaryAction: .init(image: .init(systemName: "safari"), handler: { [unowned self] _ in
+                let safariVC = BaseSafariViewController(url: link)
+                present(safariVC, animated: true)
+            }))
+            navigationItem.setRightBarButton(button, animated: false)
+        }
+
+        webView = WKWebView()
+        webView.translatesAutoresizingMaskIntoConstraints = false
+
+        webViewViewController = UIViewController()
+        webViewViewController.view = webView
+
+        addChild(webViewViewController)
+        view.insertSubview(webView, at: 0)
+        webViewViewController.didMove(toParent: self)
+
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: webView.leadingAnchor),
+            view.topAnchor.constraint(equalTo: webView.topAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
+        webView.backgroundColor = .secondarySystemBackground
+#if !os(visionOS)
+        webView.scrollView.keyboardDismissMode = .onDrag
+#endif
     }
 
     func loadHtml() {

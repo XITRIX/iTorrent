@@ -34,7 +34,7 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
                 title = text
             }
             model.rssModel.displayDescription.sink { [unowned self] text in
-                description = text
+                description = text.trimmingCharacters(in: .whitespacesAndNewlines)
             }
             model.rssModel.updatesCount.sink { [unowned self] num in
                 newCounter = num

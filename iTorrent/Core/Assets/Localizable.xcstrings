@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "%@ of %@ (%@)" : {
       "localizations" : {
         "en" : {
@@ -227,22 +224,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
-          }
-        }
-      }
-    },
-    "common.download" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Download"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скачать"
           }
         }
       }
@@ -787,23 +768,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Текущее"
-          }
-        }
-      }
-    },
-    "details.path.migrate" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Migrate storage"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мигрировать хранилище"
           }
         }
       }
@@ -2879,23 +2843,6 @@
         }
       }
     },
-    "preferences.notifications.seed" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "On seeding finished"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По окончании раздачи"
-          }
-        }
-      }
-    },
     "preferences.queueLimits" : {
       "localizations" : {
         "en" : {
@@ -3552,6 +3499,54 @@
         }
       }
     },
+    "rss.downloadButtonType.added" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already added"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уже добавлено"
+          }
+        }
+      }
+    },
+    "rss.downloadButtonType.magnet" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Magnet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скачать Magnet"
+          }
+        }
+      }
+    },
+    "rss.downloadButtonType.torrent" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скачать"
+          }
+        }
+      }
+    },
     "rsschannel.readAll" : {
       "localizations" : {
         "en" : {
@@ -3612,38 +3607,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Развидеть"
-          }
-        }
-      }
-    },
-    "rssdetail.magnetFound" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Magnet link is attached to this post"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пост содержит Magnet ссылку"
-          }
-        }
-      }
-    },
-    "rssdetail.torrentFound" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Torrent file is attached to this post"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пост содержит Torrent файл"
           }
         }
       }
