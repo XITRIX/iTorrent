@@ -109,12 +109,15 @@ class RssModel: Hashable, Codable {
 
         var localLink: URL?
         var localLinkImage: URL?
+
         if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
            let link = URL(string: xmlLink),
            let linkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink)
         {
             localLink = link
             localLinkImage = linkImage
+        } else {
+            localLinkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink.absoluteString)
         }
 
         var oldItems = items
