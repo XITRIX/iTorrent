@@ -17,7 +17,7 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
     @IBOutlet private var downloadButtonNonSafeAreaHolder: UIView!
     @IBOutlet private var downloadButton: UIButton!
     @IBOutlet private var separatorHeight: NSLayoutConstraint!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -81,6 +81,8 @@ private extension RssDetailsViewController {
 
         webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.scrollView.backgroundColor = .systemBackground
+        webView.isOpaque = false
 
         webViewViewController = UIViewController()
         webViewViewController.view = webView

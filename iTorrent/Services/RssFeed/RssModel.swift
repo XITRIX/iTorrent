@@ -117,26 +117,25 @@ class RssModel: Hashable, Codable {
             localLinkImage = linkImage
         }
 
+        var oldItems = items
         var newItems = xml["rss"]["channel"]["item"].all.map { xmlItem in
             RssItemModel(xml: xmlItem)
-        }
-
-        newItems.mutableForEach { item in
-            if let index = items.firstIndex(of: item) {
-                let oldItem = items[index]
-                item.new = oldItem.new
-                item.readed = oldItem.readed
-            } else {
-                item.new = true
+        }.filter { item in
+            if let index = oldItems.firstIndex(of: item) {
+                oldItems[index].update(item)
+                return false
             }
+            return true
         }
 
-        await MainActor.run { [newItems, localLink, localLinkImage] in
+        newItems.mutableForEach { $0.new = true }
+
+        await MainActor.run { [oldItems, newItems, localLink, localLinkImage] in
             self.title = title ?? "RSS Feed"
             self.description = description
             self.link = localLink
             self.linkImage = localLinkImage
-            items = newItems
+            items = newItems + oldItems
         }
 
         return newItems
