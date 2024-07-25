@@ -67,6 +67,7 @@
 		7CBDBAAE2C31EF52008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
+		7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
 		7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */; };
@@ -465,6 +466,7 @@
 				7C519C882C427E9A00E353A9 /* FirebaseAnalytics in Frameworks */,
 				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
 				D1DB71832BD80318007F9267 /* GCDWebServers in Frameworks */,
+				7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */,
 				7C519C8C2C427F4C00E353A9 /* FirebaseRemoteConfigSwift in Frameworks */,
 				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
 				D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */,
@@ -1388,6 +1390,7 @@
 				7CF6DA322C0F112B0033D03F /* OpenSSL */,
 				7C519C872C427E9A00E353A9 /* FirebaseAnalytics */,
 				7C519C8B2C427F4C00E353A9 /* FirebaseRemoteConfigSwift */,
+				7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -1803,7 +1806,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.8;
+				MARKETING_VERSION = 2.0.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1945,7 +1948,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.8;
+				MARKETING_VERSION = 2.0.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2092,7 +2095,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.8;
+				MARKETING_VERSION = 2.0.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2272,6 +2275,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
 			productName = SWXMLHash;
+		};
+		7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		7CF6DA322C0F112B0033D03F /* OpenSSL */ = {
 			isa = XCSwiftPackageProductDependency;

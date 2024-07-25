@@ -32,11 +32,11 @@ class RssChannelItemCell<VM: RssChannelItemCellViewModel>: MvvmCollectionViewLis
             }
             viewModel.$date.uiSink { [timeLabel] text in
                 timeLabel?.text = text
-                timeLabel?.isHidden = text == nil
+                timeLabel?.isHidden = text.isNilOrEmpty
             }
             viewModel.$subtitle.uiSink { [subtitleLabel] text in
                 subtitleLabel?.text = text
-                subtitleLabel?.isHidden = text == nil
+                subtitleLabel?.isHidden = text.isNilOrEmpty
             }
         }
     }

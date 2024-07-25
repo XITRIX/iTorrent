@@ -202,6 +202,7 @@ jobs:
         with:
           repository: XITRIX/iTorrent
           token: ${{ secrets.DISTRIB_REPO_ACCESS_TOKEN }}
+          body: $(git tag -l --format='%(contents)' ${GITHUB_REF_NAME})
           files: |
             app-Release-adhoc/build/iTorrent.ipa
             app-Release-adhoc/build/manifest.plist

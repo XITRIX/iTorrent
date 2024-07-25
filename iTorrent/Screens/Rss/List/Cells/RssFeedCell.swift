@@ -27,6 +27,7 @@ class RssFeedCell<VM: RssFeedCellViewModel>: MvvmCollectionViewListCell<VM> {
             }
             viewModel.$description.uiSink { [unowned self] description in
                 descriptionLabel.text = description
+                descriptionLabel.isHidden = description.isEmpty
             }
             viewModel.$newCounter.uiSink { [unowned self] newCounter in
                 newCounterLabel.text = "\(newCounter)"

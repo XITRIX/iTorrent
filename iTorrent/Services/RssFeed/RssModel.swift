@@ -109,26 +109,36 @@ class RssModel: Hashable, Codable {
 
         var localLink: URL?
         var localLinkImage: URL?
+
         if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
            let link = URL(string: xmlLink),
            let linkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink)
         {
             localLink = link
             localLinkImage = linkImage
+        } else {
+            localLinkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink.absoluteString)
         }
 
+        var oldItems = items
         var newItems = xml["rss"]["channel"]["item"].all.map { xmlItem in
             RssItemModel(xml: xmlItem)
-        }.filter { !items.contains($0) }
+        }.filter { item in
+            if let index = oldItems.firstIndex(of: item) {
+                oldItems[index].update(item)
+                return false
+            }
+            return true
+        }
 
         newItems.mutableForEach { $0.new = true }
 
-        await MainActor.run { [newItems, localLink, localLinkImage] in
+        await MainActor.run { [oldItems, newItems, localLink, localLinkImage] in
             self.title = title ?? "RSS Feed"
             self.description = description
             self.link = localLink
             self.linkImage = localLinkImage
-            items = newItems + items
+            items = newItems + oldItems
         }
 
         return newItems
@@ -150,12 +160,28 @@ class RssModel: Hashable, Codable {
     }
 }
 
+extension URL {
+    init?(string: String?) {
+        guard let string else { return nil }
+        self.init(string: string)
+    }
+}
+
+extension RssItemModel {
+    struct Enclosure: Hashable, Codable {
+        var url: URL
+        var type: String
+        var length: Int
+    }
+}
+
 struct RssItemModel: Hashable, Codable {
     var title: String?
     var description: String?
     var guid: String?
     var date: Date?
-    var link: URL
+    var link: URL?
+    var enclosure: Enclosure?
 
     var new: Bool = false
     var readed: Bool = false
@@ -163,7 +189,7 @@ struct RssItemModel: Hashable, Codable {
     init(xml: XMLIndexer) {
         title = xml["title"].element?.text
         description = xml["description"].element?.text
-        link = URL(string: xml["link"].element!.text)!
+        link = URL(string: xml["link"].element?.text)
         guid = xml["guid"].element?.text
 
         // Sun, 10 Feb 2019 17:23:50 +0400
@@ -172,6 +198,14 @@ struct RssItemModel: Hashable, Codable {
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
             date = formatter.date(from: dateText)
+        }
+
+        if let enclosure = xml["enclosure"].element,
+           let url = URL(string: enclosure.attribute(by: "url")?.text),
+           let type = enclosure.attribute(by: "type")?.text,
+           let length = Int(enclosure.attribute(by: "length")?.text ?? "0")
+        {
+            self.enclosure = .init(url: url, type: type, length: length)
         }
     }
 
@@ -204,5 +238,6 @@ struct RssItemModel: Hashable, Codable {
         description = model.description
         date = model.date
         link = model.link
+        enclosure = model.enclosure
     }
 }

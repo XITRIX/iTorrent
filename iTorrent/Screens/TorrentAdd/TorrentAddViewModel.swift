@@ -14,6 +14,7 @@ extension TorrentAddViewModel {
     struct Config {
         var torrentFile: TorrentFile
         var rootDirectory: PathNode?
+        var completion: ((Bool) -> Void)?
     }
 }
 
@@ -22,6 +23,7 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
     private var rootDirectory: PathNode!
     private var keys: [String]!
     private(set) var isRoot: Bool = false
+    private var completion: ((Bool) -> Void)?
 
     let updatePublisher = CurrentValueRelay<Void>(())
     let downloadStorage = CurrentValueRelay<UUID?>(nil)
@@ -31,6 +33,7 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
         torrentFile = model.torrentFile
         isRoot = model.rootDirectory == nil
         rootDirectory = model.rootDirectory ?? generateRoot()
+        completion = model.completion
         downloadStorage.value = preferences.defaultStorage
 
         keys = rootDirectory.storage
@@ -85,7 +88,7 @@ extension TorrentAddViewModel {
     func select(at index: Int) -> Bool {
         switch rootDirectory.storage[keys[index]] {
         case let path as PathNode:
-            navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: torrentFile, rootDirectory: path), by: .show)
+            navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: torrentFile, rootDirectory: path, completion: completion), by: .show)
             return false
         default:
             return true
@@ -93,11 +96,13 @@ extension TorrentAddViewModel {
     }
 
     func cancel() {
+        completion?(false)
         dismiss()
     }
 
     func download() {
         TorrentService.shared.addTorrent(by: torrentFile, at: downloadStorage.value)
+        completion?(true)
         dismiss()
     }
 

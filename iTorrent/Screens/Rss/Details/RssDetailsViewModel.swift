@@ -9,38 +9,91 @@ import Combine
 import LibTorrent
 import MvvmFoundation
 
+extension RssDetailsViewModel {
+    enum DownloadType {
+        case magnet
+        case torrent
+        case added
+
+        var title: String {
+            switch self {
+            case .magnet:
+                %"rss.downloadButtonType.magnet"
+            case .torrent:
+                %"rss.downloadButtonType.torrent"
+            case .added:
+                %"rss.downloadButtonType.added"
+            }
+        }
+    }
+}
+
 class RssDetailsViewModel: BaseViewModelWith<RssItemModel> {
     var rssModel: RssItemModel!
     @Published var title: String = ""
+    @Published var downloadType: DownloadType?
 
     override func prepare(with model: RssItemModel) {
         rssModel = model
 
         title = model.title ?? ""
-        Task { await tryDownload() }
+        Task { await prepareDownload() }
     }
+
+    private(set) var download: (() -> Void)?
 }
 
 private extension RssDetailsViewModel {
-    func tryDownload() async {
-        if let magnet = MagnetURI(with: rssModel.link),
-           !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes)
+    func prepareDownload() async {
+        if let link = rssModel.link,
+           let magnet = MagnetURI(with: link)
         {
-            alert(title: %"rssdetail.magnetFound", actions: [
-                .init(title: %"common.cancel", style: .cancel),
-                .init(title: %"common.download", style: .default) {
-                    TorrentService.shared.addTorrent(by: magnet)
-                }
-            ])
-        } else if let file = await TorrentFile(remote: rssModel.link),
-                  !TorrentService.shared.checkTorrentExists(with: file.infoHashes)
+            guard !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes) else {
+                downloadType = .added
+                return
+            }
+
+            downloadType = .magnet
+            download = { [unowned self] in
+                TorrentService.shared.addTorrent(by: magnet)
+                downloadType = .added
+            }
+            return
+        }
+
+        if let link = rssModel.link,
+           let file = await TorrentFile(remote: link)
         {
-            alert(title: %"rssdetail.torrentFound", actions: [
-                .init(title: %"common.cancel", style: .cancel),
-                .init(title: %"common.download", style: .default) { [unowned self] in
-                    navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file), by: .present(wrapInNavigation: true))
-                }
-            ])
+            guard !TorrentService.shared.checkTorrentExists(with: file.infoHashes) else {
+                downloadType = .added
+                return
+            }
+
+            downloadType = .torrent
+            download = { [unowned self] in
+                navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
+                    guard added else { return }
+                    self?.downloadType = .added
+                }), by: .present(wrapInNavigation: true))
+            }
+            return
+        }
+
+        if let link = rssModel.enclosure?.url,
+           let file = await TorrentFile(remote: link)
+        {
+            guard !TorrentService.shared.checkTorrentExists(with: file.infoHashes) else {
+                downloadType = .added
+                return
+            }
+            downloadType = .torrent
+            download = { [unowned self] in
+                navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
+                    guard added else { return }
+                    self?.downloadType = .added
+                }), by: .present(wrapInNavigation: true))
+            }
+            return
         }
     }
 }
