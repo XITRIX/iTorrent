@@ -204,7 +204,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El torrent con hash: \"%@\" ya existe en la cola de descargas"
+            "value" : "El torrent con hash: “%@” ya existe en la cola de descargas"
           }
         },
         "it" : {
@@ -433,8 +433,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "All"
+            "state" : "translated",
+            "value" : "Todos"
           }
         },
         "it" : {
@@ -1331,7 +1331,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trackers"
+            "value" : "Rastreadores"
           }
         },
         "it" : {
@@ -3117,7 +3117,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leechers"
+            "value" : "Sanguijuelas"
           }
         },
         "it" : {
@@ -3800,8 +3800,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "I know the risks"
+            "state" : "translated",
+            "value" : "Conozco los riesgos"
           }
         },
         "it" : {
@@ -3846,8 +3846,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Allow Cellular Connection"
+            "state" : "translated",
+            "value" : "Permitir conexión móvil"
           }
         },
         "it" : {
@@ -3892,8 +3892,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Allow Cellular Usage"
+            "state" : "translated",
+            "value" : "Permitir el uso del móvil"
           }
         },
         "it" : {
@@ -3938,8 +3938,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Do Not Allow Cellular"
+            "state" : "translated",
+            "value" : "No permitir móviles"
           }
         },
         "it" : {
@@ -3984,8 +3984,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "By default iTorrent prefers not to allow cellular usage because of most cellular plans does not support unlimited download and / or upload trafic.\n\nYou can always change this setting in application preferences."
+            "state" : "translated",
+            "value" : "Por defecto iTorrent prefiere no permitir el uso del móvil debido a que la mayoría de los planes de telefonía móvil no soportan el tráfico ilimitado de descarga y/o subida. Siempre puede cambiar esta configuración en las preferencias de la aplicación."
           }
         },
         "it" : {
@@ -4030,8 +4030,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Allow Cellular Usage"
+            "state" : "translated",
+            "value" : "Permitir uso móviles"
           }
         },
         "it" : {
@@ -4782,8 +4782,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Try to disable this filter or select another one"
+            "state" : "translated",
+            "value" : "Intente desactivar este filtro o seleccione otro"
           }
         },
         "it" : {
@@ -4828,8 +4828,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No torrents for filter “%1$@”"
+            "state" : "translated",
+            "value" : "No hay torrents para el filtro “%1$@”"
           }
         },
         "it" : {
@@ -5777,8 +5777,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Click here to open preferences"
+            "state" : "translated",
+            "value" : "Pulse aquí para abrir las preferencias"
           }
         },
         "it" : {
@@ -5823,8 +5823,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cellular collection is not allowed"
+            "state" : "translated",
+            "value" : "No se permite la recogida de móviles"
           }
         },
         "it" : {
@@ -7675,7 +7675,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Connection protocols"
+            "value" : "Protocolos de conexión"
           }
         },
         "it" : {
@@ -8438,8 +8438,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Trackers sources"
+            "state" : "translated",
+            "value" : "Fuentes de rastreadores"
           }
         },
         "it" : {
@@ -9893,8 +9893,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Add trackers list"
+            "state" : "translated",
+            "value" : "Añadir lista de seguidores"
           }
         },
         "it" : {
@@ -9939,8 +9939,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Title"
+            "state" : "translated",
+            "value" : "Título"
           }
         },
         "it" : {
@@ -9985,8 +9985,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "URL to trackers source file"
+            "state" : "translated",
+            "value" : "URL del archivo fuente de los rastreadores"
           }
         },
         "it" : {
@@ -10031,8 +10031,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Enable auto-addition"
+            "state" : "translated",
+            "value" : "Activar la autoadición"
           }
         },
         "it" : {
@@ -10077,8 +10077,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Automatically add all trackers to newly added torrents"
+            "state" : "translated",
+            "value" : "Añade automáticamente todos los trackers a los nuevos torrents añadidos"
           }
         },
         "it" : {
@@ -10123,8 +10123,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Add URL to trackers list source by pressing «+»"
+            "state" : "translated",
+            "value" : "Añade una URL a la lista de rastreadores pulsando «+»"
           }
         },
         "it" : {
@@ -10169,8 +10169,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tracker sources list is empty"
+            "state" : "translated",
+            "value" : "La lista de fuentes del rastreador está vacía"
           }
         },
         "it" : {
@@ -10215,8 +10215,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "This trackers source already added"
+            "state" : "translated",
+            "value" : "Esta fuente de rastreadores ya está añadida"
           }
         },
         "it" : {
@@ -10261,8 +10261,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Do you want to remove this trackers source?"
+            "state" : "translated",
+            "value" : "¿Desea eliminar esta fuente de rastreadores?"
           }
         },
         "it" : {
@@ -10307,8 +10307,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Remove source"
+            "state" : "translated",
+            "value" : "Eliminar fuente"
           }
         },
         "it" : {
@@ -10353,8 +10353,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rename source"
+            "state" : "translated",
+            "value" : "Renombrar fuente"
           }
         },
         "it" : {
@@ -11858,7 +11858,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eternidad"
+            "value" : "Infinito"
           }
         },
         "it" : {
@@ -12730,7 +12730,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Peers:"
+            "value" : "Pares:"
           }
         },
         "it" : {
@@ -13183,8 +13183,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Add trackers"
+            "state" : "translated",
+            "value" : "Añadir rastreadores"
           }
         },
         "it" : {
@@ -13229,8 +13229,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "From sources list"
+            "state" : "translated",
+            "value" : "Desde la lista de fuentes"
           }
         },
         "it" : {
@@ -13275,8 +13275,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import all"
+            "state" : "translated",
+            "value" : "Importar todo"
           }
         },
         "it" : {
@@ -13321,8 +13321,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Manually"
+            "state" : "translated",
+            "value" : "Manualmente"
           }
         },
         "it" : {
@@ -13644,7 +13644,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualizar Rastreadores"
+            "value" : "Vuelva a anunciar todos"
           }
         },
         "it" : {
@@ -13689,8 +13689,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Remove Trackers"
+            "state" : "translated",
+            "value" : "Eliminar rastreadores"
           }
         },
         "it" : {
@@ -13781,8 +13781,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Add source"
+            "state" : "translated",
+            "value" : "Añadir fuente"
           }
         },
         "it" : {
@@ -13827,8 +13827,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Local source"
+            "state" : "translated",
+            "value" : "Fuente local"
           }
         },
         "it" : {
@@ -13873,8 +13873,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Remote source"
+            "state" : "translated",
+            "value" : "Fuente remota"
           }
         },
         "it" : {
