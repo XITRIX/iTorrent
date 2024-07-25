@@ -149,6 +149,10 @@ extension Session.Settings {
         let settings = Self()
         let preferences = PreferencesStorage.shared
 
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
+        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
+        settings.agentName = "iTorrent: v\(appVersion)-\(appBuild)"
+
         settings.maxActiveTorrents = preferences.maxActiveTorrents
         settings.maxDownloadingTorrents = preferences.maxDownloadingTorrents
         settings.maxUploadingTorrents = preferences.maxUploadingTorrents
