@@ -26,6 +26,8 @@ actor LiveActivityService {
         }
     }
 
+    private static let throttleDuration: Int = 5
+    private var throttleMap: [String: Date] = [:]
     private let disposeBag = DisposeBag()
     @Injected private var torrentService: TorrentService
 }
@@ -42,14 +44,10 @@ private extension LiveActivityService {
                     if let snapshot = updateModel.handle?.snapshot,
                         snapshot.friendlyState.shouldShowLiveActivity
                     {
-                        if #available(iOS 16.2, *) {
-                            await activity.update(.init(state: snapshot.toLiveActivityState, staleDate: .now + 10))
-                        } else {
-                            await activity.update(using: snapshot.toLiveActivityState)
-                        }
+                        await update(activity, with: snapshot.toLiveActivityState)
                         return
                     } else {
-                        await activity.end(dismissalPolicy: .immediate)
+                        await end(activity)
                         return
                     }
                 }
@@ -63,12 +61,34 @@ private extension LiveActivityService {
         }
     }
 
+    @available(iOS 16.1, *)
+    func update(_ activity: Activity<ProgressWidgetAttributes>, with state: ProgressWidgetAttributes.ContentState) async {
+        if let date = throttleMap[activity.attributes.hash],
+            Int(Date.now.timeIntervalSince(date)) <= Self.throttleDuration
+        { return }
+
+        if #available(iOS 16.2, *) {
+            await activity.update(.init(state: state, staleDate: .now + 10))
+        } else {
+            await activity.update(using: state)
+        }
+
+        throttleMap[activity.attributes.hash] = .now
+    }
+
+    @available(iOS 16.1, *)
+    func end(_ activity: Activity<ProgressWidgetAttributes>) async {
+        await activity.end(dismissalPolicy: .immediate)
+        throttleMap[activity.attributes.hash] = nil
+    }
+
     func showLiveActivity(with snapshot: TorrentHandle.Snapshot) {
         if #available(iOS 16.1, *) {
             let attributes = ProgressWidgetAttributes(hash: snapshot.infoHashes.best.hex)
 
             do {
                 _ = try Activity<ProgressWidgetAttributes>.request(attributes: attributes, contentState: snapshot.toLiveActivityState, pushType: .none)
+                throttleMap[attributes.hash] = .now
             } catch {
                 print(error.localizedDescription)
             }
