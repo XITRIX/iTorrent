@@ -12,8 +12,9 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
     @IBOutlet private var collectionView: MvvmCollectionView!
     private let addButton = UIBarButtonItem()
     private let removeButton = UIBarButtonItem()
+    private let reannounceButton = UIBarButtonItem()
 
-    override var isToolbarItemsHidden: Bool { !isEditing }
+    override var isToolbarItemsHidden: Bool { false }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,34 +57,39 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
         removeButton.primaryAction = .init(title: "Remove Trackers", image: .init(systemName: "trash"), handler: { [unowned self] _ in
             viewModel.removeSelected()
         })
+        reannounceButton.primaryAction = .init(title: %"trackers.reannounceAll") { [unowned self] _ in
+            viewModel.reannounceAll()
+        }
 
-        toolbarItems = [
+        toolbarItems = regularToolbar
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        collectionView.isEditing = editing
+        toolbarItems = editing ? editToolbar : regularToolbar
+        collectionView.allowsSelection = editing
+    }
+
+    private lazy var regularToolbar: [UIBarButtonItem] = {
+        [
+            .init(systemItem: .flexibleSpace),
+            reannounceButton,
+            .init(systemItem: .flexibleSpace)
+        ]
+    }()
+
+    private lazy var editToolbar: [UIBarButtonItem] = {
+        [
             .init(systemItem: .flexibleSpace),
             addButton,
             .init(systemItem: .flexibleSpace),
             removeButton,
             .init(systemItem: .flexibleSpace)
         ]
-    }
-
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        collectionView.isEditing = editing
-        navigationController?.setToolbarHidden(!editing, animated: true)
-        collectionView.allowsSelection = editing
-    }
-
-//    private lazy var delegates = Delegates(parent: self)
+    }()
 }
 
 private extension TorrentTrackersViewController {
-//    class Delegates: DelegateObject<TorrentTrackersViewController>, UICollectionViewDelegate {
-//        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//            parent.viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
-//        }
-//
-//        func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//            parent.viewModel.selectingIndexPaths = collectionView.indexPathsForSelectedItems ?? []
-//        }
-//    }
+
 }

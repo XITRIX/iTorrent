@@ -67,6 +67,10 @@ extension TorrentTrackersViewModel {
             .init(title: %"common.cancel", style: .cancel)
         ])
     }
+
+    func reannounceAll() {
+        torrentHandle.forceReannounce()
+    }
 }
 
 private extension TorrentTrackersViewModel {

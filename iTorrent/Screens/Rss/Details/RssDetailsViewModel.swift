@@ -45,8 +45,9 @@ class RssDetailsViewModel: BaseViewModelWith<RssItemModel> {
 
 private extension RssDetailsViewModel {
     func prepareDownload() async {
-        if let link = rssModel.link,
-           let magnet = MagnetURI(with: link)
+        // MARK: - Try download magnet
+        if let magnet = MagnetURI(with: rssModel.enclosure?.url) ?? // Check enclosure
+                        MagnetURI(with: rssModel.link) // Otherwise check link
         {
             guard !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes) else {
                 downloadType = .added
@@ -61,9 +62,18 @@ private extension RssDetailsViewModel {
             return
         }
 
-        if let link = rssModel.link,
-           let file = await TorrentFile(remote: link)
-        {
+
+        // MARK: - Try download file
+        let file: TorrentFile?
+
+        // Check enclosure
+        if let temp = await TorrentFile(remote: rssModel.enclosure?.url) { file = temp }
+        // Otherwise check link
+        else if let temp = await TorrentFile(remote: rssModel.link) { file = temp }
+        // Otherwise nothing to download
+        else { file = nil }
+
+        if let file {
             guard !TorrentService.shared.checkTorrentExists(with: file.infoHashes) else {
                 downloadType = .added
                 return
@@ -78,22 +88,19 @@ private extension RssDetailsViewModel {
             }
             return
         }
+    }
+}
 
-        if let link = rssModel.enclosure?.url,
-           let file = await TorrentFile(remote: link)
-        {
-            guard !TorrentService.shared.checkTorrentExists(with: file.infoHashes) else {
-                downloadType = .added
-                return
-            }
-            downloadType = .torrent
-            download = { [unowned self] in
-                navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
-                    guard added else { return }
-                    self?.downloadType = .added
-                }), by: .present(wrapInNavigation: true))
-            }
-            return
-        }
+private extension TorrentFile {
+    convenience init?(remote url: URL?) async {
+        guard let url else { return nil }
+        await self.init(remote: url)
+    }
+}
+
+private extension MagnetURI {
+    convenience init?(with url: URL?) {
+        guard let url else { return nil }
+        self.init(with: url)
     }
 }
