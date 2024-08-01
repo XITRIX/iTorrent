@@ -259,7 +259,7 @@ extension TorrentListViewController {
     }
 
     func makeDocumentPicker() -> UIViewController {
-        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.init(importedAs: "com.bittorrent.torrent")])
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.init(importedAs: "com.bittorrent.torrent")], asCopy: true)
         documentPicker.delegate = delegates
         documentPicker.allowsMultipleSelection = false
         documentPicker.shouldShowFileExtensions = true
