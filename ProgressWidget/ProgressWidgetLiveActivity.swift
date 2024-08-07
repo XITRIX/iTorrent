@@ -40,7 +40,7 @@ struct ProgressWidgetLiveActivity: Widget {
             if #available(iOS 18, *) {
 #if XCODE16
                 ProgressWidgetLiveActivityWatchSupportContent(context: context)
-                    .tint(Color(uiColor: Self.tintColor(from: context)))
+                    .tint(Color(uiColor: context.tintColor))
                     .padding()
 #else
                 ProgressWidgetLiveActivityContent(context: context)
@@ -129,7 +129,7 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
             VStack(spacing: 8) {
                 HStack {
                     MarqueeText(
-                        text: context.attributes.name,
+                        text: context.state.name,
                         font: UIFont.preferredFont(forTextStyle: .caption1),
                         leftFade: 16,
                         rightFade: 16,
