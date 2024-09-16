@@ -10,7 +10,7 @@ import UIKit
 
 class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: MvvmCollectionView!
-    private let addButton = UIBarButtonItem()
+    private let addButton = UIBarButtonItem(systemItem: .add)
     private let removeButton = UIBarButtonItem()
     private let reannounceButton = UIBarButtonItem()
 
@@ -36,8 +36,8 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
                 if #available(iOS 17.0, *) {
                     var config = UIContentUnavailableConfiguration.empty()
                     config.image = .init(systemName: "externaldrive.fill.badge.questionmark")
-                    config.text = %"trackers.empty.title" //"No trackers"
-                    config.secondaryText = %"trackers.empty.subtitle" //"You can add trackers manually by editing this page"
+                    config.text = %"trackers.empty.title" // "No trackers"
+                    config.secondaryText = %"trackers.empty.subtitle" // "You can add trackers manually by editing this page"
                     contentUnavailableConfiguration = isEmpty ? config : nil
                 }
             }
@@ -51,10 +51,23 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
 
 //        collectionView.delegate = delegates
 
-        addButton.primaryAction = .init(title: "Add Trackers", image: .init(systemName: "plus"), handler: { [unowned self] _ in
-            viewModel.addTrackers()
-        })
-        removeButton.primaryAction = .init(title: "Remove Trackers", image: .init(systemName: "trash"), handler: { [unowned self] _ in
+        let importActions: [UIAction] = viewModel.trackersListService.trackerSources.value.values.map { [unowned self] source in
+            .init(title: source.title) { [unowned self] _ in
+                viewModel.addTrackers(from: source)
+            }
+        }
+
+        addButton.menu = .init(title: %"trackers.add", children: [
+            UIAction(title: %"trackers.add.manually") { [unowned self] _ in
+                viewModel.addTrackers()
+            },
+            UIMenu(title: %"trackers.add.fromSource", children: importActions + [
+                UIAction(title: %"trackers.add.fromSource.all", image: .init(systemName: "list.bullet")) { [unowned self] _ in
+                    viewModel.addAllTrackersFromSourcesList()
+                }
+            ])
+        ])
+        removeButton.primaryAction = .init(title: %"trackers.remove", image: .init(systemName: "trash"), handler: { [unowned self] _ in
             viewModel.removeSelected()
         })
         reannounceButton.primaryAction = .init(title: %"trackers.reannounceAll") { [unowned self] _ in
@@ -81,15 +94,13 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
 
     private lazy var editToolbar: [UIBarButtonItem] = {
         [
-            .init(systemItem: .flexibleSpace),
+            //            .init(systemItem: .flexibleSpace),
             addButton,
             .init(systemItem: .flexibleSpace),
-            removeButton,
-            .init(systemItem: .flexibleSpace)
+            removeButton
+//            .init(systemItem: .flexibleSpace)
         ]
     }()
 }
 
-private extension TorrentTrackersViewController {
-
-}
+private extension TorrentTrackersViewController {}

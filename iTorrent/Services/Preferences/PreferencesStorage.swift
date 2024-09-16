@@ -69,6 +69,8 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesMaxUploadSpeed", 0) var maxUploadSpeed: UInt
     @UserDefaultItem("preferencesMaxDownloadSpeed", 0) var maxDownloadSpeed: UInt
 
+    @UserDefaultItem("preferencesTrackersAutoaddingEnabled", false) var isTrackersAutoaddingEnabled: Bool
+
     @UserDefaultItem("preferencesIsCellularEnabled", false) var isCellularEnabled: Bool
     @UserDefaultItem("preferencesUseAllAvailableInterfaces", false) var useAllAvailableInterfaces: Bool
 

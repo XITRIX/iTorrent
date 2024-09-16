@@ -143,6 +143,9 @@ private extension PreferencesViewModel {
             PRButtonViewModel(with: .init(title: %"preferences.network.proxy", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: ProxyPreferencesViewModel.self, by: .show)
             })
+            PRButtonViewModel(with: .init(title: %"preferences.network.trackers", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: TrackersListPreferencesViewModel.self, by: .show)
+            })
             PRButtonViewModel(with: .init(title: %"preferences.network.connection", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: ConnectionPreferencesViewModel.self, by: .show)
             })

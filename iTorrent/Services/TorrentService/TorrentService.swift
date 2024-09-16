@@ -41,6 +41,7 @@ class TorrentService {
 
     @Injected private var network: NetworkMonitoringService
     @Injected private var preferences: PreferencesStorage
+    @Injected private var trackersListService: TrackersListService
 }
 
 extension TorrentService {
@@ -91,6 +92,11 @@ extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
         torrent.prepareToAdd(into: self)
         torrents[torrent.snapshot.infoHashes] = torrent
+
+        // Add trackers from torrent list service if needed
+        if preferences.isTrackersAutoaddingEnabled {
+            trackersListService.addAllTrackers(to: torrent)
+        }
     }
 
     func torrentManager(_ manager: Session, didRemoveTorrentWithHash hashesData: TorrentHashes) {

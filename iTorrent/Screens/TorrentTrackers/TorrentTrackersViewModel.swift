@@ -17,6 +17,8 @@ class TorrentTrackersViewModel: BaseViewModelWith<TorrentHandle> {
     @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var selectedIndexPaths: [IndexPath] = []
 
+    @Injected var trackersListService: TrackersListService
+
     var isRemoveAvailable: AnyPublisher<Bool, Never> {
         $selectedIndexPaths.map { !$0.isEmpty }
             .eraseToAnyPublisher()
@@ -35,22 +37,35 @@ class TorrentTrackersViewModel: BaseViewModelWith<TorrentHandle> {
 
 extension TorrentTrackersViewModel {
     func addTrackers() {
-        #if !os(visionOS)
-        textMultilineInput(title: %"trackers.add.title", message: %"trackers.add.message", placeholder: "http://x.x.x.x:8080/announce", accept: %"common.add") { [unowned self] result in
-            guard let result else { return }
-            result.components(separatedBy: .newlines).forEach { urlString in
-                guard let url = URL(string: urlString) else { return }
-                torrentHandle.addTracker(url.absoluteString)
-                reload()
-            }
-        }
-        #else
+        #if os(visionOS)
         textInput(title: %"trackers.add.title.single", message: %"trackers.add.message.single", placeholder: "http://x.x.x.x:8080/announce", cancel: %"common.cancel", accept: %"common.add") { [unowned self] result in
             guard let url = URL(string: result ?? "") else { return }
             torrentHandle.addTracker(url.absoluteString)
             reload()
         }
+        #else
+        textMultilineInput(title: %"trackers.add.title", message: %"trackers.add.message", placeholder: "http://x.x.x.x:8080/announce", accept: %"common.add") { [unowned self] result in
+            guard let result else { return }
+            result.components(separatedBy: .newlines).forEach { urlString in
+                guard let url = URL(string: urlString) else { return }
+                torrentHandle.addTracker(url.absoluteString)
+            }
+            reload()
+        }
         #endif
+    }
+
+    func addTrackers(from list: TrackersListService.ListState) {
+        list.trackers.forEach { urlString in
+            guard let url = URL(string: urlString) else { return }
+            torrentHandle.addTracker(url.absoluteString)
+        }
+        reload()
+    }
+
+    func addAllTrackersFromSourcesList() {
+        trackersListService.addAllTrackers(to: torrentHandle)
+        reload()
     }
 
     func removeSelected() {

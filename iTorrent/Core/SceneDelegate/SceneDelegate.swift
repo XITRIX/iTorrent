@@ -24,6 +24,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { BackgroundService.shared })
         container.registerSingleton(factory: NetworkMonitoringService.init)
         container.registerSingleton(factory: ImageLoader.init)
+        container.registerSingleton(factory: TrackersListService.init)
         container.registerDaemon(factory: PatreonService.init)
         container.registerDaemon(factory: TorrentMonitoringService.init)
         container.registerDaemon(factory: RssFeedProvider.init)
@@ -62,6 +63,8 @@ class SceneDelegate: MvvmSceneDelegate {
 
         router.register(BasePreferencesViewController<PreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
+        router.register(TrackersListPreferencesViewController.self)
+        router.register(TrackersListDetailsPreferencesViewController.self)
         router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
         router.register(BasePreferencesViewController<FileSharingPreferencesViewModel>.self)
         router.register(PreferencesSectionGroupingViewController.self)

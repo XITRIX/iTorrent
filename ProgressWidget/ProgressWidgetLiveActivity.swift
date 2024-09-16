@@ -38,16 +38,9 @@ struct ProgressWidgetLiveActivity: Widget {
             // Lock screen/banner UI goes here
 
             if #available(iOS 18, *) {
-#if XCODE16
                 ProgressWidgetLiveActivityWatchSupportContent(context: context)
                     .tint(Color(uiColor: context.tintColor))
                     .padding()
-#else
-                ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: context.tintColor))
-                    .padding()
-#endif
-
             } else {
                 ProgressWidgetLiveActivityContent(context: context)
                     .tint(Color(uiColor: context.tintColor))
@@ -105,18 +98,13 @@ struct ProgressWidgetLiveActivity: Widget {
         }
 
         if #available(iOS 18.0, *) {
-#if XCODE16
             return config.supplementalActivityFamilies([.small])
-#else
-            return config
-#endif
         } else {
             return config
         }
     }
 }
 
-#if XCODE16
 @available(iOS 18.0, *)
 struct ProgressWidgetLiveActivityWatchSupportContent: View {
     @Environment(\.activityFamily) var activityFamily
@@ -180,7 +168,6 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
         }
     }
 }
-#endif
 
 struct ProgressWidgetLiveActivityContent: View {
     @State var context: ActivityViewContext<ProgressWidgetAttributes>
