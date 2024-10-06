@@ -240,26 +240,26 @@
 			<key>SKAdNetworkIdentifier</key>
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>6yxyv74ff7.skadnetwork</string>
-        </dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>9nlqeag3gk.skadnetwork</string>
-        </dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>a8cz6cu7e5.skadnetwork</string>
-        </dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>k6y4y55b64.skadnetwork</string>
-        </dict>
-        <dict>
-            <key>SKAdNetworkIdentifier</key>
-            <string>5l3tpt7t6e.skadnetwork</string>
-        </dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>6yxyv74ff7.skadnetwork</string>
+		</dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>9nlqeag3gk.skadnetwork</string>
+		</dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>a8cz6cu7e5.skadnetwork</string>
+		</dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>k6y4y55b64.skadnetwork</string>
+		</dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>5l3tpt7t6e.skadnetwork</string>
+		</dict>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
