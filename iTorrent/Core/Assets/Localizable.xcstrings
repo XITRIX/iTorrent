@@ -1147,7 +1147,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "更多"
+            "value" : "添加时间"
           }
         }
       }
@@ -1203,7 +1203,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已创建"
+            "value" : "创建时间"
           }
         }
       }
@@ -4934,7 +4934,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Trackers sources"
+            "value" : "Tracker源"
           }
         }
       }
@@ -5830,7 +5830,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Add trackers list"
+            "value" : "添加Tracker列表"
           }
         }
       }
@@ -5858,7 +5858,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Title"
+            "value" : "标题"
           }
         }
       }
@@ -5886,7 +5886,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "URL to trackers source file"
+            "value" : "Tracker列表文件源的URL"
           }
         }
       }
@@ -5914,7 +5914,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Enable auto-addition"
+            "value" : "启用自动添加"
           }
         }
       }
@@ -5942,7 +5942,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Automatically add all trackers to newly added torrents"
+            "value" : "自动将所有Tracker添加到新的下载任务中"
           }
         }
       }
@@ -5970,7 +5970,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Add URL to trackers list source by pressing «+»"
+            "value" : "点击 «+» 按钮添加Tracker列表源URL"
           }
         }
       }
@@ -5998,7 +5998,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Tracker sources list is empty"
+            "value" : "Tracker列表源为空"
           }
         }
       }
@@ -6026,7 +6026,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "This trackers source already added"
+            "value" : "此Tracker源已添加"
           }
         }
       }
@@ -6054,7 +6054,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Do you want to remove this trackers source?"
+            "value" : "您确定要删除此Tracker源吗？"
           }
         }
       }
@@ -6082,7 +6082,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remove source"
+            "value" : "删除源"
           }
         }
       }
@@ -6110,7 +6110,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Rename source"
+            "value" : "重命名源"
           }
         }
       }
@@ -8210,7 +8210,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remove Trackers"
+            "value" : "删除Tracker"
           }
         }
       }
@@ -8266,7 +8266,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Add source"
+            "value" : "添加Tracker源"
           }
         }
       }
@@ -8294,7 +8294,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Local source"
+            "value" : "本地Tracker源"
           }
         }
       }
@@ -8322,7 +8322,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Remote source"
+            "value" : "远程Tracker源"
           }
         }
       }
