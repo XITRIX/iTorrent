@@ -50,29 +50,34 @@ extension SANavigationController: UINavigationControllerDelegate {
 
 extension SANavigationController: UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if viewControllers.last?.navigationItem.leftBarButtonItem != nil {
-            return false
-        }
+        // Do not allow pop if navigation is process of transition
+        guard transitionCoordinator == nil else { return false }
 
-        if locker {
-            return false
-        }
+        // Do not allow to pop root controller
+        guard viewControllers.count > 1 else { return false }
+
+        // Do not allow pop if back button overriten
+        guard viewControllers.last?.navigationItem.leftBarButtonItem == nil else { return false }
+
+        // Do not allow pop if it locked
+        guard !locker else { return false }
 
         var isLeftToRight = true
         if #available(iOS 10.0, *) {
             isLeftToRight = view.effectiveUserInterfaceLayoutDirection == .leftToRight
         }
 
-        if let pan = gestureRecognizer as? UIPanGestureRecognizer {
-            let velocity = pan.velocity(in: view)
-            if abs(velocity.x) > abs(velocity.y) {
-                if isLeftToRight {
-                    return velocity.x > 0
-                } else {
-                    return velocity.x < 0
-                }
-            }
+        guard let pan = gestureRecognizer as? UIPanGestureRecognizer else { return false }
+
+        let velocity = pan.velocity(in: view)
+
+        // Do not allow vertical swipes
+        guard abs(velocity.x) > abs(velocity.y) else { return false }
+
+        if isLeftToRight {
+            return velocity.x > 0
+        } else {
+            return velocity.x < 0
         }
-        return false
     }
 }
