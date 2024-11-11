@@ -170,8 +170,7 @@ extension Session.Settings {
 
         settings.encryptionPolicy = preferences.encryptionPolicy
 
-        settings.useDefaultPort = preferences.useDefaultPort
-        settings.port = preferences.port
+        settings.port = preferences.useDefaultPort ? 6881 : preferences.port
         settings.portBindRetries = preferences.portBindRetries
 
         var interfacesToUse = interfaces
