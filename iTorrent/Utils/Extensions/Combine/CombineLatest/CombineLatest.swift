@@ -73,6 +73,60 @@ public extension Publishers {
                 transform(a, b, c, d.0, d.1, d.2, d.3)
             }
     }
+
+    // 8
+    static func combineLatest<A: Publisher, B: Publisher, C: Publisher, D: Publisher, E: Publisher, F: Publisher, G: Publisher, H: Publisher, Result>(
+        _ publisher1: A,
+        _ publisher2: B,
+        _ publisher3: C,
+        _ publisher4: D,
+        _ publisher5: E,
+        _ publisher6: F,
+        _ publisher7: G,
+        _ publisher8: H,
+        _ transform: @escaping (A.Output, B.Output, C.Output, D.Output, E.Output, F.Output, G.Output, H.Output) -> Result
+    ) -> Publishers.Map<Publishers.CombineLatest4<Publishers.CombineLatest4<A, B, C, D>, E, F, Publishers.CombineLatest<G, H>>, Result>
+    where A.Failure == B.Failure,
+          B.Failure == C.Failure,
+          C.Failure == D.Failure,
+          D.Failure == E.Failure,
+          E.Failure == F.Failure,
+          F.Failure == G.Failure,
+          G.Failure == H.Failure
+    {
+        return Publishers.CombineLatest4(Publishers.CombineLatest4(publisher1, publisher2, publisher3, publisher4), publisher5, publisher6, Publishers.CombineLatest(publisher7, publisher8))
+            .map { a, b, c, d in
+                transform(a.0, a.1, a.2, a.3, b, c, d.0, d.1)
+            }
+    }
+
+    // 9
+    static func combineLatest<A: Publisher, B: Publisher, C: Publisher, D: Publisher, E: Publisher, F: Publisher, G: Publisher, H: Publisher, I: Publisher, Result>(
+        _ publisher1: A,
+        _ publisher2: B,
+        _ publisher3: C,
+        _ publisher4: D,
+        _ publisher5: E,
+        _ publisher6: F,
+        _ publisher7: G,
+        _ publisher8: H,
+        _ publisher9: I,
+        _ transform: @escaping (A.Output, B.Output, C.Output, D.Output, E.Output, F.Output, G.Output, H.Output, I.Output) -> Result
+    ) -> Publishers.Map<Publishers.CombineLatest4<Publishers.CombineLatest4<A, B, C, D>, E, F, Publishers.CombineLatest3<G, H, I>>, Result>
+    where A.Failure == B.Failure,
+          B.Failure == C.Failure,
+          C.Failure == D.Failure,
+          D.Failure == E.Failure,
+          E.Failure == F.Failure,
+          F.Failure == G.Failure,
+          G.Failure == H.Failure,
+          H.Failure == I.Failure
+    {
+        return Publishers.CombineLatest4(Publishers.CombineLatest4(publisher1, publisher2, publisher3, publisher4), publisher5, publisher6, Publishers.CombineLatest3(publisher7, publisher8, publisher9))
+            .map { a, b, c, d in
+                transform(a.0, a.1, a.2, a.3, b, c, d.0, d.1, d.2)
+            }
+    }
 }
 
 public extension Publishers {

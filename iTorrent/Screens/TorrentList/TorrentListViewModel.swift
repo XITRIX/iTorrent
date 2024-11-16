@@ -12,7 +12,8 @@ import SwiftData
 
 enum EmptyType {
     case noData
-    case badSearch
+    case badSearch(String)
+    case badFilter(TorrentHandle.State)
 }
 
 extension TorrentListViewModel {
@@ -26,9 +27,12 @@ extension TorrentListViewModel {
 
 class TorrentListViewModel: BaseViewModel {
     @Published var sections: [MvvmCollectionSectionModel] = []
+    @Published var searchPresented: Bool = false
     @Published var searchQuery: String = ""
     @Published var title: String = ""
     @Published var hasRssNews: Bool = false
+    @Published var filterButtons: [String] = []
+    @Published var filter: TorrentHandle.State?
 
     lazy var rssSearchViewModel: RssSearchViewModel = {
         let vm = RssSearchViewModel()
@@ -54,6 +58,8 @@ class TorrentListViewModel: BaseViewModel {
         super.init()
         title = "iTorrent"
 
+        filterButtons = [%"common.all"] + TorrentHandle.State.filterArray.map { $0.name }
+
 //        Task {
 //            try await Task.sleep(for: .seconds(0.1))
 
@@ -70,22 +76,25 @@ class TorrentListViewModel: BaseViewModel {
                 torrentSectionChanged,
                 TorrentService.shared.$torrents.map { Array($0.values) },
                 $searchQuery,
+                $searchPresented,
                 sortingType,
                 sortingReverced,
                 isGroupedByState,
-                groupsSortingArray
-            ) { _, torrentHandles, searchQuery, sortingType, sortingReverced, isGrouping, sortingArray in
+                groupsSortingArray,
+                $filter
+            ) { _, torrentHandles, searchQuery, searchPresented, sortingType, sortingReverced, isGrouping, sortingArray, filter in
                 var torrentHandles = torrentHandles
                 if !searchQuery.isEmpty {
                     torrentHandles = torrentHandles.filter { Self.searchFilter($0.snapshot.name, by: searchQuery) }
                 }
-                return (torrentHandles.sorted(by: sortingType, reverced: sortingReverced), isGrouping, sortingArray)
+                return (torrentHandles.sorted(by: sortingType, reverced: sortingReverced), isGrouping, sortingArray, filter, searchPresented)
             }
-            .map { [unowned self] torrents, isGrouping, sortingArray in
+            .map { [unowned self] torrents, isGrouping, sortingArray, filter, searchPresented in
                 if isGrouping {
                     return makeGroupedSections(with: torrents, by: sortingArray)
                 } else {
-                    return makeUngroupedSection(with: torrents)
+                    updateFilterNames()
+                    return makeUngroupedSection(with: torrents, filter: filter, searchPresented: searchPresented)
                 }
             }.assign(to: &$sections)
             $searchQuery.assign(to: &rssSearchViewModel.$searchQuery)
@@ -100,9 +109,10 @@ class TorrentListViewModel: BaseViewModel {
 
 extension TorrentListViewModel {
     var emptyContentType: AnyPublisher<EmptyType?, Never> {
-        Publishers.combineLatest($sections, $searchQuery) { sections, searchQuery in
+        Publishers.combineLatest($sections, $searchQuery, $filter) { sections, searchQuery, filter in
             if sections.isEmpty || sections.allSatisfy({ $0.items.isEmpty }) {
-                if !searchQuery.isEmpty { return EmptyType.badSearch }
+                if !searchQuery.isEmpty { return EmptyType.badSearch(searchQuery) }
+                if let filter { return EmptyType.badFilter(filter) }
                 return EmptyType.noData
             }
             return nil
@@ -176,11 +186,21 @@ extension TorrentListViewModel {
             .init(title: %"common.cancel", style: .cancel)
         ])
     }
+
+    func updateFilterNames() {
+        let dictionary = [TorrentHandle.State: [TorrentHandle]](grouping: TorrentService.shared.torrents.values, by: \.snapshot.friendlyState)
+
+        let allCount = TorrentService.shared.torrents.values.count
+        filterButtons = ["\(%"common.all")\(allCount > 0 ? " (\(TorrentService.shared.torrents.values.count))" : "")"] + TorrentHandle.State.filterArray.map { "\($0.name)\(dictionary[$0].map { " (\($0.count))" } ?? "")" }
+    }
 }
 
 private extension TorrentListViewModel {
-    func makeUngroupedSection(with torrents: [TorrentHandle]) -> [MvvmCollectionSectionModel] {
-        [.init(id: "torrents", style: .platformPlain, showsSeparators: true, items: torrents.map {
+    func makeUngroupedSection(with torrents: [TorrentHandle], filter: TorrentHandle.State?, searchPresented: Bool) -> [MvvmCollectionSectionModel] {
+        [.init(id: "torrents", style: .platformPlain, showsSeparators: true, items: torrents.filter { torrent in
+            guard filter != nil && !searchPresented else { return true }
+            return torrent.snapshot.friendlyState == filter
+        }.map {
             let vm = TorrentListItemViewModel(with: $0)
             vm.setNavigationService { [weak self] in self?.navigationService?() }
             return vm

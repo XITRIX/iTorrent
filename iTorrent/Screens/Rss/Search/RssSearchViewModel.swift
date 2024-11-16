@@ -25,7 +25,7 @@ extension RssSearchViewModel {
     var emptyContentType: AnyPublisher<EmptyType?, Never> {
         Publishers.combineLatest($sections, $searchQuery) { sections, searchQuery in
             if sections.isEmpty || sections.allSatisfy({ $0.items.isEmpty }) {
-                if !searchQuery.isEmpty { return EmptyType.badSearch }
+                if !searchQuery.isEmpty { return EmptyType.badSearch(searchQuery) }
                 return EmptyType.noData
             }
             return nil
