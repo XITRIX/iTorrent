@@ -32,6 +32,22 @@ actor LiveActivityService {
     @Injected private var torrentService: TorrentService
 }
 
+extension LiveActivityService {
+    static func endAllLiveActivities() {
+        if #available(iOS 16.2, *) {
+            let semaphore = DispatchSemaphore(value: 0)
+            Task.detached {
+                print("Terminating live activities...")
+                for activity in Activity<ProgressWidgetAttributes>.activities {
+                    await activity.end(nil, dismissalPolicy: .immediate)
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
+        }
+    }
+}
+
 #if canImport(ActivityKit)
 private extension LiveActivityService {
     func updateLiveActivity(with updateModel: TorrentService.TorrentUpdateModel) async {
