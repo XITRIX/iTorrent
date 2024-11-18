@@ -20,16 +20,15 @@ extension AudioBackgroundService: BackgroundServiceProtocol {
     
     func start() -> Bool {
         guard !isRunning else { return true }
-        guard playAudio() else { return false }
         startBackgroundTask()
         NotificationCenter.default.addObserver(self, selector: #selector(interruptedAudio), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
         return true
     }
 
     func stop() {
-        stopBackgroundTask()
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
-        player?.stop()
+        stopBackgroundTask()
+        stopAudio()
     }
     
     func prepare() async -> Bool { true }
@@ -62,6 +61,7 @@ private extension AudioBackgroundService {
             try player = AVAudioPlayer(contentsOf: alertSound)
 
             player?.volume = 0.01
+            player?.numberOfLoops = -1
             player?.prepareToPlay()
             player?.play()
             return true
@@ -71,15 +71,23 @@ private extension AudioBackgroundService {
         }
     }
 
-    func startBackgroundTask() {
-        stopBackgroundTask()
-        
-        guard BackgroundService.isBackgroundNeeded else { return }
+    func stopAudio() {
+        player?.stop()
+    }
 
-        playAudio()
-        backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: { [unowned self] () -> Void in
+    func startBackgroundTask() {
+        guard BackgroundService.isBackgroundNeeded else { return  }
+
+        Task {
+            playAudio()
+            stopBackgroundTask()
+            
+            backgroundTask = await UIApplication.shared.beginBackgroundTask()
+            stopAudio()
+//            await print(UIApplication.shared.backgroundTimeRemaining)
+            try await Task.sleep(for: .seconds(10))
             startBackgroundTask()
-        })
+        }
     }
 
     func stopBackgroundTask() {
@@ -87,5 +95,19 @@ private extension AudioBackgroundService {
             UIApplication.shared.endBackgroundTask(backgroundTask!)
             backgroundTask = nil
         }
+    }
+}
+
+extension TimeInterval {
+    var seconds: Int {
+        return Int(self.rounded())
+    }
+
+    var milliseconds: Int {
+        return Int(self * 1_000)
+    }
+
+    var nanoseconds: UInt64 {
+        return UInt64(self * 1_000_000_000)
     }
 }
