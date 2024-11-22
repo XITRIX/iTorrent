@@ -293,16 +293,16 @@ private extension TorrentListViewController {
                     case .noData:
                         var config = UIContentUnavailableConfiguration.empty()
                         config.image = .init(systemName: "fireworks")
-                        config.text = %"list.empty.title"
-                        config.secondaryText = %"list.empty.subtitle"
+                        config.text = %"list.empty.nodata.title"
+                        config.secondaryText = %"list.empty.nodata.subtitle"
                         contentUnavailableConfiguration = config
                     case .badSearch:
                         contentUnavailableConfiguration = UIContentUnavailableConfiguration.search()
                     case .badFilter(let filter):
                         var configuration = UIContentUnavailableConfiguration.empty()
                         configuration.image = .init(systemName: "line.3.horizontal.decrease")
-                        configuration.text = "No torrents for filter “\(filter.name)”"
-                        configuration.secondaryText = "Try to disable this filter or select another one"
+                        configuration.text = %"list.empty.filter.title-\(filter.name)"
+                        configuration.secondaryText = %"list.empty.filter.subtitle"
                         contentUnavailableConfiguration = configuration
                     case nil:
                         contentUnavailableConfiguration = nil

@@ -24,7 +24,7 @@ class RssSearchViewController<VM: RssSearchViewModel>: BaseCollectionViewControl
                         contentUnavailableConfiguration = config
                     case .badSearch(let search):
                         var configuration = UIContentUnavailableConfiguration.search()
-                        configuration.text = %"noContent.search.\(search)" //"No Results for “\(search)”"
+                        configuration.text = %"noContent.search.\(search)"
                         contentUnavailableConfiguration = configuration
                     case .badFilter:
                         contentUnavailableConfiguration = UIContentUnavailableConfiguration.empty()

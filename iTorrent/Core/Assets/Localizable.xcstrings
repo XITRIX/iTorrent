@@ -2804,7 +2804,63 @@
         }
       }
     },
-    "list.empty.subtitle" : {
+    "list.empty.filter.subtitle" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try to disable this filter or select another one"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Try to disable this filter or select another one"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробуйте выключить текущий фильтр или выбрать другой"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Try to disable this filter or select another one"
+          }
+        }
+      }
+    },
+    "list.empty.filter.title-%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No torrents for filter “%1$@”"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No torrents for filter “%1$@”"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет торрентов для фильтра «%@»"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "No torrents for filter “%1$@”"
+          }
+        }
+      }
+    },
+    "list.empty.nodata.subtitle" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2832,7 +2888,7 @@
         }
       }
     },
-    "list.empty.title" : {
+    "list.empty.nodata.title" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
