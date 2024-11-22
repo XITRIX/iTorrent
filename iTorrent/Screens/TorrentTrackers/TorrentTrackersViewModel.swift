@@ -94,7 +94,7 @@ private extension TorrentTrackersViewModel {
 
         var newTrackers: [TrackerCellViewModel] = []
         var trackerListChanged = false
-        for tracker in torrentHandle.trackers {
+        for tracker in torrentHandle.snapshot.trackers {
             if let oldTracker = trackers.first(where: { $0.url == tracker.trackerUrl }) {
                 oldTracker.update(with: tracker)
                 newTrackers.append(oldTracker)
