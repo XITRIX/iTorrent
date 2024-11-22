@@ -81,13 +81,13 @@ private extension LiveActivityService {
 
     @available(iOS 16.1, *)
     func update(_ activity: Activity<ProgressWidgetAttributes>, with state: ProgressWidgetAttributes.ContentState) async {
-        if #available(iOS 16.2, *) {
-            guard activity.content.state != state
-            else { return }
-        } else {
-            guard activity.contentState != state
-            else { return }
-        }
+//        if #available(iOS 16.2, *) {
+//            guard activity.content.state != state
+//            else { return }
+//        } else {
+//            guard activity.contentState != state
+//            else { return }
+//        }
 
         if let date = throttleMap[activity.attributes.hash],
             Int(Date.now.timeIntervalSince(date)) <= Self.throttleDuration
