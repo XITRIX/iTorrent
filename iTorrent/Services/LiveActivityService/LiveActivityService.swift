@@ -34,6 +34,7 @@ actor LiveActivityService {
 
 extension LiveActivityService {
     static func endAllLiveActivities() {
+#if canImport(ActivityKit)
         if #available(iOS 16.2, *) {
             let semaphore = DispatchSemaphore(value: 0)
             Task.detached {
@@ -45,6 +46,7 @@ extension LiveActivityService {
             }
             semaphore.wait()
         }
+#endif
     }
 }
 
