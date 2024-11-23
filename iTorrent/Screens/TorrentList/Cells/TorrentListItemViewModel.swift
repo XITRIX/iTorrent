@@ -72,6 +72,8 @@ private extension TorrentHandle.Snapshot {
         if state == .downloading {
             text += " - ↓ \(downloadRate.bitrateToHumanReadable)/s"
             text += " - \(timeRemains)"
+        } else if state == .seeding {
+            text += " - ↑ \(uploadRate.bitrateToHumanReadable)/s"
         }
 
         return text
