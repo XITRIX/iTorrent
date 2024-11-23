@@ -81,7 +81,7 @@ extension TorrentService {
     func refreshStorage(_ storage: StorageModel) -> Bool {
         guard storage.resolveSequrityScopes() else { return false }
 
-        let handles = torrents.values.filter { $0.snapshot.storageUUID == storage.uuid }
+        let handles = torrents.values.filter { $0.storageUUID == storage.uuid }
         handles.forEach { $0.reload() }
         return true
     }

@@ -121,7 +121,7 @@ extension TorrentHandle.State {
 }
 
 // MARK: - Storage
-extension TorrentHandle.Snapshot {
+extension TorrentHandle {
     var storage: StorageModel? {
         guard let storageUUID else { return nil }
         return TorrentService.shared.storages[storageUUID]

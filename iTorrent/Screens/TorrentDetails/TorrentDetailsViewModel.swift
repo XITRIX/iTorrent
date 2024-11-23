@@ -25,7 +25,7 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
 
     override func prepare(with model: TorrentHandle) {
         torrentHandle = model
-        title = model.name
+        title = torrentHandle.snapshot.name
 
         dataUpdate()
         reload()
@@ -246,7 +246,7 @@ private extension TorrentDetailsViewModel {
         leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
 
         downloadPath2Model.detail = torrentHandle.snapshot.downloadPath?.path() ?? ""
-        downloadPathModel.value = torrentHandle.snapshot.storage.name
+        downloadPathModel.value = torrentHandle.storage.name
 
         filesModel.isEnabled = torrentHandle.snapshot.friendlyState != .storageError && torrentHandle.snapshot.hasMetadata
     }

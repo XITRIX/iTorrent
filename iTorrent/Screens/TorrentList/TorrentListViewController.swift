@@ -269,8 +269,8 @@ private extension TorrentListViewController {
             collectionView.$selectedIndexPaths.uiSink { [unowned self] indexPaths in
                 let torrentHandles = indexPaths.compactMap { (viewModel.sections[$0.section].items[$0.item] as? TorrentListItemViewModel)?.torrentHandle }
 
-                playButton.isEnabled = torrentHandles.contains(where: { $0.isPaused })
-                pauseButton.isEnabled = torrentHandles.contains(where: { !$0.isPaused })
+                playButton.isEnabled = torrentHandles.contains(where: { $0.snapshot.isPaused })
+                pauseButton.isEnabled = torrentHandles.contains(where: { !$0.snapshot.isPaused })
                 rehashButton.isEnabled = !torrentHandles.isEmpty
                 deleteButton.isEnabled = !torrentHandles.isEmpty
             }
