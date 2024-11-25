@@ -15,7 +15,7 @@ protocol ToolbarHidingProtocol {
 
 class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<ViewModel>, ToolbarHidingProtocol {
     var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }
-    var useMarqueeLabel: Bool { true }
+    var useMarqueeLabel: Bool { false }
 
     override var title: String? {
         get { super.title }
@@ -61,7 +61,7 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
 
 class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewController<View>, ToolbarHidingProtocol {
     var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }
-    var useMarqueeLabel: Bool { true }
+    var useMarqueeLabel: Bool { false }
 
 //    override var title: String? {
 //        get { super.title }

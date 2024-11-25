@@ -17,6 +17,8 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
     private let pauseButton = UIBarButtonItem()
     private let rehashButton = UIBarButtonItem()
     private let deleteButton = UIBarButtonItem()
+    
+    override var useMarqueeLabel: Bool { true }
 
     override func viewDidLoad() {
         super.viewDidLoad()

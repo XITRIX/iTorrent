@@ -18,6 +18,8 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
     @IBOutlet private var downloadButton: UIButton!
     @IBOutlet private var separatorHeight: NSLayoutConstraint!
 
+    override var useMarqueeLabel: Bool { true }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
