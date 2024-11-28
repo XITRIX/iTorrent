@@ -11,11 +11,12 @@ import UIKit
 class AudioBackgroundService {
     private var player: AVAudioPlayer?
     private var backgroundTask: UIBackgroundTaskIdentifier?
+    private var asyncTask: Task<Void, Error>?
 }
 
 extension AudioBackgroundService: BackgroundServiceProtocol {
     var isRunning: Bool {
-        player?.isPlaying ?? false
+        (player?.isPlaying ?? false) || (backgroundTask != nil && backgroundTask != .invalid)
     }
     
     func start() -> Bool {
@@ -27,6 +28,7 @@ extension AudioBackgroundService: BackgroundServiceProtocol {
 
     func stop() {
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
+        asyncTask?.cancel()
         stopBackgroundTask()
         stopAudio()
     }
@@ -50,20 +52,34 @@ private extension AudioBackgroundService {
         }
     }
 
+    static func cratePlayer() throws -> AVAudioPlayer {
+        //            let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
+        let bundle = Bundle.main.path(forResource: "sound", ofType: "m4a")
+        let alertSound = URL(fileURLWithPath: bundle!)
+        try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
+        try AVAudioSession.sharedInstance().setActive(true)
+        let player = try AVAudioPlayer(contentsOf: alertSound)
+        player.volume = 0.01
+        player.numberOfLoops = -1
+        return player
+    }
+
+    func getPlayer() throws -> AVAudioPlayer {
+        if let player {
+            return player
+        }
+
+        let newPlayer = try Self.cratePlayer()
+        player = newPlayer
+        return newPlayer
+    }
+
     @discardableResult
     func playAudio() -> Bool {
         do {
-//            let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
-            let bundle = Bundle.main.path(forResource: "sound", ofType: "m4a")
-            let alertSound = URL(fileURLWithPath: bundle!)
-            try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
-            try AVAudioSession.sharedInstance().setActive(true)
-            try player = AVAudioPlayer(contentsOf: alertSound)
-
-            player?.volume = 0.01
-            player?.numberOfLoops = -1
-            player?.prepareToPlay()
-            player?.play()
+            let player = try getPlayer()
+//            player.prepareToPlay()
+            player.play()
             return true
         } catch {
             print(error)
@@ -76,15 +92,28 @@ private extension AudioBackgroundService {
     }
 
     func startBackgroundTask() {
-        guard BackgroundService.isBackgroundNeeded else { return  }
+        guard BackgroundService.isBackgroundNeeded else {
+            stopBackgroundTask()
+            stopAudio()
+            return
+        }
 
-        Task {
+        asyncTask = Task {
             playAudio()
             stopBackgroundTask()
             
-            backgroundTask = await UIApplication.shared.beginBackgroundTask()
+            backgroundTask = await UIApplication.shared.beginBackgroundTask { [weak self] in
+                guard let self else { return }
+                print("\(Date.now.timestamp) [BG] timeout!!!")
+                startBackgroundTask()
+            }
+
             stopAudio()
-//            await print(UIApplication.shared.backgroundTimeRemaining)
+            try Task.checkCancellation()
+
+            // If cannot start BG try again
+            guard backgroundTask != .invalid else { return startBackgroundTask() }
+            print("\(Date.now.timestamp) [BG] running!!!")
             try await Task.sleep(for: .seconds(10))
             startBackgroundTask()
         }
@@ -98,16 +127,10 @@ private extension AudioBackgroundService {
     }
 }
 
-extension TimeInterval {
-    var seconds: Int {
-        return Int(self.rounded())
-    }
-
-    var milliseconds: Int {
-        return Int(self * 1_000)
-    }
-
-    var nanoseconds: UInt64 {
-        return UInt64(self * 1_000_000_000)
+extension Date {
+    var timestamp: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss.SSSZZZZZ"
+        return formatter.string(from: self)
     }
 }
