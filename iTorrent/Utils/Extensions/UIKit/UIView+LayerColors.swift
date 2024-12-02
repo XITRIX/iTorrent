@@ -9,8 +9,8 @@ import UIKit
 
 public extension UIView {
     private enum Keys {
-        static var borderColorAssociateKey: Void?
-        static var shadowColorAssociateKey: Void?
+        nonisolated(unsafe) static var borderColorAssociateKey: Void?
+        nonisolated(unsafe) static var shadowColorAssociateKey: Void?
     }
 
     var borderColor: UIColor? {

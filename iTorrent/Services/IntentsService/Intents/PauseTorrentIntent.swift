@@ -14,7 +14,7 @@ extension NSNotification.Name {
 }
 
 struct PauseTorrentIntent: LiveActivityIntent {
-    static var title: LocalizedStringResource = "intent.pauseTorrent.title"
+    static let title: LocalizedStringResource = "intent.pauseTorrent.title"
 
     @Parameter(title: "intent.pauseTorrent.hash.title", description: "intent.pauseTorrent.hash.description")
     var torrentHash: String

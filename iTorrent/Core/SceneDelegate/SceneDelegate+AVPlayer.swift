@@ -50,7 +50,7 @@ extension SceneDelegate {
     }
 
     private enum Keys {
-        static var avPlayerDeledates: Void?
+        nonisolated(unsafe) static var avPlayerDeledates: Void?
     }
 
     private var avPlayerDeledates: AVPlayerDelegates {

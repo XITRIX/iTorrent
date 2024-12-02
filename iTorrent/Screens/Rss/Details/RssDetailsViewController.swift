@@ -127,7 +127,7 @@ private extension RssDetailsViewController {
             else { return .allow }
 
             guard let url = navigationAction.request.url,
-                  await UIApplication.shared.canOpenURL(url)
+                  UIApplication.shared.canOpenURL(url)
             else { return .allow }
 
             Task { @MainActor in

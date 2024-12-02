@@ -8,7 +8,7 @@
 import UIKit
 #if canImport(FirebaseCore)
 import FirebaseRemoteConfig
-var remoteConfig = RemoteConfig.remoteConfig()
+let remoteConfig = RemoteConfig.remoteConfig()
 #endif
 
 extension AppDelegate {

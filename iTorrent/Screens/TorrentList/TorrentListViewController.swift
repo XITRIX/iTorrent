@@ -124,29 +124,56 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         toolbarItems = getToolBarItems
 
         collectionView.contextMenuConfigurationForItemsAt = { [unowned self] indexPaths, _ in
-            guard let indexPath = indexPaths.first,
-                  let torrentHandle = (viewModel.sections[indexPath.section].items[indexPath.item] as? TorrentListItemViewModel)?.torrentHandle
-            else { return nil }
+            guard indexPaths.count > 0 else { return nil }
 
-            return UIContextMenuConfiguration {
-                TorrentDetailsViewModel.resolveVC(with: torrentHandle)
-            } actionProvider: { _ in
-                let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.snapshot.canResume ? [] : .hidden, handler: { _ in
-                    torrentHandle.resume()
-                })
-                let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: torrentHandle.snapshot.canPause ? [] : .hidden, handler: { _ in
-                    torrentHandle.pause()
-                })
-                let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
-                    viewModel.removeTorrent(torrentHandle)
+            if indexPaths.count == 1 {
+                guard let indexPath = indexPaths.first,
+                      let torrentHandle = (viewModel.sections[indexPath.section].items[indexPath.item] as? TorrentListItemViewModel)?.torrentHandle
+                else { return nil }
+
+                return UIContextMenuConfiguration {
+                    TorrentDetailsViewModel.resolveVC(with: torrentHandle)
+                } actionProvider: { _ in
+                    let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.snapshot.canResume ? [] : .hidden, handler: { _ in
+                        torrentHandle.resume()
+                    })
+                    let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: torrentHandle.snapshot.canPause ? [] : .hidden, handler: { _ in
+                        torrentHandle.pause()
+                    })
+                    let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
+                        viewModel.removeTorrent(torrentHandle)
+                    }
+
+                    return UIMenu(title: torrentHandle.snapshot.name, children: [
+                        start,
+                        pause,
+                        UIMenu(options: .displayInline,
+                               children: [delete])
+                    ])
+                }
+            } else {
+                let handles = indexPaths.compactMap { indexPath in (viewModel.sections[indexPath.section].items[indexPath.item] as? TorrentListItemViewModel)?.torrentHandle }
+                return UIContextMenuConfiguration {
+                    nil
+                } actionProvider: { _ in
+                    let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), handler: { _ in
+                        handles.forEach { $0.resume() }
+                    })
+                    let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), handler: { _ in
+                        handles.forEach { $0.pause() }
+                    })
+//                    let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
+//                        viewModel.removeTorrent(torrentHandle)
+//                    }
+
+                    return UIMenu(children: [
+                        start,
+                        pause,
+//                        UIMenu(options: .displayInline,
+//                               children: [delete])
+                    ])
                 }
 
-                return UIMenu(title: torrentHandle.snapshot.name, children: [
-                    start,
-                    pause,
-                    UIMenu(options: .displayInline,
-                           children: [delete])
-                ])
             }
         }
 

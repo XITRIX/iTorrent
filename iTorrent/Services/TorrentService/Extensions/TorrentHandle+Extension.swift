@@ -9,35 +9,38 @@ import Combine
 import LibTorrent
 import MvvmFoundation
 
-private var TorrentHandleUnthrottledUpdatePublisherKey: UInt8 = 0
-private var TorrentHandleUpdatePublisherKey: UInt8 = 0
-private var TorrentHandleRemovePublisherKey: UInt8 = 0
-private var TorrentHandleDisposeBagKey: UInt8 = 0
 
 extension TorrentHandle {
+    private enum Keys {
+        nonisolated(unsafe) static var TorrentHandleUnthrottledUpdatePublisherKey: Void?
+        nonisolated(unsafe) static var TorrentHandleUpdatePublisherKey: Void?
+        nonisolated(unsafe) static var TorrentHandleRemovePublisherKey: Void?
+        nonisolated(unsafe) static var TorrentHandleDisposeBagKey: Void?
+    }
+    
     var disposeBag: DisposeBag {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleDisposeBagKey) as? DisposeBag
+        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleDisposeBagKey) as? DisposeBag
         else {
-            objc_setAssociatedObject(self, &TorrentHandleDisposeBagKey, DisposeBag(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleDisposeBagKey) as! DisposeBag
+            objc_setAssociatedObject(self, &Keys.TorrentHandleDisposeBagKey, DisposeBag(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &Keys.TorrentHandleDisposeBagKey) as! DisposeBag
         }
         return obj
     }
 
     var __unthrottledUpdatePublisher: PassthroughSubject<Void, Never> {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUnthrottledUpdatePublisherKey) as? PassthroughSubject<Void, Never>
+        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleUnthrottledUpdatePublisherKey) as? PassthroughSubject<Void, Never>
         else {
-            objc_setAssociatedObject(self, &TorrentHandleUnthrottledUpdatePublisherKey, PassthroughSubject<Void, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleUnthrottledUpdatePublisherKey) as! PassthroughSubject<Void, Never>
+            objc_setAssociatedObject(self, &Keys.TorrentHandleUnthrottledUpdatePublisherKey, PassthroughSubject<Void, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &Keys.TorrentHandleUnthrottledUpdatePublisherKey) as! PassthroughSubject<Void, Never>
         }
         return obj
     }
 
     var __updatePublisher: PassthroughSubject<TorrentService.TorrentUpdateModel, Never> {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
+        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
         else {
-            objc_setAssociatedObject(self, &TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentService.TorrentUpdateModel, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
+            objc_setAssociatedObject(self, &Keys.TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentService.TorrentUpdateModel, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &Keys.TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
         }
         return obj
     }
@@ -55,10 +58,10 @@ extension TorrentHandle {
     }
 
     var removePublisher: PassthroughSubject<TorrentHandle, Never> {
-        guard let obj = objc_getAssociatedObject(self, &TorrentHandleRemovePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
+        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleRemovePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
         else {
-            objc_setAssociatedObject(self, &TorrentHandleRemovePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &TorrentHandleRemovePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
+            objc_setAssociatedObject(self, &Keys.TorrentHandleRemovePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+            return objc_getAssociatedObject(self, &Keys.TorrentHandleRemovePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
         }
         return obj
     }
@@ -165,12 +168,12 @@ extension TorrentHandle {
 
 // MARK: - Metadata cache
 private extension TorrentHandle {
-    private enum Keys {
-        static var metadataKey: Void?
+    private enum MetaKeys {
+        nonisolated(unsafe) static var metadataKey: Void?
     }
 
     var _metadata: Metadata? {
-        get { objc_getAssociatedObject(self, &Keys.metadataKey) as? Metadata }
-        set { objc_setAssociatedObject(self, &Keys.metadataKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
+        get { objc_getAssociatedObject(self, &MetaKeys.metadataKey) as? Metadata }
+        set { objc_setAssociatedObject(self, &MetaKeys.metadataKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
 }

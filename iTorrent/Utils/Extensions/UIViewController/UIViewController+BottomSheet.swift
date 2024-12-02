@@ -13,7 +13,7 @@ public extension UIViewController {
     func applyBottomSheetDetents(with scrollView: UIScrollView? = nil) -> AnyCancellable? {
 #if !os(visionOS)
         guard let sheet = sheetPresentationController else { return nil }
-        sheet.prefersGrabberVisible = true
+        sheet.prefersGrabberVisible = false
 
         /// If UIScrollView is not presented,
         /// or iOS 16 is not available, than set default detents
