@@ -32,6 +32,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerDaemon(factory: LiveActivityService.init)
         container.registerDaemon(factory: IntentsService.init)
         container.registerDaemon(factory: AdsManager.init)
+        container.registerDaemon(factory: CellularNotAllowedOverlay.init)
     }
 
     override func routing(in router: Router) {

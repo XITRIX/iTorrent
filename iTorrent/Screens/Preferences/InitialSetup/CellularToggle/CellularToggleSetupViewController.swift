@@ -36,6 +36,12 @@ class CellularToggleSetupViewController<VM: CellularToggleSetupViewModel>: BaseV
 
 private extension CellularToggleSetupViewController {
     func setup() {
+        titleLabel.text = %"initialSetup.cellular.title"
+        messageLabel.text = %"initialSetup.cellular.message"
+
+        allowCellularButton.configuration?.attributedTitle = .init(%"initialSetup.cellular.button.allow", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
+        disableCellularButton.configuration?.attributedTitle = .init(%"initialSetup.cellular.button.dismiss", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
+
         disableCellularButton.addAction(.init { [unowned self] _ in
             viewModel.disableCellularAction()
         }, for: .touchUpInside)
