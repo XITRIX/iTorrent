@@ -13,7 +13,6 @@ class CircularAnimation {
     public static func animate(startingPoint: CGPoint, animation: () -> Void, completion: @escaping () -> Void) {
         let windowScene = UIApplication.shared
             .connectedScenes
-            .filter { $0.activationState == .foregroundActive }
             .first
 
         guard let windowScene = windowScene as? UIWindowScene,

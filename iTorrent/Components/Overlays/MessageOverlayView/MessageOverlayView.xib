@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageOverlayView" customModule="iTorrent" customModuleProvider="target">
+            <connections>
+                <outlet property="blurView" destination="9L3-fi-AGz" id="zhp-jt-Vkq"/>
+                <outlet property="holder" destination="BHU-tG-HgN" id="aQj-xb-Ur9"/>
+                <outlet property="imageView" destination="naC-tI-Y3l" id="D6K-8P-lIi"/>
+                <outlet property="messageLabel" destination="Ksw-Bz-SOh" id="Qhb-gW-oaG"/>
+                <outlet property="titleLabel" destination="od6-oF-QEI" id="ffx-ct-PaU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PassthrowView" customModule="iTorrent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="74"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHU-tG-HgN" customClass="UIControl">
+                    <rect key="frame" x="62.666666666666657" y="0.0" width="268" height="74"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9L3-fi-AGz">
+                            <rect key="frame" x="0.0" y="0.0" width="268" height="74"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SCJ-rv-Qka">
+                                <rect key="frame" x="0.0" y="0.0" width="268" height="74"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="QOa-pm-6HH">
+                            <rect key="frame" x="8" y="8" width="252" height="58"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="antenna.radiowaves.left.and.right.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="naC-tI-Y3l">
+                                    <rect key="frame" x="0.0" y="17.333333333333329" width="20.666666666666668" height="20.666666666666671"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    </preferredSymbolConfiguration>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UOW-HV-3eN">
+                                    <rect key="frame" x="32.666666666666643" y="9" width="219.33333333333337" height="40.333333333333336"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cellular collection is not allowed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od6-oF-QEI">
+                                            <rect key="frame" x="0.0" y="0.0" width="219.33333333333334" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Click here to open preferences" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksw-Bz-SOh">
+                                            <rect key="frame" x="0.0" y="23" width="174" height="17.333333333333329"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="QOa-pm-6HH" firstAttribute="leading" secondItem="BHU-tG-HgN" secondAttribute="leadingMargin" id="9kg-6t-xEZ"/>
+                        <constraint firstAttribute="bottom" secondItem="QOa-pm-6HH" secondAttribute="bottom" constant="8" id="Hrd-US-yOY"/>
+                        <constraint firstItem="QOa-pm-6HH" firstAttribute="top" secondItem="BHU-tG-HgN" secondAttribute="top" constant="8" id="KUI-N1-hBs"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="QOa-pm-6HH" secondAttribute="trailing" id="OOy-yK-oei"/>
+                        <constraint firstAttribute="bottom" secondItem="9L3-fi-AGz" secondAttribute="bottom" id="ZKj-6q-lEq"/>
+                        <constraint firstAttribute="trailing" secondItem="9L3-fi-AGz" secondAttribute="trailing" id="kuZ-r6-z3C"/>
+                        <constraint firstItem="9L3-fi-AGz" firstAttribute="top" secondItem="BHU-tG-HgN" secondAttribute="top" id="nHt-xt-7Fr"/>
+                        <constraint firstItem="9L3-fi-AGz" firstAttribute="leading" secondItem="BHU-tG-HgN" secondAttribute="leading" id="vMJ-sV-r9S"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="BHU-tG-HgN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BBS-qZ-byX"/>
+                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="BHU-tG-HgN" secondAttribute="trailing" id="VVO-jo-2GD"/>
+                <constraint firstItem="BHU-tG-HgN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="VXB-UA-hR7"/>
+                <constraint firstItem="BHU-tG-HgN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="r67-ko-fkb"/>
+                <constraint firstAttribute="bottom" secondItem="BHU-tG-HgN" secondAttribute="bottom" id="y0j-cI-WPS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-11.450381679389313" y="289.43661971830988"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="antenna.radiowaves.left.and.right.slash" catalog="system" width="128" height="128"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

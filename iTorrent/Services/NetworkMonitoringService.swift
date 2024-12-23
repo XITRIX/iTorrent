@@ -14,6 +14,8 @@ import CoreTelephony
 #endif
 
 class NetworkMonitoringService {
+    // Raw cellular availability, ignores app and system restrictions
+    @Published var isCellularAvailable: Bool = false
     @Published var availableInterfaces: [NWInterface] = []
 #if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
     @Published var cellularState: CTCellularDataRestrictedState = .restrictedStateUnknown
@@ -53,13 +55,28 @@ private extension NetworkMonitoringService {
 #if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
         let isCellularRestricted = cellularData.restrictedState == .restricted || !preferences.isCellularEnabled
 #else
-        let isCellularRestricted = !preferences.isCellularEnabled
+        let isCellularRestricted = false
 #endif
 
-        let updatedInterfaces = monitor.currentPath.availableInterfaces.filter { $0.type != .cellular || !isCellularRestricted }
+        let isCellularAvailableUpdate = monitor.currentPath.availableInterfaces.contains(where: { $0.type == .cellular })
+        if isCellularAvailable != isCellularAvailableUpdate {
+            isCellularAvailable = isCellularAvailableUpdate
+        }
+
+        let updatedInterfaces: [NWInterface]
+
+        // If cellular restricted and there is no WiFi or Wired interface
+        // remove all interfaces to prevent VPN interface from working throw Cellular
+        if isCellularRestricted, !monitor.currentPath.availableInterfaces.contains(where: { Self.nonCellularTypes.contains($0.type) }) {
+            updatedInterfaces = []
+        } else {
+            updatedInterfaces = monitor.currentPath.availableInterfaces
+        }
 
         // Do not notify duplicates, otherwise iTorrent will drop connection for nothing
         guard availableInterfaces != updatedInterfaces else { return }
         availableInterfaces = updatedInterfaces
     }
+
+    static let nonCellularTypes: [NWInterface.InterfaceType] = [.wifi, .wiredEthernet]
 }

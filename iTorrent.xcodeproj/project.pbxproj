@@ -72,6 +72,9 @@
 		7CB831192D19484B005F3F42 /* UIApplication+KeySceneWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */; };
 		7CB8311B2D196257005F3F42 /* InitialSetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8311A2D19624E005F3F42 /* InitialSetupFlow.swift */; };
 		7CB8311D2D1962A0005F3F42 /* InitialSetupFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8311C2D19629D005F3F42 /* InitialSetupFlowProtocol.swift */; };
+		7CB831202D19750F005F3F42 /* CellularNotAllowedOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8311F2D1974F7005F3F42 /* CellularNotAllowedOverlay.swift */; };
+		7CB831232D197540005F3F42 /* MessageOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB831222D197540005F3F42 /* MessageOverlayView.swift */; };
+		7CB831252D19754A005F3F42 /* MessageOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB831242D19754A005F3F42 /* MessageOverlayView.xib */; };
 		7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CBDBAAE2C31EF52008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
@@ -319,6 +322,9 @@
 		7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeySceneWindow.swift"; sourceTree = "<group>"; };
 		7CB8311A2D19624E005F3F42 /* InitialSetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupFlow.swift; sourceTree = "<group>"; };
 		7CB8311C2D19629D005F3F42 /* InitialSetupFlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupFlowProtocol.swift; sourceTree = "<group>"; };
+		7CB8311F2D1974F7005F3F42 /* CellularNotAllowedOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularNotAllowedOverlay.swift; sourceTree = "<group>"; };
+		7CB831222D197540005F3F42 /* MessageOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOverlayView.swift; sourceTree = "<group>"; };
+		7CB831242D19754A005F3F42 /* MessageOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageOverlayView.xib; sourceTree = "<group>"; };
 		7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppGroup.swift"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
@@ -700,6 +706,24 @@
 			path = FileSharing;
 			sourceTree = "<group>";
 		};
+		7CB8311E2D1974ED005F3F42 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				7CB831212D197528005F3F42 /* MessageOverlayView */,
+				7CB8311F2D1974F7005F3F42 /* CellularNotAllowedOverlay.swift */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
+		7CB831212D197528005F3F42 /* MessageOverlayView */ = {
+			isa = PBXGroup;
+			children = (
+				7CB831222D197540005F3F42 /* MessageOverlayView.swift */,
+				7CB831242D19754A005F3F42 /* MessageOverlayView.xib */,
+			);
+			path = MessageOverlayView;
+			sourceTree = "<group>";
+		};
 		7CC411562BD2DCC000CA8B13 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1046,6 +1070,7 @@
 		D19E001C2AEFF9F9000A17A2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7CB8311E2D1974ED005F3F42 /* Overlays */,
 				7C5FBE0D2BBB206B0069E5A0 /* Views */,
 				D19E001D2AEFFA02000A17A2 /* Cells */,
 			);
@@ -1543,6 +1568,7 @@
 				D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */,
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
+				7CB831252D19754A005F3F42 /* MessageOverlayView.xib in Resources */,
 				D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */,
 				D173D9E82BC033CF00E4F9EB /* 3.wav in Resources */,
 				7C5FBE2E2BBF3FF80069E5A0 /* PRSwitchView.xib in Resources */,
@@ -1636,6 +1662,7 @@
 				D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */,
 				D19E00222AEFFA2A000A17A2 /* DetailCellViewModel.swift in Sources */,
 				D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */,
+				7CB831232D197540005F3F42 /* MessageOverlayView.swift in Sources */,
 				7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */,
 				D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */,
 				D1352D1E2BBC2F7F00104E7B /* LocalizationAttribute.swift in Sources */,
@@ -1707,6 +1734,7 @@
 				D11138572AF976CE008907F7 /* TorrentAddDirectoryItemViewModel.swift in Sources */,
 				D1FFC9652C38136600233C2F /* URL+Extensions.swift in Sources */,
 				7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */,
+				7CB831202D19750F005F3F42 /* CellularNotAllowedOverlay.swift in Sources */,
 				D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */,
 				D11BE5492AFBA03D00780C1B /* PRButtonView.swift in Sources */,
 				7CFEBE8B2BC439CF0013233F /* RssChannelItemCellViewModel.swift in Sources */,
