@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CellularToggleSetupViewController" customModule="iTorrent" customModuleProvider="target">
+            <connections>
+                <outlet property="allowCellularButton" destination="igb-GV-g3F" id="I3o-Hc-2nZ"/>
+                <outlet property="buttonsContainerView" destination="8uZ-lv-Kfg" id="0Dv-WL-wyF"/>
+                <outlet property="disableCellularButton" destination="qm0-I2-yZY" id="VJN-jy-lW2"/>
+                <outlet property="messageLabel" destination="rbg-8n-rlp" id="RDf-wD-RvV"/>
+                <outlet property="scrollView" destination="hlp-4x-hz7" id="azn-Uq-323"/>
+                <outlet property="titleLabel" destination="Rxg-Ls-EEb" id="ipk-p5-G2f"/>
+                <outlet property="view" destination="iN0-l3-epB" id="FYj-MN-bfv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlp-4x-hz7">
+                    <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nif-sL-MYM">
+                            <rect key="frame" x="0.0" y="0.0" width="430" height="429.66666666666669"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="9Mu-9T-hvU">
+                                    <rect key="frame" x="20" y="48" width="390" height="333.66666666666669"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="antenna.radiowaves.left.and.right.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="s7r-sc-2m2">
+                                            <rect key="frame" x="151.66666666666666" y="1.9999999999999858" width="86.666666666666657" height="84.000000000000014"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="74"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Allow Cellular Usage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxg-Ls-EEb">
+                                            <rect key="frame" x="28.666666666666657" y="112.33333333333334" width="333" height="43"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-8n-rlp">
+                                            <rect key="frame" x="3" y="179.33333333333331" width="384.33333333333331" height="154.33333333333331"/>
+                                            <string key="text">By default iTorrent prefers not to allow cellular usage because of most cellular plans does not support unlimited download and / or upload trafic.
+
+You can always change this setting in application preferences.</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="9Mu-9T-hvU" firstAttribute="trailing" secondItem="nif-sL-MYM" secondAttribute="trailingMargin" id="BLp-gm-uWS"/>
+                                <constraint firstAttribute="bottom" secondItem="9Mu-9T-hvU" secondAttribute="bottom" constant="48" id="mu3-bh-fIV"/>
+                                <constraint firstItem="9Mu-9T-hvU" firstAttribute="leading" secondItem="nif-sL-MYM" secondAttribute="leadingMargin" id="tvR-Rl-3XA"/>
+                                <constraint firstItem="9Mu-9T-hvU" firstAttribute="top" secondItem="nif-sL-MYM" secondAttribute="top" constant="48" id="yuc-4f-GqK"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="nif-sL-MYM" secondAttribute="bottom" id="96f-vo-mTr"/>
+                        <constraint firstItem="nif-sL-MYM" firstAttribute="top" secondItem="hlp-4x-hz7" secondAttribute="top" id="A7q-Ng-kS9"/>
+                        <constraint firstAttribute="trailing" secondItem="nif-sL-MYM" secondAttribute="trailing" id="POn-TV-Fhh"/>
+                        <constraint firstItem="nif-sL-MYM" firstAttribute="width" secondItem="hlp-4x-hz7" secondAttribute="width" id="Ymg-24-rTL"/>
+                        <constraint firstItem="nif-sL-MYM" firstAttribute="leading" secondItem="hlp-4x-hz7" secondAttribute="leading" id="vJE-WG-RWs"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="aFh-OG-H7P"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="QRK-jX-obu"/>
+                </scrollView>
+                <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8uZ-lv-Kfg">
+                    <rect key="frame" x="0.0" y="761.33333333333337" width="430" height="170.66666666666663"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIA-20-n2O">
+                            <rect key="frame" x="0.0" y="0.0" width="430" height="170.66666666666666"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VAb-1z-7Bk">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="170.66666666666666"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erK-yw-YJo" userLabel="Separator">
+                            <rect key="frame" x="0.0" y="0.0" width="430" height="0.33333333333333331"/>
+                            <color key="backgroundColor" systemColor="separatorColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.29999999999999999" id="n71-yl-Y5b"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Olt-wp-9tC">
+                            <rect key="frame" x="20" y="8.0000000000000071" width="390" height="120.66666666666669"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igb-GV-g3F">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="54.333333333333336"/>
+                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="tinted" title="Allow Cellular Usage" cornerStyle="large" buttonSize="large">
+                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
+                                    </buttonConfiguration>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qm0-I2-yZY">
+                                    <rect key="frame" x="0.0" y="66.333333333333258" width="390" height="54.333333333333343"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="filled" title="Do Not Allow Cellular" cornerStyle="large" buttonSize="large">
+                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
+                                    </buttonConfiguration>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="erK-yw-YJo" firstAttribute="leading" secondItem="8uZ-lv-Kfg" secondAttribute="leading" id="2vd-UW-5WY"/>
+                        <constraint firstAttribute="bottom" secondItem="WIA-20-n2O" secondAttribute="bottom" id="4Ij-RA-JBE"/>
+                        <constraint firstItem="Olt-wp-9tC" firstAttribute="top" secondItem="8uZ-lv-Kfg" secondAttribute="topMargin" id="5tj-Oa-OVg"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="Olt-wp-9tC" secondAttribute="trailing" id="7Up-ul-ia1"/>
+                        <constraint firstItem="Olt-wp-9tC" firstAttribute="leading" secondItem="8uZ-lv-Kfg" secondAttribute="leadingMargin" id="CwQ-aq-T65"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="Olt-wp-9tC" secondAttribute="bottom" id="IFF-6a-3Fx"/>
+                        <constraint firstItem="WIA-20-n2O" firstAttribute="leading" secondItem="8uZ-lv-Kfg" secondAttribute="leading" id="Pml-VH-CLr"/>
+                        <constraint firstAttribute="trailing" secondItem="WIA-20-n2O" secondAttribute="trailing" id="QYN-l5-GeZ"/>
+                        <constraint firstItem="WIA-20-n2O" firstAttribute="top" secondItem="8uZ-lv-Kfg" secondAttribute="top" id="px5-fN-v6l"/>
+                        <constraint firstItem="erK-yw-YJo" firstAttribute="top" secondItem="8uZ-lv-Kfg" secondAttribute="top" id="x8t-tz-8nF"/>
+                        <constraint firstAttribute="trailing" secondItem="erK-yw-YJo" secondAttribute="trailing" id="xRx-2T-RRe"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="8uZ-lv-Kfg" secondAttribute="trailing" id="6Uz-By-jRg"/>
+                <constraint firstAttribute="bottom" secondItem="hlp-4x-hz7" secondAttribute="bottom" id="BAi-Pq-WOl"/>
+                <constraint firstAttribute="trailing" secondItem="hlp-4x-hz7" secondAttribute="trailing" id="Me3-fq-fyG"/>
+                <constraint firstItem="hlp-4x-hz7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pei-CL-kGG"/>
+                <constraint firstAttribute="bottom" secondItem="8uZ-lv-Kfg" secondAttribute="bottom" id="ZYh-Qg-vLT"/>
+                <constraint firstItem="8uZ-lv-Kfg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="obp-x8-mdo"/>
+                <constraint firstItem="hlp-4x-hz7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tsY-2u-wUq"/>
+            </constraints>
+            <point key="canvasLocation" x="34" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="antenna.radiowaves.left.and.right.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -117,6 +117,8 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesPatreonToken", nil) var patreonToken: PatreonToken?
     @UserDefaultItem("preferencesPatreonCredentials", nil) var patreonCredentials: PatreonCredentials?
 
+    @UserDefaultItem("initialSetupCellularPassed", false) var initialSetupCellularPassed: Bool
+
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
             .combineLatest($maxActiveTorrents)

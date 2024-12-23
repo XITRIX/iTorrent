@@ -6,7 +6,7 @@
 //
 
 import Combine
-import LibTorrent
+@preconcurrency import LibTorrent
 import MvvmFoundation
 import UIKit
 
@@ -17,7 +17,7 @@ extension TorrentService {
     }
 }
 
-class TorrentService {
+class TorrentService: @unchecked Sendable {
     @Published var torrents: [TorrentHashes: TorrentHandle] = [:]
     var updateNotifier = PassthroughSubject<TorrentUpdateModel, Never>()
 

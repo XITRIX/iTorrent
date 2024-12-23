@@ -164,7 +164,7 @@ extension TorrentDetailsViewModel {
         alert(title: %"details.refreshStorage.title", message: %"details.refreshStorage.message", actions: [
             .init(title: %"common.cancel", style: .cancel),
             .init(title: %"common.continue", style: .default, action: { [self] in
-                Task {
+                DispatchQueue.global(qos: .userInitiated).async { [self] in
                     guard !torrentService.refreshStorage(storage) else { return }
                     alert(title: %"common.error", message: %"details.refreshStorage.fail.message", actions: [
                         .init(title: %"common.close", style: .cancel)

@@ -27,7 +27,7 @@ extension RssFeedProvider {
     }
 }
 
-class RssFeedProvider {
+class RssFeedProvider: @unchecked Sendable {
     @Published var rssModels: [RssModel]
     let updatePublisher = CurrentValueSubject<Void, Never>(())
 

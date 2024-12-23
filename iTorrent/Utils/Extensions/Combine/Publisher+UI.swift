@@ -42,7 +42,7 @@ extension Publisher where Self.Failure == Never {
     }
 }
 
-func runOnMainThreadIfNeeded(_ action: @escaping () -> Void) {
+func runOnMainThreadIfNeeded(_ action: @Sendable @escaping () -> Void) {
     if Thread.isMainThread {
         action()
     } else {

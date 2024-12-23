@@ -32,7 +32,7 @@ class NetworkMonitoringService {
             updateAvailableInterfaces()
         }
 #endif
-        preferences.$isCellularEnabled.sink { [unowned self] _ in
+        preferences.$isCellularEnabled.receive(on: DispatchQueue.main).sink { [unowned self] _ in
             updateAvailableInterfaces()
         }.store(in: disposeBag)
 

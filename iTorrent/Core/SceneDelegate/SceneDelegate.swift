@@ -61,6 +61,8 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(TorrentAddViewController<TorrentAddViewModel>.self)
         router.register(TorrentTrackersViewController<TorrentTrackersViewModel>.self)
 
+        router.register(CellularToggleSetupViewController<CellularToggleSetupViewModel>.self)
+
         router.register(BasePreferencesViewController<PreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
         router.register(TrackersListPreferencesViewController.self)
@@ -85,6 +87,8 @@ class SceneDelegate: MvvmSceneDelegate {
 
         let svc = UISplitViewController.resolve()
         svc.viewControllers = [nvc]
+
+        invokeInitialSetup()
 
         return svc
     }
@@ -120,6 +124,15 @@ class SceneDelegate: MvvmSceneDelegate {
             appAppearanceBind
             backgroundDownloadModeBind
             backgroundStateObserverBind
+        }
+    }
+}
+
+private extension SceneDelegate {
+    func invokeInitialSetup() {
+        Task { @MainActor in
+            try await Task.sleep(for: .seconds(0.5))
+            await InitialSetupFlow.startIfNeeded()
         }
     }
 }
