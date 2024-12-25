@@ -17,7 +17,7 @@ extension RssChannelItemCellViewModel {
 }
 
 class RssChannelItemCellViewModel: BaseViewModelWith<RssChannelItemCellViewModel.Config>, MvvmSelectableProtocol {
-    var selectAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
 
 //    private var link: URL!
     @Published var title: String = ""

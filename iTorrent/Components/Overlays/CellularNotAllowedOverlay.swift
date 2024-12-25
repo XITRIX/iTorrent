@@ -33,6 +33,7 @@ class OverlayViewController: UIViewController {
     }
 }
 
+@MainActor
 final class CellularNotAllowedOverlay: @unchecked Sendable {
     private let overlayView = MessageOverlayView()
     private let overlayViewController = OverlayViewController()

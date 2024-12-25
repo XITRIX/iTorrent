@@ -6,10 +6,10 @@
 //
 
 import LibTorrent
-import MvvmFoundation
+@preconcurrency import MvvmFoundation
 import SwiftUI
 
-class TrackersListDetailsPreferencesViewModel: BaseViewModelWith<TrackersListService.ListState>, ObservableObject {
+class TrackersListDetailsPreferencesViewModel: BaseViewModelWith<TrackersListService.ListState>, ObservableObject, @unchecked Sendable {
     @Published var trackers: [String] = []
     @Published var title: String = ""
     @Published var source: TrackersListService.ListState.Source!
@@ -20,6 +20,7 @@ class TrackersListDetailsPreferencesViewModel: BaseViewModelWith<TrackersListSer
         title = model.title
     }
 
+    @MainActor
     func addTracker() {
         #if os(visionOS)
         textInput(title: %"trackers.add.title.single", message: %"trackers.add.message.single", placeholder: "http://x.x.x.x:8080/announce", cancel: %"common.cancel", accept: %"common.add") { [unowned self] result in

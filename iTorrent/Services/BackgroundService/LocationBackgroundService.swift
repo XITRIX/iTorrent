@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-class LocationBackgroundService: NSObject {
+class LocationBackgroundService: NSObject, @unchecked Sendable {
     override init() {
         super.init()
         locationManager.delegate = self

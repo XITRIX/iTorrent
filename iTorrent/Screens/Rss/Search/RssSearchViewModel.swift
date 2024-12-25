@@ -9,7 +9,7 @@ import Combine
 import MvvmFoundation
 import Foundation
 
-class RssSearchViewModel: BaseCollectionViewModel {
+class RssSearchViewModel: BaseCollectionViewModel, @unchecked Sendable {
     @Published var searchQuery: String = ""
 
     required init() {

@@ -9,7 +9,7 @@ import LibTorrent
 import MvvmFoundation
 import SwiftUI
 
-class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject {
+class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject, @unchecked Sendable {
     @Published var sorces: [TrackersListService.ListState] = []
     @Published var isAutoaddingEnabled: Bool
 
@@ -30,6 +30,7 @@ class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject {
         }
     }
 
+    @MainActor
     func addRemoteTracker() {
         textInputs(title: %"preferences.trackers.add.title", textInputs: [
             .init(placeholder: %"preferences.trackers.add.titlePlaceholder"),
@@ -50,6 +51,7 @@ class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject {
         }
     }
 
+    @MainActor
     func addLocalTracker() {
         textInput(title: %"preferences.trackers.add.title", placeholder: %"preferences.trackers.add.titlePlaceholder") { [weak self] text in
             guard let self, let text
@@ -59,10 +61,12 @@ class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject {
         }
     }
 
+    @MainActor
     func showDetails(_ model: TrackersListService.ListState) {
         navigate(to: TrackersListDetailsPreferencesViewModel.self, with: model, by: .show)
     }
 
+    @MainActor
     func renameDetails(_ model: TrackersListService.ListState) {
         textInput(title: %"preferences.trackers.rename.title", placeholder: model.title, defaultValue: model.title) { [weak self] result in
             guard let self, let result, !result.isEmpty else { return }

@@ -12,7 +12,7 @@ import SwiftUI
 
 class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectableProtocol, ObservableObject, Identifiable {
     var torrentHandle: TorrentHandle!
-    var selectAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
     var id: ObjectIdentifier { .init(torrentHandle) }
 
     @Published var title: String = ""
@@ -41,6 +41,7 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
         hasher.combine(id)
     }
 
+    @MainActor
     func removeTorrent() {
         alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in

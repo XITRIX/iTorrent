@@ -13,6 +13,7 @@ extension UICellAccessory {
         public var tintColor: UIColor? = nil
     }
 
+    @MainActor
     static func image(_ image: UIImage?, displayed: UICellAccessory.DisplayedState = .always, options: ImageOptions = .init()) -> UICellAccessory {
         .customView(configuration: .init(customView: {
             if let tintColor = options.tintColor {

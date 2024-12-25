@@ -88,9 +88,11 @@ private extension ProxyPreferencesViewModel {
     }
 
     func uiAction(from proxyType: Session.Settings.ProxyType) -> UIAction {
-        UIAction(title: proxyType.name, state: preferences.proxyType == proxyType ? .on : .off) { [unowned self] _ in
-            preferences.proxyType = proxyType
-            reload()
+        MainActor.assumeIsolated {
+            UIAction(title: proxyType.name, state: preferences.proxyType == proxyType ? .on : .off) { [unowned self] _ in
+                preferences.proxyType = proxyType
+                reload()
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import LibTorrent
 import MvvmFoundation
 import UIKit
 
-class ConnectionPreferencesViewModel: BasePreferencesViewModel {
+class ConnectionPreferencesViewModel: BasePreferencesViewModel, @unchecked Sendable {
     required init() {
         super.init()
         binding()
@@ -27,17 +27,19 @@ private extension ConnectionPreferencesViewModel {
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections.send(sections) }
 
-        sections.append(.init(id: "encryption", header: %"preferences.network.connection.encryption") {
-            PRButtonViewModel(with: .init(title: %"preferences.network.connection.encryption.mode", value: preferences.$encryptionPolicy.map(\.name).eraseToAnyPublisher(), accessories: [
-                .popUpMenu(
-                    .init(title: %"preferences.network.connection.encryption.mode.action", children: [
-                        uiAction(from: .enabled),
-                        uiAction(from: .forced),
-                        uiAction(from: .disabled),
-                    ]), options: .init(tintColor: .tintColor)
-                ),
-            ]))
-        })
+        MainActor.assumeIsolated {
+            sections.append(.init(id: "encryption", header: %"preferences.network.connection.encryption") {
+                PRButtonViewModel(with: .init(title: %"preferences.network.connection.encryption.mode", value: preferences.$encryptionPolicy.map(\.name).eraseToAnyPublisher(), accessories: [
+                    .popUpMenu(
+                        .init(title: %"preferences.network.connection.encryption.mode.action", children: [
+                            uiAction(from: .enabled),
+                            uiAction(from: .forced),
+                            uiAction(from: .disabled),
+                        ]), options: .init(tintColor: .tintColor)
+                    ),
+                ]))
+            })
+        }
 
         sections.append(.init(id: "protocols", header: %"preferences.network.connection.protocols") {
             PRSwitchViewModel(with: .init(title: %"preferences.network.connection.protocols.dht", value: preferences.$isDhtEnabled.binding))
@@ -85,7 +87,9 @@ private extension ConnectionPreferencesViewModel {
     }
 
     func uiAction(from policy: Session.Settings.EncryptionPolicy) -> UIAction {
-        UIAction(title: policy.name, attributes: policy == .disabled ? [.destructive] : [], state: preferences.encryptionPolicy == policy ? .on : .off) { [preferences] _ in preferences.encryptionPolicy = policy }
+        MainActor.assumeIsolated {
+            UIAction(title: policy.name, attributes: policy == .disabled ? [.destructive] : [], state: preferences.encryptionPolicy == policy ? .on : .off) { [preferences] _ in preferences.encryptionPolicy = policy }
+        }
     }
 }
 

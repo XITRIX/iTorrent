@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import MvvmFoundation
 
-class RssListViewModel: BaseCollectionViewModel {
+final class RssListViewModel: BaseCollectionViewModel, @unchecked Sendable {
     required init() {
         super.init()
         setup()
@@ -29,6 +29,7 @@ extension RssListViewModel {
             .eraseToAnyPublisher()
     }
 
+    @MainActor
     func addFeed() {
         textInput(title: %"rsslist.add.title", placeholder: "https://", type: .URL, accept: %"common.add") { [unowned self] result in
             guard let result else { return }
@@ -36,6 +37,7 @@ extension RssListViewModel {
         }
     }
 
+    @MainActor
     func removeSelected() {
         let items = selectedIndexPaths.compactMap {
             (sections[$0.section].items[$0.item] as? RssFeedCellViewModel)?.model

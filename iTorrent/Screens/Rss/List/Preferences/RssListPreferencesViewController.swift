@@ -21,7 +21,9 @@ class RssListPreferencesViewController<VM: RssListPreferencesViewModel>: BaseCol
         collectionView.dragInteractionEnabled = false
 
         token = collectionView.observe(\.contentSize, options: [.new]) { [unowned self] view, change in
-            preferredContentSize = view.contentSize
+            Task { @MainActor in
+                preferredContentSize = view.contentSize
+            }
         }
 
 #if !os(visionOS)

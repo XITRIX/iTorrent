@@ -11,13 +11,13 @@ import UIKit
 extension RssFeedCellViewModel {
     struct Config {
         var rssModel: RssModel
-        var selectAction: (() -> Void)?
+        var selectAction: (@MainActor () -> Void)?
     }
 }
 
-class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol, MvvmReorderableProtocol {
+class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol, MvvmReorderableProtocol, @unchecked Sendable {
     var model: RssModel!
-    var selectAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
     var canReorder: Bool { true }
 
     @Published var feedLogo: UIImage? = nil

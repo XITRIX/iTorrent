@@ -33,7 +33,7 @@ extension Publisher where Self.Failure == Never {
     ///
     /// - parameter receiveValue: The closure to execute on receipt of a value.
     /// - Returns: A cancellable instance, which you use when you end assignment of the received value. Deallocation of the result will tear down the subscription stream.
-    public func uiSink(receiveValue: @escaping ((Self.Output) -> Void)) -> AnyCancellable {
+    public func uiSink(receiveValue: @escaping (@Sendable @MainActor (Self.Output) -> Void)) -> AnyCancellable where Self.Output: Sendable {
         sink { value in
             runOnMainThreadIfNeeded {
                 receiveValue(value)
@@ -42,9 +42,11 @@ extension Publisher where Self.Failure == Never {
     }
 }
 
-func runOnMainThreadIfNeeded(_ action: @Sendable @escaping () -> Void) {
+func runOnMainThreadIfNeeded(_ action: @Sendable @MainActor @escaping () -> Void) {
     if Thread.isMainThread {
-        action()
+        MainActor.assumeIsolated {
+            action()
+        }
     } else {
         DispatchQueue.main.async {
             action()

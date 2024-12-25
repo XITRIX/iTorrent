@@ -6,11 +6,11 @@
 //
 
 import Combine
-import LibTorrent
+@preconcurrency import LibTorrent
 import MvvmFoundation
 import UIKit
 
-class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
+class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle>, @unchecked Sendable {
     private var torrentHandle: TorrentHandle!
 
     @Published var sections: [MvvmCollectionSectionModel] = []
@@ -145,6 +145,7 @@ extension TorrentDetailsViewModel {
         torrentHandle.pause()
     }
 
+    @MainActor
     func rehash() {
         // If Storage is not available, try to reconnect storage
         if torrentHandle.snapshot.friendlyState == .storageError {
@@ -159,6 +160,7 @@ extension TorrentDetailsViewModel {
         ])
     }
 
+    @MainActor
     func refreshStorage() {
         guard let storage = torrentHandle.storage else { return }
         alert(title: %"details.refreshStorage.title", message: %"details.refreshStorage.message", actions: [
@@ -166,14 +168,18 @@ extension TorrentDetailsViewModel {
             .init(title: %"common.continue", style: .default, action: { [self] in
                 DispatchQueue.global(qos: .userInitiated).async { [self] in
                     guard !torrentService.refreshStorage(storage) else { return }
-                    alert(title: %"common.error", message: %"details.refreshStorage.fail.message", actions: [
-                        .init(title: %"common.close", style: .cancel)
-                    ])
+
+                    Task { @MainActor in
+                        alert(title: %"common.error", message: %"details.refreshStorage.fail.message", actions: [
+                            .init(title: %"common.close", style: .cancel)
+                        ])
+                    }
                 }
             })
         ])
     }
 
+    @MainActor
     func removeTorrent() {
         alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
@@ -186,6 +192,7 @@ extension TorrentDetailsViewModel {
         ])
     }
 
+    @MainActor
     func shareMagnet() {
         UIPasteboard.general.string = torrentHandle.snapshot.magnetLink
         alertWithTimer(message: %"details.share.magnetCopy.result")

@@ -21,12 +21,12 @@ extension PRButtonViewModel {
         var tinted: Bool = true
         var singleLine: Bool = false
         var accessories: [UICellAccessory] = []
-        var selectAction: (() -> Void)? = { /* Replace with nil if button should not allow highlight */ }
+        var selectAction: (@MainActor () -> Void)? = { /* Replace with nil if button should not allow highlight */ }
     }
 }
 
 class PRButtonViewModel: BaseViewModelWith<PRButtonViewModel.Config>, ObservableObject, MvvmSelectableProtocol, MvvmReorderableProtocol {
-    var selectAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
 
     var id: String?
     @Published var title = ""

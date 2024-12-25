@@ -10,7 +10,7 @@ import MvvmFoundation
 import LibTorrent
 
 class TrackerCellViewModel: BaseViewModelWith<TorrentTracker>, MvvmLongPressProtocol, ObservableObject {
-    var longPressAction: (() -> Void)?
+    var longPressAction: (@MainActor () -> Void)?
     
     @Published var title: String = ""
     @Published var message: String?

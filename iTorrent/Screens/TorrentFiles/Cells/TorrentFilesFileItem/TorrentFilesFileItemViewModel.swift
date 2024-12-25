@@ -21,7 +21,7 @@ protocol FileItemViewModelProtocol: MvvmViewModel {
 }
 
 class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
-    var selectAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
     var previewAction: (() -> Void)?
     
     var torrentHandle: TorrentHandle!

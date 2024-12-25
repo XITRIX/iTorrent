@@ -12,7 +12,7 @@ import MvvmFoundation
 import UIKit
 import Network
 
-class PreferencesStorage: Resolvable {
+final class PreferencesStorage: Resolvable, @unchecked Sendable {
     private init() {
         #if !IS_SUPPORT_LOCATION_BG
         // Location mode is not allowed by Apple policy
@@ -33,7 +33,7 @@ class PreferencesStorage: Resolvable {
 
     }
 
-    private var disposeBag: [AnyCancellable] = []
+    private var disposeBag: DisposeBag = .init()
     static let shared = PreferencesStorage()
 
     static let defaultTorrentListGroupsSortingArray: [TorrentHandle.State] = [

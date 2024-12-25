@@ -15,7 +15,7 @@ class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int, ()->Void
     private var internalFile: FileEntry!
     private var index: Int = 0
 
-    var selectAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
     var showProgress: Bool { false }
     var onPriorityUpdated: (() -> Void)?
 

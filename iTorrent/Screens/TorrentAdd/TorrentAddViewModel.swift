@@ -85,6 +85,7 @@ extension TorrentAddViewModel {
         }))
     }
 
+    @MainActor
     func select(at index: Int) -> Bool {
         switch rootDirectory.storage[keys[index]] {
         case let path as PathNode:
@@ -95,11 +96,13 @@ extension TorrentAddViewModel {
         }
     }
 
+    @MainActor
     func cancel() {
         completion?(false)
         dismiss()
     }
 
+    @MainActor
     func download() {
         TorrentService.shared.addTorrent(by: torrentFile, at: downloadStorage.value)
         completion?(true)
@@ -159,15 +162,20 @@ extension TorrentAddViewModel {
         guard let file = TorrentFile(with: url)
         else { return }
 
-        guard !presentAlert(from: navigationContext, ifTorrentExists: file) else { return }
-        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true)) }
+        Task { @MainActor in
+            guard !presentAlert(from: navigationContext, ifTorrentExists: file) else { return }
+            navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true))
+        }
     }
 
     static func present(with torrentFile: TorrentFile, from navigationContext: NavigationProtocol) {
-        guard !presentAlert(from: navigationContext, ifTorrentExists: torrentFile) else { return }
-        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true)) }
+        Task { @MainActor in
+            guard !presentAlert(from: navigationContext, ifTorrentExists: torrentFile) else { return }
+            navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true))
+        }
     }
 
+    @MainActor
     private static func presentAlert(from navigationContext: NavigationProtocol, ifTorrentExists torrentFile: TorrentFile) -> Bool {
         guard TorrentService.shared.torrents[torrentFile.infoHashes] != nil
         else { return false }

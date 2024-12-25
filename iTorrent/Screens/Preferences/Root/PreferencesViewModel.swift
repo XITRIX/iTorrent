@@ -177,17 +177,22 @@ private extension PreferencesViewModel {
     }
 
     func uiAction(from interfaceStyle: UIUserInterfaceStyle) -> UIAction {
-        UIAction(title: interfaceStyle.name, state: preferences.appAppearance == interfaceStyle ? .on : .off) { [unowned self] _ in
-            updateAppearance(with: interfaceStyle)
+        MainActor.assumeIsolated {
+            UIAction(title: interfaceStyle.name, state: preferences.appAppearance == interfaceStyle ? .on : .off) { [unowned self] _ in
+                updateAppearance(with: interfaceStyle)
+            }
         }
     }
 
     func uiAction(from backgroundMode: BackgroundService.Mode) -> UIAction {
-        UIAction(title: backgroundMode.name, state: preferences.backgroundMode == backgroundMode ? .on : .off) { [preferences] _ in
-            preferences.backgroundMode = backgroundMode
+        MainActor.assumeIsolated {
+            UIAction(title: backgroundMode.name, state: preferences.backgroundMode == backgroundMode ? .on : .off) { [preferences] _ in
+                preferences.backgroundMode = backgroundMode
+            }
         }
     }
 
+    @MainActor
     func updateAppearance(with interfaceStyle: UIUserInterfaceStyle) {
         guard let vc = navigationService?(),
               let window = vc.view.window
@@ -212,7 +217,7 @@ private extension PreferencesViewModel {
         }
 
         window.isUserInteractionEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [preferences] in
             CircularAnimation.animate(startingPoint: .init(x: window.frame.width / 2, y: -60)) {
                 preferences.appAppearance = interfaceStyle
             } completion: {

@@ -28,7 +28,7 @@ extension RssDetailsViewModel {
     }
 }
 
-class RssDetailsViewModel: BaseViewModelWith<RssItemModel> {
+final class RssDetailsViewModel: BaseViewModelWith<RssItemModel>, @unchecked Sendable {
     var rssModel: RssItemModel!
     @Published var title: String = ""
     @Published var downloadType: DownloadType?
@@ -81,10 +81,12 @@ private extension RssDetailsViewModel {
 
             downloadType = .torrent
             download = { [unowned self] in
-                navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
-                    guard added else { return }
-                    self?.downloadType = .added
-                }), by: .present(wrapInNavigation: true))
+                Task { @MainActor in
+                    navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
+                        guard added else { return }
+                        self?.downloadType = .added
+                    }), by: .present(wrapInNavigation: true))
+                }
             }
             return
         }

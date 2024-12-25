@@ -36,6 +36,7 @@ class TorrentTrackersViewModel: BaseViewModelWith<TorrentHandle> {
 }
 
 extension TorrentTrackersViewModel {
+    @MainActor
     func addTrackers() {
         #if os(visionOS)
         textInput(title: %"trackers.add.title.single", message: %"trackers.add.message.single", placeholder: "http://x.x.x.x:8080/announce", cancel: %"common.cancel", accept: %"common.add") { [unowned self] result in
@@ -68,6 +69,7 @@ extension TorrentTrackersViewModel {
         reload()
     }
 
+    @MainActor
     func removeSelected() {
         alert(title: %"trackers.remove.title", actions: [
             .init(title: %"common.delete", style: .destructive, action: { [unowned self] in

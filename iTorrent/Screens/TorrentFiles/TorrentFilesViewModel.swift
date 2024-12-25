@@ -161,6 +161,7 @@ extension TorrentFilesViewModel {
         }
     }
 
+    @MainActor
     func shareSelected(_ indexPaths: [IndexPath]) {
         alertWithTimer(message: "This feature is not implemented yet")
     }
@@ -177,6 +178,7 @@ extension TorrentFilesViewModel {
         .init(with: (torrentHandle, path, path.name))
     }
 
+    @MainActor
     func select(at index: Int) -> Bool {
         switch rootDirectory.storage[keys[index]] {
         case let path as PathNode:

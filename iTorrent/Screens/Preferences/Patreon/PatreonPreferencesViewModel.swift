@@ -17,7 +17,7 @@ extension PatreonPreferencesViewModel {
     }
 }
 
-class PatreonPreferencesViewModel: BaseViewModel {
+class PatreonPreferencesViewModel: BaseViewModel, @unchecked Sendable {
     let accountState = CurrentValueSubject<PatreonAccountState, Never>(.none)
 
     required init() {
@@ -72,6 +72,7 @@ extension PatreonPreferencesViewModel {
         preferencesStorage.$patreonAccount.map { $0?.fullVersion ?? false }.eraseToAnyPublisher()
     }
 
+    @MainActor
     func linkPatreon(from view: UIView) {
         if accountState.value == .none {
             guard let context = navigationService?()

@@ -25,6 +25,7 @@ class CellularToggleSetupViewModel: BaseViewModelWith<CellularToggleSetupViewMod
 
     }
 
+    @MainActor
     func allowCellularAction() {
         alert(title: %"initialSetup.cellular.allowCheck.title", style: .actionSheet, actions: [
             .init(title: %"common.cancel", style: .cancel),

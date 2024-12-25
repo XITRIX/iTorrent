@@ -10,7 +10,7 @@ import GCDWebServers
 import MvvmFoundation
 import UIKit
 
-class WebServerService: Resolvable {
+final class WebServerService: Resolvable, @unchecked Sendable {
     init() { binding() }
 
     @Published var isWebServerEnabled: Bool = false

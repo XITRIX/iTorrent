@@ -119,14 +119,17 @@ extension TorrentListViewModel {
         }.eraseToAnyPublisher()
     }
 
+    @MainActor
     func preferencesAction() {
         navigate(to: PreferencesViewModel.self, by: .show)
     }
 
+    @MainActor
     func showRss() {
         navigate(to: RssListViewModel.self, by: .show)
     }
 
+    @MainActor
     func addTorrent(by url: URL) {
         guard let navigationService = navigationService?() else { return }
         TorrentAddViewModel.present(with: url, from: navigationService)
@@ -145,6 +148,7 @@ extension TorrentListViewModel {
         torrentModels.forEach { $0.torrentHandle.pause() }
     }
 
+    @MainActor
     func rehashAllSelected(at indexPaths: [IndexPath]) {
         let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
 
@@ -156,6 +160,7 @@ extension TorrentListViewModel {
         ])
     }
 
+    @MainActor
     func deleteAllSelected(at indexPaths: [IndexPath]) {
         let torrentModels = indexPaths.compactMap { sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
         let message = torrentModels.map { $0.torrentHandle.snapshot.name }.joined(separator: "\n\n")
@@ -175,6 +180,7 @@ extension TorrentListViewModel {
         ])
     }
 
+    @MainActor
     func removeTorrent(_ torrentHandle: TorrentHandle) {
         alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: {

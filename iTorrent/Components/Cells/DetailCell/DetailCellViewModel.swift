@@ -16,8 +16,8 @@ import MvvmFoundation
 // }
 
 class DetailCellViewModel: BaseViewModel, ObservableObject, MvvmSelectableProtocol, MvvmLongPressProtocol {
-    var selectAction: (() -> Void)?
-    var longPressAction: (() -> Void)?
+    var selectAction: (@MainActor () -> Void)?
+    var longPressAction: (@MainActor () -> Void)?
 
     @Published var title: String = ""
     @Published var detail: String = ""
@@ -25,7 +25,7 @@ class DetailCellViewModel: BaseViewModel, ObservableObject, MvvmSelectableProtoc
     @Published var isBold: Bool = true
     @Published var isEnabled: Bool = true
 
-    init(title: String = "", detail: String = "", spacer: Double = 24, isBold: Bool = true, isEnabled: Bool = true, selectAction: (() -> Void)? = nil) {
+    init(title: String = "", detail: String = "", spacer: Double = 24, isBold: Bool = true, isEnabled: Bool = true, selectAction: (@MainActor () -> Void)? = nil) {
         self.title = title
         self.detail = detail
         self.spacer = spacer
