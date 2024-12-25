@@ -21,31 +21,19 @@ extension SceneDelegate {
 extension SceneDelegate {
     class AVPlayerDelegates: DelegateObject<SceneDelegate>, AVPlayerViewControllerDelegate {
         func playerViewControllerRestoreUserInterfaceForFullScreenExit(_ playerViewController: AVPlayerViewController) async -> Bool {
-            await withCheckedContinuation { continuation in
-                Task { @MainActor in
-                    guard let vc = parent.window?.rootViewController?.topPresented else {
-                        return continuation.resume(returning: false)
-                    }
+            guard let vc = await parent.window?.rootViewController?.topPresented
+            else { return false }
 
-                    vc.present(playerViewController, animated: true) {
-                        continuation.resume(returning: true)
-                    }
-                }
-            }
+            await vc.present(playerViewController, animated: true)
+            return true
         }
 
         func playerViewControllerRestoreUserInterfaceForPictureInPictureStop(_ playerViewController: AVPlayerViewController) async -> Bool {
-            await withCheckedContinuation { continuation in
-                Task { @MainActor in
-                    guard let vc = parent.window?.rootViewController?.topPresented else {
-                        return continuation.resume(returning: false)
-                    }
+            guard let vc = await parent.window?.rootViewController?.topPresented
+            else { return false }
 
-                    vc.present(playerViewController, animated: true) {
-                        continuation.resume(returning: true)
-                    }
-                }
-            }
+            await vc.present(playerViewController, animated: true)
+            return true
         }
     }
 
