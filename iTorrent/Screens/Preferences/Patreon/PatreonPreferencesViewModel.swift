@@ -17,7 +17,7 @@ extension PatreonPreferencesViewModel {
     }
 }
 
-class PatreonPreferencesViewModel: BaseViewModel {
+class PatreonPreferencesViewModel: BaseViewModel, @unchecked Sendable {
     let accountState = CurrentValueSubject<PatreonAccountState, Never>(.none)
 
     required init() {

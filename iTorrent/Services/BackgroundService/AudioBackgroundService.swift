@@ -8,7 +8,7 @@
 import AVFoundation
 import UIKit
 
-class AudioBackgroundService {
+class AudioBackgroundService: @unchecked Sendable {
     private var player: AVAudioPlayer?
     private var backgroundTask: UIBackgroundTaskIdentifier?
     private var asyncTask: Task<Void, Error>?

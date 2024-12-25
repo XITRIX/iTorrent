@@ -11,7 +11,7 @@ import Foundation
 import MvvmFoundation
 import SWXMLHash
 
-class RssModel: Hashable, Codable {
+class RssModel: Hashable, Codable, @unchecked Sendable {
     enum Error: Swift.Error {
         case missingKey
         case corruptedData

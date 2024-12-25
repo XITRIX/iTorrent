@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import MvvmFoundation
 
-class RssListViewModel: BaseCollectionViewModel {
+class RssListViewModel: BaseCollectionViewModel, @unchecked Sendable {
     required init() {
         super.init()
         setup()

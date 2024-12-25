@@ -9,7 +9,7 @@ import Combine
 import MvvmFoundation
 import SwiftUI
 
-class PreferencesViewModel: BasePreferencesViewModel {
+class PreferencesViewModel: BasePreferencesViewModel, @unchecked Sendable {
     required init() {
         super.init()
         binding()

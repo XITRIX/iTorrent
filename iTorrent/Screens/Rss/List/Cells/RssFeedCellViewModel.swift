@@ -15,7 +15,7 @@ extension RssFeedCellViewModel {
     }
 }
 
-class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol, MvvmReorderableProtocol {
+class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol, MvvmReorderableProtocol, @unchecked Sendable {
     var model: RssModel!
     var selectAction: (() -> Void)?
     var canReorder: Bool { true }

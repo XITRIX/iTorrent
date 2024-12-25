@@ -35,7 +35,7 @@ extension TrackersListService {
     }
 }
 
-class TrackersListService {
+class TrackersListService: @unchecked Sendable {
     let trackerSources: CurrentValueSubject<[ListState.Source: ListState], Never>
 
     init() {

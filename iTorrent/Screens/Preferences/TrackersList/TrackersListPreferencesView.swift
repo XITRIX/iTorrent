@@ -9,7 +9,7 @@ import LibTorrent
 import MvvmFoundation
 import SwiftUI
 
-class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject {
+class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject, @unchecked Sendable {
     @Published var sorces: [TrackersListService.ListState] = []
     @Published var isAutoaddingEnabled: Bool
 

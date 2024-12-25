@@ -6,7 +6,7 @@
 //
 
 #if canImport(ActivityKit)
-import ActivityKit
+@preconcurrency import ActivityKit
 #endif
 
 import Combine
