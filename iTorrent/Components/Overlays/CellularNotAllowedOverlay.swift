@@ -62,8 +62,8 @@ private extension CellularNotAllowedOverlay {
 
         NSLayoutConstraint.activate([
             overlayViewController.view.layoutMarginsGuide.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor),
-            overlayViewController.view.layoutMarginsGuide.leadingAnchor.constraint(greaterThanOrEqualTo: overlayView.leadingAnchor),
-            overlayView.trailingAnchor.constraint(greaterThanOrEqualTo: overlayViewController.view.layoutMarginsGuide.trailingAnchor),
+            overlayViewController.view.layoutMarginsGuide.leadingAnchor.constraint(equalTo: overlayView.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: overlayViewController.view.layoutMarginsGuide.trailingAnchor),
             bottomConstraint
         ])
 
@@ -146,6 +146,15 @@ private extension CellularNotAllowedOverlay {
 
     @MainActor
     func showCellularPreferences() {
+        // Open iOS settings app, if restricted on system level
+        if networkMonitoringService.cellularState == .restricted,
+            let url = URL(string: UIApplication.openSettingsURLString)
+        {
+            UIApplication.shared.open(url)
+            return
+        }
+
+        // Otherwise open iTorrent's Preferences
         guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first,
               let window = scene.keyWindow,
               let viewController = window.rootViewController?.topPresented

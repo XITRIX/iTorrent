@@ -28,7 +28,6 @@ class MessageOverlayView: BaseView {
         holder.layoutMargins.right = 16
 
         holder.layer.borderWidth = 1 / traitCollection.displayScale
-        holder.layer.borderColor = UIColor.separator.cgColor
 
         holder.addAction(.init { [unowned self] _ in
             Task { await clickEvent?() }
@@ -39,6 +38,11 @@ class MessageOverlayView: BaseView {
         if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
             holder.layer.borderColor = UIColor.separator.cgColor
         }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        holder.layer.borderColor = UIColor.separator.cgColor
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
