@@ -71,6 +71,7 @@ What can this app do:
 
 Now iTorrent supports the following languages:
 - English
+- German
 - Russian
 - Spanish
 - Simplified Chinese

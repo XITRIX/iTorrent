@@ -3,6 +3,12 @@
   "strings" : {
     "%@ of %@ (%@)" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ von %2$@ (%3$@)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -31,6 +37,12 @@
     },
     "%lld / %lld items" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %1$lld Einträge"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
@@ -60,6 +72,12 @@
     "add.dismiss.message" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Änderungen werfen verworfen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -89,6 +107,12 @@
     "add.dismiss.title" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wirklich verwerfen?"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117,6 +141,12 @@
     },
     "addTorrent.%@_exists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent mit Hash: “%@“ existiert schon in der Download-Queue"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -145,6 +175,12 @@
     },
     "addTorrent.exists" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Torrent existiert bereits"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -173,6 +209,12 @@
     },
     "addTorrent.storage.manage" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwalten..."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -201,6 +243,12 @@
     },
     "addTorrent.storage.selected" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher auswählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -229,6 +277,12 @@
     },
     "common.add" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -257,6 +311,12 @@
     },
     "common.all" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -285,6 +345,12 @@
     },
     "common.cancel" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbruch"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -313,6 +379,12 @@
     },
     "common.close" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -341,6 +413,12 @@
     },
     "common.continue" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -369,6 +447,12 @@
     },
     "common.delete" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -398,6 +482,12 @@
     "common.dismiss" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwerfen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -426,6 +516,12 @@
     },
     "common.enable" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -454,6 +550,12 @@
     },
     "common.error" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehler"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -538,6 +640,12 @@
     },
     "common.open" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -594,6 +702,12 @@
     },
     "common.password" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Passwort"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -650,6 +764,12 @@
     },
     "common.remove" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -678,6 +798,12 @@
     },
     "common.reset" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetten"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -706,6 +832,12 @@
     },
     "common.search" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -734,6 +866,12 @@
     },
     "common.share" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -762,6 +900,12 @@
     },
     "details.actions" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktionen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -790,6 +934,12 @@
     },
     "details.actions.files" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateien"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -818,6 +968,12 @@
     },
     "details.actions.trackers" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -846,27 +1002,33 @@
     },
     "details.copy.comment.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kommentar in Zwischenablage kopiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comment copied into clipboard"
+            "value" : "Comment copied to clipboard"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Comentario copiado en el portapapeles"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Комментарий скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "评论已复制到剪贴板"
           }
         }
@@ -874,27 +1036,33 @@
     },
     "details.copy.creator.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ersteller in Zwischenablage kopiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Creator copied into clipboard"
+            "value" : "Creator copied to clipboard"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Creador copiado en el portapapeles"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Создатель скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "创建者复制到剪贴板"
           }
         }
@@ -902,27 +1070,33 @@
     },
     "details.copy.hash.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hash in Zwischenablage kopiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash copied into clipboard"
+            "value" : "Hash copied to clipboard"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Hash copiado en el portapapeles"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Хэш скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Hash已复制到剪贴板"
           }
         }
@@ -930,27 +1104,33 @@
     },
     "details.copy.hashV2.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hash v2 in Zwischenablage kopiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash v2 copied into clipboard"
+            "value" : "Hash v2 copied to clipboard"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Hash v2 copiado en el portapapeles"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Хэш v2 скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Hash v2 已复制到剪贴板"
           }
         }
@@ -958,6 +1138,12 @@
     },
     "details.downloading" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lädt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -986,6 +1172,12 @@
     },
     "details.downloading.progress" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1014,6 +1206,12 @@
     },
     "details.downloading.sequential" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sequentieller Download"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1042,6 +1240,12 @@
     },
     "details.files.mediaPlayerPreview" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediaplayer"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1070,6 +1274,12 @@
     },
     "details.files.previewMode" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorschau-Modus"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1098,6 +1308,12 @@
     },
     "details.files.quickLookPreview" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Look Vorschau"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1126,6 +1342,12 @@
     },
     "details.info" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hauptinfo"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1154,6 +1376,12 @@
     },
     "details.info.added" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzugefügt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1182,6 +1410,12 @@
     },
     "details.info.comment" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kommentar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1210,6 +1444,12 @@
     },
     "details.info.created" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erstellt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1238,6 +1478,12 @@
     },
     "details.info.creator" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ersteller"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1322,6 +1568,12 @@
     },
     "details.path" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1350,6 +1602,12 @@
     },
     "details.path.browse" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Momentan"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1406,6 +1664,12 @@
     },
     "details.refreshStorage.fail.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher nicht gefunden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1434,6 +1698,12 @@
     },
     "details.refreshStorage.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent wird versuchen, den fehlenden Speicher zu finden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1462,6 +1732,12 @@
     },
     "details.refreshStorage.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher neu laden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1546,27 +1822,33 @@
     },
     "details.rehash.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Aktion wird den Status aller heruntergeladenen Daten neu prüfen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This action will recheckthe state of all downloaded files"
+            "value" : "This action will recheck the state of all downloaded files"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Esta acción volverá a comprobar el estado de todos los archivos descargados"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Это перепроверит состояние всех скаченных файлов"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "此操作将重新检查所有下载文件的状态"
           }
         }
@@ -1574,6 +1856,12 @@
     },
     "details.rehash.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent neu hashen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1602,6 +1890,12 @@
     },
     "details.share.magnet" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet Link"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1630,27 +1924,33 @@
     },
     "details.share.magnetCopy.result" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Magnet URL in die Zwischenablage kopiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Magnet URL copied into clipboard"
+            "value" : "Magnet URL copied to clipboard"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "URL del magnet copiada en el portapapeles"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Magnet ссылка скопирована в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "磁力链接已拷贝到剪贴板"
           }
         }
@@ -1658,6 +1958,12 @@
     },
     "details.share.torrentFile" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent Datei"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1686,6 +1992,12 @@
     },
     "details.speed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschwindigkeit"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1742,6 +2054,12 @@
     },
     "details.speed.timeRemains" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit übrig"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1826,6 +2144,12 @@
     },
     "details.state" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1882,6 +2206,12 @@
     },
     "details.transfer.completed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abgeschlossen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1910,6 +2240,12 @@
     },
     "details.transfer.downloaded" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heruntergeladen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1938,6 +2274,12 @@
     },
     "details.transfer.leechers" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leecher"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1966,6 +2308,12 @@
     },
     "details.transfer.progressSelectedTotal" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortschritt Ausgewählt/Gesamt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1994,6 +2342,12 @@
     },
     "details.transfer.seeders" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeder"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2022,6 +2376,12 @@
     },
     "details.transfer.selectedTotal" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählt/Alle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2050,6 +2410,12 @@
     },
     "details.transfer.uploaded" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hochgeladen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2078,6 +2444,12 @@
     },
     "encryptionPolicy.disabled" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deaktiviert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2106,6 +2478,12 @@
     },
     "encryptionPolicy.enabled" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erlauben"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2134,6 +2512,12 @@
     },
     "encryptionPolicy.forced" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benötigt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2162,6 +2546,12 @@
     },
     "expire.exit" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beenden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2190,6 +2580,12 @@
     },
     "expire.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du musst die App aktualisieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2218,6 +2614,12 @@
     },
     "expire.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Build ist abgelaufen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2274,6 +2676,12 @@
     },
     "file.open" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öffnen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2302,6 +2710,12 @@
     },
     "file.share" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teilen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2330,6 +2744,12 @@
     },
     "file.showInFiles" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Dateien anzeigen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2358,6 +2778,12 @@
     },
     "initialSetup.cellular.allowCheck.confirm" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich kenne die Risiken"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2386,6 +2812,12 @@
     },
     "initialSetup.cellular.allowCheck.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobile Verbindung erlauben"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2414,6 +2846,12 @@
     },
     "initialSetup.cellular.button.allow" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobile Nutzung erlauben"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2442,6 +2880,12 @@
     },
     "initialSetup.cellular.button.dismiss" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Mobile Verbindung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2470,10 +2914,16 @@
     },
     "initialSetup.cellular.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Standardmäßig erlaubt iTorrent keine Nutzung Mobiler Daten, da die meisten Mobilfunk-Verträge keinen unbegrenzten Download und/oder Upload erlauben.  Du kannst diese Einstellung jederzeit in den den App-Einstellungen ändern."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "By default iTorrent prefers not to allow cellular usage because of most cellular plans does not support unlimited download and / or upload trafic.\n\nYou can always change this setting in application preferences."
+            "value" : "By default, iTorrent prefers not to allow cellular usage because most cellular plans do not support unlimited download and / or upload traffic.\n\nYou can always change this setting in application preferences."
           }
         },
         "es" : {
@@ -2484,7 +2934,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Стандартно, iTorrent предпочитает не разрешать использование сотовой сети, ввиду того, что большинство сотовых операторов не поддерживают безлимитный входящий и\\или исходящий трафик.\n\nВы можете поменять эту настройку в любое время."
           }
         },
@@ -2498,6 +2948,12 @@
     },
     "initialSetup.cellular.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobilfunk Nutzung erlauben"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2526,6 +2982,12 @@
     },
     "intent.pauseTorrent.hash.description" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash des Torrents der beendet werden muss"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2554,6 +3016,12 @@
     },
     "intent.pauseTorrent.hash.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent Hash"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2582,6 +3050,12 @@
     },
     "intent.pauseTorrent.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent pausieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2638,6 +3112,12 @@
     },
     "list.add.files" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateien"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2694,6 +3174,12 @@
     },
     "list.add.magnet.error" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet-Link ist ungültig"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2722,6 +3208,12 @@
     },
     "list.add.magnet.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte Magnet-Link unten eintragen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2778,6 +3270,12 @@
     },
     "list.add.magnet.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus Magnet hinzufügen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2806,6 +3304,12 @@
     },
     "list.add.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hinzufügen von"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2862,6 +3366,12 @@
     },
     "list.add.url.error" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent-Link ist ungültig"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2890,6 +3400,12 @@
     },
     "list.add.url.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte Torrent-Link unten eintragen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2946,6 +3462,12 @@
     },
     "list.add.url.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über URL eintragen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2974,6 +3496,12 @@
     },
     "list.empty.filter.subtitle" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versuche, diesen Filter zu deaktivieren oder wähle einen anderen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3002,6 +3530,12 @@
     },
     "list.empty.filter.title-%@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Torrents für Filter „%1$@“"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3030,6 +3564,12 @@
     },
     "list.empty.nodata.subtitle" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Um neue Torrents hinzuzufügen, drücke das ‚+‘-Icon in der unteren rechten Ecke, oder indem Du eine Torrent-Datei direkt aus der Dateien-App oder dem Browser öffnest."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3058,6 +3598,12 @@
     },
     "list.empty.nodata.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willkommen zu iTorrent"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3086,6 +3632,12 @@
     },
     "list.sort" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sortierung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3114,6 +3666,12 @@
     },
     "list.sort.addedDate" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum hinzugefügt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3142,6 +3700,12 @@
     },
     "list.sort.creationDate" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum erstellt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3170,6 +3734,12 @@
     },
     "list.sort.grouped" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gruppiert bei Status"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3226,6 +3796,12 @@
     },
     "list.sort.size" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Größe"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3254,6 +3830,12 @@
     },
     "list.sort.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrents sortieren nach:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3312,6 +3894,12 @@
     "mime.calculating" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berechne..."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3341,6 +3929,12 @@
     "mime.documents" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumente"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3370,6 +3964,12 @@
     "mime.free" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Frei"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3399,6 +3999,12 @@
     "mime.image" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilder"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3428,6 +4034,12 @@
     "mime.other" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Andere"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3485,6 +4097,12 @@
     },
     "noContent.search.%@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Ergebnisse für “%@”"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3513,6 +4131,12 @@
     },
     "notification.done.message_%@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ erfolgreich heruntergeladen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3541,6 +4165,12 @@
     },
     "notification.done.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download beendet"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3597,6 +4227,12 @@
     },
     "overlay.cellular.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hier klicken um Einstellungen zu öffnen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3625,6 +4261,12 @@
     },
     "overlay.cellular.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobile Samml\u0010ung ist nicht erlaubt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3653,6 +4295,12 @@
     },
     "patreon.action.link" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Patreon verbunden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3681,6 +4329,12 @@
     },
     "patreon.action.patron" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon werden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3709,6 +4363,12 @@
     },
     "patreon.action.unlink" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entknüpfen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3737,6 +4397,12 @@
     },
     "patreon.action.unlink.button" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindung zum Patreon Konto aufheben"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3765,6 +4431,12 @@
     },
     "patreon.action.unlink.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bist Du sicher, dass Du die Verbindung zu Deinem Patreon Konto aufheben willst?"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3793,6 +4465,12 @@
     },
     "patreon.creator.description" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entwickler von iTorrent"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3821,6 +4499,12 @@
     },
     "patreon.creator.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hallo Lieber Nutzer,  Du kannst die weitere Entwicklung von iTorrent unterstützen, indem Du mir bei Patreon eine Spende zukommen lässt. Im Gegenzug erhälst Du Zugriff auf die werbefreie Version der iTorrent-App.  Vielen Dank für Deine Unterstützung!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3877,6 +4561,12 @@
     },
     "patreon.error.credentials" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Credentials."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3905,6 +4595,12 @@
     },
     "patreon.error.notAuthenticated" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Patron-Account verknüpft."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3933,6 +4629,12 @@
     },
     "patreon.error.token" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungültiges Access Token."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3961,6 +4663,12 @@
     },
     "patreon.error.unknown" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbekannter Fehler aufgetreten."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3989,6 +4697,12 @@
     },
     "patreon.patron.level" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Werbefreie Version aktiviert, viel Spaß!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4017,6 +4731,12 @@
     },
     "patreon.status.full" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast die Vollversion"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4045,6 +4765,12 @@
     },
     "patreon.status.parton" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist ein Patron"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4073,6 +4799,12 @@
     },
     "preferences" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4101,6 +4833,12 @@
     },
     "preferences.appearance" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Darstellung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4129,6 +4867,12 @@
     },
     "preferences.appearance.order" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sektionen Gruppierungsreihenfolge"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4157,6 +4901,12 @@
     },
     "preferences.appearance.theme" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Theme"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4185,6 +4935,12 @@
     },
     "preferences.appearance.theme.action" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App-Theme auswählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4213,6 +4969,12 @@
     },
     "preferences.appearance.theme.dark" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dunkel"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4241,6 +5003,12 @@
     },
     "preferences.appearance.theme.light" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hell"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4297,6 +5065,12 @@
     },
     "preferences.background" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download im Hinterrgrund"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4325,6 +5099,12 @@
     },
     "preferences.background.enable" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4353,6 +5133,12 @@
     },
     "preferences.background.location.indicator.enable" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orts-Anzeige aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4381,6 +5167,12 @@
     },
     "preferences.background.mode" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hintergrund Modus"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4409,6 +5201,12 @@
     },
     "preferences.background.mode.action" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hintergrund Modus auswählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4465,6 +5263,12 @@
     },
     "preferences.background.mode.location" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ort"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4493,6 +5297,12 @@
     },
     "preferences.donations" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für Donuts spenden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4549,6 +5359,12 @@
     },
     "preferences.network" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Netzwerk"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4577,6 +5393,12 @@
     },
     "preferences.network.connection" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindungseinstellung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4605,6 +5427,12 @@
     },
     "preferences.network.connection.encryption" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verschlüsselung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4633,6 +5461,12 @@
     },
     "preferences.network.connection.encryption.mode" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modus"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4661,6 +5495,12 @@
     },
     "preferences.network.connection.encryption.mode.action" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verschlüsselungsmodus wählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4689,6 +5529,12 @@
     },
     "preferences.network.connection.port.default" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard-Port wählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4745,6 +5591,12 @@
     },
     "preferences.network.connection.port.value" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eigener Port"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4773,6 +5625,12 @@
     },
     "preferences.network.connection.protocols" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbindungsprotokolle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4801,6 +5659,12 @@
     },
     "preferences.network.connection.protocols.dht" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DHT aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4829,6 +5693,12 @@
     },
     "preferences.network.connection.protocols.lsd" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LSD aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4857,6 +5727,12 @@
     },
     "preferences.network.connection.protocols.nat" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "µTP aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4885,6 +5761,12 @@
     },
     "preferences.network.connection.protocols.upnp" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UPnP aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4913,6 +5795,12 @@
     },
     "preferences.network.connection.protocols.utp" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NAT-PMP aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4941,6 +5829,12 @@
     },
     "preferences.network.interfaces" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schnittstellen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4969,6 +5863,12 @@
     },
     "preferences.network.interfaces.allInterfaces" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gleichzeitige Verbindung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4997,6 +5897,12 @@
     },
     "preferences.network.interfaces.cellular" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mobilfunk-Daten"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5025,6 +5931,12 @@
     },
     "preferences.network.interfaces.footer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parallele Verbindungen können die Download-Geschwindigkeit erhöhen, werden aber Deine IP-Adresse enthüllen, wenn Du ein VPN benutzt."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5081,6 +5993,12 @@
     },
     "preferences.network.proxy.auth" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authorisierung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5109,6 +6027,12 @@
     },
     "preferences.network.proxy.auth.required" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benötigt Authorisierung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5193,6 +6117,12 @@
     },
     "preferences.network.proxy.host.type" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy-Typ"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5221,6 +6151,12 @@
     },
     "preferences.network.proxy.host.type.action" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy-Typ auswählen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5249,6 +6185,12 @@
     },
     "preferences.network.trackers" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker Quellen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5277,6 +6219,12 @@
     },
     "preferences.notifications" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benachrichtugungen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5305,6 +6253,12 @@
     },
     "preferences.notifications.download" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn Laden beendet"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5333,6 +6287,12 @@
     },
     "preferences.queueLimits" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent Warteschlangen Limits"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5361,6 +6321,12 @@
     },
     "preferences.queueLimits.active" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktive Torrents"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5389,6 +6355,12 @@
     },
     "preferences.queueLimits.downloading" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herunterladende Torrents"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5417,6 +6389,12 @@
     },
     "preferences.queueLimits.uploading" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hochladende Torrents"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5473,6 +6451,12 @@
     },
     "preferences.seeding.stopOnFinish" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopp wenn Download abgeschlossen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5529,6 +6513,12 @@
     },
     "preferences.sharing.authorization" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Authorisierung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5585,6 +6575,12 @@
     },
     "preferences.sharing.webdavserver.footer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benutze WebDav Client, um zu iTorrent zu verbinden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5613,6 +6609,12 @@
     },
     "preferences.sharing.webserver" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webserver"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5641,6 +6643,12 @@
     },
     "preferences.sharing.webserver.footer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nutze jeden Webbrowser für das Teilen von Dateien"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5669,6 +6677,12 @@
     },
     "preferences.speedLimits" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschwindigkeitsbegrenzungen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5697,6 +6711,12 @@
     },
     "preferences.speedLimits.download" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximale Download Geschwindigkeit"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5725,6 +6745,12 @@
     },
     "preferences.speedLimits.hint" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geschwindigkeit in KB/s"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5753,6 +6779,12 @@
     },
     "preferences.speedLimits.unlimited" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unbegrenzt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5781,6 +6813,12 @@
     },
     "preferences.speedLimits.upload" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximale Upload Geschwindigkeit"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5809,6 +6847,12 @@
     },
     "preferences.storage" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5837,6 +6881,12 @@
     },
     "preferences.storage.add" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weitere hinzu…"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5865,6 +6915,12 @@
     },
     "preferences.storage.add.error.notDirectory" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählter Pfad ist kein Verzeichnis"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5893,6 +6949,12 @@
     },
     "preferences.storage.allocate" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher alloziieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5921,6 +6983,12 @@
     },
     "preferences.storage.available" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verfügbar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5949,6 +7017,12 @@
     },
     "preferences.storage.remove.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn Du den Speicher entfernst, werden alle Torrents die damit im Zusammenhang in der iTorrent App nicht länger verfügbar sein"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5977,6 +7051,12 @@
     },
     "preferences.storage.remove.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6005,6 +7085,12 @@
     },
     "preferences.storage.storages" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicher"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6033,6 +7119,12 @@
     },
     "preferences.storage.storages.available%lld/%lld" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verfügbar: %1$lld/%2$lld"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6061,6 +7153,12 @@
     },
     "preferences.storage.warning.accept" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verstanden, weiter"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6088,7 +7186,14 @@
       }
     },
     "preferences.storage.warning.message" : {
+      "comment" : "`",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falls Du externe Festplatten benutzt, darfst Du diese erst entfernen, nachdem Du iTorrent geschlossen hast. Andernfalls kann iTorrent nicht mit Sicherheit garantieren, dass alle heruntergeladenen Dateien sicher gespeichert wurden. Dies könnte zu korrupten Zuständen der Torrents auf dem entfernten Gerät führen."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6117,6 +7222,12 @@
     },
     "preferences.storage.warning.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WARNUNG!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6145,6 +7256,12 @@
     },
     "preferences.trackers.add.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker-Liste hinzufügen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6173,6 +7290,12 @@
     },
     "preferences.trackers.add.titlePlaceholder" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6201,6 +7324,12 @@
     },
     "preferences.trackers.add.urlPlaceholder" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL zur Tracker-Quelldatei"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6229,6 +7358,12 @@
     },
     "preferences.trackers.autoadding" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisches Hinzufügen aktivieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6257,6 +7392,12 @@
     },
     "preferences.trackers.autoadding.footer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatisch alle Tracker zu neu hinzugefügten Torrents hinzufügen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6285,6 +7426,12 @@
     },
     "preferences.trackers.empty.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL zur Tracker-Liste hinzufügen durch das Drücken von «+»"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6313,6 +7460,12 @@
     },
     "preferences.trackers.empty.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker Quellen-Liste ist leer"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6341,6 +7494,12 @@
     },
     "preferences.trackers.exists.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Tracker-Quelle ist bereits hinzugefügt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6369,6 +7528,12 @@
     },
     "preferences.trackers.remove.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willst Du dieser Tracker-Quelle entfernen?"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6397,6 +7562,12 @@
     },
     "preferences.trackers.remove.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quelle entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6425,6 +7596,12 @@
     },
     "preferences.trackers.rename.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quelle umbenennen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6481,6 +7658,12 @@
     },
     "preferences.version.github" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Seite"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6509,6 +7692,12 @@
     },
     "prioriry.change.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priorität ändern"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6537,6 +7726,12 @@
     },
     "prioriry.default" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standard"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6565,6 +7760,12 @@
     },
     "prioriry.dontDownload" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kann nicht herunterladen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6593,6 +7794,12 @@
     },
     "prioriry.low" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gering"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6705,6 +7912,12 @@
     },
     "proxyType.none" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6789,6 +8002,12 @@
     },
     "rss.downloadButtonType.added" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bereits hinzugefügt"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6817,6 +8036,12 @@
     },
     "rss.downloadButtonType.magnet" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet hinzufügen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6845,6 +8070,12 @@
     },
     "rss.downloadButtonType.torrent" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herunterladen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6873,6 +8104,12 @@
     },
     "rsschannel.readAll" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle lesen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6901,6 +8138,12 @@
     },
     "rsschannel.safari" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In Safari öffnen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6929,6 +8172,12 @@
     },
     "rsschannel.seen" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesehen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6957,6 +8206,12 @@
     },
     "rsschannel.unseen" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ungesehen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7013,6 +8268,12 @@
     },
     "rssfeed.empty.subtitle" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst RSS Kanäle hinzufügen, indem Du diese Seite bearbeitest"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7041,6 +8302,12 @@
     },
     "rsslist.add.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Kanal hinzu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7069,6 +8336,12 @@
     },
     "rsslist.preference.description" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beschreibung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7097,6 +8370,12 @@
     },
     "rsslist.preference.name" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titel"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7125,6 +8404,12 @@
     },
     "rsslist.preference.notifications" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachricht bei Aktualisierung"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7181,6 +8466,12 @@
     },
     "rsslist.preference.urlCopy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL kopiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7209,6 +8500,12 @@
     },
     "rsslist.remove.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählten RSS Feed wirklich entfernen?"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7237,6 +8534,12 @@
     },
     "rsslist.remove.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Feed entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7265,6 +8568,12 @@
     },
     "rssSearch.empty.subtitle" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erst RSS Kanäle hinzufügen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7293,6 +8602,12 @@
     },
     "rssSearch.empty.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine RSS Kanäle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7377,6 +8692,12 @@
     },
     "time.infinity" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unendlich"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7545,6 +8866,12 @@
     },
     "torrent.remove.action.dropData" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja, und Daten entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7573,6 +8900,12 @@
     },
     "torrent.remove.action.keepData" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja, aber Daten behalten"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7601,6 +8934,12 @@
     },
     "torrent.remove.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wirklich entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7629,6 +8968,12 @@
     },
     "torrent.state.checkingFiles" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prüfe Dateien"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7657,6 +9002,12 @@
     },
     "torrent.state.done" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fertig"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7685,6 +9036,12 @@
     },
     "torrent.state.downloading" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lade herunter"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7713,6 +9070,12 @@
     },
     "torrent.state.fetchingMetadata" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lade Metadaten"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7741,6 +9104,12 @@
     },
     "torrent.state.paused" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pausiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7769,6 +9138,12 @@
     },
     "torrent.state.resuming" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiederaufnehmen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7797,6 +9172,12 @@
     },
     "torrent.state.seeding" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seede"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7825,6 +9206,12 @@
     },
     "torrent.state.storageError" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speicherfehler"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7881,6 +9268,12 @@
     },
     "tracker.message: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachricht: %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7993,6 +9386,12 @@
     },
     "tracker.state" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8021,6 +9420,12 @@
     },
     "tracker.state.notContacted" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht kontaktiert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8049,6 +9454,12 @@
     },
     "tracker.state.notWorking" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funktioniert nicht"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8077,6 +9488,12 @@
     },
     "tracker.state.trackerError" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker Fehler"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8105,6 +9522,12 @@
     },
     "tracker.state.unreachable" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unerreichbar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8133,6 +9556,12 @@
     },
     "tracker.state.updating" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualisiere"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8161,6 +9590,12 @@
     },
     "tracker.state.working" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arbeite"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8189,6 +9624,12 @@
     },
     "trackers.action.copy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker URL in Zwischenablage kopiert!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8217,6 +9658,12 @@
     },
     "trackers.add" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker hinzu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8245,6 +9692,12 @@
     },
     "trackers.add.fromSource" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aus Quell-Liste"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8273,6 +9726,12 @@
     },
     "trackers.add.fromSource.all" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle importieren"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8301,6 +9760,12 @@
     },
     "trackers.add.manually" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manuell"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8329,6 +9794,12 @@
     },
     "trackers.add.message" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gib Tracker URLs mit Leerzeilen getrennt ein"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8357,6 +9828,12 @@
     },
     "trackers.add.message.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker URL eingeben"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8385,6 +9862,12 @@
     },
     "trackers.add.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mehrere Tracker hinzu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8413,6 +9896,12 @@
     },
     "trackers.add.title.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker hinzu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8441,6 +9930,12 @@
     },
     "trackers.empty.subtitle" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst Tracker manuell hinzufügen, indem Du diese Seite bearbeitest"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8469,6 +9964,12 @@
     },
     "trackers.empty.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Tracker"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8497,6 +9998,12 @@
     },
     "trackers.reannounceAll" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle neuankündigen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8525,6 +10032,12 @@
     },
     "trackers.remove" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker entfernen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8553,6 +10066,12 @@
     },
     "trackers.remove.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgewählte Tracker wirklich entfernen?"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8581,6 +10100,12 @@
     },
     "trackersList.add" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quelle hinzu"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8609,6 +10134,12 @@
     },
     "trackersList.add.local" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokale Quelle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8637,6 +10168,12 @@
     },
     "trackersList.add.remote" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remote Quelle"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8665,6 +10202,12 @@
     },
     "webserver.unavailable" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Webserver ist nicht verfügbar"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
