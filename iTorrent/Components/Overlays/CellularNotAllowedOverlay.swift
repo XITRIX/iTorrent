@@ -67,7 +67,7 @@ private extension CellularNotAllowedOverlay {
             bottomConstraint
         ])
 
-        overlayView.clickEvent = { [unowned self] in
+        overlayView.clickEvent = { @MainActor [unowned self] in
             showCellularPreferences()
             hideOverlay()
         }
