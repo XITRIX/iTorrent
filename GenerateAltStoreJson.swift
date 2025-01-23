@@ -60,6 +60,7 @@ struct AltStoreAppVersionModel: Codable {
 struct AltStorePatreonModel: Codable {
     var pledge: Double
     var currency: String?
+    var tires: [String]?
 }
 
 struct AltStoreAppModel: Codable {
@@ -184,7 +185,7 @@ enum AltServerGenerator {
                     marketplaceID: withNotarization ? "6499499971" : nil,
                     downloadURL: withNotarization ? notorizationADPUrl : versions.first?.downloadURL ?? "",
                     versions: versions,
-                    patreon: .init(pledge: 2, currency: "EUR"),
+                    patreon: .init(tires: ["5007319", "5016009"]),
                     beta: true
                 ),
             ]

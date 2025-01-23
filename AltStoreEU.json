@@ -34,8 +34,7 @@
         "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/4.PNG"
       ],
       "patreon": {
-        "pledge": 2,
-        "currency": "EUR"
+        "tiers": ["5007319", "5016009"]
       },
       "beta": true,
       "category": "utilities",
