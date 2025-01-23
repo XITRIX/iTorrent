@@ -184,7 +184,7 @@ enum AltServerGenerator {
                     marketplaceID: withNotarization ? "6499499971" : nil,
                     downloadURL: withNotarization ? notorizationADPUrl : versions.first?.downloadURL ?? "",
                     versions: versions,
-                    patreon: .init(pledge: 2),
+                    patreon: .init(pledge: 2, currency: "EUR"),
                     beta: true
                 ),
             ]
