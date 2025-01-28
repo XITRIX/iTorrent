@@ -1,5 +1,7 @@
 {
   "tasks": {
-    "build": "xcodebuild -workspace iTorrent.xcworkspace -scheme \"iTorrent\" -sdk iphoneos -configuration Release clean build"
+    "build": "xcodebuild -workspace iTorrent.xcworkspace -scheme \"iTorrent\" -sdk iphoneos -configuration Release clean build",
+    "test": "xcodebuild -workspace iTorrent.xcworkspace -scheme iTorrent -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14' test",
+    "launch": "open iTorrent.xcworkspace"
   }
 }
