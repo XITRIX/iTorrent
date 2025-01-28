@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "build": "xcodebuild -workspace iTorrent.xcworkspace -scheme \"iTorrent\" -sdk iphoneos -configuration Release clean build"
+  }
+}
