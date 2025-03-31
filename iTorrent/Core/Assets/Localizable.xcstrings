@@ -1203,7 +1203,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commento copiato"
+            "value" : "Commento copiato negli appunti"
           }
         },
         "ru" : {
@@ -1243,7 +1243,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autore copiato"
+            "value" : "Autore copiato negli appunti"
           }
         },
         "ru" : {
@@ -1283,7 +1283,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash copiato"
+            "value" : "Hash copiato negli appunti"
           }
         },
         "ru" : {
@@ -1323,7 +1323,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash v2 copiato"
+            "value" : "Hash v2 copiato negli appunti"
           }
         },
         "ru" : {
@@ -2293,7 +2293,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "URL magnet copiata "
+            "value" : "URL magnet copiato negli appunti"
           }
         },
         "ru" : {
@@ -7023,6 +7023,12 @@
             "value" : "La conexión paralela podría aumentar la velocidad de descarga, pero filtrará tu dirección IP en caso de utilizar VPN"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La connessione parallela potrebbe aumentare la velocità di download, ma farà trapelare il tuo indirizzo IP in caso di utilizzo di VPN."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7319,6 +7325,12 @@
             "value" : "Trackers sources"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorgenti trackers"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7393,6 +7405,12 @@
             "value" : "Al finalizar la carga"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al caricamento finito"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7425,6 +7443,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Límites de cola de torrents"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Limiti di coda dei torrent"
           }
         },
         "ru" : {
@@ -7501,6 +7525,12 @@
             "value" : "Descarga de torrents"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scaricamento torrent"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7535,6 +7565,12 @@
             "value" : "Subida de torrents"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caricamento torrent"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7561,6 +7597,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sembrado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeding"
           }
         },
         "ru" : {
@@ -7597,6 +7639,12 @@
             "value" : "Detener al finalizar la descarga"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferma a download completato"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7623,6 +7671,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compartir archivos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Condivisione file"
           }
         },
         "ru" : {
@@ -7693,6 +7747,12 @@
             "value" : "Servidor WebDav"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server WebDav"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7725,6 +7785,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utilizar cliente WebDav para conectarse a iTorrent"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilizza client WebDav per collegarti a iTorrent"
           }
         },
         "ru" : {
@@ -7799,6 +7865,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utilizar cualquier navegador web para compartir archivos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilizza un browser web per la condivisione file "
           }
         },
         "ru" : {
@@ -7913,6 +7985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Velocidad en KB/s"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velocità in KB/s"
           }
         },
         "ru" : {
@@ -8109,6 +8187,12 @@
             "value" : "La ruta seleccionada no es un directorio"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il percorso selezionato non  una cartella"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8141,6 +8225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Asignar almacenamiento"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alloca spazio di archiviazione"
           }
         },
         "ru" : {
@@ -8217,6 +8307,12 @@
             "value" : "Si elimina el almacenamiento, todos los torrents relacionados con él serán inaccesibles desde la aplicación iTorrent"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se rimuovi lo spazio di archiviazione, tutti i torrent ad esso correlati saranno irraggiungibili dall'app iTorrent"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8249,6 +8345,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eliminar almacenamiento"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovere lo spazio di archiviazione"
           }
         },
         "ru" : {
@@ -8285,6 +8387,12 @@
             "value" : "Almacenamientos"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spazi di archiviazione"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8319,6 +8427,12 @@
             "value" : "Disponible: %1$lld/%2$lld"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disponibile: %1$lld/%2$lld"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8351,6 +8465,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Entendido, continuar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ho capito, continua"
           }
         },
         "ru" : {
@@ -8388,6 +8508,12 @@
             "value" : "En caso de utilizar unidades externas, debe expulsarlas sólo después de cerrar la aplicación iTorrent. De lo contrario, iTorrent no puede garantizar el almacenamiento seguro de los archivos descargados y podría corromper los estados actuales de los torrents de la unidad expulsada"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In caso di utilizzo di unità esterne, dovresti espellerle solo dopo aver chiuso l'app iTorrent. Altrimenti iTorrent non può garantire la conservazione sicura dei file scaricati e potrebbe potenzialmente corrompere gli stati correnti dei torrent dall'unità espulsa."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8420,6 +8546,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡ATENCIÓN!"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ATTENZIONE!"
           }
         },
         "ru" : {
@@ -8456,6 +8588,12 @@
             "value" : "Add trackers list"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi lista trakers"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8488,6 +8626,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Title"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titolo"
           }
         },
         "ru" : {
@@ -8524,6 +8668,12 @@
             "value" : "URL to trackers source file"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL al file sorgente trackers"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8556,6 +8706,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Enable auto-addition"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attiva aggiunta automatica"
           }
         },
         "ru" : {
@@ -8592,6 +8748,12 @@
             "value" : "Automatically add all trackers to newly added torrents"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi automaticamente tutti i tracker ai torrent appena aggiunti"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8624,6 +8786,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Add URL to trackers list source by pressing «+»"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi URL alla fonte dell'elenco dei tracker premendo «+»"
           }
         },
         "ru" : {
@@ -8660,6 +8828,12 @@
             "value" : "Tracker sources list is empty"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'elenco delle fonti del tracker è vuoto"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8692,6 +8866,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "This trackers source already added"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questa fonte trackers è stata già aggiunta"
           }
         },
         "ru" : {
@@ -8728,6 +8908,12 @@
             "value" : "Do you want to remove this trackers source?"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vuoi rimuovere questa sorgente trackers?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8760,6 +8946,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Remove source"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi sorgente"
           }
         },
         "ru" : {
@@ -8796,6 +8988,12 @@
             "value" : "Rename source"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rinomina sorgente"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8822,6 +9020,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Versión"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versione"
           }
         },
         "ru" : {
@@ -8856,6 +9060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Página de GitHub"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pagina GitHub"
           }
         },
         "ru" : {
@@ -8932,6 +9142,12 @@
             "value" : "Por defecto"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predefinito"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8964,6 +9180,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No descargar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non scaricare"
           }
         },
         "ru" : {
@@ -9000,6 +9222,12 @@
             "value" : "Bajo"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bassa"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9026,6 +9254,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Top"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alta"
           }
         },
         "ru" : {
@@ -9056,6 +9290,12 @@
             "value" : "HTTP"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9079,6 +9319,12 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I2P"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "I2P"
@@ -9118,6 +9364,12 @@
             "value" : "Ninguno"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niente"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9146,6 +9398,12 @@
             "value" : "SOCKS4"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS5"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9169,6 +9427,12 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS5"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SOCKS5"
@@ -9208,6 +9472,12 @@
             "value" : "Ya añadido"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Già aggiunto"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9240,6 +9510,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descargar Magnet"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestione Scaricamento"
           }
         },
         "ru" : {
@@ -9276,6 +9552,12 @@
             "value" : "Descargar"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scarica"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9308,6 +9590,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leer todo"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leggi tutti"
           }
         },
         "ru" : {
@@ -9344,6 +9632,12 @@
             "value" : "Abrir en Safari"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri in safari"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9376,6 +9670,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Visto"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letto"
           }
         },
         "ru" : {
@@ -9412,6 +9712,12 @@
             "value" : "No visto"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non Letto"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9438,6 +9744,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fuente RSS"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorgente RSS"
           }
         },
         "ru" : {
@@ -9474,6 +9786,12 @@
             "value" : "Puede añadir canales RSS editando esta página"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puoi aggiungere canali RSS modificando questa pagina"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9506,6 +9824,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Añadir canal RSS"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi Sorgente RSS"
           }
         },
         "ru" : {
@@ -9542,6 +9866,12 @@
             "value" : "Descripción"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrizione"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9574,6 +9904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Título"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Titolo"
           }
         },
         "ru" : {
@@ -9610,6 +9946,12 @@
             "value" : "Notificar al actualizar"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifica quando si aggiorna"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9633,6 +9975,12 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -9672,6 +10020,12 @@
             "value" : "URL copiada"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL copiato"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9704,6 +10058,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Está seguro de eliminar los canales RSS seleccionados?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei sicuro di rimuovere i sorgenti RSS selezionati?"
           }
         },
         "ru" : {
@@ -9740,6 +10100,12 @@
             "value" : "Eliminar canales RSS"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi i sorgenti RSS"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9774,6 +10140,12 @@
             "value" : "Añadir canales RSS primero"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi prima i canali RSS"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9806,6 +10178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay canales RSS"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun canale RSS"
           }
         },
         "ru" : {
@@ -9870,6 +10248,12 @@
             "value" : "h"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "o"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9904,6 +10288,12 @@
             "value" : "Eternidad"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eternità"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9927,6 +10317,12 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "m"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "m"
@@ -9960,6 +10356,12 @@
             "value" : "M"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "M"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9983,6 +10385,12 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "s"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "s"
@@ -10016,6 +10424,12 @@
             "value" : "s"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10042,6 +10456,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "a"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "y"
           }
         },
         "ru" : {
@@ -10078,6 +10498,12 @@
             "value" : "Sí y eliminar datos"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si e cancella i dati"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10112,6 +10538,12 @@
             "value" : "Sí pero conservar datos"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si ma mantini i dati"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10144,6 +10576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¿Está seguro de eliminar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei sicuro di rimuovere"
           }
         },
         "ru" : {
@@ -10220,6 +10658,12 @@
             "value" : "Hecho"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completato"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10252,6 +10696,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descargando"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scaricamento"
           }
         },
         "ru" : {
@@ -10288,6 +10738,12 @@
             "value" : "Obteniendo metadatos"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recupero dei metadati"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10320,6 +10776,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pausado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In pausa"
           }
         },
         "ru" : {
@@ -10356,6 +10818,12 @@
             "value" : "Reanudando"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ripresa"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10388,6 +10856,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sembrado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeding"
           }
         },
         "ru" : {
@@ -10424,6 +10898,12 @@
             "value" : "Error de almacenamiento"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errore spazio di archiviazione:"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10450,6 +10930,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sanguijuelas:"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leeches:"
           }
         },
         "ru" : {
@@ -10486,6 +10972,12 @@
             "value" : "Mensaje: %@"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Messaggio: %@"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10509,6 +11001,12 @@
           }
         },
         "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "N/A"
+          }
+        },
+        "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "N/A"
@@ -10542,6 +11040,12 @@
             "value" : "Peers:"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peers:"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10568,6 +11072,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semillas:"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeds:"
           }
         },
         "ru" : {
@@ -10604,6 +11114,12 @@
             "value" : "Estado:"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stato:"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10636,6 +11152,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No contactado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non contattato"
           }
         },
         "ru" : {
@@ -10672,6 +11194,12 @@
             "value" : "No funciona"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non funzionante"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10704,6 +11232,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Error del tracker"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Errore tracker "
           }
         },
         "ru" : {
@@ -10740,6 +11274,12 @@
             "value" : "No localizable"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non raggiungibile"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10772,6 +11312,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actualizando"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In aggiornamento"
           }
         },
         "ru" : {
@@ -10808,6 +11354,12 @@
             "value" : "Trabajando"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Funzionante"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10840,6 +11392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "¡La URL del tracker copiada al portapapeles!"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'URL del tracker è stato copiato negli appunti!"
           }
         },
         "ru" : {
@@ -10876,6 +11434,12 @@
             "value" : "Add trackers"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi tracker"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10908,6 +11472,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "From sources list"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dall'elenco delle fonti"
           }
         },
         "ru" : {
@@ -10944,6 +11514,12 @@
             "value" : "Import all"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importa tutti"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10976,6 +11552,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Manually"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manualmente"
           }
         },
         "ru" : {
@@ -11012,6 +11594,12 @@
             "value" : "Introduce las URL del tracker separadas por una línea en blanco"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci gli URL del tracker separati da una riga vuota"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11044,6 +11632,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Introduce la URL del tracker"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci gli URL del tracker"
           }
         },
         "ru" : {
@@ -11080,6 +11674,12 @@
             "value" : "Añadir trackers"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi tracker"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11112,6 +11712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Añadir tracker"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi tracker"
           }
         },
         "ru" : {
@@ -11148,6 +11754,12 @@
             "value" : "Puedes añadir trackers manualmente editando esta página"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puoi aggiungere manualmente tracker modificando questa pagina"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11180,6 +11792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay trackers"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessun tracker"
           }
         },
         "ru" : {
@@ -11216,6 +11834,12 @@
             "value" : "Actualizar Rastreadores"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riannuncia tutti"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11248,6 +11872,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Remove Trackers"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rimuovi tracker"
           }
         },
         "ru" : {
@@ -11284,6 +11914,12 @@
             "value" : "¿Está seguro de eliminar los trackers seleccionados?"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei sicuro di voler rimuovere i tracker selezionati?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11316,6 +11952,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Add source"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi fonte"
           }
         },
         "ru" : {
@@ -11352,6 +11994,12 @@
             "value" : "Local source"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonte locale"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11386,6 +12034,12 @@
             "value" : "Remote source"
           }
         },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonte remota"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11418,6 +12072,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "El servidor web no está disponible"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server web non disponibile"
           }
         },
         "ru" : {
