@@ -1184,7 +1184,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Kommentar in Zwischenablage kopiert"
           }
         },
@@ -1196,7 +1196,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Comentario copiado en el portapapeles"
           }
         },
@@ -1208,13 +1208,13 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Комментарий скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "评论已复制到剪贴板"
           }
         }
@@ -1224,7 +1224,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Ersteller in Zwischenablage kopiert"
           }
         },
@@ -1236,7 +1236,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Creador copiado en el portapapeles"
           }
         },
@@ -1248,13 +1248,13 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Создатель скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "创建者复制到剪贴板"
           }
         }
@@ -1264,7 +1264,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash in Zwischenablage kopiert"
           }
         },
@@ -1276,7 +1276,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash copiado en el portapapeles"
           }
         },
@@ -1288,13 +1288,13 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Хэш скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash已复制到剪贴板"
           }
         }
@@ -1304,7 +1304,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash v2 in Zwischenablage kopiert"
           }
         },
@@ -1316,7 +1316,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash v2 copiado en el portapapeles"
           }
         },
@@ -1328,13 +1328,13 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Хэш v2 скопирован в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash v2 已复制到剪贴板"
           }
         }
@@ -2166,7 +2166,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Esta acción volverá a comprobar el estado de todos los archivos descargados"
           }
         },
@@ -2178,13 +2178,13 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Это перепроверит состояние всех скаченных файлов"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "此操作将重新检查所有下载文件的状态"
           }
         }
@@ -2274,7 +2274,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Magnet URL in die Zwischenablage kopiert"
           }
         },
@@ -2286,7 +2286,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "URL del magnet copiada en el portapapeles"
           }
         },
@@ -2298,13 +2298,13 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Magnet ссылка скопирована в буфер обмена"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "磁力链接已拷贝到剪贴板"
           }
         }
@@ -3444,7 +3444,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Standardmäßig erlaubt iTorrent keine Nutzung Mobiler Daten, da die meisten Mobilfunk-Verträge keinen unbegrenzten Download und/oder Upload erlauben.  Du kannst diese Einstellung jederzeit in den den App-Einstellungen ändern."
           }
         },
@@ -3468,7 +3468,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Стандартно, iTorrent предпочитает не разрешать использование сотовой сети, ввиду того, что большинство сотовых операторов не поддерживают безлимитный входящий и\\или исходящий трафик.\n\nВы можете поменять эту настройку в любое время."
           }
         },
@@ -7339,7 +7339,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tracker源"
           }
         }
@@ -8602,7 +8602,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "添加Tracker列表"
           }
         }
@@ -8642,7 +8642,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "标题"
           }
         }
@@ -8682,7 +8682,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tracker列表文件源的URL"
           }
         }
@@ -8722,7 +8722,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "启用自动添加"
           }
         }
@@ -8762,7 +8762,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "自动将所有Tracker添加到新的下载任务中"
           }
         }
@@ -8802,7 +8802,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "点击 «+» 按钮添加Tracker列表源URL"
           }
         }
@@ -8842,7 +8842,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tracker列表源为空"
           }
         }
@@ -8882,7 +8882,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "此Tracker源已添加"
           }
         }
@@ -8922,7 +8922,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "您确定要删除此Tracker源吗？"
           }
         }
@@ -8962,7 +8962,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除源"
           }
         }
@@ -9002,7 +9002,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "重命名源"
           }
         }
@@ -11888,7 +11888,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "删除Tracker"
           }
         }
@@ -11968,7 +11968,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "添加Tracker源"
           }
         }
@@ -12008,7 +12008,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "本地Tracker源"
           }
         }
@@ -12048,7 +12048,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "远程Tracker源"
           }
         }

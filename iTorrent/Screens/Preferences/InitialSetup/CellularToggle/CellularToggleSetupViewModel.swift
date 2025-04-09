@@ -22,7 +22,6 @@ class CellularToggleSetupViewModel: BaseViewModelWith<CellularToggleSetupViewMod
     func disableCellularAction() {
         PreferencesStorage.shared.isCellularEnabled = false
         completion()
-
     }
 
     func allowCellularAction() {
