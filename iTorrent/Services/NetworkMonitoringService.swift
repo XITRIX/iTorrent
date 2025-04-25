@@ -11,15 +11,20 @@ import MvvmFoundation
 import Network
 #if canImport(CoreTelephony)
 import CoreTelephony
+#else
+// Mock for CoreTelephony enum state for unsupported platforms
+enum CTCellularDataRestrictedState {
+    case restrictedStateUnknown
+    case restricted
+    case notRestricted
+}
 #endif
 
 class NetworkMonitoringService {
     // Raw cellular availability, ignores app and system restrictions
     @Published var isCellularAvailable: Bool = false
     @Published var availableInterfaces: [NWInterface] = []
-#if canImport(CoreTelephony) && !targetEnvironment(macCatalyst)
     @Published var cellularState: CTCellularDataRestrictedState = .restrictedStateUnknown
-#endif
 
     init() {
         monitor.pathUpdateHandler = { [weak self] _ in
