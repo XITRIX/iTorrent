@@ -1525,6 +1525,7 @@
 				ru,
 				de,
 				it,
+				pl,
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
