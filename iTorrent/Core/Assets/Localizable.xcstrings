@@ -809,7 +809,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zaloguj"
+            "value" : "Login"
           }
         },
         "ru" : {
@@ -2509,7 +2509,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To działanie ponownie sprawdzi stan wszystkich popranych plików"
+            "value" : "To działanie ponownie sprawdzi stan wszystkich pobranych plików"
           }
         },
         "ru" : {
@@ -3997,7 +3997,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Domyślnie, iTorrent woli nie używać danych komórkowych ponieważ większość operatorów telefonii nie oferują planów bez limitów popierania/wysyłania danych\n\nZawsze możesz tą opcje zmienić w ustawieniach."
+            "value" : "Domyślnie, iTorrent woli nie używać danych komórkowych ponieważ większość operatorów telefonii nie oferują planów bez limitów pobierania/wysyłania danych\n\nZawsze możesz tą opcje zmienić w ustawieniach."
           }
         },
         "ru" : {
@@ -4135,7 +4135,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz Torrentu"
+            "value" : "Hasz Torrenta"
           }
         },
         "ru" : {
@@ -4181,7 +4181,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spauzuj Torrent"
+            "value" : "Spauzuj Torrenta"
           }
         },
         "ru" : {
@@ -4353,7 +4353,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Łącze Magnetu jest niepoprawne"
+            "value" : "Łącze Magnetu jest nieprawidłowe"
           }
         },
         "ru" : {
@@ -4617,7 +4617,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Łącze torrent jest niepoprawne"
+            "value" : "Łącze torrenta jest nieprawidłowe"
           }
         },
         "ru" : {
@@ -4663,7 +4663,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podaj łącze torrentu"
+            "value" : "Podaj łącze do torrenta"
           }
         },
         "ru" : {
@@ -4749,7 +4749,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj przez URL"
+            "value" : "Dodaj używając URLa"
           }
         },
         "ru" : {
@@ -4887,7 +4887,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aby dodać nowy torrent, naciśnij przycisk ‘+’ w dolnym lewym rogu lub otwierając plik torrentu bezpośrednio z Plików czy Przeglądarki"
+            "value" : "Aby dodać nowy torrent, naciśnij przycisk ‘+’ w dolnym lewym rogu lub otwierając plik torrentu bezpośrednio z aplikacji Pliki czy Przeglądarki"
           }
         },
         "ru" : {
@@ -5882,7 +5882,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Połącz z Patreon’em"
+            "value" : "Połącz konto na Patreonie"
           }
         },
         "ru" : {
@@ -6331,7 +6331,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Token dostępu jest nieważny"
+            "value" : "Token dostępu jest nieprawidłowy"
           }
         },
         "ru" : {
@@ -6423,7 +6423,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reklamy usunięte, powodzenia!"
+            "value" : "Reklamy zostały usunięte, powodzenia!"
           }
         },
         "ru" : {
