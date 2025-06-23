@@ -4,7 +4,7 @@
 PUBLIC "-//W3C//DTD SVG 1.1//EN"
        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3300" height="2200">
- <!--glyph: "", point size: 100.0, font version: "19.2d2e1", template writer version: "128"-->
+ <!--glyph: "", point size: 100.0, font version: "19.0d6e1", template writer version: "123"-->
  <style>.monochrome-0 {-sfsymbols-variable-threshold:0.0;-sfsymbols-motion-group:3}
 .monochrome-1 {-sfsymbols-variable-threshold:0.34;-sfsymbols-motion-group:2}
 .monochrome-2 {-sfsymbols-variable-threshold:0.68;-sfsymbols-motion-group:1}
@@ -17,11 +17,11 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"
 .multicolor-3:tintColor {opacity:0.0;-sfsymbols-clear-behind:true;-sfsymbols-motion-group:0}
 .multicolor-4:systemRedColor {-sfsymbols-motion-group:0}
 
-.hierarchical-0:secondary {-sfsymbols-variable-threshold:0.0;-sfsymbols-motion-group:3}
-.hierarchical-1:secondary {-sfsymbols-variable-threshold:0.34;-sfsymbols-motion-group:2}
-.hierarchical-2:secondary {-sfsymbols-variable-threshold:0.68;-sfsymbols-motion-group:1}
+.hierarchical-0:primary {-sfsymbols-variable-threshold:0.0;-sfsymbols-motion-group:3}
+.hierarchical-1:primary {-sfsymbols-variable-threshold:0.34;-sfsymbols-motion-group:2}
+.hierarchical-2:primary {-sfsymbols-variable-threshold:0.68;-sfsymbols-motion-group:1}
 .hierarchical-3:primary {opacity:0.0;-sfsymbols-clear-behind:true;-sfsymbols-motion-group:0}
-.hierarchical-4:primary {-sfsymbols-motion-group:0}
+.hierarchical-4:secondary {-sfsymbols-motion-group:0}
 
 .SFSymbolsPreviewWireframe {fill:none;opacity:1.0;stroke:black;stroke-width:0.5}
 </style>
@@ -70,7 +70,7 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"
   <text style="stroke:none;fill:black;font-family:sans-serif;font-size:13;" transform="matrix(1 0 0 1 1289 1989)">design is preserved when submitting to Xcode.</text>
   <text id="template-version" style="stroke:none;fill:black;font-family:sans-serif;font-size:13;text-anchor:end;" transform="matrix(1 0 0 1 3036 1933)">Template v.5.0</text>
   <text style="stroke:none;fill:black;font-family:sans-serif;font-size:13;text-anchor:end;" transform="matrix(1 0 0 1 3036 1951)">Requires Xcode 15 or greater</text>
-  <text id="descriptive-name" style="stroke:none;fill:black;font-family:sans-serif;font-size:13;text-anchor:end;" transform="matrix(1 0 0 1 3036 1969)">Generated from rss.badge</text>
+  <text id="descriptive-name" style="stroke:none;fill:black;font-family:sans-serif;font-size:13;text-anchor:end;" transform="matrix(1 0 0 1 3036 1969)">Generated from RSS.badge</text>
   <text style="stroke:none;fill:black;font-family:sans-serif;font-size:13;text-anchor:end;" transform="matrix(1 0 0 1 3036 1987)">Typeset at 100.0 points</text>
   <text style="stroke:none;fill:black;font-family:sans-serif;font-size:13;" transform="matrix(1 0 0 1 263 726)">Small</text>
   <text style="stroke:none;fill:black;font-family:sans-serif;font-size:13;" transform="matrix(1 0 0 1 263 1156)">Medium</text>
@@ -101,25 +101,25 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"
  </g>
  <g id="Symbols">
   <g id="Black-S" transform="matrix(1 0 0 1 2884.57 696)">
-   <path class="monochrome-0 multicolor-0:tintColor hierarchical-0:secondary SFSymbolsPreviewWireframe" d="M25.56-2.53C30.53-2.53 34.56-6.559 34.56-11.53C34.56-16.501 30.53-20.53 25.56-20.53C20.59-20.53 16.56-16.501 16.56-11.53C16.56-6.559 20.59-2.53 25.56-2.53Z"/>
-   <path class="monochrome-1 multicolor-1:tintColor hierarchical-1:secondary SFSymbolsPreviewWireframe" d="M16.24-37.09C16.24-40.956 19.37-44.09 23.24-44.09C41.83-44.09 57.84-28.076 57.84-9.49C57.84-5.624 54.71-2.49 50.84-2.49C46.97-2.49 43.84-5.624 43.84-9.49C43.84-20.344 34.09-30.09 23.24-30.09C19.37-30.09 16.24-33.224 16.24-37.09Z"/>
-   <path class="monochrome-2 multicolor-2:tintColor hierarchical-2:secondary SFSymbolsPreviewWireframe" d="M16.24-61.01C16.24-64.876 19.37-68.01 23.24-68.01C38.4-68.01 52.97-60.502 63.61-49.86C74.25-39.217 81.76-24.647 81.76-9.49C81.76-5.624 78.63-2.49 74.76-2.49C70.89-2.49 67.76-5.624 67.76-9.49C67.76-20.093 62.39-31.283 53.71-39.96C45.03-48.638 33.84-54.01 23.24-54.01C19.37-54.01 16.24-57.144 16.24-61.01Z"/>
+   <path class="monochrome-0 multicolor-0:tintColor hierarchical-0:primary SFSymbolsPreviewWireframe" d="M25.56-2.53C30.53-2.53 34.56-6.559 34.56-11.53C34.56-16.501 30.53-20.53 25.56-20.53C20.59-20.53 16.56-16.501 16.56-11.53C16.56-6.559 20.59-2.53 25.56-2.53Z"/>
+   <path class="monochrome-1 multicolor-1:tintColor hierarchical-1:primary SFSymbolsPreviewWireframe" d="M16.24-37.09C16.24-40.956 19.37-44.09 23.24-44.09C41.83-44.09 57.84-28.076 57.84-9.49C57.84-5.624 54.71-2.49 50.84-2.49C46.97-2.49 43.84-5.624 43.84-9.49C43.84-20.344 34.09-30.09 23.24-30.09C19.37-30.09 16.24-33.224 16.24-37.09Z"/>
+   <path class="monochrome-2 multicolor-2:tintColor hierarchical-2:primary SFSymbolsPreviewWireframe" d="M16.24-61.01C16.24-64.876 19.37-68.01 23.24-68.01C38.4-68.01 52.97-60.502 63.61-49.86C74.25-39.217 81.76-24.647 81.76-9.49C81.76-5.624 78.63-2.49 74.76-2.49C70.89-2.49 67.76-5.624 67.76-9.49C67.76-20.093 62.39-31.283 53.71-39.96C45.03-48.638 33.84-54.01 23.24-54.01C19.37-54.01 16.24-57.144 16.24-61.01Z"/>
    <path class="monochrome-3 multicolor-3:tintColor hierarchical-3:primary SFSymbolsPreviewWireframe" d="M73.89-35.762C84.44-35.762 93.13-44.453 93.13-55C93.13-65.547 84.44-74.238 73.89-74.238C63.35-74.238 54.66-65.547 54.66-55C54.66-44.453 63.35-35.762 73.89-35.762Z"/>
-   <path class="monochrome-4 multicolor-4:systemRedColor hierarchical-4:primary SFSymbolsPreviewWireframe" d="M73.89-42.109C80.93-42.109 86.78-47.969 86.78-55C86.78-62.031 80.93-67.891 73.89-67.891C66.86-67.891 61-62.031 61-55C61-47.969 66.86-42.109 73.89-42.109Z"/>
+   <path class="monochrome-4 multicolor-4:systemRedColor hierarchical-4:secondary SFSymbolsPreviewWireframe" d="M73.89-42.109C80.93-42.109 86.78-47.969 86.78-55C86.78-62.031 80.93-67.891 73.89-67.891C66.86-67.891 61-62.031 61-55C61-47.969 66.86-42.109 73.89-42.109Z"/>
   </g>
   <g id="Regular-S" transform="matrix(1 0 0 1 1403.58 696)">
-   <path class="monochrome-0 multicolor-0:tintColor hierarchical-0:secondary SFSymbolsPreviewWireframe" d="M23.92-5.81C27.98-5.81 31.28-9.105 31.28-13.17C31.28-17.235 27.98-20.53 23.92-20.53C19.86-20.53 16.56-17.235 16.56-13.17C16.56-9.105 19.86-5.81 23.92-5.81Z"/>
-   <path class="monochrome-1 multicolor-1:tintColor hierarchical-1:secondary SFSymbolsPreviewWireframe" d="M15.64-37.09C15.64-39.631 17.7-41.69 20.24-41.69C37.5-41.69 52.44-26.751 52.44-9.49C52.44-6.949 50.38-4.89 47.84-4.89C45.3-4.89 43.24-6.949 43.24-9.49C43.24-21.669 32.42-32.49 20.24-32.49C17.7-32.49 15.64-34.549 15.64-37.09Z"/>
-   <path class="monochrome-2 multicolor-2:tintColor hierarchical-2:secondary SFSymbolsPreviewWireframe" d="M15.64-61.01C15.64-63.55 17.7-65.61 20.24-65.61C34.62-65.61 48.61-58.468 58.91-48.163C69.22-37.857 76.36-23.866 76.36-9.49C76.36-6.949 74.3-4.89 71.76-4.89C69.22-4.89 67.16-6.949 67.16-9.49C67.16-20.874 61.42-32.643 52.41-41.657C43.39-50.672 31.62-56.41 20.24-56.41C17.7-56.41 15.64-58.469 15.64-61.01Z"/>
+   <path class="monochrome-0 multicolor-0:tintColor hierarchical-0:primary SFSymbolsPreviewWireframe" d="M23.92-5.81C27.98-5.81 31.28-9.105 31.28-13.17C31.28-17.235 27.98-20.53 23.92-20.53C19.86-20.53 16.56-17.235 16.56-13.17C16.56-9.105 19.86-5.81 23.92-5.81Z"/>
+   <path class="monochrome-1 multicolor-1:tintColor hierarchical-1:primary SFSymbolsPreviewWireframe" d="M15.64-37.09C15.64-39.631 17.7-41.69 20.24-41.69C37.5-41.69 52.44-26.751 52.44-9.49C52.44-6.949 50.38-4.89 47.84-4.89C45.3-4.89 43.24-6.949 43.24-9.49C43.24-21.669 32.42-32.49 20.24-32.49C17.7-32.49 15.64-34.549 15.64-37.09Z"/>
+   <path class="monochrome-2 multicolor-2:tintColor hierarchical-2:primary SFSymbolsPreviewWireframe" d="M15.64-61.01C15.64-63.55 17.7-65.61 20.24-65.61C34.62-65.61 48.61-58.468 58.91-48.163C69.22-37.857 76.36-23.866 76.36-9.49C76.36-6.949 74.3-4.89 71.76-4.89C69.22-4.89 67.16-6.949 67.16-9.49C67.16-20.874 61.42-32.643 52.41-41.657C43.39-50.672 31.62-56.41 20.24-56.41C17.7-56.41 15.64-58.469 15.64-61.01Z"/>
    <path class="monochrome-3 multicolor-3:tintColor hierarchical-3:primary SFSymbolsPreviewWireframe" d="M72.28-34.64C82.87-34.64 91.61-43.38 91.61-53.976C91.61-64.62 82.87-73.36 72.28-73.36C61.63-73.36 52.94-64.62 52.94-53.976C52.94-43.38 61.63-34.64 72.28-34.64Z"/>
-   <path class="monochrome-4 multicolor-4:systemRedColor hierarchical-4:primary SFSymbolsPreviewWireframe" d="M72.28-40.353C79.75-40.353 85.9-46.505 85.9-53.976C85.9-61.495 79.75-67.647 72.28-67.647C64.76-67.647 58.61-61.495 58.61-53.976C58.61-46.505 64.76-40.353 72.28-40.353Z"/>
+   <path class="monochrome-4 multicolor-4:systemRedColor hierarchical-4:secondary SFSymbolsPreviewWireframe" d="M72.28-40.353C79.75-40.353 85.9-46.505 85.9-53.976C85.9-61.495 79.75-67.647 72.28-67.647C64.76-67.647 58.61-61.495 58.61-53.976C58.61-46.505 64.76-40.353 72.28-40.353Z"/>
   </g>
   <g id="Ultralight-S" transform="matrix(1 0 0 1 515.649 696)">
-   <path class="monochrome-0 multicolor-0:tintColor hierarchical-0:secondary SFSymbolsPreviewWireframe" d="M21.851-8C24.612-8 26.851-10.239 26.851-13C26.851-15.761 24.612-18 21.851-18C19.09-18 16.851-15.761 16.851-13C16.851-10.239 19.09-8 21.851-8Z"/>
-   <path class="monochrome-1 multicolor-1:tintColor hierarchical-1:secondary SFSymbolsPreviewWireframe" d="M16.74-37.09C16.74-37.918 17.411-38.59 18.24-38.59C33.788-38.59 47.34-25.038 47.34-9.49C47.34-8.662 46.668-7.99 45.84-7.99C45.011-7.99 44.34-8.662 44.34-9.49C44.34-23.382 32.131-35.59 18.24-35.59C17.411-35.59 16.74-36.262 16.74-37.09Z"/>
-   <path class="monochrome-2 multicolor-2:tintColor hierarchical-2:secondary SFSymbolsPreviewWireframe" d="M16.74-61.01C16.74-61.838 17.411-62.51 18.24-62.51C31.608-62.51 44.85-55.841 54.721-45.971C64.591-36.1 71.26-22.858 71.26-9.49C71.26-8.662 70.588-7.99 69.76-7.99C68.931-7.99 68.26-8.662 68.26-9.49C68.26-21.882 62.049-34.4 52.599-43.849C43.15-53.299 30.632-59.51 18.24-59.51C17.411-59.51 16.74-60.182 16.74-61.01Z"/>
+   <path class="monochrome-0 multicolor-0:tintColor hierarchical-0:primary SFSymbolsPreviewWireframe" d="M21.851-8C24.612-8 26.851-10.239 26.851-13C26.851-15.761 24.612-18 21.851-18C19.09-18 16.851-15.761 16.851-13C16.851-10.239 19.09-8 21.851-8Z"/>
+   <path class="monochrome-1 multicolor-1:tintColor hierarchical-1:primary SFSymbolsPreviewWireframe" d="M16.74-37.09C16.74-37.918 17.411-38.59 18.24-38.59C33.788-38.59 47.34-25.038 47.34-9.49C47.34-8.662 46.668-7.99 45.84-7.99C45.011-7.99 44.34-8.662 44.34-9.49C44.34-23.382 32.131-35.59 18.24-35.59C17.411-35.59 16.74-36.262 16.74-37.09Z"/>
+   <path class="monochrome-2 multicolor-2:tintColor hierarchical-2:primary SFSymbolsPreviewWireframe" d="M16.74-61.01C16.74-61.838 17.411-62.51 18.24-62.51C31.608-62.51 44.85-55.841 54.721-45.971C64.591-36.1 71.26-22.858 71.26-9.49C71.26-8.662 70.588-7.99 69.76-7.99C68.931-7.99 68.26-8.662 68.26-9.49C68.26-21.882 62.049-34.4 52.599-43.849C43.15-53.299 30.632-59.51 18.24-59.51C17.411-59.51 16.74-60.182 16.74-61.01Z"/>
    <path class="monochrome-3 multicolor-3:tintColor hierarchical-3:primary SFSymbolsPreviewWireframe" d="M69.311-40.408C77.319-40.408 83.925-47.014 83.925-54.976C83.925-62.986 77.319-69.592 69.311-69.592C61.301-69.592 54.698-62.986 54.698-54.976C54.698-47.014 61.301-40.408 69.311-40.408Z"/>
-   <path class="monochrome-4 multicolor-4:systemRedColor hierarchical-4:primary SFSymbolsPreviewWireframe" d="M69.311-43.441C75.601-43.441 80.846-48.685 80.846-54.976C80.846-61.314 75.601-66.513 69.311-66.513C62.973-66.513 57.774-61.314 57.774-54.976C57.774-48.685 62.973-43.441 69.311-43.441Z"/>
+   <path class="monochrome-4 multicolor-4:systemRedColor hierarchical-4:secondary SFSymbolsPreviewWireframe" d="M69.311-43.441C75.601-43.441 80.846-48.685 80.846-54.976C80.846-61.314 75.601-66.513 69.311-66.513C62.973-66.513 57.774-61.314 57.774-54.976C57.774-48.685 62.973-43.441 69.311-43.441Z"/>
   </g>
  </g>
 </svg>

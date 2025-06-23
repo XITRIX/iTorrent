@@ -5,7 +5,7 @@
 //  Created by Daniil Vinogradov on 30/10/2023.
 //
 
-import MarqueeLabel
+import Combine
 import MvvmFoundation
 import SwiftUI
 
@@ -17,7 +17,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
     private let pauseButton = UIBarButtonItem()
     private let rehashButton = UIBarButtonItem()
     private let deleteButton = UIBarButtonItem()
-    
+
     override var useMarqueeLabel: Bool { true }
 
     override func viewDidLoad() {
@@ -44,12 +44,22 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
             }
 
             viewModel.$canResume.sink { [unowned self] canResume in
-                playButton.isEnabled = canResume
+                if #unavailable(iOS 26) {
+                    playButton.isEnabled = canResume
+                }
             }
 
             viewModel.$canPause.sink { [unowned self] canPause in
-                pauseButton.isEnabled = canPause
+                if #unavailable(iOS 26) {
+                    pauseButton.isEnabled = canPause
+                }
             }
+
+            Publishers.CombineLatest(viewModel.$canResume, viewModel.$canPause)
+                .debounce(for: .milliseconds(1), scheduler: UIScheduler.shared)
+                .sink { [unowned self] _, _ in
+                    reloadToolbar()
+                }
         }
 
         playButton.primaryAction = .init(title: %"details.start", image: .init(systemName: "play.fill"), handler: { [unowned self] _ in
@@ -87,15 +97,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
         ])
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [shareButton]))
 
-        toolbarItems = [
-            playButton,
-            fixedSpacing,
-            pauseButton,
-            fixedSpacing,
-            rehashButton,
-            .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            deleteButton
-        ]
+        reloadToolbar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -128,5 +130,27 @@ private extension TorrentDetailsViewController {
         let item = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         item.width = 44
         return item
+    }
+
+    func reloadToolbar() {
+        if #available(iOS 26, *) {
+            toolbarItems = [
+                viewModel.canResume ? playButton : nil,
+                viewModel.canPause ? pauseButton : nil,
+                rehashButton,
+                .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                deleteButton
+            ].compactMap { $0 }
+        } else {
+            toolbarItems = [
+                playButton,
+                fixedSpacing,
+                pauseButton,
+                fixedSpacing,
+                rehashButton,
+                .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                deleteButton
+            ]
+        }
     }
 }

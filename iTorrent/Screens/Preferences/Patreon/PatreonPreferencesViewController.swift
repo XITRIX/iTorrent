@@ -45,7 +45,9 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
 
         patronMessage.text = %"patreon.patron.level"
 
-        becomePatronButton.setTitle(%"patreon.action.patron", for: .normal)
+        becomePatronButton.configuration?.attributedTitle = .init(%"patreon.action.patron", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
+//        becomePatronButton.configuration?.title = %"patreon.action.patron"
+//        becomePatronButton.setTitle(%"patreon.action.patron", for: .normal)
 
         binding()
         setupActions()
@@ -60,7 +62,9 @@ private extension PatreonPreferencesViewController {
     func binding() {
         disposeBag.bind {
             viewModel.linkButtonTitle.uiSink { [unowned self] title in
-                linkPatreonButton.setTitle(title, for: .normal)
+//                linkPatreonButton.setTitle(title, for: .normal)
+                linkPatreonButton.configuration?.attributedTitle = .init(title, attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)])) 
+//                linkPatreonButton.configuration?.title = title
             }
 
             Publishers.combineLatest(

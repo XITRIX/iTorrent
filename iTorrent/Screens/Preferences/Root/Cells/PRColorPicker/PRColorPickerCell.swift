@@ -119,6 +119,10 @@ private class CustomColorPickerViewController: UIColorPickerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 26.0, *) {
+            maximumLinearExposure = 2
+        }
+
 #if !os(visionOS)
         // Custom detents started to be supported for remote view controllers yet from iOS 17
         if #available(iOS 17, *) {
