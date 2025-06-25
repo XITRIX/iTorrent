@@ -14,7 +14,7 @@ struct PatreonToken: Codable {
     var refreshToken: String
 }
 
-class PatreonService {
+class PatreonService: @unchecked Sendable {
     init() {
         Task {
             try await fetchCredentials()

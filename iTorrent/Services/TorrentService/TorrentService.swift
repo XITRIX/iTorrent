@@ -6,7 +6,7 @@
 //
 
 import Combine
-import LibTorrent
+@preconcurrency import LibTorrent
 import MvvmFoundation
 import UIKit
 
@@ -17,7 +17,7 @@ extension TorrentService {
     }
 }
 
-class TorrentService {
+class TorrentService: @unchecked Sendable {
     @Published var torrents: [TorrentHashes: TorrentHandle] = [:]
     var updateNotifier = PassthroughSubject<TorrentUpdateModel, Never>()
 
@@ -41,6 +41,7 @@ class TorrentService {
 
     @Injected private var network: NetworkMonitoringService
     @Injected private var preferences: PreferencesStorage
+    @Injected private var trackersListService: TrackersListService
 }
 
 extension TorrentService {
@@ -80,7 +81,7 @@ extension TorrentService {
     func refreshStorage(_ storage: StorageModel) -> Bool {
         guard storage.resolveSequrityScopes() else { return false }
 
-        let handles = torrents.values.filter { $0.snapshot.storageUUID == storage.uuid }
+        let handles = torrents.values.filter { $0.storageUUID == storage.uuid }
         handles.forEach { $0.reload() }
         return true
     }
@@ -91,6 +92,11 @@ extension TorrentService: SessionDelegate {
     func torrentManager(_ manager: Session, didAddTorrent torrent: TorrentHandle) {
         torrent.prepareToAdd(into: self)
         torrents[torrent.snapshot.infoHashes] = torrent
+
+        // Add trackers from torrent list service if needed
+        if preferences.isTrackersAutoaddingEnabled {
+            trackersListService.addAllTrackers(to: torrent)
+        }
     }
 
     func torrentManager(_ manager: Session, didRemoveTorrentWithHash hashesData: TorrentHashes) {

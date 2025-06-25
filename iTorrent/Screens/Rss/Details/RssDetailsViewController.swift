@@ -18,6 +18,8 @@ class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> 
     @IBOutlet private var downloadButton: UIButton!
     @IBOutlet private var separatorHeight: NSLayoutConstraint!
 
+    override var useMarqueeLabel: Bool { true }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -61,6 +63,11 @@ private extension RssDetailsViewController {
 
     func setupDownloadButton() {
         separatorHeight.constant = 1 / traitCollection.displayScale
+
+        if #available(iOS 26, *) {
+            downloadButton.configuration = .prominentGlass()
+        }
+
         downloadButton.configuration?.titleTextAttributesTransformer = .init { attributes in
             var result = attributes
             result.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -125,7 +132,7 @@ private extension RssDetailsViewController {
             else { return .allow }
 
             guard let url = navigationAction.request.url,
-                  await UIApplication.shared.canOpenURL(url)
+                  UIApplication.shared.canOpenURL(url)
             else { return .allow }
 
             Task { @MainActor in

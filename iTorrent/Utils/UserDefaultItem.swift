@@ -43,15 +43,14 @@ private extension UserDefaultItem {
     static var userDefaults: UserDefaults { .itorrentGroup }
 
     static func value(for key: String) -> Value? {
-        guard let decoded = userDefaults.data(forKey: key),
-              let res = try? JSONDecoder().decode(Value.self, from: decoded)
+        guard let data = userDefaults.data(forKey: key)
         else { return nil }
-        return res
+        return try? JSONDecoder().decode(Value.self, from: data)
     }
 
     static func setValue(_ value: Value?, for key: String) {
-        if let value, let encodedData: Data = try? JSONEncoder().encode(value) {
-            userDefaults.set(encodedData, forKey: key)
+        if let value, let data: Data = try? JSONEncoder().encode(value) {
+            userDefaults.set(data, forKey: key)
         } else {
             userDefaults.set(nil, forKey: key)
         }

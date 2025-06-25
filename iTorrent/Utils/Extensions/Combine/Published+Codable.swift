@@ -11,13 +11,13 @@ fileprivate enum CodingKeys: String, CodingKey {
     case value
 }
 
-extension Published: Decodable where Value: Decodable {
+extension Published: @retroactive Decodable where Value: Decodable {
     public init(from decoder: Decoder) throws {
         self.init(wrappedValue: try .init(from: decoder))
     }
 }
 
-extension Published: Encodable where Value: Encodable {
+extension Published: @retroactive Encodable where Value: Encodable {
     public func encode(to encoder: Encoder) throws {
         try unofficialValue.encode(to: encoder)
     }

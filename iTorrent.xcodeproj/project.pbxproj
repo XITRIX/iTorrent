@@ -15,6 +15,8 @@
 		7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */; };
 		7C1C08AD2C31FEA400569B45 /* IntentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1C08AC2C31FEA000569B45 /* IntentsService.swift */; };
 		7C3142D02C317E6400397E82 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 7C3142CF2C317E6400397E82 /* MarqueeText */; };
+		7C32535C2D19402F0069D640 /* CellularToggleSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32535B2D19402F0069D640 /* CellularToggleSetupViewController.swift */; };
+		7C32535E2D1940440069D640 /* CellularToggleSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C32535D2D1940440069D640 /* CellularToggleSetupViewController.xib */; };
 		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
 		7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */; };
 		7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */; };
@@ -29,7 +31,6 @@
 		7C519C882C427E9A00E353A9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C519C872C427E9A00E353A9 /* FirebaseAnalytics */; };
 		7C519C8C2C427F4C00E353A9 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C519C8B2C427F4C00E353A9 /* FirebaseRemoteConfigSwift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
-		7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
 		7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */; };
 		7C5FBE282BBDD4030069E5A0 /* PRColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE252BBDD4030069E5A0 /* PRColorPickerCell.swift */; };
@@ -56,17 +57,28 @@
 		7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */; };
 		7C95B7B42C35DE5C000EC50F /* StoragePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */; };
 		7C95B7B72C385B99000EC50F /* UICellAccessory+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */; };
+		7C97D1872CFF791000FF97DC /* UIScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D1862CFF790D00FF97DC /* UIScheduler.swift */; };
 		7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 7CAD30182BC3455800592990 /* SWXMLHash */; };
 		7CAD301C2BC3457900592990 /* RssModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301B2BC3457900592990 /* RssModel.swift */; };
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
 		7CAD30202BC34BCE00592990 /* RssFeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */; };
 		7CB2639C2C0671320083C052 /* Publisher+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639B2C0671320083C052 /* Publisher+UI.swift */; };
 		7CB2639E2C0A5B420083C052 /* BaseSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */; };
+		7CB58D842CE662BB00929205 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB58D832CE662BB00929205 /* TagsView.swift */; };
+		7CB58D872CE6AC7D00929205 /* NavigationItemPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB58D862CE6AC7500929205 /* NavigationItemPalette.swift */; };
 		7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */; };
+		7CB831172D194616005F3F42 /* CellularToggleSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB831162D194613005F3F42 /* CellularToggleSetupViewModel.swift */; };
+		7CB831192D19484B005F3F42 /* UIApplication+KeySceneWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */; };
+		7CB8311B2D196257005F3F42 /* InitialSetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8311A2D19624E005F3F42 /* InitialSetupFlow.swift */; };
+		7CB8311D2D1962A0005F3F42 /* InitialSetupFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8311C2D19629D005F3F42 /* InitialSetupFlowProtocol.swift */; };
+		7CB831202D19750F005F3F42 /* CellularNotAllowedOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB8311F2D1974F7005F3F42 /* CellularNotAllowedOverlay.swift */; };
+		7CB831232D197540005F3F42 /* MessageOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB831222D197540005F3F42 /* MessageOverlayView.swift */; };
+		7CB831252D19754A005F3F42 /* MessageOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CB831242D19754A005F3F42 /* MessageOverlayView.xib */; };
 		7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CBDBAAE2C31EF52008C986B /* UserDefaults+AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */; };
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
+		7CC634772E09ED88007E3EED /* UILabel+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */; };
 		7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
@@ -186,6 +198,9 @@
 		D1B99D932BEE631B00F51514 /* Benefit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8F2BEE631B00F51514 /* Benefit.swift */; };
 		D1B99D942BEE631B00F51514 /* Tier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D902BEE631B00F51514 /* Tier.swift */; };
 		D1B99D962BEE657F00F51514 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D952BEE657F00F51514 /* API.swift */; };
+		D1BB073B2C98524B00981D5F /* TrackersListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB073A2C98524A00981D5F /* TrackersListService.swift */; };
+		D1BB07432C985EB800981D5F /* TrackersListPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB07422C985EAE00981D5F /* TrackersListPreferencesView.swift */; };
+		D1BB07452C9869C300981D5F /* TrackersListDetailsPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BB07442C9869B900981D5F /* TrackersListDetailsPreferencesView.swift */; };
 		D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */; };
 		D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CAB8862AF3B52E00EB6AFF /* ToggleCellViewModel.swift */; };
 		D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */; };
@@ -251,6 +266,8 @@
 		7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTorrentIntent.swift; sourceTree = "<group>"; };
 		7C1C08AC2C31FEA000569B45 /* IntentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsService.swift; sourceTree = "<group>"; };
+		7C32535B2D19402F0069D640 /* CellularToggleSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularToggleSetupViewController.swift; sourceTree = "<group>"; };
+		7C32535D2D1940440069D640 /* CellularToggleSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellularToggleSetupViewController.xib; sourceTree = "<group>"; };
 		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
 		7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Unity.swift"; sourceTree = "<group>"; };
 		7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -292,15 +309,26 @@
 		7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+AVPlayer.swift"; sourceTree = "<group>"; };
 		7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePreferencesView.swift; sourceTree = "<group>"; };
 		7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICellAccessory+Image.swift"; sourceTree = "<group>"; };
+		7C97D1862CFF790D00FF97DC /* UIScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScheduler.swift; sourceTree = "<group>"; };
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
 		7CB2639B2C0671320083C052 /* Publisher+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+UI.swift"; sourceTree = "<group>"; };
 		7CB2639D2C0A5B420083C052 /* BaseSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSafariViewController.swift; sourceTree = "<group>"; };
+		7CB58D832CE662BB00929205 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		7CB58D862CE6AC7500929205 /* NavigationItemPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemPalette.swift; sourceTree = "<group>"; };
 		7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSharingPreferencesViewModel.swift; sourceTree = "<group>"; };
+		7CB831162D194613005F3F42 /* CellularToggleSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularToggleSetupViewModel.swift; sourceTree = "<group>"; };
+		7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeySceneWindow.swift"; sourceTree = "<group>"; };
+		7CB8311A2D19624E005F3F42 /* InitialSetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupFlow.swift; sourceTree = "<group>"; };
+		7CB8311C2D19629D005F3F42 /* InitialSetupFlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupFlowProtocol.swift; sourceTree = "<group>"; };
+		7CB8311F2D1974F7005F3F42 /* CellularNotAllowedOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularNotAllowedOverlay.swift; sourceTree = "<group>"; };
+		7CB831222D197540005F3F42 /* MessageOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOverlayView.swift; sourceTree = "<group>"; };
+		7CB831242D19754A005F3F42 /* MessageOverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageOverlayView.xib; sourceTree = "<group>"; };
 		7CBDBAAC2C31EF0C008C986B /* UserDefaults+AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+AppGroup.swift"; sourceTree = "<group>"; };
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
+		7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Marquee.swift"; sourceTree = "<group>"; };
 		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -418,6 +446,9 @@
 		D1B99D8F2BEE631B00F51514 /* Benefit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benefit.swift; sourceTree = "<group>"; };
 		D1B99D902BEE631B00F51514 /* Tier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tier.swift; sourceTree = "<group>"; };
 		D1B99D952BEE657F00F51514 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		D1BB073A2C98524A00981D5F /* TrackersListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersListService.swift; sourceTree = "<group>"; };
+		D1BB07422C985EAE00981D5F /* TrackersListPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersListPreferencesView.swift; sourceTree = "<group>"; };
+		D1BB07442C9869B900981D5F /* TrackersListDetailsPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersListDetailsPreferencesView.swift; sourceTree = "<group>"; };
 		D1CAB8842AF3B51E00EB6AFF /* ToggleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCellView.swift; sourceTree = "<group>"; };
 		D1CAB8862AF3B52E00EB6AFF /* ToggleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCellViewModel.swift; sourceTree = "<group>"; };
 		D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUILayoutGuides.swift; sourceTree = "<group>"; };
@@ -462,7 +493,6 @@
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
 				7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */,
 				7C4ED08B2BE642A50034B62C /* AppTrackingTransparency.framework in Frameworks */,
-				7C5FBE122BBB63C80069E5A0 /* MarqueeLabel in Frameworks */,
 				7C519C882C427E9A00E353A9 /* FirebaseAnalytics in Frameworks */,
 				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
 				D1DB71832BD80318007F9267 /* GCDWebServers in Frameworks */,
@@ -501,6 +531,26 @@
 			path = LiveActivityService;
 			sourceTree = "<group>";
 		};
+		7C3253582D193FE10069D640 /* InitialSetup */ = {
+			isa = PBXGroup;
+			children = (
+				7C3253592D193FE90069D640 /* CellularToggle */,
+				7CB8311C2D19629D005F3F42 /* InitialSetupFlowProtocol.swift */,
+				7CB8311A2D19624E005F3F42 /* InitialSetupFlow.swift */,
+			);
+			path = InitialSetup;
+			sourceTree = "<group>";
+		};
+		7C3253592D193FE90069D640 /* CellularToggle */ = {
+			isa = PBXGroup;
+			children = (
+				7CB831162D194613005F3F42 /* CellularToggleSetupViewModel.swift */,
+				7C32535B2D19402F0069D640 /* CellularToggleSetupViewController.swift */,
+				7C32535D2D1940440069D640 /* CellularToggleSetupViewController.xib */,
+			);
+			path = CellularToggle;
+			sourceTree = "<group>";
+		};
 		7C4CF2F82BDE711A0078FEA1 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +586,7 @@
 				7C4CF2FF2BDE7DF60078FEA1 /* AdView */,
 				7C5FBE6E2BC2EF8B0069E5A0 /* EditTextView */,
 				D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */,
+				7CB58D832CE662BB00929205 /* TagsView.swift */,
 				7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */,
 				7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */,
 				7C4ED0932BE961A20034B62C /* UIModernBarButtonItem.swift */,
@@ -620,6 +671,9 @@
 		7C95B7B52C385B8E000EC50F /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */,
+				7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */,
+				7CB58D852CE6AC6F00929205 /* NavigationItemPalette */,
 				D173D9DF2BC0285800E4F9EB /* UIMenu */,
 				7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */,
 				7C5FBE2B2BBDD6B40069E5A0 /* UIView+LayerColors.swift */,
@@ -637,12 +691,38 @@
 			path = RssFeed;
 			sourceTree = "<group>";
 		};
+		7CB58D852CE6AC6F00929205 /* NavigationItemPalette */ = {
+			isa = PBXGroup;
+			children = (
+				7CB58D862CE6AC7500929205 /* NavigationItemPalette.swift */,
+			);
+			path = NavigationItemPalette;
+			sourceTree = "<group>";
+		};
 		7CB6F6CC2BD82B8A00D0813B /* FileSharing */ = {
 			isa = PBXGroup;
 			children = (
 				7CB6F6CD2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift */,
 			);
 			path = FileSharing;
+			sourceTree = "<group>";
+		};
+		7CB8311E2D1974ED005F3F42 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				7CB831212D197528005F3F42 /* MessageOverlayView */,
+				7CB8311F2D1974F7005F3F42 /* CellularNotAllowedOverlay.swift */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
+		7CB831212D197528005F3F42 /* MessageOverlayView */ = {
+			isa = PBXGroup;
+			children = (
+				7CB831222D197540005F3F42 /* MessageOverlayView.swift */,
+				7CB831242D19754A005F3F42 /* MessageOverlayView.xib */,
+			);
+			path = MessageOverlayView;
 			sourceTree = "<group>";
 		};
 		7CC411562BD2DCC000CA8B13 /* Assets */ = {
@@ -745,6 +825,7 @@
 		D1048D872BBEA23C0027EF2F /* Combine */ = {
 			isa = PBXGroup;
 			children = (
+				7C97D1862CFF790D00FF97DC /* UIScheduler.swift */,
 				D1048D902BBEC3370027EF2F /* CombineLatest */,
 				7CAD301D2BC347D900592990 /* Published+Codable.swift */,
 				7CB2639B2C0671320083C052 /* Publisher+UI.swift */,
@@ -793,6 +874,8 @@
 		D111384C2AF9663F008907F7 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				7C3253582D193FE10069D640 /* InitialSetup */,
+				D1BB07412C985E9700981D5F /* TrackersList */,
 				7C95B7A32C34B554000EC50F /* Storage */,
 				D1DB718E2BD92206007F9267 /* Patreon */,
 				7CB6F6CC2BD82B8A00D0813B /* FileSharing */,
@@ -988,6 +1071,7 @@
 		D19E001C2AEFF9F9000A17A2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7CB8311E2D1974ED005F3F42 /* Overlays */,
 				7C5FBE0D2BBB206B0069E5A0 /* Views */,
 				D19E001D2AEFFA02000A17A2 /* Cells */,
 			);
@@ -1118,6 +1202,7 @@
 		D1A226F02AEF018500669D6D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1BB07392C98522D00981D5F /* TrackersListService */,
 				7C1C08AE2C31FEF700569B45 /* IntentsService */,
 				7C3142D42C31ED4600397E82 /* LiveActivityService */,
 				D1B99D842BEE5E4100F51514 /* Patreon */,
@@ -1256,6 +1341,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		D1BB07392C98522D00981D5F /* TrackersListService */ = {
+			isa = PBXGroup;
+			children = (
+				D1BB073A2C98524A00981D5F /* TrackersListService.swift */,
+			);
+			path = TrackersListService;
+			sourceTree = "<group>";
+		};
+		D1BB07412C985E9700981D5F /* TrackersList */ = {
+			isa = PBXGroup;
+			children = (
+				D1BB07442C9869B900981D5F /* TrackersListDetailsPreferencesView.swift */,
+				D1BB07422C985EAE00981D5F /* TrackersListPreferencesView.swift */,
+			);
+			path = TrackersList;
+			sourceTree = "<group>";
+		};
 		D1CAB8832AF3B50C00EB6AFF /* ToggleCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1384,7 +1486,6 @@
 				D135C58B2AEF158000440680 /* CombineCocoa */,
 				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
 				7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */,
-				7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */,
 				7CAD30182BC3455800592990 /* SWXMLHash */,
 				D1DB71822BD80318007F9267 /* GCDWebServers */,
 				7CF6DA322C0F112B0033D03F /* OpenSSL */,
@@ -1422,12 +1523,14 @@
 				en,
 				Base,
 				ru,
+				de,
+				it,
+				pl,
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
 				7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */,
-				7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */,
 				7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 				D1DB71812BD80318007F9267 /* XCLocalSwiftPackageReference "Submodules/GCDWebServer" */,
 				7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */,
@@ -1462,10 +1565,12 @@
 				D1A226AA2AEEEFDF00669D6D /* LaunchScreen.storyboard in Resources */,
 				7CFEBE742BC3ED480013233F /* RssFeedCell.xib in Resources */,
 				D1A226A72AEEEFDF00669D6D /* Assets.xcassets in Resources */,
+				7C32535E2D1940440069D640 /* CellularToggleSetupViewController.xib in Resources */,
 				7CFEBE892BC439C30013233F /* RssChannelItemCell.xib in Resources */,
 				D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */,
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
+				7CB831252D19754A005F3F42 /* MessageOverlayView.xib in Resources */,
 				D1352D332BBD720C00104E7B /* PRStorageCell.xib in Resources */,
 				D173D9E82BC033CF00E4F9EB /* 3.wav in Resources */,
 				7C5FBE2E2BBF3FF80069E5A0 /* PRSwitchView.xib in Resources */,
@@ -1537,8 +1642,10 @@
 				D135C59C2AEFB96F00440680 /* TorrentDetailsViewModel.swift in Sources */,
 				D1B99D912BEE631B00F51514 /* Patron.swift in Sources */,
 				D11138552AF97511008907F7 /* TorrentAddFileItemViewModel.swift in Sources */,
+				7C97D1872CFF791000FF97DC /* UIScheduler.swift in Sources */,
 				D11333B52AF19C4900FA017E /* TorrentHandle+Extension.swift in Sources */,
 				D19E00202AEFFA1B000A17A2 /* DetailCellView.swift in Sources */,
+				D1BB07452C9869C300981D5F /* TrackersListDetailsPreferencesView.swift in Sources */,
 				D1ACFDC62AF6DB9F0098FF56 /* TorrentFilesFileListCell.swift in Sources */,
 				D1A227072AEF0B2C00669D6D /* TorrentListItem.swift in Sources */,
 				D111384B2AF965F1008907F7 /* TorrentAddViewModel.swift in Sources */,
@@ -1547,6 +1654,7 @@
 				7C4ED0942BE961A20034B62C /* UIModernBarButtonItem.swift in Sources */,
 				D1B99D922BEE631B00F51514 /* Campaign.swift in Sources */,
 				D173D9D92BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift in Sources */,
+				7CB831192D19484B005F3F42 /* UIApplication+KeySceneWindow.swift in Sources */,
 				D1B99D8B2BEE62C700F51514 /* PatreonAccount.swift in Sources */,
 				D173D9DC2BBEED2B00E4F9EB /* Codables.swift in Sources */,
 				D1048D862BBE92220027EF2F /* SANavigationController.swift in Sources */,
@@ -1556,6 +1664,7 @@
 				D1B1BECC2AFE25BD0030C2A4 /* TorrentTrackersViewModel.swift in Sources */,
 				D19E00222AEFFA2A000A17A2 /* DetailCellViewModel.swift in Sources */,
 				D173D9E62BC0331300E4F9EB /* AudioBackgroundService.swift in Sources */,
+				7CB831232D197540005F3F42 /* MessageOverlayView.swift in Sources */,
 				7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */,
 				D1D1279B2BC7CA7600C04533 /* SwiftUILayoutGuides.swift in Sources */,
 				D1352D1E2BBC2F7F00104E7B /* LocalizationAttribute.swift in Sources */,
@@ -1601,7 +1710,9 @@
 				D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */,
 				7CFEBE7C2BC4318E0013233F /* RssChannelViewController.swift in Sources */,
 				7C5FBE2C2BBDD6B40069E5A0 /* UIView+LayerColors.swift in Sources */,
+				7CB8311D2D1962A0005F3F42 /* InitialSetupFlowProtocol.swift in Sources */,
 				7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */,
+				D1BB07432C985EB800981D5F /* TrackersListPreferencesView.swift in Sources */,
 				D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */,
 				7C5FBE742BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift in Sources */,
 				D1EFCD122AF572E400D33A7A /* TorrentFilesFileItemViewModel.swift in Sources */,
@@ -1618,6 +1729,7 @@
 				D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */,
 				D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */,
 				7C4ED0892BE6423D0034B62C /* MetaAdsManager.swift in Sources */,
+				7CC634772E09ED88007E3EED /* UILabel+Marquee.swift in Sources */,
 				7CFEBEAD2BC88F4C0013233F /* AppDelegate+BackgroundRefresh.swift in Sources */,
 				D1DB71912BD92238007F9267 /* PatreonPreferencesViewController.swift in Sources */,
 				D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */,
@@ -1625,6 +1737,7 @@
 				D11138572AF976CE008907F7 /* TorrentAddDirectoryItemViewModel.swift in Sources */,
 				D1FFC9652C38136600233C2F /* URL+Extensions.swift in Sources */,
 				7C1C08AB2C31F31900569B45 /* PauseTorrentIntent.swift in Sources */,
+				7CB831202D19750F005F3F42 /* CellularNotAllowedOverlay.swift in Sources */,
 				D1CAB8872AF3B52E00EB6AFF /* ToggleCellViewModel.swift in Sources */,
 				D11BE5492AFBA03D00780C1B /* PRButtonView.swift in Sources */,
 				7CFEBE8B2BC439CF0013233F /* RssChannelItemCellViewModel.swift in Sources */,
@@ -1663,8 +1776,12 @@
 				D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */,
 				D1352D352BBD721700104E7B /* PRStorageViewModel.swift in Sources */,
 				D1352D2C2BBD6E0E00104E7B /* MemorySpaceManager.swift in Sources */,
+				7CB831172D194616005F3F42 /* CellularToggleSetupViewModel.swift in Sources */,
+				7C32535C2D19402F0069D640 /* CellularToggleSetupViewController.swift in Sources */,
 				D1AA00D22AFAC95500B74629 /* String+Localized.swift in Sources */,
+				7CB58D872CE6AC7D00929205 /* NavigationItemPalette.swift in Sources */,
 				7CFEBE732BC3ED480013233F /* RssFeedCell.swift in Sources */,
+				7CB8311B2D196257005F3F42 /* InitialSetupFlow.swift in Sources */,
 				7C5FBE552BC0B3550069E5A0 /* ProgressWidgetAttributes.swift in Sources */,
 				7CFEBEA92BC721D50013233F /* RssListPreferencesViewModel.swift in Sources */,
 				D173D9EC2BC039A700E4F9EB /* LocationBackgroundService.swift in Sources */,
@@ -1672,6 +1789,7 @@
 				D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
 				7CF6DA3E2C0F9DC40033D03F /* LiveActivityService.swift in Sources */,
+				D1BB073B2C98524B00981D5F /* TrackersListService.swift in Sources */,
 				7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */,
 				D173D9E12BC0286800E4F9EB /* UIMenu+Priority.swift in Sources */,
 				D1AA00CE2AFA8B1000B74629 /* PreferencesStorage.swift in Sources */,
@@ -1681,6 +1799,7 @@
 				D1A226A02AEEEFCC00669D6D /* SceneDelegate.swift in Sources */,
 				D11BE5442AFB901E00780C1B /* PRSwitchView.swift in Sources */,
 				D173D9E32BC0327D00E4F9EB /* BackgroundService.swift in Sources */,
+				7CB58D842CE662BB00929205 /* TagsView.swift in Sources */,
 				D1352D382BBD73CD00104E7B /* ColoredProgressBarView.swift in Sources */,
 				D1A226FD2AEF04F900669D6D /* BaseViewController.swift in Sources */,
 			);
@@ -1724,10 +1843,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProgressWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ProgressWidget;
@@ -1741,9 +1858,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$inherited XCODE16";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1806,7 +1923,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.10;
+				MARKETING_VERSION = 2.0.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1814,6 +1931,16 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DISABLE_OUTWARD_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_SENDABLE_FROM_CAPTURES = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1828,11 +1955,8 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -1852,8 +1976,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1871,10 +1993,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProgressWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ProgressWidget;
@@ -1888,9 +2008,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Dev";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$inherited XCODE16";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1948,13 +2068,23 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.10;
+				MARKETING_VERSION = 2.0.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DISABLE_OUTWARD_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_SENDABLE_FROM_CAPTURES = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2013,10 +2143,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ProgressWidget/ProgressWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ProgressWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ProgressWidget;
@@ -2030,9 +2158,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID).ProgressWidget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 ProgressWidget Distrib";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$inherited XCODE16";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2095,7 +2223,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.0.10;
+				MARKETING_VERSION = 2.0.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2103,6 +2231,16 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_UPCOMING_FEATURE_CONCISE_MAGIC_FILE = YES;
+				SWIFT_UPCOMING_FEATURE_DEPRECATE_APPLICATION_MAIN = YES;
+				SWIFT_UPCOMING_FEATURE_DISABLE_OUTWARD_ACTOR_ISOLATION = YES;
+				SWIFT_UPCOMING_FEATURE_FORWARD_TRAILING_CLOSURES = YES;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_IMPLICIT_OPEN_EXISTENTIALS = YES;
+				SWIFT_UPCOMING_FEATURE_IMPORT_OBJC_FORWARD_DECLS = YES;
+				SWIFT_UPCOMING_FEATURE_INFER_SENDABLE_FROM_CAPTURES = YES;
+				SWIFT_UPCOMING_FEATURE_ISOLATED_DEFAULT_VALUES = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2117,11 +2255,8 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iTorrent/Core/Assets/iTorrent.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = D59DHVRS87;
-				"DEVELOPMENT_TEAM[sdk=xros*]" = D59DHVRS87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D59DHVRS87;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iTorrent/Core/Assets/Info.plist;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
@@ -2141,8 +2276,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APPLICATION_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "iTorrent2 Dev";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=xros*]" = "iTorrent2 Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2216,14 +2349,6 @@
 				minimumVersion = 10.29.0;
 			};
 		};
-		7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cbpowell/MarqueeLabel.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.0;
-			};
-		};
 		7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/drmohundro/SWXMLHash.git";
@@ -2265,11 +2390,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
-		};
-		7C5FBE112BBB63C80069E5A0 /* MarqueeLabel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7C5FBE102BBB63C80069E5A0 /* XCRemoteSwiftPackageReference "MarqueeLabel" */;
-			productName = MarqueeLabel;
 		};
 		7CAD30182BC3455800592990 /* SWXMLHash */ = {
 			isa = XCSwiftPackageProductDependency;

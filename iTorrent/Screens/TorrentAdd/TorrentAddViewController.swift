@@ -42,13 +42,23 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [downloadButton]))
 
         navigationController?.setToolbarHidden(false, animated: false)
-        toolbarItems = [
-            .init(customView: diskLabel),
-            .init(systemItem: .flexibleSpace),
-            storageButton,
-            .fixedSpace(16),
-            priorityButton
-        ]
+
+        if #available(iOS 26, *) {
+            toolbarItems = [
+                .init(customView: diskLabel),
+                .init(systemItem: .flexibleSpace),
+                storageButton,
+                priorityButton
+            ]
+        } else {
+            toolbarItems = [
+                .init(customView: diskLabel),
+                .init(systemItem: .flexibleSpace),
+                storageButton,
+                .fixedSpace(16),
+                priorityButton
+            ]
+        }
 
         disposeBag.bind {
             cancelButton.tapPublisher.sink { [unowned self] _ in

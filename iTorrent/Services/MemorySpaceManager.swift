@@ -208,7 +208,14 @@ private extension MemorySpaceManager {
 
     static var freeDiskSpaceInBytes: Int64 {
         do {
-            let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let values = try url.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
+            if let capacity = values.volumeAvailableCapacityForImportantUsage {
+                return capacity
+            }
+
+            // Fallback, probably need to remove
+            let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSOpenStepRootDirectory() as String)
             let freeSpace = (systemAttributes[FileAttributeKey.systemFreeSize] as? NSNumber)?.int64Value
             return freeSpace!
         } catch {

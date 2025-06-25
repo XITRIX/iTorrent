@@ -69,6 +69,8 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesMaxUploadSpeed", 0) var maxUploadSpeed: UInt
     @UserDefaultItem("preferencesMaxDownloadSpeed", 0) var maxDownloadSpeed: UInt
 
+    @UserDefaultItem("preferencesTrackersAutoaddingEnabled", false) var isTrackersAutoaddingEnabled: Bool
+
     @UserDefaultItem("preferencesIsCellularEnabled", false) var isCellularEnabled: Bool
     @UserDefaultItem("preferencesUseAllAvailableInterfaces", false) var useAllAvailableInterfaces: Bool
 
@@ -114,6 +116,8 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesPatreonAccount", nil) var patreonAccount: PatreonAccount?
     @UserDefaultItem("preferencesPatreonToken", nil) var patreonToken: PatreonToken?
     @UserDefaultItem("preferencesPatreonCredentials", nil) var patreonCredentials: PatreonCredentials?
+
+    @UserDefaultItem("initialSetupCellularPassed", false) var initialSetupCellularPassed: Bool
 
     var settingsUpdatePublisher: AnyPublisher<Void, Never> {
         Just<Void>(())
@@ -168,8 +172,7 @@ extension Session.Settings {
 
         settings.encryptionPolicy = preferences.encryptionPolicy
 
-        settings.useDefaultPort = preferences.useDefaultPort
-        settings.port = preferences.port
+        settings.port = preferences.useDefaultPort ? 6881 : preferences.port
         settings.portBindRetries = preferences.portBindRetries
 
         var interfacesToUse = interfaces

@@ -8,28 +8,29 @@
 import AVFoundation
 import UIKit
 
-class AudioBackgroundService {
+class AudioBackgroundService: @unchecked Sendable {
     private var player: AVAudioPlayer?
     private var backgroundTask: UIBackgroundTaskIdentifier?
+    private var asyncTask: Task<Void, Error>?
 }
 
 extension AudioBackgroundService: BackgroundServiceProtocol {
     var isRunning: Bool {
-        player?.isPlaying ?? false
+        (player?.isPlaying ?? false) || (backgroundTask != nil && backgroundTask != .invalid)
     }
     
     func start() -> Bool {
         guard !isRunning else { return true }
-        guard playAudio() else { return false }
         startBackgroundTask()
         NotificationCenter.default.addObserver(self, selector: #selector(interruptedAudio), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
         return true
     }
 
     func stop() {
-        stopBackgroundTask()
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
-        player?.stop()
+        asyncTask?.cancel()
+        stopBackgroundTask()
+        stopAudio()
     }
     
     func prepare() async -> Bool { true }
@@ -51,19 +52,34 @@ private extension AudioBackgroundService {
         }
     }
 
+    static func cratePlayer() throws -> AVAudioPlayer {
+        //            let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
+        let bundle = Bundle.main.path(forResource: "sound", ofType: "m4a")
+        let alertSound = URL(fileURLWithPath: bundle!)
+        try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
+        try AVAudioSession.sharedInstance().setActive(true)
+        let player = try AVAudioPlayer(contentsOf: alertSound)
+        player.volume = 0.01
+        player.numberOfLoops = -1
+        return player
+    }
+
+    func getPlayer() throws -> AVAudioPlayer {
+        if let player {
+            return player
+        }
+
+        let newPlayer = try Self.cratePlayer()
+        player = newPlayer
+        return newPlayer
+    }
+
     @discardableResult
     func playAudio() -> Bool {
         do {
-//            let bundle = Bundle.main.path(forResource: "3", ofType: "wav")
-            let bundle = Bundle.main.path(forResource: "sound", ofType: "m4a")
-            let alertSound = URL(fileURLWithPath: bundle!)
-            try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
-            try AVAudioSession.sharedInstance().setActive(true)
-            try player = AVAudioPlayer(contentsOf: alertSound)
-
-            player?.volume = 0.01
-            player?.prepareToPlay()
-            player?.play()
+            let player = try getPlayer()
+//            player.prepareToPlay()
+            player.play()
             return true
         } catch {
             print(error)
@@ -71,15 +87,36 @@ private extension AudioBackgroundService {
         }
     }
 
-    func startBackgroundTask() {
-        stopBackgroundTask()
-        
-        guard BackgroundService.isBackgroundNeeded else { return }
+    func stopAudio() {
+        player?.stop()
+    }
 
-        playAudio()
-        backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: { [unowned self] () -> Void in
+    func startBackgroundTask() {
+        guard BackgroundService.isBackgroundNeeded else {
+            stopBackgroundTask()
+            stopAudio()
+            return
+        }
+
+        asyncTask = Task {
+            playAudio()
+            stopBackgroundTask()
+            
+            backgroundTask = await UIApplication.shared.beginBackgroundTask { [weak self] in
+                guard let self else { return }
+                print("\(Date.now.timestamp) [BG] timeout!!!")
+                startBackgroundTask()
+            }
+
+            stopAudio()
+            try Task.checkCancellation()
+
+            // If cannot start BG try again
+            guard backgroundTask != .invalid else { return startBackgroundTask() }
+            print("\(Date.now.timestamp) [BG] running!!!")
+            try await Task.sleep(for: .seconds(10))
             startBackgroundTask()
-        })
+        }
     }
 
     func stopBackgroundTask() {
@@ -87,5 +124,13 @@ private extension AudioBackgroundService {
             UIApplication.shared.endBackgroundTask(backgroundTask!)
             backgroundTask = nil
         }
+    }
+}
+
+extension Date {
+    var timestamp: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss.SSSZZZZZ"
+        return formatter.string(from: self)
     }
 }

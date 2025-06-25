@@ -9,6 +9,7 @@ import MvvmFoundation
 import UIKit
 
 extension MvvmViewModelProtocol {
+    @available(visionOS, unavailable)
     func textMultilineInput(title: String?,
                             message: String? = nil,
                             placeholder: String? = nil,

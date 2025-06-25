@@ -43,7 +43,7 @@ extension PatreonService {
     }
 }
 
-class PatreonAccount: Codable, Equatable {
+class PatreonAccount: Codable, Equatable, @unchecked Sendable {
     var identifier: String
 
     var name: String

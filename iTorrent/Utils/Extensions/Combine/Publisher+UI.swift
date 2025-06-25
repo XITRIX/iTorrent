@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-@MainActor
+//@MainActor
 extension Publisher where Self.Failure == Never {
 
     /// Attaches a subscriber with closure-based behavior to a publisher that never fails and receives on Main Thread if needed.
@@ -42,7 +42,7 @@ extension Publisher where Self.Failure == Never {
     }
 }
 
-func runOnMainThreadIfNeeded(_ action: @escaping () -> Void) {
+func runOnMainThreadIfNeeded(_ action: @Sendable @escaping () -> Void) {
     if Thread.isMainThread {
         action()
     } else {

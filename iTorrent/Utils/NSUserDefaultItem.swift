@@ -48,10 +48,11 @@ private extension NSUserDefaultItem {
         return try? NSKeyedUnarchiver.unarchivedObject(ofClass: Value.self, from: data)
     }
 
-    static func setValue(_ value: Value, for key: String) {
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: true)
+    static func setValue(_ value: Value?, for key: String) {
+        if let value, let data = try? NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: true) {
             userDefaults.set(data, forKey: key)
-        } catch {}
+        } else {
+            userDefaults.set(nil, forKey: key)
+        }
     }
 }

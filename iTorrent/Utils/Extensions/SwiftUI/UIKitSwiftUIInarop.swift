@@ -22,9 +22,9 @@ extension View {
     @MainActor
     var asController: UIHostingController<Self> {
         let vc = UIHostingController<Self>(rootView: self)
-        if #available(iOS 16.4, *) {
-            vc.safeAreaRegions = []
-        }
+//        if #available(iOS 16.4, *) {
+//            vc.safeAreaRegions = []
+//        }
         return vc
     }
 }

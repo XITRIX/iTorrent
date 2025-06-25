@@ -6,7 +6,7 @@
 //
 
 #if canImport(ActivityKit)
-import ActivityKit
+@preconcurrency import ActivityKit
 #endif
 
 import Combine
@@ -30,6 +30,24 @@ actor LiveActivityService {
     private var throttleMap: [String: Date] = [:]
     private let disposeBag = DisposeBag()
     @Injected private var torrentService: TorrentService
+}
+
+extension LiveActivityService {
+    static func endAllLiveActivities() {
+#if canImport(ActivityKit)
+        if #available(iOS 16.2, *) {
+            let semaphore = DispatchSemaphore(value: 0)
+            Task.detached {
+                print("Terminating live activities...")
+                for activity in Activity<ProgressWidgetAttributes>.activities {
+                    await activity.end(nil, dismissalPolicy: .immediate)
+                }
+                semaphore.signal()
+            }
+            semaphore.wait()
+        }
+#endif
+    }
 }
 
 #if canImport(ActivityKit)
@@ -63,12 +81,20 @@ private extension LiveActivityService {
 
     @available(iOS 16.1, *)
     func update(_ activity: Activity<ProgressWidgetAttributes>, with state: ProgressWidgetAttributes.ContentState) async {
+//        if #available(iOS 16.2, *) {
+//            guard activity.content.state != state
+//            else { return }
+//        } else {
+//            guard activity.contentState != state
+//            else { return }
+//        }
+
         if let date = throttleMap[activity.attributes.hash],
             Int(Date.now.timeIntervalSince(date)) <= Self.throttleDuration
         { return }
 
         if #available(iOS 16.2, *) {
-            await activity.update(.init(state: state, staleDate: .now + 10))
+            await activity.update(.init(state: state, staleDate: .now + 10, relevanceScore: state.state.relevanceScore))
         } else {
             await activity.update(using: state)
         }
@@ -92,6 +118,29 @@ private extension LiveActivityService {
             } catch {
                 print(error.localizedDescription)
             }
+        }
+    }
+}
+
+private extension ProgressWidgetAttributes.State {
+    var relevanceScore: Double {
+        switch self {
+        case .checkingFiles:
+            2
+        case .downloadingMetadata:
+            3
+        case .downloading:
+            5
+        case .finished:
+            0
+        case .seeding:
+            4
+        case .checkingResumeData:
+            1
+        case .paused:
+            0
+        case .storageError:
+            0
         }
     }
 }

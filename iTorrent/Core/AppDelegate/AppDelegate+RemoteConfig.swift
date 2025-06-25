@@ -8,7 +8,7 @@
 import UIKit
 #if canImport(FirebaseCore)
 import FirebaseRemoteConfig
-var remoteConfig = RemoteConfig.remoteConfig()
+let remoteConfig = RemoteConfig.remoteConfig()
 #endif
 
 extension AppDelegate {
@@ -41,7 +41,6 @@ private extension AppDelegate {
         guard remoteConfig.configValue(forKey: "disabledBuilds").boolValue else { return }
 
         guard let keyWindow = UIApplication.shared.connectedScenes
-            .filter({ $0.activationState == .foregroundActive })
             .compactMap({ $0 as? UIWindowScene })
             .first?.windows
             .first(where: { $0.isKeyWindow }),

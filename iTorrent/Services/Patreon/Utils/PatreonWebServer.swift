@@ -8,7 +8,7 @@
 import Foundation
 import GCDWebServers
 
-class PatreonWebServer: GCDWebServer {
+class PatreonWebServer: GCDWebServer, @unchecked Sendable {
     private var completion: ((String?) -> ())?
 
     public static let shared = PatreonWebServer()

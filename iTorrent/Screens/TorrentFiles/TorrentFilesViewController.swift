@@ -17,6 +17,8 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
     private lazy var previewDelegates = PreviewDeletates(parent: self)
     private let moreMenuButton = UIBarButtonItem()
 
+    override var useMarqueeLabel: Bool { true }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

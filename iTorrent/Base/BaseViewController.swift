@@ -5,7 +5,6 @@
 //  Created by Daniil Vinogradov on 29/10/2023.
 //
 
-import MarqueeLabel
 import MvvmFoundation
 import UIKit
 
@@ -15,7 +14,7 @@ protocol ToolbarHidingProtocol {
 
 class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<ViewModel>, ToolbarHidingProtocol {
     var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }
-    var useMarqueeLabel: Bool { true }
+    var useMarqueeLabel: Bool { false }
 
     override var title: String? {
         get { super.title }
@@ -45,23 +44,23 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
         navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: false)
     }
 
-    private let titleLabel: MarqueeLabel = {
-        let titleLabel = MarqueeLabel()
+    private let titleLabel: UILabel = {
+        let titleLabel = UILabel()
 #if !os(visionOS)
         titleLabel.font = .preferredFont(forTextStyle: .headline)
 #else
         titleLabel.font = .preferredFont(forTextStyle: .title1)
 #endif
-        titleLabel.fadeLength = 16
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textAlignment = .center
+        titleLabel.enableMarquee()
         return titleLabel
     }()
 }
 
 class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewController<View>, ToolbarHidingProtocol {
     var isToolbarItemsHidden: Bool { toolbarItems?.isEmpty ?? true }
-    var useMarqueeLabel: Bool { true }
+    var useMarqueeLabel: Bool { false }
 
 //    override var title: String? {
 //        get { super.title }
@@ -101,16 +100,16 @@ class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewCon
         }
     }
 
-    private let titleLabel: MarqueeLabel = {
-        let titleLabel = MarqueeLabel()
+    private let titleLabel: UILabel = {
+        let titleLabel = UILabel()
 #if !os(visionOS)
         titleLabel.font = .preferredFont(forTextStyle: .headline)
 #else
         titleLabel.font = .preferredFont(forTextStyle: .title1)
 #endif
-        titleLabel.fadeLength = 16
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textAlignment = .center
+        titleLabel.enableMarquee()
         return titleLabel
     }()
 }

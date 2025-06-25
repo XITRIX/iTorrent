@@ -17,7 +17,11 @@ struct MinSystemHeight: ViewModifier {
 #if os(visionOS)
         32
 #else
-        28
+        if #available(iOS 26, *) {
+            22
+        } else {
+            28
+        }
 #endif
     }
 }

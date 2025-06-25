@@ -9,7 +9,7 @@ import Combine
 import MvvmFoundation
 import SwiftUI
 
-class PreferencesViewModel: BasePreferencesViewModel {
+class PreferencesViewModel: BasePreferencesViewModel, @unchecked Sendable {
     required init() {
         super.init()
         binding()
@@ -142,6 +142,9 @@ private extension PreferencesViewModel {
         sections.append(.init(id: "network", header: %"preferences.network") {
             PRButtonViewModel(with: .init(title: %"preferences.network.proxy", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: ProxyPreferencesViewModel.self, by: .show)
+            })
+            PRButtonViewModel(with: .init(title: %"preferences.network.trackers", accessories: [.disclosureIndicator()]) { [unowned self] in
+                navigate(to: TrackersListPreferencesViewModel.self, by: .show)
             })
             PRButtonViewModel(with: .init(title: %"preferences.network.connection", accessories: [.disclosureIndicator()]) { [unowned self] in
                 navigate(to: ConnectionPreferencesViewModel.self, by: .show)

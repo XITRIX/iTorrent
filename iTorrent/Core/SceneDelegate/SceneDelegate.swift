@@ -24,6 +24,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerSingleton(factory: { BackgroundService.shared })
         container.registerSingleton(factory: NetworkMonitoringService.init)
         container.registerSingleton(factory: ImageLoader.init)
+        container.registerSingleton(factory: TrackersListService.init)
         container.registerDaemon(factory: PatreonService.init)
         container.registerDaemon(factory: TorrentMonitoringService.init)
         container.registerDaemon(factory: RssFeedProvider.init)
@@ -31,6 +32,7 @@ class SceneDelegate: MvvmSceneDelegate {
         container.registerDaemon(factory: LiveActivityService.init)
         container.registerDaemon(factory: IntentsService.init)
         container.registerDaemon(factory: AdsManager.init)
+        container.registerDaemon(factory: CellularNotAllowedOverlay.init)
     }
 
     override func routing(in router: Router) {
@@ -60,8 +62,12 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(TorrentAddViewController<TorrentAddViewModel>.self)
         router.register(TorrentTrackersViewController<TorrentTrackersViewModel>.self)
 
+        router.register(CellularToggleSetupViewController<CellularToggleSetupViewModel>.self)
+
         router.register(BasePreferencesViewController<PreferencesViewModel>.self)
         router.register(BasePreferencesViewController<ProxyPreferencesViewModel>.self)
+        router.register(TrackersListPreferencesViewController.self)
+        router.register(TrackersListDetailsPreferencesViewController.self)
         router.register(BasePreferencesViewController<ConnectionPreferencesViewModel>.self)
         router.register(BasePreferencesViewController<FileSharingPreferencesViewModel>.self)
         router.register(PreferencesSectionGroupingViewController.self)
@@ -82,6 +88,8 @@ class SceneDelegate: MvvmSceneDelegate {
 
         let svc = UISplitViewController.resolve()
         svc.viewControllers = [nvc]
+
+        invokeInitialSetup()
 
         return svc
     }
@@ -117,6 +125,15 @@ class SceneDelegate: MvvmSceneDelegate {
             appAppearanceBind
             backgroundDownloadModeBind
             backgroundStateObserverBind
+        }
+    }
+}
+
+private extension SceneDelegate {
+    func invokeInitialSetup() {
+        Task { @MainActor in
+            try await Task.sleep(for: .seconds(0.5))
+            await InitialSetupFlow.startIfNeeded()
         }
     }
 }
