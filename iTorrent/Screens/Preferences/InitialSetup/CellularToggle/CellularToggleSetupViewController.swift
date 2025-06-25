@@ -41,7 +41,7 @@ private extension CellularToggleSetupViewController {
 
         allowCellularButton.configuration?.attributedTitle = .init(%"initialSetup.cellular.button.allow", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
 
-        if #available(iOS 26, *) {
+        if #available(iOS 26, visionOS 26, *) {
             disableCellularButton.configuration = .prominentGlass()
             disableCellularButton.configuration?.buttonSize = .large
             disableCellularButton.configuration?.cornerStyle = .large

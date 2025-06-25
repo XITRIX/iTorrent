@@ -133,7 +133,7 @@ private extension TorrentDetailsViewController {
     }
 
     func reloadToolbar() {
-        if #available(iOS 26, *) {
+        if #available(iOS 26, visionOS 99999, *) {
             toolbarItems = [
                 viewModel.canResume ? playButton : nil,
                 viewModel.canPause ? pauseButton : nil,

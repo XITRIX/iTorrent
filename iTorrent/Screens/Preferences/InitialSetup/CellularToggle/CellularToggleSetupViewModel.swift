@@ -5,8 +5,8 @@
 //  Created by Даниил Виноградов on 23.12.2024.
 //
 
-import UIKit
 import MvvmFoundation
+import UIKit
 
 extension CellularToggleSetupViewModel {
     struct Config {
@@ -39,7 +39,11 @@ class CellularToggleSetupViewModel: BaseViewModelWith<CellularToggleSetupViewMod
 
 extension CellularToggleSetupViewModel: InitialSetupFlowProtocol {
     static var isNeeded: Bool {
+        #if os(visionOS)
+        false
+        #else
         !PreferencesStorage.shared.initialSetupCellularPassed
+        #endif
     }
 
     static func screen(with completion: @escaping () -> Void) -> NavigationProtocol {

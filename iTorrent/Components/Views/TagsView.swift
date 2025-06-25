@@ -87,6 +87,7 @@ class TagsView: UIScrollView {
     }
 
     private func setupBackgroundView() {
+#if os(iOS)
         if #available(iOS 26, *) {
             let effect = UIGlassEffect()
 //            effect.isInteractive = true
@@ -101,6 +102,12 @@ class TagsView: UIScrollView {
             backgroundView.backgroundColor = .tintColor
             backgroundView.layer.cornerCurve = .continuous
         }
+#else
+        backgroundView = UIView()
+        backgroundView.clipsToBounds = true
+        backgroundView.backgroundColor = PreferencesStorage.shared.tintColor
+        backgroundView.layer.cornerCurve = .continuous
+#endif
 
         insertSubview(backgroundView, aboveSubview: bottomStackView)
     }

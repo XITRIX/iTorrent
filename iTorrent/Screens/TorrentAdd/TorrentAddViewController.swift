@@ -43,7 +43,7 @@ class TorrentAddViewController<VM: TorrentAddViewModel>: BaseViewController<VM> 
 
         navigationController?.setToolbarHidden(false, animated: false)
 
-        if #available(iOS 26, *) {
+        if #available(iOS 26, visionOS 99999, *) {
             toolbarItems = [
                 .init(customView: diskLabel),
                 .init(systemItem: .flexibleSpace),
