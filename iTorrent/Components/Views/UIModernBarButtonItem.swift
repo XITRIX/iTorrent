@@ -12,7 +12,11 @@ class UIModernBarButtonItem: UIBarButtonItem {
         get { super.image }
         set {
 #if os(iOS)
-            super.image = newValue?.withConfiguration(UIImage.SymbolConfiguration(textStyle: .body, scale: .large)).withConfiguration(UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .medium))
+            if #available(iOS 26, *) {
+                super.image = newValue
+            } else {
+                super.image = newValue?.withConfiguration(UIImage.SymbolConfiguration(textStyle: .body, scale: .large)).withConfiguration(UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .medium))
+            }
 #else
             super.image = newValue
 #endif
@@ -28,8 +32,12 @@ class UIModernBarButtonItem: UIBarButtonItem {
         self.image = image
 
 #if os(iOS)
-        let image = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(PreferencesStorage.shared.tintColor.withAlphaComponent(0.25), renderingMode: .alwaysOriginal)
-        setBackgroundImage(image, for: .normal, barMetrics: .default)
+        if #available(iOS 26, *) {
+            style = .prominent
+        } else {
+            let image = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(PreferencesStorage.shared.tintColor.withAlphaComponent(0.25), renderingMode: .alwaysOriginal)
+            setBackgroundImage(image, for: .normal, barMetrics: .default)
+        }
 #endif
     }
 
@@ -37,8 +45,10 @@ class UIModernBarButtonItem: UIBarButtonItem {
         super.init(coder: coder)
 
 #if os(iOS)
-        let image = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(.tertiarySystemFill, renderingMode: .alwaysOriginal)
-        setBackgroundImage(image, for: .normal, barMetrics: .default)
+        if #unavailable(iOS 26) {
+            let image = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(.tertiarySystemFill, renderingMode: .alwaysOriginal)
+            setBackgroundImage(image, for: .normal, barMetrics: .default)
+        }
 #endif
     }
 }

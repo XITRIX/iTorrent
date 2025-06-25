@@ -9,7 +9,17 @@ import MvvmFoundation
 import UIKit
 
 class RssChannelViewController<VM: RssChannelViewModel>: BaseCollectionViewController<VM> {
-    private let actionsButton = UIBarButtonItem(title: "Actions", image: .init(systemName: "ellipsis.circle"))
+    private let actionsButton: UIBarButtonItem
+
+    required init(viewModel: VM) {
+        if #available(iOS 26, *) {
+            actionsButton = UIBarButtonItem(title: "Actions", image: .init(systemName: "ellipsis"))
+        } else {
+            actionsButton = UIBarButtonItem(title: "Actions", image: .init(systemName: "ellipsis.circle"))
+        }
+        
+        super.init(viewModel: viewModel)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

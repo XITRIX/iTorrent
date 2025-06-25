@@ -63,6 +63,11 @@ private extension RssDetailsViewController {
 
     func setupDownloadButton() {
         separatorHeight.constant = 1 / traitCollection.displayScale
+
+        if #available(iOS 26, *) {
+            downloadButton.configuration = .prominentGlass()
+        }
+
         downloadButton.configuration?.titleTextAttributesTransformer = .init { attributes in
             var result = attributes
             result.font = UIFont.preferredFont(forTextStyle: .headline)
