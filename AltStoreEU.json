@@ -33,9 +33,6 @@
         "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/3.PNG",
         "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/4.PNG"
       ],
-      "patreon": {
-        "pledge": 2
-      },
       "beta": true,
       "category": "utilities",
       "bundleIdentifier": "com.xitrix.iTorrent2",
