@@ -788,6 +788,12 @@
     },
     "common.login" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Login"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -828,6 +834,12 @@
     },
     "common.ok" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "OK"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -914,6 +926,12 @@
     },
     "common.optional" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Optional"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1000,6 +1018,12 @@
     },
     "common.port" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Port"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2052,6 +2076,12 @@
     },
     "details.info.hash" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hash"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2092,6 +2122,12 @@
     },
     "details.info.hashV2" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hash v2"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2224,6 +2260,12 @@
     },
     "details.pause" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Pause"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2402,6 +2444,12 @@
     },
     "details.rehash" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rehash"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2442,6 +2490,12 @@
     },
     "details.rehash.action" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rehash"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2758,6 +2812,12 @@
     },
     "details.speed.download" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Download"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2844,6 +2904,12 @@
     },
     "details.speed.upload" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Upload"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2884,6 +2950,12 @@
     },
     "details.start" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Start"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2970,6 +3042,12 @@
     },
     "details.transfer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Transfer"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3608,6 +3686,12 @@
     },
     "expire.update" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Update"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4200,6 +4284,12 @@
     },
     "iTorrent" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4286,6 +4376,12 @@
     },
     "list.add.magnet" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Magnet"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4418,6 +4514,12 @@
     },
     "list.add.magnet.placeholder" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "magnet:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4550,6 +4652,12 @@
     },
     "list.add.url" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4682,6 +4790,12 @@
     },
     "list.add.url.placeholder" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5136,6 +5250,12 @@
     },
     "list.sort.name" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Name"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5269,6 +5389,12 @@
     "mime.audio" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Audio"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5545,6 +5671,12 @@
     "mime.video" : {
       "extractionState" : "manual",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Video"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5723,6 +5855,12 @@
     },
     "notification.rss.title" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "RSS Updates"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6177,6 +6315,12 @@
     },
     "patreon.creator.name" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XITRIX (Daniil Vinogradov)"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6195,6 +6339,12 @@
             "value" : "XITRIX (Daniil Vinogradov)"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XITRIX (Daniil Vinogradov)"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6207,8 +6357,7 @@
             "value" : "XITRIX (Daniil Vinogradov)"
           }
         }
-      },
-      "shouldTranslate" : false
+      }
     },
     "patreon.error.credentials" : {
       "localizations" : {
@@ -6856,6 +7005,12 @@
     },
     "preferences.appearance.theme.system" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "System"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7126,6 +7281,12 @@
     },
     "preferences.background.mode.audio" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Audio"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7258,6 +7419,12 @@
     },
     "preferences.donations.patreon" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7574,6 +7741,12 @@
     },
     "preferences.network.connection.port.retries" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Retry range"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8120,6 +8293,12 @@
     },
     "preferences.network.proxy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Proxy"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8252,6 +8431,12 @@
     },
     "preferences.network.proxy.host" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Host"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8292,6 +8477,12 @@
     },
     "preferences.network.proxy.host.name" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hostname"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8746,6 +8937,12 @@
     },
     "preferences.seeding" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seeding"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8832,6 +9029,12 @@
     },
     "preferences.sharing" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "File sharing"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8918,6 +9121,12 @@
     },
     "preferences.sharing.webdavserver" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "WebDav server"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10385,6 +10594,12 @@
     },
     "preferences.version" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Version"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10655,6 +10870,12 @@
     },
     "prioriry.top" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Top"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10695,6 +10916,12 @@
     },
     "proxyType.http" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10735,6 +10962,12 @@
     },
     "proxyType.i2p_proxy" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I2P"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10821,6 +11054,12 @@
     },
     "proxyType.socks4" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS4"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10861,6 +11100,12 @@
     },
     "proxyType.socks5" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS5"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11223,6 +11468,12 @@
     },
     "rssfeed" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "RSS Feed"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11493,6 +11744,12 @@
     },
     "rsslist.preference.url" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11763,6 +12020,12 @@
     },
     "time.day.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "d"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11803,6 +12066,12 @@
     },
     "time.hour.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "h"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11889,6 +12158,12 @@
     },
     "time.minute.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "m"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11929,6 +12204,12 @@
     },
     "time.month.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "M"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11969,6 +12250,12 @@
     },
     "time.second.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "s"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12009,6 +12296,12 @@
     },
     "time.week.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "w"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12049,6 +12342,12 @@
     },
     "time.year.single" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "y"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12595,6 +12894,12 @@
     },
     "tracker.leeches" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Leeches:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12681,6 +12986,12 @@
     },
     "tracker.na" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "N/A"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12721,6 +13032,12 @@
     },
     "tracker.peers" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Peers:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12761,6 +13078,12 @@
     },
     "tracker.seeds" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Seeds:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
