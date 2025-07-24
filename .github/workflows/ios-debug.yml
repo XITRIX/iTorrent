@@ -8,11 +8,11 @@ on:
 
 jobs:
   build_with_signing:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.0
+          xcode-version: 16.4
 
       - name: checkout repository
         uses: actions/checkout@v4
@@ -91,7 +91,7 @@ jobs:
 
   export_ipa:
     needs: [build_with_signing]
-    runs-on: macos-14
+    runs-on: macos-15
     strategy:
       matrix:
         org: [adhoc, prod] 
@@ -103,8 +103,8 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.0
-          
+          xcode-version: 16.4
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
 
