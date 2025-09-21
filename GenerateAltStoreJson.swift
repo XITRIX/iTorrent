@@ -58,7 +58,7 @@ struct AltStoreAppVersionModel: Codable {
 }
 
 struct AltStorePatreonModel: Codable {
-    var pledge: Double
+    var pledge: Double?
     var currency: String?
     var tires: [String]?
 }
