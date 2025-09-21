@@ -64,9 +64,9 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                 pauseButton,
                 fixedSpacing,
                 rehashButton,
-                .init(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                .flexibleSpace(),
                 deleteButton
-            ] :
+            ].compactMap { $0 } :
             [addButton, .init(systemItem: .flexibleSpace), preferencesButton]
     }
 
@@ -168,12 +168,11 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
                     return UIMenu(children: [
                         start,
-                        pause,
+                        pause
 //                        UIMenu(options: .displayInline,
 //                               children: [delete])
                     ])
                 }
-
             }
         }
 
@@ -195,7 +194,6 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         super.viewWillAppear(animated)
         smoothlyDeselectRows(in: collectionView)
     }
-
 
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
@@ -286,7 +284,13 @@ private extension TorrentListViewController {
             }
 
             viewModel.$hasRssNews.uiSink { [unowned self] rssHasNews in
-                rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? .icRssNew.withRenderingMode(.alwaysOriginal) : .icRss, handler: { [unowned self] _ in
+                let rssHasNewsImage: UIImage?
+                if #available(iOS 26, *) {
+                    rssHasNewsImage = .icRssNew.applyingSymbolConfiguration(.init(paletteColors: [.label, .systemRed]))
+                } else {
+                    rssHasNewsImage = .icRssNew.withRenderingMode(.alwaysOriginal)
+                }
+                rssButton.primaryAction = .init(title: %"rssfeed", image: rssHasNews ? rssHasNewsImage : .icRss, handler: { [unowned self] _ in
                     viewModel.showRss()
                 })
             }
@@ -335,7 +339,6 @@ private extension TorrentListViewController {
                 }
             }
         }
-
     }
 }
 
@@ -420,10 +423,12 @@ private extension TorrentListViewController {
 }
 
 private extension TorrentListViewController {
-    var fixedSpacing: UIBarButtonItem {
-        let item = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        item.width = 44
-        return item
+    var fixedSpacing: UIBarButtonItem? {
+        if #available(iOS 26, *) {
+            return nil
+        } else {
+            return UIBarButtonItem.fixedSpace(44)
+        }
     }
 }
 
