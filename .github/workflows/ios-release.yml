@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.4
+          xcode-version: 26.0
 
       - name: checkout repository
         uses: actions/checkout@v4
@@ -114,7 +114,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.4
+          xcode-version: 26.0
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -190,7 +190,7 @@ jobs:
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.4
+          xcode-version: 26.0
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -224,7 +224,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.4
+          xcode-version: 26.0
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -259,7 +259,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.4
+          xcode-version: 26.0
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
