@@ -1,5 +1,5 @@
 [AltStore Button]: https://img.shields.io/badge/Download-AltStore-green?style=flat
-[AltStore Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with AltStore.'
+[AltStore Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-classic://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with AltStore.'
 
 [SideStore Button]: https://img.shields.io/badge/Download-SideStore-purple?style=flat
 [SideStore Link]: https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with SideStore.'
@@ -69,14 +69,14 @@ What can this app do:
 
 ## Localization
 
-Now iTorrent supports the following languages:
+iTorrent supports the following languages:
 - English
 - German
+- Italian
+- Polish
 - Russian
 - Spanish
 - Simplified Chinese
-- Italian
-- Polish
 
 If you are fluent in the languages not listed above and want to help with translation, you are welcome!
 
