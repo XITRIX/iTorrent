@@ -3069,7 +3069,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przenieś"
+            "value" : "Transfer Danych"
           }
         },
         "ru" : {
@@ -5557,7 +5557,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gratis"
+            "value" : "Dostępne"
           }
         },
         "ru" : {
