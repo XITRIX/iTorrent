@@ -212,6 +212,16 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
         super.viewDidLayoutSubviews()
         additionalSafeAreaInsets.bottom = adView.frame.height
         tagsView.scrollToSelectedItem()
+
+        if #available(iOS 26, *),
+           let splitViewController
+        {
+            if !splitViewController.isCollapsed {
+                view.backgroundColor = .clear
+            } else {
+                view.backgroundColor = .systemBackground
+            }
+        }
     }
 }
 

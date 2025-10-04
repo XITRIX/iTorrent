@@ -42,6 +42,21 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
         cell.contentConfiguration = UIHostingConfiguration {
             Self(viewModel: itemIdentifier)
         }
+
+        var config: UIBackgroundConfiguration
+        if #available(iOS 18.0, *) {
+            config = .listCell()
+        } else {
+            config = .listPlainCell()
+        }
+
+        config.backgroundColorTransformer = .init { color in
+            guard !cell.isHighlighted, !cell.isSelected
+            else { return color }
+
+            return .clear
+        }
+        cell.backgroundConfiguration = config
         cell.accessories = [.disclosureIndicator(displayed: .whenNotEditing), .multiselect(displayed: .whenEditing)]
     }
 }
