@@ -8,16 +8,305 @@
   "featuredApps": [
     "com.xitrix.iTorrent2"
   ],
-  "apps": [
-  ],
   "news": [
-      {
-          "title": "iTorrent temporary unavailable",
-          "identifier": "apple_account_issue",
-          "caption": "Apple removed Alternative Distribution functionality from iTorrent's Developer Account. App temporarily removed from AltStore until issue will be solved. Sorry for any inconvenience.",
-          "date": "2025-07-24",
-          "notify": false
-      }
+    {
+      "title": "iTorrent came back!",
+      "identifier": "apple_account_issue_solved",
+      "caption": "We’re back 🎉\niTorrent is available again on AltStore after resolving our account issue.\nThanks for sticking with us!",
+      "date": "2025-10-25",
+      "tintColor": "#EB4144",
+      "notify": true
+    }
+  ],
+  "apps": [
+    {
+      "marketplaceID": "6499499971",
+      "tintColor": "#F19E69",
+      "screenshotURLs": [
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/sidestore/1.png",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/sidestore/2.png",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/sidestore/3.png",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/sidestore/4.png",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/sidestore/5.png"
+      ],
+      "name": "iTorrent",
+      "iconURL": "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/icon.png",
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.security.application-groups"
+        ],
+        "privacy": {}
+      },
+      "screenshots": [
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/1.PNG",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/2.PNG",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/3.PNG",
+        "https://raw.githubusercontent.com/XITRIX/xitrix.github.io/master/screenshots/4.PNG"
+      ],
+      "patreon": {
+        "tiers": [
+          "5007319",
+          "5016009"
+        ]
+      },
+      "beta": true,
+      "category": "utilities",
+      "bundleIdentifier": "com.xitrix.iTorrent2",
+      "versions": [
+        {
+          "version": "2.0.14",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2024-11-29T17:59:41Z",
+          "size": 7027297,
+          "minOSVersion": "16.0",
+          "localizedDescription": "Fixes: \n- Background downloading crash fix and performance improvements",
+          "buildVersion": "1"
+        },
+        {
+          "localizedDescription": "What’s new:\r\n- Status filters in navigation bar\r\n\r\nImprovements:\r\n- Core performance refactoring\r\n\r\nFixes:\r\n- Background download improvements\r\n- #314: End live activities on app termination\r\n- #353: Fixed incorrect byte counting\r\n- Rare crash in torrent trackers list\r\n\r\n**Full Changelog**: https://github.com/XITRIX/iTorrent/compare/v2.0.12-1...v2.0.13-2",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2024-11-23T16:53:53Z",
+          "size": 7025619,
+          "minOSVersion": "16.0",
+          "version": "2.0.13",
+          "buildVersion": "2"
+        },
+        {
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 7002771,
+          "buildVersion": "1",
+          "date": "2024-11-11T22:11:49Z",
+          "localizedDescription": "Fixes:\r\n- `Default port` setting now work properly\r\n- Navigation glitches leading to unresponsive UI fixed\r\n- Improvements for Chinese translation",
+          "version": "2.0.12",
+          "minOSVersion": "16.0"
+        },
+        {
+          "size": 7002901,
+          "date": "2024-10-05T23:16:54Z",
+          "localizedDescription": "What’s new:\r\n- iOS 18 support\r\n- WatchOS 11 Downloading widget\r\n- Chinese translation\r\n- Remote and local tracker source lists",
+          "buildVersion": "3",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "version": "2.0.11",
+          "minOSVersion": "16.0"
+        },
+        {
+          "localizedDescription": "What’s new:\r\n- Spanish localization\r\n- Trackers reannouncement\r\n- Enabled LibTorrent Extensions\r\n- Fixed client name on announcement\r\n- Live Activity UI update throttling",
+          "buildVersion": "1",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2024-07-29T22:10:24Z",
+          "size": 6581661,
+          "minOSVersion": "16.0",
+          "version": "2.0.10"
+        },
+        {
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "buildVersion": "1",
+          "minOSVersion": "16.0",
+          "localizedDescription": "What’s new:\r\n- RSS improvements\r\n- Added null checks for required RSS fields\r\n- RSS download reworked\r\n- Crashlytics fix\r\n\r\n— v2.0.8 —\r\niTorrent's first official release for EU marketplace!\r\n\r\nWhat's new:\r\n- App was rewritten from scratch!\r\n- Powered by latest version of LibTorrent core 2.0.10\r\n- External disks support\r\n- Background download with Live Activity and Dynamic Island progress monitoring\r\n- VPN safety! App will not try to use your direct WiFi or Cellular interfaces, if you will not allow it explicitly\r\n- And much-much more changes under the hood in the same well known design",
+          "date": "2024-07-24T21:40:15Z",
+          "version": "2.0.9",
+          "size": 6555495
+        },
+        {
+          "version": "2.0.8",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2024-07-18T09:12:49Z",
+          "size": 6917810,
+          "minOSVersion": "16.0",
+          "localizedDescription": "iTorrent's first official release for EU marketplace!\r\n\r\nWhat's new:\r\n- App was rewritten from scratch!\r\n- Powered by latest version of LibTorrent core 2.0.10\r\n- External disks support\r\n- Background download with Live Activity and Dynamic Island progress monitoring\r\n- VPN safety! App will not try to use your direct WiFi or Cellular interfaces, if you will not allow it explicitly\r\n- And much-much more changes under the hood in the same well known design",
+          "buildVersion": "1"
+        },
+        {
+          "version": "2.0.7",
+          "buildVersion": "5",
+          "size": 6917642,
+          "minOSVersion": "16.0",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "localizedDescription": "",
+          "date": "2024-07-13T20:58:19Z"
+        },
+        {
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "buildVersion": "4",
+          "date": "2024-07-13T13:06:36Z",
+          "size": 6916445,
+          "version": "2.0.7",
+          "localizedDescription": "",
+          "minOSVersion": "16.0"
+        },
+        {
+          "minOSVersion": "16.0",
+          "date": "2024-07-13T10:31:49Z",
+          "size": 6912532,
+          "buildVersion": "3",
+          "version": "2.0.7",
+          "localizedDescription": "",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP"
+        },
+        {
+          "buildVersion": "2",
+          "localizedDescription": "Beta preview release, report any bugs you find, please",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2024-07-10T21:04:58Z",
+          "size": 6755521,
+          "minOSVersion": "16.0",
+          "version": ".2.0.7"
+        },
+        {
+          "minOSVersion": "16.0",
+          "date": "2023-12-12T10:45:41Z",
+          "version": "Pre",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 18278936,
+          "localizedDescription": "What's new:\r\n- Full iOS 17 support\r\n- Life Activity background progress\r\n- Dynamic Island background progress\r\n- More stable \"Location manager\" background mode (required for Life Activity and Dynamic island)\r\n- Functionality to add batch of trackers at once\r\n- Hash v2 and Hybrid Torrents support\r\n- LibTorrent upgraded to v2.0.9\r\n- Different minor UI changes and fixes\r\n\r\nUP - 16.12.23:\r\n- Build re-uploaded",
+          "buildVersion": "Release 1.9 (December 2023)"
+        },
+        {
+          "localizedDescription": "What's new:\r\n- Patreon fix on iOS 14\r\n- Libtorrent updated to 1.2.10",
+          "minOSVersion": "16.0",
+          "size": 21247865,
+          "version": "Release 1.8.3 (September 2020)",
+          "buildVersion": "1",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2020-09-20T20:18:35Z"
+        },
+        {
+          "buildVersion": "1",
+          "version": "Release 1.8.2 (August 2020)",
+          "date": "2020-08-30T14:08:54Z",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 21200353,
+          "minOSVersion": "16.0",
+          "localizedDescription": "What's new:\r\n- Text accessibility support added\r\n- Huge backend refactoring\r\n- Libtorrent updated to 1.2.9\r\n- Minor UI improvements\r\n- Many bugs fixed (possibly new ones added)"
+        },
+        {
+          "size": 21569387,
+          "version": "Release 1.8.1 (July 2020)",
+          "buildVersion": "1",
+          "localizedDescription": "What's new:\r\n- Added RSS feed\r\n- Improved section partitioning\r\n- Added support for other P2P protocols\r\n- Added support for proxy server\r\n- Added port selection\r\n- Added custom choice of speed limitations\r\n- Libtorrent updated to 1.2.7\r\n- Other, less noticeable interface improvements\r\n- Many bugs fixed (possibly new ones added)",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "date": "2020-07-22T15:52:17Z",
+          "minOSVersion": "16.0"
+        },
+        {
+          "localizedDescription": "What's new:\r\n- Most of the application was rewritten from scratch, no more memory leaks\r\n- Significantly improved stability of the app\r\n- Memory management implemented\r\n- Memory allocation for files before downloading\r\n- Libtorrent updated to 1.2.6\r\n- UI improvements, noticeable and not so much\r\n- Added integration with Patreon",
+          "date": "2020-04-29T21:43:00Z",
+          "buildVersion": "1",
+          "version": "Release 1.8 (April 2020)",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 20945778,
+          "minOSVersion": "16.0"
+        },
+        {
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "localizedDescription": "Fixed:\r\n- Background mode not work if zero speed limit disabled\r\n\r\nWhat's new:\r\n- Added https protocol support for trackers!\r\n- FTP server replaced by WebDAV, file sharing is now possible through a web browser\r\n- Added background stop when downloading at zero speed\r\n- Clicking on a notification now opens a specific window\r\n- UI improvements\r\n",
+          "minOSVersion": "16.0",
+          "date": "2020-03-19T16:09:56Z",
+          "version": "Release 1.7.4 Hotfix (March 2020)",
+          "buildVersion": "1",
+          "size": 20119366
+        },
+        {
+          "buildVersion": "1",
+          "version": "Release 1.7.4 (March 2020)",
+          "minOSVersion": "16.0",
+          "localizedDescription": "What's new:\r\n- Added https protocol support for trackers!\r\n- FTP server replaced by WebDAV, file sharing is now possible through a web browser\r\n- Added background stop when downloading at zero speed\r\n- Clicking on a notification now opens a specific window\r\n- UI improvements\r\n \r\nIssues:\r\n- Background mode not work if zero speed limit disabled",
+          "size": 20108956,
+          "date": "2020-03-10T22:31:52Z",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP"
+        },
+        {
+          "version": "Release 1.7.3 (October 2019)",
+          "buildVersion": "1",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "minOSVersion": "16.0",
+          "localizedDescription": "What's new:\r\n- All core libraries updated to the latest versions\r\n- Added launch screen\r\n- iOS 13 automatic theme switcher\r\n- Huge code refactoring\r\n- Tons of bugs fixed\r\n\r\nKnown issues:\r\n- Torrent files not opening on iOS 13\r\nIt happens if ipa file was resigned (i.e. by Impactor), so any app compiled for iOS 13 will not open torrent file correctly.\r\nYou can use Chrome, Telegram or any another app which was build for older iOS version, to open files.\r\nAlso you can add it by URL or place .torrent file directly into _Config folder using Files app.\r\n",
+          "size": 20052139,
+          "date": "2019-10-13T21:25:54Z"
+        },
+        {
+          "minOSVersion": "16.0",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 19767090,
+          "date": "2019-08-15T08:39:14Z",
+          "version": "Release 1.7.2 (August 2019)",
+          "buildVersion": "1",
+          "localizedDescription": "- Added iOS 13 support\r\n- Added sequential files download\r\n- Added an ability to change trackers\r\n- Added search by your torrents\r\n- Localization fixes\r\n- Theme fixes\r\n- Income call crash fixed\r\n- Minor improvements"
+        },
+        {
+          "date": "2019-06-27T20:41:04Z",
+          "buildVersion": "1",
+          "version": "Release 1.7 (Late June 2019)",
+          "localizedDescription": "- Added iOS 13 support\r\n- Added sequential files download\r\n- Added an ability to change trackers\r\n- Added search by your torrents\r\n- Localization fixes\r\n- Minor improvements\r\n\r\n!Known issues!:\r\n- Cannot open .torrent files from Safari and Files on iOS13\r\nTemporary solution: \r\n- Download files with Chrome, it can send them to iTorrent, or copy .torrent url and add it in app\r\nI think it's iOS bug, and will be fixed in next several updates of OS",
+          "minOSVersion": "16.0",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 14882089
+        },
+        {
+          "date": "2019-01-08T12:59:10Z",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "minOSVersion": "16.0",
+          "buildVersion": "1",
+          "size": 27244338,
+          "localizedDescription": "- Added sending a group of files\r\n- Added file download priority selection\r\n- Localization fixes\r\n- Minor improvements",
+          "version": "Release 1.6.1 (Early January 2019)"
+        },
+        {
+          "buildVersion": "1",
+          "size": 25474754,
+          "date": "2018-08-21T22:31:07Z",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "minOSVersion": "16.0",
+          "version": "Release 1.6 (Late August 2018)",
+          "localizedDescription": "- Added Russian localization\r\n- Added restoration of previous file selection when updating a torrent\r\n- Added small ad banner to support the developer\r\n- Minor improvements\r\n- Bug fixes"
+        },
+        {
+          "minOSVersion": "16.0",
+          "version": "Release 1.5 (Early July 2018)",
+          "buildVersion": "1",
+          "size": 34581435,
+          "date": "2018-07-03T23:45:23Z",
+          "localizedDescription": "Added:\r\n- Seed limit\r\n- Speed limit\r\n- Torrent share\r\n- Trackers list\r\n- Marquee title\r\n\r\nAnd minor improvements",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP"
+        },
+        {
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "size": 34292734,
+          "version": "Release 1.4 (June 2018)",
+          "minOSVersion": "16.0",
+          "localizedDescription": "- Implemented theme system to easy theme creating\r\n- Added dark theme\r\n- Added some alert views with errors instead of app crashing\r\n- Fixed a lot of bugs and fatal exceptions\r\n",
+          "buildVersion": "1",
+          "date": "2018-06-25T23:12:03Z"
+        },
+        {
+          "size": 34211608,
+          "date": "2018-06-19T23:06:25Z",
+          "buildVersion": "1",
+          "minOSVersion": "16.0",
+          "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+          "localizedDescription": "### Added:\r\n- Folders sorting in files view controllers\r\n- Ability to change sections order on main screen\r\n- Lots less visible features \r\n\r\n### Fixed:\r\n- Memory drain of TorrentFilesController\r\n- A lot of minor bugs",
+          "version": "Release 1.3 (June 2018)"
+        }
+      ],
+      "localizedDescription": "iTorrent officially in the AltStore!\n\nIt is an ordinary torrent client for iOS with Files app support and much more.\n\nWhat can this app do:\n\n• Download in the background\n• Live Activity and Dynamic Island progress bar\n• Downloading on external drives\n• Sequential download (use VLC to watch films while loading)\n• Add torrent files from Share menu (Safari and other apps)\n• Add magnet links directly from Safari\n• Store files in Files app\n• File sharing directly from app\n• Download torrent by url\n• Download torrent by magnet\n• Show progress in Dynamic Island\n• Send notification on torrent downloaded\n• Web/WebDav Server\n• Select files download priority\n• Change UI to dark theme\n• Color personalization\n• RSS Feed\n• ???",
+      "developerName": "XITRIX",
+      "permissions": [
+        {
+          "type": "network",
+          "usageDescription": "Needs to download torrents"
+        },
+        {
+          "usageDescription": "Needs to hold app working in background",
+          "type": "background-audio"
+        },
+        {
+          "usageDescription": "More robust alternative to hold app working in background which requires additional permission",
+          "type": "location"
+        }
+      ],
+      "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+      "subtitle": "Torrent client for iOS"
+    }
   ],
   "subtitle": "Torrent client for iOS",
   "identifier": "com.xitrix.itorrent",
