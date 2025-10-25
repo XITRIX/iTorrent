@@ -52,6 +52,7 @@ private extension RssChannelViewController {
         ].compactMap { $0 })
 
         navigationItem.searchController = searchController
+        navigationItem.preferredSearchBarPlacement = .stacked
         navigationItem.trailingItemGroups = [.fixedGroup(items: [actionsButton])]
 
         collectionView.contextMenuConfigurationForItemsAt = { [unowned self] indexPaths, _ in

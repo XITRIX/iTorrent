@@ -11,10 +11,11 @@ import WebKit
 import LibTorrent
 
 class RssDetailsViewController<VM: RssDetailsViewModel>: BaseViewController<VM> {
-    private var webView: WKWebView!
+    private var webView: WKWebView = .init()
     private var webViewViewController: UIViewController!
-    @IBOutlet private var downloadButtonContainer: UIView!
+    @IBOutlet private var downloadButtonContainer: UIVisualEffectView!
     @IBOutlet private var downloadButtonNonSafeAreaHolder: UIView!
+    @IBOutlet private var downloadButtonSeparator: UIView!
     @IBOutlet private var downloadButton: UIButton!
     @IBOutlet private var separatorHeight: NSLayoutConstraint!
 
@@ -65,7 +66,14 @@ private extension RssDetailsViewController {
         separatorHeight.constant = 1 / traitCollection.displayScale
 
         if #available(iOS 26, visionOS 26, *) {
+            downloadButtonContainer.effect = nil
+            downloadButtonSeparator.isHidden = true
             downloadButton.configuration = .prominentGlass()
+
+            let interaction = UIScrollEdgeElementContainerInteraction()
+            interaction.scrollView = webView.scrollView
+            interaction.edge = .bottom
+            downloadButtonContainer.addInteraction(interaction)
         }
 
         downloadButton.configuration?.titleTextAttributesTransformer = .init { attributes in
@@ -86,7 +94,6 @@ private extension RssDetailsViewController {
             navigationItem.setRightBarButton(button, animated: false)
         }
 
-        webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.scrollView.backgroundColor = .systemBackground
         webView.isOpaque = false
@@ -111,7 +118,7 @@ private extension RssDetailsViewController {
         webViewViewController.additionalSafeAreaInsets.left = 8
         webViewViewController.additionalSafeAreaInsets.right = 8
 
-        webView.backgroundColor = .secondarySystemBackground
+        webView.backgroundColor = .systemBackground
 #if !os(visionOS)
         webView.scrollView.keyboardDismissMode = .onDrag
 #endif
