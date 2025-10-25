@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 18.0, *)
 extension UILabel {
     var marqueeEnabled: Bool {
         get { value(forKey: "marqueeEnabled") as? Bool ?? false }

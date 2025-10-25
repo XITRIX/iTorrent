@@ -53,7 +53,9 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
 #endif
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textAlignment = .center
-        titleLabel.enableMarquee()
+        if #available(iOS 18.0, *) {
+            titleLabel.enableMarquee()
+        }
         return titleLabel
     }()
 }
@@ -109,7 +111,9 @@ class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewCon
 #endif
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textAlignment = .center
-        titleLabel.enableMarquee()
+        if #available(iOS 18.0, *) {
+            titleLabel.enableMarquee()
+        }
         return titleLabel
     }()
 }
