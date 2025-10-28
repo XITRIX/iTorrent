@@ -54,6 +54,15 @@
       "bundleIdentifier": "com.xitrix.iTorrent2",
       "versions": [
         {
+        "version": "2.1.0",
+        "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
+        "date": "2025-10-28T12:59:41Z",
+        "size": 7027297,
+        "minOSVersion": "16.0",
+        "localizedDescription": "## What’s new\r\n* iOS 26 Support, iTorrent fully adopted new Liquid Glass design\r\n* LibTorrent updated to version 2.0.11\r\n* On first launch, app will ask if you'd like to use Cellular connection, instead of disabling it by default\r\n* Added German localization by @soebbing in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/369\r\n* Added Italian localization by @fraucs in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/385\r\n* Added Polish localization by @yaptx in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/391\r\n* Added Spanish localization  by @Deci8BelioS in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/396\r\n\r\n## Fixes\r\n* Crash on iOS <18 fixed\r\n\r\n## New Contributors\r\n* @soebbing made their first contribution in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/369\r\n* @fraucs made their first contribution in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/385\r\n* @yaptx made their first contribution in https:\/\/github.com\/XITRIX\/iTorrent\/pull\/391",
+        "buildVersion": "1"
+        },
+        {
           "version": "2.0.14",
           "downloadURL": "https://xitrix.github.io/iTorrent/ADP",
           "date": "2024-11-29T17:59:41Z",
