@@ -25,7 +25,11 @@ class RssListPreferencesViewController<VM: RssListPreferencesViewModel>: BaseCol
         }
 
 #if !os(visionOS)
-        view.backgroundColor = .systemBackground
+        if #available(iOS 26, *) {
+            view.backgroundColor = .clear
+        } else {
+            view.backgroundColor = .systemBackground
+        }
 
         let close = UIBarButtonItem(systemItem: .close)
         close.primaryAction = .init { [unowned self] _ in dismiss() }
