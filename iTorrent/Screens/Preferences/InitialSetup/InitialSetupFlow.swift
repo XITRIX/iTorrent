@@ -18,7 +18,7 @@ class InitialSetupFlow {
         let filteredSetupStack = setupStack.filter { $0.isNeeded }
 
         guard !filteredSetupStack.isEmpty,
-              let topController = keyWindow.rootViewController?.topPresented
+              let topController = keyWindow?.rootViewController?.topPresented
         else { return }
 
         let context = UINavigationController.resolve()

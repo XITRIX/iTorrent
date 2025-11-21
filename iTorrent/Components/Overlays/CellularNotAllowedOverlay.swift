@@ -110,7 +110,7 @@ private extension CellularNotAllowedOverlay {
         overlayViewController.view.setNeedsLayout()
         overlayViewController.view.layoutIfNeeded()
 
-        if let viewController = UIApplication.shared.keySceneWindow.rootViewController?.topPresented,
+        if let viewController = UIApplication.shared.keySceneWindow?.rootViewController?.topPresented,
            let svc = viewController as? UISplitViewController,
            let topVC = svc.detailNavigationController?.topViewController
         {
