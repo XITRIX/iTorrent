@@ -11,11 +11,11 @@ on:
 
 jobs:
   build_with_signing:
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.0
+          xcode-version: 26.1
 
       - name: checkout repository
         uses: actions/checkout@v4
@@ -102,7 +102,7 @@ jobs:
 
   export_ipa:
     needs: [build_with_signing]
-    runs-on: macos-15
+    runs-on: macos-26
     strategy:
       matrix:
         org: [adhoc, prod] 
@@ -114,7 +114,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.0
+          xcode-version: 26.1
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -183,14 +183,14 @@ jobs:
 
   github_release:
     needs: [export_ipa]
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.0
+          xcode-version: 26.1
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -220,11 +220,11 @@ jobs:
 
   altstore_release:
     needs: [github_release]
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.0
+          xcode-version: 26.1
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -255,11 +255,11 @@ jobs:
 
   appstore_release:
     needs: [export_ipa]
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.0
+          xcode-version: 26.1
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
