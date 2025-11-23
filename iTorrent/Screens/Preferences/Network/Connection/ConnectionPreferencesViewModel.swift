@@ -37,6 +37,7 @@ private extension ConnectionPreferencesViewModel {
                     ]), options: .init(tintColor: .tintColor)
                 ),
             ]))
+            PRSwitchViewModel(with: .init(title: %"preferences.network.connection.encryption.validateHttpsTrackers", value: preferences.$validateHttpsTrackers.binding))
         })
 
         sections.append(.init(id: "protocols", header: %"preferences.network.connection.protocols") {

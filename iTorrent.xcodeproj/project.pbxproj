@@ -79,6 +79,7 @@
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
 		7CC634772E09ED88007E3EED /* UILabel+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */; };
+		7CCDB3342ED3469B001E857B /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7CCDB3322ED34680001E857B /* cacert.pem */; };
 		7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
@@ -329,6 +330,7 @@
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Marquee.swift"; sourceTree = "<group>"; };
+		7CCDB3322ED34680001E857B /* cacert.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
 		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -728,6 +730,7 @@
 		7CC411562BD2DCC000CA8B13 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				7CCDB3322ED34680001E857B /* cacert.pem */,
 				7C609A572C1F1D6400586635 /* Info.plist */,
 				7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */,
 				7C609A592C1F2A2700586635 /* iTorrent.xcconfig */,
@@ -1561,6 +1564,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCDB3342ED3469B001E857B /* cacert.pem in Resources */,
 				7CFEBE922BC441980013233F /* RssDetailsViewController.xib in Resources */,
 				D1A226AA2AEEEFDF00669D6D /* LaunchScreen.storyboard in Resources */,
 				7CFEBE742BC3ED480013233F /* RssFeedCell.xib in Resources */,

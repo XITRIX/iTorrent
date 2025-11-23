@@ -81,6 +81,8 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesConnectionNatPmp", true) var isNatEnabled: Bool
 
     @UserDefaultItem("preferencesEncryptionPolicy", .enabled) var encryptionPolicy: Session.Settings.EncryptionPolicy
+    @UserDefaultItem("preferencesValidateHttpsTrackers", true) var validateHttpsTrackers: Bool
+
 
     @UserDefaultItem("preferencesUseDefaultPort", true) var useDefaultPort: Bool
     @UserDefaultItem("preferencesPort", 6881) var port: Int
@@ -132,6 +134,7 @@ class PreferencesStorage: Resolvable {
             .combineLatest($isUpnpEnabled)
             .combineLatest($isNatEnabled)
             .combineLatest($encryptionPolicy)
+            .combineLatest($validateHttpsTrackers)
             .combineLatest($useDefaultPort)
             .combineLatest($port)
             .combineLatest($portBindRetries)
@@ -171,6 +174,7 @@ extension Session.Settings {
         settings.isNatEnabled = preferences.isNatEnabled
 
         settings.encryptionPolicy = preferences.encryptionPolicy
+        settings.validateHttpsTrackers = preferences.validateHttpsTrackers
 
         settings.port = preferences.useDefaultPort ? 6881 : preferences.port
         settings.portBindRetries = preferences.portBindRetries

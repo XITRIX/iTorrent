@@ -38,6 +38,7 @@ private extension TorrentMonitoringService {
         guard let handle = model.handle,
               PreferencesStorage.shared.isDownloadNotificationsEnabled,
               model.oldSnapshot.state != .checkingFiles,
+              model.oldSnapshot.friendlyState != .paused,
               model.oldSnapshot.progressWanted < 1,
               handle.snapshot.progressWanted >= 1
         else { return }

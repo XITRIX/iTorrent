@@ -32,6 +32,7 @@ class TorrentService: @unchecked Sendable {
     static let metadataPath: URL = downloadPath.appending(path: "config")
 
     private lazy var session: Session = {
+        configureOpenSSLCerts()
         var settings = Session.Settings()
         print("Working directory: \(Self.downloadPath.path())")
         return .init(Self.downloadPath.path(), torrentsPath: Self.torrentPath.path(), fastResumePath: Self.fastResumePath.path(), settings: .fromPreferences(with: []), storages: PreferencesStorage.shared.storageScopes)
@@ -45,7 +46,7 @@ class TorrentService: @unchecked Sendable {
 }
 
 extension TorrentService {
-    var storages: Dictionary<UUID, StorageModel> {
+    var storages: [UUID: StorageModel] {
         get { session.storages }
         set { session.storages = newValue }
     }
@@ -120,13 +121,13 @@ private extension TorrentService {
         resolveStorageScopes()
 
         // Pause the core, so it will not deadlock app on making first snapshots
-        session.pause();
+        session.pause()
         torrents = session.torrentsMap.mapValues { torrent in
             torrent.prepareToAdd(into: self)
             return torrent
         }
         // After initialization is done we could resume core
-        session.resume();
+        session.resume()
         session.add(self)
 
         disposeBag.bind {
@@ -182,5 +183,17 @@ private extension TorrentHandle {
                     }
                 }
         }
+    }
+}
+
+private extension TorrentService {
+    func configureOpenSSLCerts() {
+        guard let caPath = Bundle.main.path(forResource: "cacert", ofType: "pem") else {
+            assertionFailure("cacert.pem not found in bundle")
+            return
+        }
+
+        // This is the important line:
+        setenv("SSL_CERT_FILE", caPath, 1)
     }
 }

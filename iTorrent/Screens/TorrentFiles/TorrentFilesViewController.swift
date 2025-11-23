@@ -54,7 +54,24 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
 
 private extension TorrentFilesViewController {
     func reloadMoreMenuButton() {
-        moreMenuButton.isEnabled = !collectionView.indexPathsForSelectedItems.isNilOrEmpty
+        moreMenuButton.isEnabled = true // !collectionView.indexPathsForSelectedItems.isNilOrEmpty
+
+        let selectAllAction = UIAction(title: %"list.selectAll") { [unowned self] _ in
+            for section in 0..<collectionView.numberOfSections {
+                for item in 0..<collectionView.numberOfItems(inSection: section) {
+                    let indexPath = IndexPath(item: item, section: section)
+                    collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+                }
+            }
+            reloadMoreMenuButton()
+        }
+
+        guard !collectionView.indexPathsForSelectedItems.isNilOrEmpty else {
+            moreMenuButton.menu = nil
+            moreMenuButton.primaryAction = selectAllAction
+            moreMenuButton.image = nil
+            return
+        }
 
         let priorityMenu = UIMenu.makeForChangePriority(options: [.displayInline]) { [unowned self] priority in
             viewModel.setPriority(priority, at: collectionView.indexPathsForSelectedItems ?? [])
