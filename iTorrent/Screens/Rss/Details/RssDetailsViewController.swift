@@ -145,7 +145,24 @@ private extension RssDetailsViewController {
             Task { @MainActor in
                 if let torrentFile = await TorrentFile(remote: url) {
                     TorrentAddViewModel.present(with: torrentFile, from: parent)
+                } else if let magnet = MagnetURI(with: url) {
+                    let alert = UIAlertController(title: %"list.add.magnet.title", message: nil, preferredStyle: .alert)
+                    alert.addAction(.init(title: %"common.cancel", style: .cancel))
+                    alert.addAction(.init(title: %"common.ok", style: .default, handler: { [self] _ in
+                        if !TorrentService.shared.addTorrent(by: magnet) {
+                            let alert = UIAlertController(title: %"addTorrent.exists", message: nil, preferredStyle: .alert)
+                            alert.addAction(.init(title: %"common.ok", style: .cancel), isPrimary: true)
+                            parent.present(alert, animated: true)
+                        }
+                    }), isPrimary: true)
+                    parent.present(alert, animated: true)
                 } else {
+                    guard url.scheme == "http" || url.scheme == "https"
+                    else {
+                        print("Unsupported URL scheme")
+                        return
+                    }
+
                     let safari = BaseSafariViewController(url: url)
                     parent.present(safari, animated: true)
                 }
