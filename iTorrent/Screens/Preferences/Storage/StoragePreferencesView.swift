@@ -121,7 +121,7 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
                     }.swipeActions {
                         Button {
                             viewModel.alert(title: %"preferences.storage.remove.title", message: %"preferences.storage.remove.message", actions: [
-                                .init(title: %"common.cancel", style: .cancel),
+                                .init(title: %"common.cancel", style: .cancel, isPrimary: true),
                                 .init(title: %"common.remove", style: .destructive, action: {
                                     withAnimation {
                                         viewModel.preferences.storageScopes[scope.uuid] = nil
@@ -153,7 +153,7 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
 
             guard url.isDirectory else {
                 return viewModel.alert(title: %"common.error", message: %"preferences.storage.add.error.notDirectory", actions: [
-                    .init(title: %"common.close", style: .cancel)
+                    .init(title: %"common.close", style: .cancel, isPrimary: true)
                 ])
             }
 

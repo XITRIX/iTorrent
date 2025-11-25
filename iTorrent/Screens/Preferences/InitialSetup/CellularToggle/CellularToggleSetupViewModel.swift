@@ -26,7 +26,7 @@ class CellularToggleSetupViewModel: BaseViewModelWith<CellularToggleSetupViewMod
 
     func allowCellularAction() {
         alert(title: %"initialSetup.cellular.allowCheck.title", style: .actionSheet, actions: [
-            .init(title: %"common.cancel", style: .cancel),
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true),
             .init(title: %"initialSetup.cellular.allowCheck.confirm", style: .destructive, action: { [unowned self] in
                 PreferencesStorage.shared.isCellularEnabled = true
                 completion()

@@ -49,7 +49,7 @@ class TorrentListItemViewModel: BaseViewModelWith<TorrentHandle>, MvvmSelectable
             .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
-            .init(title: %"common.cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true)
         ])
     }
 }

@@ -42,7 +42,7 @@ extension RssListViewModel {
         }
 
         alert(title: %"rsslist.remove.title", message: %"rsslist.remove.message", actions: [
-            .init(title: %"common.cancel", style: .cancel),
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true),
             .init(title: %"common.delete", style: .destructive, action: { [rssProvider] in
                 rssProvider.removeFeeds(items)
             })

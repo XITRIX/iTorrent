@@ -382,20 +382,20 @@ private extension TorrentListViewController {
                   let magnet = MagnetURI(with: url)
             else {
                 let alert = UIAlertController(title: %"common.error", message: %"list.add.magnet.error", preferredStyle: .alert)
-                alert.addAction(.init(title: %"common.close", style: .cancel))
+                alert.addAction(.init(title: %"common.close", style: .cancel), isPrimary: true)
                 present(alert, animated: true)
                 return
             }
 
             guard !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes) else {
                 let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(magnet.infoHashes.best.hex)_exists", preferredStyle: .alert)
-                alert.addAction(.init(title: %"common.close", style: .cancel))
+                alert.addAction(.init(title: %"common.close", style: .cancel), isPrimary: true)
                 present(alert, animated: true)
                 return
             }
 
             TorrentService.shared.addTorrent(by: magnet)
-        })
+        }, isPrimary: true)
         return alert
     }
 
@@ -421,7 +421,7 @@ private extension TorrentListViewController {
 
                 TorrentAddViewModel.present(with: torrentFile, from: self)
             }
-        })
+        }, isPrimary: true)
         return alert
     }
 

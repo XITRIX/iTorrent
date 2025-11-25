@@ -153,7 +153,7 @@ extension TorrentDetailsViewModel {
 
         alert(title: %"details.rehash.title", message: %"details.rehash.message", actions: [
             .init(title: %"common.cancel", style: .cancel),
-            .init(title: %"details.rehash.action", style: .destructive, action: { [unowned self] in
+            .init(title: %"details.rehash.action", style: .destructive, isPrimary: true, action: { [unowned self] in
                 torrentHandle.rehash()
             }),
         ])
@@ -163,11 +163,11 @@ extension TorrentDetailsViewModel {
         guard let storage = torrentHandle.storage else { return }
         alert(title: %"details.refreshStorage.title", message: %"details.refreshStorage.message", actions: [
             .init(title: %"common.cancel", style: .cancel),
-            .init(title: %"common.continue", style: .default, action: { [self] in
+            .init(title: %"common.continue", style: .default, isPrimary: true, action: { [self] in
                 DispatchQueue.global(qos: .userInitiated).async { [self] in
                     guard !torrentService.refreshStorage(storage) else { return }
                     alert(title: %"common.error", message: %"details.refreshStorage.fail.message", actions: [
-                        .init(title: %"common.close", style: .cancel)
+                        .init(title: %"common.close", style: .cancel, isPrimary: true)
                     ])
                 }
             })
@@ -182,7 +182,7 @@ extension TorrentDetailsViewModel {
             .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
-            .init(title: %"common.cancel", style: .cancel),
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true),
         ])
     }
 

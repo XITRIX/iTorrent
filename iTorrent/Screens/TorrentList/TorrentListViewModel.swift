@@ -150,7 +150,7 @@ extension TorrentListViewModel {
 
         alert(title: %"details.rehash.title", message: %"details.rehash.message", actions: [
             .init(title: %"common.cancel", style: .cancel),
-            .init(title: %"details.rehash.action", style: .destructive, action: {
+            .init(title: %"details.rehash.action", style: .destructive, isPrimary: true, action: {
                 torrentModels.forEach { $0.torrentHandle.rehash() }
             })
         ])
@@ -171,7 +171,7 @@ extension TorrentListViewModel {
                     TorrentService.shared.removeTorrent(by: torrentModel.torrentHandle.snapshot.infoHashes, deleteFiles: false)
                 }
             }),
-            .init(title: %"common.cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true)
         ])
     }
 
@@ -183,7 +183,7 @@ extension TorrentListViewModel {
             .init(title: %"torrent.remove.action.keepData", style: .default, action: {
                 TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
-            .init(title: %"common.cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true)
         ])
     }
 

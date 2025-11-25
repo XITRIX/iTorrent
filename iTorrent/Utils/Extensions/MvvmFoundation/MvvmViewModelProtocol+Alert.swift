@@ -42,7 +42,7 @@ extension MvvmViewModelProtocol {
         }
 
         dialog.addAction(cancel)
-        dialog.addAction(ok)
+        dialog.addAction(ok, isPrimary: true)
 
         DispatchQueue.main.async {
             editTextView.becomeFirstResponder()

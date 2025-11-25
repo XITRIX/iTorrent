@@ -173,7 +173,7 @@ extension TorrentAddViewModel {
         else { return false }
 
         let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(torrentFile.infoHashes.best.hex)_exists", preferredStyle: .alert)
-        alert.addAction(.init(title: %"common.close", style: .cancel))
+        alert.addAction(.init(title: %"common.close", style: .cancel), isPrimary: true)
         navigationContext.present(alert, animated: true)
         return true
     }

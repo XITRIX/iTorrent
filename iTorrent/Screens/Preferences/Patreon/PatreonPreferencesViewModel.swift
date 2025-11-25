@@ -87,7 +87,7 @@ extension PatreonPreferencesViewModel {
             }
         } else {
             alert(title: %"patreon.action.unlink.title",style: .actionSheet, actions: [
-                .init(title: %"common.cancel", style: .cancel),
+                .init(title: %"common.cancel", style: .cancel, isPrimary: true),
                 .init(title: %"patreon.action.unlink.button", style: .destructive) { [unowned self] in
                     try? patreonService.signOut()
                     accountState.value = .none

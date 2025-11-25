@@ -42,7 +42,7 @@ class TrackersListPreferencesViewModel: BaseViewModel, ObservableObject, @unchec
 
             Task {
                 guard !self.trackersListService.trackerSources.value.keys.contains(where: { $0 == .remote(url) }) else {
-                    self.alert(title: %"preferences.trackers.exists.title", actions: [.init(title: %"common.ok", style: .cancel)])
+                    self.alert(title: %"preferences.trackers.exists.title", actions: [.init(title: %"common.ok", style: .cancel, isPrimary: true)])
                     return
                 }
                 try await self.trackersListService.addTrackersSource(url, title: results[0])
@@ -102,7 +102,7 @@ struct TrackersListPreferencesView<VM: TrackersListPreferencesViewModel>: MvvmSw
                         .swipeActions {
                             Button {
                                 viewModel.alert(title: %"preferences.trackers.remove.title", message: %"preferences.trackers.remove.message", actions: [
-                                    .init(title: %"common.cancel", style: .cancel),
+                                    .init(title: %"common.cancel", style: .cancel, isPrimary: true),
                                     .init(title: %"common.remove", style: .destructive, action: {
                                         withAnimation {
                                             viewModel.trackersListService.trackerSources.value[state.source] = nil

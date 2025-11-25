@@ -82,6 +82,7 @@
 		7CCDB3342ED3469B001E857B /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7CCDB3322ED34680001E857B /* cacert.pem */; };
 		7CCDB3372ED5B4B6001E857B /* UIImage+IOSRelatedIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */; };
 		7CCDB3392ED5DF56001E857B /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */; };
+		7CCDB33B2ED5F4B4001E857B /* UIAlertController+PrimaryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB33A2ED5F4AC001E857B /* UIAlertController+PrimaryAction.swift */; };
 		7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
@@ -335,6 +336,7 @@
 		7CCDB3322ED34680001E857B /* cacert.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
 		7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+IOSRelatedIcons.swift"; sourceTree = "<group>"; };
 		7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
+		7CCDB33A2ED5F4AC001E857B /* UIAlertController+PrimaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PrimaryAction.swift"; sourceTree = "<group>"; };
 		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -677,6 +679,7 @@
 		7C95B7B52C385B8E000EC50F /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				7CCDB33A2ED5F4AC001E857B /* UIAlertController+PrimaryAction.swift */,
 				7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */,
 				7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */,
 				7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */,
@@ -1818,6 +1821,7 @@
 				D1B99D942BEE631B00F51514 /* Tier.swift in Sources */,
 				D1A226A02AEEEFCC00669D6D /* SceneDelegate.swift in Sources */,
 				D11BE5442AFB901E00780C1B /* PRSwitchView.swift in Sources */,
+				7CCDB33B2ED5F4B4001E857B /* UIAlertController+PrimaryAction.swift in Sources */,
 				D173D9E32BC0327D00E4F9EB /* BackgroundService.swift in Sources */,
 				7CB58D842CE662BB00929205 /* TagsView.swift in Sources */,
 				D1352D382BBD73CD00104E7B /* ColoredProgressBarView.swift in Sources */,

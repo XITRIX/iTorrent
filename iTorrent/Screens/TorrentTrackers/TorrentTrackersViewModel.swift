@@ -79,7 +79,7 @@ extension TorrentTrackersViewModel {
                 torrentHandle.removeTrackers(urls)
                 reload()
             }),
-            .init(title: %"common.cancel", style: .cancel)
+            .init(title: %"common.cancel", style: .cancel, isPrimary: true)
         ])
     }
 
