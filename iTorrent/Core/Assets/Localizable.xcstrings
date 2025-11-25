@@ -2241,7 +2241,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obecna ścieżka"
+            "value" : "Zapisano W"
           }
         },
         "ru" : {
@@ -2471,7 +2471,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odnów hasz"
+            "value" : "Odśwież hasz"
           }
         },
         "ru" : {
@@ -2517,7 +2517,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odnów hasz"
+            "value" : "Odśwież hasz"
           }
         },
         "ru" : {
@@ -2609,7 +2609,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odnów hasz Torrenta"
+            "value" : "Odśwież hasz Torrenta"
           }
         },
         "ru" : {
@@ -3069,7 +3069,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Przenieś"
+            "value" : "Transfer Danych"
           }
         },
         "ru" : {
@@ -5603,7 +5603,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gratis"
+            "value" : "Dostępne"
           }
         },
         "ru" : {
@@ -8826,7 +8826,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Po zakończeniu pobierania"
+            "value" : "Po ukończeniu pobierania"
           }
         },
         "ru" : {
@@ -9102,7 +9102,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zakończ po ukończeniu pobierania"
+            "value" : "Zakończ po pobraniu"
           }
         },
         "ru" : {
@@ -9372,13 +9372,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utilizza un browser web per la condivisione file "
+            "value" : "Utilizza un browser web per la condivisione file"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Do udostępniania plików możesz jakiejkolwiek przeglądarki"
+            "value" : "Użyj jakiejkolwiek przeglądarki do udostępniania plików"
           }
         },
         "ru" : {
@@ -10253,7 +10253,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tytuł"
+            "value" : "Nazwa"
           }
         },
         "ru" : {
@@ -11909,7 +11909,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tytuł"
+            "value" : "Nazwa"
           }
         },
         "ru" : {
