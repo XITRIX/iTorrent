@@ -60,7 +60,7 @@ extension TorrentService {
         guard session.torrentsMap[file.infoHashes] == nil
         else { return false }
 
-        session.addTorrent(file, to: storage)
+        session.addTorrent(file, to: storage ?? preferences.defaultStorage)
         return true
     }
 
