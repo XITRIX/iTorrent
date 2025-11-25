@@ -11,6 +11,7 @@ import UIKit
 class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<VM> {
     private let addButton = UIBarButtonItem()
     private let removeButton = UIBarButtonItem()
+    private let importExportButton = UIBarButtonItem()
 
     override var isToolbarItemsHidden: Bool { !isEditing }
 
@@ -30,9 +31,9 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
                 removeButton.isEnabled = available
             }
 
-//            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
-//                viewModel.selectedIndexPaths = indexPaths
-//            }
+            collectionView.$selectedIndexPaths.receive(on: DispatchQueue.main).sink { [unowned self] _ in
+                reloadItems()
+            }
 
             collectionView.diffDataSource.didReorderCells.sink { [unowned self] transaction in
                 guard let firstSection = transaction.finalSnapshot.sectionIdentifiers.first
@@ -65,6 +66,9 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
         removeButton.primaryAction = .init(title: %"rsslist.remove.title", image: .init(systemName: "trash"), handler: { [unowned self] _ in
             viewModel.removeSelected()
         })
+
+        importExportButton.image = .systemEllipsis
+        reloadItems()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +88,41 @@ class RssListViewController<VM: RssListViewModel>: BaseCollectionViewController<
                 addButton,
                 .init(systemItem: .flexibleSpace),
                 removeButton,
-                .init(systemItem: .flexibleSpace)
+                .init(systemItem: .flexibleSpace),
             ] : []
         navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: true)
+
+        if editing {
+            navigationItem.trailingItemGroups = [.fixedGroup(items: [importExportButton, editButtonItem])]
+        } else {
+            navigationItem.trailingItemGroups = [.fixedGroup(items: [editButtonItem])]
+        }
+    }
+}
+
+private extension RssListViewController {
+    func reloadItems() {
+        importExportButton.menu = .init(children: [
+            UIAction(title: collectionView.selectedIndexPaths.count == 0 ? %"rss.exportAll" : %"rss.exportSelected",
+                     image: .init(systemName: "square.and.arrow.up")) { [unowned self] _ in
+                let file = viewModel.exportChannels(collectionView.selectedIndexPaths)
+
+                let vc = UIActivityViewController(activityItems: [file], applicationActivities: nil)
+                if vc.popoverPresentationController != nil {
+                    vc.popoverPresentationController?.barButtonItem = importExportButton
+                    vc.popoverPresentationController?.permittedArrowDirections = .any
+                }
+                present(vc, animated: true)
+            },
+            UIAction(title: %"rss.import",
+                     image: .init(systemName: "square.and.arrow.down")) { [unowned self] _ in
+                Task {
+                    guard let file = await DocumentPickerViewController.pickFile([.plainText], from: self)
+                    else { return }
+
+                    await viewModel.importChannels(from: file)
+                }
+            },
+        ])
     }
 }

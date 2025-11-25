@@ -80,6 +80,8 @@
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
 		7CC634772E09ED88007E3EED /* UILabel+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */; };
 		7CCDB3342ED3469B001E857B /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7CCDB3322ED34680001E857B /* cacert.pem */; };
+		7CCDB3372ED5B4B6001E857B /* UIImage+IOSRelatedIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */; };
+		7CCDB3392ED5DF56001E857B /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */; };
 		7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
@@ -331,6 +333,8 @@
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Marquee.swift"; sourceTree = "<group>"; };
 		7CCDB3322ED34680001E857B /* cacert.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
+		7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+IOSRelatedIcons.swift"; sourceTree = "<group>"; };
+		7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
 		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
 		7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -673,6 +677,7 @@
 		7C95B7B52C385B8E000EC50F /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */,
 				7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */,
 				7CB831182D194840005F3F42 /* UIApplication+KeySceneWindow.swift */,
 				7CB58D852CE6AC6F00929205 /* NavigationItemPalette */,
@@ -743,6 +748,14 @@
 				D1A226A62AEEEFDF00669D6D /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		7CCDB3352ED5B4A2001E857B /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */,
+			);
+			path = UIImage;
 			sourceTree = "<group>";
 		};
 		7CFEBE682BC3E0DF0013233F /* Rss */ = {
@@ -1116,6 +1129,7 @@
 		D19E00242AF045DF000A17A2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7CCDB3352ED5B4A2001E857B /* UIImage */,
 				7C519C8D2C4282F000E353A9 /* Foundation */,
 				7C95B7B52C385B8E000EC50F /* UIKit */,
 				7C5FBE722BC2F0940069E5A0 /* MvvmFoundation */,
@@ -1642,6 +1656,7 @@
 				7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */,
 				D1FFC96C2C382FC900233C2F /* StorageModel+Extensions.swift in Sources */,
 				D1F8BC852AFC405A00A6258C /* MvvmViewModel+Alert.swift in Sources */,
+				7CCDB3392ED5DF56001E857B /* DocumentPickerViewController.swift in Sources */,
 				D17871FF2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift in Sources */,
 				D135C59C2AEFB96F00440680 /* TorrentDetailsViewModel.swift in Sources */,
 				D1B99D912BEE631B00F51514 /* Patron.swift in Sources */,
@@ -1755,6 +1770,7 @@
 				D1A5D0CE2BE52728003E05D5 /* AdView+Google.swift in Sources */,
 				D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */,
 				D17733F52BBC2D0F006FC81A /* ConnectionPreferencesViewModel.swift in Sources */,
+				7CCDB3372ED5B4B6001E857B /* UIImage+IOSRelatedIcons.swift in Sources */,
 				7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */,
 				D1A227012AEF05A600669D6D /* TorrentListViewModel.swift in Sources */,
 				D1A227092AEF0B6A00669D6D /* TorrentListItemViewModel.swift in Sources */,

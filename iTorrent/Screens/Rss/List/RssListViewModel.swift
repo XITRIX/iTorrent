@@ -55,6 +55,30 @@ extension RssListViewModel {
             rssProvider.rssModels = rssModels
         }
     }
+
+    func importChannels(from fileUrl: URL) async {
+        guard let data = try? Data(contentsOf: fileUrl),
+              let text = String(data: data, encoding: .utf8)
+        else { return }
+
+        for url in text.components(separatedBy: "\n") {
+            guard URL(string: url) != nil else { return }
+            _ = try? await rssProvider.addFeed(url)
+        }
+    }
+
+    func exportChannels(_ indexes: [IndexPath]) -> URL {
+        let urls = rssProvider.rssModels.enumerated().filter({ indexes.isEmpty || indexes.contains(IndexPath(item: $0.offset, section: 0)) }).map { $0.element.xmlLink }
+
+        let text = urls.map({ $0.absoluteString }).joined(separator: "\n")
+        let data = text.data(using: .utf8)
+
+        let filePath = FileManager.default.temporaryDirectory.appending(path: "rssExport.txt")
+        try? FileManager.default.removeItem(at: filePath)
+        FileManager.default.createFile(atPath: filePath.path(percentEncoded: false), contents: data)
+
+        return filePath
+    }
 }
 
 private extension RssListViewModel {

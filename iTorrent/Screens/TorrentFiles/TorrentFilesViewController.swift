@@ -100,7 +100,7 @@ private extension TorrentFilesViewController {
 
         moreMenuButton.menu = menu
         moreMenuButton.primaryAction = nil
-        moreMenuButton.image = .init(systemName: "ellipsis.circle")
+        moreMenuButton.image = .systemEllipsis
     }
 }
 

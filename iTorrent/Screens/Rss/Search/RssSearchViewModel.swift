@@ -17,6 +17,7 @@ class RssSearchViewModel: BaseCollectionViewModel {
         binding()
     }
 
+    private var reloadTask: Task<Void, Error>?
     private var items: [RssChannelItemCellViewModel] = []
     @Injected private var rssProvider: RssFeedProvider
 }
@@ -40,7 +41,7 @@ private extension RssSearchViewModel {
                 rssProvider.rssModels.flatMap { $0.items }
             }
 
-            Publishers.combineLatest(rssItems, $searchQuery) { models, searchQuery in
+            Publishers.combineLatest(rssItems, $searchQuery.throttle(for: 0.5, scheduler: DispatchQueue.global(qos: .userInitiated), latest: true)) { models, searchQuery in
                 Self.filter(models: models, by: searchQuery)
             }
             .sink { [unowned self] values in
@@ -51,10 +52,15 @@ private extension RssSearchViewModel {
 
     func reload(_ rssItems: [RssItemModel]) {
         // TODO: Need to rewrite this DispatchQueue mess
-        DispatchQueue.global(qos: .userInitiated).async { [self] in
-            items = rssItems
-                .sorted(by: { $0.date ?? .distantPast > $1.date ?? .distantPast })
+        reloadTask?.cancel()
+        reloadTask = Task {
+            items = try rssItems
+                .sorted(by: {
+                    try Task.checkCancellation()
+                    return $0.date ?? .distantPast > $1.date ?? .distantPast
+                })
                 .map { model in
+                    try Task.checkCancellation()
                     let vm: RssChannelItemCellViewModel
                     if let existing = items.first(where: { $0.model == model }) {
                         vm = existing
@@ -97,8 +103,8 @@ private extension RssSearchViewModel {
 
     static func filter(models: [RssItemModel], by searchQuery: String) -> [RssItemModel] {
         models.filter { model in
-            searchQuery.split(separator: " ").allSatisfy { (model.title ?? "").localizedCaseInsensitiveContains($0) } ||
-                searchQuery.split(separator: " ").allSatisfy { (model.description ?? "").localizedCaseInsensitiveContains($0) }
+            searchQuery.split(separator: " ").allSatisfy { (model.title ?? "").localizedCaseInsensitiveContains($0) }
+//            || searchQuery.split(separator: " ").allSatisfy { (model.description ?? "").localizedCaseInsensitiveContains($0) }
         }
     }
 }
