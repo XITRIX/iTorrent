@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
     "%@ of %@ (%@)" : {
       "localizations" : {
         "de" : {
@@ -92,6 +98,9 @@
           }
         }
       }
+    },
+    "Add Torrent" : {
+
     },
     "add.dismiss.message" : {
       "extractionState" : "manual",
@@ -1245,6 +1254,12 @@
           }
         }
       }
+    },
+    "Delete Keeping Files" : {
+
+    },
+    "Delete With Files" : {
+
     },
     "details.actions" : {
       "localizations" : {
@@ -3408,6 +3423,9 @@
         }
       }
     },
+    "Dict: %@" : {
+
+    },
     "encryptionPolicy.disabled" : {
       "localizations" : {
         "de" : {
@@ -3730,6 +3748,9 @@
         }
       }
     },
+    "File: %@" : {
+
+    },
     "file.open" : {
       "localizations" : {
         "de" : {
@@ -3867,6 +3888,12 @@
           }
         }
       }
+    },
+    "Files" : {
+
+    },
+    "General" : {
+
     },
     "initialSetup.cellular.allowCheck.confirm" : {
       "localizations" : {
@@ -6726,6 +6753,9 @@
           }
         }
       }
+    },
+    "Peers" : {
+
     },
     "preferences" : {
       "localizations" : {
@@ -10776,6 +10806,9 @@
         }
       }
     },
+    "Primary Info" : {
+
+    },
     "prioriry.change.title" : {
       "localizations" : {
         "de" : {
@@ -12248,6 +12281,9 @@
         }
       }
     },
+    "Search" : {
+
+    },
     "time.day.single" : {
       "localizations" : {
         "de" : {
@@ -13674,6 +13710,9 @@
         }
       }
     },
+    "Trackers" : {
+
+    },
     "trackers.action.copy" : {
       "localizations" : {
         "de" : {
@@ -14455,6 +14494,9 @@
           }
         }
       }
+    },
+    "Transfer" : {
+
     },
     "webserver.unavailable" : {
       "localizations" : {

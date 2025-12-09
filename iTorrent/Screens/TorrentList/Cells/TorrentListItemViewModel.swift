@@ -63,19 +63,3 @@ private extension TorrentListItemViewModel {
         progress = torrentHandle.snapshot.progress
     }
 }
-
-private extension TorrentHandle.Snapshot {
-    var stateText: String {
-        let state = friendlyState
-        var text = "\(state.name)"
-
-        if state == .downloading {
-            text += " - ↓ \(downloadRate.bitrateToHumanReadable)/s"
-            text += " - \(timeRemains)"
-        } else if state == .seeding {
-            text += " - ↑ \(uploadRate.bitrateToHumanReadable)/s"
-        }
-
-        return text
-    }
-}

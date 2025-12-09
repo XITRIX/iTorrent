@@ -5,6 +5,7 @@
 //  Created by Даниил Виноградов on 31.05.2024.
 //
 
+#if canImport(SafariServices)
 import SafariServices
 
 class BaseSafariViewController: SFSafariViewController {
@@ -15,3 +16,7 @@ class BaseSafariViewController: SFSafariViewController {
         #endif
     }
 }
+#else
+import UIKit
+class BaseSafariViewController: UIViewController {}
+#endif

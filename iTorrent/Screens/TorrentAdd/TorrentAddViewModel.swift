@@ -36,21 +36,7 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
         completion = model.completion
         downloadStorage.value = preferences.defaultStorage
 
-        keys = rootDirectory.storage
-            .sorted(by: { first, second in
-                let f = first.value.name
-                let s = second.value.name
-                return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
-            })
-            .sorted(by: { first, second in
-                if !first.key.starts(with: "./"), !second.key.starts(with: "./") {
-                    let f = first.value.name
-                    let s = second.value.name
-                    return f.localizedCaseInsensitiveCompare(s) == .orderedAscending
-                }
-                return !first.key.starts(with: "./")
-            })
-            .map { $0.key }
+        keys = rootDirectory.makeKeys()
     }
 
     override func willAppear() {

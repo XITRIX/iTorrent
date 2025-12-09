@@ -14,7 +14,7 @@ import Network
 
 class PreferencesStorage: Resolvable {
     private init() {
-        #if !IS_SUPPORT_LOCATION_BG
+        #if !IS_SUPPORT_LOCATION_BG && !os(tvOS)
         // Location mode is not allowed by Apple policy
         backgroundMode = .audio
         #endif
@@ -51,7 +51,9 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("torrentIsStorageRulesAccepted", false) var isStorageRulesAccepted: Bool
     @UserDefaultItem("torrentStorageScopes", [:]) var storageScopes: [UUID: StorageModel]
 
+    #if !os(tvOS)
     @UserDefaultItem("torrentListSortType", .alphabetically) var torrentListSortType: TorrentListViewModel.Sort
+    #endif
     @UserDefaultItem("torrentListSortReverced", false) var torrentListSortReverced: Bool
     @UserDefaultItem("torrentListIsGroubedByState", false) var torrentListGroupedByState: Bool
 
@@ -96,16 +98,20 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesProxyPassword", "") var proxyPassword: String
     @UserDefaultItem("preferencesProxyPeerConnections", true) var proxyPeerConnections: Bool
 
+    #if !os(tvOS)
     @UserDefaultItem("preferencesApplicationAppearance", .unspecified) var appAppearance: UIUserInterfaceStyle
     @NSUserDefaultItem("preferencesTintColor", .accent) var tintColor: UIColor
+    #endif
 
     @UserDefaultItem("preferencesNotificationsDownload", true) var isDownloadNotificationsEnabled: Bool
     @UserDefaultItem("preferencesNotificationsSeed", true) var isSeedNotificationsEnabled: Bool
 
+    #if !os(tvOS)
     @UserDefaultItem("preferencesBackgroundDownloadEnabled", true) var isBackgroundDownloadEnabled: Bool
     @UserDefaultItem("preferencesBackgroundMode", .audio) var backgroundMode: BackgroundService.Mode
     @UserDefaultItem("preferencesBackgroundAllowSeeding", false) var isBackgroundSeedingEnabled: Bool
     @UserDefaultItem("preferencesBackgroundLocationIndicator", false) var isBackgroundLocationIndicatorEnabled: Bool
+    #endif
 
     @UserDefaultItem("preferencesIsFileSharingEnabled", false) var isFileSharingEnabled: Bool
     @UserDefaultItem("preferencesIsWebServerEnabled", false) var isWebServerEnabled: Bool
@@ -115,9 +121,11 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesWebServerLogin", "") var webServerLogin: String
     @UserDefaultItem("preferencesWebServerPassword", "") var webServerPassword: String
 
+    #if !os(tvOS)
     @UserDefaultItem("preferencesPatreonAccount", nil) var patreonAccount: PatreonAccount?
     @UserDefaultItem("preferencesPatreonToken", nil) var patreonToken: PatreonToken?
     @UserDefaultItem("preferencesPatreonCredentials", nil) var patreonCredentials: PatreonCredentials?
+    #endif
 
     @UserDefaultItem("initialSetupCellularPassed", false) var initialSetupCellularPassed: Bool
 

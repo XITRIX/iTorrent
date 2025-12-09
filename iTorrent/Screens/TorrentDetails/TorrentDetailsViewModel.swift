@@ -324,15 +324,3 @@ private extension TorrentDetailsViewModel {
         })
     }
 }
-
-extension TorrentHandle.Snapshot {
-    var timeRemains: String {
-        guard downloadRate > 0 else { return %"time.infinity" }
-        guard totalWanted >= totalWantedDone else { return "Almost done" }
-        return ((totalWanted - totalWantedDone) / downloadRate).timeString
-    }
-
-    var segmentedProgress: [Double] {
-        pieces?.map { $0.doubleValue } ?? [0]
-    }
-}

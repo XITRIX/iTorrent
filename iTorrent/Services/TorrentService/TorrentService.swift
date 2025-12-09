@@ -17,7 +17,7 @@ extension TorrentService {
     }
 }
 
-class TorrentService: @unchecked Sendable {
+class TorrentService: @unchecked Sendable, ObservableObject {
     @Published var torrents: [TorrentHashes: TorrentHandle] = [:]
     var updateNotifier = PassthroughSubject<TorrentUpdateModel, Never>()
 
