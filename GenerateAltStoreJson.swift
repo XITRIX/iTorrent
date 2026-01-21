@@ -37,6 +37,8 @@ struct AltStoreAppPermissionModel: Codable {
     var entitlements: [String] = ["com.apple.security.application-groups"]
     var privacy: [String: String] = [
         :
+
+
         // "NSLocationWhenInUseUsageDescription": "More robust alternative to hold app working in background which requires additional permission, enables Dynamic Island progress extension",
         // "NSLocationAlwaysAndWhenInUseUsageDescription": "This additional permission allows to hide location indicator from status bar during background downloading",
     ]
@@ -60,7 +62,16 @@ struct AltStoreAppVersionModel: Codable {
 struct AltStorePatreonModel: Codable {
     var pledge: Double?
     var currency: String?
-    var tires: [String]?
+    var tiers: [String]?
+}
+
+struct News: Codable {
+    var title: String
+    var identifier: String
+    var caption: String
+    var date: String
+    var tintColor: String
+    var notify: Bool
 }
 
 struct AltStoreAppModel: Codable {
@@ -72,7 +83,7 @@ struct AltStoreAppModel: Codable {
     var localizedDescription: String =
         """
         iTorrent officially in the AltStore!
-        
+
         It is an ordinary torrent client for iOS with Files app support and much more.
 
         What can this app do:
@@ -125,6 +136,7 @@ struct AltStoreSourceModel: Codable {
     var tintColor: String? = "#F19E69"
     var featuredApps: [String] = ["com.xitrix.iTorrent2"]
     var apps: [AltStoreAppModel]
+    var news: [News]
 }
 
 // MARK: - GitHub Models
@@ -185,8 +197,18 @@ enum AltServerGenerator {
                     marketplaceID: withNotarization ? "6499499971" : nil,
                     downloadURL: withNotarization ? notorizationADPUrl : versions.first?.downloadURL ?? "",
                     versions: versions,
-                    patreon: .init(tires: ["5007319", "5016009"]),
+                    patreon: .init(tiers: ["5007319", "5016009"]),
                     beta: true
+                ),
+            ],
+            news: [
+                News(
+                    title: "iTorrent came back!",
+                    identifier: "apple_account_issue_solved",
+                    caption: "We’re back 🎉\niTorrent is available again on AltStore after resolving our account issue.\nThanks for sticking with us!",
+                    date: "2025-10-25",
+                    tintColor: "#EB4144",
+                    notify: true
                 ),
             ]
         )
