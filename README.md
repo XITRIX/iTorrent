@@ -1,5 +1,8 @@
-[AltStore Button]: https://img.shields.io/badge/Download-AltStore-green?style=flat
-[AltStore Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-classic://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with AltStore.'
+[AltStore Classic Button]: https://img.shields.io/badge/Download-AltStore_Classic-green?style=flat
+[AltStore Classic Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-classic://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with AltStore Classic.'
+
+[AltStore PAL Button]: https://img.shields.io/badge/Download-AltStore_PAL-green?style=flat
+[AltStore PAL Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-classic://source?url=https://xitrix.github.io/iTorrent/AltStoreEU.json 'Download with AltStore.'
 
 [SideStore Button]: https://img.shields.io/badge/Download-SideStore-purple?style=flat
 [SideStore Link]: https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with SideStore.'
@@ -14,16 +17,21 @@
 
 
 # iTorrent - iOS Torrent client App
-[![AltStore Button]][AltStore Link]
+[![AltStore Classic Button]][AltStore Classic Link]
 [![SideStore Button]][SideStore Link]
 [![GitHub Button]][GitHub Link]
 [![Jailbreak Button]][Jailbreak Link]
 ![](https://img.shields.io/badge/iOS-16.0+-blue.svg)
 
+## Installation for EU citizens
+Because Apple allows third-party app stores in the EU and a few other countries, iTorrent is available on AltStore PAL. You can download it using the button below.
+
+[![AltStore PAL Button]][AltStore PAL Link]
+
+For everyone else, unfortunately, there is no official way to install the app, so you will need to sideload it using AltStore or SideStore. You can find installation links above if you already have one of these apps installed on your phone.
 
 > [!WARNING]
-> iTorrent 2.0 app is in beta preview state, expect to see some bugs and be ready report about them.
-
+> The only officially supported methods to sideload iTorrent are AltStore and SideStore. If you sideload iTorrent in any other way, there are no guarantees the app will work as intended, and no technical support will be provided.
 
 ## Screenshots
 <details>
@@ -63,7 +71,7 @@ What can this app do:
 - Send notification on torrent downloaded
 - WebDav Server
 - Select files to download or not
-- Change UI to dark theme
+- Glass UI for iOS 26
 - RSS Feed
 - ??? 
 
