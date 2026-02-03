@@ -44,7 +44,7 @@ struct TorrentListItemView: MvvmSwiftUICellProtocol {
         }
 
         var config: UIBackgroundConfiguration
-        if #available(iOS 18.0, *) {
+        if #available(iOS 18.0, visionOS 2.0, *) {
             config = .listCell()
         } else {
             config = .listPlainCell()

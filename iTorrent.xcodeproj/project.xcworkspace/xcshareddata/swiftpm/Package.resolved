@@ -1,5 +1,5 @@
 {
-  "originHash" : "11bb8e91059647586820412f0c343b58cc80736343ec98a17b3c6d40900620dd",
+  "originHash" : "1cae519d3dd579f2760f1bd9d882fc35141c0de7afae4b61badc2eca6938bb45",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "e57841b296d04370ea23580f908881b0ccab17b9",
-        "version" : "10.28.1"
+        "revision" : "eca84fd638116dd6adb633b5a3f31cc7befcbb7d",
+        "version" : "10.29.0"
       }
     },
     {
@@ -98,15 +98,6 @@
       "state" : {
         "revision" : "a0bc79961d7be727d258d33d5a6b2f1023270ba1",
         "version" : "1.22.5"
-      }
-    },
-    {
-      "identity" : "marqueelabel",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/cbpowell/MarqueeLabel.git",
-      "state" : {
-        "revision" : "877e810534cda9afabb8143ae319b7c3341b121b",
-        "version" : "4.5.0"
       }
     },
     {

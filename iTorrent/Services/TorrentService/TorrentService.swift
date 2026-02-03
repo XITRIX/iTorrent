@@ -26,7 +26,11 @@ class TorrentService: @unchecked Sendable, ObservableObject {
 
     init() { setup() }
 
+    #if os(tvOS)
+    static let downloadPath: URL = try! FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    #else
     static let downloadPath: URL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+    #endif
     static let torrentPath: URL = downloadPath.appending(path: "config")
     static let fastResumePath: URL = downloadPath.appending(path: "config")
     static let metadataPath: URL = downloadPath.appending(path: "config")
@@ -35,7 +39,7 @@ class TorrentService: @unchecked Sendable, ObservableObject {
         configureOpenSSLCerts()
         var settings = Session.Settings()
         print("Working directory: \(Self.downloadPath.path())")
-        return .init(Self.downloadPath.path(), torrentsPath: Self.torrentPath.path(), fastResumePath: Self.fastResumePath.path(), settings: .fromPreferences(with: []), storages: PreferencesStorage.shared.storageScopes)
+        return .init(Self.downloadPath, torrentsPath: Self.torrentPath, fastResumePath: Self.fastResumePath, settings: .fromPreferences(with: []), storages: PreferencesStorage.shared.storageScopes)
     }()
 
     private let disposeBag = DisposeBag()

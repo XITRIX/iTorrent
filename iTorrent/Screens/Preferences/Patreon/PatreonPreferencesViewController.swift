@@ -49,9 +49,11 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
 
         patronMessage.text = %"patreon.patron.level"
 
-        if #available(iOS 26, visionOS 26, *) {
+#if !os(visionOS)
+        if #available(iOS 26, *) {
             becomePatronButton.configuration = .prominentGlass()
         }
+#endif
         becomePatronButton.configuration?.attributedTitle = .init(%"patreon.action.patron", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
 //        becomePatronButton.configuration?.title = %"patreon.action.patron"
 //        becomePatronButton.setTitle(%"patreon.action.patron", for: .normal)
@@ -70,9 +72,11 @@ private extension PatreonPreferencesViewController {
         disposeBag.bind {
             viewModel.linkButtonTitle.uiSink { [unowned self] title in
 //                linkPatreonButton.setTitle(title, for: .normal)
-                if #available(iOS 26, visionOS 26, *) {
+#if !os(visionOS)
+                if #available(iOS 26, *) {
                     linkPatreonButton.configuration = .glass()
                 }
+#endif
                 linkPatreonButton.configuration?.attributedTitle = .init(title, attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
 //                linkPatreonButton.configuration?.title = title
             }

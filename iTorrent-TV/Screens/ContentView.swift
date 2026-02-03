@@ -19,12 +19,9 @@ struct ContentView: View {
 
     @FocusState var focusedTorrent: TorrentHandle?
     @State var selectedTorrent: TorrentHandle?
-//    @State var lastFocusedTorrent: TorrentHandle? = Self.torrents.first ?? ""
     @State var columnVisibility: NavigationSplitViewVisibility = .doubleColumn
     @State var navigationPath: NavigationPath = .init()
     @EnvironmentObject var torrentService: TorrentService
-
-//    private var currentID: String { focusedTorrent ?? selectedTorrent }
 
     var body: some View {
         GeometryReader { geometry in
@@ -73,10 +70,6 @@ struct ContentView: View {
                 .glassEffect(.regular, in: .rect(cornerRadius: 50))
                 .padding(20)
                 .ignoresSafeArea()
-                .onAppear {
-                    // Restore focus to the last focused or selected item
-//                        focusedTorrent = lastFocusedTorrent
-                }
                 .onChange(of: focusedTorrent) { oldValue, newValue in
 //                    if oldValue == nil {
 //                        focusedTorrent = lastFocusedTorrent

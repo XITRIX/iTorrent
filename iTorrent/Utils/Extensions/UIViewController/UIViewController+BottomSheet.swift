@@ -11,6 +11,9 @@ import UIKit
 // MARK: Bottom Sheet
 public extension UIViewController {
     func applyBottomSheetDetents(with scrollView: UIScrollView? = nil, and extra: Double = 0, dismissInSeconds: Double? = nil, showGrabber: Bool = false, delegate: UISheetPresentationControllerDelegate? = nil) -> AnyCancellable? {
+#if os(visionOS)
+        return nil
+#else
         guard #available(iOS 15.0, *),
               let sheet = sheetPresentationController
         else { return nil }
@@ -60,6 +63,7 @@ public extension UIViewController {
                     }
                 }
             }
+#endif
     }
 }
 

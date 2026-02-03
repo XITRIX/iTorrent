@@ -68,7 +68,9 @@ private extension RssDetailsViewController {
         if #available(iOS 26, visionOS 26, *) {
             downloadButtonContainer.effect = nil
             downloadButtonSeparator.isHidden = true
+#if !os(visionOS)
             downloadButton.configuration = .prominentGlass()
+#endif
 
             let interaction = UIScrollEdgeElementContainerInteraction()
             interaction.scrollView = webView.scrollView
