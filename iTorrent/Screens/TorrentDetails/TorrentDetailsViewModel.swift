@@ -145,18 +145,18 @@ extension TorrentDetailsViewModel {
         torrentHandle.pause()
     }
 
-    func rehash() {
+    func rehash(from source: MvvmPresentationSource) {
         // If Storage is not available, try to reconnect storage
         if torrentHandle.snapshot.friendlyState == .storageError {
             return refreshStorage()
         }
 
-        alert(title: %"details.rehash.title", message: %"details.rehash.message", actions: [
+        alert(title: %"details.rehash.title", message: %"details.rehash.message", style: .actionSheet, actions: [
             .init(title: %"common.cancel", style: .cancel),
             .init(title: %"details.rehash.action", style: .destructive, isPrimary: true, action: { [unowned self] in
                 torrentHandle.rehash()
             }),
-        ])
+        ], sourceView: source)
     }
 
     func refreshStorage() {
@@ -174,8 +174,8 @@ extension TorrentDetailsViewModel {
         ])
     }
 
-    func removeTorrent() {
-        alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, actions: [
+    func removeTorrent(from source: MvvmPresentationSource) {
+        alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, style: .actionSheet, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
                 TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: true)
             }),
@@ -183,7 +183,7 @@ extension TorrentDetailsViewModel {
                 TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
             }),
             .init(title: %"common.cancel", style: .cancel, isPrimary: true),
-        ])
+        ], sourceView: source)
     }
 
     func shareMagnet() {

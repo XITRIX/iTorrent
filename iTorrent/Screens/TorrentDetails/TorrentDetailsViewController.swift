@@ -71,11 +71,11 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
         })
 
         rehashButton.primaryAction = .init(title: %"details.rehash", image: .init(systemName: "arrow.clockwise"), handler: { [unowned self] _ in
-            viewModel.rehash()
+            viewModel.rehash(from: .barItem(rehashButton))
         })
 
         deleteButton.primaryAction = .init(title: %"common.delete", image: .init(systemName: "trash"), handler: { [unowned self] _ in
-            viewModel.removeTorrent()
+            viewModel.removeTorrent(from: .barItem(deleteButton))
         })
 
         shareButton.menu = .init(title: %"common.share", children: [

@@ -40,7 +40,7 @@ class RssDetailsViewModel: BaseViewModelWith<RssItemModel>, @unchecked Sendable 
         Task { await prepareDownload() }
     }
 
-    private(set) var download: (() -> Void)?
+    private(set) var download: ((_ from: MvvmPresentationSource?) -> Void)?
 }
 
 private extension RssDetailsViewModel {
@@ -55,7 +55,7 @@ private extension RssDetailsViewModel {
             }
 
             downloadType = .magnet
-            download = { [unowned self] in
+            download = { [unowned self] _ in
                 TorrentService.shared.addTorrent(by: magnet)
                 downloadType = .added
             }
@@ -80,11 +80,11 @@ private extension RssDetailsViewModel {
             }
 
             downloadType = .torrent
-            download = { [unowned self] in
+            download = { [unowned self] source in
                 navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
                     guard added else { return }
                     self?.downloadType = .added
-                }), by: .present(wrapInNavigation: true))
+                }), by: .present(wrapInNavigation: true, from: source))
             }
             return
         }

@@ -92,7 +92,7 @@ extension PatreonPreferencesViewModel {
                     try? patreonService.signOut()
                     accountState.value = .none
                 }
-            ], sourceView: view)
+            ], sourceView: .view(view))
         }
     }
 }

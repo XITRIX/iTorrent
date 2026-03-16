@@ -28,9 +28,10 @@ class CellularToggleSetupViewController<VM: CellularToggleSetupViewModel>: BaseV
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.contentInset.bottom = buttonsContainerView.frame.height
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        scrollView.directionalLayoutMargins.leading = systemMinimumLayoutMargins.leading * 2
+        scrollView.directionalLayoutMargins.trailing = systemMinimumLayoutMargins.trailing * 2
     }
 }
 
@@ -39,13 +40,17 @@ private extension CellularToggleSetupViewController {
         titleLabel.text = %"initialSetup.cellular.title"
         messageLabel.text = %"initialSetup.cellular.message"
 
-        allowCellularButton.configuration?.attributedTitle = .init(%"initialSetup.cellular.button.allow", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
-
         if #available(iOS 26, visionOS 26, *) {
+#if !os(visionOS)
+            allowCellularButton.configuration = .prominentGlass()
+            allowCellularButton.configuration?.buttonSize = .large
+            allowCellularButton.configuration?.baseBackgroundColor = .tintColor.withAlphaComponent(0.25)
+
             disableCellularButton.configuration = .prominentGlass()
             disableCellularButton.configuration?.buttonSize = .large
-            disableCellularButton.configuration?.cornerStyle = .large
+#endif
         }
+        allowCellularButton.configuration?.attributedTitle = .init(%"initialSetup.cellular.button.allow", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline), .foregroundColor: UIColor.tintColor]))
         disableCellularButton.configuration?.attributedTitle = .init(%"initialSetup.cellular.button.dismiss", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))
 
         disableCellularButton.addAction(.init { [unowned self] _ in

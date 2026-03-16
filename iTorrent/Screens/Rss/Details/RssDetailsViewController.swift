@@ -57,7 +57,7 @@ private extension RssDetailsViewController {
                 view.layoutSubviews()
             }
             downloadButton.tapPublisher.sink { [unowned self] _ in
-                viewModel.download?()
+                viewModel.download?(.view(downloadButton))
             }
         }
     }
