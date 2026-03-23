@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 private struct GenericControllerView: UIViewControllerRepresentable {
     let viewController: UIViewController

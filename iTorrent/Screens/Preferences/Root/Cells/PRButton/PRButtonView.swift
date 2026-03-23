@@ -15,10 +15,10 @@ struct PRButtonView: MvvmSwiftUICellProtocol {
         HStack {
             Text(viewModel.title)
                 .fontWeight(viewModel.isBold ? .semibold : .regular)
-                .foregroundStyle(viewModel.tintedTitle ? Color.accentColor : Color.primary)
+                .tintAwareForegroundStyle(viewModel.tintedTitle ? nil : Color.primary)
             Spacer()
             Text(viewModel.value)
-                .foregroundStyle(viewModel.tinted ? Color.accentColor : Color.secondary)
+                .tintAwareForegroundStyle(viewModel.tinted ? nil : Color.secondary)
                 .lineLimit(viewModel.singleLine ? 1 : nil)
                 .multilineTextAlignment(.trailing)
         }

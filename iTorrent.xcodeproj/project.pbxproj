@@ -44,6 +44,7 @@
 		7C5B41102EEC5296001D4C68 /* VLCKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5B410D2EEC528F001D4C68 /* VLCKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C5B41122EEC53F8001D4C68 /* VLCPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41112EEC53E8001D4C68 /* VLCPlayerView.swift */; };
 		7C5B41142EEC6341001D4C68 /* TorrentFilesFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41132EEC633C001D4C68 /* TorrentFilesFileView.swift */; };
+		7C5B73672F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B73662F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
 		7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */; };
@@ -338,6 +339,7 @@
 		7C5B410D2EEC528F001D4C68 /* VLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = VLCKit.xcframework; sourceTree = "<group>"; };
 		7C5B41112EEC53E8001D4C68 /* VLCPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerView.swift; sourceTree = "<group>"; };
 		7C5B41132EEC633C001D4C68 /* TorrentFilesFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesFileView.swift; sourceTree = "<group>"; };
+		7C5B73662F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvedTintColorKey.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 		7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7C5B73662F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift */,
 				D1D1279A2BC7CA7600C04533 /* SwiftUILayoutGuides.swift */,
 				D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */,
 				7C5FBE302BBF5CAB0069E5A0 /* MinHeightModifier.swift */,
@@ -1888,6 +1891,7 @@
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
+				7C5B73672F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift in Sources */,
 				7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */,
 				7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */,
 				7C4ED0872BE641B30034B62C /* GoogleAdsManager.swift in Sources */,

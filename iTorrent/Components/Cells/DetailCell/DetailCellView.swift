@@ -21,8 +21,7 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
                     .foregroundStyle(viewModel.isEnabled ? Color.primary : Color.secondary)
                 Spacer(minLength: viewModel.spacer)
                 Text(LocalizedStringKey(viewModel.detail))
-                    .foregroundStyle(Color.accentColor)
-                //                .foregroundStyle(Color.secondaryAccent)
+                    .tintAwareForegroundStyle()
                     .multilineTextAlignment(.trailing)
             }
             .systemMinimumHeight()
@@ -32,8 +31,7 @@ struct DetailCellView: MvvmSwiftUICellProtocol {
                     .fontWeight(.semibold)
                 Spacer()
                 Text(LocalizedStringKey(viewModel.detail))
-                    .foregroundStyle(Color.accentColor)
-                //                .foregroundStyle(Color.secondaryAccent)
+                    .tintAwareForegroundStyle()
             }
             .padding(.vertical, 4)
             .systemMinimumHeight()

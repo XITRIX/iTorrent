@@ -94,7 +94,7 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
                         Spacer()
                         if viewModel.preferences.defaultStorage == nil {
                             Image(systemName: "checkmark")
-                                .foregroundColor(.accentColor)
+                                .tintAwareForegroundStyle()
                                 .fontWeight(.medium)
                         }
                     }
@@ -111,7 +111,7 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
                             Spacer()
                             if viewModel.preferences.defaultStorage == scope.uuid {
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(.accentColor)
+                                    .tintAwareForegroundStyle()
                                     .fontWeight(.medium)
                             } else if !scope.allowed {
                                 Image(systemName: "exclamationmark.triangle.fill")
