@@ -1859,6 +1859,9 @@
         }
       }
     },
+    "details.files.vlcMediaPlayerPreview" : {
+
+    },
     "details.info" : {
       "localizations" : {
         "de" : {

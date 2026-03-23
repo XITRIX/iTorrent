@@ -173,10 +173,10 @@ private extension TorrentFilesViewController {
 
         Task {
             // Allow to choose be
-            guard await checkFilePlayable(url: url) else {
-                previewAction(start: startIndex)
-                return
-            }
+//            guard await checkFilePlayable(url: url) else {
+//                previewAction(start: startIndex)
+//                return
+//            }
 
             let alert = UIAlertController(title: %"details.files.previewMode", message: nil, preferredStyle: .actionSheet)
             alert.addAction(.init(title: %"details.files.quickLookPreview", style: .default) { [self] _ in
@@ -184,6 +184,9 @@ private extension TorrentFilesViewController {
             })
             alert.addAction(.init(title: %"details.files.mediaPlayerPreview", style: .default) { [self] _ in
                 playerAction(start: startIndex)
+            })
+            alert.addAction(.init(title: %"details.files.vlcMediaPlayerPreview", style: .default) { [self] _ in
+                vlcPlayerAction(url: url)
             })
             alert.addAction(.init(title: %"common.cancel", style: .cancel))
 
@@ -232,6 +235,10 @@ private extension TorrentFilesViewController {
         player.currentItem?.externalMetadata = [title, artwork]
 
         present(playerController, animated: true)
+    }
+
+    func vlcPlayerAction(url: URL) {
+        viewModel.navigate(to: VLCPlayerViewModel.self, with: url, by: .present(wrapInNavigation: true, from: nil, style: .fullScreen))
     }
 
     func checkFilePlayable(url: URL) async -> Bool {

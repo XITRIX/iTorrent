@@ -29,7 +29,7 @@
 		7C4ED0962BE961DF0034B62C /* BaseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0952BE961DF0034B62C /* BaseControl.swift */; };
 		7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0972BEF8B8E0034B62C /* PatreonCredentials.swift */; };
 		7C519C882C427E9A00E353A9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C519C872C427E9A00E353A9 /* FirebaseAnalytics */; };
-		7C519C8C2C427F4C00E353A9 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7C519C8B2C427F4C00E353A9 /* FirebaseRemoteConfigSwift */; };
+		7C5B73712F73288F00CC2B6C /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5B73702F73288F00CC2B6C /* CombineCocoa */; };
 		7C5B40F92EEB3CF3001D4C68 /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5B40F82EEB3CF3001D4C68 /* OpenSSL */; };
 		7C5B40FB2EEC2D0F001D4C68 /* test1.torrent in Resources */ = {isa = PBXBuildFile; fileRef = 7C5B40FA2EEC2D0F001D4C68 /* test1.torrent */; };
 		7C5B40FC2EEC2DAC001D4C68 /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7CCDB3322ED34680001E857B /* cacert.pem */; };
@@ -40,11 +40,13 @@
 		7C5B41082EEC3CDD001D4C68 /* TorrentFilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41072EEC3CD4001D4C68 /* TorrentFilesView.swift */; };
 		7C5B410A2EEC3E5B001D4C68 /* TorrentFilesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41092EEC3E56001D4C68 /* TorrentFilesModels.swift */; };
 		7C5B410B2EEC3FE6001D4C68 /* TorrentFilesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41092EEC3E56001D4C68 /* TorrentFilesModels.swift */; };
-		7C5B410F2EEC5296001D4C68 /* VLCKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5B410D2EEC528F001D4C68 /* VLCKit.xcframework */; };
-		7C5B41102EEC5296001D4C68 /* VLCKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5B410D2EEC528F001D4C68 /* VLCKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C5B41122EEC53F8001D4C68 /* VLCPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41112EEC53E8001D4C68 /* VLCPlayerView.swift */; };
 		7C5B41142EEC6341001D4C68 /* TorrentFilesFileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B41132EEC633C001D4C68 /* TorrentFilesFileView.swift */; };
 		7C5B73672F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B73662F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift */; };
+		7C5B73682F6EFE0C00CC2B6C /* VLCKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */; };
+		7C5B73692F6EFE0C00CC2B6C /* VLCKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7C5B736C2F6EFED500CC2B6C /* VLCPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B736B2F6EFEC300CC2B6C /* VLCPlayerViewController.swift */; };
+		7C5B736E2F6EFFE100CC2B6C /* VLCPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B736D2F6EFFDF00CC2B6C /* VLCPlayerViewModel.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
 		7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */; };
@@ -73,6 +75,8 @@
 		7C95B7B42C35DE5C000EC50F /* StoragePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */; };
 		7C95B7B72C385B99000EC50F /* UICellAccessory+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */; };
 		7C97D1872CFF791000FF97DC /* UIScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D1862CFF790D00FF97DC /* UIScheduler.swift */; };
+		7CA361F02F6B262900C390C9 /* VLCKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */; };
+		7CA361F12F6B262900C390C9 /* VLCKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 7CAD30182BC3455800592990 /* SWXMLHash */; };
 		7CAD301C2BC3457900592990 /* RssModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301B2BC3457900592990 /* RssModel.swift */; };
 		7CAD301E2BC347D900592990 /* Published+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD301D2BC347D900592990 /* Published+Codable.swift */; };
@@ -105,7 +109,6 @@
 		7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */; };
 		7CF6DA372C0F6D150033D03F /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6DA362C0F6D150033D03F /* InfoPlist.xcstrings */; };
 		7CF6DA3E2C0F9DC40033D03F /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6DA3D2C0F9DC40033D03F /* LiveActivityService.swift */; };
-		7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */; };
 		7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6A2BC3E0F40013233F /* RssListViewController.swift */; };
 		7CFEBE6F2BC3E0FE0013233F /* RssListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE6E2BC3E0FE0013233F /* RssListViewModel.swift */; };
 		7CFEBE732BC3ED480013233F /* RssFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBE712BC3ED480013233F /* RssFeedCell.swift */; };
@@ -177,7 +180,6 @@
 		D1352D3A2BBD747100104E7B /* PortionBarLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D392BBD747100104E7B /* PortionBarLabels.swift */; };
 		D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D3B2BBD7F8800104E7B /* TorrentMonitoringService.swift */; };
 		D1352D3F2BBD81C000104E7B /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D3E2BBD81C000104E7B /* AppDelegate+Notifications.swift */; };
-		D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = D135C58B2AEF158000440680 /* CombineCocoa */; };
 		D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5942AEFB67000440680 /* BaseNavigationController.swift */; };
 		D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */; };
 		D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D135C5982AEFB96100440680 /* TorrentDetailsViewController.xib */; };
@@ -203,7 +205,6 @@
 		D1A226A52AEEEFCC00669D6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A226A32AEEEFCC00669D6D /* Main.storyboard */; };
 		D1A226A72AEEEFDF00669D6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1A226A62AEEEFDF00669D6D /* Assets.xcassets */; };
 		D1A226AA2AEEEFDF00669D6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A226A82AEEEFDF00669D6D /* LaunchScreen.storyboard */; };
-		D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = D1A226B72AEEF05400669D6D /* OpenSSL */; };
 		D1A226F22AEF019400669D6D /* TorrentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A226F12AEF019400669D6D /* TorrentService.swift */; };
 		D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A226F32AEF01B700669D6D /* LibTorrent.framework */; };
 		D1A226F52AEF01B700669D6D /* LibTorrent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D1A226F32AEF01B700669D6D /* LibTorrent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -295,7 +296,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7C5B41102EEC5296001D4C68 /* VLCKit.xcframework in Embed Frameworks */,
+				7CA361F12F6B262900C390C9 /* VLCKit.xcframework in Embed Frameworks */,
 				D10257CC2EE862F900201640 /* LibTorrent.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -307,6 +308,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7C5B73692F6EFE0C00CC2B6C /* VLCKit.xcframework in Embed Frameworks */,
 				D1A226F52AEF01B700669D6D /* LibTorrent.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -336,10 +338,11 @@
 		7C5B41012EEC321A001D4C68 /* TorrentHandle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TorrentHandle+Extensions.swift"; sourceTree = "<group>"; };
 		7C5B41072EEC3CD4001D4C68 /* TorrentFilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesView.swift; sourceTree = "<group>"; };
 		7C5B41092EEC3E56001D4C68 /* TorrentFilesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesModels.swift; sourceTree = "<group>"; };
-		7C5B410D2EEC528F001D4C68 /* VLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = VLCKit.xcframework; sourceTree = "<group>"; };
 		7C5B41112EEC53E8001D4C68 /* VLCPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerView.swift; sourceTree = "<group>"; };
 		7C5B41132EEC633C001D4C68 /* TorrentFilesFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentFilesFileView.swift; sourceTree = "<group>"; };
 		7C5B73662F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvedTintColorKey.swift; sourceTree = "<group>"; };
+		7C5B736B2F6EFEC300CC2B6C /* VLCPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewController.swift; sourceTree = "<group>"; };
+		7C5B736D2F6EFFDF00CC2B6C /* VLCPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewModel.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -371,6 +374,7 @@
 		7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePreferencesView.swift; sourceTree = "<group>"; };
 		7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICellAccessory+Image.swift"; sourceTree = "<group>"; };
 		7C97D1862CFF790D00FF97DC /* UIScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScheduler.swift; sourceTree = "<group>"; };
+		7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VLCKit.xcframework; path = Submodules/VLCKit.xcframework; sourceTree = "<group>"; };
 		7CAD301B2BC3457900592990 /* RssModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssModel.swift; sourceTree = "<group>"; };
 		7CAD301D2BC347D900592990 /* Published+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Published+Codable.swift"; sourceTree = "<group>"; };
 		7CAD301F2BC34BCE00592990 /* RssFeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssFeedProvider.swift; sourceTree = "<group>"; };
@@ -562,7 +566,7 @@
 			files = (
 				7C5B40F92EEB3CF3001D4C68 /* OpenSSL in Frameworks */,
 				D10257CB2EE862F900201640 /* LibTorrent.framework in Frameworks */,
-				7C5B410F2EEC5296001D4C68 /* VLCKit.xcframework in Frameworks */,
+				7CA361F02F6B262900C390C9 /* VLCKit.xcframework in Frameworks */,
 				D10257D12EE8640A00201640 /* MvvmFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,16 +576,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */,
-				D1A226B82AEEF05400669D6D /* OpenSSL in Frameworks */,
+				7C5B73712F73288F00CC2B6C /* CombineCocoa in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
 				7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */,
 				7C4ED08B2BE642A50034B62C /* AppTrackingTransparency.framework in Frameworks */,
+				7C5B73682F6EFE0C00CC2B6C /* VLCKit.xcframework in Frameworks */,
 				7C519C882C427E9A00E353A9 /* FirebaseAnalytics in Frameworks */,
-				7CF9C2C72AF7F235009BBFA0 /* MvvmFoundation in Frameworks */,
 				D1DB71832BD80318007F9267 /* GCDWebServers in Frameworks */,
 				7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */,
-				7C519C8C2C427F4C00E353A9 /* FirebaseRemoteConfigSwift in Frameworks */,
-				D135C58C2AEF158000440680 /* CombineCocoa in Frameworks */,
 				D1ACFDDA2AF7D55F0098FF56 /* MvvmFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -689,6 +691,15 @@
 				D10257E52EE9BC1A00201640 /* TorrentDetailsView.swift */,
 			);
 			path = TorrentDetails;
+			sourceTree = "<group>";
+		};
+		7C5B736A2F6EFEA400CC2B6C /* VLCPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				7C5B736D2F6EFFDF00CC2B6C /* VLCPlayerViewModel.swift */,
+				7C5B736B2F6EFEC300CC2B6C /* VLCPlayerViewController.swift */,
+			);
+			path = VLCPlayer;
 			sourceTree = "<group>";
 		};
 		7C5FBE0D2BBB206B0069E5A0 /* Views */ = {
@@ -939,7 +950,6 @@
 		D10257C52EE8619300201640 /* iTorrent-TV */ = {
 			isa = PBXGroup;
 			children = (
-				7C5B410D2EEC528F001D4C68 /* VLCKit.xcframework */,
 				7C5B41052EEC3CC3001D4C68 /* Screens */,
 				D10257C22EE8619300201640 /* Assets.xcassets */,
 				7C5B40FA2EEC2D0F001D4C68 /* test1.torrent */,
@@ -1306,6 +1316,7 @@
 		D1A226D32AEEF73600669D6D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */,
 				D10257CA2EE862F900201640 /* LibTorrent.framework */,
 				7C4ED08A2BE642A50034B62C /* AppTrackingTransparency.framework */,
 				D1A226F32AEF01B700669D6D /* LibTorrent.framework */,
@@ -1336,6 +1347,7 @@
 				D135C5962AEFB94900440680 /* TorrentDetails */,
 				D1EFCD062AF56A3200D33A7A /* TorrentFiles */,
 				D11138452AF94633008907F7 /* TorrentAdd */,
+				7C5B736A2F6EFEA400CC2B6C /* VLCPlayer */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1646,16 +1658,13 @@
 			);
 			name = iTorrent;
 			packageProductDependencies = (
-				D1A226B72AEEF05400669D6D /* OpenSSL */,
-				D135C58B2AEF158000440680 /* CombineCocoa */,
 				D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */,
-				7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */,
 				7CAD30182BC3455800592990 /* SWXMLHash */,
 				D1DB71822BD80318007F9267 /* GCDWebServers */,
 				7CF6DA322C0F112B0033D03F /* OpenSSL */,
 				7C519C872C427E9A00E353A9 /* FirebaseAnalytics */,
-				7C519C8B2C427F4C00E353A9 /* FirebaseRemoteConfigSwift */,
 				7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */,
+				7C5B73702F73288F00CC2B6C /* CombineCocoa */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -1696,13 +1705,13 @@
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (
-				7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */,
 				7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 				D1DB71812BD80318007F9267 /* XCLocalSwiftPackageReference "Submodules/GCDWebServer" */,
 				7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */,
 				7C3142CE2C317E6400397E82 /* XCRemoteSwiftPackageReference "MarqueeText" */,
 				7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7C5B736F2F73288F00CC2B6C /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -1900,6 +1909,7 @@
 				D1352D2A2BBD419D00104E7B /* UIViewController+TopPresented.swift in Sources */,
 				7C5FBE362BC0A24A0069E5A0 /* SceneDelegate+BackgroundDownload.swift in Sources */,
 				D1DB71882BD8FF60007F9267 /* Scheduler+Main.swift in Sources */,
+				7C5B736E2F6EFFE100CC2B6C /* VLCPlayerViewModel.swift in Sources */,
 				D1DB71942BD92242007F9267 /* PatreonPreferencesViewModel.swift in Sources */,
 				7CFEBE8D2BC440350013233F /* Array+MutableForEach.swift in Sources */,
 				7C5FBE6F2BC2EF8B0069E5A0 /* EditTextView.swift in Sources */,
@@ -1915,6 +1925,7 @@
 				7CB6F6CE2BD82BAB00D0813B /* FileSharingPreferencesViewModel.swift in Sources */,
 				7CFEBE942BC441A20013233F /* RssDetailsViewModel.swift in Sources */,
 				D1352D2E2BBD6ED300104E7B /* UIColor+Hex.swift in Sources */,
+				7C5B736C2F6EFED500CC2B6C /* VLCPlayerViewController.swift in Sources */,
 				D1CAB8852AF3B51E00EB6AFF /* ToggleCellView.swift in Sources */,
 				7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */,
 				7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */,
@@ -2666,7 +2677,15 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.29.0;
+				minimumVersion = 12.11.0;
+			};
+		};
+		7C5B736F2F73288F00CC2B6C /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/XITRIX/CombineCocoa.git";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 		7CAD30172BC3455800592990 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
@@ -2685,14 +2704,6 @@
 				minimumVersion = 3.1.5004;
 			};
 		};
-		7CF9C2B72AF7EF54009BBFA0 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/XITRIX/CombineCocoa.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2706,10 +2717,10 @@
 			package = 7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		7C519C8B2C427F4C00E353A9 /* FirebaseRemoteConfigSwift */ = {
+		7C5B73702F73288F00CC2B6C /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfigSwift;
+			package = 7C5B736F2F73288F00CC2B6C /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
 		};
 		7C5B40F82EEB3CF3001D4C68 /* OpenSSL */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2731,29 +2742,19 @@
 			package = 7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */;
 			productName = OpenSSL;
 		};
-		7CF9C2C62AF7F235009BBFA0 /* MvvmFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MvvmFoundation;
-		};
 		D10257D02EE8640A00201640 /* MvvmFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */;
 			productName = MvvmFoundation;
 		};
-		D135C58B2AEF158000440680 /* CombineCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CombineCocoa;
-		};
-		D1A226B72AEEF05400669D6D /* OpenSSL */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = OpenSSL;
-		};
 		D1ACFDD92AF7D55F0098FF56 /* MvvmFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 7CF9C2C52AF7F235009BBFA0 /* XCLocalSwiftPackageReference "Submodules/MVVMFoundation" */;
 			productName = MvvmFoundation;
 		};
 		D1DB71822BD80318007F9267 /* GCDWebServers */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = D1DB71812BD80318007F9267 /* XCLocalSwiftPackageReference "Submodules/GCDWebServer" */;
 			productName = GCDWebServers;
 		};
 /* End XCSwiftPackageProductDependency section */
