@@ -5,11 +5,11 @@
 //  Created by Даниил Виноградов on 21.03.2026.
 //
 
+import Combine
+import MvvmFoundation
 import SwiftUI
 import UIKit
 import VLCKit
-import MvvmFoundation
-import Combine
 
 class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPlayerView>, MvvmViewControllerProtocol {
     var viewModel: VLCPlayerViewModel
@@ -42,11 +42,12 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
         @State var isPlaying: Bool = false
         @State var currentPlaybackTime: TimeInterval = 0
         @State var mediaTimeDuration: TimeInterval = 60 * 6
+        @State var isSeeking: Bool = false
         @Namespace private var glassNamespace
 
         var body: some View {
             ZStack(alignment: .bottom) {
-                Color(.systemGroupedBackground)
+                Color(viewModel.showOverlay ? .systemGroupedBackground : .black)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.28)) {
@@ -57,7 +58,8 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
                 VLCPlayerViewRepresentable(url: viewModel.url,
                                            isPlaying: $isPlaying,
                                            mediaTimeDuration: $mediaTimeDuration,
-                                           currentPlaybackTime: $currentPlaybackTime)
+                                           currentPlaybackTime: $currentPlaybackTime,
+                                           isSeeking: $isSeeking)
                     .ignoresSafeArea()
 
                 ZStack {
@@ -72,7 +74,7 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
 
                     CompatibilityGlassContainer(spacing: 24) {
                         if viewModel.showOverlay {
-                            TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime)
+                            TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime, isSeeking: $isSeeking)
                                 .padding()
                                 .compatibilityGlassID("timeline", in: glassNamespace)
                                 .compatibilityGlassTransition()
@@ -138,8 +140,8 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
                 } label: {
                     let image = Image(systemName: imageName)
                         .frame(width: size.view, height: size.view)
-                        .font(.system(size: size.font))
-                        .foregroundStyle(Color(.label))
+                        .font(.system(size: size.font, weight: .medium))
+                        .foregroundStyle(Color.white)
 
                     if #available(iOS 17.0, *) {
                         image.contentTransition(.symbolEffect(.replace.downUp, options: .speed(3)))
@@ -149,7 +151,7 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
                 }
 
                 button
-                    .compatibilityGlassEffect()
+                    .compatibilityGlassEffect(isClear: true, interactive: true)
                     .compatibilityGlassTransition()
             }
         }
@@ -157,51 +159,62 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
 }
 
 struct VLCPlayerViewRepresentable: UIViewRepresentable {
-    var url: URL
+    let url: URL
     @Binding var isPlaying: Bool
     @Binding var mediaTimeDuration: TimeInterval
     @Binding var currentPlaybackTime: TimeInterval
+    @Binding var isSeeking: Bool
 
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
         view.isUserInteractionEnabled = false
-        guard let media = VLCMedia(url: url) else { return view }
-        context.coordinator.mediaPlayer.drawable = view
-        context.coordinator.mediaPlayer.media = media
+        context.coordinator.attachDrawable(view)
 
         // Preparse
-        Task {
-            let timeout: Int32 = 1_000
+        guard let media = VLCMedia(url: url) else { return view }
+        Task { @MainActor in
+            let timeout: Int32 = 1000
             media.parse(options: .parseLocal, timeout: timeout)
-            let deadline = Date().addingTimeInterval(TimeInterval(timeout) / 1_000)
+            let deadline = Date().addingTimeInterval(TimeInterval(timeout) / 1000)
             while !media.parsedStatus.isTerminal, Date() < deadline {
                 try? await Task.sleep(for: .milliseconds(50))
             }
             let initialDuration = Double(media.length.intValue) / 1000
             context.coordinator.updateMediaTimeDuration(initialDuration)
+            context.coordinator.mediaPlayer.play()
+            try await Task.sleep(for: .seconds(0.2))
+            context.coordinator.mediaPlayer.pause()
         }
+        context.coordinator.mediaPlayer.media = media
 
         return view
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
         context.coordinator.parent = self
+        context.coordinator.attachDrawable(uiView)
 
         let mediaPlayer = context.coordinator.mediaPlayer
         if isPlaying {
             if !mediaPlayer.isPlaying {
                 mediaPlayer.play()
             }
-        } else if mediaPlayer.isPlaying {
+        } else if mediaPlayer.isPlaying, !context.coordinator.isPerformingPausedSeek {
             mediaPlayer.pause()
         }
 
         let duration = max(mediaTimeDuration, 0)
         let clampedPlaybackTime = min(max(currentPlaybackTime, 0), duration)
-        if mediaPlayer.isSeekable,
-           abs(context.coordinator.lastKnownPlaybackTime - clampedPlaybackTime) > 0.25 {
-            context.coordinator.lastKnownPlaybackTime = clampedPlaybackTime
-            mediaPlayer.time = VLCTime(number: NSNumber(value: Int(clampedPlaybackTime * 1000)))
+
+
+        let stoppedSeeking = context.coordinator.lastIsSeeking && !isSeeking
+        context.coordinator.lastIsSeeking = isSeeking
+
+        if mediaPlayer.isSeekable, !stoppedSeeking {
+            let time = VLCTime(number: NSNumber(value: Int(clampedPlaybackTime * 1000)))
+            if abs(time.intValue - mediaPlayer.time.intValue) > 1_000 {
+                context.coordinator.seek(to: time, shouldPlay: isPlaying)
+            }
         }
     }
 
@@ -209,23 +222,98 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         Coordinator(parent: self)
     }
 
-    final class Coordinator: NSObject, VLCMediaPlayerDelegate {
+    final class Coordinator: NSObject, VLCMediaPlayerDelegate, @unchecked Sendable {
         var parent: VLCPlayerViewRepresentable
         let mediaPlayer = VLCMediaPlayer()
-
-        var lastKnownPlaybackTime: TimeInterval = 0
+        weak var drawableView: UIView?
+        var lastIsSeeking: Bool = false
+        var isPerformingPausedSeek: Bool = false
+        private var notificationObservers: [NSObjectProtocol] = []
+        private var pausedSeekTask: Task<Void, Never>?
 
         init(parent: VLCPlayerViewRepresentable) {
             self.parent = parent
             super.init()
             mediaPlayer.delegate = self
             mediaPlayer.timeChangeUpdateInterval = 0.25
-            mediaPlayer.minimalTimePeriod = 250_000
+            mediaPlayer.minimalTimePeriod = 250000
+            observeApplicationLifecycle()
+        }
+
+        deinit {
+            pausedSeekTask?.cancel()
+            notificationObservers.forEach(NotificationCenter.default.removeObserver)
+        }
+
+        func attachDrawable(_ view: UIView) {
+            drawableView = view
+            mediaPlayer.drawable = view
+        }
+
+        func seek(to time: VLCTime, shouldPlay: Bool) {
+            pausedSeekTask?.cancel()
+            let targetTime = time.intValue
+
+            if shouldPlay {
+                mediaPlayer.time = VLCTime(number: NSNumber(value: targetTime))
+                return
+            }
+
+            pausedSeekTask = Task { @MainActor [weak self] in
+                guard let self else { return }
+
+                self.isPerformingPausedSeek = true
+                defer {
+                    self.isPerformingPausedSeek = false
+                    self.pausedSeekTask = nil
+                }
+
+                self.mediaPlayer.play()
+                try? await Task.sleep(for: .milliseconds(80))
+                guard !Task.isCancelled else { return }
+
+                self.mediaPlayer.time = VLCTime(number: NSNumber(value: targetTime))
+                try? await Task.sleep(for: .milliseconds(80))
+                guard !Task.isCancelled else { return }
+
+                self.mediaPlayer.pause()
+            }
+        }
+
+        private func observeApplicationLifecycle() {
+            let center = NotificationCenter.default
+
+            notificationObservers.append(center.addObserver(
+                forName: UIApplication.willEnterForegroundNotification,
+                object: nil,
+                queue: .main)
+            { [weak self] _ in
+                Task {
+                    try await self?.restoreVideoOutput()
+                }
+            })
+        }
+
+        @MainActor
+        private func restoreVideoOutput() async throws {
+            guard !mediaPlayer.isPlaying else { return }
+
+            let parent = parent
+            let playbackTime = parent.currentPlaybackTime
+
+            mediaPlayer.stop()
+            mediaPlayer.play()
+
+            try await Task.sleep(for: .seconds(0.1))
+            mediaPlayer.time = VLCTime(number: NSNumber(value: Int(playbackTime * 1000)))
+
+            mediaPlayer.pause()
         }
 
         func mediaPlayerTimeChanged(_ aNotification: Notification) {
+            guard !parent.isSeeking else { return }
+
             let newPlaybackTime = max(TimeInterval(mediaPlayer.time.value?.doubleValue ?? 0) / 1000, 0)
-            lastKnownPlaybackTime = newPlaybackTime
             let parent = parent
 
             DispatchQueue.main.async {
@@ -254,6 +342,6 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
 
 #Preview {
     UINavigationController(rootViewController: VLCPlayerViewController(viewModel: .init(with: URL(string: "ttest.com")!)))
-            .asView
-            .ignoresSafeArea()
+        .asView
+        .ignoresSafeArea()
 }

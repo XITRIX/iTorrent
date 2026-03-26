@@ -10,6 +10,7 @@ import SwiftUI
 struct TimelineView: View {
     let mediaLengthTime: TimeInterval
     @Binding var currentPlaybackTime: TimeInterval
+    @Binding var isSeeking: Bool
     @GestureState private var dragStartTime: TimeInterval?
 
     var body: some View {
@@ -38,6 +39,7 @@ private extension TimelineView {
                     state = state ?? currentPlaybackTime
                 }
                 .onChanged { gesture in
+                    isSeeking = true
                     let startTime = dragStartTime ?? currentPlaybackTime
                     currentPlaybackTime = playbackTime(
                         startTime: startTime,
@@ -45,8 +47,11 @@ private extension TimelineView {
                         width: width
                     )
                 }
+                .onEnded { _ in
+                    isSeeking = false
+                }
         )
-        .compatibilityGlassEffect()
+        .compatibilityGlassEffect(interactive: true)
         .compatibilityGlassTransition()
 
         if #available(iOS 16.1, *) {

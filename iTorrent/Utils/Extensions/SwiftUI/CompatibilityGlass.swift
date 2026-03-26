@@ -30,26 +30,25 @@ struct CompatibilityGlassContainer<Content: View>: View {
 
 extension View {
     @ViewBuilder
-    func compatibilityGlassEffect() -> some View {
-        compatibilityGlassEffect(in: Capsule())
+    func compatibilityGlassEffect(isClear: Bool = false, interactive: Bool = false) -> some View {
+        compatibilityGlassEffect(in: Capsule(), isClear: isClear, interactive: interactive)
     }
 
     @ViewBuilder
     func compatibilityGlassEffect<S: Shape>(
         in shape: S,
-        fallbackMaterial: Material? = .thin,
-        interactive: Bool = true
+        isClear: Bool = false,
+        interactive: Bool = false
     ) -> some View {
         if #available(iOS 26.0, *) {
+            let glass = isClear ? Glass.clear : .regular
             if interactive {
-                glassEffect(.clear.interactive(), in: shape)
+                glassEffect(glass.interactive(), in: shape)
             } else {
-                glassEffect(.clear, in: shape)
+                glassEffect(glass, in: shape)
             }
-        } else if let fallbackMaterial {
-            background(fallbackMaterial, in: shape)
         } else {
-            self
+            background(isClear ? .thinMaterial : .regular, in: shape)
         }
     }
 
