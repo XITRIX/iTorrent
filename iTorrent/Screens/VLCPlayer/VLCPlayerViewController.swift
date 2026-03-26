@@ -9,9 +9,11 @@ import SwiftUI
 import UIKit
 import VLCKit
 import MvvmFoundation
+import Combine
 
 class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPlayerView>, MvvmViewControllerProtocol {
     var viewModel: VLCPlayerViewModel
+    private var disposables: [AnyCancellable] = []
 
     required init(viewModel: VLCPlayerViewModel) {
         self.viewModel = viewModel
@@ -29,38 +31,77 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
         navigationItem.rightBarButtonItem = .init(systemItem: .close, primaryAction: .init { [unowned self] _ in
             dismiss()
         })
+
+        viewModel.$showOverlay.sink { [weak self] value in
+            self?.navigationController?.setNavigationBarHidden(!value, animated: true)
+        }.store(in: &disposables)
     }
 
     struct VLCPlayerView: View {
-        var viewModel: VLCPlayerViewModel
+        @ObservedObject var viewModel: VLCPlayerViewModel
         @State var isPlaying: Bool = false
-        @State var progress: Double = 0.2
+        @State var currentPlaybackTime: TimeInterval = 0
+        @State var mediaTimeDuration: TimeInterval = 60 * 6
+        @Namespace private var glassNamespace
 
         var body: some View {
             ZStack(alignment: .bottom) {
                 Color(.systemGroupedBackground)
                     .ignoresSafeArea()
-                VLCPlayerViewRepresentable(url: viewModel.url, isPlaying: $isPlaying)
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.28)) {
+                            viewModel.showOverlay.toggle()
+                        }
+                    }
+
+                VLCPlayerViewRepresentable(url: viewModel.url,
+                                           isPlaying: $isPlaying,
+                                           mediaTimeDuration: $mediaTimeDuration,
+                                           currentPlaybackTime: $currentPlaybackTime)
                     .ignoresSafeArea()
 
-                HStack(spacing: 32) {
-                    PlayerButton(size: .small, imageName: "10.arrow.trianglehead.counterclockwise") {
+                ZStack {
+                    CompatibilityGlassContainer(spacing: 24) {
+                        if viewModel.showOverlay {
+                            overlayButtons
+                                .transition(.opacity.combined(with: .scale(scale: 0.96)))
+                        }
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .ignoresSafeArea()
 
-                    PlayerButton(size: .big, imageName: isPlaying ? "pause.fill" : "play.fill") {
-                        isPlaying.toggle()
+                    CompatibilityGlassContainer(spacing: 24) {
+                        if viewModel.showOverlay {
+                            TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime)
+                                .padding()
+                                .compatibilityGlassID("timeline", in: glassNamespace)
+                                .compatibilityGlassTransition()
+                                .transition(.opacity.combined(with: .move(edge: .bottom)))
+                        }
                     }
-
-                    PlayerButton(size: .small, imageName: "10.arrow.trianglehead.clockwise") {
-                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .ignoresSafeArea()
-
-                TimelineView(progress: $progress)
-                    .padding()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+
+        private var overlayButtons: some View {
+            HStack(spacing: 32) {
+                PlayerButton(size: .small, imageName: "10.arrow.trianglehead.counterclockwise") {
+                    currentPlaybackTime -= 10
+                }
+                .compatibilityGlassID("backward", in: glassNamespace)
+
+                PlayerButton(size: .big, imageName: isPlaying ? "pause.fill" : "play.fill") {
+                    isPlaying.toggle()
+                }
+                .compatibilityGlassID("playPause", in: glassNamespace)
+
+                PlayerButton(size: .small, imageName: "10.arrow.trianglehead.clockwise") {
+                    currentPlaybackTime += 10
+                }
+                .compatibilityGlassID("forward", in: glassNamespace)
+            }
         }
 
         struct PlayerButton: View {
@@ -107,94 +148,107 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
                     }
                 }
 
-                if #available(iOS 26.0, *) {
-                    button.glassEffect(.clear.interactive())
-                } else {
-                    button.background(Material.thin)
-                }
+                button
+                    .compatibilityGlassEffect()
+                    .compatibilityGlassTransition()
             }
         }
-
-        struct TimelineView: View {
-            @Binding var progress: Double
-
-            var body: some View {
-                if #available(iOS 26.0, *) {
-                    HStack {
-                        Text("0:33")
-                        AVProgressView(value: progress)
-                        Text("-3:33")
-                    }
-                    .foregroundStyle(.secondary)
-                    .fontDesign(.monospaced)
-                    .font(.footnote).bold()
-                    .padding()
-                    .glassEffect(.clear.interactive())
-                }
-            }
-        }
-    }
-}
-
-struct AVProgressView: View {
-    var value: Double
-    var height: Double = 8
-    var knobSize: Double = 0
-
-    var body: some View {
-        let clampedValue = min(max(value, 0), 1)
-
-        GeometryReader { geometry in
-            let availableWidth = max(geometry.size.width - knobSize, 0)
-            let progressWidth = availableWidth * clampedValue
-
-            ZStack(alignment: .leading) {
-                Capsule()
-//                    .fill(Color.red.opacity(0.28))
-                    .fill(Color(.label).opacity(0.28))
-                    .frame(height: height)
-
-                Rectangle()
-                    .fill(Color(.label).opacity(0.5))
-                    .frame(width: progressWidth + knobSize / 2, height: height)
-
-                Circle()
-                    .fill(Color(.label))
-                    .frame(width: knobSize, height: knobSize)
-                    .offset(x: progressWidth)
-            }
-            .clipShape(.capsule)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-        }
-        .frame(height: 16)
     }
 }
 
 struct VLCPlayerViewRepresentable: UIViewRepresentable {
     var url: URL
     @Binding var isPlaying: Bool
+    @Binding var mediaTimeDuration: TimeInterval
+    @Binding var currentPlaybackTime: TimeInterval
 
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
+        view.isUserInteractionEnabled = false
+        guard let media = VLCMedia(url: url) else { return view }
         context.coordinator.mediaPlayer.drawable = view
-        context.coordinator.mediaPlayer.media = VLCMedia(url: url)
+        context.coordinator.mediaPlayer.media = media
+
+        // Preparse
+        Task {
+            let timeout: Int32 = 1_000
+            media.parse(options: .parseLocal, timeout: timeout)
+            let deadline = Date().addingTimeInterval(TimeInterval(timeout) / 1_000)
+            while !media.parsedStatus.isTerminal, Date() < deadline {
+                try? await Task.sleep(for: .milliseconds(50))
+            }
+            let initialDuration = Double(media.length.intValue) / 1000
+            context.coordinator.updateMediaTimeDuration(initialDuration)
+        }
+
         return view
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
+        context.coordinator.parent = self
+
+        let mediaPlayer = context.coordinator.mediaPlayer
         if isPlaying {
-            context.coordinator.mediaPlayer.play()
-        } else {
-            context.coordinator.mediaPlayer.pause()
+            if !mediaPlayer.isPlaying {
+                mediaPlayer.play()
+            }
+        } else if mediaPlayer.isPlaying {
+            mediaPlayer.pause()
+        }
+
+        let duration = max(mediaTimeDuration, 0)
+        let clampedPlaybackTime = min(max(currentPlaybackTime, 0), duration)
+        if mediaPlayer.isSeekable,
+           abs(context.coordinator.lastKnownPlaybackTime - clampedPlaybackTime) > 0.25 {
+            context.coordinator.lastKnownPlaybackTime = clampedPlaybackTime
+            mediaPlayer.time = VLCTime(number: NSNumber(value: Int(clampedPlaybackTime * 1000)))
         }
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(parent: self)
     }
 
-    class Coordinator {
+    final class Coordinator: NSObject, VLCMediaPlayerDelegate {
+        var parent: VLCPlayerViewRepresentable
         let mediaPlayer = VLCMediaPlayer()
+
+        var lastKnownPlaybackTime: TimeInterval = 0
+
+        init(parent: VLCPlayerViewRepresentable) {
+            self.parent = parent
+            super.init()
+            mediaPlayer.delegate = self
+            mediaPlayer.timeChangeUpdateInterval = 0.25
+            mediaPlayer.minimalTimePeriod = 250_000
+        }
+
+        func mediaPlayerTimeChanged(_ aNotification: Notification) {
+            let newPlaybackTime = max(TimeInterval(mediaPlayer.time.value?.doubleValue ?? 0) / 1000, 0)
+            lastKnownPlaybackTime = newPlaybackTime
+            let parent = parent
+
+            DispatchQueue.main.async {
+                if abs(parent.currentPlaybackTime - newPlaybackTime) > 0.05 {
+                    parent.currentPlaybackTime = newPlaybackTime
+                }
+            }
+        }
+
+        func mediaPlayerLengthChanged(_ length: Int64) {
+            let duration = TimeInterval(length) / 1000
+            updateMediaTimeDuration(duration)
+        }
+
+        func updateMediaTimeDuration(_ duration: TimeInterval) {
+            let parent = parent
+
+            DispatchQueue.main.async {
+                if parent.mediaTimeDuration != duration {
+                    parent.mediaTimeDuration = duration
+                }
+            }
+        }
     }
 }
 

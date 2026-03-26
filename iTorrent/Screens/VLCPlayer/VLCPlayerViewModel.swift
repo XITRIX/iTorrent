@@ -9,8 +9,9 @@ import Foundation
 import VLCKit
 import MvvmFoundation
 
-class VLCPlayerViewModel: BaseViewModelWith<URL> {
+class VLCPlayerViewModel: BaseViewModelWith<URL>, ObservableObject {
     private(set) var url: URL!
+    @Published var showOverlay: Bool = true
 
     override func prepare(with model: URL) {
         self.url = model
@@ -24,25 +25,26 @@ class VLCPlayerViewModel: BaseViewModelWith<URL> {
         return resourceValues?.isRegularFile != false
     }
 
-    static func canOpenInVLC(_ url: URL, timeoutMilliseconds: Int32 = 3_000) async -> Bool {
-        guard validateURL(url), let media = VLCMedia(url: url) else { return false }
+    static func canOpenInVLC(_ url: URL, timeoutMilliseconds: Int32 = 3_000) async -> VLCMedia? {
+        guard validateURL(url), let media = VLCMedia(url: url) else { return nil }
 
         let parseResult = media.parse(options: .parseLocal, timeout: timeoutMilliseconds)
-        guard parseResult == 0 else { return false }
+        guard parseResult == 0 else { return nil }
 
         let deadline = Date().addingTimeInterval(TimeInterval(timeoutMilliseconds) / 1_000)
         while !media.parsedStatus.isTerminal, Date() < deadline {
             try? await Task.sleep(for: .milliseconds(50))
         }
 
-        guard media.parsedStatus == .done else { return false }
-        if !media.tracksInformation.isEmpty { return true }
+        guard media.parsedStatus == .done else { return nil }
+        if !media.tracksInformation.isEmpty { return media }
 
-        return media.length.intValue > 0
+        guard media.length.intValue > 0 else { return nil }
+        return media
     }
 }
 
-private extension VLCMediaParsedStatus {
+extension VLCMediaParsedStatus {
     var isTerminal: Bool {
         switch self {
         case .skipped, .failed, .timeout, .cancelled, .done:

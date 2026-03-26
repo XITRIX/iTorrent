@@ -29,7 +29,6 @@
 		7C4ED0962BE961DF0034B62C /* BaseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0952BE961DF0034B62C /* BaseControl.swift */; };
 		7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4ED0972BEF8B8E0034B62C /* PatreonCredentials.swift */; };
 		7C519C882C427E9A00E353A9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7C519C872C427E9A00E353A9 /* FirebaseAnalytics */; };
-		7C5B73712F73288F00CC2B6C /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5B73702F73288F00CC2B6C /* CombineCocoa */; };
 		7C5B40F92EEB3CF3001D4C68 /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5B40F82EEB3CF3001D4C68 /* OpenSSL */; };
 		7C5B40FB2EEC2D0F001D4C68 /* test1.torrent in Resources */ = {isa = PBXBuildFile; fileRef = 7C5B40FA2EEC2D0F001D4C68 /* test1.torrent */; };
 		7C5B40FC2EEC2DAC001D4C68 /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7CCDB3322ED34680001E857B /* cacert.pem */; };
@@ -47,6 +46,9 @@
 		7C5B73692F6EFE0C00CC2B6C /* VLCKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA361EE2F6B262100C390C9 /* VLCKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7C5B736C2F6EFED500CC2B6C /* VLCPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B736B2F6EFEC300CC2B6C /* VLCPlayerViewController.swift */; };
 		7C5B736E2F6EFFE100CC2B6C /* VLCPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B736D2F6EFFDF00CC2B6C /* VLCPlayerViewModel.swift */; };
+		7C5B73712F73288F00CC2B6C /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7C5B73702F73288F00CC2B6C /* CombineCocoa */; };
+		7C5B73732F759FA100CC2B6C /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B73722F759FA100CC2B6C /* TimelineView.swift */; };
+		7C5B73752F75C07100CC2B6C /* CompatibilityGlass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5B73742F75C07100CC2B6C /* CompatibilityGlass.swift */; };
 		7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */; };
 		7C5FBE192BBC91E70069E5A0 /* NetworkMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */; };
 		7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */; };
@@ -343,6 +345,8 @@
 		7C5B73662F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvedTintColorKey.swift; sourceTree = "<group>"; };
 		7C5B736B2F6EFEC300CC2B6C /* VLCPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewController.swift; sourceTree = "<group>"; };
 		7C5B736D2F6EFFDF00CC2B6C /* VLCPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewModel.swift; sourceTree = "<group>"; };
+		7C5B73722F759FA100CC2B6C /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		7C5B73742F75C07100CC2B6C /* CompatibilityGlass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityGlass.swift; sourceTree = "<group>"; };
 		7C5FBE0E2BBB227D0069E5A0 /* UISegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedProgressView.swift; sourceTree = "<group>"; };
 		7C5FBE182BBC91E70069E5A0 /* NetworkMonitoringService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitoringService.swift; sourceTree = "<group>"; };
 		7C5FBE222BBDD1B60069E5A0 /* NSUserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSUserDefaultItem.swift; sourceTree = "<group>"; };
@@ -696,6 +700,7 @@
 		7C5B736A2F6EFEA400CC2B6C /* VLCPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				7C5B73722F759FA100CC2B6C /* TimelineView.swift */,
 				7C5B736D2F6EFFDF00CC2B6C /* VLCPlayerViewModel.swift */,
 				7C5B736B2F6EFEC300CC2B6C /* VLCPlayerViewController.swift */,
 			);
@@ -735,6 +740,7 @@
 				D17871FE2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift */,
 				7C5FBE302BBF5CAB0069E5A0 /* MinHeightModifier.swift */,
 				7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */,
+				7C5B73742F75C07100CC2B6C /* CompatibilityGlass.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -1895,6 +1901,7 @@
 				7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */,
 				7C95B7B42C35DE5C000EC50F /* StoragePreferencesView.swift in Sources */,
 				7CFEBEA02BC6F3CD0013233F /* Date+Extensions.swift in Sources */,
+				7C5B73752F75C07100CC2B6C /* CompatibilityGlass.swift in Sources */,
 				D1DB718B2BD91606007F9267 /* ImageCache.swift in Sources */,
 				7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
@@ -2014,6 +2021,7 @@
 				D11138522AF9665B008907F7 /* PreferencesViewModel.swift in Sources */,
 				D1DB71802BD6773E007F9267 /* RssSearchViewModel.swift in Sources */,
 				D17733EE2BBC2C5F006FC81A /* ProxyPreferencesViewModel.swift in Sources */,
+				7C5B73732F759FA100CC2B6C /* TimelineView.swift in Sources */,
 				7CF6DA3E2C0F9DC40033D03F /* LiveActivityService.swift in Sources */,
 				D1BB073B2C98524B00981D5F /* TrackersListService.swift in Sources */,
 				7C4ED0982BEF8B8E0034B62C /* PatreonCredentials.swift in Sources */,
@@ -2717,15 +2725,15 @@
 			package = 7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		7C5B73702F73288F00CC2B6C /* CombineCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7C5B736F2F73288F00CC2B6C /* XCRemoteSwiftPackageReference "CombineCocoa" */;
-			productName = CombineCocoa;
-		};
 		7C5B40F82EEB3CF3001D4C68 /* OpenSSL */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7CF6DA312C0F112A0033D03F /* XCRemoteSwiftPackageReference "OpenSSL" */;
 			productName = OpenSSL;
+		};
+		7C5B73702F73288F00CC2B6C /* CombineCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C5B736F2F73288F00CC2B6C /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
 		};
 		7CAD30182BC3455800592990 /* SWXMLHash */ = {
 			isa = XCSwiftPackageProductDependency;
