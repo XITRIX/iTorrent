@@ -84,7 +84,7 @@ private extension RssDetailsViewModel {
                 navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
                     guard added else { return }
                     self?.downloadType = .added
-                }), by: .present(wrapInNavigation: true, from: source))
+                }), by: .present(wrapInNavigation: true, from: source, style: .formSheet))
             }
             return
         }
