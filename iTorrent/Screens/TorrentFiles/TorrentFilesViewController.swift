@@ -130,6 +130,27 @@ private extension TorrentFilesViewController {
             }
         }
 
+        func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+            guard indexPaths.count == 1 else { return nil }
+            let node = parent.viewModel.node(at: indexPaths[0].item)
+            guard let node = node as? FileNode,
+                  let startIndex = parent.viewModel.filesForPreviewUnfiltered.firstIndex(where: { $0.index == node.index })
+            else { return nil }
+
+            let path = parent.viewModel.filesForPreviewUnfiltered[startIndex].path
+            let url = parent.viewModel.downloadPath.appending(path: path)
+
+            guard VLCPlayerViewModel.canOpenInVLCSync(url) != nil else { return nil }
+
+            return .init(actionProvider: { elements in
+                UIMenu(children: [
+                    UIAction(title: "Open in player") { [unowned self] _ in
+                        parent.vlcPlayerAction(url: url)
+                    }
+                ])
+            })
+        }
+
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             guard !collectionView.isEditing else {
                 return parent.reloadMoreMenuButton()

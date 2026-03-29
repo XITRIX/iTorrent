@@ -48,6 +48,13 @@ extension TorrentFilesViewModel {
     }
 
     var filesForPreview: [FileEntry] {
+        filesForPreviewUnfiltered
+        .filter {
+            $0.downloaded >= $0.size
+        }
+    }
+
+    var filesForPreviewUnfiltered: [FileEntry] {
         keys.flatMap {
             switch rootDirectory.storage[$0] {
             case let path as PathNode:
@@ -59,9 +66,6 @@ extension TorrentFilesViewModel {
             }
         }
         .map { torrentHandle.snapshot.files[$0] }
-        .filter {
-            $0.downloaded >= $0.size
-        }
     }
 
     func canShareSelected(_ indexPaths: [IndexPath]) -> Bool {

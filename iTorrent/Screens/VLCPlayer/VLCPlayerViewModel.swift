@@ -42,6 +42,24 @@ class VLCPlayerViewModel: BaseViewModelWith<URL>, ObservableObject {
         guard media.length.intValue > 0 else { return nil }
         return media
     }
+
+    static func canOpenInVLCSync(_ url: URL, timeoutMilliseconds: Int32 = 100) -> VLCMedia? {
+        guard validateURL(url), let media = VLCMedia(url: url) else { return nil }
+
+        let parseResult = media.parse(options: .parseLocal, timeout: timeoutMilliseconds)
+        guard parseResult == 0 else { return nil }
+
+        let deadline = Date().addingTimeInterval(TimeInterval(timeoutMilliseconds) / 1_000)
+        while !media.parsedStatus.isTerminal, Date() < deadline {
+            Thread.sleep(forTimeInterval: 50 / 1_000)
+        }
+
+        guard media.parsedStatus == .done else { return nil }
+        if !media.tracksInformation.isEmpty { return media }
+
+        guard media.length.intValue > 0 else { return nil }
+        return media
+    }
 }
 
 extension VLCMediaParsedStatus {
