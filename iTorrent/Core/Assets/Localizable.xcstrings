@@ -225,7 +225,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torrent z haszem “%@” już istnieje w kolejce pobierania"
+            "value" : "Torrent z sumą kontrolną “%@” już istnieje w kolejce pobierania"
           }
         },
         "ru" : {
@@ -363,7 +363,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz źródło pamięci"
+            "value" : "Wybierz miejsce zapisu
           }
         },
         "ru" : {
@@ -1290,7 +1290,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Działania"
+            "value" : "Czynności"
           }
         },
         "ru" : {
@@ -1520,7 +1520,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz został skopiowany do schowka"
+            "value" : "Suma kontrolna została skopiowana do schowka"
           }
         },
         "ru" : {
@@ -1566,7 +1566,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz v2 został skopiowany do schowka"
+            "value" : "Suma kontrolna v2 została skopiowana do schowka"
           }
         },
         "ru" : {
@@ -1704,7 +1704,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pobieraj po koleji"
+            "value" : "Pobieranie sekwencyjne"
           }
         },
         "ru" : {
@@ -2118,7 +2118,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz"
+            "value" : "Suma kontrolna"
           }
         },
         "ru" : {
@@ -2164,7 +2164,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz v2"
+            "value" : "Suma kontrolna v2"
           }
         },
         "ru" : {
@@ -2256,7 +2256,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zapisano W"
+            "value" : "Lokalizacja"
           }
         },
         "ru" : {
@@ -2302,7 +2302,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pauza"
+            "value" : "Wstrzymaj"
           }
         },
         "ru" : {
@@ -2348,7 +2348,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie znaleziono źródła pamięci"
+            "value" : "Nie znaleziono miejsca zapisu"
           }
         },
         "ru" : {
@@ -2394,7 +2394,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iTorrent spróbuje znaleźć brakujące źródło pamięci"
+            "value" : "iTorrent spróbuje odnaleźć miejsce zapisu"
           }
         },
         "ru" : {
@@ -2486,7 +2486,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odśwież hasz"
+            "value" : "Odśwież sumę kontrolną"
           }
         },
         "ru" : {
@@ -2532,7 +2532,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odśwież hasz"
+            "value" : "Odśwież sumę kontrolną"
           }
         },
         "ru" : {
@@ -2624,7 +2624,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odśwież hasz Torrenta"
+            "value" : "Odśwież sumę kontrolną torrenta"
           }
         },
         "ru" : {
@@ -3222,7 +3222,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leeczerzy"
+            "value" : "Leecherzy"
           }
         },
         "ru" : {
@@ -3268,7 +3268,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Postęp wybranych/Całości"
+            "value" : "Postęp wybranych/całości"
           }
         },
         "ru" : {
@@ -3639,7 +3639,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Musisz zaaktualizować tą aplikacje"
+            "value" : "Wymagana aktualizacja aplikacji"
           }
         },
         "ru" : {
@@ -3685,7 +3685,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kompilacja utraciła ważność"
+            "value" : "Wersja aplikacji wygasła"
           }
         },
         "ru" : {
@@ -3869,7 +3869,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokaż wśród plików"
+            "value" : "Pokaż w plikach"
           }
         },
         "ru" : {
@@ -3921,7 +3921,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozumiem ryzyka"
+            "value" : "Znam ryzyko"
           }
         },
         "ru" : {
@@ -3967,7 +3967,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zezwól na połączenia Sieciowe"
+            "value" : "Zezwalaj na dane komórkowe"
           }
         },
         "ru" : {
@@ -4059,7 +4059,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie zezwalaj na używanie danych komórkowych"
+            "value" : "Nie używaj danych komórkowych"
           }
         },
         "ru" : {
@@ -4105,7 +4105,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Domyślnie, iTorrent woli nie używać danych komórkowych ponieważ większość operatorów telefonii nie oferują planów bez limitów pobierania/wysyłania danych\n\nZawsze możesz tą opcje zmienić w ustawieniach."
+            "value" : "Domyślnie, iTorrent blokuje pobieranie przez sieć komórkową, ponieważ wiele operatorów nakłada limity danych.\n\nMożesz zmienić to ustawienie w downolnej chwilii."
           }
         },
         "ru" : {
@@ -4197,7 +4197,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz torrentu który musi być zatrzymany"
+            "value" : "Suma kontrolna torrentu do zatrzymania"
           }
         },
         "ru" : {
@@ -4243,7 +4243,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasz Torrenta"
+            "value" : "Suma kontrolna torrentu"
           }
         },
         "ru" : {
@@ -4289,7 +4289,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spauzuj Torrenta"
+            "value" : "Wstrzymaj torrent"
           }
         },
         "ru" : {
@@ -4381,7 +4381,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pliki"
+            "value" : "Plików"
           }
         },
         "ru" : {
@@ -4473,7 +4473,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Łącze Magnetu jest nieprawidłowe"
+            "value" : "Link magnet jest nieprawidłowy"
           }
         },
         "ru" : {
@@ -4519,7 +4519,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podaj Łącze magnetu"
+            "value" : "Wklej link magnet poniżej"
           }
         },
         "ru" : {
@@ -4749,7 +4749,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Łącze torrenta jest nieprawidłowe"
+            "value" : "Link do torrenta jest nieprawidłowy"
           }
         },
         "ru" : {
@@ -4795,7 +4795,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podaj łącze do torrenta"
+            "value" : "Wprowadż link do torrenta"
           }
         },
         "ru" : {
@@ -4887,7 +4887,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj używając URLa"
+            "value" : "Dodaj z adresu URL"
           }
         },
         "ru" : {
@@ -4979,7 +4979,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Brak torrentów dla filtru “%1$@”"
+            "value" : "Brak torrentów dla filtra “%1$@”"
           }
         },
         "ru" : {
@@ -5025,7 +5025,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aby dodać nowy torrent, naciśnij przycisk ‘+’ w dolnym lewym rogu lub otwierając plik torrentu bezpośrednio z aplikacji Pliki czy Przeglądarki"
+            "value" : "Aby dodać nowy torrent, naciśnij przycisk "+" w lewym dolnym rogu lub otwierając plik torrent bezpośrednio z aplikacji Pliki lub przeglądarki"
           }
         },
         "ru" : {
@@ -5116,8 +5116,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Select All"
+            "state" : "translated",
+            "value" : "Zaznacz wszystko"
           }
         },
         "ru" : {
@@ -5209,7 +5209,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dacie Dodania"
+            "value" : "Dacie dodania"
           }
         },
         "ru" : {
@@ -5255,7 +5255,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dacie Stworzenia"
+            "value" : "Dacie stworzenia"
           }
         },
         "ru" : {
@@ -5301,7 +5301,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grupuj po stanie"
+            "value" : "Grupuj według stanu"
           }
         },
         "ru" : {
@@ -5439,7 +5439,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sortuj Torrenty po:"
+            "value" : "Sortuj torrenty po:"
           }
         },
         "ru" : {
@@ -5486,7 +5486,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dźwięk"
+            "value" : "Audio"
           }
         },
         "ru" : {
@@ -5533,7 +5533,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Liczenie…"
+            "value" : "Obliczanie…"
           }
         },
         "ru" : {
@@ -5860,7 +5860,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ zostało pobrane"
+            "value" : "Pobrano %@"
           }
         },
         "ru" : {
@@ -5998,7 +5998,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dotknij tutaj aby otworzyć ustawienia"
+            "value" : "Naciśnij tutaj aby otworzyć ustawienia"
           }
         },
         "ru" : {
@@ -6044,7 +6044,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odbiór danych z sieci komórkowej jest niedozwolone"
+            "value" : "Użycie sieci komórkowej nie jest dozwolone"
           }
         },
         "ru" : {
@@ -6136,7 +6136,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zostań Patronem"
+            "value" : "Zostań patronem"
           }
         },
         "ru" : {
@@ -6228,7 +6228,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odłącz Konto Patreon"
+            "value" : "Odłącz konto Patreon"
           }
         },
         "ru" : {
@@ -6320,7 +6320,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Twórca iTorrentu"
+            "value" : "Twórca iTorrenta"
           }
         },
         "ru" : {
@@ -6366,7 +6366,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cześć wszystkim,\n\nMożecie mnie wspierać w rozwoju aplikacji iTorrent poprzez darowizny na moim Patreonie, w zamian otrzymasz wersje iTorrenta bez reklam.\n\nDziękuję Was za wsparcie!\n\n(tłumaczone z j. angielskiego)"
+            "value" : "Cześć wszystkim,\n\nMożecie wesprzeć dalszy rozwój iTorrent, zostając moim patronem w serwisie Patreon. W zamian otrzymasz dostęp do wersji iTorrent bez reklam.\n\nDziękuję za całe wsparcie!"
           }
         },
         "ru" : {
@@ -6642,7 +6642,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reklamy zostały usunięte, powodzenia!"
+            "value" : "Reklamy wyłączone, dobrej zabawy!"
           }
         },
         "ru" : {
@@ -6875,7 +6875,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kolejność sekcji"
+            "value" : "Kolejność grupowania sekcji"
           }
         },
         "ru" : {
@@ -7473,7 +7473,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pączki za darowiznę"
+            "value" : "Wspomóż pączkiem"
           }
         },
         "ru" : {
@@ -7611,7 +7611,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ustawienia Sieci"
+            "value" : "Ustawienia sieci"
           }
         },
         "ru" : {
@@ -8531,7 +8531,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wymaga Uwierzytelnienia"
+            "value" : "Wymaga uwierzytelnienia"
           }
         },
         "ru" : {
@@ -8669,7 +8669,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Typ Proxy"
+            "value" : "Typ proxy"
           }
         },
         "ru" : {
@@ -8715,7 +8715,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz typ Proxy"
+            "value" : "Wybierz typ proxy"
           }
         },
         "ru" : {
@@ -8899,7 +8899,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limity kolejki Torrentów"
+            "value" : "Limity kolejki torrentów"
           }
         },
         "ru" : {
@@ -8945,7 +8945,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktywne Torrenty"
+            "value" : "Aktywne torrenty"
           }
         },
         "ru" : {
@@ -8991,7 +8991,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pobieranie Torrentów"
+            "value" : "Pobieranie torrentów"
           }
         },
         "ru" : {
@@ -12678,7 +12678,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tak, oraz usuń dane"
+            "value" : "Tak, usuń razem z plikami"
           }
         },
         "ru" : {
@@ -12724,7 +12724,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tak, ale pozostaw dane"
+            "value" : "Tak, ale zachowaj pliki"
           }
         },
         "ru" : {
@@ -13000,7 +13000,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spauzowane"
+            "value" : "Wstrzymane"
           }
         },
         "ru" : {
