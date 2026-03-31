@@ -11,6 +11,7 @@ struct TimelineView: View {
     let mediaLengthTime: TimeInterval
     @Binding var currentPlaybackTime: TimeInterval
     @Binding var isSeeking: Bool
+    let availability: [Double]?
     @GestureState private var dragStartTime: TimeInterval?
 
     var body: some View {
@@ -26,7 +27,7 @@ private extension TimelineView {
     func timelineContent(width: Double) -> some View {
         let content = HStack {
             Text(played)
-            AVProgressView(value: progress)
+            AVProgressView(value: progress, availability: availability)
             Text("-\(timeLeft)")
         }
         .foregroundStyle(.secondary)
@@ -110,19 +111,23 @@ struct AVProgressView: View {
     var value: Double
     var height: Double = 8
     var knobSize: Double = 0
+    var availability: [Double]?
 
     var body: some View {
         let clampedValue = min(max(value, 0), 1)
+        let availableColor = Color(.label).opacity(0.28)
+        let unavailableColor = Color.red.opacity(0.28)
 
         GeometryReader { geometry in
             let availableWidth = max(geometry.size.width - knobSize, 0)
             let progressWidth = availableWidth * clampedValue
 
             ZStack(alignment: .leading) {
-                Capsule()
-//                    .fill(Color.red.opacity(0.28))
-                    .fill(Color(.label).opacity(0.28))
-                    .frame(height: height)
+                availabilityBackground(
+                    availableColor: availableColor,
+                    unavailableColor: unavailableColor
+                )
+                .frame(height: height)
 
                 Rectangle()
                     .fill(Color(.label).opacity(0.5))
@@ -137,5 +142,20 @@ struct AVProgressView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         }
         .frame(height: 16)
+    }
+
+    @ViewBuilder
+    func availabilityBackground(availableColor: Color, unavailableColor: Color) -> some View {
+        if let availability, !availability.isEmpty {
+            HStack(spacing: 0) {
+                ForEach(Array(availability.enumerated()), id: \.offset) { _, piece in
+                    Rectangle()
+                        .fill(piece == 1 ? availableColor : unavailableColor)
+                }
+            }
+        } else {
+            Capsule()
+                .fill(availableColor)
+        }
     }
 }

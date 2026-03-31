@@ -145,7 +145,7 @@ private extension TorrentFilesViewController {
             return .init(actionProvider: { elements in
                 UIMenu(children: [
                     UIAction(title: "Open in player") { [unowned self] _ in
-                        parent.vlcPlayerAction(url: url)
+                        parent.vlcPlayerAction(url: url, index: node.index)
                     }
                 ])
             })
@@ -207,7 +207,7 @@ private extension TorrentFilesViewController {
                 playerAction(start: startIndex)
             })
             alert.addAction(.init(title: %"details.files.vlcMediaPlayerPreview", style: .default) { [self] _ in
-                vlcPlayerAction(url: url)
+                vlcPlayerAction(url: url, index: fileIndex)
             })
             alert.addAction(.init(title: %"common.cancel", style: .cancel))
 
@@ -258,8 +258,8 @@ private extension TorrentFilesViewController {
         present(playerController, animated: true)
     }
 
-    func vlcPlayerAction(url: URL) {
-        viewModel.navigate(to: VLCPlayerViewModel.self, with: url, by: .present(wrapInNavigation: true, from: nil, style: .fullScreen))
+    func vlcPlayerAction(url: URL, index: Int) {
+        viewModel.navigate(to: VLCPlayerViewModel.self, with: .init(url: url, torrentPair: (viewModel.torrentHandle, index)), by: .present(wrapInNavigation: true, from: nil, style: .fullScreen))
     }
 
     func checkFilePlayable(url: URL) async -> Bool {

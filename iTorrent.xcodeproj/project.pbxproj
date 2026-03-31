@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -552,6 +552,10 @@
 		D1FFC9642C38135F00233C2F /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		D1FFC96B2C382FBE00233C2F /* StorageModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageModel+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7C92760D2F7C321A0081CA19 /* AirPlay */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AirPlay; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7C5FBE382BC0ADC90069E5A0 /* Frameworks */ = {
@@ -1251,6 +1255,7 @@
 		D19E00232AF045DA000A17A2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7C92760D2F7C321A0081CA19 /* AirPlay */,
 				D1048D822BBE92040027EF2F /* SANavigation */,
 				D19E00242AF045DF000A17A2 /* Extensions */,
 				D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */,
@@ -1661,6 +1666,9 @@
 			);
 			dependencies = (
 				7C5FBE4B2BC0ADCC0069E5A0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7C92760D2F7C321A0081CA19 /* AirPlay */,
 			);
 			name = iTorrent;
 			packageProductDependencies = (

@@ -8,13 +8,43 @@
 import Foundation
 import VLCKit
 import MvvmFoundation
+import LibTorrent
 
-class VLCPlayerViewModel: BaseViewModelWith<URL>, ObservableObject {
+extension VLCPlayerViewModel {
+    struct Config {
+        let url: URL
+        let torrentPair: (handle: TorrentHandle, fileIndex: Int)?
+    }
+}
+
+class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, ObservableObject {
     private(set) var url: URL!
-    @Published var showOverlay: Bool = true
+    private(set) var torrentPair: (handle: TorrentHandle, fileIndex: Int)?
 
-    override func prepare(with model: URL) {
-        self.url = model
+    @Published var showOverlay: Bool = true
+    @Published var segmentedProgress: [Double]?
+
+    override func prepare(with model: Config) {
+        self.url = model.url
+        self.torrentPair = model.torrentPair
+        binding()
+    }
+
+    private func binding() {
+        guard let torrentPair else { return }
+        refreshSegmentedProgress()
+        disposeBag.bind {
+            torrentPair.handle.updatePublisher.sink { [weak self] update in
+                guard let self else { return }
+                refreshSegmentedProgress()
+            }
+        }
+    }
+
+    private func refreshSegmentedProgress() {
+        guard let torrentPair else { return }
+        let file = torrentPair.handle.snapshot.files[torrentPair.fileIndex]
+        segmentedProgress = file.segmentedProgress
     }
 
     static func validateURL(_ url: URL) -> Bool {

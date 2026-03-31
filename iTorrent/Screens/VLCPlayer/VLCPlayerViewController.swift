@@ -10,14 +10,15 @@ import MvvmFoundation
 import SwiftUI
 import UIKit
 import VLCKit
+import AVKit
 
-class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPlayerView>, MvvmViewControllerProtocol {
+class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>, MvvmViewControllerProtocol {
     var viewModel: VLCPlayerViewModel
-    private var disposables: [AnyCancellable] = []
+    private var disposeBag = DisposeBag() // [AnyCancellable] = []
 
     required init(viewModel: VLCPlayerViewModel) {
         self.viewModel = viewModel
-        super.init(rootView: VLCPlayerView(viewModel: viewModel))
+        super.init(rootView: Body(viewModel: viewModel))
     }
 
     @available(*, unavailable)
@@ -32,22 +33,56 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
             dismiss()
         })
 
-        viewModel.$showOverlay.sink { [weak self] value in
-            self?.navigationController?.setNavigationBarHidden(!value, animated: true)
-        }.store(in: &disposables)
+//        let routePickerView = AVRoutePickerView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+//        routePickerView.prioritizesVideoDevices = true
+//        routePickerView.tintColor = .label
+//        routePickerView.activeTintColor = .systemBlue
+//        let item = UIBarButtonItem(customView: routePickerView)
+//        if #available(iOS 26.0, *) {
+//            item.style = Air.shared.connected ? .prominent : .plain
+//        }
+//
+//        navigationItem.leftBarButtonItem = item
+
+        disposeBag.bind {
+//            Air.shared.$connected.sink { aired in
+//                if #available(iOS 26.0, *) {
+//                    item.style = aired ? .prominent : .plain
+//                }
+//            }
+            Air.shared.$connected.combineLatest(viewModel.$showOverlay)
+                .sink { [weak self] aired, value in
+                    let show = aired || value
+                    self?.navigationController?.setNavigationBarHidden(!show, animated: true)
+                }
+        }
+    }
+
+    struct Body: View {
+        @ObservedObject var viewModel: VLCPlayerViewModel
+
+        var body: some View {
+            VLCPlayerView(viewModel: viewModel)
+                .environmentObject(Air.shared)
+        }
     }
 
     struct VLCPlayerView: View {
+        @EnvironmentObject var airPlay: Air
         @ObservedObject var viewModel: VLCPlayerViewModel
-        @State var isPlaying: Bool = false
+        @State var isPlaying: Bool = true
         @State var currentPlaybackTime: TimeInterval = 0
         @State var mediaTimeDuration: TimeInterval = 60 * 6
         @State var isSeeking: Bool = false
         @Namespace private var glassNamespace
 
+        var showOverlay: Bool {
+            viewModel.showOverlay || airPlay.connected
+        }
+
         var body: some View {
             ZStack(alignment: .bottom) {
-                Color(viewModel.showOverlay ? .systemGroupedBackground : .black)
+                Color(showOverlay ? .systemGroupedBackground : .black)
                     .ignoresSafeArea()
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.28)) {
@@ -56,25 +91,33 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
                     }
 
                 VLCPlayerViewRepresentable(url: viewModel.url,
-                                           isPlaying: $isPlaying,
+                                           isPlaying: isPlaying,
                                            mediaTimeDuration: $mediaTimeDuration,
                                            currentPlaybackTime: $currentPlaybackTime,
-                                           isSeeking: $isSeeking)
+                                           isSeeking: isSeeking)
                     .ignoresSafeArea()
 
                 ZStack {
                     CompatibilityGlassContainer(spacing: 24) {
-                        if viewModel.showOverlay {
-                            overlayButtons
-                                .transition(.opacity.combined(with: .scale(scale: 0.96)))
+                        VStack {
+                            if airPlay.connected {
+                                Label("Displaying via AirPlay", systemImage: "airplayvideo")
+                                    .font(.title3.weight(.semibold))
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 14)
+                            }
+                            if showOverlay {
+                                overlayButtons
+                                    .transition(.opacity.combined(with: .scale(scale: 0.96)))
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .ignoresSafeArea()
 
                     CompatibilityGlassContainer(spacing: 24) {
-                        if viewModel.showOverlay {
-                            TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime, isSeeking: $isSeeking)
+                        if showOverlay {
+                            TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime, isSeeking: $isSeeking, availability: viewModel.segmentedProgress)
                                 .padding()
                                 .compatibilityGlassID("timeline", in: glassNamespace)
                                 .compatibilityGlassTransition()
@@ -132,7 +175,7 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
 
             var size: Size
             var imageName: String
-            var action: () -> ()
+            var action: () -> Void
 
             var body: some View {
                 let button = Button {
@@ -160,15 +203,24 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.VLCPl
 
 struct VLCPlayerViewRepresentable: UIViewRepresentable {
     let url: URL
-    @Binding var isPlaying: Bool
+    let isPlaying: Bool
     @Binding var mediaTimeDuration: TimeInterval
     @Binding var currentPlaybackTime: TimeInterval
-    @Binding var isSeeking: Bool
+    let isSeeking: Bool
 
     func makeUIView(context: Context) -> UIView {
         let view = UIView()
         view.isUserInteractionEnabled = false
-        context.coordinator.attachDrawable(view)
+
+        let drawable = UIView()
+        drawable.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        drawable.frame = view.bounds
+        view.addSubview(drawable)
+
+        Air.play(drawable)
+
+        context.coordinator.drawableView = drawable
+        context.coordinator.attachDrawable(drawable)
 
         // Preparse
         guard let media = VLCMedia(url: url) else { return view }
@@ -190,9 +242,12 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         return view
     }
 
+    static func dismantleUIView(_ uiView: UIView, coordinator: Coordinator) {
+        Air.stop()
+    }
+
     func updateUIView(_ uiView: UIView, context: Context) {
         context.coordinator.parent = self
-        context.coordinator.attachDrawable(uiView)
 
         let mediaPlayer = context.coordinator.mediaPlayer
         if isPlaying {
@@ -206,13 +261,12 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         let duration = max(mediaTimeDuration, 0)
         let clampedPlaybackTime = min(max(currentPlaybackTime, 0), duration)
 
-
         let stoppedSeeking = context.coordinator.lastIsSeeking && !isSeeking
         context.coordinator.lastIsSeeking = isSeeking
 
         if mediaPlayer.isSeekable, !stoppedSeeking {
             let time = VLCTime(number: NSNumber(value: Int(clampedPlaybackTime * 1000)))
-            if abs(time.intValue - mediaPlayer.time.intValue) > 1_000 {
+            if abs(time.intValue - mediaPlayer.time.intValue) > 1000 {
                 context.coordinator.seek(to: time, shouldPlay: isPlaying)
             }
         }
@@ -225,7 +279,7 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
     final class Coordinator: NSObject, VLCMediaPlayerDelegate, @unchecked Sendable {
         var parent: VLCPlayerViewRepresentable
         let mediaPlayer = VLCMediaPlayer()
-        weak var drawableView: UIView?
+        var drawableView: UIView?
         var lastIsSeeking: Bool = false
         var isPerformingPausedSeek: Bool = false
         private var notificationObservers: [NSObjectProtocol] = []
@@ -341,7 +395,7 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
 }
 
 #Preview {
-    UINavigationController(rootViewController: VLCPlayerViewController(viewModel: .init(with: URL(string: "ttest.com")!)))
+    UINavigationController(rootViewController: VLCPlayerViewController(viewModel: .init(with: .init(url: URL(string: "ttest.com")!, torrentPair: nil))))
         .asView
         .ignoresSafeArea()
 }

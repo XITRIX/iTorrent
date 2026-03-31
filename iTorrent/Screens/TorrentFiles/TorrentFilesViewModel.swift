@@ -17,7 +17,7 @@ extension TorrentFilesViewModel {
 }
 
 class TorrentFilesViewModel: BaseViewModelWith<TorrentFilesViewModel.Config> {
-    private var torrentHandle: TorrentHandle!
+    private(set) var torrentHandle: TorrentHandle!
     private var rootDirectory: PathNode!
     private var keys: [String] = []
 

@@ -3432,6 +3432,9 @@
     "Dict: %@" : {
 
     },
+    "Displaying via AirPlay" : {
+
+    },
     "encryptionPolicy.disabled" : {
       "localizations" : {
         "de" : {
@@ -4359,6 +4362,7 @@
       }
     },
     "list.add.files" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
