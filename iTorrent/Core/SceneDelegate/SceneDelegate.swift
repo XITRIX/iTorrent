@@ -52,6 +52,7 @@ class SceneDelegate: MvvmSceneDelegate {
         router.register(PRButtonView.self)
         router.register(PRStorageCell.self)
         router.register(PRColorPickerCell.self)
+        router.register(MenuButtonCellView.self)
 
         // MARK: Controllers
         router.register(BaseHostingViewController<StoragePreferencesView>.self)

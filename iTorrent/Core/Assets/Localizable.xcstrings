@@ -1632,6 +1632,26 @@
         }
       }
     },
+    "details.downloading.downloadPriorities" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priorities"
+          }
+        }
+      }
+    },
+    "details.downloading.firstAndLast" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First and Last"
+          }
+        }
+      }
+    },
     "details.downloading.progress" : {
       "localizations" : {
         "de" : {

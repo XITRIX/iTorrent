@@ -105,6 +105,8 @@
 		7CCDB3392ED5DF56001E857B /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */; };
 		7CCDB33B2ED5F4B4001E857B /* UIAlertController+PrimaryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB33A2ED5F4AC001E857B /* UIAlertController+PrimaryAction.swift */; };
 		7CDC7BBE2C516ADD00B51EFB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */; };
+		7CE19BF82F7F9D05006D8352 /* MenuButtonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE19BF72F7F9CFB006D8352 /* MenuButtonCellViewModel.swift */; };
+		7CE19BFA2F7F9D09006D8352 /* MenuButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE19BF92F7F9D08006D8352 /* MenuButtonCellView.swift */; };
 		7CE25BA72C24A848007B2FD7 /* CircularAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */; };
 		7CE2E48F2F2E842B000310B6 /* test.torrent in Resources */ = {isa = PBXBuildFile; fileRef = 7CE2E48E2F2E842B000310B6 /* test.torrent */; };
 		7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */ = {isa = PBXBuildFile; productRef = 7CF6DA322C0F112B0033D03F /* OpenSSL */; };
@@ -184,7 +186,6 @@
 		D1352D3F2BBD81C000104E7B /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D3E2BBD81C000104E7B /* AppDelegate+Notifications.swift */; };
 		D135C5952AEFB67000440680 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5942AEFB67000440680 /* BaseNavigationController.swift */; };
 		D135C5992AEFB96100440680 /* TorrentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */; };
-		D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D135C5982AEFB96100440680 /* TorrentDetailsViewController.xib */; };
 		D135C59C2AEFB96F00440680 /* TorrentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135C59B2AEFB96F00440680 /* TorrentDetailsViewModel.swift */; };
 		D1707C342AF297C500F1752A /* BaseSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1707C332AF297C500F1752A /* BaseSplitViewController.swift */; };
 		D173D9D92BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D173D9D82BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift */; };
@@ -402,6 +403,8 @@
 		7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+IOSRelatedIcons.swift"; sourceTree = "<group>"; };
 		7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
 		7CCDB33A2ED5F4AC001E857B /* UIAlertController+PrimaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+PrimaryAction.swift"; sourceTree = "<group>"; };
+		7CE19BF72F7F9CFB006D8352 /* MenuButtonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonCellViewModel.swift; sourceTree = "<group>"; };
+		7CE19BF92F7F9D08006D8352 /* MenuButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonCellView.swift; sourceTree = "<group>"; };
 		7CE25BA62C24A848007B2FD7 /* CircularAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimation.swift; sourceTree = "<group>"; };
 		7CE2E48E2F2E842B000310B6 /* test.torrent */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.torrent; sourceTree = "<group>"; };
 		7CF6DA342C0F3DB90033D03F /* BCHostingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCHostingConfiguration.swift; sourceTree = "<group>"; };
@@ -467,7 +470,6 @@
 		D1352D3E2BBD81C000104E7B /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		D135C5942AEFB67000440680 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsViewController.swift; sourceTree = "<group>"; };
-		D135C5982AEFB96100440680 /* TorrentDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TorrentDetailsViewController.xib; sourceTree = "<group>"; };
 		D135C59B2AEFB96F00440680 /* TorrentDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsViewModel.swift; sourceTree = "<group>"; };
 		D1707C332AF297C500F1752A /* BaseSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSplitViewController.swift; sourceTree = "<group>"; };
 		D173D9D82BBED24C00E4F9EB /* PreferencesSectionGroupingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesSectionGroupingViewController.swift; sourceTree = "<group>"; };
@@ -886,6 +888,15 @@
 			path = UIImage;
 			sourceTree = "<group>";
 		};
+		7CE19BF62F7F9CE2006D8352 /* MenuButton */ = {
+			isa = PBXGroup;
+			children = (
+				7CE19BF92F7F9D08006D8352 /* MenuButtonCellView.swift */,
+				7CE19BF72F7F9CFB006D8352 /* MenuButtonCellViewModel.swift */,
+			);
+			path = MenuButton;
+			sourceTree = "<group>";
+		};
 		7CFEBE682BC3E0DF0013233F /* Rss */ = {
 			isa = PBXGroup;
 			children = (
@@ -1149,7 +1160,6 @@
 				D19E00192AEFF8A1000A17A2 /* Cells */,
 				D135C59B2AEFB96F00440680 /* TorrentDetailsViewModel.swift */,
 				D135C5972AEFB96100440680 /* TorrentDetailsViewController.swift */,
-				D135C5982AEFB96100440680 /* TorrentDetailsViewController.xib */,
 			);
 			path = TorrentDetails;
 			sourceTree = "<group>";
@@ -1219,6 +1229,7 @@
 		D19E00192AEFF8A1000A17A2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7CE19BF62F7F9CE2006D8352 /* MenuButton */,
 				D1B538552AF1170100694AFD /* TorrentDetailProgress */,
 			);
 			path = Cells;
@@ -1771,7 +1782,6 @@
 				D1A226A72AEEEFDF00669D6D /* Assets.xcassets in Resources */,
 				7C32535E2D1940440069D640 /* CellularToggleSetupViewController.xib in Resources */,
 				7CFEBE892BC439C30013233F /* RssChannelItemCell.xib in Resources */,
-				D135C59A2AEFB96100440680 /* TorrentDetailsViewController.xib in Resources */,
 				D11138492AF9464E008907F7 /* TorrentAddViewController.xib in Resources */,
 				D1EFCD0A2AF56A4C00D33A7A /* TorrentFilesViewController.xib in Resources */,
 				7CB831252D19754A005F3F42 /* MessageOverlayView.xib in Resources */,
@@ -1914,6 +1924,7 @@
 				7CBDBAAD2C31EF0C008C986B /* UserDefaults+AppGroup.swift in Sources */,
 				D1B1BEC92AFE25AE0030C2A4 /* TorrentTrackersViewController.swift in Sources */,
 				D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */,
+				7CE19BF82F7F9D05006D8352 /* MenuButtonCellViewModel.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
 				7C5B73672F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift in Sources */,
 				7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */,
@@ -1985,6 +1996,7 @@
 				7CFEBE812BC433F90013233F /* BaseCollectionViewModel.swift in Sources */,
 				D1352D322BBD720C00104E7B /* PRStorageCell.swift in Sources */,
 				7C5FBE232BBDD1B60069E5A0 /* NSUserDefaultItem.swift in Sources */,
+				7CE19BFA2F7F9D09006D8352 /* MenuButtonCellView.swift in Sources */,
 				D1EFCD092AF56A4C00D33A7A /* TorrentFilesViewController.swift in Sources */,
 				7C1C08AD2C31FEA400569B45 /* IntentsService.swift in Sources */,
 				7CFEBE832BC434A10013233F /* BaseCollectionViewController.swift in Sources */,

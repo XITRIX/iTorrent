@@ -10,10 +10,9 @@ import LibTorrent
 import MvvmFoundation
 import UIKit
 
-class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
+class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
     private var torrentHandle: TorrentHandle!
 
-    @Published var sections: [MvvmCollectionSectionModel] = []
     @Published var title: String = ""
     @Published var isPaused: Bool = false
     @Published var canResume: Bool = false
@@ -51,23 +50,54 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
                 torrentHandle.setSequentialDownload(value)
             }
 
+            firstAndLastModel.$isOn.sink { [unowned self] value in
+                torrentHandle.setFirstLastPriorityDownload(value)
+            }
+
             $storageError.removeDuplicates().sink { [unowned self] error in
                 runOnMainThreadIfNeeded { [self] in
-                    downloadPathModel.accessories = error ? 
-                    [
-                        .image(.init(systemName: "exclamationmark.triangle.fill"), options: .init(tintColor: .systemRed))
-                    ] :
-                    [
-//                        .popUpMenu(
+                    downloadPathModel.accessories = error ?
+                        [
+                            .image(.init(systemName: "exclamationmark.triangle.fill"), options: .init(tintColor: .systemRed)),
+                        ] :
+                        [
+                            //                        .popUpMenu(
 //                            .init(title: %"details.path.migrate", children: [
 //                                UIAction(title: "Default", state: .off) { _ in },
 //                                UIAction(title: "Browse", state: .off) { _ in },
 //                            ]), options: .init(tintColor: .tintColor)
 //                        )
-                    ]
+                        ]
 
-                    downloadPathModel.selectAction = nil //error ? nil : {}
+                    downloadPathModel.selectAction = nil // error ? nil : {}
                 }
+            }
+
+            torrentHandle.updatePublisher.compactMap { (update: TorrentService.TorrentUpdateModel) in
+                guard let handle = update.handle else { return nil }
+                return (handle.snapshot.isSequential, handle.snapshot.isFirstLastPiecePriority, handle)
+            }.removeDuplicates(by: {
+                $0.0 == $1.0 && $0.1 == $1.1
+            }).sink { [weak self, downloadPrioritiesMenuModel] (_: Bool, _: Bool, _: TorrentHandle) in
+                guard let self else { return }
+
+                downloadPrioritiesMenuModel.value = makeDownloadPriorityValue(isSequential: torrentHandle.snapshot.isSequential, isFirstLastPiecePriority: torrentHandle.snapshot.isFirstLastPiecePriority)
+                downloadPrioritiesMenuModel.menu = .init(options: [], children: [
+                    UIAction(title: %"details.downloading.sequential",
+                             image: .numbersCapsule,
+                             attributes: [.keepsMenuPresented],
+                             state: torrentHandle.snapshot.isSequential ? .on : .off)
+                    { [unowned self] _ in
+                        self.torrentHandle.setSequentialDownload(!self.torrentHandle.snapshot.isSequential)
+                    },
+                    UIAction(title: %"details.downloading.firstAndLast",
+                             image: .arrowLeftAndRightCapsule,
+                             attributes: [.keepsMenuPresented],
+                             state: torrentHandle.snapshot.isFirstLastPiecePriority ? .on : .off)
+                    { [unowned self] _ in
+                        self.torrentHandle.setFirstLastPriorityDownload(!self.torrentHandle.snapshot.isFirstLastPiecePriority)
+                    },
+                ])
             }
         }
 
@@ -99,6 +129,8 @@ class TorrentDetailsViewModel: BaseViewModelWith<TorrentHandle> {
     private let timeLeftModel = DetailCellViewModel(title: %"details.speed.timeRemains")
 
     private let sequentialModel = ToggleCellViewModel(title: %"details.downloading.sequential")
+    private let firstAndLastModel = ToggleCellViewModel(title: %"details.downloading.firstAndLast")
+    private lazy var downloadPrioritiesMenuModel = MenuButtonCellViewModel(with: .init(title: %"details.downloading.downloadPriorities", isBold: true, dismissSelection: { [weak self] in self?.dismissSelection.send() }))
     private let progressModel = TorrentDetailProgressCellViewModel(title: %"details.downloading.progress")
 
     private let hashModel = DetailCellViewModel(title: %"details.info.hash", spacer: 80)
@@ -167,10 +199,10 @@ extension TorrentDetailsViewModel {
                 DispatchQueue.global(qos: .userInitiated).async { [self] in
                     guard !torrentService.refreshStorage(storage) else { return }
                     alert(title: %"common.error", message: %"details.refreshStorage.fail.message", actions: [
-                        .init(title: %"common.close", style: .cancel, isPrimary: true)
+                        .init(title: %"common.close", style: .cancel, isPrimary: true),
                     ])
                 }
-            })
+            }),
         ])
     }
 
@@ -214,6 +246,7 @@ private extension TorrentDetailsViewModel {
         timeLeftModel.detail = torrentHandle.snapshot.timeRemains
 
         sequentialModel.isOn = torrentHandle.snapshot.isSequential
+        firstAndLastModel.isOn = torrentHandle.snapshot.isFirstLastPiecePriority
         progressModel.progress = torrentHandle.snapshot.progress
         progressModel.segmentedProgress = torrentHandle.snapshot.segmentedProgress
 
@@ -275,7 +308,9 @@ private extension TorrentDetailsViewModel {
         }
 
         sections.append(.init(id: "download", header: %"details.downloading") {
-            sequentialModel
+//            sequentialModel
+//            firstAndLastModel
+            downloadPrioritiesMenuModel
             progressModel
         })
 //
@@ -322,5 +357,34 @@ private extension TorrentDetailsViewModel {
             trackersModel
             filesModel
         })
+    }
+
+    func makeDownloadPriorityValue(
+        isSequential: Bool,
+        isFirstLastPiecePriority: Bool
+    ) -> NSAttributedString {
+        guard isSequential || isFirstLastPiecePriority else {
+            return NSAttributedString("None")
+        }
+
+        let result = NSMutableAttributedString()
+
+        if isSequential {
+            let attachment = NSTextAttachment()
+            attachment.image = .numbersCapsule.withRenderingMode(.alwaysTemplate)
+            result.append(NSAttributedString(attachment: attachment))
+        }
+
+        if isFirstLastPiecePriority {
+            if result.length > 0 {
+                result.append(NSAttributedString(string: " "))
+            }
+
+            let attachment = NSTextAttachment()
+            attachment.image = .arrowLeftAndRightCapsule.withRenderingMode(.alwaysTemplate)
+            result.append(NSAttributedString(attachment: attachment))
+        }
+
+        return NSAttributedString(attributedString: result)
     }
 }

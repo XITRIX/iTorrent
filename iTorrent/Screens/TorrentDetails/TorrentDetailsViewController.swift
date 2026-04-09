@@ -9,9 +9,7 @@ import Combine
 import MvvmFoundation
 import SwiftUI
 
-class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewController<VM> {
-    @IBOutlet private var collectionView: MvvmCollectionView!
-
+class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseCollectionViewController<VM> {
     private let shareButton = UIBarButtonItem(title: %"common.share", image: .init(systemName: "square.and.arrow.up"))
     private let playButton = UIBarButtonItem()
     private let pauseButton = UIBarButtonItem()
@@ -31,12 +29,6 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
                 else { return }
 
                 pop(animated: true, sender: self)
-            }
-
-            viewModel.$sections.sink { [unowned self] sections in
-                if collectionView.diffDataSource.snapshot().sectionIdentifiers.differs(from: sections) {
-                    collectionView.diffDataSource.applyModels(sections)
-                }
             }
 
             viewModel.shareAvailable.sink { [unowned self] available in
@@ -98,11 +90,6 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseViewControl
         navigationItem.trailingItemGroups.append(.fixedGroup(items: [shareButton]))
 
         reloadToolbar()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        smoothlyDeselectRows(in: collectionView)
     }
 }
 
