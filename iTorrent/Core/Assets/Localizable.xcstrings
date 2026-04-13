@@ -2,10 +2,24 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@ of %@ (%@)" : {
       "localizations" : {
@@ -100,7 +114,14 @@
       }
     },
     "Add Torrent" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiungi Torrent"
+          }
+        }
+      }
     },
     "add.dismiss.message" : {
       "extractionState" : "manual",
@@ -126,7 +147,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tutti i cambiamenti saranno persi"
+            "value" : "Tutte le modifiche andranno perse"
           }
         },
         "pl" : {
@@ -1256,10 +1277,24 @@
       }
     },
     "Delete Keeping Files" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella Mantendo i Files"
+          }
+        }
+      }
     },
     "Delete With Files" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancella con i FIles"
+          }
+        }
+      }
     },
     "details.actions" : {
       "localizations" : {
@@ -2664,7 +2699,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Link magnet"
+            "value" : "Link Magnet"
           }
         },
         "pl" : {
@@ -2848,7 +2883,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scarica"
+            "value" : "Scaricamento"
           }
         },
         "pl" : {
@@ -2940,7 +2975,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carica"
+            "value" : "Caricamento"
           }
         },
         "pl" : {
@@ -3078,7 +3113,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trasferisci"
+            "value" : "Trasferimento"
           }
         },
         "pl" : {
@@ -3424,7 +3459,14 @@
       }
     },
     "Dict: %@" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dizionario: %@"
+          }
+        }
+      }
     },
     "encryptionPolicy.disabled" : {
       "localizations" : {
@@ -3449,7 +3491,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Disabilita"
+            "value" : "Disattiva"
           }
         },
         "pl" : {
@@ -3633,7 +3675,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L’app ha bisogno di un aggiornamento"
+            "value" : "È necessario aggiornare l'app"
           }
         },
         "pl" : {
@@ -3887,10 +3929,24 @@
       }
     },
     "Files" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files"
+          }
+        }
+      }
     },
     "General" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generale"
+          }
+        }
+      }
     },
     "initialSetup.cellular.allowCheck.confirm" : {
       "localizations" : {
@@ -5110,8 +5166,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Select All"
+            "state" : "translated",
+            "value" : "Seleziona Tutto"
           }
         },
         "pl" : {
@@ -5668,7 +5724,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Imagini"
+            "value" : "Immagini"
           }
         },
         "pl" : {
@@ -6130,7 +6186,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diventa a patron"
+            "value" : "Diventa un patron"
           }
         },
         "pl" : {
@@ -6452,7 +6508,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessuna credenziale"
+            "value" : "Credenziali mancanti."
           }
         },
         "pl" : {
@@ -6544,7 +6600,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Token di accesso non valido"
+            "value" : "Token di accesso non valido."
           }
         },
         "pl" : {
@@ -6752,7 +6808,14 @@
       }
     },
     "Peers" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peers"
+          }
+        }
+      }
     },
     "preferences" : {
       "localizations" : {
@@ -6869,7 +6932,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordinamento raggruppamento sezioni"
+            "value" : "Disposizione delle sezioni"
           }
         },
         "pl" : {
@@ -7788,8 +7851,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Validate HTTPS trackers"
+            "state" : "translated",
+            "value" : "Convalida trackers HTTPS"
           }
         },
         "pl" : {
@@ -7835,7 +7898,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Usa la porta di default"
+            "value" : "Usa la porta predefinita"
           }
         },
         "pl" : {
@@ -8019,7 +8082,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attiva DHR"
+            "value" : "Attiva DHT"
           }
         },
         "pl" : {
@@ -8847,7 +8910,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al caricamento finito"
+            "value" : "Al termine del caricamento"
           }
         },
         "pl" : {
@@ -8893,7 +8956,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Limiti di coda dei torrent"
+            "value" : "Limiti di accodamento torrent"
           }
         },
         "pl" : {
@@ -10804,7 +10867,14 @@
       }
     },
     "Primary Info" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informazione Principale"
+          }
+        }
+      }
     },
     "prioriry.change.title" : {
       "localizations" : {
@@ -11426,8 +11496,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export All"
+            "state" : "translated",
+            "value" : "Esporta Tutto"
           }
         },
         "pl" : {
@@ -11472,8 +11542,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export Selected"
+            "state" : "translated",
+            "value" : "Esporta Selezione"
           }
         },
         "pl" : {
@@ -11518,8 +11588,8 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import"
+            "state" : "translated",
+            "value" : "Importa"
           }
         },
         "pl" : {
@@ -11611,7 +11681,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri in safari"
+            "value" : "Apri in Safari"
           }
         },
         "pl" : {
@@ -12279,7 +12349,14 @@
       }
     },
     "Search" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerca"
+          }
+        }
+      }
     },
     "time.day.single" : {
       "localizations" : {
@@ -12626,7 +12703,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "y"
+            "value" : "a"
           }
         },
         "pl" : {
@@ -12764,7 +12841,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sei sicuro di rimuovere"
+            "value" : "Confermi di voler rimuovere?"
           }
         },
         "pl" : {
@@ -12902,7 +12979,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Scaricamento"
+            "value" : "Scaricando"
           }
         },
         "pl" : {
@@ -13132,7 +13209,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Errore spazio di archiviazione:"
+            "value" : "Errore spazio di archiviazione"
           }
         },
         "pl" : {
@@ -13708,7 +13785,14 @@
       }
     },
     "Trackers" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trackers"
+          }
+        }
+      }
     },
     "trackers.action.copy" : {
       "localizations" : {
@@ -14239,7 +14323,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riannuncia tutti"
+            "value" : "Riannuncia tutto"
           }
         },
         "pl" : {
@@ -14493,7 +14577,14 @@
       }
     },
     "Transfer" : {
-
+      "localizations" : {
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trasferimento"
+          }
+        }
+      }
     },
     "webserver.unavailable" : {
       "localizations" : {
