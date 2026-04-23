@@ -1,11 +1,13 @@
 import SwiftUI
 
+@available(visionOS, unavailable)
 public extension View {
     func airPlay() -> some View {
         modifier(AirPlayStatusModifier())
     }
 }
 
+@available(visionOS, unavailable)
 private struct AirPlayStatusModifier: ViewModifier {
     @State private var isConnected = Air.shared.connected
     @State private var registeredCallback = false

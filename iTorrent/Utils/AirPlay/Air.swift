@@ -3,6 +3,7 @@
 import UIKit
 import SwiftUI
 
+@available(visionOS, unavailable)
 public class Air: ObservableObject {
 
     static let shared = Air()

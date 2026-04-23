@@ -18,6 +18,9 @@ struct CompatibilityGlassContainer<Content: View>: View {
 
     @ViewBuilder
     var body: some View {
+#if os(visionOS)
+        content
+#else
         if #available(iOS 26.0, *) {
             GlassEffectContainer(spacing: spacing) {
                 content
@@ -25,6 +28,7 @@ struct CompatibilityGlassContainer<Content: View>: View {
         } else {
             content
         }
+#endif
     }
 }
 
@@ -40,6 +44,9 @@ extension View {
         isClear: Bool = false,
         interactive: Bool = false
     ) -> some View {
+#if os(visionOS)
+        background(isClear ? .thinMaterial : .regular, in: shape)
+#else
         if #available(iOS 26.0, *) {
             let glass = isClear ? Glass.clear : .regular
             if interactive {
@@ -50,23 +57,32 @@ extension View {
         } else {
             background(isClear ? .thinMaterial : .regular, in: shape)
         }
+#endif
     }
 
     @ViewBuilder
     func compatibilityGlassTransition() -> some View {
+#if os(visionOS)
+        self
+#else
         if #available(iOS 26.0, *) {
             glassEffectTransition(.materialize)
         } else {
             self
         }
+#endif
     }
 
     @ViewBuilder
     func compatibilityGlassID<ID: Hashable & Sendable>(_ id: ID, in namespace: Namespace.ID) -> some View {
+#if os(visionOS)
+        self
+#else
         if #available(iOS 26.0, *) {
             glassEffectID(id, in: namespace)
         } else {
             self
         }
+#endif
     }
 }

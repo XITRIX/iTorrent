@@ -12,9 +12,91 @@ import UIKit
 import VLCKit
 import AVKit
 
-class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>, MvvmViewControllerProtocol {
+struct TracksMenuView: View {
+    let tracks: [VLCMediaPlayer.Track]
+    @Binding var selectedTrackId: String?
+    let title: LocalizedStringKey
+    let systemImage: String
+
+    var body: some View {
+        Menu {
+            Section {
+                ForEach(tracks, id: \.trackId) { track in
+                    Toggle(track.title, isOn: .init(get: {
+                        selectedTrackId == track.trackId
+                    }, set: { value in
+                        guard value else { return }
+                        selectedTrackId = track.trackId
+                    }))
+                }
+            } header: {
+                Text(title)
+            }
+        } label: {
+            Image(systemName: systemImage)
+        }
+        .menuOrder(.fixed)
+        .labelStyle(.iconOnly)
+        .imageScale(.medium)
+        .accessibilityLabel(title)
+    }
+}
+
+struct PlaybackRateMenuView: View {
+    let rates: [Float]
+    @Binding var selectedRate: Float
+
+    var body: some View {
+        Menu {
+            Section {
+                ForEach(rates, id: \.self) { rate in
+                    Toggle(rate.formattedRate, isOn: .init(get: {
+                        selectedRate == rate
+                    }, set: { value in
+                        guard value else { return }
+                        selectedRate = rate
+                    }))
+                }
+            } header: {
+                Text("Playback Speed")
+            }
+        } label: {
+            Image(systemName: "speedometer")
+        }
+        .menuOrder(.fixed)
+        .labelStyle(.iconOnly)
+        .imageScale(.medium)
+        .accessibilityLabel("Playback Speed")
+    }
+}
+
+private extension Float {
+    var formattedRate: String {
+        if self == floor(self) {
+            return "\(Int(self))x"
+        }
+
+        return String(format: "%.2gx", self)
+    }
+}
+
+extension VLCMediaPlayer.Track {
+    var title: String {
+        let index = Int(trackId.components(separatedBy: "/").last ?? "0") ?? 0
+        return [trackDescription ?? "Track \(index)", (localizedLanguageName ?? language).map { "[\($0)]" }].compactMap { $0 }.joined(separator: " - ")
+    }
+
+    var localizedLanguageName: String? {
+        guard let language else { return nil }
+        return Locale(identifier: "en").localizedString(forLanguageCode: language)
+    }
+}
+
+class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Body>, MvvmViewControllerProtocol {
     var viewModel: VLCPlayerViewModel
     private var disposeBag = DisposeBag() // [AnyCancellable] = []
+
+    override var useMarqueeLabel: Bool { true }
 
     required init(viewModel: VLCPlayerViewModel) {
         self.viewModel = viewModel
@@ -29,6 +111,8 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = viewModel.url.lastPathComponent
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = .init(systemItem: .close, primaryAction: .init { [unowned self] _ in
             dismiss()
         })
@@ -50,11 +134,13 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>
 //                    item.style = aired ? .prominent : .plain
 //                }
 //            }
+            #if !os(visionOS)
             Air.shared.$connected.combineLatest(viewModel.$showOverlay)
                 .sink { [weak self] aired, value in
                     let show = aired || value
                     self?.navigationController?.setNavigationBarHidden(!show, animated: true)
                 }
+            #endif
         }
     }
 
@@ -63,21 +149,35 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>
 
         var body: some View {
             VLCPlayerView(viewModel: viewModel)
+#if !os(visionOS)
                 .environmentObject(Air.shared)
+#endif
         }
     }
 
     struct VLCPlayerView: View {
+#if !os(visionOS)
         @EnvironmentObject var airPlay: Air
+#endif
         @ObservedObject var viewModel: VLCPlayerViewModel
         @State var isPlaying: Bool = true
         @State var currentPlaybackTime: TimeInterval = 0
         @State var mediaTimeDuration: TimeInterval = 60 * 6
         @State var isSeeking: Bool = false
+        @State var audioTracks: [VLCMediaPlayer.Track] = []
+        @State var textTracks: [VLCMediaPlayer.Track] = []
+        @State var selectedAudioTrack: String?
+        @State var selectedTextTrack: String?
+        @State var playbackRate: Float = 1
         @Namespace private var glassNamespace
+        private let playbackRates: [Float] = [0.5, 0.75, 1, 1.25, 1.5, 2]
 
         var showOverlay: Bool {
+#if !os(visionOS)
             viewModel.showOverlay || airPlay.connected
+#else
+            viewModel.showOverlay
+#endif
         }
 
         var body: some View {
@@ -92,20 +192,27 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>
 
                 VLCPlayerViewRepresentable(url: viewModel.url,
                                            isPlaying: isPlaying,
+                                           playbackRate: playbackRate,
                                            mediaTimeDuration: $mediaTimeDuration,
                                            currentPlaybackTime: $currentPlaybackTime,
+                                           audioTracks: $audioTracks,
+                                           selectedAudioTrack: $selectedAudioTrack,
+                                           textTracks: $textTracks,
+                                           selectedTextTrack: $selectedTextTrack,
                                            isSeeking: isSeeking)
                     .ignoresSafeArea()
 
                 ZStack {
                     CompatibilityGlassContainer(spacing: 24) {
                         VStack {
+#if !os(visionOS)
                             if airPlay.connected {
                                 Label("Displaying via AirPlay", systemImage: "airplayvideo")
                                     .font(.title3.weight(.semibold))
                                     .padding(.horizontal, 20)
                                     .padding(.vertical, 14)
                             }
+#endif
                             if showOverlay {
                                 overlayButtons
                                     .transition(.opacity.combined(with: .scale(scale: 0.96)))
@@ -115,19 +222,64 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .ignoresSafeArea()
 
-                    CompatibilityGlassContainer(spacing: 24) {
+                    CompatibilityGlassContainer(spacing: 16) {
                         if showOverlay {
-                            TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime, isSeeking: $isSeeking, availability: viewModel.segmentedProgress)
-                                .padding()
-                                .compatibilityGlassID("timeline", in: glassNamespace)
-                                .compatibilityGlassTransition()
-                                .transition(.opacity.combined(with: .move(edge: .bottom)))
+                            VStack(alignment: .trailing, spacing: 16) {
+                                controlsBar
+
+                                TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime, isSeeking: $isSeeking, availability: viewModel.segmentedProgress)
+                                    .compatibilityGlassID("timeline", in: glassNamespace)
+                                    .compatibilityGlassTransition()
+                            }
+                            .padding()
+                            .transition(.opacity.combined(with: .move(edge: .bottom)))
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+
+        private var controlsBar: some View {
+            HStack {
+                HStack(spacing: 16) {
+                    PlaybackRateMenuView(
+                        rates: playbackRates,
+                        selectedRate: $playbackRate
+                    )
+                }
+//                .padding(.horizontal)
+                .frame(width: 44, height: 44)
+                .compatibilityGlassEffect(interactive: true)
+                .compatibilityGlassID("controls", in: glassNamespace)
+                .compatibilityGlassTransition()
+
+                Spacer()
+
+                HStack(spacing: 16) {
+                    TracksMenuView(
+                        tracks: audioTracks,
+                        selectedTrackId: $selectedAudioTrack,
+                        title: "Audio",
+                        systemImage: "waveform"
+                    )
+
+                    TracksMenuView(
+                        tracks: textTracks,
+                        selectedTrackId: $selectedTextTrack,
+                        title: "Subtitles",
+                        systemImage: "text.alignleft"
+                    )
+                }
+                .padding(.horizontal)
+                .frame(height: 44)
+                .compatibilityGlassEffect(interactive: true)
+                .compatibilityGlassID("controls", in: glassNamespace)
+                .compatibilityGlassTransition()
+            }
+            .tint(Color.secondary)
+            .font(.title3.weight(.semibold))
         }
 
         private var overlayButtons: some View {
@@ -204,8 +356,13 @@ class VLCPlayerViewController: UIHostingController<VLCPlayerViewController.Body>
 struct VLCPlayerViewRepresentable: UIViewRepresentable {
     let url: URL
     let isPlaying: Bool
+    let playbackRate: Float
     @Binding var mediaTimeDuration: TimeInterval
     @Binding var currentPlaybackTime: TimeInterval
+    @Binding var audioTracks: [VLCMediaPlayer.Track]
+    @Binding var selectedAudioTrack: String?
+    @Binding var textTracks: [VLCMediaPlayer.Track]
+    @Binding var selectedTextTrack: String?
     let isSeeking: Bool
 
     func makeUIView(context: Context) -> UIView {
@@ -217,7 +374,9 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         drawable.frame = view.bounds
         view.addSubview(drawable)
 
+#if !os(visionOS)
         Air.play(drawable)
+#endif
 
         context.coordinator.drawableView = drawable
         context.coordinator.attachDrawable(drawable)
@@ -236,6 +395,12 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
             context.coordinator.mediaPlayer.play()
             try await Task.sleep(for: .seconds(0.2))
             context.coordinator.mediaPlayer.pause()
+
+            audioTracks = context.coordinator.mediaPlayer.audioTracks
+            textTracks = context.coordinator.mediaPlayer.textTracks
+
+            selectedAudioTrack = audioTracks.first?.trackId
+            selectedTextTrack = textTracks.first?.trackId
         }
         context.coordinator.mediaPlayer.media = media
 
@@ -243,11 +408,15 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
     }
 
     static func dismantleUIView(_ uiView: UIView, coordinator: Coordinator) {
+#if !os(visionOS)
         Air.stop()
+#endif
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
         context.coordinator.parent = self
+        context.coordinator.setAudioTrack(selectedAudioTrack)
+        context.coordinator.setTextTrack(selectedTextTrack)
 
         let mediaPlayer = context.coordinator.mediaPlayer
         if isPlaying {
@@ -257,6 +426,7 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         } else if mediaPlayer.isPlaying, !context.coordinator.isPerformingPausedSeek {
             mediaPlayer.pause()
         }
+        mediaPlayer.rate = playbackRate
 
         let duration = max(mediaTimeDuration, 0)
         let clampedPlaybackTime = min(max(currentPlaybackTime, 0), duration)
@@ -282,6 +452,8 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         var drawableView: UIView?
         var lastIsSeeking: Bool = false
         var isPerformingPausedSeek: Bool = false
+        var selectedAudioTrack: String?
+        var selectedTextTrack: String?
         private var notificationObservers: [NSObjectProtocol] = []
         private var pausedSeekTask: Task<Void, Never>?
 
@@ -297,6 +469,34 @@ struct VLCPlayerViewRepresentable: UIViewRepresentable {
         deinit {
             pausedSeekTask?.cancel()
             notificationObservers.forEach(NotificationCenter.default.removeObserver)
+        }
+
+        func setAudioTrack(_ trackId: String?) {
+            guard selectedAudioTrack != trackId
+            else { return }
+
+            if let trackId {
+                guard let index = mediaPlayer.audioTracks.firstIndex(where: { $0.trackId == trackId })
+                else { return }
+
+                mediaPlayer.selectTrack(at: index, type: .audio)
+            } else {
+                mediaPlayer.deselectAllAudioTracks()
+            }
+        }
+
+        func setTextTrack(_ trackId: String?) {
+            guard selectedTextTrack != trackId
+            else { return }
+
+            if let trackId {
+                guard let index = mediaPlayer.textTracks.firstIndex(where: { $0.trackId == trackId })
+                else { return }
+
+                mediaPlayer.selectTrack(at: index, type: .text)
+            } else {
+                mediaPlayer.deselectAllTextTracks()
+            }
         }
 
         func attachDrawable(_ view: UIView) {

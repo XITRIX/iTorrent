@@ -72,7 +72,7 @@ struct MenuButton: UIViewRepresentable {
         viewModel.selectAction = {
             viewModel.dismissSelection?()
 
-            if #available(iOS 17.4, *) {
+            if #available(iOS 17.4, visionOS 1.1, *) {
                 button.performPrimaryAction()
             } else {
                 button.performMenuAction()

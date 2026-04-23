@@ -7,9 +7,39 @@
 
 import MvvmFoundation
 import UIKit
+import SwiftUI
 
 protocol ToolbarHidingProtocol {
     var isToolbarItemsHidden: Bool { get }
+}
+
+class BaseHostingController<V: View>: UIHostingController<V> {
+    var useMarqueeLabel: Bool { false }
+
+    override var title: String? {
+        get { super.title }
+        set {
+            super.title = newValue
+            titleLabel.text = newValue
+            titleLabel.sizeToFit()
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        #if os(visionOS)
+        view.backgroundColor = nil
+        #endif
+
+        #if !os(visionOS) // Not renders properly on VisionOS
+        if useMarqueeLabel {
+            navigationItem.titleView = titleLabel
+            titleLabel.sizeToFit()
+        }
+        #endif
+    }
+
+    private let titleLabel: UILabel = UIViewController.makeTitleLabel()
 }
 
 class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<ViewModel>, ToolbarHidingProtocol {
@@ -44,7 +74,11 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
         navigationController?.setToolbarHidden(isToolbarItemsHidden, animated: false)
     }
 
-    private let titleLabel: UILabel = {
+    private let titleLabel: UILabel = UIViewController.makeTitleLabel()
+}
+
+private extension UIViewController {
+    static func makeTitleLabel() -> UILabel {
         let titleLabel = UILabel()
 #if !os(visionOS)
         titleLabel.font = .preferredFont(forTextStyle: .headline)
@@ -57,7 +91,7 @@ class BaseViewController<ViewModel: MvvmViewModelProtocol>: SAViewController<Vie
             titleLabel.enableMarquee()
         }
         return titleLabel
-    }()
+    }
 }
 
 class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewController<View>, ToolbarHidingProtocol {

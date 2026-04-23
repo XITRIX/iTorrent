@@ -383,6 +383,9 @@
         }
       }
     },
+    "Audio" : {
+
+    },
     "common.add" : {
       "localizations" : {
         "de" : {
@@ -4382,7 +4385,6 @@
       }
     },
     "list.add.files" : {
-      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6782,6 +6784,9 @@
       }
     },
     "Peers" : {
+
+    },
+    "Playback Speed" : {
 
     },
     "preferences" : {
@@ -12309,6 +12314,9 @@
       }
     },
     "Search" : {
+
+    },
+    "Subtitles" : {
 
     },
     "time.day.single" : {
