@@ -140,6 +140,11 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                     let show = aired || value
                     self?.navigationController?.setNavigationBarHidden(!show, animated: true)
                 }
+            #else
+            viewModel.$showOverlay
+                .sink { [weak self] show in
+                    self?.navigationController?.setNavigationBarHidden(!show, animated: true)
+                }
             #endif
         }
     }
@@ -184,11 +189,6 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             ZStack(alignment: .bottom) {
                 Color(showOverlay ? .systemGroupedBackground : .black)
                     .ignoresSafeArea()
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.28)) {
-                            viewModel.showOverlay.toggle()
-                        }
-                    }
 
                 VLCPlayerViewRepresentable(url: viewModel.url,
                                            isPlaying: isPlaying,
@@ -201,6 +201,19 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                                            selectedTextTrack: $selectedTextTrack,
                                            isSeeking: isSeeking)
                     .ignoresSafeArea()
+                if showOverlay {
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                }
+
+                Color.clear
+                    .contentShape(Rectangle())
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.28)) {
+                            viewModel.showOverlay.toggle()
+                        }
+                    }
 
                 ZStack {
                     CompatibilityGlassContainer(spacing: 24) {

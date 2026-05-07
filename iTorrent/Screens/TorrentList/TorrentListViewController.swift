@@ -82,7 +82,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
         addButton.menu = UIMenu(title: %"list.add.title", children: [
             UIAction(title: %"list.add.files", image: .init(systemName: "doc.fill.badge.plus")) { [unowned self] _ in
-                if #available(iOS 26.0, *) {
+                if #available(iOS 26.0, visionOS 26.0, *) {
                     documentPicker.preferredTransition = .zoom(sourceBarButtonItemProvider: { [unowned self] _ in
                         addButton
                     })
