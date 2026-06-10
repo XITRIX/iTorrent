@@ -17,6 +17,10 @@
 		7C3142D02C317E6400397E82 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = 7C3142CF2C317E6400397E82 /* MarqueeText */; };
 		7C32535C2D19402F0069D640 /* CellularToggleSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C32535B2D19402F0069D640 /* CellularToggleSetupViewController.swift */; };
 		7C32535E2D1940440069D640 /* CellularToggleSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C32535D2D1940440069D640 /* CellularToggleSetupViewController.xib */; };
+		7C36BAFD2FDA0C93006C240E /* TorrentHandle+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C36BAFC2FDA0C8D006C240E /* TorrentHandle+Snapshot.swift */; };
+		7C36BAFE2FDA0C93006C240E /* TorrentHandle+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C36BAFC2FDA0C8D006C240E /* TorrentHandle+Snapshot.swift */; };
+		7C36BB012FDA0FCE006C240E /* Perception in Frameworks */ = {isa = PBXBuildFile; productRef = 7C36BB002FDA0FCE006C240E /* Perception */; };
+		7C36BB042FDA1AE3006C240E /* withContinuousPerceptionTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C36BB032FDA1AD5006C240E /* withContinuousPerceptionTracking.swift */; };
 		7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */; };
 		7C4CF2FC2BDE78F50078FEA1 /* AdView+Unity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */; };
 		7C4CF2FE2BDE7DE50078FEA1 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */; };
@@ -326,6 +330,8 @@
 		7C1C08AC2C31FEA000569B45 /* IntentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsService.swift; sourceTree = "<group>"; };
 		7C32535B2D19402F0069D640 /* CellularToggleSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellularToggleSetupViewController.swift; sourceTree = "<group>"; };
 		7C32535D2D1940440069D640 /* CellularToggleSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CellularToggleSetupViewController.xib; sourceTree = "<group>"; };
+		7C36BAFC2FDA0C8D006C240E /* TorrentHandle+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TorrentHandle+Snapshot.swift"; sourceTree = "<group>"; };
+		7C36BB032FDA1AD5006C240E /* withContinuousPerceptionTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = withContinuousPerceptionTracking.swift; sourceTree = "<group>"; };
 		7C4CF2F92BDE712D0078FEA1 /* UnityAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityAdsManager.swift; sourceTree = "<group>"; };
 		7C4CF2FB2BDE78F50078FEA1 /* AdView+Unity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdView+Unity.swift"; sourceTree = "<group>"; };
 		7C4CF2FD2BDE7DE50078FEA1 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -586,6 +592,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CAD30192BC3455800592990 /* SWXMLHash in Frameworks */,
+				7C36BB012FDA0FCE006C240E /* Perception in Frameworks */,
 				7C5B73712F73288F00CC2B6C /* CombineCocoa in Frameworks */,
 				D1A226F42AEF01B700669D6D /* LibTorrent.framework in Frameworks */,
 				7CF6DA332C0F112B0033D03F /* OpenSSL in Frameworks */,
@@ -644,6 +651,14 @@
 				7C32535D2D1940440069D640 /* CellularToggleSetupViewController.xib */,
 			);
 			path = CellularToggle;
+			sourceTree = "<group>";
+		};
+		7C36BB022FDA1ACE006C240E /* Perception */ = {
+			isa = PBXGroup;
+			children = (
+				7C36BB032FDA1AD5006C240E /* withContinuousPerceptionTracking.swift */,
+			);
+			path = Perception;
 			sourceTree = "<group>";
 		};
 		7C4CF2F82BDE711A0078FEA1 /* Ads */ = {
@@ -1266,6 +1281,7 @@
 		D19E00232AF045DA000A17A2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7C36BB022FDA1ACE006C240E /* Perception */,
 				7C92760D2F7C321A0081CA19 /* AirPlay */,
 				D1048D822BBE92040027EF2F /* SANavigation */,
 				D19E00242AF045DF000A17A2 /* Extensions */,
@@ -1611,6 +1627,7 @@
 		D1FFC9632C37F44800233C2F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7C36BAFC2FDA0C8D006C240E /* TorrentHandle+Snapshot.swift */,
 				D11333B42AF19C4900FA017E /* TorrentHandle+Extension.swift */,
 				D1FFC96B2C382FBE00233C2F /* StorageModel+Extensions.swift */,
 			);
@@ -1690,6 +1707,7 @@
 				7C519C872C427E9A00E353A9 /* FirebaseAnalytics */,
 				7CDC7BBD2C516ADD00B51EFB /* FirebaseCrashlytics */,
 				7C5B73702F73288F00CC2B6C /* CombineCocoa */,
+				7C36BB002FDA0FCE006C240E /* Perception */,
 			);
 			productName = iTorrent;
 			productReference = D1A2269A2AEEEFCC00669D6D /* iTorrent.app */;
@@ -1737,6 +1755,7 @@
 				7C3142CE2C317E6400397E82 /* XCRemoteSwiftPackageReference "MarqueeText" */,
 				7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7C5B736F2F73288F00CC2B6C /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				7C36BAFF2FDA0FCE006C240E /* XCRemoteSwiftPackageReference "swift-perception" */,
 			);
 			productRefGroup = D1A2269B2AEEEFCC00669D6D /* Products */;
 			projectDirPath = "";
@@ -1861,6 +1880,7 @@
 				D10257DF2EE8650000201640 /* NSUserDefaultItem.swift in Sources */,
 				D10257E62EE9BC2000201640 /* TorrentDetailsView.swift in Sources */,
 				D10257CE2EE8638300201640 /* TorrentHandle+Extension.swift in Sources */,
+				7C36BAFD2FDA0C93006C240E /* TorrentHandle+Snapshot.swift in Sources */,
 				7C5B41122EEC53F8001D4C68 /* VLCPlayerView.swift in Sources */,
 				D10257E22EE865D400201640 /* NetworkMonitoringService.swift in Sources */,
 				D10257E32EE865DD00201640 /* TrackersListService.swift in Sources */,
@@ -1959,6 +1979,7 @@
 				D1DB717D2BD6772A007F9267 /* RssSearchViewController.swift in Sources */,
 				D1352D232BBC33A000104E7B /* BasePreferencesViewController.swift in Sources */,
 				7CFEBE7C2BC4318E0013233F /* RssChannelViewController.swift in Sources */,
+				7C36BAFE2FDA0C93006C240E /* TorrentHandle+Snapshot.swift in Sources */,
 				7C5FBE2C2BBDD6B40069E5A0 /* UIView+LayerColors.swift in Sources */,
 				7CB8311D2D1962A0005F3F42 /* InitialSetupFlowProtocol.swift in Sources */,
 				7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */,
@@ -1977,6 +1998,7 @@
 				7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */,
 				7C5FBE282BBDD4030069E5A0 /* PRColorPickerCell.swift in Sources */,
 				D1B99D962BEE657F00F51514 /* API.swift in Sources */,
+				7C36BB042FDA1AE3006C240E /* withContinuousPerceptionTracking.swift in Sources */,
 				D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */,
 				D1B538592AF1172000694AFD /* TorrentDetailProgressCellViewModel.swift in Sources */,
 				7C4ED0892BE6423D0034B62C /* MetaAdsManager.swift in Sources */,
@@ -2700,6 +2722,14 @@
 				kind = branch;
 			};
 		};
+		7C36BAFF2FDA0FCE006C240E /* XCRemoteSwiftPackageReference "swift-perception" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-perception.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.10;
+			};
+		};
 		7C519C862C427E9A00E353A9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -2739,6 +2769,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7C3142CE2C317E6400397E82 /* XCRemoteSwiftPackageReference "MarqueeText" */;
 			productName = MarqueeText;
+		};
+		7C36BB002FDA0FCE006C240E /* Perception */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C36BAFF2FDA0FCE006C240E /* XCRemoteSwiftPackageReference "swift-perception" */;
+			productName = Perception;
 		};
 		7C519C872C427E9A00E353A9 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

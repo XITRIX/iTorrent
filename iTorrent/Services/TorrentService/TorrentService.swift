@@ -168,6 +168,7 @@ private extension TorrentService {
 private extension TorrentHandle {
     func prepareToAdd(into torrentServide: TorrentService) {
         updateSnapshot()
+        observableSnapshot.update()
 
         disposeBag.bind {
             __unthrottledUpdatePublisher
@@ -179,6 +180,7 @@ private extension TorrentHandle {
                     _ = metadata // trigger to generate
                     let oldSnapshot = snapshot
                     updateSnapshot()
+                    observableSnapshot.update()
                     let updateModel = TorrentService.TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: self)
 
                     Task { @MainActor in

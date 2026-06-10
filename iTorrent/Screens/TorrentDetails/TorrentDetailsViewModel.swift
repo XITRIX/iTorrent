@@ -8,9 +8,10 @@
 import Combine
 import LibTorrent
 import MvvmFoundation
+import Perception
 import UIKit
 
-class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
+class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle>, @unchecked Sendable {
     private var torrentHandle: TorrentHandle!
 
     @Published var title: String = ""
@@ -26,22 +27,10 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
         torrentHandle = model
         title = torrentHandle.snapshot.name
 
-        dataUpdate()
-        reload()
+        trackDataUpdate()
+        trackReload()
 
         disposeBag.bind {
-            torrentHandle.updatePublisher
-                .sink { [unowned self] _ in
-                    dataUpdate()
-                }
-
-            torrentHandle.updatePublisher
-                .compactMap { $0.handle?.snapshot.friendlyState }
-                .removeDuplicates()
-                .sink { [unowned self] _ in
-                    reload()
-                }
-
             torrentHandle.removePublisher.sink { [unowned self] _ in
                 dismissSignal.send()
             }
@@ -233,31 +222,46 @@ extension TorrentDetailsViewModel {
 }
 
 private extension TorrentDetailsViewModel {
+    func trackDataUpdate() {
+        withContinuousPerceptionTracking { [weak self] in
+            self?.dataUpdate()
+        }
+    }
+
+    func trackReload() {
+        withContinuousPerceptionTracking { [weak self] in
+            self?.reload()
+        }
+    }
+
     func dataUpdate() {
-        isPaused = torrentHandle.snapshot.isPaused
-        canResume = torrentHandle.snapshot.canResume
-        canPause = torrentHandle.snapshot.canPause
-        storageError = torrentHandle.snapshot.friendlyState == .storageError
+        let snapshot = torrentHandle.observableSnapshot
+        let friendlyState = snapshot.friendlyState
 
-        stateModel.detail = torrentHandle.snapshot.friendlyState.name
+        isPaused = snapshot.isPaused
+        canResume = snapshot.canResume
+        canPause = snapshot.canPause
+        storageError = friendlyState == .storageError
 
-        downloadModel.detail = "\(torrentHandle.snapshot.downloadRate.bitrateToHumanReadable)/s"
-        uploadModel.detail = "\(torrentHandle.snapshot.uploadRate.bitrateToHumanReadable)/s"
-        timeLeftModel.detail = torrentHandle.snapshot.timeRemains
+        stateModel.detail = friendlyState.name
 
-        sequentialModel.isOn = torrentHandle.snapshot.isSequential
-        firstAndLastModel.isOn = torrentHandle.snapshot.isFirstLastPiecePriority
-        progressModel.progress = torrentHandle.snapshot.progress
-        progressModel.segmentedProgress = torrentHandle.snapshot.segmentedProgress
+        downloadModel.detail = "\(snapshot.downloadRate.bitrateToHumanReadable)/s"
+        uploadModel.detail = "\(snapshot.uploadRate.bitrateToHumanReadable)/s"
+        timeLeftModel.detail = snapshot.timeRemains
 
-        if torrentHandle.snapshot.infoHashes.hasV1 {
-            hashModel.detail = torrentHandle.snapshot.infoHashes.v1.hex
+        sequentialModel.isOn = snapshot.isSequential
+        firstAndLastModel.isOn = snapshot.isFirstLastPiecePriority
+        progressModel.progress = snapshot.progress
+        progressModel.segmentedProgress = snapshot.segmentedProgress
+
+        if snapshot.infoHashes.hasV1 {
+            hashModel.detail = snapshot.infoHashes.v1.hex
         }
-        if torrentHandle.snapshot.infoHashes.hasV2 {
-            hashModelV2.detail = torrentHandle.snapshot.infoHashes.v2.hex
+        if snapshot.infoHashes.hasV2 {
+            hashModelV2.detail = snapshot.infoHashes.v2.hex
         }
-        creatorModel.detail = torrentHandle.snapshot.creator ?? ""
-        commentModel.detail = torrentHandle.snapshot.comment ?? ""
+        creatorModel.detail = snapshot.creator ?? ""
+        commentModel.detail = snapshot.comment ?? ""
 
         let formatter: DateFormatter = {
             let formatter = DateFormatter()
@@ -265,26 +269,33 @@ private extension TorrentDetailsViewModel {
             return formatter
         }()
 
-        if let created = torrentHandle.snapshot.creationDate {
+        if let created = snapshot.creationDate {
             createdModel.detail = formatter.string(from: created)
         }
         addedModel.detail = formatter.string(from: torrentHandle.metadata.dateAdded)
 
-        selectedModel.detail = "\(torrentHandle.snapshot.totalWanted.bitrateToHumanReadable) / \(torrentHandle.snapshot.total.bitrateToHumanReadable)"
-        completedModel.detail = "\(torrentHandle.snapshot.totalDone.bitrateToHumanReadable)"
-        selectedProgressModel.detail = "\(String(format: "%.2f", torrentHandle.snapshot.progress * 100))% / \(String(format: "%.2f", torrentHandle.snapshot.progressWanted * 100))%"
-        downloadedModel.detail = "\(torrentHandle.snapshot.totalDownload.bitrateToHumanReadable)"
-        uploadedModel.detail = "\(torrentHandle.snapshot.totalUpload.bitrateToHumanReadable)"
-        seedersModel.detail = "\(torrentHandle.snapshot.numberOfSeeds)(\(torrentHandle.snapshot.numberOfTotalSeeds))"
-        leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
+        selectedModel.detail = "\(snapshot.totalWanted.bitrateToHumanReadable) / \(snapshot.total.bitrateToHumanReadable)"
+        completedModel.detail = "\(snapshot.totalDone.bitrateToHumanReadable)"
+        selectedProgressModel.detail = "\(String(format: "%.2f", snapshot.progress * 100))% / \(String(format: "%.2f", snapshot.progressWanted * 100))%"
+        downloadedModel.detail = "\(snapshot.totalDownload.bitrateToHumanReadable)"
+        uploadedModel.detail = "\(snapshot.totalUpload.bitrateToHumanReadable)"
+        seedersModel.detail = "\(snapshot.numberOfSeeds)(\(snapshot.numberOfTotalSeeds))"
+        leechersModel.detail = "\(snapshot.numberOfLeechers)(\(snapshot.numberOfTotalLeechers))"
 
-        downloadPath2Model.detail = torrentHandle.snapshot.downloadPath?.path() ?? ""
+        downloadPath2Model.detail = snapshot.downloadPath?.path() ?? ""
         downloadPathModel.value = torrentHandle.storage.name
 
-        filesModel.isEnabled = torrentHandle.snapshot.friendlyState != .storageError && torrentHandle.snapshot.hasMetadata
+        filesModel.isEnabled = friendlyState != .storageError && snapshot.hasMetadata
     }
 
     func reload() {
+        let snapshot = torrentHandle.observableSnapshot
+        let friendlyState = snapshot.friendlyState
+        let showsSpeed = !snapshot.isPaused && friendlyState != .checkingFiles
+        let isSeeding = friendlyState == .seeding
+        let hasV1 = snapshot.infoHashes.hasV1
+        let hasV2 = snapshot.infoHashes.hasV2
+
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections = sections }
 
@@ -292,11 +303,8 @@ private extension TorrentDetailsViewModel {
             stateModel
         })
 
-        if !torrentHandle.snapshot.isPaused,
-           torrentHandle.snapshot.friendlyState != .checkingFiles
-        {
+        if showsSpeed {
             sections.append(.init(id: "speed", header: %"details.speed") {
-                let isSeeding = torrentHandle.snapshot.friendlyState == .seeding
                 if !isSeeding {
                     downloadModel
                 }
@@ -315,10 +323,10 @@ private extension TorrentDetailsViewModel {
         })
 //
         sections.append(.init(id: "info", header: %"details.info") {
-            if torrentHandle.snapshot.infoHashes.hasV1 {
+            if hasV1 {
                 hashModel
             }
-            if torrentHandle.snapshot.infoHashes.hasV2 {
+            if hasV2 {
                 hashModelV2
             }
 
@@ -388,3 +396,44 @@ private extension TorrentDetailsViewModel {
         return NSAttributedString(attributedString: result)
     }
 }
+
+private extension TorrentHandle.ObservedSnapshot {
+    var friendlyState: TorrentHandle.State {
+        if isStorageMissing {
+            return .storageError
+        }
+
+        switch state {
+        case .downloading:
+            if isPaused { return .paused }
+            else { return .downloading }
+        case .finished:
+            if isPaused { return .finished }
+            else { return .seeding }
+        case .seeding:
+            if isPaused { return .finished }
+            else { return .seeding }
+        default:
+            return state
+        }
+    }
+
+    var canResume: Bool {
+        isPaused && friendlyState != .storageError
+    }
+
+    var canPause: Bool {
+        !isPaused
+    }
+
+    var timeRemains: String {
+        guard downloadRate > 0 else { return %"time.infinity" }
+        guard totalWanted >= totalWantedDone else { return "Almost done" }
+        return ((totalWanted - totalWantedDone) / downloadRate).timeString
+    }
+
+    var segmentedProgress: [Double] {
+        pieces?.map { $0.doubleValue } ?? [0]
+    }
+}
+
