@@ -46,11 +46,11 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
                 dismissSignal.send()
             }
 
-            sequentialModel.$isOn.sink { [unowned self] value in
+            sequentialModel.$isOn.removeDuplicates().sink { [unowned self] value in
                 torrentHandle.setSequentialDownload(value)
             }
 
-            firstAndLastModel.$isOn.sink { [unowned self] value in
+            firstAndLastModel.$isOn.removeDuplicates().sink { [unowned self] value in
                 torrentHandle.setFirstLastPriorityDownload(value)
             }
 
