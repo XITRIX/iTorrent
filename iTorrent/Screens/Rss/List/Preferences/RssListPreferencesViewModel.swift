@@ -5,12 +5,12 @@
 //  Created by Даниил Виноградов on 10.04.2024.
 //
 
-import MvvmFoundation
 import Combine
+import MvvmFoundation
 import UIKit
 
-class RssListPreferencesViewModel: BaseCollectionViewModelWith<RssModel> {
-    override func prepare(with model: RssModel) {
+class RssListPreferencesViewModel: BaseCollectionViewModelWith<RssFeedSnapshot> {
+    override func prepare(with model: RssFeedSnapshot) {
         var sections: [MvvmCollectionSectionModel] = []
         defer { self.sections = sections }
 
@@ -20,25 +20,33 @@ class RssListPreferencesViewModel: BaseCollectionViewModelWith<RssModel> {
                 alertWithTimer(title: %"rsslist.preference.urlCopy")
                 dismissSelection.send()
             }))
-            PRButtonViewModel(with: .init(title: %"rsslist.preference.name", value: model.displayTitle, singleLine: true, selectAction: { [unowned self] in
+            PRButtonViewModel(with: .init(title: %"rsslist.preference.name", value: Just(model.displayTitle).eraseToAnyPublisher(), singleLine: true, selectAction: { [unowned self] in
                 textInput(title: %"rsslist.preference.name", placeholder: model.title, defaultValue: model.customTitle) { [unowned self] res in
                     dismissSelection.send()
                     guard let res else { return }
-                    model.customTitle = res
+                    Task { [rssProvider] in
+                        await rssProvider.updatePreferences(id: model.id, customTitle: res, customDescription: nil, muteNotifications: nil)
+                    }
                 }
             }))
-            PRButtonViewModel(with: .init(title: %"rsslist.preference.description", value: model.displayDescription, singleLine: true, selectAction: { [unowned self] in
+            PRButtonViewModel(with: .init(title: %"rsslist.preference.description", value: Just(model.displayDescription).eraseToAnyPublisher(), singleLine: true, selectAction: { [unowned self] in
                 textInput(title: %"rsslist.preference.description", placeholder: model.description, defaultValue: model.customDescription) { [unowned self] res in
                     dismissSelection.send()
                     guard let res else { return }
-                    model.customDescription = res
+                    Task { [rssProvider] in
+                        await rssProvider.updatePreferences(id: model.id, customTitle: nil, customDescription: res, muteNotifications: nil)
+                    }
                 }
             }))
             PRSwitchViewModel(with: .init(title: %"rsslist.preference.notifications", value: .init(get: {
                 !model.muteNotifications
-            }, set: { value in
-                model.muteNotifications = !value
+            }, set: { [rssProvider] value in
+                Task {
+                    await rssProvider.updatePreferences(id: model.id, customTitle: nil, customDescription: nil, muteNotifications: !value)
+                }
             })))
         })
     }
+
+    @Injected private var rssProvider: RssFeedProvider
 }

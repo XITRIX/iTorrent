@@ -9,114 +9,103 @@ import Combine
 import MvvmFoundation
 import UIKit
 
-class RssChannelViewModel: BaseCollectionViewModelWith<RssModel> {
+class RssChannelViewModel: BaseCollectionViewModelWith<RssFeedSnapshot>, @unchecked Sendable {
     @Published var title: String = ""
     @Published var searchQuery: String = ""
 
-    var model: RssModel!
-
+    var model: RssFeedSnapshot!
     var items: [RssChannelItemCellViewModel] = []
 
-    override func prepare(with model: RssModel) {
+    override func prepare(with model: RssFeedSnapshot) {
         self.model = model
-        disposeBag.bind {
-            model.displayTitle.sink { [unowned self] text in
-                title = text
-            }
-            Publishers.combineLatest(model.$items, $searchQuery) { models, searchQuery in
-                Self.filter(models: models, by: searchQuery)
-            }.sink { [unowned self] models in
-                reload(with: models)
-            }
-        }
+        title = model.displayTitle
+        reloadFilteredItems()
+        bindUpdates()
 
         trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
-            let itemModel = items[indexPath.item].model
-
-            guard let index = model.items.firstIndex(where: { $0 == itemModel })
-            else { return nil }
-
-            let readed = model.items[index].readed
+            let itemModel = items[indexPath.item].model!
+            let readed = itemModel.readed
             let action = UIContextualAction(style: .normal, title: readed ? %"rsschannel.unseen" : %"rsschannel.seen", handler: { [unowned self] _, _, completion in
-                setSeen(!readed, for: index)
+                setSeen(!readed, for: itemModel)
                 completion(true)
             })
-//            action.image = readed ? .init(systemName: "eye.slash") : .init(systemName: "eye")
             action.backgroundColor = PreferencesStorage.shared.tintColor
             return .init(actions: [action])
         }
 
         refreshTask = { [weak self] in
-            do {
-                try await model.update()
-                self?.rssFeedProvider.saveState()
-            }
+            guard let self else { return }
+            do { _ = try await rssFeedProvider.refreshFeed(id: model.id) }
             catch {}
         }
     }
 
     func readAll() {
-        ignoreReloadRequests = true
-        for index in 0 ..< model.items.count {
-//            model.items[index].readed = true // Questionable, not sure it should be flaged as well
-            model.items[index].new = false
+        Task { [model, rssFeedProvider] in
+            await rssFeedProvider.markFeedRead(id: model.id)
         }
-        rssFeedProvider.saveState()
-        ignoreReloadRequests = false
-        reload(with: model.items)
     }
 
-    func setSeen(_ seen: Bool, for itemModel: RssItemModel) {
-        guard let index = model.items.firstIndex(where: { $0 == itemModel })
-        else { return }
-
-        model.items[index].readed = seen
-        model.items[index].new = false
-        rssFeedProvider.saveState()
+    func setSeen(_ seen: Bool, for itemModel: RssItemSnapshot) {
+        Task { [model, rssFeedProvider] in
+            await rssFeedProvider.markItemRead(feedID: model.id, itemID: itemModel.id, read: seen)
+        }
     }
 
-    private var ignoreReloadRequests: Bool = false
+    private var updatesTask: Task<Void, Never>?
     @Injected private var rssFeedProvider: RssFeedProvider
 }
 
 private extension RssChannelViewModel {
-    func reload(with models: [RssItemModel]) {
-        guard !ignoreReloadRequests else { return }
+    func bindUpdates() {
+        disposeBag.bind {
+            $searchQuery.sink { [unowned self] _ in
+                reloadFilteredItems()
+            }
+        }
 
-        // TODO: Need to rewrite this DispatchQueue mess
-        DispatchQueue.global(qos: .userInitiated).async { [self] in
-            items = models.map { model in
-                let vm: RssChannelItemCellViewModel
-                if let existing = items.first(where: { $0.model == model }) {
-                    vm = existing
-                } else {
-                    vm = RssChannelItemCellViewModel()
-                }
-
-                vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self] in
-                    setSeen(true, for: model)
-                    navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
-                }))
-
-                return vm
-            }.removingDuplicates()
-
-            DispatchQueue.main.async { [self] in
-                sections = [.init(id: "rss", style: .plain, items: items)]
+        updatesTask = Task { [weak self, rssFeedProvider] in
+            for await feeds in await rssFeedProvider.updates() {
+                guard let self else { return }
+                guard let feed = feeds.first(where: { $0.id == self.model.id }) else { continue }
+                await self.apply(feed)
             }
         }
     }
 
-    func setSeen(_ seen: Bool, for index: Int) {
-        model.items[index].readed = seen
-        model.items[index].new = false
-        rssFeedProvider.saveState()
+    @MainActor
+    func apply(_ feed: RssFeedSnapshot) {
+        model = feed
+        title = feed.displayTitle
+        reloadFilteredItems()
     }
 
-    static func filter(models: [RssItemModel], by searchQuery: String) -> [RssItemModel] {
-        models.filter { model in
-            searchQuery.split(separator: " ").allSatisfy { (model.title ?? "").localizedCaseInsensitiveContains($0) } ||
-                searchQuery.split(separator: " ").allSatisfy { (model.description ?? "").localizedCaseInsensitiveContains($0) }
-        }
+    func reloadFilteredItems() {
+        reload(with: Self.filter(models: model.items, by: searchQuery))
+    }
+
+    func reload(with models: [RssItemSnapshot]) {
+        items = models.map { model in
+            let vm: RssChannelItemCellViewModel
+            if let existing = items.first(where: { $0.model.id == model.id }) {
+                vm = existing
+            } else {
+                vm = RssChannelItemCellViewModel()
+            }
+
+            vm.prepare(with: .init(rssModel: model, selectAction: { [unowned self] in
+                setSeen(true, for: model)
+                navigate(to: RssDetailsViewModel.self, with: model, by: .detail(asRoot: true))
+            }))
+
+            return vm
+        }.removingDuplicates()
+
+        sections = [.init(id: "rss", style: .plain, items: items)]
+    }
+
+    static func filter(models: [RssItemSnapshot], by searchQuery: String) -> [RssItemSnapshot] {
+        let query = RssSearchQuery(searchQuery)
+        return models.filter { $0.matches(query) }
     }
 }

@@ -3,179 +3,74 @@
 //  iTorrent
 //
 //  Created by Daniil Vinogradov on 06.06.2020.
-//  Copyright © 2020  XITRIX. All rights reserved.
+//  Copyright © 2020  XITRIX. All rights reserved.
 //
 
-import Combine
 import Foundation
-import MvvmFoundation
 import SWXMLHash
 
-class RssModel: Hashable, Codable, @unchecked Sendable {
-    enum Error: Swift.Error {
-        case missingKey
-        case corruptedData
-    }
+typealias RssModel = RssFeedSnapshot
+typealias RssItemModel = RssItemSnapshot
+
+struct RssFeedSnapshot: Hashable, Codable, Identifiable, Sendable {
+    var id: URL { xmlLink }
 
     let xmlLink: URL
-    @Published var title: String
-    @Published var description: String?
-    @Published var linkImage: URL?
-    @Published var link: URL?
-    @Published var items: [RssItemModel] = []
+    var title: String
+    var description: String?
+    var linkImage: URL?
+    var link: URL?
+    var items: [RssItemSnapshot]
+    var customTitle: String?
+    var customDescription: String?
+    var muteNotifications: Bool
 
-    //
-    @Published var customTitle: String? = nil
-    @Published var customDescription: String? = nil
-    @Published var muteNotifications: Bool = false
-    //
-
-    private var disposeBag = DisposeBag()
-
-    var hasNewsPublisher: AnyPublisher<Bool, Never> {
-        $items.map { $0.contains(where: { $0.new }) }.eraseToAnyPublisher()
+    var displayTitle: String {
+        if let customTitle, !customTitle.isEmpty { return customTitle }
+        return title
     }
 
-    var updatesCount: AnyPublisher<Int, Never> {
-        $items.map { $0.filter { $0.new }.count }.eraseToAnyPublisher()
+    var displayDescription: String {
+        if let customDescription, !customDescription.isEmpty { return customDescription }
+        return description ?? ""
     }
 
-    init(link: URL) async throws {
-        xmlLink = link
+    var updatesCount: Int {
+        items.filter(\.new).count
+    }
 
-        let (data, _) = try await URLSession.shared.data(from: xmlLink)
-        guard let contents = String(data: data, encoding: .utf8)
-        else { throw Error.corruptedData }
-
-        let xml = XMLHash.parse(contents)
-
-        let title = xml["rss"]["channel"]["title"].element?.text
-        let description = xml["rss"]["channel"]["description"].element?.text
-
-        self.title = title ?? "RSS Feed"
+    init(
+        xmlLink: URL,
+        title: String,
+        description: String? = nil,
+        linkImage: URL? = nil,
+        link: URL? = nil,
+        items: [RssItemSnapshot] = [],
+        customTitle: String? = nil,
+        customDescription: String? = nil,
+        muteNotifications: Bool = false
+    ) {
+        self.xmlLink = xmlLink
+        self.title = title
         self.description = description
-
-        if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
-           let link = URL(string: xmlLink),
-           let linkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink)
-        {
-            self.link = link
-            self.linkImage = linkImage
-        }
-
-        for xmlItem in xml["rss"]["channel"]["item"].all {
-            items.append(RssItemModel(xml: xmlItem))
-        }
-
-        disposeBag.bind {
-            Publishers.combineLatest(
-                $customTitle,
-                $customDescription,
-                $muteNotifications,
-                $items)
-            { _, _, _, _ in () }
-                .sink { _ in
-                     (Mvvm.shared.container.resolve(type: RssFeedProvider.self)).saveState()
-                }
-        }
-    }
-
-    var displayTitle: AnyPublisher<String, Never> {
-        Publishers.CombineLatest($title, $customTitle)
-            .map { title, customTitle in
-                if let customTitle, !customTitle.isEmpty { return customTitle }
-                return title
-            }.eraseToAnyPublisher()
-    }
-
-    var displayDescription: AnyPublisher<String, Never> {
-        Publishers.CombineLatest($description, $customDescription)
-            .map { description, customDescriotion in
-                if let customDescriotion, !customDescriotion.isEmpty { return customDescriotion }
-                return description ?? ""
-            }.eraseToAnyPublisher()
-    }
-
-    @discardableResult
-    func update() async throws -> [RssItemModel] {
-        let (data, _) = try await URLSession.shared.data(from: xmlLink)
-        guard let contents = String(data: data, encoding: .utf8)
-        else { throw Error.corruptedData }
-
-        let xml = XMLHash.parse(contents)
-
-        let title = xml["rss"]["channel"]["title"].element?.text
-        let description = xml["rss"]["channel"]["description"].element?.text
-
-        var localLink: URL?
-        var localLinkImage: URL?
-
-        if let xmlLink = xml["rss"]["channel"]["link"].element?.text,
-           let link = URL(string: xmlLink),
-           let linkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink)
-        {
-            localLink = link
-            localLinkImage = linkImage
-        } else {
-            localLinkImage = URL(string: "https://www.google.com/s2/favicons?sz=128&domain_url=" + xmlLink.absoluteString)
-        }
-
-        var oldItems = items
-        var newItems = xml["rss"]["channel"]["item"].all.map { xmlItem in
-            RssItemModel(xml: xmlItem)
-        }.filter { item in
-            if let index = oldItems.firstIndex(of: item) {
-                oldItems[index].update(item)
-                return false
-            }
-            return true
-        }
-
-        newItems.mutableForEach { $0.new = true }
-
-        await MainActor.run { [oldItems, newItems, localLink, localLinkImage] in
-            self.title = title ?? "RSS Feed"
-            self.description = description
-            self.link = localLink
-            self.linkImage = localLinkImage
-            items = newItems + oldItems
-        }
-
-        return newItems
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(xmlLink)
-    }
-
-    static func == (lhs: RssModel, rhs: RssModel) -> Bool {
-        lhs.xmlLink == rhs.xmlLink &&
-            lhs.title == rhs.title &&
-            lhs.description == rhs.description &&
-            lhs.customTitle == rhs.customTitle &&
-            lhs.customDescription == rhs.customDescription &&
-            lhs.muteNotifications == rhs.muteNotifications &&
-            lhs.linkImage == rhs.linkImage &&
-            lhs.items == rhs.items
+        self.linkImage = linkImage
+        self.link = link
+        self.items = items
+        self.customTitle = customTitle
+        self.customDescription = customDescription
+        self.muteNotifications = muteNotifications
     }
 }
 
-extension URL {
-    init?(string: String?) {
-        guard let string else { return nil }
-        self.init(string: string)
-    }
-}
-
-extension RssItemModel {
-    struct Enclosure: Hashable, Codable {
+extension RssItemSnapshot {
+    struct Enclosure: Hashable, Codable, Sendable {
         var url: URL
         var type: String
         var length: Int
     }
 }
 
-struct RssItemModel: Hashable, Codable {
+struct RssItemSnapshot: Hashable, Codable, Identifiable, Sendable {
     var title: String?
     var description: String?
     var guid: String?
@@ -186,18 +81,41 @@ struct RssItemModel: Hashable, Codable {
     var new: Bool = false
     var readed: Bool = false
 
+    var id: String {
+        if let guid, !guid.isEmpty { return "guid:\(guid)" }
+        return [title, description, date?.timeIntervalSince1970.description, link?.absoluteString]
+            .compactMap { $0 }
+            .joined(separator: "|")
+    }
+
+    init(
+        title: String? = nil,
+        description: String? = nil,
+        guid: String? = nil,
+        date: Date? = nil,
+        link: URL? = nil,
+        enclosure: Enclosure? = nil,
+        new: Bool = false,
+        readed: Bool = false
+    ) {
+        self.title = title
+        self.description = description
+        self.guid = guid
+        self.date = date
+        self.link = link
+        self.enclosure = enclosure
+        self.new = new
+        self.readed = readed
+    }
+
     init(xml: XMLIndexer) {
         title = xml["title"].element?.text
         description = xml["description"].element?.text
         link = URL(string: xml["link"].element?.text)
         guid = xml["guid"].element?.text
 
-        // Sun, 10 Feb 2019 17:23:50 +0400
         if let dateText = xml["pubDate"].element?.text {
-            let formatter = DateFormatter()
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
-            date = formatter.date(from: dateText)
+            date = Self.dateFormatter.date(from: dateText)
         }
 
         if let enclosure = xml["enclosure"].element,
@@ -209,8 +127,34 @@ struct RssItemModel: Hashable, Codable {
         }
     }
 
+    mutating func update(_ model: RssItemSnapshot) {
+        title = model.title
+        description = model.description
+        date = model.date
+        link = model.link
+        enclosure = model.enclosure
+    }
+
+    func matches(_ query: RssSearchQuery) -> Bool {
+        guard !query.tokens.isEmpty else { return true }
+        let normalizedTitle = Self.normalize(title ?? "")
+        let normalizedDescription = Self.normalize(description ?? "")
+        return query.tokens.allSatisfy { normalizedTitle.contains($0) } ||
+            query.tokens.allSatisfy { normalizedDescription.contains($0) }
+    }
+
+    static func == (lhs: RssItemSnapshot, rhs: RssItemSnapshot) -> Bool {
+        if let lg = lhs.guid, let rg = rhs.guid {
+            return lg == rg
+        }
+        return lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.date == rhs.date &&
+            lhs.link == rhs.link
+    }
+
     func hash(into hasher: inout Hasher) {
-        if let guid = guid {
+        if let guid {
             hasher.combine(guid)
             return
         }
@@ -220,24 +164,41 @@ struct RssItemModel: Hashable, Codable {
         hasher.combine(date)
         hasher.combine(link)
     }
+}
 
-    static func == (lhs: RssItemModel, rhs: RssItemModel) -> Bool {
-        if let lg = lhs.guid,
-           let rg = rhs.guid
-        {
-            return lg == rg
-        }
-        return lhs.title == rhs.title &&
-            lhs.description == rhs.description &&
-            lhs.date == rhs.date &&
-            lhs.link == rhs.link
+struct RssSearchResultSnapshot: Hashable, Identifiable, Sendable {
+    var id: String { "\(feedID.absoluteString)|\(item.id)" }
+
+    let feedID: URL
+    let item: RssItemSnapshot
+}
+
+struct RssSearchQuery: Sendable {
+    let tokens: [String]
+
+    init(_ text: String) {
+        tokens = RssItemSnapshot.normalize(text)
+            .split(separator: " ")
+            .map(String.init)
+    }
+}
+
+extension RssItemSnapshot {
+    static func normalize(_ text: String) -> String {
+        text.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
     }
 
-    mutating func update(_ model: RssItemModel) {
-        title = model.title
-        description = model.description
-        date = model.date
-        link = model.link
-        enclosure = model.enclosure
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+        return formatter
+    }()
+}
+
+extension URL {
+    init?(string: String?) {
+        guard let string else { return nil }
+        self.init(string: string)
     }
 }

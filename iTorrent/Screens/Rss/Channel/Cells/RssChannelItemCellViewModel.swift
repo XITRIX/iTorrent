@@ -11,7 +11,7 @@ import MvvmFoundation
 
 extension RssChannelItemCellViewModel {
     struct Config {
-        var rssModel: RssItemModel
+        var rssModel: RssItemSnapshot
         var selectAction: (() -> Void)?
     }
 }
@@ -19,27 +19,28 @@ extension RssChannelItemCellViewModel {
 class RssChannelItemCellViewModel: BaseViewModelWith<RssChannelItemCellViewModel.Config>, MvvmSelectableProtocol {
     var selectAction: (() -> Void)?
 
-//    private var link: URL!
     @Published var title: String = ""
     @Published var subtitle: String?
     @Published var date: String?
     @Published var isNew: Bool = true
     @Published var isReaded: Bool = false
-    var model: RssItemModel!
+    var model: RssItemSnapshot!
 
     override func prepare(with model: Config) {
-//        link = model.rssModel.link
         update(with: model.rssModel)
         selectAction = model.selectAction
     }
 
-    func update(with rssModel: RssItemModel) {
+    func update(with rssModel: RssItemSnapshot) {
         model = rssModel
         title = rssModel.title ?? ""
+        subtitle = rssModel.description
         isNew = rssModel.new
         isReaded = rssModel.readed
         if let modelDate = rssModel.date {
             date = Date().offset(from: modelDate)
+        } else {
+            date = nil
         }
     }
 

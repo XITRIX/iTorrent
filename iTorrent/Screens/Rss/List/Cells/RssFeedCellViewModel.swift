@@ -10,13 +10,13 @@ import UIKit
 
 extension RssFeedCellViewModel {
     struct Config {
-        var rssModel: RssModel
+        var rssModel: RssFeedSnapshot
         var selectAction: (() -> Void)?
     }
 }
 
 class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, MvvmSelectableProtocol, MvvmReorderableProtocol, @unchecked Sendable {
-    var model: RssModel!
+    var model: RssFeedSnapshot!
     var selectAction: (() -> Void)?
     var canReorder: Bool { true }
 
@@ -29,23 +29,14 @@ class RssFeedCellViewModel: BaseViewModelWith<RssFeedCellViewModel.Config>, Mvvm
 
     override func prepare(with model: Config) {
         self.model = model.rssModel
-        disposeBag.bind {
-            model.rssModel.displayTitle.sink { [unowned self] text in
-                title = text
-            }
-            model.rssModel.displayDescription.sink { [unowned self] text in
-                description = text.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-            model.rssModel.updatesCount.sink { [unowned self] num in
-                newCounter = num
-            }
-        }
-
+        title = model.rssModel.displayTitle
+        description = model.rssModel.displayDescription.trimmingCharacters(in: .whitespacesAndNewlines)
+        newCounter = model.rssModel.updatesCount
         selectAction = model.selectAction
 
         feedLogo = .icRss
         if let linkImage = model.rssModel.linkImage {
-            Task {
+            Task { @MainActor in
                 feedLogo = await imageLoader.loadImage(from: linkImage)
             }
         }

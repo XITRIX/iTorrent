@@ -66,9 +66,11 @@ class TorrentListViewModel: BaseViewModel {
             let groupsSortingArray = PreferencesStorage.shared.$torrentListGroupsSortingArray
             let torrentSectionChanged = TorrentService.shared.updateNotifier.filter { $0.oldSnapshot.friendlyState != $0.handle?.snapshot.friendlyState }.map{_ in ()}.prepend([()])
 
-            disposeBag.bind {
-                rssFeedProvider.hasNewsPublisher.sink { [unowned self] value in
-                    hasRssNews = value
+            Task { [weak self, rssFeedProvider] in
+                for await feeds in await rssFeedProvider.updates() {
+                    await MainActor.run {
+                        self?.hasRssNews = feeds.flatMap(\.items).contains { $0.new }
+                    }
                 }
             }
 
