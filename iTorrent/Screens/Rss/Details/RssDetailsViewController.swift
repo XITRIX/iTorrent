@@ -145,13 +145,13 @@ private extension RssDetailsViewController {
             else { return .allow }
 
             Task { @MainActor in
-                if let torrentFile = await TorrentFile(remote: url) {
-                    TorrentAddViewModel.present(with: torrentFile, from: parent)
-                } else if let magnet = MagnetURI(with: url) {
+                if let preview = await TorrentSession.AddPreview(remote: url) {
+                    TorrentAddViewModel.present(with: preview, from: parent)
+                } else if let source = TorrentSession.Source(magnetURL: url) {
                     let alert = UIAlertController(title: %"list.add.magnet.title", message: nil, preferredStyle: .alert)
                     alert.addAction(.init(title: %"common.cancel", style: .cancel))
                     alert.addAction(.init(title: %"common.ok", style: .default, handler: { [self] _ in
-                        if !TorrentService.shared.addTorrent(by: magnet) {
+                        if !TorrentService.shared.addTorrent(source) {
                             let alert = UIAlertController(title: %"addTorrent.exists", message: nil, preferredStyle: .alert)
                             alert.addAction(.init(title: %"common.ok", style: .cancel), isPrimary: true)
                             parent.present(alert, animated: true)

@@ -59,7 +59,7 @@ private extension LiveActivityService {
 
             for activity in Activity<ProgressWidgetAttributes>.activities {
                 if activity.attributes.hash == updateModel.oldSnapshot.infoHashes.best.hex {
-                    if let snapshot = updateModel.handle?.snapshot,
+                    if let snapshot = updateModel.handle?.currentSnapshot,
                         snapshot.friendlyState.shouldShowLiveActivity
                     {
                         await update(activity, with: snapshot.toLiveActivityState)
@@ -71,7 +71,7 @@ private extension LiveActivityService {
                 }
             }
 
-            if let snapshot = updateModel.handle?.snapshot,
+            if let snapshot = updateModel.handle?.currentSnapshot,
                snapshot.friendlyState.shouldShowLiveActivity
             {
                 showLiveActivity(with: snapshot)
@@ -108,7 +108,7 @@ private extension LiveActivityService {
         throttleMap[activity.attributes.hash] = nil
     }
 
-    func showLiveActivity(with snapshot: TorrentHandle.Snapshot) {
+    func showLiveActivity(with snapshot: TorrentSession.Handle.Snapshot) {
         if #available(iOS 16.1, *) {
             let attributes = ProgressWidgetAttributes(hash: snapshot.infoHashes.best.hex)
 
@@ -145,7 +145,7 @@ private extension ProgressWidgetAttributes.State {
     }
 }
 
-private extension TorrentHandle.Snapshot {
+private extension TorrentSession.Handle.Snapshot {
     var toLiveActivityState: ProgressWidgetAttributes.ContentState {
         let color = PreferencesStorage.shared.tintColor
         let data = try? NSKeyedArchiver.archivedData(withRootObject: color, requiringSecureCoding: true)
@@ -161,7 +161,7 @@ private extension TorrentHandle.Snapshot {
     }
 }
 
-private extension TorrentHandle.State {
+private extension TorrentSession.Handle.State {
     var toState: ProgressWidgetAttributes.State {
         switch self {
         case .checkingFiles:

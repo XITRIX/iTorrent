@@ -26,7 +26,7 @@ extension PreferencesSectionGroupingViewModel {
     func didMoved(with snapshot: MvvmCollectionViewDataSource.Snapshot) {
         let items = snapshot.itemIdentifiers(inSection: snapshot.sectionIdentifiers[0])
             .compactMap { $0.viewModel as? PRButtonViewModel }
-            .compactMap { $0.metadata as? TorrentHandle.State }
+            .compactMap { $0.metadata as? TorrentSession.Handle.State }
 
         preferences.torrentListGroupsSortingArray = items
     }

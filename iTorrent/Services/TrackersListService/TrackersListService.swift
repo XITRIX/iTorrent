@@ -73,6 +73,16 @@ extension TrackersListService {
             }
         }
     }
+
+    func addAllTrackers(to torrent: TorrentSession.Handle) {
+        let urls = trackerSources.value.values.flatMap(\.trackers)
+        Task {
+            for urlString in urls {
+                guard let url = URL(string: urlString) else { continue }
+                await torrent.addTracker(url.absoluteString)
+            }
+        }
+    }
 }
 
 private extension TrackersListService {

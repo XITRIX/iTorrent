@@ -46,42 +46,45 @@ class RssDetailsViewModel: BaseViewModelWith<RssItemModel>, @unchecked Sendable 
 private extension RssDetailsViewModel {
     func prepareDownload() async {
         // MARK: - Try download magnet
-        if let magnet = MagnetURI(with: rssModel.enclosure?.url) ?? // Check enclosure
-                        MagnetURI(with: rssModel.link) // Otherwise check link
+        if let magnetSource = [rssModel.enclosure?.url, rssModel.link]
+            .compactMap({ url -> TorrentSession.Source? in
+                guard let url else { return nil }
+                return TorrentSession.Source(magnetURL: url)
+            })
+            .first
         {
-            guard !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes) else {
+            guard !TorrentService.shared.checkTorrentExists(with: magnetSource.infoHashes) else {
                 downloadType = .added
                 return
             }
 
             downloadType = .magnet
             download = { [unowned self] _ in
-                TorrentService.shared.addTorrent(by: magnet)
+                TorrentService.shared.addTorrent(magnetSource)
                 downloadType = .added
             }
             return
         }
 
-
         // MARK: - Try download file
-        let file: TorrentFile?
+        let preview: TorrentSession.AddPreview?
 
         // Check enclosure
-        if let temp = await TorrentFile(remote: rssModel.enclosure?.url) { file = temp }
+        if let temp = await TorrentSession.AddPreview(remote: rssModel.enclosure?.url) { preview = temp }
         // Otherwise check link
-        else if let temp = await TorrentFile(remote: rssModel.link) { file = temp }
+        else if let temp = await TorrentSession.AddPreview(remote: rssModel.link) { preview = temp }
         // Otherwise nothing to download
-        else { file = nil }
+        else { preview = nil }
 
-        if let file {
-            guard !TorrentService.shared.checkTorrentExists(with: file.infoHashes) else {
+        if let preview {
+            guard !TorrentService.shared.checkTorrentExists(with: preview.infoHashes) else {
                 downloadType = .added
                 return
             }
 
             downloadType = .torrent
             download = { [unowned self] source in
-                navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: file, completion: { [weak self] added in
+                navigate(to: TorrentAddViewModel.self, with: .init(preview: preview, completion: { [weak self] added in
                     guard added else { return }
                     self?.downloadType = .added
                 }), by: .present(wrapInNavigation: true, from: source, style: .formSheet))
@@ -91,16 +94,10 @@ private extension RssDetailsViewModel {
     }
 }
 
-private extension TorrentFile {
+private extension TorrentSession.AddPreview {
     convenience init?(remote url: URL?) async {
         guard let url else { return nil }
         await self.init(remote: url)
     }
 }
 
-private extension MagnetURI {
-    convenience init?(with url: URL?) {
-        guard let url else { return nil }
-        self.init(with: url)
-    }
-}

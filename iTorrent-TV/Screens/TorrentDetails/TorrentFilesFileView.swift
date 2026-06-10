@@ -42,7 +42,7 @@ extension TorrentFilesFileView {
         private var node: FileNode
         private var viewModel: TorrentFilesView.ViewModel
 
-        @Published var file: FileEntry?
+        @Published var file: TorrentSession.Handle.Snapshot.FileEntrySnapshot?
         private let disposeBag = DisposeBag()
 
         init(viewModel: TorrentFilesView.ViewModel, node: FileNode) {
@@ -83,7 +83,7 @@ extension TorrentFilesFileView {
     }
 }
 
-extension FileEntry {
+extension TorrentSession.Handle.Snapshot.FileEntrySnapshot {
     var progress: Double {
         Double(downloaded) / Double(size)
     }

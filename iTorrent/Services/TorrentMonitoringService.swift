@@ -5,6 +5,7 @@
 //  Created by Daniil Vinogradov on 03/04/2024.
 //
 
+import LibTorrent
 import MvvmFoundation
 import UIKit
 import UserNotifications
@@ -26,32 +27,36 @@ class TorrentMonitoringService {
 private extension TorrentMonitoringService {
     func checkStorageAvailability(with model: TorrentService.TorrentUpdateModel) {
         guard let handle = model.handle,
+              let snapshot = handle.currentSnapshot,
               let storage = handle.storage,
               !storage.allowed,
-              !handle.snapshot.isPaused
+              !snapshot.isPaused
         else { return }
 
-        handle.pause()
+        Task { await handle.pause() }
     }
 
     func checkDoneNotification(with model: TorrentService.TorrentUpdateModel) {
+        let oldSnapshot = model.oldSnapshot
+
         guard let handle = model.handle,
+              let snapshot = handle.currentSnapshot,
               PreferencesStorage.shared.isDownloadNotificationsEnabled,
-              model.oldSnapshot.state != .checkingFiles,
-              model.oldSnapshot.friendlyState != .paused,
-              model.oldSnapshot.progressWanted < 1,
-              handle.snapshot.progressWanted >= 1
+              oldSnapshot.state != .checkingFiles,
+              oldSnapshot.friendlyState != .paused,
+              oldSnapshot.progressWanted < 1,
+              snapshot.progressWanted >= 1
         else { return }
 
         if PreferencesStorage.shared.stopSeedingOnFinish {
-            handle.pause()
+            Task { await handle.pause() }
         }
 
         let content = UNMutableNotificationContent()
 
-        let hash = handle.snapshot.infoHashes.best.hex
+        let hash = snapshot.infoHashes.best.hex
         content.title = %"notification.done.title"
-        content.body = %"notification.done.message_\(handle.snapshot.name)"
+        content.body = %"notification.done.message_\(snapshot.name)"
         content.sound = UNNotificationSound.default
         content.userInfo = ["hash": hash]
 

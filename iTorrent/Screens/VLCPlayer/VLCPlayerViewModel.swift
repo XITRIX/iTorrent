@@ -13,13 +13,13 @@ import LibTorrent
 extension VLCPlayerViewModel {
     struct Config {
         let url: URL
-        let torrentPair: (handle: TorrentHandle, fileIndex: Int)?
+        let torrentPair: (handle: TorrentSession.Handle, fileIndex: Int)?
     }
 }
 
 class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, ObservableObject {
     private(set) var url: URL!
-    private(set) var torrentPair: (handle: TorrentHandle, fileIndex: Int)?
+    private(set) var torrentPair: (handle: TorrentSession.Handle, fileIndex: Int)?
 
     @Published var showOverlay: Bool = true
     @Published var segmentedProgress: [Double]?
@@ -34,16 +34,21 @@ class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, Observab
         guard let torrentPair else { return }
         refreshSegmentedProgress()
         disposeBag.bind {
-            torrentPair.handle.updatePublisher.sink { [weak self] update in
-                guard let self else { return }
-                refreshSegmentedProgress()
-            }
+            torrentPair.handle.updatePublisher
+                .sink { [weak self] _ in
+                    guard let self else { return }
+                    refreshSegmentedProgress()
+                }
         }
     }
 
     private func refreshSegmentedProgress() {
         guard let torrentPair else { return }
-        let file = torrentPair.handle.snapshot.files[torrentPair.fileIndex]
+        guard let snapshot = torrentPair.handle.currentSnapshot else {
+            segmentedProgress = nil
+            return
+        }
+        let file = snapshot.files[torrentPair.fileIndex]
         segmentedProgress = file.segmentedProgress
     }
 

@@ -11,13 +11,13 @@ import MvvmFoundation
 
 extension TorrentFilesViewModel {
     struct Config {
-        var torrentHandle: TorrentHandle
+        var torrentHandle: TorrentSession.Handle
         var rootDirectory: PathNode?
     }
 }
 
 class TorrentFilesViewModel: BaseViewModelWith<TorrentFilesViewModel.Config> {
-    private(set) var torrentHandle: TorrentHandle!
+    private(set) var torrentHandle: TorrentSession.Handle!
     private var rootDirectory: PathNode!
     private var keys: [String] = []
 
@@ -38,7 +38,7 @@ extension TorrentFilesViewModel {
     }
 
     var downloadPath: URL {
-        guard let downloadPath = torrentHandle.snapshot.downloadPath
+        guard let downloadPath = snapshot.downloadPath
         else {
             assertionFailure("downloadPath cannot be nil for this object")
             return URL(string: "/")!
@@ -47,14 +47,14 @@ extension TorrentFilesViewModel {
         return downloadPath
     }
 
-    var filesForPreview: [FileEntry] {
+    var filesForPreview: [TorrentSession.Handle.Snapshot.FileEntrySnapshot] {
         filesForPreviewUnfiltered
         .filter {
             $0.downloaded >= $0.size
         }
     }
 
-    var filesForPreviewUnfiltered: [FileEntry] {
+    var filesForPreviewUnfiltered: [TorrentSession.Handle.Snapshot.FileEntrySnapshot] {
         keys.flatMap {
             switch rootDirectory.storage[$0] {
             case let path as PathNode:
@@ -65,7 +65,7 @@ extension TorrentFilesViewModel {
                 return []
             }
         }
-        .map { torrentHandle.snapshot.files[$0] }
+        .map(snapshotFile(at:))
     }
 
     func canShareSelected(_ indexPaths: [IndexPath]) -> Bool {
@@ -79,7 +79,7 @@ extension TorrentFilesViewModel {
                 return []
             }
         }.contains {
-            let file = torrentHandle.snapshot.files[$0]
+            let file = snapshotFile(at: $0)
             return file.downloaded >= file.size
         }
     }
@@ -95,7 +95,7 @@ extension TorrentFilesViewModel {
                 return []
             }
         }.contains {
-            let file = torrentHandle.snapshot.files[$0]
+            let file = snapshotFile(at: $0)
             return file.downloaded < file.size
         }
     }
@@ -137,16 +137,29 @@ extension TorrentFilesViewModel {
                 return []
             }
         }.filter {
-            let file = torrentHandle.snapshot.files[$0]
+            let file = snapshotFile(at: $0)
             return file.downloaded < file.size || priority != .dontDownload
         }
 
-        torrentHandle.setFilesPriority(priority, at: files.map { NSNumber(integerLiteral: $0) })
+        Task {
+            await torrentHandle.setFilesPriority(priority, at: files)
+        }
     }
 }
 
 private extension TorrentFilesViewModel {
+    var snapshot: TorrentSession.Handle.Snapshot {
+        guard let snapshot = torrentHandle.currentSnapshot else {
+            fatalError("Snapshot should exist for active torrent handle")
+        }
+        return snapshot
+    }
+
     func generateRoot() -> PathNode {
-        .generateRoot(rootName: "", files: torrentHandle.snapshot.files)
+        .generateRoot(rootName: "", files: snapshot.files)
+    }
+
+    func snapshotFile(at index: Int) -> TorrentSession.Handle.Snapshot.FileEntrySnapshot {
+        snapshot.files[index]
     }
 }

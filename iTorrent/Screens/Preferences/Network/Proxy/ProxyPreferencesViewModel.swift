@@ -40,7 +40,7 @@ private extension ProxyPreferencesViewModel {
                         uiAction(from: .socks4),
                         uiAction(from: .socks5),
                         uiAction(from: .http),
-                        uiAction(from: .i2p_proxy),
+                        uiAction(from: .i2pProxy),
                     ]), options: .init(tintColor: .tintColor)
                 ),
             ]))
@@ -87,7 +87,7 @@ private extension ProxyPreferencesViewModel {
         }
     }
 
-    func uiAction(from proxyType: Session.Settings.ProxyType) -> UIAction {
+    func uiAction(from proxyType: TorrentSession.Configuration.ProxyType) -> UIAction {
         UIAction(title: proxyType.name, state: preferences.proxyType == proxyType ? .on : .off) { [unowned self] _ in
             preferences.proxyType = proxyType
             reload()
@@ -95,7 +95,7 @@ private extension ProxyPreferencesViewModel {
     }
 }
 
-extension Session.Settings.ProxyType {
+extension TorrentSession.Configuration.ProxyType {
     var name: String {
         switch self {
         case .none:
@@ -106,7 +106,7 @@ extension Session.Settings.ProxyType {
             return %"proxyType.socks5"
         case .http:
             return %"proxyType.http"
-        case .i2p_proxy:
+        case .i2pProxy:
             return %"proxyType.i2p_proxy"
         @unknown default:
             assertionFailure("Unregistered \(Self.self) value is not allowed: \(self)")

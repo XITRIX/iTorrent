@@ -13,10 +13,12 @@ actor IntentsService {
         disposeBag.bind {
             NotificationCenter.default.publisher(for: .pauseTorrent).sink { notification in
                 guard let hash = notification.object as? String,
-                      let torrentHandle = TorrentService.shared.torrents.values.first(where: { $0.snapshot.infoHashes.best.hex == hash })
+                      let torrentHandle = TorrentService.shared.modernHandle(forHex: hash)
                 else { return }
-                
-                torrentHandle.pause()
+
+                Task {
+                    await torrentHandle.pause()
+                }
             }
         }
     }

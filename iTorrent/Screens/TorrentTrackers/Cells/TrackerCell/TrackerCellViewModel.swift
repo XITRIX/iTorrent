@@ -9,9 +9,9 @@ import Foundation
 import MvvmFoundation
 import LibTorrent
 
-class TrackerCellViewModel: BaseViewModelWith<TorrentTracker>, MvvmLongPressProtocol, ObservableObject {
+class TrackerCellViewModel: BaseViewModelWith<TorrentSession.Handle.Snapshot.TrackerSnapshot>, MvvmLongPressProtocol, ObservableObject {
     var longPressAction: (() -> Void)?
-    
+
     @Published var title: String = ""
     @Published var message: String?
     @Published var seeds: Int = 0
@@ -20,13 +20,13 @@ class TrackerCellViewModel: BaseViewModelWith<TorrentTracker>, MvvmLongPressProt
     @Published var state: TorrentTracker.State = .updating
     @Published var url: String!
 
-    override func prepare(with model: TorrentTracker) {
-        url = model.trackerUrl
+    override func prepare(with model: TorrentSession.Handle.Snapshot.TrackerSnapshot) {
+        url = model.trackerURL
         update(with: model)
     }
 
-    func update(with model: TorrentTracker) {
-        title = model.trackerUrl
+    func update(with model: TorrentSession.Handle.Snapshot.TrackerSnapshot) {
+        title = model.trackerURL
         message = model.message
         seeds = model.seeds
         peers = model.peers

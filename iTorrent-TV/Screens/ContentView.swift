@@ -5,23 +5,26 @@
 //  Created by Daniil Vinogradov on 09/12/2025.
 //
 
+import Combine
 import LibTorrent
 import MvvmFoundation
 import SwiftUI
-import Combine
 
 struct ContentView: View {
-    private var torrents: [TorrentHandle] {
-        torrentService.torrents.values.filter(\.snapshot.isValid).sorted { first, second in
-            first.snapshot.name.localizedCaseInsensitiveCompare(second.snapshot.name) == .orderedAscending
-        }
+    private var torrents: [TorrentSession.Handle.Snapshot] {
+        torrentService.modernHandles.values
+            .compactMap(\.currentSnapshot)
+            .filter(\.isValid)
+            .sorted { first, second in
+                first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+            }
     }
 
-    @FocusState var focusedTorrent: TorrentHandle?
-    @State var selectedTorrent: TorrentHandle?
-    @State var columnVisibility: NavigationSplitViewVisibility = .doubleColumn
-    @State var navigationPath: NavigationPath = .init()
-    @EnvironmentObject var torrentService: TorrentService
+    @FocusState private var focusedTorrent: TorrentSession.Hashes?
+    @State private var selectedTorrent: TorrentSession.Hashes?
+    @State private var columnVisibility: NavigationSplitViewVisibility = .doubleColumn
+    @State private var navigationPath: NavigationPath = .init()
+    @EnvironmentObject private var torrentService: TorrentService
 
     var body: some View {
         GeometryReader { geometry in
@@ -31,13 +34,13 @@ struct ContentView: View {
                         Button("Add Torrent", systemImage: "plus") {
                             guard let url = Bundle.main.url(forResource: "test", withExtension: "torrent"),
                                   let torrentData = try? Data(contentsOf: url),
-                                  let torrentFile = TorrentFile(with: torrentData)
+                                  let source = TorrentSession.Source(torrentData: torrentData)
                             else {
                                 print("NONE!!!")
                                 return
                             }
 
-                            torrentService.addTorrent(by: torrentFile)
+                            torrentService.addTorrent(source)
                             print("Success!!!")
                         }
                         .buttonStyle(.plain)
@@ -47,17 +50,18 @@ struct ContentView: View {
                             .buttonStyle(.plain)
                             .frame(maxWidth: .infinity)
                     }
-                    ForEach(torrents, id: \.self) { torrent in
-                        TorrentItem(torrentHandle: torrent)
-                            .focused($focusedTorrent, equals: torrent)
+                    ForEach(torrents, id: \.infoHashes) { torrent in
+                        TorrentItem(snapshot: torrent)
+                            .focused($focusedTorrent, equals: torrent.infoHashes)
                             .listRowBackground(
-                                (torrent == selectedTorrent && torrent != focusedTorrent)
+                                (torrent.infoHashes == selectedTorrent && torrent.infoHashes != focusedTorrent)
                                     ? AnyView(
                                         RoundedRectangle(cornerRadius: 20)
                                             .fill(Color.gray.opacity(0.2))
                                     )
                                     : AnyView(Color.clear)
                             )
+                            .tag(torrent.infoHashes)
                     }
                 }
                 .focusSection()
@@ -65,19 +69,12 @@ struct ContentView: View {
                 .padding(.vertical, 22)
                 .padding(.horizontal, 36)
                 .scrollClipDisabled()
-                //            .background(Color.blue)
                 .clipped()
                 .glassEffect(.regular, in: .rect(cornerRadius: 50))
                 .padding(20)
                 .ignoresSafeArea()
-                .onChange(of: focusedTorrent) { oldValue, newValue in
-//                    if oldValue == nil {
-//                        focusedTorrent = lastFocusedTorrent
-//                        return
-//                    }
-
+                .onChange(of: focusedTorrent) { _, newValue in
                     guard let newValue else { return }
-//                    lastFocusedTorrent = newValue
                     selectedTorrent = newValue
                     navigationPath = .init()
                 }
@@ -85,7 +82,7 @@ struct ContentView: View {
 
                 NavigationStack(path: $navigationPath) {
                     if let selectedTorrent {
-                        TorrentDetailsView(torrentHandle: selectedTorrent)
+                        TorrentDetailsView(infoHashes: selectedTorrent)
                     }
                 }
                 .frame(width: geometry.size.width * 2 / 3)
@@ -96,60 +93,25 @@ struct ContentView: View {
 }
 
 struct TorrentItem: View {
-    class ViewModel: ObservableObject {
-        @Published var title: String = ""
-        @Published var progressText: String = ""
-        @Published var status: String = ""
-        @Published var progress: Double = 0
-
-        init(torrentHandle: TorrentHandle) {
-            self.torrentHandle = torrentHandle
-            updateState()
-            
-            disposeBag.bind {
-                torrentHandle.updatePublisher.sink { [weak self] _ in
-                    self?.updateState()
-                }
-            }
-        }
-
-        private var disposeBag = DisposeBag()
-        private var torrentHandle: TorrentHandle
-
-        private func updateState() {
-            let percent = "\(String(format: "%.2f", torrentHandle.snapshot.progress * 100))%"
-
-            title = torrentHandle.snapshot.name
-            progressText = %"\(torrentHandle.snapshot.totalWantedDone.bitrateToHumanReadable) of \(torrentHandle.snapshot.totalWanted.bitrateToHumanReadable) (\(percent))"
-            status = "\(torrentHandle.snapshot.stateText)"
-            progress = torrentHandle.snapshot.progress
-        }
-    }
-
-    @Environment(\.isFocused) var isFocused
-
-    @StateObject private var viewModel: ViewModel
-
-    init(torrentHandle: TorrentHandle) {
-        _viewModel = .init(wrappedValue: .init(torrentHandle: torrentHandle))
-    }
+    let snapshot: TorrentSession.Handle.Snapshot
 
     var body: some View {
+        let percent = "\(String(format: "%.2f", snapshot.progress * 100))%"
+
         Button {} label: {
             VStack(alignment: .leading) {
-                Text(viewModel.title)
+                Text(snapshot.name)
 
                 Group {
-                    Text(viewModel.progressText)
-                    Text(viewModel.status)
+                    Text(%"\(snapshot.totalWantedDone.bitrateToHumanReadable) of \(snapshot.totalWanted.bitrateToHumanReadable) (\(percent))")
+                    Text("\(snapshot.stateText)")
                 }
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 
-                ProgressView(value: viewModel.progress)
+                ProgressView(value: snapshot.progress)
             }
             .padding(.vertical, 8)
-            //                        .padding(.horizontal, 8)
         }
         .buttonStyle(.plain)
     }

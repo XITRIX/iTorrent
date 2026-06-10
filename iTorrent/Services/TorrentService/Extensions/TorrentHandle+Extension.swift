@@ -6,69 +6,163 @@
 //
 
 import Combine
+import Foundation
 import LibTorrent
-import MvvmFoundation
 
+private final class TorrentSessionHandlePublisherState: @unchecked Sendable {
+    let unthrottledUpdatePublisher = PassthroughSubject<Void, Never>()
+    let updatePublisher = PassthroughSubject<TorrentService.TorrentUpdateModel, Never>()
+    let removePublisher = PassthroughSubject<TorrentSession.Handle, Never>()
 
-extension TorrentHandle {
-    private enum Keys {
-        nonisolated(unsafe) static var TorrentHandleUnthrottledUpdatePublisherKey: Void?
-        nonisolated(unsafe) static var TorrentHandleUpdatePublisherKey: Void?
-        nonisolated(unsafe) static var TorrentHandleRemovePublisherKey: Void?
-        nonisolated(unsafe) static var TorrentHandleDisposeBagKey: Void?
+    private var cancellables = Set<AnyCancellable>()
+
+    init(handle: TorrentSession.Handle) {
+        unthrottledUpdatePublisher
+            .throttle(for: .seconds(0.1), scheduler: DispatchQueue.main, latest: true)
+            .receive(on: DispatchQueue.global(qos: .userInitiated))
+            .sink { [weak self, weak handle] in
+                guard let self, let handle else { return }
+
+                Task { [weak self, weak handle] in
+                    guard let self, let handle else { return }
+
+                    _ = handle.metadata // Trigger metadata generation if needed.
+                    let oldSnapshot = handle.currentSnapshot
+                    guard let snapshot = await handle.snapshot() else { return }
+                    let updateModel = TorrentService.TorrentUpdateModel(
+                        oldSnapshot: oldSnapshot ?? snapshot,
+                        handle: handle
+                    )
+
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        TorrentService.shared.updateNotifier.send(updateModel)
+                        self.updatePublisher.send(updateModel)
+                    }
+                }
+            }
+            .store(in: &cancellables)
     }
-    
-    var disposeBag: DisposeBag {
-        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleDisposeBagKey) as? DisposeBag
-        else {
-            objc_setAssociatedObject(self, &Keys.TorrentHandleDisposeBagKey, DisposeBag(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &Keys.TorrentHandleDisposeBagKey) as! DisposeBag
+
+    func finish(for handle: TorrentSession.Handle) {
+        removePublisher.send(handle)
+        unthrottledUpdatePublisher.send(completion: .finished)
+        updatePublisher.send(completion: .finished)
+        removePublisher.send(completion: .finished)
+        cancellables.removeAll()
+    }
+}
+
+private enum TorrentSessionHandlePublisherRegistry {
+    private static let lock = NSLock()
+    nonisolated(unsafe) private static var states: [ObjectIdentifier: TorrentSessionHandlePublisherState] = [:]
+
+    static func state(for handle: TorrentSession.Handle) -> TorrentSessionHandlePublisherState {
+        let key = ObjectIdentifier(handle)
+
+        lock.lock()
+        defer { lock.unlock() }
+
+        if let state = states[key] {
+            return state
         }
-        return obj
+
+        let state = TorrentSessionHandlePublisherState(handle: handle)
+        states[key] = state
+        return state
     }
 
-    var __unthrottledUpdatePublisher: PassthroughSubject<Void, Never> {
-        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleUnthrottledUpdatePublisherKey) as? PassthroughSubject<Void, Never>
-        else {
-            objc_setAssociatedObject(self, &Keys.TorrentHandleUnthrottledUpdatePublisherKey, PassthroughSubject<Void, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &Keys.TorrentHandleUnthrottledUpdatePublisherKey) as! PassthroughSubject<Void, Never>
-        }
-        return obj
-    }
+    static func finish(for handle: TorrentSession.Handle) {
+        let key = ObjectIdentifier(handle)
 
-    var __updatePublisher: PassthroughSubject<TorrentService.TorrentUpdateModel, Never> {
-        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleUpdatePublisherKey) as? PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
-        else {
-            objc_setAssociatedObject(self, &Keys.TorrentHandleUpdatePublisherKey, PassthroughSubject<TorrentService.TorrentUpdateModel, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &Keys.TorrentHandleUpdatePublisherKey) as! PassthroughSubject<TorrentService.TorrentUpdateModel, Never>
-        }
-        return obj
-    }
+        lock.lock()
+        let state = states.removeValue(forKey: key)
+        lock.unlock()
 
-    /// Does not contain updated Snapshot yet, it creates before updatePublisher will be fired
-    ///
-    /// Better not use this one, prefer to use `updatePublisher`
-    var unthrottledUpdatePublisher: AnyPublisher<Void, Never> {
-        __unthrottledUpdatePublisher.eraseToAnyPublisher()
-    }
-
-    /// Contains old Snapshot in `TorrentUpdateModel` and updated Snapshot inside of `TorrentHandle` it self
-    var updatePublisher: AnyPublisher<TorrentService.TorrentUpdateModel, Never> {
-        __updatePublisher.eraseToAnyPublisher()
-    }
-
-    var removePublisher: PassthroughSubject<TorrentHandle, Never> {
-        guard let obj = objc_getAssociatedObject(self, &Keys.TorrentHandleRemovePublisherKey) as? PassthroughSubject<TorrentHandle, Never>
-        else {
-            objc_setAssociatedObject(self, &Keys.TorrentHandleRemovePublisherKey, PassthroughSubject<TorrentHandle, Never>(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-            return objc_getAssociatedObject(self, &Keys.TorrentHandleRemovePublisherKey) as! PassthroughSubject<TorrentHandle, Never>
-        }
-        return obj
+        state?.finish(for: handle)
     }
 }
 
 extension TorrentHandle.Snapshot {
-    var friendlyState: TorrentHandle.State {
+    var friendlyState: TorrentSession.Handle.State {
+        TorrentSession.Handle.Snapshot(self).friendlyState
+    }
+
+    var canResume: Bool {
+        TorrentSession.Handle.Snapshot(self).canResume
+    }
+
+    var canPause: Bool {
+        TorrentSession.Handle.Snapshot(self).canPause
+    }
+}
+
+extension TorrentSession.Handle {
+    struct Metadata: Codable {
+        var dateAdded: Date = .init()
+    }
+
+    var __unthrottledUpdatePublisher: PassthroughSubject<Void, Never> {
+        TorrentSessionHandlePublisherRegistry.state(for: self).unthrottledUpdatePublisher
+    }
+
+    var __updatePublisher: PassthroughSubject<TorrentService.TorrentUpdateModel, Never> {
+        TorrentSessionHandlePublisherRegistry.state(for: self).updatePublisher
+    }
+
+    var __removePublisher: PassthroughSubject<TorrentSession.Handle, Never> {
+        TorrentSessionHandlePublisherRegistry.state(for: self).removePublisher
+    }
+
+    /// Does not contain the updated snapshot yet, it triggers the throttled refresh pipeline.
+    var unthrottledUpdatePublisher: AnyPublisher<Void, Never> {
+        __unthrottledUpdatePublisher.eraseToAnyPublisher()
+    }
+
+    /// Contains the old snapshot in `TorrentUpdateModel` and the updated snapshot on the handle itself.
+    var updatePublisher: AnyPublisher<TorrentService.TorrentUpdateModel, Never> {
+        __updatePublisher.eraseToAnyPublisher()
+    }
+
+    var removePublisher: AnyPublisher<TorrentSession.Handle, Never> {
+        __removePublisher.eraseToAnyPublisher()
+    }
+
+    func finishUpdatePublishers() {
+        TorrentSessionHandlePublisherRegistry.finish(for: self)
+    }
+
+    var storage: TorrentSession.Storage? {
+        guard let storageUUID = currentSnapshot?.storageUUID else { return nil }
+        return TorrentService.shared.storages[storageUUID]
+    }
+
+    var metadata: Metadata {
+        let hash = infoHashes.best.hex
+        let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
+        if FileManager.default.fileExists(atPath: url.path()),
+           let data = try? Data(contentsOf: url),
+           let meta = try? JSONDecoder().decode(Metadata.self, from: data)
+        {
+            return meta
+        }
+
+        let meta = Metadata()
+        if let data = try? JSONEncoder().encode(meta) {
+            try? data.write(to: url)
+        }
+        return meta
+    }
+
+    func deleteMetadata() {
+        let hash = infoHashes.best.hex
+        let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
+        try? FileManager.default.removeItem(at: url)
+    }
+}
+
+extension TorrentSession.Handle.Snapshot {
+    var friendlyState: TorrentSession.Handle.State {
         if isStorageMissing {
             return .storageError
         }
@@ -97,7 +191,7 @@ extension TorrentHandle.Snapshot {
     }
 }
 
-extension TorrentHandle.State {
+extension TorrentSession.Handle.State {
     var name: String {
         switch self {
         case .checkingFiles:
@@ -116,16 +210,13 @@ extension TorrentHandle.State {
             return String(localized: "torrent.state.paused")
         case .storageError:
             return String(localized: "torrent.state.storageError")
-        @unknown default:
-            assertionFailure("Unregistered \(Self.self) enum value is not allowed: \(self)")
-            return ""
         }
     }
 }
 
 // MARK: - Storage
 extension TorrentHandle {
-    var storage: StorageModel? {
+    var storage: TorrentSession.Storage? {
         guard let storageUUID else { return nil }
         return TorrentService.shared.storages[storageUUID]
     }

@@ -11,8 +11,8 @@ import Combine
 import UIKit
 
 protocol FileItemViewModelProtocol: MvvmViewModel {
-    var file: FileEntry { get }
-    var updatePublisher: AnyPublisher<TorrentHandle, Never> { get }
+    var file: TorrentSession.Handle.Snapshot.FileEntrySnapshot { get }
+    var updatePublisher: AnyPublisher<Void, Never> { get }
     var selected: PassthroughSubject<Void, Never> { get }
     var path: URL { get }
     var showProgress: Bool { get }
@@ -20,17 +20,17 @@ protocol FileItemViewModelProtocol: MvvmViewModel {
     func setPriority(_ priority: FileEntry.Priority)
 }
 
-class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
+class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentSession.Handle, Int)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
     var selectAction: (() -> Void)?
     var previewAction: (() -> Void)?
-    
-    var torrentHandle: TorrentHandle!
+
+    var torrentHandle: TorrentSession.Handle!
     var index: Int = 0
 
     let selected = PassthroughSubject<Void, Never>()
     var showProgress: Bool { true }
 
-    override func prepare(with model: (TorrentHandle, Int)) {
+    override func prepare(with model: (TorrentSession.Handle, Int)) {
         torrentHandle = model.0
         index = model.1
         selectAction = { [unowned self] in
@@ -47,16 +47,18 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
         hasher.combine(file.path)
     }
 
-    var updatePublisher: AnyPublisher<TorrentHandle, Never> {
-        torrentHandle.updatePublisher.compactMap { $0.handle }.eraseToAnyPublisher()
+    var updatePublisher: AnyPublisher<Void, Never> {
+        torrentHandle.updatePublisher
+            .map { _ in () }
+            .eraseToAnyPublisher()
     }
 
-    var file: FileEntry {
-        torrentHandle.snapshot.files[index]
+    var file: TorrentSession.Handle.Snapshot.FileEntrySnapshot {
+        currentSnapshot.files[index]
     }
 
     var path: URL {
-        guard let downloadPath = torrentHandle.snapshot.downloadPath
+        guard let downloadPath = currentSnapshot.downloadPath
         else {
             assertionFailure("downloadPath cannot be nil for this object")
             return URL(string: "/")!
@@ -65,12 +67,22 @@ class TorrentFilesFileItemViewModel: BaseViewModelWith<(TorrentHandle, Int)>, Mv
     }
 
     func setPriority(_ priority: FileEntry.Priority) {
-        torrentHandle.setFilePriority(priority, at: index)
+        Task {
+            await torrentHandle.setFilePriority(priority, at: index)
+        }
+    }
+
+    private var currentSnapshot: TorrentSession.Handle.Snapshot {
+        guard let snapshot = torrentHandle.currentSnapshot else {
+            fatalError("Snapshot should exist for active torrent handle")
+        }
+        return snapshot
     }
 }
 
-extension FileEntry {
+extension TorrentSession.Handle.Snapshot.FileEntrySnapshot {
     var progress: Double {
-        Double(downloaded) / Double(size)
+        guard size != 0 else { return 0 }
+        return Double(downloaded) / Double(size)
     }
 }

@@ -36,7 +36,7 @@ class PreferencesStorage: Resolvable {
     private var disposeBag: [AnyCancellable] = []
     static let shared = PreferencesStorage()
 
-    static let defaultTorrentListGroupsSortingArray: [TorrentHandle.State] = [
+    static let defaultTorrentListGroupsSortingArray: [TorrentSession.Handle.State] = [
         .checkingFiles,
         .downloadingMetadata,
         .downloading,
@@ -49,7 +49,7 @@ class PreferencesStorage: Resolvable {
 
     @UserDefaultItem("torrentDefaultStorage", nil) var defaultStorage: UUID?
     @UserDefaultItem("torrentIsStorageRulesAccepted", false) var isStorageRulesAccepted: Bool
-    @UserDefaultItem("torrentStorageScopes", [:]) var storageScopes: [UUID: StorageModel]
+    @UserDefaultItem("torrentStorageScopes", [:]) var storageScopes: [UUID: TorrentSession.Storage]
 
     #if !os(tvOS)
     @UserDefaultItem("torrentListSortType", .alphabetically) var torrentListSortType: TorrentListViewModel.Sort
@@ -58,7 +58,7 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("torrentListIsGroubedByState", false) var torrentListGroupedByState: Bool
 
     @UserDefaultItem("torrentListGroupsSortingArray", PreferencesStorage.defaultTorrentListGroupsSortingArray)
-    var torrentListGroupsSortingArray: [TorrentHandle.State]
+    var torrentListGroupsSortingArray: [TorrentSession.Handle.State]
 
     @UserDefaultItem("preferencesAllocateMemory", false) var allocateMemory: Bool
 
@@ -82,7 +82,7 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesConnectionUpnp", true) var isUpnpEnabled: Bool
     @UserDefaultItem("preferencesConnectionNatPmp", true) var isNatEnabled: Bool
 
-    @UserDefaultItem("preferencesEncryptionPolicy", .enabled) var encryptionPolicy: Session.Settings.EncryptionPolicy
+    @UserDefaultItem("preferencesEncryptionPolicy", .enabled) var encryptionPolicy: TorrentSession.Configuration.EncryptionPolicy
     @UserDefaultItem("preferencesValidateHttpsTrackers", true) var validateHttpsTrackers: Bool
 
 
@@ -90,7 +90,7 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesPort", 6881) var port: Int
     @UserDefaultItem("preferencesPortBindRetries", 10) var portBindRetries: Int
 
-    @UserDefaultItem("preferencesProxyType", .none) var proxyType: Session.Settings.ProxyType
+    @UserDefaultItem("preferencesProxyType", .none) var proxyType: TorrentSession.Configuration.ProxyType
     @UserDefaultItem("preferencesProxyHostname", "") var proxyHostname: String
     @UserDefaultItem("preferencesProxyHostPort", 8080) var proxyHostPort: Int
     @UserDefaultItem("preferencesProxyAuthRequired", false) var proxyAuthRequired: Bool
@@ -159,44 +159,54 @@ class PreferencesStorage: Resolvable {
     }
 }
 
-extension Session.Settings {
+extension TorrentSession.Configuration {
     static func fromPreferences(with interfaces: [NWInterface]) -> Self {
-        let settings = Self()
         let preferences = PreferencesStorage.shared
 
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
         let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
-        settings.agentName = "iTorrent: v\(appVersion)-\(appBuild)"
 
-        settings.maxActiveTorrents = preferences.maxActiveTorrents
-        settings.maxDownloadingTorrents = preferences.maxDownloadingTorrents
-        settings.maxUploadingTorrents = preferences.maxUploadingTorrents
-
-        settings.maxUploadSpeed = preferences.maxUploadSpeed
-        settings.maxDownloadSpeed = preferences.maxDownloadSpeed
-
-        settings.isDhtEnabled = preferences.isDhtEnabled
-        settings.isLsdEnabled = preferences.isLsdEnabled
-        settings.isUtpEnabled = preferences.isUtpEnabled
-        settings.isUpnpEnabled = preferences.isUpnpEnabled
-        settings.isNatEnabled = preferences.isNatEnabled
-
-        settings.encryptionPolicy = preferences.encryptionPolicy
-        settings.validateHttpsTrackers = preferences.validateHttpsTrackers
-
-        settings.port = preferences.useDefaultPort ? 6881 : preferences.port
-        settings.portBindRetries = preferences.portBindRetries
+        var port = 6881
+        if !preferences.useDefaultPort {
+            port = preferences.port
+        }
 
         var interfacesToUse = interfaces
         if !preferences.useAllAvailableInterfaces {
             interfacesToUse = [interfacesToUse.first].compactMap { $0 }
         }
         let interfacesNamesToUse = interfacesToUse.map { $0.name } + ["lo0"]
-        settings.outgoingInterfaces = interfacesNamesToUse.joined(separator: ",")
-        settings.listenInterfaces = interfacesNamesToUse.map { "\($0):\(settings.port)" }.joined(separator: ",")
+        let outgoingInterfaces = interfacesNamesToUse.joined(separator: ",")
+        let listenInterfaces = interfacesNamesToUse.map { "\($0):\(port)" }.joined(separator: ",")
 
-        print("--- \(settings.listenInterfaces)")
+        print("--- \(listenInterfaces)")
 
-        return settings
+        return Self(
+            agentName: "iTorrent: v\(appVersion)-\(appBuild)",
+            preallocateStorage: preferences.allocateMemory,
+            maxActiveTorrents: preferences.maxActiveTorrents,
+            maxDownloadingTorrents: preferences.maxDownloadingTorrents,
+            maxUploadingTorrents: preferences.maxUploadingTorrents,
+            maxDownloadSpeed: preferences.maxDownloadSpeed,
+            maxUploadSpeed: preferences.maxUploadSpeed,
+            isDhtEnabled: preferences.isDhtEnabled,
+            isLsdEnabled: preferences.isLsdEnabled,
+            isUtpEnabled: preferences.isUtpEnabled,
+            isUpnpEnabled: preferences.isUpnpEnabled,
+            isNatEnabled: preferences.isNatEnabled,
+            encryptionPolicy: preferences.encryptionPolicy,
+            validateHttpsTrackers: preferences.validateHttpsTrackers,
+            port: port,
+            portBindRetries: preferences.portBindRetries,
+            outgoingInterfaces: outgoingInterfaces,
+            listenInterfaces: listenInterfaces,
+            proxyType: preferences.proxyType,
+            proxyHostname: preferences.proxyHostname,
+            proxyHostPort: preferences.proxyHostPort,
+            proxyAuthRequired: preferences.proxyAuthRequired,
+            proxyUsername: preferences.proxyUsername,
+            proxyPassword: preferences.proxyPassword,
+            proxyPeerConnections: preferences.proxyPeerConnections
+        )
     }
 }

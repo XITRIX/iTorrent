@@ -9,21 +9,21 @@ import Combine
 import LibTorrent
 import MvvmFoundation
 
-class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int, ()->Void)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
-    var localUpdatePublisher = PassthroughRelay<TorrentHandle>()
-    private var torrentFile: TorrentFile!
-    private var internalFile: FileEntry!
+class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentSession.AddPreview, Int, ()->Void)>, MvvmSelectableProtocol, FileItemViewModelProtocol {
+    var localUpdatePublisher = PassthroughRelay<Void>()
+    private var preview: TorrentSession.AddPreview!
+    private var internalFile: TorrentSession.Handle.Snapshot.FileEntrySnapshot!
     private var index: Int = 0
 
     var selectAction: (() -> Void)?
     var showProgress: Bool { false }
     var onPriorityUpdated: (() -> Void)?
 
-    var file: FileEntry {
+    var file: TorrentSession.Handle.Snapshot.FileEntrySnapshot {
         internalFile
     }
 
-    var updatePublisher: AnyPublisher<TorrentHandle, Never> {
+    var updatePublisher: AnyPublisher<Void, Never> {
         localUpdatePublisher.eraseToAnyPublisher()
     }
 
@@ -34,15 +34,15 @@ class TorrentAddFileItemViewModel: BaseViewModelWith<(TorrentFile, Int, ()->Void
     }
 
     func setPriority(_ priority: FileEntry.Priority) {
-        torrentFile.setFilePriority(priority, at: index)
+        preview.setFilePriority(priority, at: index)
         onPriorityUpdated?()
     }
 
-    override func prepare(with model: (TorrentFile, Int, ()->Void)) {
-        torrentFile = model.0
+    override func prepare(with model: (TorrentSession.AddPreview, Int, ()->Void)) {
+        preview = model.0
         index = model.1
         onPriorityUpdated = model.2
-        internalFile = torrentFile.getAt(Int32(index))
+        internalFile = preview.file(at: index)
         selectAction = { [unowned self] in
             selected.send()
         }

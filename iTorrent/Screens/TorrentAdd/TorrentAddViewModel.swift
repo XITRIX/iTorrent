@@ -12,14 +12,14 @@ import UIKit
 
 extension TorrentAddViewModel {
     struct Config {
-        var torrentFile: TorrentFile
+        var preview: TorrentSession.AddPreview
         var rootDirectory: PathNode?
         var completion: ((Bool) -> Void)?
     }
 }
 
 class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
-    private var torrentFile: TorrentFile!
+    private var preview: TorrentSession.AddPreview!
     private var rootDirectory: PathNode!
     private var keys: [String]!
     private(set) var isRoot: Bool = false
@@ -27,10 +27,10 @@ class TorrentAddViewModel: BaseViewModelWith<TorrentAddViewModel.Config> {
 
     let updatePublisher = CurrentValueRelay<Void>(())
     let downloadStorage = CurrentValueRelay<UUID?>(nil)
-    let downloadStorages = CurrentValueRelay<[StorageModel]>([])
+    let downloadStorages = CurrentValueRelay<[TorrentSession.Storage]>([])
 
     override func prepare(with model: Config) {
-        torrentFile = model.torrentFile
+        preview = model.preview
         isRoot = model.rootDirectory == nil
         rootDirectory = model.rootDirectory ?? generateRoot()
         completion = model.completion
@@ -60,13 +60,13 @@ extension TorrentAddViewModel {
     }
 
     func fileModel(for index: Int) -> TorrentAddFileItemViewModel {
-        .init(with: (torrentFile, index, { [unowned self] in
+        .init(with: (preview, index, { [unowned self] in
             updatePublisher.send()
         }))
     }
 
     func pathModel(for path: PathNode) -> TorrentAddDirectoryItemViewModel {
-        .init(with: (torrentFile, path, path.name, { [unowned self] in
+        .init(with: (preview, path, path.name, { [unowned self] in
             updatePublisher.send()
         }))
     }
@@ -74,7 +74,7 @@ extension TorrentAddViewModel {
     func select(at index: Int) -> Bool {
         switch rootDirectory.storage[keys[index]] {
         case let path as PathNode:
-            navigate(to: TorrentAddViewModel.self, with: .init(torrentFile: torrentFile, rootDirectory: path, completion: completion), by: .show)
+            navigate(to: TorrentAddViewModel.self, with: .init(preview: preview, rootDirectory: path, completion: completion), by: .show)
             return false
         default:
             return true
@@ -87,13 +87,13 @@ extension TorrentAddViewModel {
     }
 
     func download() {
-        TorrentService.shared.addTorrent(by: torrentFile, at: downloadStorage.value)
+        TorrentService.shared.addTorrent(preview.source, at: downloadStorage.value)
         completion?(true)
         dismiss()
     }
 
     func setAllFilesPriority(_ priority: FileEntry.Priority) {
-        torrentFile.setAllFilesPriority(priority)
+        preview.setAllFilesPriority(priority)
         updatePublisher.send()
     }
 
@@ -101,7 +101,7 @@ extension TorrentAddViewModel {
         updatePublisher.map { [unowned self] _ in
             var selected: UInt64 = 0
             var total: UInt64 = 0
-            torrentFile.files.forEach { file in
+            preview.files.forEach { file in
                 total += file.size
                 if file.priority != .dontDownload {
                     selected += file.size
@@ -112,7 +112,7 @@ extension TorrentAddViewModel {
     }
 
     var storages: [(name: String, selected: Bool, uuid: UUID?, allowed: Bool)] {
-        [(StorageModel.defaultName, downloadStorage.value == nil, nil, true)] +
+        [(TorrentSession.Storage.defaultName, downloadStorage.value == nil, nil, true)] +
         preferences.storageScopes.values.sorted(by: { $0.name.localizedStandardCompare($1.name) == .orderedAscending })
             .map { ($0.name, downloadStorage.value == $0.uuid, $0.uuid, $0.allowed ) }
     }
@@ -120,9 +120,9 @@ extension TorrentAddViewModel {
 
 private extension TorrentAddViewModel {
     func generateRoot() -> PathNode {
-        var root: PathNode = .init(name: torrentFile.name)
+        var root: PathNode = .init(name: preview.name)
 
-        torrentFile.files.forEach { file in
+        preview.files.forEach { file in
             let pathComponents = file.path.components(separatedBy: "/")
             root.append(path: pathComponents, index: Int(file.index))
         }
@@ -142,23 +142,22 @@ extension TorrentAddViewModel {
         defer { url.stopAccessingSecurityScopedResource() }
         _ = url.startAccessingSecurityScopedResource()
 
-        guard let file = TorrentFile(with: url)
+        guard let preview = TorrentSession.AddPreview(torrentFileURL: url)
         else { return }
 
-        guard !presentAlert(from: navigationContext, ifTorrentExists: file) else { return }
-        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: file)).resolveVC(), by: .present(wrapInNavigation: true)) }
+        present(with: preview, from: navigationContext)
     }
 
-    static func present(with torrentFile: TorrentFile, from navigationContext: NavigationProtocol) {
-        guard !presentAlert(from: navigationContext, ifTorrentExists: torrentFile) else { return }
-        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(torrentFile: torrentFile)).resolveVC(), by: .present(wrapInNavigation: true)) }
+    static func present(with preview: TorrentSession.AddPreview, from navigationContext: NavigationProtocol) {
+        guard !presentAlert(from: navigationContext, ifTorrentExists: preview) else { return }
+        Task { await navigationContext.navigate(to: TorrentAddViewModel(with: .init(preview: preview)).resolveVC(), by: .present(wrapInNavigation: true)) }
     }
 
-    private static func presentAlert(from navigationContext: NavigationProtocol, ifTorrentExists torrentFile: TorrentFile) -> Bool {
-        guard TorrentService.shared.torrents[torrentFile.infoHashes] != nil
+    private static func presentAlert(from navigationContext: NavigationProtocol, ifTorrentExists preview: TorrentSession.AddPreview) -> Bool {
+        guard TorrentService.shared.checkTorrentExists(with: preview.infoHashes)
         else { return false }
 
-        let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(torrentFile.infoHashes.best.hex)_exists", preferredStyle: .alert)
+        let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(preview.infoHashes.best.hex)_exists", preferredStyle: .alert)
         alert.addAction(.init(title: %"common.close", style: .cancel), isPrimary: true)
         navigationContext.present(alert, animated: true)
         return true

@@ -27,7 +27,7 @@ private extension SceneDelegate {
         guard url.absoluteString.hasPrefix(prefix) else { return false }
         let hash = url.absoluteString.replacingOccurrences(of: prefix, with: "")
 
-        guard let torrent = TorrentService.shared.torrents.values.first(where: { $0.snapshot.infoHashes.best.hex == hash })
+        guard let torrent = TorrentService.shared.modernHandle(forHex: hash)
         else { return false }
 
         AppDelegate.showTorrentDetailScreen(with: torrent)
@@ -49,10 +49,10 @@ private extension SceneDelegate {
     // Add new torrent by Magnet URL
     func tryOpenAddMagnet(with url: URL) -> Bool {
         guard url.absoluteString.hasPrefix("magnet:"),
-              let magnet = MagnetURI(with: url)
+              let source = TorrentSession.Source(magnetURL: url)
         else { return false }
 
-        TorrentService.shared.addTorrent(by: magnet)
+        TorrentService.shared.addTorrent(source)
         return true
     }
 
@@ -60,10 +60,10 @@ private extension SceneDelegate {
     func tryOpenRemoteAddTorrent(with url: URL) async -> Bool {
         guard url.absoluteString.hasPrefix("http"),
               let rootViewController = window?.rootViewController?.topPresented,
-              let torrentFile = await TorrentFile(remote: url)
+              let preview = await TorrentSession.AddPreview(remote: url)
         else { return false }
 
-        TorrentAddViewModel.present(with: torrentFile, from: rootViewController)
+        TorrentAddViewModel.present(with: preview, from: rootViewController)
         return true
     }
 }

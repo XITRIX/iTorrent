@@ -134,23 +134,26 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
 
             if indexPaths.count == 1 {
                 guard let indexPath = indexPaths.first,
-                      let torrentHandle = (viewModel.sections[indexPath.section].items[indexPath.item] as? TorrentListItemViewModel)?.torrentHandle
+                      let torrentModel = viewModel.sections[indexPath.section].items[indexPath.item] as? TorrentListItemViewModel
                 else { return nil }
+
+                let torrentHandle = torrentModel.torrentHandle!
+                let snapshot = torrentModel.snapshot
 
                 return UIContextMenuConfiguration {
                     TorrentDetailsViewModel.resolveVC(with: torrentHandle)
                 } actionProvider: { _ in
-                    let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: torrentHandle.snapshot.canResume ? [] : .hidden, handler: { _ in
-                        torrentHandle.resume()
+                    let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), attributes: snapshot.canResume ? [] : .hidden, handler: { _ in
+                        Task { await torrentHandle.resume() }
                     })
-                    let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: torrentHandle.snapshot.canPause ? [] : .hidden, handler: { _ in
-                        torrentHandle.pause()
+                    let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: snapshot.canPause ? [] : .hidden, handler: { _ in
+                        Task { await torrentHandle.pause() }
                     })
                     let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
                         viewModel.removeTorrent(torrentHandle)
                     }
 
-                    return UIMenu(title: torrentHandle.snapshot.name, children: [
+                    return UIMenu(title: snapshot.name, children: [
                         start,
                         pause,
                         UIMenu(options: .displayInline,
@@ -163,10 +166,14 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                     nil
                 } actionProvider: { _ in
                     let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), handler: { _ in
-                        handles.forEach { $0.resume() }
+                        handles.forEach { handle in
+                            Task { await handle.resume() }
+                        }
                     })
                     let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), handler: { _ in
-                        handles.forEach { $0.pause() }
+                        handles.forEach { handle in
+                            Task { await handle.pause() }
+                        }
                     })
 //                    let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in
 //                        viewModel.removeTorrent(torrentHandle)
@@ -288,11 +295,11 @@ private extension TorrentListViewController {
                     tagsView.selectedTagIndex = 0
                     return
                 }
-                tagsView.selectedTagIndex = (TorrentHandle.State.filterArray.firstIndex(where: { $0 == filter }) ?? 0) + 1
+                tagsView.selectedTagIndex = (TorrentSession.Handle.State.filterArray.firstIndex(where: { $0 == filter }) ?? 0) + 1
             }
 
             tagsView.$selectedTagIndex.sink { [unowned self] index in
-                viewModel.filter = index <= 0 ? nil : TorrentHandle.State.filterArray[index - 1]
+                viewModel.filter = index <= 0 ? nil : TorrentSession.Handle.State.filterArray[index - 1]
             }
 
             viewModel.isGroupedByState.removeDuplicates().uiSink { [unowned self] value in
@@ -312,12 +319,12 @@ private extension TorrentListViewController {
             }
 
             collectionView.$selectedIndexPaths.uiSink { [unowned self] indexPaths in
-                let torrentHandles = indexPaths.compactMap { (viewModel.sections[$0.section].items[$0.item] as? TorrentListItemViewModel)?.torrentHandle }
+                let torrentModels = indexPaths.compactMap { viewModel.sections[$0.section].items[$0.item] as? TorrentListItemViewModel }
 
-                playButton.isEnabled = torrentHandles.contains(where: { $0.snapshot.isPaused })
-                pauseButton.isEnabled = torrentHandles.contains(where: { !$0.snapshot.isPaused })
-                rehashButton.isEnabled = !torrentHandles.isEmpty
-                deleteButton.isEnabled = !torrentHandles.isEmpty
+                playButton.isEnabled = torrentModels.contains(where: { $0.snapshot.isPaused })
+                pauseButton.isEnabled = torrentModels.contains(where: { !$0.snapshot.isPaused })
+                rehashButton.isEnabled = !torrentModels.isEmpty
+                deleteButton.isEnabled = !torrentModels.isEmpty
             }
 
             preferencesButton.tapPublisher.uiSink { [unowned self] _ in
@@ -385,7 +392,7 @@ private extension TorrentListViewController {
         alert.addAction(.init(title: %"common.ok", style: .default) { [unowned self] _ in
             guard let text = alert.textFields?.first?.text,
                   let url = URL(string: text),
-                  let magnet = MagnetURI(with: url)
+                  let source = TorrentSession.Source(magnetURL: url)
             else {
                 let alert = UIAlertController(title: %"common.error", message: %"list.add.magnet.error", preferredStyle: .alert)
                 alert.addAction(.init(title: %"common.close", style: .cancel), isPrimary: true)
@@ -393,14 +400,14 @@ private extension TorrentListViewController {
                 return
             }
 
-            guard !TorrentService.shared.checkTorrentExists(with: magnet.infoHashes) else {
-                let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(magnet.infoHashes.best.hex)_exists", preferredStyle: .alert)
+            guard !TorrentService.shared.checkTorrentExists(with: source.infoHashes) else {
+                let alert = UIAlertController(title: %"addTorrent.exists", message: %"addTorrent.\(source.infoHashes.best.hex)_exists", preferredStyle: .alert)
                 alert.addAction(.init(title: %"common.close", style: .cancel), isPrimary: true)
                 present(alert, animated: true)
                 return
             }
 
-            TorrentService.shared.addTorrent(by: magnet)
+            TorrentService.shared.addTorrent(source)
         }, isPrimary: true)
         return alert
     }
@@ -417,7 +424,7 @@ private extension TorrentListViewController {
             Task {
                 guard let text = alert.textFields?.first?.text,
                       let url = URL(string: text),
-                      let torrentFile = await TorrentFile(remote: url)
+                      let preview = await TorrentSession.AddPreview(remote: url)
                 else {
                     let alert = UIAlertController(title: %"common.error", message: %"list.add.url.error", preferredStyle: .alert)
                     alert.addAction(.init(title: %"common.close", style: .cancel))
@@ -425,7 +432,7 @@ private extension TorrentListViewController {
                     return
                 }
 
-                TorrentAddViewModel.present(with: torrentFile, from: self)
+                TorrentAddViewModel.present(with: preview, from: self)
             }
         }, isPrimary: true)
         return alert
@@ -463,8 +470,8 @@ private extension TorrentListViewModel.Sort {
     }
 }
 
-extension TorrentHandle.State {
-    static var filterArray: [TorrentHandle.State] {
+extension TorrentSession.Handle.State {
+    static var filterArray: [TorrentSession.Handle.State] {
         [
             .finished,
             .downloading,

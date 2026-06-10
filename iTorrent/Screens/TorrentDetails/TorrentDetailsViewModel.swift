@@ -10,8 +10,8 @@ import LibTorrent
 import MvvmFoundation
 import UIKit
 
-class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
-    private var torrentHandle: TorrentHandle!
+class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentSession.Handle> {
+    private var torrentHandle: TorrentSession.Handle!
 
     @Published var title: String = ""
     @Published var isPaused: Bool = false
@@ -22,9 +22,9 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
 
     let dismissSignal = PassthroughSubject<Void, Never>()
 
-    override func prepare(with model: TorrentHandle) {
+    override func prepare(with model: TorrentSession.Handle) {
         torrentHandle = model
-        title = torrentHandle.snapshot.name
+        title = currentSnapshot.name
 
         dataUpdate()
         reload()
@@ -36,22 +36,21 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
                 }
 
             torrentHandle.updatePublisher
-                .compactMap { $0.handle?.snapshot.friendlyState }
-                .removeDuplicates()
                 .sink { [unowned self] _ in
                     reload()
                 }
 
-            torrentHandle.removePublisher.sink { [unowned self] _ in
-                dismissSignal.send()
+            torrentHandle.removePublisher
+                .sink { [unowned self] _ in
+                    dismissSignal.send()
+                }
+
+            sequentialModel.$isOn.removeDuplicates().sink { [unowned self] value in
+                Task { await torrentHandle.setSequentialDownload(value) }
             }
 
-            sequentialModel.$isOn.sink { [unowned self] value in
-                torrentHandle.setSequentialDownload(value)
-            }
-
-            firstAndLastModel.$isOn.sink { [unowned self] value in
-                torrentHandle.setFirstLastPriorityDownload(value)
+            firstAndLastModel.$isOn.removeDuplicates().sink { [unowned self] value in
+                Task { await torrentHandle.setFirstLastPriorityDownload(value) }
             }
 
             $storageError.removeDuplicates().sink { [unowned self] error in
@@ -73,29 +72,32 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
                 }
             }
 
-            torrentHandle.updatePublisher.compactMap { (update: TorrentService.TorrentUpdateModel) in
-                guard let handle = update.handle else { return nil }
-                return (handle.snapshot.isSequential, handle.snapshot.isFirstLastPiecePriority, handle)
-            }.removeDuplicates(by: {
-                $0.0 == $1.0 && $0.1 == $1.1
-            }).sink { [weak self, downloadPrioritiesMenuModel] (_: Bool, _: Bool, _: TorrentHandle) in
+            torrentHandle.updatePublisher
+                .map { [unowned self] _ in
+                    (currentSnapshot.isSequential, currentSnapshot.isFirstLastPiecePriority)
+                }
+                .removeDuplicates(by: {
+                    $0.0 == $1.0 && $0.1 == $1.1
+                })
+                .sink { [weak self, downloadPrioritiesMenuModel] (_: Bool, _: Bool) in
                 guard let self else { return }
 
-                downloadPrioritiesMenuModel.value = makeDownloadPriorityValue(isSequential: torrentHandle.snapshot.isSequential, isFirstLastPiecePriority: torrentHandle.snapshot.isFirstLastPiecePriority)
+                let snapshot = self.currentSnapshot
+                downloadPrioritiesMenuModel.value = makeDownloadPriorityValue(isSequential: snapshot.isSequential, isFirstLastPiecePriority: snapshot.isFirstLastPiecePriority)
                 downloadPrioritiesMenuModel.menu = .init(options: [], children: [
                     UIAction(title: %"details.downloading.sequential",
                              image: .numbersCapsule,
                              attributes: [.keepsMenuPresented],
-                             state: torrentHandle.snapshot.isSequential ? .on : .off)
+                             state: snapshot.isSequential ? .on : .off)
                     { [unowned self] _ in
-                        self.torrentHandle.setSequentialDownload(!self.torrentHandle.snapshot.isSequential)
+                        Task { await self.torrentHandle.setSequentialDownload(!self.currentSnapshot.isSequential) }
                     },
                     UIAction(title: %"details.downloading.firstAndLast",
                              image: .arrowLeftAndRightCapsule,
                              attributes: [.keepsMenuPresented],
-                             state: torrentHandle.snapshot.isFirstLastPiecePriority ? .on : .off)
+                             state: snapshot.isFirstLastPiecePriority ? .on : .off)
                     { [unowned self] _ in
-                        self.torrentHandle.setFirstLastPriorityDownload(!self.torrentHandle.snapshot.isFirstLastPiecePriority)
+                        Task { await self.torrentHandle.setFirstLastPriorityDownload(!self.currentSnapshot.isFirstLastPiecePriority) }
                     },
                 ])
             }
@@ -165,28 +167,31 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle> {
 extension TorrentDetailsViewModel {
     var shareAvailable: AnyPublisher<Bool, Never> {
         torrentHandle.updatePublisher
-            .map { !($0.handle?.snapshot.torrentFilePath).isNilOrEmpty }
+            .map { [unowned self] _ in
+                !(currentSnapshot.torrentFilePath).isNilOrEmpty
+            }
+            .prepend(!(currentSnapshot.torrentFilePath).isNilOrEmpty)
             .eraseToAnyPublisher()
     }
 
     func resume() {
-        torrentHandle.resume()
+        Task { await torrentHandle.resume() }
     }
 
     func pause() {
-        torrentHandle.pause()
+        Task { await torrentHandle.pause() }
     }
 
     func rehash(from source: MvvmPresentationSource) {
         // If Storage is not available, try to reconnect storage
-        if torrentHandle.snapshot.friendlyState == .storageError {
+        if currentSnapshot.friendlyState == .storageError {
             return refreshStorage()
         }
 
         alert(title: %"details.rehash.title", message: %"details.rehash.message", style: .actionSheet, actions: [
             .init(title: %"common.cancel", style: .cancel),
             .init(title: %"details.rehash.action", style: .destructive, isPrimary: true, action: { [unowned self] in
-                torrentHandle.rehash()
+                Task { await torrentHandle.rehash() }
             }),
         ], sourceView: source)
     }
@@ -207,57 +212,66 @@ extension TorrentDetailsViewModel {
     }
 
     func removeTorrent(from source: MvvmPresentationSource) {
-        alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, style: .actionSheet, actions: [
+        alert(title: %"torrent.remove.title", message: currentSnapshot.name, style: .actionSheet, actions: [
             .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
-                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: true)
+                TorrentService.shared.removeTorrent(by: infoHashes, deleteFiles: true)
             }),
             .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
-                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
+                TorrentService.shared.removeTorrent(by: infoHashes, deleteFiles: false)
             }),
             .init(title: %"common.cancel", style: .cancel, isPrimary: true),
         ], sourceView: source)
     }
 
     func shareMagnet() {
-        UIPasteboard.general.string = torrentHandle.snapshot.magnetLink
+        UIPasteboard.general.string = currentSnapshot.magnetLink
         alertWithTimer(message: %"details.share.magnetCopy.result")
     }
 
     var torrentFilePath: String? {
-        torrentHandle.snapshot.torrentFilePath
+        currentSnapshot.torrentFilePath
     }
 
-    var infoHashes: TorrentHashes {
-        torrentHandle.snapshot.infoHashes
+    var infoHashes: TorrentSession.Hashes {
+        torrentHandle.infoHashes
     }
 }
 
 private extension TorrentDetailsViewModel {
+    var currentSnapshot: TorrentSession.Handle.Snapshot {
+        guard let snapshot = torrentHandle.currentSnapshot else {
+            fatalError("Snapshot should exist for active torrent handle")
+        }
+        return snapshot
+    }
+
     func dataUpdate() {
-        isPaused = torrentHandle.snapshot.isPaused
-        canResume = torrentHandle.snapshot.canResume
-        canPause = torrentHandle.snapshot.canPause
-        storageError = torrentHandle.snapshot.friendlyState == .storageError
+        let snapshot = currentSnapshot
 
-        stateModel.detail = torrentHandle.snapshot.friendlyState.name
+        isPaused = snapshot.isPaused
+        canResume = snapshot.canResume
+        canPause = snapshot.canPause
+        storageError = snapshot.friendlyState == .storageError
 
-        downloadModel.detail = "\(torrentHandle.snapshot.downloadRate.bitrateToHumanReadable)/s"
-        uploadModel.detail = "\(torrentHandle.snapshot.uploadRate.bitrateToHumanReadable)/s"
-        timeLeftModel.detail = torrentHandle.snapshot.timeRemains
+        stateModel.detail = snapshot.friendlyState.name
 
-        sequentialModel.isOn = torrentHandle.snapshot.isSequential
-        firstAndLastModel.isOn = torrentHandle.snapshot.isFirstLastPiecePriority
-        progressModel.progress = torrentHandle.snapshot.progress
-        progressModel.segmentedProgress = torrentHandle.snapshot.segmentedProgress
+        downloadModel.detail = "\(snapshot.downloadRate.bitrateToHumanReadable)/s"
+        uploadModel.detail = "\(snapshot.uploadRate.bitrateToHumanReadable)/s"
+        timeLeftModel.detail = snapshot.timeRemains
 
-        if torrentHandle.snapshot.infoHashes.hasV1 {
-            hashModel.detail = torrentHandle.snapshot.infoHashes.v1.hex
+        sequentialModel.isOn = snapshot.isSequential
+        firstAndLastModel.isOn = snapshot.isFirstLastPiecePriority
+        progressModel.progress = snapshot.progress
+        progressModel.segmentedProgress = snapshot.segmentedProgress
+
+        if snapshot.infoHashes.hasV1 {
+            hashModel.detail = snapshot.infoHashes.v1.hex
         }
-        if torrentHandle.snapshot.infoHashes.hasV2 {
-            hashModelV2.detail = torrentHandle.snapshot.infoHashes.v2.hex
+        if snapshot.infoHashes.hasV2 {
+            hashModelV2.detail = snapshot.infoHashes.v2.hex
         }
-        creatorModel.detail = torrentHandle.snapshot.creator ?? ""
-        commentModel.detail = torrentHandle.snapshot.comment ?? ""
+        creatorModel.detail = snapshot.creator ?? ""
+        commentModel.detail = snapshot.comment ?? ""
 
         let formatter: DateFormatter = {
             let formatter = DateFormatter()
@@ -265,23 +279,23 @@ private extension TorrentDetailsViewModel {
             return formatter
         }()
 
-        if let created = torrentHandle.snapshot.creationDate {
+        if let created = snapshot.creationDate {
             createdModel.detail = formatter.string(from: created)
         }
         addedModel.detail = formatter.string(from: torrentHandle.metadata.dateAdded)
 
-        selectedModel.detail = "\(torrentHandle.snapshot.totalWanted.bitrateToHumanReadable) / \(torrentHandle.snapshot.total.bitrateToHumanReadable)"
-        completedModel.detail = "\(torrentHandle.snapshot.totalDone.bitrateToHumanReadable)"
-        selectedProgressModel.detail = "\(String(format: "%.2f", torrentHandle.snapshot.progress * 100))% / \(String(format: "%.2f", torrentHandle.snapshot.progressWanted * 100))%"
-        downloadedModel.detail = "\(torrentHandle.snapshot.totalDownload.bitrateToHumanReadable)"
-        uploadedModel.detail = "\(torrentHandle.snapshot.totalUpload.bitrateToHumanReadable)"
-        seedersModel.detail = "\(torrentHandle.snapshot.numberOfSeeds)(\(torrentHandle.snapshot.numberOfTotalSeeds))"
-        leechersModel.detail = "\(torrentHandle.snapshot.numberOfLeechers)(\(torrentHandle.snapshot.numberOfTotalLeechers))"
+        selectedModel.detail = "\(snapshot.totalWanted.bitrateToHumanReadable) / \(snapshot.total.bitrateToHumanReadable)"
+        completedModel.detail = "\(snapshot.totalDone.bitrateToHumanReadable)"
+        selectedProgressModel.detail = "\(String(format: "%.2f", snapshot.progress * 100))% / \(String(format: "%.2f", snapshot.progressWanted * 100))%"
+        downloadedModel.detail = "\(snapshot.totalDownload.bitrateToHumanReadable)"
+        uploadedModel.detail = "\(snapshot.totalUpload.bitrateToHumanReadable)"
+        seedersModel.detail = "\(snapshot.numberOfSeeds)(\(snapshot.numberOfTotalSeeds))"
+        leechersModel.detail = "\(snapshot.numberOfLeechers)(\(snapshot.numberOfTotalLeechers))"
 
-        downloadPath2Model.detail = torrentHandle.snapshot.downloadPath?.path() ?? ""
-        downloadPathModel.value = torrentHandle.storage.name
+        downloadPath2Model.detail = snapshot.downloadPath?.path() ?? ""
+        downloadPathModel.value = torrentHandle.storage?.name ?? ""
 
-        filesModel.isEnabled = torrentHandle.snapshot.friendlyState != .storageError && torrentHandle.snapshot.hasMetadata
+        filesModel.isEnabled = snapshot.friendlyState != .storageError && snapshot.hasMetadata
     }
 
     func reload() {
@@ -292,11 +306,13 @@ private extension TorrentDetailsViewModel {
             stateModel
         })
 
-        if !torrentHandle.snapshot.isPaused,
-           torrentHandle.snapshot.friendlyState != .checkingFiles
+        let snapshot = currentSnapshot
+
+        if !snapshot.isPaused,
+           snapshot.friendlyState != .checkingFiles
         {
             sections.append(.init(id: "speed", header: %"details.speed") {
-                let isSeeding = torrentHandle.snapshot.friendlyState == .seeding
+                let isSeeding = snapshot.friendlyState == .seeding
                 if !isSeeding {
                     downloadModel
                 }
@@ -315,10 +331,10 @@ private extension TorrentDetailsViewModel {
         })
 //
         sections.append(.init(id: "info", header: %"details.info") {
-            if torrentHandle.snapshot.infoHashes.hasV1 {
+            if snapshot.infoHashes.hasV1 {
                 hashModel
             }
-            if torrentHandle.snapshot.infoHashes.hasV2 {
+            if snapshot.infoHashes.hasV2 {
                 hashModelV2
             }
 

@@ -127,9 +127,9 @@ private extension TorrentFilesFileListCell {
     }
 }
 
-extension FileEntry {
+extension TorrentSession.Handle.Snapshot.FileEntrySnapshot {
     var segmentedProgress: [Double] {
-        let res = pieces.map { $0.doubleValue }
+        let res = pieces.map(Double.init)
         if !res.isEmpty { return res }
 
         return [progress]

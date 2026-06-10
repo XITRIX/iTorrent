@@ -16,7 +16,7 @@ extension URL: @retroactive Identifiable {
 struct TorrentFilesView: View {
     @StateObject private var viewModel: ViewModel
 
-    init(torrentHandle: TorrentHandle, rootDirectory: PathNode?) {
+    init(torrentHandle: TorrentSession.Handle, rootDirectory: PathNode?) {
         _viewModel = StateObject.init(wrappedValue: .init(torrentHandle: torrentHandle, rootDirectory: rootDirectory))
     }
 
@@ -40,9 +40,10 @@ struct TorrentFilesView: View {
 
 extension TorrentFilesView {
     class ViewModel: ObservableObject {
-        init(torrentHandle: TorrentHandle, rootDirectory: PathNode?) {
+        init(torrentHandle: TorrentSession.Handle, rootDirectory: PathNode?) {
             self.torrentHandle = torrentHandle
-            self.rootDirectory = rootDirectory ?? .generateRoot(rootName: "", files: torrentHandle.snapshot.files)
+            let files = torrentHandle.currentSnapshot?.files ?? []
+            self.rootDirectory = rootDirectory ?? .generateRoot(rootName: "", files: files)
             keys = self.rootDirectory.makeKeys()
         }
 
@@ -62,7 +63,7 @@ extension TorrentFilesView {
             return nodes
         }
         
-        var filesForPreview: [FileEntry] {
+        var filesForPreview: [TorrentSession.Handle.Snapshot.FileEntrySnapshot] {
             keys.flatMap {
                 switch rootDirectory.storage[$0] {
                 case let path as PathNode:
@@ -73,14 +74,16 @@ extension TorrentFilesView {
                     return []
                 }
             }
-            .map { torrentHandle.snapshot.files[$0] }
+            .compactMap { index in
+                torrentHandle.currentSnapshot?.files[index]
+            }
 //            .filter {
 //                $0.downloaded >= $0.size
 //            }
         }
 
         var downloadPath: URL {
-            guard let downloadPath = torrentHandle.snapshot.downloadPath
+            guard let downloadPath = torrentHandle.currentSnapshot?.downloadPath
             else {
                 assertionFailure("downloadPath cannot be nil for this object")
                 return URL(string: "/")!
@@ -89,7 +92,7 @@ extension TorrentFilesView {
             return downloadPath
         }
 
-        private let torrentHandle: TorrentHandle
+        private let torrentHandle: TorrentSession.Handle
         private let rootDirectory: PathNode
         private let keys: [String] 
     }

@@ -63,11 +63,11 @@ class BackgroundService: BackgroundServiceProtocol {
 // MARK: Backgroud requirements
 extension BackgroundService {
     static var isBackgroundNeeded: Bool {
-        TorrentService.shared.torrents.values.contains(where: { $0.snapshot.needBackground })
+        TorrentService.shared.isBackgroundNeeded
     }
 }
 
-extension TorrentHandle.Snapshot {
+extension TorrentSession.Handle.Snapshot {
     var needBackground: Bool {
         false
             || friendlyState == .checkingFiles

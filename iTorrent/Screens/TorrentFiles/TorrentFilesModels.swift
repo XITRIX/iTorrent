@@ -66,12 +66,12 @@ class PathNode: Node {
 }
 
 extension PathNode {
-    static func generateRoot(rootName: String, files: [FileEntry]) -> PathNode {
+    static func generateRoot(rootName: String, files: [TorrentSession.Handle.Snapshot.FileEntrySnapshot]) -> PathNode {
         var root: PathNode = .init(name: rootName)
 
         files.forEach { file in
             let pathComponents = file.path.components(separatedBy: "/")
-            root.append(path: pathComponents, index: Int(file.index))
+            root.append(path: pathComponents, index: file.index)
         }
 
         if let newRoot = root.storage.first?.value as? PathNode {

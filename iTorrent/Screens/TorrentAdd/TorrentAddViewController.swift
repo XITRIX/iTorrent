@@ -133,7 +133,7 @@ private extension TorrentAddViewController {
                 cell.setup(with: parent.viewModel.fileModel(for: node.index))
                 cell.disposeBag.bind { [unowned self] in
                     parent.viewModel.updatePublisher.sink { [weak cell] _ in
-                        cell?.viewModel.localUpdatePublisher.send(.init())
+                        cell?.viewModel.localUpdatePublisher.send()
                     }
                 }
                 return cell
@@ -142,7 +142,7 @@ private extension TorrentAddViewController {
                 cell.prepare(with: parent.viewModel.pathModel(for: node))
                 cell.disposeBag.bind { [unowned self] in
                     parent.viewModel.updatePublisher.sink { [weak cell] _ in
-                        cell?.model.localUpdatePublisher.send(.init())
+                        cell?.model.localUpdatePublisher.send()
                     }
                 }
                 return cell

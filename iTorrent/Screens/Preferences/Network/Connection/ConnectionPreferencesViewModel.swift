@@ -85,12 +85,12 @@ private extension ConnectionPreferencesViewModel {
         }
     }
 
-    func uiAction(from policy: Session.Settings.EncryptionPolicy) -> UIAction {
+    func uiAction(from policy: TorrentSession.Configuration.EncryptionPolicy) -> UIAction {
         UIAction(title: policy.name, attributes: policy == .disabled ? [.destructive] : [], state: preferences.encryptionPolicy == policy ? .on : .off) { [preferences] _ in preferences.encryptionPolicy = policy }
     }
 }
 
-extension Session.Settings.EncryptionPolicy {
+extension TorrentSession.Configuration.EncryptionPolicy {
     var name: String {
         switch self {
         case .enabled:

@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 
 class StoragePreferencesViewModel: BaseViewModel, ObservableObject {
     @Published var allocateMemory: Bool = false
-    @Published var customStoragesVM: [UUID: StorageModel] = [:]
+    @Published var customStoragesVM: [UUID: TorrentSession.Storage] = [:]
     @Published var currentStorage: UUID?
     @Published var isStorageRulesAccepted: Bool = false
 
@@ -89,7 +89,7 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
                     viewModel.preferences.defaultStorage = nil
                 } label: {
                     HStack {
-                        Text(StorageModel.defaultName)
+                        Text(TorrentSession.Storage.defaultName)
                             .foregroundStyle(Color.primary)
                         Spacer()
                         if viewModel.preferences.defaultStorage == nil {
@@ -163,19 +163,22 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
             guard let bookmark = try? url.bookmarkData(options: [.minimalBookmark])
             else { return }
 
-            if let storage = viewModel.preferences.storageScopes.values.first(where: {
+            if var storage = viewModel.preferences.storageScopes.values.first(where: {
                 $0.url == url || $0.url == TorrentService.downloadPath
             }) {
                 storage.pathBookmark = bookmark
+                viewModel.preferences.storageScopes[storage.uuid] = storage
                 return
             }
 
-            let storage = StorageModel()
-            storage.uuid = UUID()
-            storage.name = url.lastPathComponent
-            storage.url = url
-            storage.allowed = allowed
-            storage.resolved = true
+            var storage = TorrentSession.Storage(
+                uuid: UUID(),
+                name: url.lastPathComponent,
+                pathBookmark: bookmark,
+                url: url,
+                resolved: true,
+                allowed: allowed
+            )
 
             do {
                 let name = try url.resourceValues(forKeys: [.localizedNameKey])
@@ -183,8 +186,6 @@ struct StoragePreferencesView<VM: StoragePreferencesViewModel>: MvvmSwiftUIViewP
                     storage.name = name
                 }
             } catch {}
-
-            storage.pathBookmark = bookmark
 
             withAnimation {
                 viewModel.preferences.storageScopes[storage.uuid] = storage

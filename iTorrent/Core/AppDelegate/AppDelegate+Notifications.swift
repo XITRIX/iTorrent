@@ -26,7 +26,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         guard let hash = response.notification.request.content.userInfo["hash"] as? String,
-              let torrentHandle = TorrentService.shared.torrents.values.first(where: { $0.snapshot.infoHashes.best.hex == hash })
+              let torrentHandle = TorrentService.shared.modernHandle(forHex: hash)
         else { return }
 
         Self.showTorrentDetailScreen(with: torrentHandle)
@@ -34,7 +34,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 
 extension AppDelegate {
-    static func showTorrentDetailScreen(with torrentHandle: TorrentHandle) {
+    static func showTorrentDetailScreen(with torrentHandle: TorrentSession.Handle) {
         guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first,
               let window = scene.keyWindow,
               let viewController = window.rootViewController
@@ -44,7 +44,7 @@ extension AppDelegate {
         if let svc = viewController as? UISplitViewController,
            let mvvmVC = svc.detailNavigationController?.topViewController as? any MvvmViewControllerProtocol,
            let viewModel = mvvmVC.viewModel as? TorrentDetailsViewModel,
-           viewModel.infoHashes.best.hex == torrentHandle.snapshot.infoHashes.best.hex
+           viewModel.infoHashes.best.hex == torrentHandle.infoHashes.best.hex
         { return }
 
         let vc = TorrentDetailsViewModel(with: torrentHandle).resolveVC()
