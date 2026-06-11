@@ -115,7 +115,9 @@ private extension TorrentFilesFileListCell {
             subtitleLabel.text = subtitle
             progressView.progress = progress
             fileImageView.image = fileImage
-            switchView.isOn = switchIsOn
+            if switchView.isOn != switchIsOn {
+                switchView.isOn = switchIsOn
+            }
             switchView.onTintColor = switchOnTintColor
             shareButton.isHidden = shareButtonHiden
             switchView.isHidden = switchHidden

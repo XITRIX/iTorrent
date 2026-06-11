@@ -144,7 +144,7 @@ private extension TorrentFilesViewController {
 
             return .init(actionProvider: { elements in
                 UIMenu(children: [
-                    UIAction(title: "Open in player") { [unowned self] _ in
+                    UIAction(title: %"details.files.openVlcMediaPlayer") { [unowned self] _ in
                         parent.vlcPlayerAction(url: url, index: node.index)
                     }
                 ])
@@ -193,22 +193,39 @@ private extension TorrentFilesViewController {
         let url = viewModel.downloadPath.appending(path: path)
 
         Task {
+            let filePlayable = await checkFilePlayable(url: url)
+            let fileVLCPlayable = await VLCPlayerViewModel.canOpenInVLC(url, timeoutMilliseconds: 300) != nil
+
             // Allow to choose be
-//            guard await checkFilePlayable(url: url) else {
-//                previewAction(start: startIndex)
-//                return
-//            }
+            guard filePlayable && fileVLCPlayable else {
+                if filePlayable {
+                    playerAction(start: startIndex)
+                    return
+                }
+
+                if fileVLCPlayable {
+                    vlcPlayerAction(url: url, index: fileIndex)
+                    return
+                }
+
+                previewAction(start: startIndex)
+                return
+            }
 
             let alert = UIAlertController(title: %"details.files.previewMode", message: nil, preferredStyle: .actionSheet)
             alert.addAction(.init(title: %"details.files.quickLookPreview", style: .default) { [self] _ in
                 previewAction(start: startIndex)
             })
-            alert.addAction(.init(title: %"details.files.mediaPlayerPreview", style: .default) { [self] _ in
-                playerAction(start: startIndex)
-            })
-            alert.addAction(.init(title: %"details.files.vlcMediaPlayerPreview", style: .default) { [self] _ in
-                vlcPlayerAction(url: url, index: fileIndex)
-            })
+            if filePlayable {
+                alert.addAction(.init(title: %"details.files.mediaPlayerPreview", style: .default) { [self] _ in
+                    playerAction(start: startIndex)
+                })
+            }
+            if fileVLCPlayable {
+                alert.addAction(.init(title: %"details.files.vlcMediaPlayerPreview", style: .default) { [self] _ in
+                    vlcPlayerAction(url: url, index: fileIndex)
+                })
+            }
             alert.addAction(.init(title: %"common.cancel", style: .cancel))
 
             alert.popoverPresentationController?.sourceView = cell
