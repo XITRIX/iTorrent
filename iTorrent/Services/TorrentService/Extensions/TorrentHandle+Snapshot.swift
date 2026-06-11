@@ -12,6 +12,7 @@ extension TorrentHandle {
     @Perceptible
     class ObservedSnapshot {
         private weak var torrentHandle: TorrentHandle?
+        private var hasLoadedImmutableTorrentMetadata = false
 
         var isValid: Bool
         var infoHashes: TorrentHashes
@@ -92,6 +93,7 @@ extension TorrentHandle {
             downloadPath = snapshot.downloadPath
             storageUUID = snapshot.storageUUID
             isStorageMissing = snapshot.isStorageMissing
+            hasLoadedImmutableTorrentMetadata = snapshot.hasMetadata
         }
 
         func update() {
@@ -99,12 +101,16 @@ extension TorrentHandle {
             let snapshot = torrentHandle.snapshot
 
             isValid = snapshot.isValid
-            infoHashes = snapshot.infoHashes
-            name = snapshot.name
+            if !hasLoadedImmutableTorrentMetadata {
+                infoHashes = snapshot.infoHashes
+                name = snapshot.name
+                creator = snapshot.creator
+                comment = snapshot.comment
+                creationDate = snapshot.creationDate
+                total = snapshot.total
+                hasLoadedImmutableTorrentMetadata = snapshot.hasMetadata
+            }
             state = snapshot.state
-            creator = snapshot.creator
-            comment = snapshot.comment
-            creationDate = snapshot.creationDate
             progress = snapshot.progress
             progressWanted = snapshot.progressWanted
             numberOfPeers = snapshot.numberOfPeers
@@ -116,7 +122,6 @@ extension TorrentHandle {
             downloadRate = snapshot.downloadRate
             uploadRate = snapshot.uploadRate
             hasMetadata = snapshot.hasMetadata
-            total = snapshot.total
             totalDone = snapshot.totalDone
             totalWanted = snapshot.totalWanted
             totalWantedDone = snapshot.totalWantedDone
