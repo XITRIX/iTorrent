@@ -16,7 +16,7 @@ public class Air: ObservableObject {
     }
     var connectionCallbacks: [(Bool) -> ()] = []
 
-    var airScreen: UIScreen?
+    var airWindowScene: UIWindowScene?
     var airWindow: UIWindow?
 
     var superView: UIView?
@@ -24,22 +24,14 @@ public class Air: ObservableObject {
 
     var appIsActive: Bool { UIApplication.shared.applicationState == .active }
 
-    init() {
+    var sceneAccessoryRegistration: Any?
+    weak var sceneAccessoryRegistrar: UIViewController?
 
-        NotificationCenter.default.addObserver(self, selector: #selector(didConnect),
-                                               name: UIScreen.didConnectNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didDisconnect),
-                                               name: UIScreen.didDisconnectNotification, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive),
-                                               name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive),
-                                               name: UIApplication.willResignActiveNotification, object: nil)
-    }
+    init() {}
 
     private func check() {
-       if let connectedScreen = UIScreen.screens.first(where: { $0 != .main }) {
-            add(screen: connectedScreen) { success in
+        if let connectedScreen = airWindowScene {
+            add(scene: connectedScreen) { success in
                 guard success else { return }
                 self.connected = true
             }
@@ -53,7 +45,8 @@ public class Air: ObservableObject {
     }
 
     public static func play(_ view: UIView) {
-        shared.superView = view.superview
+        Air.shared.registerExternalDisplayAccessoryIfNeeded()
+        Air.shared.superView = view.superview
         let vc = UIViewController()
         vc.view = view
         Air.shared.hostingController = vc
@@ -61,32 +54,64 @@ public class Air: ObservableObject {
     }
 
     public static func stop() {
+        Air.shared.unregisterExternalDisplayAccessory()
         Air.shared.remove()
         Air.shared.superView = nil
         Air.shared.hostingController = nil
     }
 
+    func registerExternalDisplayAccessoryIfNeeded() {
+#if compiler(>=6.4)
+        guard #available(iOS 27.0, *),
+              sceneAccessoryRegistration == nil,
+              let registrar = UIApplication.shared.keySceneWindow?.rootViewController?.topPresented
+        else { return }
+
+        let configuration = UISceneConfiguration(name: "External Display Configuration", sessionRole: .windowExternalDisplayNonInteractive)
+        configuration.delegateClass = AirPlaySceneDelegate.self
+
+        let accessory = UISceneAccessory.externalNonInteractive(sceneConfiguration: configuration)
+        let registration = registrar.registerSceneAccessory(accessory)
+        registration.isEnabled = true
+
+        sceneAccessoryRegistrar = registrar
+        sceneAccessoryRegistration = registration
+#endif
+    }
+
+    func unregisterExternalDisplayAccessory() {
+#if compiler(>=6.4)
+        guard #available(iOS 27.0, *),
+              let registration = sceneAccessoryRegistration as? UISceneAccessoryRegistration
+        else { return }
+
+        sceneAccessoryRegistrar?.unregisterSceneAccessory(registration)
+        sceneAccessoryRegistrar = nil
+        sceneAccessoryRegistration = nil
+#endif
+    }
+
+
     public static func connection(_ callback: @escaping (Bool) -> ()) {
         Air.shared.connectionCallbacks.append(callback)
     }
 
-    @objc func didConnect(sender: NSNotification) {
+    public func connect(windowScene: UIWindowScene) {
         // print("AirKit - Connect")
         self.connected = true
-        guard let screen: UIScreen = sender.object as? UIScreen else { return }
-        add(screen: screen) { success in
+
+        add(scene: windowScene) { success in
             guard success else { return }
             self.connected = true
         }
     }
 
-    func add(screen: UIScreen, completion: @escaping (Bool) -> ()) {
-
+    func add(scene: UIWindowScene, completion: @escaping (Bool) -> ()) {
         // print("AirKit - Add Screen")
 
-        airScreen = screen
+        airWindowScene = scene
 
-        airWindow = UIWindow(frame: airScreen!.bounds)
+        airWindow = UIWindow(frame: scene.screen.bounds)
 
         guard let viewController: UIViewController = hostingController else {
             // print("AirKit - Add - Failed: Hosting Controller Not Found")
@@ -94,60 +119,31 @@ public class Air: ObservableObject {
             return
         }
 
-        findWindowScene(for: airScreen!) { windowScene in
-            guard let airWindowScene: UIWindowScene = windowScene else {
-                // print("AirKit - Add - Failed: Window Scene Not Found")
-                completion(false)
-                return
-            }
-            self.airWindow?.rootViewController = viewController
-            self.airWindow?.windowScene = airWindowScene
-
-            if let _ = viewController as? UIHostingController<AnyView> {
-                let traitCollection = UITraitCollection(traitsFrom: [
-                    UITraitCollection(userInterfaceIdiom: .tv),
-                    airWindowScene.traitCollection
-                ])
-                viewController.setOverrideTraitCollection(traitCollection, forChild: viewController)
-            }
-
-            self.airWindow?.isHidden = false
-            // print("AirKit - Add Screen - Done")
-            completion(true)
-        }
-
-    }
-
-    func findWindowScene(for screen: UIScreen, shouldRecurse: Bool = true, completion: @escaping (UIWindowScene?) -> ())  {
-        // print("AirKit - Find Window Scene")
-        var matchingWindowScene: UIWindowScene? = nil
-        let scenes = UIApplication.shared.connectedScenes
-        for scene in scenes {
-            if let windowScene = scene as? UIWindowScene {
-                if windowScene.screen == screen {
-                    matchingWindowScene = windowScene
-                    break
-                }
-            }
-        }
-        guard let windowScene: UIWindowScene = matchingWindowScene else {
-            // Only recurse once to avoid infinite loops
-            if shouldRecurse {
-               Task { @MainActor in
-                    self.findWindowScene(for: screen, shouldRecurse: false) { windowScene in
-                        completion(windowScene)
-                    }
-                }
-            } else {
-                completion(nil)
-            }
+        guard let airWindowScene else {
+            // print("AirKit - Add - Failed: Window Scene Not Found")
+            completion(false)
             return
         }
-        completion(windowScene)
+        self.airWindow?.rootViewController = viewController
+        self.airWindow?.windowScene = airWindowScene
+
+        if let _ = viewController as? UIHostingController<AnyView> {
+            let traitCollection = UITraitCollection(traitsFrom: [
+                UITraitCollection(userInterfaceIdiom: .tv),
+                airWindowScene.traitCollection
+            ])
+            viewController.setOverrideTraitCollection(traitCollection, forChild: viewController)
+        }
+
+        self.airWindow?.isHidden = false
+        // print("AirKit - Add Screen - Done")
+        completion(true)
     }
 
-    @objc func didDisconnect() {
+    func disconnect(windowScene: UIWindowScene) {
         // print("AirKit - Disconnect")
+        guard windowScene == airWindowScene else { return }
+
         if let superView, let view = hostingController?.view {
             superView.addSubview(view)
             view.frame = superView.bounds
@@ -158,17 +154,26 @@ public class Air: ObservableObject {
 
     func remove() {
         // print("AirKit - Remove")
-        airWindow = nil
-        airScreen = nil
+        airWindowScene = nil
     }
 
-    @objc func didBecomeActive() {
-        // print("AirKit - App Active")
+    public static func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration? {
+        guard connectingSceneSession.role == .windowExternalDisplayNonInteractive else { return nil }
+        let configuration = UISceneConfiguration(name: "AirPlay Display", sessionRole: connectingSceneSession.role)
+        configuration.delegateClass = AirPlaySceneDelegate.self
+        return configuration
     }
-
-    @objc func willResignActive() {
-        // print("AirKit - App Inactive")
-
-    }
-
 }
+
+private class AirPlaySceneDelegate: UIResponder, UISceneDelegate {
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = scene as? UIWindowScene else { return }
+        Air.shared.connect(windowScene: windowScene)
+    }
+
+    func sceneDidDisconnect(_ scene: UIScene) {
+        guard let windowScene = scene as? UIWindowScene else { return }
+        Air.shared.disconnect(windowScene: windowScene)
+    }
+}
+
