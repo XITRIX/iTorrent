@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import VLCKit
 import MvvmFoundation
 import LibTorrent
+import SwiftVLC
 
 extension VLCPlayerViewModel {
     struct Config {
@@ -55,52 +55,21 @@ class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, Observab
         return resourceValues?.isRegularFile != false
     }
 
-    static func canOpenInVLC(_ url: URL, timeoutMilliseconds: Int32 = 3_000) async -> VLCMedia? {
-        guard validateURL(url), let media = VLCMedia(url: url) else { return nil }
+    static func canOpenInVLC(_ url: URL, timeoutMilliseconds: Int32 = 3_000) async -> Media? {
+        guard validateURL(url), let media = try? Media(url: url) else { return nil }
 
-        let parseResult = media.parse(options: .parseLocal, timeout: timeoutMilliseconds)
-        guard parseResult == 0 else { return nil }
-
-        let deadline = Date().addingTimeInterval(TimeInterval(timeoutMilliseconds) / 1_000)
-        while !media.parsedStatus.isTerminal, Date() < deadline {
-            try? await Task.sleep(for: .milliseconds(50))
+        do {
+            let metadata = try await media.parse(timeout: .milliseconds(Int64(timeoutMilliseconds)))
+            if !media.tracks().isEmpty { return media }
+            if (metadata.duration ?? media.duration)?.milliseconds ?? 0 > 0 { return media }
+            return nil
+        } catch {
+            return nil
         }
-
-        guard media.parsedStatus == .done else { return nil }
-        if !media.tracksInformation.isEmpty { return media }
-
-        guard media.length.intValue > 0 else { return nil }
-        return media
     }
 
-    static func canOpenInVLCSync(_ url: URL, timeoutMilliseconds: Int32 = 100) -> VLCMedia? {
-        guard validateURL(url), let media = VLCMedia(url: url) else { return nil }
-
-        let parseResult = media.parse(options: .parseLocal, timeout: timeoutMilliseconds)
-        guard parseResult == 0 else { return nil }
-
-        let deadline = Date().addingTimeInterval(TimeInterval(timeoutMilliseconds) / 1_000)
-        while !media.parsedStatus.isTerminal, Date() < deadline {
-            Thread.sleep(forTimeInterval: 50 / 1_000)
-        }
-
-        guard media.parsedStatus == .done else { return nil }
-        if !media.tracksInformation.isEmpty { return media }
-
-        guard media.length.intValue > 0 else { return nil }
+    static func canOpenInVLCSync(_ url: URL, timeoutMilliseconds: Int32 = 100) -> Media? {
+        guard validateURL(url), let media = try? Media(url: url) else { return nil }
         return media
-    }
-}
-
-extension VLCMediaParsedStatus {
-    var isTerminal: Bool {
-        switch self {
-        case .skipped, .failed, .timeout, .cancelled, .done:
-            return true
-        case .`init`, .pending:
-            return false
-        @unknown default:
-            return false
-        }
     }
 }

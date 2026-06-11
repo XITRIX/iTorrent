@@ -14,18 +14,18 @@ public class Air: ObservableObject {
             connectionCallbacks.forEach({ $0(connected) })
         }
     }
-    var connectionCallbacks: [(Bool) -> ()] = []
+    private var connectionCallbacks: [(Bool) -> ()] = []
 
-    var airWindowScene: UIWindowScene?
-    var airWindow: UIWindow?
+    private var airWindowScene: UIWindowScene?
+    private var airWindow: UIWindow?
 
-    var superView: UIView?
-    var hostingController: UIViewController?
+    private var superView: UIView?
+    private var hostingController: UIViewController?
 
-    var appIsActive: Bool { UIApplication.shared.applicationState == .active }
+    private var appIsActive: Bool { UIApplication.shared.applicationState == .active }
 
-    var sceneAccessoryRegistration: Any?
-    weak var sceneAccessoryRegistrar: UIViewController?
+    private var sceneAccessoryRegistration: Any?
+    private weak var sceneAccessoryRegistrar: UIViewController?
 
     init() {}
 

@@ -9,25 +9,25 @@ import Combine
 import MvvmFoundation
 import SwiftUI
 import UIKit
-import VLCKit
 import AVKit
 import MediaPlayer
+import SwiftVLC
 
 struct TracksMenuView: View {
-    let tracks: [VLCMediaPlayer.Track]
-    @Binding var selectedTrackId: String?
+    let tracks: [Track]
+    @Binding var selectedTrack: Track?
     let title: LocalizedStringKey
     let systemImage: String
 
     var body: some View {
         Menu {
             Section {
-                ForEach(tracks, id: \.trackId) { track in
+                ForEach(tracks) { track in
                     Toggle(track.title, isOn: .init(get: {
-                        selectedTrackId == track.trackId
+                        selectedTrack?.id == track.id
                     }, set: { value in
                         guard value else { return }
-                        selectedTrackId = track.trackId
+                        selectedTrack = track
                     }))
                 }
             } header: {
@@ -81,10 +81,11 @@ private extension Float {
     }
 }
 
-extension VLCMediaPlayer.Track {
+private extension Track {
     var title: String {
-        let index = Int(trackId.components(separatedBy: "/").last ?? "0") ?? 0
-        return [trackDescription ?? "Track \(index)", (localizedLanguageName ?? language).map { "[\($0)]" }].compactMap { $0 }.joined(separator: " - ")
+        [trackDescription ?? name, (localizedLanguageName ?? language).map { "[\($0)]" }]
+            .compactMap { $0 }
+            .joined(separator: " - ")
     }
 
     var localizedLanguageName: String? {
@@ -172,17 +173,20 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         @EnvironmentObject var airPlay: Air
 #endif
         @ObservedObject var viewModel: VLCPlayerViewModel
-        @State var isPlaying: Bool = true
-        @State var currentPlaybackTime: TimeInterval = 0
-        @State var mediaTimeDuration: TimeInterval = 60 * 6
-        @State var isSeeking: Bool = false
-        @State var audioTracks: [VLCMediaPlayer.Track] = []
-        @State var textTracks: [VLCMediaPlayer.Track] = []
-        @State var selectedAudioTrack: String?
-        @State var selectedTextTrack: String?
-        @State var playbackRate: Float = 1
+        @State private var player = Player()
+        @State private var currentPlaybackTime: TimeInterval = 0
+        @State private var mediaTimeDuration: TimeInterval = 60 * 6
+        @State private var isSeeking: Bool = false
+        @State private var audioTracks: [Track] = []
+        @State private var textTracks: [Track] = []
+        @State private var selectedAudioTrack: Track?
+        @State private var selectedTextTrack: Track?
+        @State private var playbackRate: Float = 1
+        @State private var didStartPlayback = false
+        @State private var remoteCommands = RemoteCommandController()
         @Namespace private var glassNamespace
         private let playbackRates: [Float] = [0.5, 0.75, 1, 1.25, 1.5, 2]
+        private let nowPlayingCenter = MPNowPlayingInfoCenter.default()
 
         var showOverlay: Bool {
 #if !os(visionOS)
@@ -193,21 +197,47 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         }
 
         var body: some View {
+            WithPerceptionTracking {
+                content
+            }
+            .task {
+                await preparePlaybackIfNeeded()
+            }
+            .task {
+                await observePlayerEvents()
+            }
+            .onAppear {
+                configureRemoteCommandCenter()
+            }
+            .onDisappear {
+                tearDownPlayback()
+            }
+            .onChange(of: playbackRate) { newRate in
+                setPlaybackRate(newRate)
+            }
+            .onChange(of: selectedAudioTrack) { track in
+                player.selectedAudioTrack = track
+            }
+            .onChange(of: selectedTextTrack) { track in
+                player.selectedSubtitleTrack = track
+            }
+            .onChange(of: isSeeking) { seeking in
+                guard !seeking else { return }
+                seek(to: currentPlaybackTime)
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                restorePlaybackAfterForeground()
+            }
+        }
+
+        private var content: some View {
             ZStack(alignment: .bottom) {
                 Color(showOverlay ? .systemGroupedBackground : .black)
                     .ignoresSafeArea()
 
-                VLCPlayerViewRepresentable(url: viewModel.url,
-                                           isPlaying: $isPlaying,
-                                           playbackRate: $playbackRate,
-                                           mediaTimeDuration: $mediaTimeDuration,
-                                           currentPlaybackTime: $currentPlaybackTime,
-                                           audioTracks: $audioTracks,
-                                           selectedAudioTrack: $selectedAudioTrack,
-                                           textTracks: $textTracks,
-                                           selectedTextTrack: $selectedTextTrack,
-                                           isSeeking: isSeeking)
+                videoOutput
                     .ignoresSafeArea()
+
                 if showOverlay {
                     Color.black.opacity(0.4)
                         .ignoresSafeArea()
@@ -261,6 +291,15 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
 
+        @ViewBuilder
+        private var videoOutput: some View {
+#if !os(visionOS)
+            VideoView(player, onSurfaceReady: Air.play)
+#else
+            VideoView(player)
+#endif
+        }
+
         private var controlsBar: some View {
             HStack {
                 HStack(spacing: 16) {
@@ -280,14 +319,14 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                 HStack(spacing: 16) {
                     TracksMenuView(
                         tracks: audioTracks,
-                        selectedTrackId: $selectedAudioTrack,
+                        selectedTrack: $selectedAudioTrack,
                         title: "Audio",
                         systemImage: "waveform"
                     )
 
                     TracksMenuView(
                         tracks: textTracks,
-                        selectedTrackId: $selectedTextTrack,
+                        selectedTrack: $selectedTextTrack,
                         title: "Subtitles",
                         systemImage: "text.alignleft"
                     )
@@ -305,20 +344,191 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         private var overlayButtons: some View {
             HStack(spacing: 32) {
                 PlayerButton(size: .small, imageName: "10.arrow.trianglehead.counterclockwise") {
-                    currentPlaybackTime -= 10
+                    skip(by: -10)
                 }
                 .compatibilityGlassID("backward", in: glassNamespace)
 
-                PlayerButton(size: .big, imageName: isPlaying ? "pause.fill" : "play.fill") {
-                    isPlaying.toggle()
+                PlayerButton(size: .big, imageName: player.isPlaying ? "pause.fill" : "play.fill") {
+                    player.togglePlayPause()
+                    updateNowPlayingPlaybackState()
                 }
                 .compatibilityGlassID("playPause", in: glassNamespace)
 
                 PlayerButton(size: .small, imageName: "10.arrow.trianglehead.clockwise") {
-                    currentPlaybackTime += 10
+                    skip(by: 10)
                 }
                 .compatibilityGlassID("forward", in: glassNamespace)
             }
+        }
+
+        private func preparePlaybackIfNeeded() async {
+            guard !didStartPlayback else { return }
+            didStartPlayback = true
+            configureNowPlayingMetadata()
+
+            do {
+                let media = try Media(url: viewModel.url)
+                if let metadata = try? await media.parse(timeout: .seconds(1)), let duration = metadata.duration {
+                    updateMediaTimeDuration(duration.timeInterval)
+                    updateNowPlaying(duration: duration.timeInterval)
+                }
+                try Task.checkCancellation()
+                try player.play(media)
+                setPlaybackRate(playbackRate)
+                syncTracksFromPlayer()
+                updateNowPlayingPlaybackState()
+            } catch is CancellationError {
+                player.stop()
+            } catch {
+                didStartPlayback = false
+            }
+        }
+
+        private func observePlayerEvents() async {
+            for await event in player.events {
+                switch event {
+                case .timeChanged(let time):
+                    guard !isSeeking else { continue }
+                    let newPlaybackTime = max(time.timeInterval, 0)
+                    if abs(currentPlaybackTime - newPlaybackTime) > 0.05 {
+                        currentPlaybackTime = newPlaybackTime
+                    }
+                    updateNowPlaying()
+                case .lengthChanged(let duration):
+                    updateMediaTimeDuration(duration.timeInterval)
+                    updateNowPlaying(duration: duration.timeInterval)
+                case .tracksChanged, .mediaChanged:
+                    syncTracksFromPlayer()
+                case .stateChanged:
+                    updateNowPlayingPlaybackState()
+                case .endReached:
+                    currentPlaybackTime = mediaTimeDuration
+                    updateNowPlayingPlaybackState()
+                default:
+                    break
+                }
+            }
+        }
+
+        private func configureRemoteCommandCenter() {
+            remoteCommands.configure(
+                supportedPlaybackRates: playbackRates,
+                play: {
+                    try? player.play()
+                    updateNowPlayingPlaybackState()
+                },
+                pause: {
+                    player.pause()
+                    updateNowPlayingPlaybackState()
+                },
+                toggle: {
+                    player.togglePlayPause()
+                    updateNowPlayingPlaybackState()
+                },
+                seek: { time in
+                    seek(to: time)
+                },
+                skip: { interval in
+                    skip(by: interval)
+                },
+                rate: { rate in
+                    playbackRate = rate
+                    setPlaybackRate(rate)
+                }
+            )
+        }
+
+        private func tearDownPlayback() {
+#if !os(visionOS)
+            Air.stop()
+#endif
+            player.stop()
+            remoteCommands.tearDown()
+        }
+
+        private func syncTracksFromPlayer() {
+            audioTracks = player.audioTracks
+            textTracks = player.subtitleTracks
+
+            if let selected = player.selectedAudioTrack {
+                selectedAudioTrack = selected
+            } else if selectedAudioTrack == nil {
+                selectedAudioTrack = audioTracks.first
+            }
+
+            if let selected = player.selectedSubtitleTrack {
+                selectedTextTrack = selected
+            } else if selectedTextTrack == nil {
+                selectedTextTrack = textTracks.first
+            }
+        }
+
+        private func setPlaybackRate(_ rate: Float) {
+            try? player.setPlaybackRate(PlaybackRate(rate))
+            updateNowPlayingPlaybackState()
+        }
+
+        private func seek(to time: TimeInterval) {
+            let duration = max(mediaTimeDuration, 0)
+            let clampedTime = min(max(time, 0), duration)
+            currentPlaybackTime = clampedTime
+
+            guard player.isSeekable || player.duration != nil else {
+                updateNowPlaying()
+                return
+            }
+
+            try? player.seek(to: .milliseconds(Int64((clampedTime * 1_000).rounded())))
+            updateNowPlaying()
+        }
+
+        private func skip(by interval: TimeInterval) {
+            seek(to: currentPlaybackTime + interval)
+        }
+
+        private func restorePlaybackAfterForeground() {
+            guard didStartPlayback, !player.isPlaying else { return }
+            let playbackTime = currentPlaybackTime
+            Task { @MainActor in
+                try? player.play()
+                try? await Task.sleep(for: .milliseconds(100))
+                seek(to: playbackTime)
+                player.pause()
+                updateNowPlayingPlaybackState()
+            }
+        }
+
+        private func configureNowPlayingMetadata() {
+            var info = nowPlayingCenter.nowPlayingInfo ?? [:]
+            info[MPMediaItemPropertyTitle] = viewModel.url.deletingPathExtension().lastPathComponent
+            info[MPMediaItemPropertyPlaybackDuration] = max(mediaTimeDuration, 0)
+            info[MPNowPlayingInfoPropertyMediaType] = MPNowPlayingInfoMediaType.video.rawValue
+
+            let artworkImage = UIImage.icon(forFileURL: viewModel.url, size: 512)
+            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size) { _ in artworkImage }
+
+            nowPlayingCenter.nowPlayingInfo = info
+            updateNowPlayingPlaybackState()
+        }
+
+        private func updateNowPlaying(duration: TimeInterval? = nil) {
+            var info = nowPlayingCenter.nowPlayingInfo ?? [:]
+            if let duration {
+                info[MPMediaItemPropertyPlaybackDuration] = max(duration, 0)
+            }
+            info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = max(currentPlaybackTime, 0)
+            info[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? Double(playbackRate) : 0
+            nowPlayingCenter.nowPlayingInfo = info
+        }
+
+        private func updateNowPlayingPlaybackState() {
+            nowPlayingCenter.playbackState = player.isPlaying ? .playing : .paused
+            updateNowPlaying()
+        }
+
+        private func updateMediaTimeDuration(_ duration: TimeInterval) {
+            guard mediaTimeDuration != duration else { return }
+            mediaTimeDuration = duration
         }
 
         struct PlayerButton: View {
@@ -373,381 +583,87 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
     }
 }
 
-struct VLCPlayerViewRepresentable: UIViewRepresentable {
-    let url: URL
-    @Binding var isPlaying: Bool
-    @Binding var playbackRate: Float
-    @Binding var mediaTimeDuration: TimeInterval
-    @Binding var currentPlaybackTime: TimeInterval
-    @Binding var audioTracks: [VLCMediaPlayer.Track]
-    @Binding var selectedAudioTrack: String?
-    @Binding var textTracks: [VLCMediaPlayer.Track]
-    @Binding var selectedTextTrack: String?
-    let isSeeking: Bool
+private final class RemoteCommandController {
+    private var remoteCommandTargets: [Any] = []
+    private let remoteCommandCenter = MPRemoteCommandCenter.shared()
+    private let nowPlayingCenter = MPNowPlayingInfoCenter.default()
 
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView()
-        view.isUserInteractionEnabled = false
+    func configure(
+        supportedPlaybackRates: [Float],
+        play: @escaping @MainActor @Sendable () -> Void,
+        pause: @escaping @MainActor @Sendable () -> Void,
+        toggle: @escaping @MainActor @Sendable () -> Void,
+        seek: @escaping @MainActor @Sendable (TimeInterval) -> Void,
+        skip: @escaping @MainActor @Sendable (TimeInterval) -> Void,
+        rate: @escaping @MainActor @Sendable (Float) -> Void
+    ) {
+        guard remoteCommandTargets.isEmpty else { return }
 
-        let drawable = UIView()
-        drawable.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        drawable.frame = view.bounds
-        view.addSubview(drawable)
-
-#if !os(visionOS)
-        Air.play(drawable)
-#endif
-
-        context.coordinator.drawableView = drawable
-        context.coordinator.attachDrawable(drawable)
-
-        // Preparse
-        guard let media = VLCMedia(url: url) else { return view }
-        _ = Task { @MainActor in
-            let timeout: Int32 = 1000
-            media.parse(options: .parseLocal, timeout: timeout)
-            let deadline = Date().addingTimeInterval(TimeInterval(timeout) / 1000)
-            while !media.parsedStatus.isTerminal, Date() < deadline {
-                try? await Task.sleep(for: .milliseconds(50))
-            }
-            let initialDuration = Double(media.length.intValue) / 1000
-            context.coordinator.updateMediaTimeDuration(initialDuration)
-            context.coordinator.updateNowPlaying(duration: initialDuration)
-            context.coordinator.mediaPlayer.play()
-            try await Task.sleep(for: .seconds(0.2))
-            context.coordinator.mediaPlayer.pause()
-
-            audioTracks = context.coordinator.mediaPlayer.audioTracks
-            textTracks = context.coordinator.mediaPlayer.textTracks
-
-            selectedAudioTrack = audioTracks.first?.trackId
-            selectedTextTrack = textTracks.first?.trackId
+        let playTarget = remoteCommandCenter.playCommand.addTarget { _ in
+            Self.perform(play)
         }
-        context.coordinator.mediaPlayer.media = media
-        context.coordinator.configureNowPlayingMetadata()
+        let pauseTarget = remoteCommandCenter.pauseCommand.addTarget { _ in
+            Self.perform(pause)
+        }
+        let toggleTarget = remoteCommandCenter.togglePlayPauseCommand.addTarget { _ in
+            Self.perform(toggle)
+        }
+        let seekTarget = remoteCommandCenter.changePlaybackPositionCommand.addTarget { event in
+            guard let event = event as? MPChangePlaybackPositionCommandEvent else { return .commandFailed }
+            let positionTime = event.positionTime
+            return Self.perform { seek(positionTime) }
+        }
+        let skipForwardTarget = remoteCommandCenter.skipForwardCommand.addTarget { _ in
+            Self.perform { skip(10) }
+        }
+        let skipBackwardTarget = remoteCommandCenter.skipBackwardCommand.addTarget { _ in
+            Self.perform { skip(-10) }
+        }
+        let rateTarget = remoteCommandCenter.changePlaybackRateCommand.addTarget { event in
+            guard let event = event as? MPChangePlaybackRateCommandEvent else { return .commandFailed }
+            let playbackRate = Float(event.playbackRate)
+            return Self.perform { rate(playbackRate) }
+        }
 
-        return view
+        remoteCommandTargets = [playTarget, pauseTarget, toggleTarget, seekTarget, skipForwardTarget, skipBackwardTarget, rateTarget]
+        remoteCommandCenter.playCommand.isEnabled = true
+        remoteCommandCenter.pauseCommand.isEnabled = true
+        remoteCommandCenter.togglePlayPauseCommand.isEnabled = true
+        remoteCommandCenter.changePlaybackPositionCommand.isEnabled = true
+        remoteCommandCenter.skipForwardCommand.isEnabled = true
+        remoteCommandCenter.skipForwardCommand.preferredIntervals = [10]
+        remoteCommandCenter.skipBackwardCommand.isEnabled = true
+        remoteCommandCenter.skipBackwardCommand.preferredIntervals = [10]
+        remoteCommandCenter.changePlaybackRateCommand.isEnabled = true
+        remoteCommandCenter.changePlaybackRateCommand.supportedPlaybackRates = supportedPlaybackRates.map(NSNumber.init(value:))
     }
 
-    static func dismantleUIView(_ uiView: UIView, coordinator: Coordinator) {
-#if !os(visionOS)
-        Air.stop()
-#endif
-        coordinator.tearDownRemoteCommandCenter()
+    func tearDown() {
+        remoteCommandTargets.forEach { target in
+            remoteCommandCenter.playCommand.removeTarget(target)
+            remoteCommandCenter.pauseCommand.removeTarget(target)
+            remoteCommandCenter.togglePlayPauseCommand.removeTarget(target)
+            remoteCommandCenter.changePlaybackPositionCommand.removeTarget(target)
+            remoteCommandCenter.skipForwardCommand.removeTarget(target)
+            remoteCommandCenter.skipBackwardCommand.removeTarget(target)
+            remoteCommandCenter.changePlaybackRateCommand.removeTarget(target)
+        }
+        remoteCommandTargets.removeAll()
+        nowPlayingCenter.nowPlayingInfo = nil
+        nowPlayingCenter.playbackState = .stopped
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {
-        context.coordinator.parent = self
-        context.coordinator.setAudioTrack(selectedAudioTrack)
-        context.coordinator.setTextTrack(selectedTextTrack)
-
-        let mediaPlayer = context.coordinator.mediaPlayer
-        if isPlaying {
-            if !mediaPlayer.isPlaying {
-                mediaPlayer.play()
-            }
-        } else if mediaPlayer.isPlaying, !context.coordinator.isPerformingPausedSeek {
-            mediaPlayer.pause()
+    private static func perform(_ action: @escaping @MainActor @Sendable () -> Void) -> MPRemoteCommandHandlerStatus {
+        Task { @MainActor in
+            action()
         }
-        mediaPlayer.rate = playbackRate
-        context.coordinator.updateNowPlayingPlaybackState()
-
-        let duration = max(mediaTimeDuration, 0)
-        let clampedPlaybackTime = min(max(currentPlaybackTime, 0), duration)
-
-        let stoppedSeeking = context.coordinator.lastIsSeeking && !isSeeking
-        context.coordinator.lastIsSeeking = isSeeking
-
-        if mediaPlayer.isSeekable, !stoppedSeeking {
-            let time = VLCTime(number: NSNumber(value: Int(clampedPlaybackTime * 1000)))
-            if abs(time.intValue - mediaPlayer.time.intValue) > 1000 {
-                context.coordinator.seek(to: time, shouldPlay: isPlaying)
-            }
-        }
+        return .success
     }
+}
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-
-    final class Coordinator: NSObject, VLCMediaPlayerDelegate, @unchecked Sendable {
-        var parent: VLCPlayerViewRepresentable
-        let mediaPlayer = VLCMediaPlayer()
-        var drawableView: UIView?
-        var lastIsSeeking: Bool = false
-        var isPerformingPausedSeek: Bool = false
-        var selectedAudioTrack: String?
-        var selectedTextTrack: String?
-        private var notificationObservers: [NSObjectProtocol] = []
-        private var remoteCommandTargets: [Any] = []
-        private var pausedSeekTask: Task<Void, Never>?
-        private let remoteCommandCenter = MPRemoteCommandCenter.shared()
-        private let nowPlayingCenter = MPNowPlayingInfoCenter.default()
-
-        init(parent: VLCPlayerViewRepresentable) {
-            self.parent = parent
-            super.init()
-            mediaPlayer.delegate = self
-            mediaPlayer.timeChangeUpdateInterval = 0.25
-            mediaPlayer.minimalTimePeriod = 250000
-            configureRemoteCommandCenter()
-            observeApplicationLifecycle()
-        }
-
-        deinit {
-            pausedSeekTask?.cancel()
-            notificationObservers.forEach(NotificationCenter.default.removeObserver)
-            tearDownRemoteCommandCenter()
-        }
-
-        private func configureRemoteCommandCenter() {
-            guard remoteCommandTargets.isEmpty else { return }
-
-            let playTarget = remoteCommandCenter.playCommand.addTarget { [weak self] _ in
-                self?.performRemoteCommand { $0.setPlaying(true) } ?? .commandFailed
-            }
-            let pauseTarget = remoteCommandCenter.pauseCommand.addTarget { [weak self] _ in
-                self?.performRemoteCommand { $0.setPlaying(false) } ?? .commandFailed
-            }
-            let toggleTarget = remoteCommandCenter.togglePlayPauseCommand.addTarget { [weak self] _ in
-                self?.performRemoteCommand { $0.setPlaying(!$0.parent.isPlaying) } ?? .commandFailed
-            }
-            let seekTarget = remoteCommandCenter.changePlaybackPositionCommand.addTarget { [weak self] event in
-                guard let event = event as? MPChangePlaybackPositionCommandEvent else { return .commandFailed }
-                let positionTime = event.positionTime
-                return self?.performRemoteCommand { $0.setPlaybackTime(positionTime) } ?? .commandFailed
-            }
-            let skipForwardTarget = remoteCommandCenter.skipForwardCommand.addTarget { [weak self] _ in
-                self?.performRemoteCommand { $0.skip(by: 10) } ?? .commandFailed
-            }
-            let skipBackwardTarget = remoteCommandCenter.skipBackwardCommand.addTarget { [weak self] _ in
-                self?.performRemoteCommand { $0.skip(by: -10) } ?? .commandFailed
-            }
-            let rateTarget = remoteCommandCenter.changePlaybackRateCommand.addTarget { [weak self] event in
-                guard let event = event as? MPChangePlaybackRateCommandEvent else { return .commandFailed }
-                let playbackRate = Float(event.playbackRate)
-                return self?.performRemoteCommand { $0.setPlaybackRate(playbackRate) } ?? .commandFailed
-            }
-
-            remoteCommandTargets = [playTarget, pauseTarget, toggleTarget, seekTarget, skipForwardTarget, skipBackwardTarget, rateTarget]
-            remoteCommandCenter.playCommand.isEnabled = true
-            remoteCommandCenter.pauseCommand.isEnabled = true
-            remoteCommandCenter.togglePlayPauseCommand.isEnabled = true
-            remoteCommandCenter.changePlaybackPositionCommand.isEnabled = true
-            remoteCommandCenter.skipForwardCommand.isEnabled = true
-            remoteCommandCenter.skipForwardCommand.preferredIntervals = [10]
-            remoteCommandCenter.skipBackwardCommand.isEnabled = true
-            remoteCommandCenter.skipBackwardCommand.preferredIntervals = [10]
-            remoteCommandCenter.changePlaybackRateCommand.isEnabled = true
-            remoteCommandCenter.changePlaybackRateCommand.supportedPlaybackRates = [0.5, 0.75, 1, 1.25, 1.5, 2]
-        }
-
-        func tearDownRemoteCommandCenter() {
-            remoteCommandTargets.forEach { target in
-                remoteCommandCenter.playCommand.removeTarget(target)
-                remoteCommandCenter.pauseCommand.removeTarget(target)
-                remoteCommandCenter.togglePlayPauseCommand.removeTarget(target)
-                remoteCommandCenter.changePlaybackPositionCommand.removeTarget(target)
-                remoteCommandCenter.skipForwardCommand.removeTarget(target)
-                remoteCommandCenter.skipBackwardCommand.removeTarget(target)
-                remoteCommandCenter.changePlaybackRateCommand.removeTarget(target)
-            }
-            remoteCommandTargets.removeAll()
-            nowPlayingCenter.nowPlayingInfo = nil
-            nowPlayingCenter.playbackState = .stopped
-        }
-
-        private func performRemoteCommand(_ action: @escaping @MainActor @Sendable (Coordinator) -> Void) -> MPRemoteCommandHandlerStatus {
-            _ = Task { @MainActor [weak self] in
-                guard let self else { return }
-                action(self)
-            }
-            return .success
-        }
-
-        @MainActor
-        private func setPlaying(_ isPlaying: Bool) {
-            parent.isPlaying = isPlaying
-            if isPlaying {
-                mediaPlayer.play()
-            } else {
-                mediaPlayer.pause()
-            }
-            updateNowPlayingPlaybackState()
-        }
-
-        @MainActor
-        private func setPlaybackTime(_ time: TimeInterval) {
-            let duration = max(parent.mediaTimeDuration, 0)
-            let clampedTime = min(max(time, 0), duration)
-            parent.currentPlaybackTime = clampedTime
-            seek(to: VLCTime(number: NSNumber(value: Int(clampedTime * 1000))), shouldPlay: parent.isPlaying)
-            updateNowPlaying()
-        }
-
-        @MainActor
-        private func skip(by interval: TimeInterval) {
-            setPlaybackTime(parent.currentPlaybackTime + interval)
-        }
-
-        @MainActor
-        private func setPlaybackRate(_ playbackRate: Float) {
-            parent.playbackRate = playbackRate
-            mediaPlayer.rate = playbackRate
-            updateNowPlayingPlaybackState()
-        }
-
-        func setAudioTrack(_ trackId: String?) {
-            guard selectedAudioTrack != trackId
-            else { return }
-
-            if let trackId {
-                guard let index = mediaPlayer.audioTracks.firstIndex(where: { $0.trackId == trackId })
-                else { return }
-
-                mediaPlayer.selectTrack(at: index, type: .audio)
-            } else {
-                mediaPlayer.deselectAllAudioTracks()
-            }
-        }
-
-        func setTextTrack(_ trackId: String?) {
-            guard selectedTextTrack != trackId
-            else { return }
-
-            if let trackId {
-                guard let index = mediaPlayer.textTracks.firstIndex(where: { $0.trackId == trackId })
-                else { return }
-
-                mediaPlayer.selectTrack(at: index, type: .text)
-            } else {
-                mediaPlayer.deselectAllTextTracks()
-            }
-        }
-
-        func attachDrawable(_ view: UIView) {
-            drawableView = view
-            mediaPlayer.drawable = view
-        }
-
-        @MainActor
-        func configureNowPlayingMetadata() {
-            var info = nowPlayingCenter.nowPlayingInfo ?? [:]
-            info[MPMediaItemPropertyTitle] = parent.url.deletingPathExtension().lastPathComponent
-            info[MPMediaItemPropertyPlaybackDuration] = max(parent.mediaTimeDuration, 0)
-            info[MPNowPlayingInfoPropertyMediaType] = MPNowPlayingInfoMediaType.video.rawValue
-
-            let artworkImage = UIImage.icon(forFileURL: parent.url, size: 512)
-            info[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: artworkImage.size) { _ in artworkImage }
-
-            nowPlayingCenter.nowPlayingInfo = info
-            updateNowPlayingPlaybackState()
-        }
-
-        @MainActor
-        func updateNowPlaying(duration: TimeInterval? = nil) {
-            var info = nowPlayingCenter.nowPlayingInfo ?? [:]
-            if let duration {
-                info[MPMediaItemPropertyPlaybackDuration] = max(duration, 0)
-            }
-            info[MPNowPlayingInfoPropertyElapsedPlaybackTime] = max(parent.currentPlaybackTime, 0)
-            info[MPNowPlayingInfoPropertyPlaybackRate] = parent.isPlaying ? Double(parent.playbackRate) : 0
-            nowPlayingCenter.nowPlayingInfo = info
-        }
-
-        @MainActor
-        func updateNowPlayingPlaybackState() {
-            nowPlayingCenter.playbackState = parent.isPlaying ? .playing : .paused
-            updateNowPlaying()
-        }
-
-        func seek(to time: VLCTime, shouldPlay: Bool) {
-            pausedSeekTask?.cancel()
-            let targetTime = time.intValue
-
-            if shouldPlay {
-                mediaPlayer.time = VLCTime(number: NSNumber(value: targetTime))
-                return
-            }
-
-            pausedSeekTask = Task { @MainActor [weak self] in
-                guard let self else { return }
-
-                self.isPerformingPausedSeek = true
-                defer {
-                    self.isPerformingPausedSeek = false
-                    self.pausedSeekTask = nil
-                }
-
-                self.mediaPlayer.play()
-                try? await Task.sleep(for: .milliseconds(80))
-                guard !Task.isCancelled else { return }
-
-                self.mediaPlayer.time = VLCTime(number: NSNumber(value: targetTime))
-                try? await Task.sleep(for: .milliseconds(80))
-                guard !Task.isCancelled else { return }
-
-                self.mediaPlayer.pause()
-            }
-        }
-
-        private func observeApplicationLifecycle() {
-            let center = NotificationCenter.default
-
-            notificationObservers.append(center.addObserver(
-                forName: UIApplication.willEnterForegroundNotification,
-                object: nil,
-                queue: .main)
-            { [weak self] _ in
-                Task {
-                    try await self?.restoreVideoOutput()
-                }
-            })
-        }
-
-        @MainActor
-        private func restoreVideoOutput() async throws {
-            guard !mediaPlayer.isPlaying else { return }
-
-            let parent = parent
-            let playbackTime = parent.currentPlaybackTime
-
-            mediaPlayer.stop()
-            mediaPlayer.play()
-
-            try await Task.sleep(for: .seconds(0.1))
-            mediaPlayer.time = VLCTime(number: NSNumber(value: Int(playbackTime * 1000)))
-
-            mediaPlayer.pause()
-        }
-
-        func mediaPlayerTimeChanged(_ aNotification: Notification) {
-            guard !parent.isSeeking else { return }
-
-            let newPlaybackTime = max(TimeInterval(mediaPlayer.time.value?.doubleValue ?? 0) / 1000, 0)
-            let parent = parent
-
-            DispatchQueue.main.async {
-                if abs(parent.currentPlaybackTime - newPlaybackTime) > 0.05 {
-                    parent.currentPlaybackTime = newPlaybackTime
-                }
-            }
-        }
-
-        func mediaPlayerLengthChanged(_ length: Int64) {
-            let duration = TimeInterval(length) / 1000
-            updateMediaTimeDuration(duration)
-        }
-
-        func updateMediaTimeDuration(_ duration: TimeInterval) {
-            let parent = parent
-
-            DispatchQueue.main.async {
-                if parent.mediaTimeDuration != duration {
-                    parent.mediaTimeDuration = duration
-                }
-            }
-        }
+private extension Duration {
+    var timeInterval: TimeInterval {
+        TimeInterval(milliseconds) / 1_000
     }
 }
 

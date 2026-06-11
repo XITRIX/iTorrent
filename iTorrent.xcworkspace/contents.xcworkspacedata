@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Submodules/SwiftVLC">
+   </FileRef>
+   <FileRef
       location = "group:Submodules/LibTorrent-Swift/LibTorrent.xcodeproj">
    </FileRef>
    <FileRef
