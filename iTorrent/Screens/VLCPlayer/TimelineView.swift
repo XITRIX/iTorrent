@@ -12,7 +12,25 @@ struct TimelineView: View {
     @Binding var currentPlaybackTime: TimeInterval
     @Binding var isSeeking: Bool
     let availability: [Double]?
-    @GestureState private var dragStartTime: TimeInterval?
+    let onScrubChanged: (TimeInterval) -> Void
+    let onScrubEnded: (TimeInterval) -> Void
+    @State private var dragScrubState: DragScrubState?
+
+    init(
+        mediaLengthTime: TimeInterval,
+        currentPlaybackTime: Binding<TimeInterval>,
+        isSeeking: Binding<Bool>,
+        availability: [Double]?,
+        onScrubChanged: @escaping (TimeInterval) -> Void = { _ in },
+        onScrubEnded: @escaping (TimeInterval) -> Void = { _ in }
+    ) {
+        self.mediaLengthTime = mediaLengthTime
+        _currentPlaybackTime = currentPlaybackTime
+        _isSeeking = isSeeking
+        self.availability = availability
+        self.onScrubChanged = onScrubChanged
+        self.onScrubEnded = onScrubEnded
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -22,7 +40,14 @@ struct TimelineView: View {
     }
 }
 
+private struct DragScrubState {
+    var playbackTime: TimeInterval
+    var translationX: Double
+}
+
 private extension TimelineView {
+    var dragActivationDistance: Double { 6 }
+
     @ViewBuilder
     func timelineContent(width: Double) -> some View {
         let content = HStack {
@@ -35,21 +60,33 @@ private extension TimelineView {
         .padding()
         .contentShape(Rectangle())
         .gesture(
-            DragGesture(minimumDistance: 0)
-                .updating($dragStartTime) { _, state, _ in
-                    state = state ?? currentPlaybackTime
-                }
+            DragGesture(minimumDistance: dragActivationDistance)
                 .onChanged { gesture in
-                    isSeeking = true
-                    let startTime = dragStartTime ?? currentPlaybackTime
-                    currentPlaybackTime = playbackTime(
-                        startTime: startTime,
-                        translationX: gesture.translation.width,
+                    guard var scrubState = dragScrubState else {
+                        dragScrubState = DragScrubState(
+                            playbackTime: currentPlaybackTime,
+                            translationX: gesture.translation.width
+                        )
+                        isSeeking = true
+                        return
+                    }
+
+                    let translationDeltaX = gesture.translation.width - scrubState.translationX
+                    scrubState.translationX = gesture.translation.width
+                    scrubState.playbackTime = playbackTime(
+                        currentTime: scrubState.playbackTime,
+                        translationDeltaX: translationDeltaX,
                         width: width
                     )
+                    dragScrubState = scrubState
+                    currentPlaybackTime = scrubState.playbackTime
+                    onScrubChanged(scrubState.playbackTime)
                 }
                 .onEnded { _ in
+                    let playbackTime = dragScrubState?.playbackTime ?? currentPlaybackTime
+                    dragScrubState = nil
                     isSeeking = false
+                    onScrubEnded(playbackTime)
                 }
         )
         .compatibilityGlassEffect(interactive: true)
@@ -67,10 +104,10 @@ private extension TimelineView {
         return min(max(currentPlaybackTime / mediaLengthTime, 0), 1)
     }
 
-    func playbackTime(startTime: TimeInterval, translationX: Double, width: Double) -> TimeInterval {
+    func playbackTime(currentTime: TimeInterval, translationDeltaX: Double, width: Double) -> TimeInterval {
         guard width > 0, mediaLengthTime > 0 else { return currentPlaybackTime }
         let secondsPerPoint = mediaLengthTime / width
-        return min(max(startTime + translationX * secondsPerPoint, 0), mediaLengthTime)
+        return min(max(currentTime + translationDeltaX * secondsPerPoint, 0), mediaLengthTime)
     }
 
     var played: String {

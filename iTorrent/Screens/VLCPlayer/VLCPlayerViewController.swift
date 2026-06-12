@@ -183,6 +183,8 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         @State private var selectedTextTrack: Track?
         @State private var playbackRate: Float = 1
         @State private var didStartPlayback = false
+        @State private var isRestoringPlayback = false
+        @State private var pendingPausedSeekRefreshTime: TimeInterval?
         @State private var remoteCommands = RemoteCommandController()
         @Namespace private var glassNamespace
         private let playbackRates: [Float] = [0.5, 0.75, 1, 1.25, 1.5, 2]
@@ -194,6 +196,10 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 #else
             viewModel.showOverlay
 #endif
+        }
+
+        private var showsPlayingState: Bool {
+            isRestoringPlayback ? false : player.isPlaying
         }
 
         var body: some View {
@@ -221,11 +227,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             .onChange(of: selectedTextTrack) { track in
                 player.selectedSubtitleTrack = track
             }
-            .onChange(of: isSeeking) { seeking in
-                guard !seeking else { return }
-                seek(to: currentPlaybackTime)
-            }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 restorePlaybackAfterForeground()
             }
         }
@@ -277,8 +279,19 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                             VStack(alignment: .trailing, spacing: 16) {
                                 controlsBar
 
-                                TimelineView(mediaLengthTime: mediaTimeDuration, currentPlaybackTime: $currentPlaybackTime, isSeeking: $isSeeking, availability: viewModel.segmentedProgress)
-                                    .compatibilityGlassID("timeline", in: glassNamespace)
+                                TimelineView(
+                                    mediaLengthTime: mediaTimeDuration,
+                                    currentPlaybackTime: $currentPlaybackTime,
+                                    isSeeking: $isSeeking,
+                                    availability: viewModel.segmentedProgress,
+                                    onScrubChanged: { time in
+                                        seek(to: time, fast: true)
+                                    },
+                                    onScrubEnded: { time in
+                                        seek(to: time, fast: false)
+                                    }
+                                )
+                                .compatibilityGlassID("timeline", in: glassNamespace)
                                     .compatibilityGlassTransition()
                             }
                             .padding()
@@ -348,9 +361,9 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                 }
                 .compatibilityGlassID("backward", in: glassNamespace)
 
-                PlayerButton(size: .big, imageName: player.isPlaying ? "pause.fill" : "play.fill") {
-                    player.togglePlayPause()
-                    updateNowPlayingPlaybackState()
+                PlayerButton(size: .big, imageName: showsPlayingState ? "pause.fill" : "play.fill") {
+                    guard !isRestoringPlayback else { return }
+                    togglePlayback()
                 }
                 .compatibilityGlassID("playPause", in: glassNamespace)
 
@@ -415,6 +428,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                 supportedPlaybackRates: playbackRates,
                 play: {
                     try? player.play()
+                    refreshVideoAfterPausedSeekIfNeeded()
                     updateNowPlayingPlaybackState()
                 },
                 pause: {
@@ -422,8 +436,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                     updateNowPlayingPlaybackState()
                 },
                 toggle: {
-                    player.togglePlayPause()
-                    updateNowPlayingPlaybackState()
+                    togglePlayback()
                 },
                 seek: { time in
                     seek(to: time)
@@ -468,9 +481,31 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             updateNowPlayingPlaybackState()
         }
 
-        private func seek(to time: TimeInterval) {
+        private func togglePlayback() {
+            player.togglePlayPause()
+            refreshVideoAfterPausedSeekIfNeeded()
+            updateNowPlayingPlaybackState()
+        }
+
+        private func refreshVideoAfterPausedSeekIfNeeded() {
+            guard let time = pendingPausedSeekRefreshTime else { return }
+
+            Task { @MainActor in
+                for _ in 0..<5 {
+                    try? await Task.sleep(for: .milliseconds(80))
+                    guard pendingPausedSeekRefreshTime == time else { return }
+                    guard player.isPlaying else { continue }
+                    pendingPausedSeekRefreshTime = nil
+                    seek(to: time)
+                    return
+                }
+            }
+        }
+
+        private func seek(to time: TimeInterval, fast: Bool = false) {
             let duration = max(mediaTimeDuration, 0)
             let clampedTime = min(max(time, 0), duration)
+            let wasPlaying = player.isPlaying
             currentPlaybackTime = clampedTime
 
             guard player.isSeekable || player.duration != nil else {
@@ -478,7 +513,12 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                 return
             }
 
-            try? player.seek(to: .milliseconds(Int64((clampedTime * 1_000).rounded())))
+            try? player.seek(to: .milliseconds(Int64((clampedTime * 1_000).rounded())), fast: fast)
+            if wasPlaying {
+                pendingPausedSeekRefreshTime = nil
+            } else if !fast {
+                pendingPausedSeekRefreshTime = clampedTime
+            }
             updateNowPlaying()
         }
 
@@ -487,15 +527,44 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         }
 
         private func restorePlaybackAfterForeground() {
-            guard didStartPlayback, !player.isPlaying else { return }
+            guard didStartPlayback, !player.isPlaying, !isRestoringPlayback else { return }
             let playbackTime = currentPlaybackTime
+            isRestoringPlayback = true
             Task { @MainActor in
+                defer {
+                    isRestoringPlayback = false
+                    updateNowPlayingPlaybackState()
+                }
+                await player.stopAndWait()
                 try? player.play()
-                try? await Task.sleep(for: .milliseconds(100))
+                try? await Task.sleep(for: .milliseconds(200))
                 seek(to: playbackTime)
+                await scrubMinimallyForRestoredVideoFrame(around: playbackTime)
                 player.pause()
-                updateNowPlayingPlaybackState()
+                currentPlaybackTime = playbackTime
             }
+        }
+
+        private func scrubMinimallyForRestoredVideoFrame(around time: TimeInterval) async {
+            guard let scrubTime = minimalScrubTime(around: time) else { return }
+            try? await Task.sleep(for: .milliseconds(80))
+            seek(to: scrubTime, fast: true)
+            try? await Task.sleep(for: .milliseconds(80))
+            seek(to: time)
+        }
+
+        private func minimalScrubTime(around time: TimeInterval) -> TimeInterval? {
+            let duration = max(mediaTimeDuration, 0)
+            guard duration > 0 else { return nil }
+
+            let offset: TimeInterval = 0.05
+            if time + offset <= duration {
+                return time + offset
+            }
+            if time - offset >= 0 {
+                return time - offset
+            }
+            return nil
         }
 
         private func configureNowPlayingMetadata() {
