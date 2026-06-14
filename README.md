@@ -61,6 +61,7 @@ It is an ordinary torrent client for iOS with Files app support.
 What can this app do:
 - Download in the background
 - Live Activity and Dynamic Island progress widget
+- Built-in VLC player with AirPlay and Pictire in Picture support
 - Sequential download (use VLC to watch films while loading)
 - Add torrent files from Share menu (Safari and other apps)
 - Add magnet links directly from Safari
@@ -92,6 +93,7 @@ If you are fluent in the languages not listed above and want to help with transl
 
 - [LibTorrent](https://github.com/arvidn/libtorrent)
 - [OpenSSL](https://github.com/krzyzanowskim/OpenSSL)
+- [SwiftVLC](https://github.com/harflabs/SwiftVLC)
 - [MvvmFoundation](https://github.com/XITRIX/MVVMFoundation)
 - [CombineCocoa](https://github.com/XITRIX/CombineCocoa)
 - [SWXMLHash](https://github.com/drmohundro/SWXMLHash)

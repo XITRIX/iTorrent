@@ -24,6 +24,10 @@ class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, Observab
     @Published var showOverlay: Bool = true
     @Published var segmentedProgress: [Double]?
 
+#if !os(visionOS)
+    @Published var pipController: PiPController?
+#endif
+
     override func prepare(with model: Config) {
         self.url = model.url
         self.torrentPair = model.torrentPair

@@ -97,6 +97,11 @@ private extension Track {
 class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Body>, MvvmViewControllerProtocol {
     var viewModel: VLCPlayerViewModel
     private var disposeBag = DisposeBag() // [AnyCancellable] = []
+#if !os(visionOS)
+    private var pipEventsTask: Task<Void, Never>?
+    private var isDismissedForPictureInPicture = false
+    private var pictureInPicturePresentationController: UIViewController?
+#endif
 
     override var useMarqueeLabel: Bool { true }
 
@@ -121,6 +126,14 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {}
 
+#if !os(visionOS)
+        let pipButton = UIBarButtonItem(image: .init(systemName: "pip"), primaryAction: .init { [unowned self] _ in
+            viewModel.pipController?.toggle()
+        })
+//        pipButton.isEnabled = viewModel.pipController?.isPossible == true
+        navigationItem.leftBarButtonItem = pipButton
+#endif
+
         navigationItem.rightBarButtonItem = .init(systemItem: .close, primaryAction: .init { [unowned self] _ in
             dismiss()
         })
@@ -137,6 +150,13 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 //        navigationItem.leftBarButtonItem = item
 
         disposeBag.bind {
+#if !os(visionOS)
+            viewModel.$pipController
+                .compactMap { $0 }
+                .sink { [weak self] controller in
+                    self?.configurePictureInPicture(controller)
+                }
+#endif
 //            Air.shared.$connected.sink { aired in
 //                if #available(iOS 26.0, *) {
 //                    item.style = aired ? .prominent : .plain
@@ -156,6 +176,82 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             #endif
         }
     }
+
+#if !os(visionOS)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let controller = viewModel.pipController {
+            configurePictureInPicture(controller)
+        }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        guard viewModel.pipController?.isActive != true else { return }
+        isDismissedForPictureInPicture = false
+        pictureInPicturePresentationController = nil
+        pipEventsTask?.cancel()
+        pipEventsTask = nil
+        viewModel.pipController?.onRestoreUserInterface = nil
+    }
+
+    private func configurePictureInPicture(_ controller: PiPController) {
+        guard viewModel.pipController === controller else { return }
+
+        controller.onRestoreUserInterface = { [weak self] completion in
+            Task { @MainActor in
+                self?.restoreFromPictureInPicture(completion: completion) ?? completion(false)
+            }
+        }
+
+        guard pipEventsTask == nil else { return }
+        pipEventsTask = Task { @MainActor [self, weak controller] in
+            guard let controller else { return }
+            for await event in controller.pipEvents {
+                guard !Task.isCancelled else { return }
+                switch event {
+                case .didStart:
+                    dismissForPictureInPicture()
+                case .didStop:
+                    if isDismissedForPictureInPicture {
+                        isDismissedForPictureInPicture = false
+                        pictureInPicturePresentationController = nil
+                    }
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    private func dismissForPictureInPicture() {
+        guard !isDismissedForPictureInPicture else { return }
+        let controllerToRestore = navigationController ?? self
+        pictureInPicturePresentationController = controllerToRestore
+        isDismissedForPictureInPicture = true
+        controllerToRestore.dismiss(animated: true)
+    }
+
+    private func restoreFromPictureInPicture(completion: @escaping @MainActor (Bool) -> Void) {
+        let controllerToPresent = pictureInPicturePresentationController ?? navigationController ?? self
+
+        if controllerToPresent.presentingViewController != nil || controllerToPresent.view.window != nil {
+            completion(true)
+            return
+        }
+
+        guard let presenter = UIApplication.shared.keySceneWindow?.rootViewController?.topPresented else {
+            completion(false)
+            return
+        }
+
+        presenter.present(controllerToPresent, animated: true) {
+            completion(true)
+        }
+    }
+#endif
 
     struct Body: View {
         @ObservedObject var viewModel: VLCPlayerViewModel
@@ -307,7 +403,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         @ViewBuilder
         private var videoOutput: some View {
 #if !os(visionOS)
-            VideoView(player, onSurfaceReady: Air.play)
+            PiPVideoView(player, controller: $viewModel.pipController, onSurfaceReady: Air.play)
 #else
             VideoView(player)
 #endif
@@ -453,6 +549,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 
         private func tearDownPlayback() {
 #if !os(visionOS)
+            guard viewModel.pipController?.isActive != true else { return }
             Air.stop()
 #endif
             player.stop()
