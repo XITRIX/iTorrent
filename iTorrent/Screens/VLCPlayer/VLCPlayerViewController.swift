@@ -138,17 +138,6 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             dismiss()
         })
 
-//        let routePickerView = AVRoutePickerView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-//        routePickerView.prioritizesVideoDevices = true
-//        routePickerView.tintColor = .label
-//        routePickerView.activeTintColor = .systemBlue
-//        let item = UIBarButtonItem(customView: routePickerView)
-//        if #available(iOS 26.0, *) {
-//            item.style = Air.shared.connected ? .prominent : .plain
-//        }
-//
-//        navigationItem.leftBarButtonItem = item
-
         disposeBag.bind {
 #if !os(visionOS)
             viewModel.$pipController
@@ -157,11 +146,6 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                     self?.configurePictureInPicture(controller)
                 }
 #endif
-//            Air.shared.$connected.sink { aired in
-//                if #available(iOS 26.0, *) {
-//                    item.style = aired ? .prominent : .plain
-//                }
-//            }
             #if !os(visionOS)
             Air.shared.$connected.combineLatest(viewModel.$showOverlay)
                 .sink { [weak self] aired, value in
@@ -414,9 +398,11 @@ private extension VLCPlayerViewController.VLCPlayerView {
                     rates: playbackRates,
                     selectedRate: $playbackRate
                 )
+
+                RendererRouteMenuView(player: player)
             }
-//                .padding(.horizontal)
-            .frame(width: 44, height: 44)
+            .padding(.horizontal)
+            .frame(height: 44)
             .compatibilityGlassEffect(interactive: true)
             .compatibilityGlassID("controls", in: glassNamespace)
             .compatibilityGlassTransition()

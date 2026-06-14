@@ -28,6 +28,18 @@
           }
         }
       }
+    },
+    "NSLocalNetworkUsageDescription" : {
+      "comment" : "Privacy - Local Network Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "iTorrent uses the local network to discover playback devices and cast video on your network."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

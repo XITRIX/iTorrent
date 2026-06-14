@@ -4010,6 +4010,9 @@
     "Files" : {
 
     },
+    "For AirPlay-compatible devices, use system Screen Mirroring" : {
+
+    },
     "General" : {
 
     },
@@ -6873,6 +6876,9 @@
       }
     },
     "Peers" : {
+
+    },
+    "Play on" : {
 
     },
     "Playback Speed" : {
@@ -12405,7 +12411,13 @@
     "Search" : {
 
     },
+    "Searching…" : {
+
+    },
     "Subtitles" : {
+
+    },
+    "This Device" : {
 
     },
     "time.day.single" : {
@@ -14620,6 +14632,9 @@
       }
     },
     "Transfer" : {
+
+    },
+    "VLC Renderer Output" : {
 
     },
     "webserver.unavailable" : {

@@ -42,6 +42,14 @@
 	<false/>
 	<key>NSLocationDefaultAccuracyReduced</key>
 	<true/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>iTorrent uses the local network to discover playback devices and cast video on your network.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_airplay._tcp</string>
+		<string>_raop._tcp</string>
+		<string>_googlecast._tcp</string>
+	</array>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
