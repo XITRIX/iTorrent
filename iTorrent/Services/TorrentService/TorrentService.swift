@@ -31,9 +31,18 @@ class TorrentService: @unchecked Sendable, ObservableObject {
     #else
     static let downloadPath: URL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     #endif
-    static let torrentPath: URL = downloadPath.appending(path: "config")
-    static let fastResumePath: URL = downloadPath.appending(path: "config")
-    static let metadataPath: URL = downloadPath.appending(path: "config")
+    private static let configurationPath: URL = {
+        try! FileManager.default
+            .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .appending(path: "config")
+    }()
+    private static let preparedConfigurationPath = TorrentMigration.prepareConfiguration(
+        legacyURL: downloadPath.appending(path: "config"),
+        destinationURL: configurationPath
+    )
+    static let torrentPath: URL = preparedConfigurationPath
+    static let fastResumePath: URL = preparedConfigurationPath
+    static let metadataPath: URL = preparedConfigurationPath
 
     private lazy var session: Session = {
         configureOpenSSLCerts()
@@ -99,7 +108,7 @@ extension TorrentService: SessionDelegate {
         torrents[torrent.snapshot.infoHashes] = torrent
 
         // Add trackers from torrent list service if needed
-        if preferences.isTrackersAutoaddingEnabled {
+        if preferences.isTrackersAutoaddingEnabled, !torrent.isPrivate {
             trackersListService.addAllTrackers(to: torrent)
         }
     }

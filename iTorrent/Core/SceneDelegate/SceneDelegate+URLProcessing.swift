@@ -58,12 +58,43 @@ private extension SceneDelegate {
 
     // Add new torrent flow by file remote URL
     func tryOpenRemoteAddTorrent(with url: URL) async -> Bool {
-        guard url.absoluteString.hasPrefix("http"),
-              let rootViewController = window?.rootViewController?.topPresented,
-              let torrentFile = await TorrentFile(remote: url)
+        guard ["http", "https"].contains(url.scheme?.lowercased()),
+              let rootViewController = window?.rootViewController?.topPresented
         else { return false }
 
-        TorrentAddViewModel.present(with: torrentFile, from: rootViewController)
+        do {
+            let torrentFile = try await TorrentFile.download(from: url)
+            TorrentAddViewModel.present(with: torrentFile, from: rootViewController)
+        } catch {
+            rootViewController.presentRemoteTorrentDownloadError(error, url: url)
+        }
         return true
+    }
+}
+
+extension UIViewController {
+    func presentRemoteTorrentDownloadError(_ error: Error, url: URL) {
+        let message: String
+        switch error {
+        case RemoteTorrentFileError.httpStatus(let status) where status == 401 || status == 403:
+            message = %"list.add.url.error.authentication"
+        case RemoteTorrentFileError.httpStatus(let status):
+            message = String(format: %"list.add.url.error.http", status)
+        case RemoteTorrentFileError.invalidTorrent:
+            message = %"list.add.url.error.invalidTorrent"
+        case RemoteTorrentFileError.invalidResponse:
+            message = %"list.add.url.error"
+        default:
+            message = error.localizedDescription
+        }
+
+        let alert = UIAlertController(title: %"common.error", message: message, preferredStyle: .alert)
+        alert.addAction(.init(title: %"common.close", style: .cancel))
+#if canImport(SafariServices)
+        alert.addAction(.init(title: %"list.add.url.openInBrowser", style: .default) { [weak self] _ in
+            self?.present(BaseSafariViewController(url: url), animated: true)
+        })
+#endif
+        present(alert, animated: true)
     }
 }

@@ -417,7 +417,7 @@ private extension TorrentListViewController {
             Task {
                 guard let text = alert.textFields?.first?.text,
                       let url = URL(string: text),
-                      let torrentFile = await TorrentFile(remote: url)
+                      ["http", "https"].contains(url.scheme?.lowercased())
                 else {
                     let alert = UIAlertController(title: %"common.error", message: %"list.add.url.error", preferredStyle: .alert)
                     alert.addAction(.init(title: %"common.close", style: .cancel))
@@ -425,7 +425,12 @@ private extension TorrentListViewController {
                     return
                 }
 
-                TorrentAddViewModel.present(with: torrentFile, from: self)
+                do {
+                    let torrentFile = try await TorrentFile.download(from: url)
+                    TorrentAddViewModel.present(with: torrentFile, from: self)
+                } catch {
+                    presentRemoteTorrentDownloadError(error, url: url)
+                }
             }
         }, isPrimary: true)
         return alert

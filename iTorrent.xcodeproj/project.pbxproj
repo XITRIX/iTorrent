@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C9A11012F0A000100C0DE02 /* TorrentMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9A11012F0A000100C0DE01 /* TorrentMigration.swift */; };
+		7C9A11012F0A000100C0DE03 /* TorrentMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9A11012F0A000100C0DE01 /* TorrentMigration.swift */; };
 		7C013DE32C28AA3C0026A11B /* sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C013DE22C28A97F0026A11B /* sound.m4a */; };
 		7C013DE42C2F38AA0026A11B /* LocalizationAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */; };
 		7C013DE52C2F41760026A11B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
@@ -321,6 +323,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7C9A11012F0A000100C0DE01 /* TorrentMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentMigration.swift; sourceTree = "<group>"; };
 		7C013DE22C28A97F0026A11B /* sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.m4a; sourceTree = "<group>"; };
 		7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTorrentIntent.swift; sourceTree = "<group>"; };
@@ -1081,6 +1084,7 @@
 			isa = PBXGroup;
 			children = (
 				D1FFC9632C37F44800233C2F /* Extensions */,
+				7C9A11012F0A000100C0DE01 /* TorrentMigration.swift */,
 				D1A226F12AEF019400669D6D /* TorrentService.swift */,
 			);
 			path = TorrentService;
@@ -1868,6 +1872,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C9A11012F0A000100C0DE03 /* TorrentMigration.swift in Sources */,
 				7C5B40FE2EEC3149001D4C68 /* SpeedFormat.swift in Sources */,
 				D10257C82EE8619300201640 /* iTorrent_TVApp.swift in Sources */,
 				D10257E42EE865F400201640 /* BaseSafariViewController.swift in Sources */,
@@ -1899,6 +1904,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C9A11012F0A000100C0DE02 /* TorrentMigration.swift in Sources */,
 				7CF6DA352C0F3DB90033D03F /* BCHostingConfiguration.swift in Sources */,
 				D1FFC96C2C382FC900233C2F /* StorageModel+Extensions.swift in Sources */,
 				D1F8BC852AFC405A00A6258C /* MvvmViewModel+Alert.swift in Sources */,

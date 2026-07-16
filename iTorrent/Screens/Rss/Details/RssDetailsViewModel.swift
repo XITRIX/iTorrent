@@ -13,6 +13,7 @@ extension RssDetailsViewModel {
     enum DownloadType {
         case magnet
         case torrent
+        case browser
         case added
 
         var title: String {
@@ -21,6 +22,8 @@ extension RssDetailsViewModel {
                 %"rss.downloadButtonType.magnet"
             case .torrent:
                 %"rss.downloadButtonType.torrent"
+            case .browser:
+                %"list.add.url.openInBrowser"
             case .added:
                 %"rss.downloadButtonType.added"
             }
@@ -64,14 +67,17 @@ private extension RssDetailsViewModel {
 
 
         // MARK: - Try download file
-        let file: TorrentFile?
+        let remoteURLs = [rssModel.enclosure?.url, rssModel.link]
+            .compactMap { $0 }
+            .filter { ["http", "https"].contains($0.scheme?.lowercased()) }
+        var file: TorrentFile?
 
-        // Check enclosure
-        if let temp = await TorrentFile(remote: rssModel.enclosure?.url) { file = temp }
-        // Otherwise check link
-        else if let temp = await TorrentFile(remote: rssModel.link) { file = temp }
-        // Otherwise nothing to download
-        else { file = nil }
+        for url in remoteURLs {
+            if let downloadedFile = try? await TorrentFile.download(from: url) {
+                file = downloadedFile
+                break
+            }
+        }
 
         if let file {
             guard !TorrentService.shared.checkTorrentExists(with: file.infoHashes) else {
@@ -88,13 +94,18 @@ private extension RssDetailsViewModel {
             }
             return
         }
-    }
-}
 
-private extension TorrentFile {
-    convenience init?(remote url: URL?) async {
-        guard let url else { return nil }
-        await self.init(remote: url)
+        if let browserURL = remoteURLs.first {
+            downloadType = .browser
+            download = { [weak self] _ in
+                Task { @MainActor in
+                    self?.navigationService?()?.navigate(
+                        to: BaseSafariViewController(url: browserURL),
+                        by: .present(wrapInNavigation: false)
+                    )
+                }
+            }
+        }
     }
 }
 

@@ -165,8 +165,8 @@ extension Session.Settings {
         let preferences = PreferencesStorage.shared
 
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown"
-        let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
-        settings.agentName = "iTorrent: v\(appVersion)-\(appBuild)"
+        settings.agentName = "iTorrent/\(appVersion)"
+        settings.peerFingerprint = peerFingerprint(for: appVersion)
 
         settings.maxActiveTorrents = preferences.maxActiveTorrents
         settings.maxDownloadingTorrents = preferences.maxDownloadingTorrents
@@ -187,6 +187,14 @@ extension Session.Settings {
         settings.port = preferences.useDefaultPort ? 6881 : preferences.port
         settings.portBindRetries = preferences.portBindRetries
 
+        settings.proxyType = preferences.proxyType
+        settings.proxyHostname = preferences.proxyHostname
+        settings.proxyHostPort = preferences.proxyHostPort
+        settings.proxyAuthRequired = preferences.proxyAuthRequired
+        settings.proxyUsername = preferences.proxyUsername
+        settings.proxyPassword = preferences.proxyPassword
+        settings.proxyPeerConnections = preferences.proxyPeerConnections
+
         var interfacesToUse = interfaces
         if !preferences.useAllAvailableInterfaces {
             interfacesToUse = [interfacesToUse.first].compactMap { $0 }
@@ -198,5 +206,22 @@ extension Session.Settings {
         print("--- \(settings.listenInterfaces)")
 
         return settings
+    }
+
+    private static func peerFingerprint(for version: String) -> String {
+        var components = version.split(separator: ".").prefix(4).map { component in
+            let numericPrefix = component.prefix { $0.isNumber }
+            return min(Int(numericPrefix) ?? 0, 35)
+        }
+        components.append(contentsOf: repeatElement(0, count: 4 - components.count))
+
+        let versionCharacters = components.map { value -> Character in
+            if value < 10 {
+                return Character(String(value))
+            }
+            return Character(UnicodeScalar(65 + value - 10)!)
+        }
+
+        return "-IT\(String(versionCharacters))-"
     }
 }

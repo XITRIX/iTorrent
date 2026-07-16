@@ -144,16 +144,19 @@ extension TorrentHandle {
         let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
         if FileManager.default.fileExists(atPath: url.path()),
            let data = try? Data(contentsOf: url),
-           let meta = try? JSONDecoder().decode(Metadata.self, from: data)
+           let decodedMetadata = try? JSONDecoder().decode(Metadata.self, from: data)
         {
+            let meta = TorrentMigration.recoverDateAdded(
+                in: decodedMetadata,
+                from: snapshot.addedDate,
+                at: url
+            )
             _metadata = meta
             return meta
         }
 
-        let meta = Metadata()
-        if let data = try? JSONEncoder().encode(meta) {
-            try? data.write(to: url)
-        }
+        let meta = Metadata(dateAdded: snapshot.addedDate ?? .init())
+        persistMetadata(meta, at: url)
 
         _metadata = meta
         return meta
@@ -163,6 +166,11 @@ extension TorrentHandle {
         let hash = snapshot.infoHashes.best.hex
         let url = TorrentService.metadataPath.appendingPathComponent("\(hash).tmeta", isDirectory: false)
         try? FileManager.default.removeItem(at: url)
+    }
+
+    private func persistMetadata(_ metadata: Metadata, at url: URL) {
+        guard let data = try? JSONEncoder().encode(metadata) else { return }
+        try? data.write(to: url, options: .atomic)
     }
 }
 

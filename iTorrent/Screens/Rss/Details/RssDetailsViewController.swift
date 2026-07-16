@@ -145,7 +145,7 @@ private extension RssDetailsViewController {
             else { return .allow }
 
             Task { @MainActor in
-                if let torrentFile = await TorrentFile(remote: url) {
+                if let torrentFile = try? await TorrentFile.download(from: url) {
                     TorrentAddViewModel.present(with: torrentFile, from: parent)
                 } else if let magnet = MagnetURI(with: url) {
                     let alert = UIAlertController(title: %"list.add.magnet.title", message: nil, preferredStyle: .alert)

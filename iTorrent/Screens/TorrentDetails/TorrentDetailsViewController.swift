@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 import MvvmFoundation
 import SwiftUI
 
@@ -72,16 +73,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseCollectionV
 
         shareButton.menu = .init(title: %"common.share", children: [
             UIAction(title: %"details.share.torrentFile", image: .init(systemName: "doc"), handler: { [unowned self] _ in
-                guard let path = viewModel.torrentFilePath
-                else { return }
-
-                let url = NSURL(fileURLWithPath: path, isDirectory: false)
-                let vc = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                if vc.popoverPresentationController != nil {
-                    vc.popoverPresentationController?.barButtonItem = shareButton
-                    vc.popoverPresentationController?.permittedArrowDirections = .any
-                }
-                present(vc, animated: true)
+                shareTorrentFile()
             }),
             UIAction(title: %"details.share.magnet", image: .init(systemName: "link"), handler: { [unowned self] _ in
                 viewModel.shareMagnet()
@@ -113,6 +105,61 @@ extension Array where Element == MvvmCollectionSectionModel {
 }
 
 private extension TorrentDetailsViewController {
+    func shareTorrentFile() {
+        guard let sourcePath = viewModel.torrentFilePath else { return }
+
+        var temporaryDirectory: URL?
+        do {
+            let fileManager = FileManager.default
+            let shareDirectory = fileManager.temporaryDirectory
+                .appendingPathComponent(UUID().uuidString, isDirectory: true)
+            temporaryDirectory = shareDirectory
+            try fileManager.createDirectory(at: shareDirectory, withIntermediateDirectories: true)
+
+            let fileName = sanitizedTorrentFileName(from: viewModel.title)
+            let shareURL = shareDirectory.appendingPathComponent(fileName, isDirectory: false)
+            try fileManager.copyItem(at: URL(fileURLWithPath: sourcePath), to: shareURL)
+
+            let controller = UIActivityViewController(activityItems: [shareURL], applicationActivities: nil)
+            controller.completionWithItemsHandler = { _, _, _, _ in
+                try? fileManager.removeItem(at: shareDirectory)
+            }
+            controller.popoverPresentationController?.barButtonItem = shareButton
+            controller.popoverPresentationController?.permittedArrowDirections = .any
+            present(controller, animated: true)
+        } catch {
+            if let temporaryDirectory {
+                try? FileManager.default.removeItem(at: temporaryDirectory)
+            }
+            let alert = UIAlertController(title: %"common.error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(.init(title: %"common.close", style: .cancel))
+            present(alert, animated: true)
+        }
+    }
+
+    func sanitizedTorrentFileName(from torrentName: String) -> String {
+        var name = torrentName
+        if name.lowercased().hasSuffix(".torrent") {
+            name.removeLast(".torrent".count)
+        }
+
+        let forbiddenCharacters = CharacterSet(charactersIn: "/\\?%*|\"<>:")
+            .union(.controlCharacters)
+            .union(.newlines)
+        name = name.components(separatedBy: forbiddenCharacters).joined(separator: "_")
+        name = name.trimmingCharacters(in: .whitespacesAndNewlines.union(.init(charactersIn: ".")))
+
+        while name.utf8.count > 200 {
+            name.removeLast()
+        }
+        name = name.trimmingCharacters(in: .whitespacesAndNewlines.union(.init(charactersIn: ".")))
+        if name.isEmpty {
+            name = "Torrent"
+        }
+
+        return name + ".torrent"
+    }
+
     var fixedSpacing: UIBarButtonItem {
         let item = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         item.width = 44

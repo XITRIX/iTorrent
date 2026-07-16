@@ -124,6 +124,7 @@ class TorrentDetailsViewModel: BaseCollectionViewModelWith<TorrentHandle>, @unch
 
     private let hashModel = DetailCellViewModel(title: %"details.info.hash", spacer: 80)
     private let hashModelV2 = DetailCellViewModel(title: %"details.info.hashV2", spacer: 80)
+    private let privateModel = DetailCellViewModel(title: %"details.info.private")
     private let creatorModel = DetailCellViewModel(title: %"details.info.creator", spacer: 80)
     private let commentModel = DetailCellViewModel(title: %"details.info.comment", spacer: 80)
     private let createdModel = DetailCellViewModel(title: %"details.info.created")
@@ -260,6 +261,7 @@ private extension TorrentDetailsViewModel {
         if snapshot.infoHashes.hasV2 {
             hashModelV2.detail = snapshot.infoHashes.v2.hex
         }
+        privateModel.detail = torrentHandle.isPrivate ? %"common.yes" : %"common.no"
         creatorModel.detail = snapshot.creator ?? ""
         commentModel.detail = snapshot.comment ?? ""
 
@@ -328,6 +330,9 @@ private extension TorrentDetailsViewModel {
             }
             if hasV2 {
                 hashModelV2
+            }
+            if snapshot.isPrivate {
+                privateModel
             }
 
             if !creatorModel.detail.isEmpty {
@@ -436,4 +441,3 @@ private extension TorrentHandle.ObservedSnapshot {
         pieces?.map { $0.doubleValue } ?? [0]
     }
 }
-

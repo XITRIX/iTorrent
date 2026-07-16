@@ -43,6 +43,7 @@ extension TorrentHandle {
         var isSeed: Bool
         var isSequential: Bool
         var isFirstLastPiecePriority: Bool
+        var isPrivate: Bool
         var pieces: [NSNumber]?
         var files: [FileEntry]
         var trackers: [TorrentTracker]
@@ -85,6 +86,7 @@ extension TorrentHandle {
             isSeed = snapshot.isSeed
             isSequential = snapshot.isSequential
             isFirstLastPiecePriority = snapshot.isFirstLastPiecePriority
+            isPrivate = torrentHandle.isPrivate
             pieces = snapshot.pieces
             files = snapshot.files
             trackers = snapshot.trackers
@@ -132,6 +134,7 @@ extension TorrentHandle {
             isSeed = snapshot.isSeed
             isSequential = snapshot.isSequential
             isFirstLastPiecePriority = snapshot.isFirstLastPiecePriority
+            isPrivate = torrentHandle.isPrivate
             pieces = snapshot.pieces
             files = snapshot.files
             trackers = snapshot.trackers

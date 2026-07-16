@@ -939,6 +939,98 @@
         }
       }
     },
+    "common.no" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "否"
+          }
+        }
+      }
+    },
+    "common.yes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ja"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sí"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sì"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tak"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Да"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "是"
+          }
+        }
+      }
+    },
     "common.optional" : {
       "localizations" : {
         "de" : {
@@ -2295,6 +2387,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hash v2"
+          }
+        }
+      }
+    },
+    "details.info.private" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privado"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privato"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prywatny"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приватный"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私有"
           }
         }
       }
@@ -4890,6 +5028,144 @@
         }
       }
     },
+    "list.add.url.error.authentication" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Tracker erfordert möglicherweise eine Anmeldung. Öffne den Link im Browser, lade die .torrent-Datei herunter und teile sie anschließend mit iTorrent."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This tracker requires a signed-in browser session. Open the link in the browser, download the .torrent file, then share it with iTorrent."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este tracker requiere una sesión iniciada en el navegador. Abre el enlace en el navegador, descarga el archivo .torrent y compártelo con iTorrent."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo tracker richiede l'accesso nel browser. Apri il link nel browser, scarica il file .torrent e condividilo con iTorrent."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten tracker wymaga zalogowanej sesji przeglądarki. Otwórz link w przeglądarce, pobierz plik .torrent, a następnie udostępnij go aplikacji iTorrent."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот трекер требует входа через браузер. Откройте ссылку в браузере, скачайте файл .torrent, затем поделитесь им с iTorrent."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此 Tracker 需要已登录的浏览器会话。请在浏览器中打开链接，下载 .torrent 文件，然后共享到 iTorrent。"
+          }
+        }
+      }
+    },
+    "list.add.url.error.http" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Torrent-Anfrage ist mit HTTP-Status %ld fehlgeschlagen. Versuche, den Link im Browser zu öffnen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The torrent request failed with HTTP status %ld. Try opening the link in the browser."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La solicitud del torrent falló con el estado HTTP %ld. Prueba a abrir el enlace en el navegador."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La richiesta del torrent non è riuscita con stato HTTP %ld. Prova ad aprire il link nel browser."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Żądanie torrenta nie powiodło się ze stanem HTTP %ld. Spróbuj otworzyć link w przeglądarce."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запрос torrent-файла завершился с HTTP-статусом %ld. Попробуйте открыть ссылку в браузере."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent 请求失败，HTTP 状态码为 %ld。请尝试在浏览器中打开链接。"
+          }
+        }
+      }
+    },
+    "list.add.url.error.invalidTorrent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server hat keine gültige .torrent-Datei zurückgegeben. Möglicherweise ist eine Anmeldung im Browser erforderlich."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server did not return a valid .torrent file. You may need to sign in using the browser."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor no devolvió un archivo .torrent válido. Puede que tengas que iniciar sesión desde el navegador."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il server non ha restituito un file .torrent valido. Potrebbe essere necessario accedere dal browser."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serwer nie zwrócił prawidłowego pliku .torrent. Może być wymagane zalogowanie się w przeglądarce."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер не вернул корректный файл .torrent. Возможно, требуется войти через браузер."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器未返回有效的 .torrent 文件。你可能需要先在浏览器中登录。"
+          }
+        }
+      }
+    },
     "list.add.url.message" : {
       "localizations" : {
         "de" : {
@@ -4932,6 +5208,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "请在下面输入现有的 Torrent URL"
+          }
+        }
+      }
+    },
+    "list.add.url.openInBrowser" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Im Browser öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in Browser"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abrir en el navegador"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apri nel browser"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otwórz w przeglądarce"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открыть в браузере"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在浏览器中打开"
           }
         }
       }
@@ -10524,43 +10846,43 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatisch alle Tracker zu neu hinzugefügten Torrents hinzufügen"
+            "value" : "Automatisch alle Tracker zu neu hinzugefügten öffentlichen Torrents hinzufügen. Private Torrents sind ausgeschlossen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatically add all trackers to newly added torrents"
+            "value" : "Automatically add all trackers to newly added public torrents. Private torrents are excluded."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Añade automáticamente todos los trackers a los nuevos torrents añadidos"
+            "value" : "Añade automáticamente todos los trackers a los nuevos torrents públicos. Los torrents privados están excluidos."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi automaticamente tutti i tracker ai torrent appena aggiunti"
+            "value" : "Aggiungi automaticamente tutti i tracker ai nuovi torrent pubblici. I torrent privati sono esclusi."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatycznie dodawaj wszystkie trakery do nowych torrentów"
+            "value" : "Automatycznie dodawaj wszystkie trackery do nowych publicznych torrentów. Prywatne torrenty są wykluczone."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Автоматически добавляет все трекеры в новые торренты"
+            "value" : "Автоматически добавлять все трекеры в новые публичные торренты. Приватные торренты исключены."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "自动将所有Tracker添加到新的下载任务中"
+            "value" : "自动将所有 Tracker 添加到新建的公开 Torrent。私有 Torrent 不会添加。"
           }
         }
       }
