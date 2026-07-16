@@ -55,6 +55,7 @@ public class Air: ObservableObject {
 
     public static func stop() {
         Air.shared.unregisterExternalDisplayAccessory()
+        Air.shared.connected = false
         Air.shared.remove()
         Air.shared.superView = nil
         Air.shared.hostingController = nil
@@ -98,11 +99,8 @@ public class Air: ObservableObject {
 
     public func connect(windowScene: UIWindowScene) {
         // print("AirKit - Connect")
-        self.connected = true
-
         add(scene: windowScene) { success in
-            guard success else { return }
-            self.connected = true
+            self.connected = success
         }
     }
 
@@ -154,6 +152,10 @@ public class Air: ObservableObject {
 
     func remove() {
         // print("AirKit - Remove")
+        airWindow?.isHidden = true
+        airWindow?.rootViewController = nil
+        airWindow?.windowScene = nil
+        airWindow = nil
         airWindowScene = nil
     }
 
@@ -176,4 +178,3 @@ private class AirPlaySceneDelegate: UIResponder, UISceneDelegate {
         Air.shared.disconnect(windowScene: windowScene)
     }
 }
-

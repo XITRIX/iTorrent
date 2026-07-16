@@ -52,7 +52,7 @@ struct RendererRouteMenuView: View {
                     }
                     .disabled(isRecasting || !renderer.canVideo)
                 }
-                Text(statusMessage ?? "Searching…")
+                Text(statusMessage ?? %"Searching…")
             }
 
             Section {
@@ -81,11 +81,11 @@ struct RendererRouteMenuView: View {
 
         services = RendererDiscoverer.availableServices()
         guard !services.isEmpty else {
-            statusMessage = "No VLC renderer discoverers available"
+            statusMessage = %"player.renderer.noDiscoverers"
             return
         }
 
-        statusMessage = "Searching…"
+        statusMessage = %"Searching…"
         var startedDiscoverers: [RendererDiscoverer] = []
         var startedServiceNames: [String] = []
 
@@ -104,9 +104,9 @@ struct RendererRouteMenuView: View {
 
         discoverers = startedDiscoverers
         if startedDiscoverers.isEmpty {
-            statusMessage = "VLC renderer discovery could not start"
+            statusMessage = %"player.renderer.discoveryFailed"
         } else {
-            statusMessage = "Searching…" //"Searching via \(startedServiceNames.joined(separator: ", "))"
+            statusMessage = %"Searching…" //"Searching via \(startedServiceNames.joined(separator: ", "))"
         }
     }
 
@@ -145,7 +145,8 @@ struct RendererRouteMenuView: View {
     private func recast(to renderer: RendererItem?) {
         guard !isRecasting else { return }
         isRecasting = true
-        statusMessage = renderer.map { "Connecting to \($0.name)…" } ?? "Returning to this device…"
+        statusMessage = renderer.map { String(format: %"player.renderer.connecting", $0.name) }
+            ?? %"player.renderer.returningToDevice"
 
         Task { @MainActor in
             defer { isRecasting = false }
@@ -163,9 +164,10 @@ struct RendererRouteMenuView: View {
                 }
 
                 selectedRendererID = renderer?.id
-                statusMessage = renderer.map { "Connected to \($0.name)" } ?? "Playing on this device"
+                statusMessage = renderer.map { String(format: %"player.renderer.connected", $0.name) }
+                    ?? %"player.renderer.playingOnDevice"
             } catch {
-                statusMessage = "Could not start renderer playback"
+                statusMessage = %"player.renderer.playbackFailed"
                 selectedRendererID = nil
                 try? await player.recast(to: nil)
             }
@@ -179,7 +181,7 @@ private enum RendererRouteError: Error {
 
 private extension RendererItem {
     var subtitle: String {
-        let capabilities = [canVideo ? "Video" : nil, canAudio ? "Audio" : nil]
+        let capabilities = [canVideo ? %"Video" : nil, canAudio ? %"Audio" : nil]
             .compactMap { $0 }
             .joined(separator: ", ")
         return capabilities.isEmpty ? type : "\(type) · \(capabilities)"

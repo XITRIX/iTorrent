@@ -23,6 +23,7 @@ class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, Observab
 
     @Published var showOverlay: Bool = true
     @Published var segmentedProgress: [Double]?
+    private var playbackTeardownHandler: (() -> Void)?
 
 #if !os(visionOS)
     @Published var pipController: PiPController?
@@ -75,5 +76,19 @@ class VLCPlayerViewModel: BaseViewModelWith<VLCPlayerViewModel.Config>, Observab
     static func canOpenInVLCSync(_ url: URL, timeoutMilliseconds: Int32 = 100) -> Media? {
         guard validateURL(url), let media = try? Media(url: url) else { return nil }
         return media
+    }
+
+    func registerPlaybackTeardownHandler(_ handler: @escaping () -> Void) {
+        playbackTeardownHandler = handler
+    }
+
+    func requestPlaybackTeardown() {
+        let handler = playbackTeardownHandler
+        playbackTeardownHandler = nil
+        handler?()
+    }
+
+    func clearPlaybackTeardownHandler() {
+        playbackTeardownHandler = nil
     }
 }

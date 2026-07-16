@@ -100,6 +100,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 #if !os(visionOS)
     private var pipEventsTask: Task<Void, Never>?
     private var isDismissedForPictureInPicture = false
+    private var isRestoringFromPictureInPicture = false
     private var pictureInPicturePresentationController: UIViewController?
 #endif
 
@@ -175,6 +176,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 
         guard viewModel.pipController?.isActive != true else { return }
         isDismissedForPictureInPicture = false
+        isRestoringFromPictureInPicture = false
         pictureInPicturePresentationController = nil
         pipEventsTask?.cancel()
         pipEventsTask = nil
@@ -199,9 +201,16 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                 case .didStart:
                     dismissForPictureInPicture()
                 case .didStop:
-                    if isDismissedForPictureInPicture {
-                        isDismissedForPictureInPicture = false
-                        pictureInPicturePresentationController = nil
+                    let shouldTearDownPlayback = isDismissedForPictureInPicture && !isRestoringFromPictureInPicture
+                    isDismissedForPictureInPicture = false
+                    isRestoringFromPictureInPicture = false
+                    pictureInPicturePresentationController = nil
+
+                    if shouldTearDownPlayback {
+                        viewModel.requestPlaybackTeardown()
+                        controller.onRestoreUserInterface = nil
+                        pipEventsTask?.cancel()
+                        pipEventsTask = nil
                     }
                 default:
                     break
@@ -215,11 +224,13 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         let controllerToRestore = navigationController ?? self
         pictureInPicturePresentationController = controllerToRestore
         isDismissedForPictureInPicture = true
+        isRestoringFromPictureInPicture = false
         controllerToRestore.dismiss(animated: true)
     }
 
     private func restoreFromPictureInPicture(completion: @escaping @MainActor (Bool) -> Void) {
         let controllerToPresent = pictureInPicturePresentationController ?? navigationController ?? self
+        isRestoringFromPictureInPicture = true
 
         if controllerToPresent.presentingViewController != nil || controllerToPresent.view.window != nil {
             completion(true)
@@ -227,6 +238,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         }
 
         guard let presenter = UIApplication.shared.keySceneWindow?.rootViewController?.topPresented else {
+            isRestoringFromPictureInPicture = false
             completion(false)
             return
         }
@@ -282,6 +294,9 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             }
             .onAppear {
                 configureRemoteCommandCenter()
+                viewModel.registerPlaybackTeardownHandler {
+                    tearDownPlayback(force: true)
+                }
             }
             .onDisappear {
                 tearDownPlayback()
@@ -518,13 +533,14 @@ private extension VLCPlayerViewController.VLCPlayerView {
         }
     }
 
-    func tearDownPlayback() {
+    func tearDownPlayback(force: Bool = false) {
 #if !os(visionOS)
-        guard viewModel.pipController?.isActive != true else { return }
+        guard force || viewModel.pipController?.isActive != true else { return }
         Air.stop()
 #endif
         player.stop()
         remoteCommands.tearDown()
+        viewModel.clearPlaybackTeardownHandler()
     }
 
     private func updateMediaTimeDuration(_ duration: TimeInterval) {
