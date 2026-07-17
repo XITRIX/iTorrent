@@ -6,80 +6,54 @@
 import SwiftUI
 import SwiftVLC
 
-struct RendererRouteMenuView: View {
-    let player: Player
+@MainActor
+final class RendererRouteController: ObservableObject {
+    @Published private(set) var renderers: [RendererItem] = []
+    @Published private(set) var selectedRenderer: RendererItem?
+    @Published private(set) var isRecasting = false
+    @Published private(set) var statusMessage: String?
 
-    @State private var services: [RendererService] = []
-    @State private var discoverers: [RendererDiscoverer] = []
-    @State private var observationTasks: [Task<Void, Never>] = []
-    @State private var renderers: [RendererItem] = []
-    @State private var selectedRendererID: RendererItem.ID?
-    @State private var isRecasting = false
-    @State private var statusMessage: String?
+    private var discoverers: [RendererDiscoverer] = []
+    private var observationTasks: [Task<Void, Never>] = []
+    private var recastTask: Task<Void, Never>?
+    private var isStarted = false
 
-    var body: some View {
-        Menu {
-            Section("Play on") {
-                Button {
-                    recast(to: nil)
-                } label: {
-                    Label("This Device", systemImage: selectedRendererID == nil ? "checkmark" : "iphone")
-                }
-                .disabled(isRecasting)
-
-//            if !services.isEmpty {
-//                Section("Discovery") {
-//                    ForEach(services, id: \.name) { service in
-//                        Label(service.longName, systemImage: "network")
-//                    }
-//                }
-//            }
-
-                ForEach(renderers) { renderer in
-                    Button {
-                        recast(to: renderer)
-                    } label: {
-                        Label {
-                            VStack(alignment: .leading) {
-                                Text(renderer.name)
-                                Text(renderer.subtitle)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                        } icon: {
-                            Image(systemName: selectedRendererID == renderer.id ? "checkmark" : "tv")
-                        }
-                    }
-                    .disabled(isRecasting || !renderer.canVideo)
-                }
-                Text(statusMessage ?? %"Searching…")
-            }
-
-            Section {
-                Text("For AirPlay-compatible devices, use system Screen Mirroring")
-            }
-        } label: {
-            Image(systemName: selectedRendererID == nil ? "airplay.video" : "airplay.video.circle.fill")
-        }
-        .menuOrder(.fixed)
-        .labelStyle(.iconOnly)
-        .imageScale(.medium)
-        .accessibilityLabel("VLC Renderer Output")
-        .task {
-            CastTrustResponder.shared.start()
-            await startDiscovery()
-        }
-        .onDisappear {
-            stopDiscovery()
-            CastTrustResponder.shared.stop()
-        }
+    var selectedRendererID: RendererItem.ID? {
+        selectedRenderer?.id
     }
 
-    @MainActor
-    private func startDiscovery() async {
+    func start() {
+        guard !isStarted else { return }
+        isStarted = true
+        CastTrustResponder.shared.start()
+        startDiscovery()
+    }
+
+    func stop() {
+        guard isStarted else { return }
+        isStarted = false
+        recastTask?.cancel()
+        recastTask = nil
+        stopDiscovery()
+        CastTrustResponder.shared.stop()
+        selectedRenderer = nil
+        isRecasting = false
+        statusMessage = nil
+    }
+
+    func recast(to renderer: RendererItem?, on player: Player) {
+        recast(to: renderer, on: player, isRecoveringFromFailure: false)
+    }
+
+    func handlePlaybackFailure(on player: Player) {
+        guard selectedRenderer != nil, !isRecasting else { return }
+        recast(to: nil, on: player, isRecoveringFromFailure: true)
+    }
+
+    private func startDiscovery() {
         stopDiscovery()
 
-        services = RendererDiscoverer.availableServices()
+        let services = RendererDiscoverer.availableServices()
         guard !services.isEmpty else {
             statusMessage = %"player.renderer.noDiscoverers"
             return
@@ -87,7 +61,6 @@ struct RendererRouteMenuView: View {
 
         statusMessage = %"Searching…"
         var startedDiscoverers: [RendererDiscoverer] = []
-        var startedServiceNames: [String] = []
 
         for service in services {
             guard let discoverer = try? RendererDiscoverer(name: service.name) else { continue }
@@ -95,7 +68,6 @@ struct RendererRouteMenuView: View {
             do {
                 try discoverer.start()
                 startedDiscoverers.append(discoverer)
-                startedServiceNames.append(service.longName)
                 observe(discoverer)
             } catch {
                 continue
@@ -105,16 +77,13 @@ struct RendererRouteMenuView: View {
         discoverers = startedDiscoverers
         if startedDiscoverers.isEmpty {
             statusMessage = %"player.renderer.discoveryFailed"
-        } else {
-            statusMessage = %"Searching…" //"Searching via \(startedServiceNames.joined(separator: ", "))"
         }
     }
 
-    @MainActor
     private func observe(_ discoverer: RendererDiscoverer) {
-        let task = Task { @MainActor in
+        let task = Task { @MainActor [weak self] in
             for await event in discoverer.events {
-                guard !Task.isCancelled else { return }
+                guard let self, !Task.isCancelled else { return }
 
                 switch event {
                 case .itemAdded(let renderer):
@@ -122,17 +91,16 @@ struct RendererRouteMenuView: View {
                         renderers.append(renderer)
                     }
                 case .itemDeleted(let renderer):
+                    // Discovery availability is independent from the active
+                    // playback route. Keep the selected renderer until VLC
+                    // confirms that its playback session has failed.
                     renderers.removeAll { $0 == renderer }
-                    if selectedRendererID == renderer.id {
-                        selectedRendererID = nil
-                    }
                 }
             }
         }
         observationTasks.append(task)
     }
 
-    @MainActor
     private func stopDiscovery() {
         observationTasks.forEach { $0.cancel() }
         observationTasks = []
@@ -141,42 +109,140 @@ struct RendererRouteMenuView: View {
         renderers = []
     }
 
-    @MainActor
-    private func recast(to renderer: RendererItem?) {
+    private func recast(
+        to renderer: RendererItem?,
+        on player: Player,
+        isRecoveringFromFailure: Bool
+    ) {
         guard !isRecasting else { return }
+        let previousRenderer = selectedRenderer
         isRecasting = true
-        statusMessage = renderer.map { String(format: %"player.renderer.connecting", $0.name) }
-            ?? %"player.renderer.returningToDevice"
+        statusMessage = isRecoveringFromFailure
+            ? %"player.renderer.playbackFailed"
+            : renderer.map { String(format: %"player.renderer.connecting", $0.name) }
+                ?? %"player.renderer.returningToDevice"
 
-        Task { @MainActor in
-            defer { isRecasting = false }
+        recastTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer {
+                isRecasting = false
+                recastTask = nil
+            }
 
             do {
-                try await withThrowingTaskGroup(of: Void.self) { group in
-                    group.addTask { try await player.recast(to: renderer) }
-                    group.addTask {
-                        try await Task.sleep(for: .seconds(8))
-                        throw RendererRouteError.connectionTimedOut
-                    }
-
-                    try await group.next()
-                    group.cancelAll()
-                }
-
-                selectedRendererID = renderer?.id
-                statusMessage = renderer.map { String(format: %"player.renderer.connected", $0.name) }
-                    ?? %"player.renderer.playingOnDevice"
+                try await performRecast(to: renderer, on: player)
+                selectedRenderer = renderer
+                statusMessage = nil // renderer.map { String(format: %"player.renderer.connected", $0.name) } ?? %"player.renderer.playingOnDevice"
+            } catch is CancellationError {
+                return
             } catch {
                 statusMessage = %"player.renderer.playbackFailed"
-                selectedRendererID = nil
-                try? await player.recast(to: nil)
+
+                // A failed renderer switch can leave the replacement native
+                // player bound to that renderer. Always make a best-effort
+                // local recast before allowing playback controls to continue.
+                guard renderer != nil else {
+                    selectedRenderer = previousRenderer
+                    return
+                }
+
+                do {
+                    try await performRecast(to: nil, on: player)
+                    selectedRenderer = nil
+                    statusMessage = nil // %"player.renderer.playingOnDevice"
+                } catch {
+                    selectedRenderer = previousRenderer
+                }
             }
         }
+    }
+
+    private func performRecast(to renderer: RendererItem?, on player: Player) async throws {
+        try await withThrowingTaskGroup(of: Void.self) { group in
+            group.addTask {
+                try await player.recast(to: renderer)
+                guard await player.state != .error else {
+                    throw RendererRouteError.playbackFailed
+                }
+            }
+            group.addTask {
+                try await Task.sleep(for: .seconds(8))
+                throw RendererRouteError.connectionTimedOut
+            }
+
+            _ = try await group.next()
+            group.cancelAll()
+        }
+    }
+}
+
+struct RendererRouteMenuView: View {
+    let player: Player
+    @ObservedObject var routeController: RendererRouteController
+
+    @EnvironmentObject private var air: Air
+
+    var body: some View {
+        Menu {
+            Section("Play on") {
+                Button {
+                    routeController.recast(to: nil, on: player)
+                } label: {
+                    Label(
+                        air.connected ? "AirPlay" : "This Device",
+                        systemImage: routeController.selectedRendererID == nil ? "checkmark" : "iphone"
+                    )
+                }
+                .disabled(routeController.isRecasting)
+
+//            if !services.isEmpty {
+//                Section("Discovery") {
+//                    ForEach(services, id: \.name) { service in
+//                        Label(service.longName, systemImage: "network")
+//                    }
+//                }
+//            }
+
+                ForEach(routeController.renderers) { renderer in
+                    Button {
+                        routeController.recast(to: renderer, on: player)
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading) {
+                                Text(renderer.name)
+                                Text(renderer.subtitle)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: routeController.selectedRendererID == renderer.id ? "checkmark" : "tv")
+                        }
+                    }
+                    .disabled(routeController.isRecasting || !renderer.canVideo)
+                }
+                if let status = routeController.statusMessage {
+                    Text(status)
+                }
+            }
+
+            if !air.connected {
+                Section {
+                    Text("For AirPlay-compatible devices, use system Screen Mirroring")
+                }
+            }
+        } label: {
+            Image(systemName: routeController.selectedRendererID == nil ? "airplay.video" : "airplay.video.circle.fill")
+        }
+        .menuOrder(.fixed)
+        .labelStyle(.iconOnly)
+        .imageScale(.medium)
+        .accessibilityLabel("VLC Renderer Output")
     }
 }
 
 private enum RendererRouteError: Error {
     case connectionTimedOut
+    case playbackFailed
 }
 
 private extension RendererItem {

@@ -99,6 +99,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
     private var disposeBag = DisposeBag() // [AnyCancellable] = []
 #if !os(visionOS)
     private var pipEventsTask: Task<Void, Never>?
+    private weak var observedPictureInPictureController: PiPController?
     private var isDismissedForPictureInPicture = false
     private var isRestoringFromPictureInPicture = false
     private var pictureInPicturePresentationController: UIViewController?
@@ -126,14 +127,6 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             try AVAudioSession.sharedInstance().setCategory(.playback, options: [])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {}
-
-#if !os(visionOS)
-        let pipButton = UIBarButtonItem(image: .init(systemName: "pip"), primaryAction: .init { [unowned self] _ in
-            viewModel.pipController?.toggle()
-        })
-//        pipButton.isEnabled = viewModel.pipController?.isPossible == true
-        navigationItem.leftBarButtonItem = pipButton
-#endif
 
         navigationItem.rightBarButtonItem = .init(systemItem: .close, primaryAction: .init { [unowned self] _ in
             dismiss()
@@ -180,7 +173,8 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         pictureInPicturePresentationController = nil
         pipEventsTask?.cancel()
         pipEventsTask = nil
-        viewModel.pipController?.onRestoreUserInterface = nil
+        observedPictureInPictureController?.onRestoreUserInterface = nil
+        observedPictureInPictureController = nil
     }
 
     private func configurePictureInPicture(_ controller: PiPController) {
@@ -192,7 +186,10 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             }
         }
 
-        guard pipEventsTask == nil else { return }
+        guard observedPictureInPictureController !== controller else { return }
+        observedPictureInPictureController?.onRestoreUserInterface = nil
+        pipEventsTask?.cancel()
+        observedPictureInPictureController = controller
         pipEventsTask = Task { @MainActor [self, weak controller] in
             guard let controller else { return }
             for await event in controller.pipEvents {
@@ -211,6 +208,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                         controller.onRestoreUserInterface = nil
                         pipEventsTask?.cancel()
                         pipEventsTask = nil
+                        observedPictureInPictureController = nil
                     }
                 default:
                     break
@@ -233,6 +231,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         isRestoringFromPictureInPicture = true
 
         if controllerToPresent.presentingViewController != nil || controllerToPresent.view.window != nil {
+            didRestoreFromPictureInPicture()
             completion(true)
             return
         }
@@ -244,8 +243,15 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         }
 
         presenter.present(controllerToPresent, animated: true) {
+            self.didRestoreFromPictureInPicture()
             completion(true)
         }
+    }
+
+    private func didRestoreFromPictureInPicture() {
+        isDismissedForPictureInPicture = false
+        isRestoringFromPictureInPicture = false
+        pictureInPicturePresentationController = nil
     }
 #endif
 
@@ -256,6 +262,17 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             VLCPlayerView(viewModel: viewModel)
 #if !os(visionOS)
                 .environmentObject(Air.shared)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            viewModel.pipController?.toggle()
+                        } label: {
+                            Image(systemName: "pip")
+                                .font(.callout)
+                                .fontWeight(.semibold)
+                        }
+                    }
+                }
 #endif
         }
     }
@@ -266,6 +283,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 #endif
         @ObservedObject var viewModel: VLCPlayerViewModel
         @State private var player = Player()
+        @StateObject private var rendererRouteController = RendererRouteController()
         @State private var currentPlaybackTime: TimeInterval = 0
         @State private var mediaTimeDuration: TimeInterval = 60 * 6
         @State private var isSeeking: Bool = false
@@ -293,6 +311,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                 await observePlayerEvents()
             }
             .onAppear {
+                rendererRouteController.start()
                 configureRemoteCommandCenter()
                 viewModel.registerPlaybackTeardownHandler {
                     tearDownPlayback(force: true)
@@ -414,7 +433,10 @@ private extension VLCPlayerViewController.VLCPlayerView {
                     selectedRate: $playbackRate
                 )
 
-                RendererRouteMenuView(player: player)
+                RendererRouteMenuView(
+                    player: player,
+                    routeController: rendererRouteController
+                )
             }
             .padding(.horizontal)
             .frame(height: 44)
@@ -475,7 +497,15 @@ private extension VLCPlayerViewController.VLCPlayerView {
     @ViewBuilder
     var videoOutput: some View {
 #if !os(visionOS)
-        PiPVideoView(player, controller: $viewModel.pipController, onSurfaceReady: Air.play)
+        PiPVideoView(
+            player,
+            controller: $viewModel.pipController,
+            onSurfaceReady: { surface in
+                Air.play(surface) {
+                    player.refreshVideoOutputAfterDisplayMove()
+                }
+            }
+        )
 #else
         VideoView(player)
 #endif
@@ -524,6 +554,9 @@ private extension VLCPlayerViewController.VLCPlayerView {
                 syncTracksFromPlayer()
             case .stateChanged:
                 updateNowPlayingPlaybackState()
+            case .encounteredError:
+                rendererRouteController.handlePlaybackFailure(on: player)
+                updateNowPlayingPlaybackState()
             case .endReached:
                 currentPlaybackTime = mediaTimeDuration
                 updateNowPlayingPlaybackState()
@@ -538,6 +571,7 @@ private extension VLCPlayerViewController.VLCPlayerView {
         guard force || viewModel.pipController?.isActive != true else { return }
         Air.stop()
 #endif
+        rendererRouteController.stop()
         player.stop()
         remoteCommands.tearDown()
         viewModel.clearPlaybackTeardownHandler()

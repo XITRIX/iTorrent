@@ -20,6 +20,8 @@ public class Air: ObservableObject {
     private var airWindow: UIWindow?
 
     private var superView: UIView?
+    private var surfaceView: UIView?
+    private var onSurfaceRestored: (@MainActor () -> Void)?
     private var hostingController: UIViewController?
 
     private var appIsActive: Bool { UIApplication.shared.applicationState == .active }
@@ -40,15 +42,27 @@ public class Air: ObservableObject {
 
     public static func play(_ view: AnyView) {
         Air.shared.superView = nil
+        Air.shared.surfaceView = nil
+        Air.shared.onSurfaceRestored = nil
         Air.shared.hostingController = UIHostingController<AnyView>(rootView: view)
         Air.shared.check()
     }
 
-    public static func play(_ view: UIView) {
+    public static func play(
+        _ view: UIView,
+        onSurfaceRestored: (@MainActor () -> Void)? = nil
+    ) {
         Air.shared.registerExternalDisplayAccessoryIfNeeded()
         Air.shared.superView = view.superview
+        Air.shared.surfaceView = view
+        Air.shared.onSurfaceRestored = onSurfaceRestored
+
+        // Keep the external controller's root view stable. Making the video
+        // surface itself the root view leaves it owned by that controller
+        // after it is reparented to the phone, and tearing the external
+        // window down can consequently invalidate VLC's rendering surface.
         let vc = UIViewController()
-        vc.view = view
+        vc.view.backgroundColor = .black
         Air.shared.hostingController = vc
         Air.shared.check()
     }
@@ -58,6 +72,8 @@ public class Air: ObservableObject {
         Air.shared.connected = false
         Air.shared.remove()
         Air.shared.superView = nil
+        Air.shared.surfaceView = nil
+        Air.shared.onSurfaceRestored = nil
         Air.shared.hostingController = nil
     }
 
@@ -109,8 +125,6 @@ public class Air: ObservableObject {
 
         airWindowScene = scene
 
-        airWindow = UIWindow(frame: scene.screen.bounds)
-
         guard let viewController: UIViewController = hostingController else {
             // print("AirKit - Add - Failed: Hosting Controller Not Found")
             completion(false)
@@ -122,8 +136,10 @@ public class Air: ObservableObject {
             completion(false)
             return
         }
-        self.airWindow?.rootViewController = viewController
-        self.airWindow?.windowScene = airWindowScene
+        let airWindow = UIWindow(windowScene: airWindowScene)
+        airWindow.frame = airWindowScene.screen.bounds
+        airWindow.rootViewController = viewController
+        self.airWindow = airWindow
 
         if let _ = viewController as? UIHostingController<AnyView> {
             let traitCollection = UITraitCollection(traitsFrom: [
@@ -133,7 +149,11 @@ public class Air: ObservableObject {
             viewController.setOverrideTraitCollection(traitCollection, forChild: viewController)
         }
 
-        self.airWindow?.isHidden = false
+        airWindow.isHidden = false
+
+        if let surfaceView {
+            move(surfaceView, to: viewController.view)
+        }
         // print("AirKit - Add Screen - Done")
         completion(true)
     }
@@ -142,12 +162,42 @@ public class Air: ObservableObject {
         // print("AirKit - Disconnect")
         guard windowScene == airWindowScene else { return }
 
-        if let superView, let view = hostingController?.view {
-            superView.addSubview(view)
-            view.frame = superView.bounds
-        }
+        // First detach the drawable from the external controller, then tear
+        // its window down, and only then attach the drawable to the phone.
+        // This produces an unambiguous external -> nil -> phone lifecycle.
+        surfaceView?.removeFromSuperview()
         remove()
+
+        if let superView, let surfaceView {
+            move(surfaceView, to: superView)
+            let restoreVideoOutput = onSurfaceRestored
+
+            Task { @MainActor [weak superView, weak surfaceView, restoreVideoOutput] in
+                await Task.yield()
+                guard
+                    let superView,
+                    let surfaceView,
+                    surfaceView.superview === superView
+                else { return }
+
+                superView.layoutIfNeeded()
+                surfaceView.setNeedsLayout()
+                surfaceView.layoutIfNeeded()
+                restoreVideoOutput?()
+            }
+        }
         connected = false
+    }
+
+    private func move(_ view: UIView, to superView: UIView) {
+        if view.superview !== superView {
+            view.removeFromSuperview()
+            superView.addSubview(view)
+        }
+        view.frame = superView.bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        superView.setNeedsLayout()
+        view.setNeedsLayout()
     }
 
     func remove() {
