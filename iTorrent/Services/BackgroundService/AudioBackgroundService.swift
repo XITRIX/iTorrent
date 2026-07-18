@@ -39,17 +39,30 @@ extension AudioBackgroundService: BackgroundServiceProtocol {
 
 private extension AudioBackgroundService {
     @objc func interruptedAudio(_ notification: Notification) {
-        if notification.name == AVAudioSession.interruptionNotification,
-           let info = notification.userInfo
-        {
-            var intValue = 0
-            let key = info[AVAudioSessionInterruptionTypeKey] as AnyObject
-            key.getValue(&intValue)
-            if intValue == 1 {
-                if !playAudio() {
-                    stop()
-                }
+        guard notification.name == AVAudioSession.interruptionNotification,
+              let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue)
+        else {
+            return
+        }
+
+        switch type {
+        case .began:
+            // Keep the service alive while the system owns the audio session.
+            break
+        case .ended:
+            // This is not user-controlled media playback, so background demand—not
+            // AVAudioSessionInterruptionOptionShouldResume—determines whether to resume.
+            guard BackgroundService.isBackgroundNeeded else { return }
+
+            do {
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                print("\(Date.now.timestamp) [BG] failed to reactivate audio session: \(error)")
             }
+            startBackgroundTask()
+        @unknown default:
+            break
         }
     }
 
