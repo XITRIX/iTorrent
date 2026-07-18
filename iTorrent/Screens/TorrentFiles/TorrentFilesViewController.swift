@@ -78,7 +78,7 @@ private extension TorrentFilesViewController {
         }
 
         let shareAction = UIAction(title: %"common.share", image: .init(systemName: "square.and.arrow.up")) { [unowned self] _ in
-            viewModel.shareSelected(collectionView.indexPathsForSelectedItems ?? [])
+            shareSelectedItems()
         }
 
         var menuElements: [UIMenuElement] = []
@@ -101,6 +101,16 @@ private extension TorrentFilesViewController {
         moreMenuButton.menu = menu
         moreMenuButton.primaryAction = nil
         moreMenuButton.image = .systemEllipsis
+    }
+
+    func shareSelectedItems() {
+        let urls = viewModel.shareURLs(for: collectionView.indexPathsForSelectedItems ?? [])
+        guard !urls.isEmpty else { return }
+
+        let controller = UIActivityViewController(activityItems: urls, applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = moreMenuButton
+        controller.popoverPresentationController?.permittedArrowDirections = .any
+        present(controller, animated: true)
     }
 }
 

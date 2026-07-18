@@ -69,6 +69,10 @@ extension TorrentFilesViewModel {
     }
 
     func canShareSelected(_ indexPaths: [IndexPath]) -> Bool {
+        !shareURLs(for: indexPaths).isEmpty
+    }
+
+    func shareURLs(for indexPaths: [IndexPath]) -> [URL] {
         indexPaths.flatMap { indexPath in
             switch rootDirectory.storage[keys[indexPath.item]] {
             case let path as PathNode:
@@ -78,9 +82,12 @@ extension TorrentFilesViewModel {
             default:
                 return []
             }
-        }.contains {
+        }.filter {
             let file = torrentHandle.snapshot.files[$0]
             return file.downloaded >= file.size
+        }
+        .map {
+            downloadPath.appending(path: torrentHandle.snapshot.files[$0].path)
         }
     }
 
@@ -98,10 +105,6 @@ extension TorrentFilesViewModel {
             let file = torrentHandle.snapshot.files[$0]
             return file.downloaded < file.size
         }
-    }
-
-    func shareSelected(_ indexPaths: [IndexPath]) {
-        alertWithTimer(message: "This feature is not implemented yet")
     }
 
     func node(at index: Int) -> Node {
