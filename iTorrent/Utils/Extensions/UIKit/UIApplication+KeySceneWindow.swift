@@ -9,12 +9,9 @@ import UIKit
 
 extension UIApplication {
     var keySceneWindow: UIWindow? {
-        guard let keyWindow = UIApplication.shared.connectedScenes
+        connectedScenes
             .compactMap({ $0 as? UIWindowScene })
-            .first?.windows
+            .flatMap(\.windows)
             .first(where: { $0.isKeyWindow })
-        else { return nil }
-
-        return keyWindow
     }
 }

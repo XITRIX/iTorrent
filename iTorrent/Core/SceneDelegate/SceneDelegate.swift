@@ -92,13 +92,12 @@ class SceneDelegate: MvvmSceneDelegate {
         let svc = UISplitViewController.resolve()
         svc.viewControllers = [nvc]
 
-        invokeInitialSetup()
-
         return svc
     }
 
     override func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         super.scene(scene, willConnectTo: session, options: connectionOptions)
+        invokeInitialSetup()
         connectionOptions.urlContexts.forEach { context in
             let url = context.url
             processURL(url)
@@ -134,9 +133,12 @@ class SceneDelegate: MvvmSceneDelegate {
 
 private extension SceneDelegate {
     func invokeInitialSetup() {
-        Task { @MainActor in
+        guard let window else { return }
+
+        Task { @MainActor [weak window] in
             try await Task.sleep(for: .seconds(0.5))
-            await InitialSetupFlow.startIfNeeded()
+            guard let window else { return }
+            await InitialSetupFlow.startIfNeeded(in: window)
         }
     }
 }

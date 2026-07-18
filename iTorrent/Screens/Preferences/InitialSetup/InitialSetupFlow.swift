@@ -13,12 +13,11 @@ class InitialSetupFlow {
     ]
 
     @MainActor
-    static func startIfNeeded() async {
-        let keyWindow = UIApplication.shared.keySceneWindow
+    static func startIfNeeded(in window: UIWindow) async {
         let filteredSetupStack = setupStack.filter { $0.isNeeded }
 
         guard !filteredSetupStack.isEmpty,
-              let topController = keyWindow?.rootViewController?.topPresented
+              let topController = window.rootViewController?.topPresented
         else { return }
 
         let context = UINavigationController.resolve()
