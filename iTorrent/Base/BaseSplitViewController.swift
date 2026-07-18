@@ -38,6 +38,8 @@ class BaseSplitViewController: UISplitViewController {
     }
 
     override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+        guard canShowDetailViewController else { return }
+
         if let nvc = vc as? UINavigationController {
             if isCollapsed {
                 if let vc = nvc.topViewController {
@@ -45,8 +47,19 @@ class BaseSplitViewController: UISplitViewController {
                     super.showDetailViewController(vc, sender: sender)
                 }
             } else {
-                detailViewController = nvc.topViewController
-                super.showDetailViewController(nvc, sender: sender)
+                guard let detail = nvc.topViewController else { return }
+                detailViewController = detail
+
+                if let secondaryNavigationController,
+                   secondaryNavigationController !== nvc
+                {
+                    nvc.setViewControllers([], animated: false)
+                    secondaryNavigationController.setToolbarHidden(true, animated: false)
+                    secondaryNavigationController.setViewControllers([detail], animated: false)
+                    synchronizeToolbarVisibility(of: secondaryNavigationController)
+                } else {
+                    super.showDetailViewController(nvc, sender: sender)
+                }
             }
         } else {
             if isCollapsed {
@@ -71,13 +84,21 @@ class BaseSplitViewController: UISplitViewController {
         else { return super.pop(animated: animated, sender: sender) }
 
         if vc == secondaryNavigationController?.viewControllers.first {
-            viewControllers[1] = emptyView
+            _ = showEmptyDetail()
         }
     }
 
     func showEmptyDetail() -> Bool {
         guard !isCollapsed else { return false }
-        viewControllers[1] = emptyView
+
+        detailViewController = nil
+        if let secondaryNavigationController {
+            secondaryNavigationController.setToolbarHidden(true, animated: false)
+            secondaryNavigationController.setViewControllers([emptyView], animated: false)
+            synchronizeToolbarVisibility(of: secondaryNavigationController)
+        } else {
+            viewControllers[1] = emptyView
+        }
         return true
     }
 }
@@ -106,8 +127,8 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
         else { return true }
 
         nvc.viewControllers += snvc.viewControllers.filter { $0 != emptyView }
-        nvc.isToolbarHidden = snvc.isToolbarHidden
         snvc.viewControllers = []
+        synchronizeToolbarVisibility(of: nvc)
         return true
     }
 
@@ -135,21 +156,12 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
             vcs = []
         }
 
-        if let baseVC = nvc.viewControllers.last as? ToolbarHidingProtocol {
-            nvc.isToolbarHidden = baseVC.isToolbarItemsHidden
-        } else {
-            nvc.isToolbarHidden = nvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
-        }
+        synchronizeToolbarVisibility(of: nvc)
 
         if !vcs.isEmpty {
             let snvc = UINavigationController.resolve()
             snvc.viewControllers = vcs.reversed()
-
-            if let baseVC = snvc.viewControllers.last as? ToolbarHidingProtocol {
-                nvc.isToolbarHidden = baseVC.isToolbarItemsHidden
-            } else {
-                snvc.isToolbarHidden = snvc.viewControllers.last?.toolbarItems?.isEmpty ?? true
-            }
+            synchronizeToolbarVisibility(of: snvc)
 
             return snvc
         }
@@ -159,6 +171,36 @@ extension BaseSplitViewController: UISplitViewControllerDelegate {
 }
 
 private extension BaseSplitViewController {
+    func synchronizeToolbarVisibility(of navigationController: UINavigationController) {
+        applyToolbarVisibility(to: navigationController)
+
+        // Split-view adaptation can overwrite the value after the delegate
+        // callback, so apply it once more after UIKit installs the new columns.
+        DispatchQueue.main.async { [weak self, weak navigationController] in
+            guard let self, let navigationController else { return }
+            self.applyToolbarVisibility(to: navigationController)
+        }
+    }
+
+    func applyToolbarVisibility(to navigationController: UINavigationController) {
+        let topViewController = navigationController.topViewController
+        let isHidden = (topViewController as? ToolbarHidingProtocol)?.isToolbarItemsHidden
+            ?? topViewController?.toolbarItems?.isEmpty
+            ?? true
+        navigationController.setToolbarHidden(isHidden, animated: false)
+    }
+
+    var canShowDetailViewController: Bool {
+        guard transitionCoordinator == nil else { return false }
+
+        let navigationController = isCollapsed ? primaryNavigationController : secondaryNavigationController
+        if let navigationController = navigationController as? SANavigationController {
+            return navigationController.canPerformNavigationTransition
+        }
+
+        return navigationController?.transitionCoordinator == nil
+    }
+
     struct EmptyView: View {
         var body: some View {
             Image(.iTorrentLogo)

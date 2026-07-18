@@ -11,6 +11,11 @@ import UIKit
 /// Swipe Anywhere - to close view controller
 public class SANavigationController: UINavigationController {
     var locker = true
+    private var isPerformingNavigationTransition = false
+
+    var canPerformNavigationTransition: Bool {
+        !isPerformingNavigationTransition && transitionCoordinator == nil
+    }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +42,26 @@ public class SANavigationController: UINavigationController {
     }()
 
     override public func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        super.pushViewController(viewController, animated: animated)
+        guard canPerformNavigationTransition else { return }
+
+        isPerformingNavigationTransition = true
         locker = true
+        super.pushViewController(viewController, animated: animated)
+
+        if transitionCoordinator == nil {
+            finishNavigationTransition()
+        }
     }
 }
 
 extension SANavigationController: UINavigationControllerDelegate {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        isPerformingNavigationTransition = true
+    }
+
     public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         fullScreenPanGestureRecognizer.isEnabled = viewControllers.count > 1
+        finishNavigationTransition()
     }
 }
 
@@ -78,6 +95,16 @@ extension SANavigationController: UIGestureRecognizerDelegate {
             return velocity.x > 0
         } else {
             return velocity.x < 0
+        }
+    }
+}
+
+private extension SANavigationController {
+    func finishNavigationTransition() {
+        // UIKit can still be flushing navigation-bar constraints from didShow.
+        // Keep the transition locked until the next main-queue turn.
+        DispatchQueue.main.async { [weak self] in
+            self?.isPerformingNavigationTransition = false
         }
     }
 }

@@ -79,7 +79,7 @@ class TorrentDetailsViewController<VM: TorrentDetailsViewModel>: BaseCollectionV
                 viewModel.shareMagnet()
             })
         ])
-        navigationItem.trailingItemGroups.append(.fixedGroup(items: [shareButton]))
+        navigationItem.trailingItemGroups = [.fixedGroup(items: [shareButton])]
 
         reloadToolbar()
     }
