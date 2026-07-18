@@ -11,7 +11,8 @@ import UIKit
 class AudioBackgroundService: @unchecked Sendable {
     private var player: AVAudioPlayer?
     private var backgroundTask: UIBackgroundTaskIdentifier?
-    private var asyncTask: Task<Void, Error>?
+    private var asyncTask: Task<Void, Never>?
+    private let asyncTaskLock = NSLock()
 }
 
 extension AudioBackgroundService: BackgroundServiceProtocol {
@@ -28,7 +29,7 @@ extension AudioBackgroundService: BackgroundServiceProtocol {
 
     func stop() {
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
-        asyncTask?.cancel()
+        replaceAsyncTask(with: nil)
         stopBackgroundTask()
         stopAudio()
     }
@@ -98,10 +99,24 @@ private extension AudioBackgroundService {
             return
         }
 
-        asyncTask = Task {
+        let task = Task { [weak self] in
+            guard let self else { return }
+            await runBackgroundTask()
+        }
+        replaceAsyncTask(with: task)
+    }
+
+    func runBackgroundTask() async {
+        while !Task.isCancelled {
+            guard BackgroundService.isBackgroundNeeded else {
+                stopBackgroundTask()
+                stopAudio()
+                return
+            }
+
             playAudio()
             stopBackgroundTask()
-            
+
             backgroundTask = await UIApplication.shared.beginBackgroundTask { [weak self] in
                 guard let self else { return }
                 print("\(Date.now.timestamp) [BG] timeout!!!")
@@ -109,14 +124,26 @@ private extension AudioBackgroundService {
             }
 
             stopAudio()
-            try Task.checkCancellation()
+            guard !Task.isCancelled else { return }
 
             // If cannot start BG try again
-            guard backgroundTask != .invalid else { return startBackgroundTask() }
+            guard backgroundTask != .invalid else { continue }
             print("\(Date.now.timestamp) [BG] running!!!")
-            try await Task.sleep(for: .seconds(10))
-            startBackgroundTask()
+            do {
+                try await Task.sleep(for: .seconds(10))
+            } catch {
+                return
+            }
         }
+    }
+
+    func replaceAsyncTask(with task: Task<Void, Never>?) {
+        asyncTaskLock.lock()
+        let previousTask = asyncTask
+        asyncTask = task
+        asyncTaskLock.unlock()
+
+        previousTask?.cancel()
     }
 
     func stopBackgroundTask() {
