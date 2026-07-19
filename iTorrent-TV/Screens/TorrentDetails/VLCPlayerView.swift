@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-import VLCKit
 
 struct VLCPlayerView: View {
     let url: URL

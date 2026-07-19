@@ -115,7 +115,7 @@
       "location" : "https://github.com/joekndy/MarqueeText.git",
       "state" : {
         "branch" : "master",
-        "revision" : "22309f6863a182e81a2b4ebbca8cdc044f854b33"
+        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
       }
     },
     {
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/OpenSSL.git",
       "state" : {
-        "revision" : "316422d246d859c2c07f47678440988940bb88ee",
-        "version" : "3.6.0"
+        "revision" : "e7d34385da795aaaeb2212e38c7401e5c333f792",
+        "version" : "3.6.1"
       }
     },
     {
