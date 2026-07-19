@@ -80,6 +80,7 @@ jobs:
           -sdk iphoneos \
           -configuration Release \
           -destination generic/platform=iOS \
+          -skipMacroValidation \
           clean archive     
       
       - name: Upload archive
