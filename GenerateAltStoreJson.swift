@@ -213,7 +213,9 @@ enum AltServerGenerator {
             ]
         )
 
-        let sourceJsonData = try JSONEncoder().encode(model)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+        let sourceJsonData = try encoder.encode(model)
         let sourceJson = String(data: sourceJsonData, encoding: .utf8)!
         print(sourceJson)
     }
