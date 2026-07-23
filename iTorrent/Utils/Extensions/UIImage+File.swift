@@ -11,7 +11,7 @@ import UIKit
 public extension UIImage {
     private enum IconStorage {
         @MainActor
-        static var storage: [String: UIImage] = [:]
+        static let cache = NSCache<NSString, UIImage>()
     }
 
 //    enum FileIconSize {
@@ -41,7 +41,7 @@ public extension UIImage {
     class func icon(forFileURL fileURL: URL, size: CGFloat = 44, scale: CGFloat? = nil, forcePlaceholder: Bool = false) -> UIImage {
         let scale = scale ?? UITraitCollection.current.displayScale
         let key = "\(fileURL.pathExtension)-\(size * scale)"
-        if let icon = IconStorage.storage[key] {
+        if let icon = IconStorage.cache.object(forKey: key as NSString) {
             return icon
         }
 
@@ -92,7 +92,7 @@ public extension UIImage {
             }
             UIImage(resource: .thumbnailForeground).draw(in: CGRect(origin: .zero, size: size))
         }
-        IconStorage.storage[key] = result
+        IconStorage.cache.setObject(result, forKey: key as NSString)
         return result
     }
 

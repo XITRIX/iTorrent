@@ -11,6 +11,11 @@ import QuickLook
 import UIKit
 
 class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionViewListCell<VM> {
+    private let reloadQueue = DispatchQueue(
+        label: "com.xitrix.iTorrent.torrent-file-cell-reload",
+        qos: .userInitiated
+    )
+
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var progressView: UISegmentedProgressView!
@@ -54,20 +59,28 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
 
         progressView.isHidden = !viewModel.showProgress
         progressViewPlaceholder.isHidden = !viewModel.showProgress
+        fileImageView.image = UIImage.icon(forFileURL: viewModel.path)
 
         disposeBag.bind {
             viewModel.updatePublisher
-                .receive(on: .global(qos: .userInitiated))
-                .sink
-            { [weak self, viewModel] _ in
-                self?.reload(with: viewModel)
-            }
+                .map { _ in () }
+                .prepend(())
+                .receive(on: reloadQueue)
+                .map { [viewModel] _ in
+                    TorrentFileCellReloadData(
+                        file: viewModel.file,
+                        showProgress: viewModel.showProgress
+                    )
+                }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] data in
+                    self?.reload(with: data)
+                }
             viewModel.selected.sink { [unowned self] _ in
                 switchView.setOn(!switchView.isOn, animated: true)
                 switcher(switchView)
             }
         }
-        reload(with: viewModel)
     }
 
     func shareAction() {
@@ -95,46 +108,74 @@ class TorrentFilesFileListCell<VM: FileItemViewModelProtocol>: MvvmCollectionVie
     }
 }
 
+private struct TorrentFileCellReloadData {
+    private static let maximumProgressSegmentCount = 512
+
+    let title: String
+    let subtitle: String
+    let progress: [Double]
+    let priority: FileEntry.Priority
+    let isShareButtonHidden: Bool
+    let isSwitchHidden: Bool
+
+    init(file: FileEntry, showProgress: Bool) {
+        let fileProgress = file.progress
+        let percent = "\(String(format: "%.2f", fileProgress * 100))%"
+
+        title = file.name
+        subtitle = showProgress
+            ? "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
+            : "\(file.size.bitrateToHumanReadable)"
+        progress = showProgress
+            ? file.segmentedProgress(maximumSegmentCount: Self.maximumProgressSegmentCount)
+            : [fileProgress]
+        priority = file.priority
+        isShareButtonHidden = fileProgress < 1
+        isSwitchHidden = !isShareButtonHidden
+    }
+}
+
 private extension TorrentFilesFileListCell {
-    func reload(with viewModel: VM) {
-        let file = viewModel.file
+    func reload(with data: TorrentFileCellReloadData) {
+        let isSwitchOn = data.priority != .dontDownload
 
-        let percent = "\(String(format: "%.2f", file.progress * 100))%"
+        titleLabel.text = data.title
+        subtitleLabel.text = data.subtitle
+        progressView.progress = data.progress
+        if switchView.isOn != isSwitchOn {
+            switchView.isOn = isSwitchOn
+        }
+        switchView.onTintColor = data.priority.color
+        shareButton.isHidden = data.isShareButtonHidden
+        switchView.isHidden = data.isSwitchHidden
 
-        let title = file.name
-        let subtitle = !viewModel.showProgress ? "\(file.size.bitrateToHumanReadable)" : "\(file.downloaded.bitrateToHumanReadable) / \(file.size.bitrateToHumanReadable) (\(percent))"
-        let progress = file.segmentedProgress
-        let fileImage = UIImage.icon(forFileURL: viewModel.path)
-        let switchIsOn = file.priority != .dontDownload
-        let switchOnTintColor = file.priority.color
-        let shareButtonHiden = file.progress < 1
-        let switchHidden = !shareButtonHiden
-
-        DispatchQueue.main.async { [self] in
-            titleLabel.text = title
-            subtitleLabel.text = subtitle
-            progressView.progress = progress
-            fileImageView.image = fileImage
-            if switchView.isOn != switchIsOn {
-                switchView.isOn = switchIsOn
-            }
-            switchView.onTintColor = switchOnTintColor
-            shareButton.isHidden = shareButtonHiden
-            switchView.isHidden = switchHidden
-
-            UIView.performWithoutAnimation {
-                invalidateIntrinsicContentSize()
-            }
+        UIView.performWithoutAnimation {
+            invalidateIntrinsicContentSize()
         }
     }
 }
 
 extension FileEntry {
     var segmentedProgress: [Double] {
-        let res = pieces.map { $0.doubleValue }
-        if !res.isEmpty { return res }
+        segmentedProgress(maximumSegmentCount: .max)
+    }
 
-        return [progress]
+    func segmentedProgress(maximumSegmentCount: Int) -> [Double] {
+        guard !pieces.isEmpty else { return [progress] }
+
+        let segmentCount = min(pieces.count, max(1, maximumSegmentCount))
+        guard segmentCount < pieces.count else {
+            return pieces.map(\.doubleValue)
+        }
+
+        return (0 ..< segmentCount).map { segmentIndex in
+            let startIndex = segmentIndex * pieces.count / segmentCount
+            let endIndex = (segmentIndex + 1) * pieces.count / segmentCount
+            let completed = pieces[startIndex ..< endIndex].reduce(0.0) {
+                $0 + $1.doubleValue
+            }
+            return completed / Double(endIndex - startIndex)
+        }
     }
 }
 
