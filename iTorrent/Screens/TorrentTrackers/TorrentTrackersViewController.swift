@@ -75,6 +75,10 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
         }
 
         toolbarItems = regularToolbar
+
+        if #available(iOS 27.0, *) {
+            collectionView.topEdgeEffect.style = .photos
+        }
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

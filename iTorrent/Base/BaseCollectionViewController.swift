@@ -62,6 +62,10 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
                 collectionView.diffDataSource.deselectItems()
             }
         }
+
+        if #available(iOS 27.0, *) {
+            collectionView.topEdgeEffect.style = .photos
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

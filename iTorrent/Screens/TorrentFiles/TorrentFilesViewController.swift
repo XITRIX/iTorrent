@@ -9,6 +9,7 @@ import AVKit
 import MvvmFoundation
 import QuickLook
 import UIKit
+import UniformTypeIdentifiers
 
 class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<VM> {
     @IBOutlet private var collectionView: UICollectionView!
@@ -33,6 +34,10 @@ class TorrentFilesViewController<VM: TorrentFilesViewModel>: BaseViewController<
 
         collectionView.allowsMultipleSelectionDuringEditing = true
         navigationItem.trailingItemGroups = [.fixedGroup(items: [editButtonItem])]
+
+        if #available(iOS 27.0, *) {
+            collectionView.topEdgeEffect.style = .photos
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -201,6 +206,11 @@ private extension TorrentFilesViewController {
 
         let path = viewModel.filesForPreview[startIndex].path
         let url = viewModel.downloadPath.appending(path: path)
+
+        if UTType(filenameExtension: url.pathExtension)?.conforms(to: .image) == true {
+            previewAction(start: startIndex)
+            return
+        }
 
         Task {
             let filePlayable = await checkFilePlayable(url: url)

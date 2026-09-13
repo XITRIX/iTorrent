@@ -136,6 +136,16 @@ class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewCon
         }
     }
 
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+
+        if #available(iOS 27.0, *) {
+            DispatchQueue.main.async {
+                self.contentScrollView(for: .top)?.topEdgeEffect.style = .photos
+            }
+        }
+    }
+
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
 #if !os(visionOS)

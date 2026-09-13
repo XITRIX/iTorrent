@@ -10,6 +10,7 @@ import SafariServices
 import UIKit
 
 class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseViewController<VM> {
+    @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var roundedViews: [UIView]!
 
     @IBOutlet private var creatorName: UILabel!
@@ -52,6 +53,10 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
 #if !os(visionOS)
         if #available(iOS 26, *) {
             becomePatronButton.configuration = .prominentGlass()
+        }
+
+        if #available(iOS 27.0, *) {
+            scrollView.topEdgeEffect.style = .photos
         }
 #endif
         becomePatronButton.configuration?.attributedTitle = .init(%"patreon.action.patron", attributes: .init([.font: UIFont.preferredFont(forTextStyle: .headline)]))

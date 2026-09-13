@@ -79,6 +79,7 @@
 		7C5FBE702BC2EF8B0069E5A0 /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE6D2BC2EF8B0069E5A0 /* EditTextViewController.swift */; };
 		7C5FBE742BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */; };
 		7C609A5B2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */; };
+		7C8D5810303E26D600F61E14 /* UIScrollEdgeEffectStyle+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8D580F303E26C600F61E14 /* UIScrollEdgeEffectStyle+Private.swift */; };
 		7C95B7B42C35DE5C000EC50F /* StoragePreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */; };
 		7C95B7B72C385B99000EC50F /* UICellAccessory+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */; };
 		7C97D1872CFF791000FF97DC /* UIScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97D1862CFF790D00FF97DC /* UIScheduler.swift */; };
@@ -383,6 +384,7 @@
 		7C609A572C1F1D6400586635 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C609A592C1F2A2700586635 /* iTorrent.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = iTorrent.xcconfig; sourceTree = "<group>"; };
 		7C609A5A2C1F5D9E00586635 /* SceneDelegate+AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneDelegate+AVPlayer.swift"; sourceTree = "<group>"; };
+		7C8D580F303E26C600F61E14 /* UIScrollEdgeEffectStyle+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollEdgeEffectStyle+Private.swift"; sourceTree = "<group>"; };
 		7C95B7B32C35DE49000EC50F /* StoragePreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePreferencesView.swift; sourceTree = "<group>"; };
 		7C95B7B62C385B97000EC50F /* UICellAccessory+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICellAccessory+Image.swift"; sourceTree = "<group>"; };
 		7C97D1862CFF790D00FF97DC /* UIScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScheduler.swift; sourceTree = "<group>"; };
@@ -810,6 +812,14 @@
 				7C5FBE732BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift */,
 			);
 			path = MvvmFoundation;
+			sourceTree = "<group>";
+		};
+		7C8D580E303E26B800F61E14 /* PrivateGlass */ = {
+			isa = PBXGroup;
+			children = (
+				7C8D580F303E26C600F61E14 /* UIScrollEdgeEffectStyle+Private.swift */,
+			);
+			path = PrivateGlass;
 			sourceTree = "<group>";
 		};
 		7C95B7A32C34B554000EC50F /* Storage */ = {
@@ -1284,6 +1294,7 @@
 		D19E00232AF045DA000A17A2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7C8D580E303E26B800F61E14 /* PrivateGlass */,
 				7C36BB022FDA1ACE006C240E /* Perception */,
 				7C92760D2F7C321A0081CA19 /* AirPlay */,
 				D1048D822BBE92040027EF2F /* SANavigation */,
@@ -2004,6 +2015,7 @@
 				7CFEBE762BC3ED550013233F /* RssFeedCellViewModel.swift in Sources */,
 				7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */,
 				7C5FBE282BBDD4030069E5A0 /* PRColorPickerCell.swift in Sources */,
+				7C8D5810303E26D600F61E14 /* UIScrollEdgeEffectStyle+Private.swift in Sources */,
 				D1B99D962BEE657F00F51514 /* API.swift in Sources */,
 				7C36BB042FDA1AE3006C240E /* withContinuousPerceptionTracking.swift in Sources */,
 				D1352D3C2BBD7F8800104E7B /* TorrentMonitoringService.swift in Sources */,

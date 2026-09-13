@@ -70,6 +70,10 @@ private extension RssDetailsViewController {
             downloadButtonSeparator.isHidden = true
 #if !os(visionOS)
             downloadButton.configuration = .prominentGlass()
+
+            if #available(iOS 27.0, *) {
+                webView.scrollView.topEdgeEffect.style = .photos
+            }
 #endif
 
             let interaction = UIScrollEdgeElementContainerInteraction()
