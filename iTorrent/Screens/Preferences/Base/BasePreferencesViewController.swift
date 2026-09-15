@@ -34,7 +34,7 @@ class BasePreferencesViewController<VM: BasePreferencesViewModel>: BaseViewContr
             }
         }
 
-        if #available(iOS 27.0, *) {
+        if #available(iOS 27.0, visionOS 27, *) {
             collectionView.topEdgeEffect.style = .photos
         }
 

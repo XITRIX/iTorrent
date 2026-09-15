@@ -180,7 +180,17 @@ struct RendererRouteMenuView: View {
     let player: Player
     @ObservedObject var routeController: RendererRouteController
 
+#if !os(visionOS)
     @EnvironmentObject private var air: Air
+#endif
+
+    private var localOutputTitle: LocalizedStringKey {
+#if os(visionOS)
+        "This Device"
+#else
+        air.connected ? "AirPlay" : "This Device"
+#endif
+    }
 
     var body: some View {
         Menu {
@@ -189,7 +199,7 @@ struct RendererRouteMenuView: View {
                     routeController.recast(to: nil, on: player)
                 } label: {
                     Label(
-                        air.connected ? "AirPlay" : "This Device",
+                        localOutputTitle,
                         systemImage: routeController.selectedRendererID == nil ? "checkmark" : "iphone"
                     )
                 }
@@ -225,11 +235,13 @@ struct RendererRouteMenuView: View {
                 }
             }
 
+#if !os(visionOS)
             if !air.connected {
                 Section {
                     Text("For AirPlay-compatible devices, use system Screen Mirroring")
                 }
             }
+#endif
         } label: {
             Image(systemName: routeController.selectedRendererID == nil ? "airplay.video" : "airplay.video.circle.fill")
         }

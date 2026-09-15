@@ -139,7 +139,7 @@ class BaseHostingViewController<View: MvvmSwiftUIViewProtocol>: SAHostingViewCon
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
 
-        if #available(iOS 27.0, *) {
+        if #available(iOS 27.0, visionOS 27, *) {
             DispatchQueue.main.async {
                 self.contentScrollView(for: .top)?.topEdgeEffect.style = .photos
             }

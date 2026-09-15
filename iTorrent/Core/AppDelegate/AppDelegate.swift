@@ -20,9 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+#if !os(visionOS)
         if let config = Air.application(application, configurationForConnecting: connectingSceneSession, options: options) {
             return config
         }
+#endif
 
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.

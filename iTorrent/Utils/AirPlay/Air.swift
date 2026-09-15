@@ -220,11 +220,17 @@ public class Air: ObservableObject {
 private class AirPlaySceneDelegate: UIResponder, UISceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
+
+#if !os(visionOS)
         Air.shared.connect(windowScene: windowScene)
+#endif
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene else { return }
+
+#if !os(visionOS)
         Air.shared.disconnect(windowScene: windowScene)
+#endif
     }
 }

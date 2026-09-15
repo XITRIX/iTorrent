@@ -55,7 +55,7 @@ class PatreonPreferencesViewController<VM: PatreonPreferencesViewModel>: BaseVie
             becomePatronButton.configuration = .prominentGlass()
         }
 
-        if #available(iOS 27.0, *) {
+        if #available(iOS 27.0, visionOS 27, *) {
             scrollView.topEdgeEffect.style = .photos
         }
 #endif
