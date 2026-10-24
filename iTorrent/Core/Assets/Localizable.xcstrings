@@ -432,6 +432,9 @@
         }
       }
     },
+    "Close" : {
+
+    },
     "common.add" : {
       "localizations" : {
         "de" : {
@@ -7402,6 +7405,9 @@
       }
     },
     "Peers" : {
+
+    },
+    "Picture in Picture" : {
 
     },
     "Play on" : {

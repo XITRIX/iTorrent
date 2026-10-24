@@ -120,6 +120,8 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        overrideUserInterfaceStyle = .dark
+        rootView.onClose = { [weak self] in self?.dismiss() }
         title = viewModel.url.lastPathComponent
         navigationItem.largeTitleDisplayMode = .never
 
@@ -128,9 +130,13 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {}
 
+#if os(visionOS)
         navigationItem.rightBarButtonItem = .init(systemItem: .close, primaryAction: .init { [unowned self] _ in
             dismiss()
         })
+#else
+        navigationController?.setNavigationBarHidden(true, animated: false)
+#endif
 
         disposeBag.bind {
 #if !os(visionOS)
@@ -140,13 +146,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
                     self?.configurePictureInPicture(controller)
                 }
 #endif
-            #if !os(visionOS)
-            Air.shared.$connected.combineLatest(viewModel.$showOverlay)
-                .sink { [weak self] aired, value in
-                    let show = aired || value
-                    self?.navigationController?.setNavigationBarHidden(!show, animated: true)
-                }
-            #else
+            #if os(visionOS)
             viewModel.$showOverlay
                 .sink { [weak self] show in
                     self?.navigationController?.setNavigationBarHidden(!show, animated: true)
@@ -156,9 +156,15 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
     }
 
 #if !os(visionOS)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        navigationController?.setNavigationBarHidden(true, animated: false)
         if let controller = viewModel.pipController {
             configurePictureInPicture(controller)
         }
@@ -257,22 +263,13 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 
     struct Body: View {
         @ObservedObject var viewModel: VLCPlayerViewModel
+        var onClose: () -> Void = {}
 
         var body: some View {
-            VLCPlayerView(viewModel: viewModel)
+            VLCPlayerView(viewModel: viewModel, onClose: onClose)
+                .preferredColorScheme(.dark)
 #if !os(visionOS)
                 .environmentObject(Air.shared)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            viewModel.pipController?.toggle()
-                        } label: {
-                            Image(systemName: "pip")
-                                .font(.callout)
-                                .fontWeight(.semibold)
-                        }
-                    }
-                }
 #endif
         }
     }
@@ -282,6 +279,7 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
         @EnvironmentObject var airPlay: Air
 #endif
         @ObservedObject var viewModel: VLCPlayerViewModel
+        var onClose: () -> Void
         @State private var player = Player()
         @StateObject private var rendererRouteController = RendererRouteController()
         @State private var currentPlaybackTime: TimeInterval = 0
@@ -354,76 +352,150 @@ private extension VLCPlayerViewController.VLCPlayerView {
 // MARK: - Layout
 private extension VLCPlayerViewController.VLCPlayerView {
     var content: some View {
-        ZStack(alignment: .bottom) {
-            Color(showOverlay ? .systemGroupedBackground : .black)
-                .ignoresSafeArea()
+        arrangedPlayer
+            .background(.black)
+            .ignoresSafeArea()
+#if os(iOS)
+            .statusBarHidden(!showOverlay)
+#endif
+    }
 
+    @ViewBuilder
+    var arrangedPlayer: some View {
+#if os(iOS)
+        AdaptiveArrangementView(tabletopPrimaryEdge: .bottom) {
+            playerOverlay
+        } secondary: {
             videoOutput
-                .ignoresSafeArea()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .overlay { playerTapSurface }
+        }
+#else
+        legacyPlayer
+#endif
+    }
+
+    var legacyPlayer: some View {
+        ZStack {
+            videoOutput.ignoresSafeArea()
 
             if showOverlay {
-                Color.black.opacity(0.4)
-                    .ignoresSafeArea()
+                Color.black.opacity(0.4).ignoresSafeArea()
             }
 
-            Color.clear
-                .contentShape(Rectangle())
-                .ignoresSafeArea()
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.28)) {
-                        viewModel.showOverlay.toggle()
-                    }
-                }
+            playerOverlay
+        }
+    }
 
-            ZStack {
-                CompatibilityGlassContainer(spacing: 24) {
-                    VStack {
+    var playerTapSurface: some View {
+        Color.clear
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation(.easeInOut(duration: 0.28)) {
+                    viewModel.showOverlay.toggle()
+                }
+            }
+    }
+
+    var playerOverlay: some View {
+        ZStack {
+            CompatibilityGlassContainer(spacing: 24) {
+                VStack {
 #if !os(visionOS)
-                        if airPlay.connected {
-                            Label("Displaying via AirPlay", systemImage: "airplayvideo")
-                                .font(.title3.weight(.semibold))
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 14)
-                        }
+                    if airPlay.connected {
+                        Label("Displaying via AirPlay", systemImage: "airplayvideo")
+                            .font(.title3.weight(.semibold))
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 14)
+                    }
 #endif
-                        if showOverlay {
-                            overlayButtons
-                                .transition(.opacity.combined(with: .scale(scale: 0.96)))
-                        }
+                    if showOverlay {
+                        overlayButtons
+                            .transition(.opacity.combined(with: .scale(scale: 0.96)))
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .ignoresSafeArea()
+            }
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .background { playerTapSurface }
 
-                CompatibilityGlassContainer(spacing: 16) {
+            Color.clear
+                .safeAreaInset(edge: .top, spacing: 0) {
+#if !os(visionOS)
                     if showOverlay {
-                        VStack(alignment: .trailing, spacing: 16) {
-                            controlsBar
-
-                            TimelineView(
-                                mediaLengthTime: mediaTimeDuration,
-                                currentPlaybackTime: $currentPlaybackTime,
-                                isSeeking: $isSeeking,
-                                availability: viewModel.segmentedProgress,
-                                onScrubChanged: { time in
-                                    seek(to: time, fast: true)
-                                },
-                                onScrubEnded: { time in
-                                    seek(to: time, fast: false)
-                                }
-                            )
-                            .compatibilityGlassID("timeline", in: glassNamespace)
-                            .compatibilityGlassTransition()
+                        ReservedAreaContainer(edge: .top) {
+                            playerHeader
                         }
-                        .padding()
+                        .transition(.opacity)
+                    }
+#endif
+                }
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    if showOverlay {
+                        ReservedAreaContainer(edge: .bottom) {
+                            playerFooter
+                        }
+                        .ignoresSafeArea()
                         .transition(.opacity.combined(with: .move(edge: .bottom)))
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            }
         }
+        .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+
+    var playerFooter: some View {
+        CompatibilityGlassContainer(spacing: 16) {
+            VStack(alignment: .trailing, spacing: 16) {
+                controlsBar
+
+                TimelineView(
+                    mediaLengthTime: mediaTimeDuration,
+                    currentPlaybackTime: $currentPlaybackTime,
+                    isSeeking: $isSeeking,
+                    availability: viewModel.segmentedProgress,
+                    onScrubChanged: { time in
+                        seek(to: time, fast: true)
+                    },
+                    onScrubEnded: { time in
+                        seek(to: time, fast: false)
+                    }
+                )
+                .compatibilityGlassID("timeline", in: glassNamespace)
+                .compatibilityGlassTransition()
+            }
+        }
+    }
+
+#if !os(visionOS)
+    var playerHeader: some View {
+        HStack(spacing: 12) {
+            Button(action: onClose) {
+                Image(systemName: "xmark")
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Close")
+            .compatibilityGlassEffect(interactive: true)
+
+            PlayerMarqueeTitle(text: viewModel.url.lastPathComponent)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(height: 44)
+                .clipped()
+
+            Button {
+                viewModel.pipController?.toggle()
+            } label: {
+                Image(systemName: "pip")
+                    .frame(width: 44, height: 44)
+            }
+            .accessibilityLabel("Picture in Picture")
+            .compatibilityGlassEffect(interactive: true)
+
+        }
+        .font(.title3.weight(.semibold))
+        .foregroundStyle(.white)
+    }
+#endif
 
     var controlsBar: some View {
         HStack {
@@ -489,6 +561,38 @@ private extension VLCPlayerViewController.VLCPlayerView {
             }
             .compatibilityGlassID("forward", in: glassNamespace)
         }
+    }
+}
+
+// MARK: - Player Title
+private struct PlayerMarqueeTitle: UIViewRepresentable {
+    let text: String
+
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .center
+        label.textColor = .white
+        label.lineBreakMode = .byTruncatingTail
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        if #available(iOS 18.0, visionOS 2.0, *) {
+            label.enableMarquee()
+        }
+        return label
+    }
+
+    func updateUIView(_ label: UILabel, context: Context) {
+        if label.text != text {
+            label.text = text
+        }
+    }
+
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UILabel, context: Context) -> CGSize? {
+        guard let width = proposal.width, width.isFinite else {
+            return uiView.intrinsicContentSize
+        }
+        return CGSize(width: width, height: uiView.font.lineHeight)
     }
 }
 

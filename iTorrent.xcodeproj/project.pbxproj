@@ -106,6 +106,8 @@
 		7CC411622BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */; };
 		7CC411642BD326C300CA8B13 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */; };
 		7CC634772E09ED88007E3EED /* UILabel+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */; };
+		7CC7B4F93082D18A00BA5B79 /* AdaptiveArrangementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7B4F83082D18A00BA5B79 /* AdaptiveArrangementView.swift */; };
+		7CC7B4FD3083A05E00BA5B79 /* ReservedAreaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC7B4FC3083A05E00BA5B79 /* ReservedAreaContainer.swift */; };
 		7CCDB3342ED3469B001E857B /* cacert.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7CCDB3322ED34680001E857B /* cacert.pem */; };
 		7CCDB3372ED5B4B6001E857B /* UIImage+IOSRelatedIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */; };
 		7CCDB3392ED5DF56001E857B /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */; };
@@ -408,6 +410,8 @@
 		7CC411612BD319AE00CA8B13 /* AppDelegate+RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RemoteConfig.swift"; sourceTree = "<group>"; };
 		7CC411632BD326C300CA8B13 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		7CC634762E09ED83007E3EED /* UILabel+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Marquee.swift"; sourceTree = "<group>"; };
+		7CC7B4F83082D18A00BA5B79 /* AdaptiveArrangementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveArrangementView.swift; sourceTree = "<group>"; };
+		7CC7B4FC3083A05E00BA5B79 /* ReservedAreaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedAreaContainer.swift; sourceTree = "<group>"; };
 		7CCDB3322ED34680001E857B /* cacert.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = cacert.pem; sourceTree = "<group>"; };
 		7CCDB3362ED5B4A8001E857B /* UIImage+IOSRelatedIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+IOSRelatedIcons.swift"; sourceTree = "<group>"; };
 		7CCDB3382ED5DF55001E857B /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
@@ -735,6 +739,8 @@
 		7C5FBE0D2BBB206B0069E5A0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7CC7B4FC3083A05E00BA5B79 /* ReservedAreaContainer.swift */,
+				7CC7B4F83082D18A00BA5B79 /* AdaptiveArrangementView.swift */,
 				7C4CF2FF2BDE7DF60078FEA1 /* AdView */,
 				7C5FBE6E2BC2EF8B0069E5A0 /* EditTextView */,
 				D173D9DD2BC024DD00E4F9EB /* UISwitchWithMenu.swift */,
@@ -1963,6 +1969,7 @@
 				D1DB718D2BD9165C007F9267 /* ImageLoader.swift in Sources */,
 				7CE19BF82F7F9D05006D8352 /* MenuButtonCellViewModel.swift in Sources */,
 				7C5FBE292BBDD4030069E5A0 /* PRColorPickerViewModel.swift in Sources */,
+				7CC7B4FD3083A05E00BA5B79 /* ReservedAreaContainer.swift in Sources */,
 				7C5B73672F6DDE8A00CC2B6C /* ResolvedTintColorKey.swift in Sources */,
 				7C4CF2FA2BDE712D0078FEA1 /* UnityAdsManager.swift in Sources */,
 				7CFEBE6C2BC3E0F40013233F /* RssListViewController.swift in Sources */,
@@ -2002,6 +2009,7 @@
 				7CB8311D2D1962A0005F3F42 /* InitialSetupFlowProtocol.swift in Sources */,
 				7C4ED08D2BE646E40034B62C /* AdView+Meta.swift in Sources */,
 				D1BB07432C985EB800981D5F /* TrackersListPreferencesView.swift in Sources */,
+				7CC7B4F93082D18A00BA5B79 /* AdaptiveArrangementView.swift in Sources */,
 				D1B538572AF1171900694AFD /* TorrentDetailProgressCellView.swift in Sources */,
 				7C5FBE742BC2F0A30069E5A0 /* MvvmViewModelProtocol+Alert.swift in Sources */,
 				D1EFCD122AF572E400D33A7A /* TorrentFilesFileItemViewModel.swift in Sources */,
