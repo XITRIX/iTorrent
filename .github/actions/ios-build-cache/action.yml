@@ -1,0 +1,61 @@
+name: iOS dependency cache
+description: Reuse SwiftPM downloads and incremental Release builds, including LibTorrent.
+
+runs:
+  using: composite
+  steps:
+    - name: Prepare Brew
+      shell: bash
+      run: brew install boost
+
+    - name: Identify dependency toolchain
+      id: toolchain
+      env:
+        CONFIGURATION_HASH: ${{ hashFiles('.github/actions/ios-build-cache/**', '.github/workflows/ios-*.yml', '**/*.xcodeproj/project.pbxproj', '**/*.xcscheme', '**/Package.resolved') }}
+      shell: bash
+      run: |
+        fingerprint=$({
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-build-version
+          printf '%s\n' "$DEVELOPER_DIR" "$GITHUB_WORKSPACE"
+          cmake --version
+          brew list --versions boost
+        } | shasum -a 256 | cut -d ' ' -f 1)
+        submodules=$(git submodule status --recursive | shasum -a 256 | cut -d ' ' -f 1)
+        echo "fingerprint=$fingerprint" >> "$GITHUB_OUTPUT"
+        echo "dependencies=$fingerprint-$submodules-$CONFIGURATION_HASH" >> "$GITHUB_OUTPUT"
+        echo "CI_DERIVED_DATA_PATH=$RUNNER_TEMP/iTorrentDerivedData" >> "$GITHUB_ENV"
+        echo "CI_SOURCE_PACKAGES_PATH=$RUNNER_TEMP/iTorrentSourcePackages" >> "$GITHUB_ENV"
+
+    # CMake's generated project and static-library outputs live outside DerivedData.
+    # Only exact matches are safe here; never restore a different toolchain/revision.
+    - name: Cache LibTorrent project and binary
+      id: libtorrent
+      uses: actions/cache@v6
+      with:
+        path: Submodules/LibTorrent-Swift/libtorrent-build
+        key: libtorrent-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.toolchain.outputs.dependencies }}
+
+    - name: Prepare LibTorrent
+      if: steps.libtorrent.outputs.cache-hit != 'true'
+      shell: bash
+      run: ./Submodules/LibTorrent-Swift/make.sh
+
+    # This also restores nanosecond source mtimes when content hashes match.
+    # Without that, fresh git checkouts invalidate cached C++/Swift object files.
+    - name: Cache SwiftPM and compiled dependencies
+      uses: irgaly/xcode-cache@v1
+      with:
+        deriveddata-directory: ${{ env.CI_DERIVED_DATA_PATH }}
+        sourcepackages-directory: ${{ env.CI_SOURCE_PACKAGES_PATH }}
+        key: ios-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.toolchain.outputs.dependencies }}-${{ github.sha }}
+        restore-keys: |
+          ios-build-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.toolchain.outputs.dependencies }}-
+        swiftpm-cache-key: swiftpm-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.toolchain.outputs.fingerprint }}-${{ hashFiles('iTorrent.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+        restore-mtime-targets: |
+          **/CMakeLists.txt
+          **/*.cmake
+          **/*.xcodeproj/project.pbxproj
+          **/*.xcscheme
+          Submodules/LibTorrent-Swift/libtorrent-build/**/*
+          !iTorrent/Core/Assets/GoogleService-Info.plist

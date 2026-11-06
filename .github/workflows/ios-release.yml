@@ -9,24 +9,22 @@ on:
   # workflow_dispatch:
   #   branches: [main]
 
+# Track stable Xcode releases on the Duo-capable runner (iOS 27.1+ SDK).
 jobs:
   build_with_signing:
-    runs-on: macos-26
+    runs-on: xcode-27
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.6
+          xcode-version: latest-stable
 
       - name: checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Prepare Brew
-        run: brew install boost
-
-      - name: Prepare LibTorrent
-        run: ./Submodules/LibTorrent-Swift/make.sh
+      - name: Restore dependency caches
+        uses: ./.github/actions/ios-build-cache
 
       - name: Install the Apple certificate and provisioning profile
         env:
@@ -87,11 +85,14 @@ jobs:
           -workspace iTorrent.xcworkspace \
           -scheme "iTorrent" \
           -archivePath $RUNNER_TEMP/itorrent.xcarchive \
+          -derivedDataPath "$CI_DERIVED_DATA_PATH" \
+          -clonedSourcePackagesDirPath "$CI_SOURCE_PACKAGES_PATH" \
+          -onlyUsePackageVersionsFromResolvedFile \
           -sdk iphoneos \
           -configuration Release \
           -destination generic/platform=iOS \
           -skipMacroValidation \
-          clean archive     
+          archive
       
       - name: Upload archive
         uses: actions/upload-artifact@v4
@@ -101,9 +102,13 @@ jobs:
             ${{ runner.temp }}/itorrent.xcarchive
           retention-days: 3
 
+      - name: Prepare dependency caches for saving
+        if: always()
+        run: bash .github/actions/ios-build-cache/prune.sh
+
   export_ipa:
     needs: [build_with_signing]
-    runs-on: macos-26
+    runs-on: xcode-27
     strategy:
       matrix:
         org: [adhoc, prod] 
@@ -115,7 +120,7 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.6
+          xcode-version: latest-stable
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -184,14 +189,14 @@ jobs:
 
   github_release:
     needs: [export_ipa]
-    runs-on: macos-26
+    runs-on: xcode-27
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.6
+          xcode-version: latest-stable
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -221,11 +226,11 @@ jobs:
 
   altstore_release:
     needs: [github_release]
-    runs-on: macos-26
+    runs-on: xcode-27
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.6
+          xcode-version: latest-stable
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -256,11 +261,11 @@ jobs:
 
   appstore_release:
     needs: [export_ipa]
-    runs-on: macos-26
+    runs-on: xcode-27
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 26.6
+          xcode-version: latest-stable
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
