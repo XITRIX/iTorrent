@@ -3,3 +3,4 @@ xcuserdata
 iTorrent/Core/Assets/GoogleService-Info.plist
 GenerateAltStoreJson
 AltStoreSource.json
+__pycache__/

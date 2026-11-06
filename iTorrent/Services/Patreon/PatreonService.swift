@@ -136,62 +136,13 @@ extension PatreonService {
         }
     }
 
-    func fetchPatrons() async throws -> [Patron] {
-        guard let credentials = await credentials
-        else { throw Error.noCredentials }
-
-        var components = URLComponents(string: "/api/oauth2/v2/campaigns/\(credentials.campaignID)/members")!
-//        components.queryItems = [URLQueryItem(name: "include", value: "currently_entitled_tiers,currently_entitled_tiers.benefits,user"),
-        components.queryItems = [URLQueryItem(name: "include", value: "currently_entitled_tiers,currently_entitled_tiers.benefits"),
-                                 URLQueryItem(name: "fields[tier]", value: "title"),
-                                 URLQueryItem(name: "fields[member]", value: "full_name,patron_status"),
-                                 URLQueryItem(name: "page[size]", value: "1000")]
-
-        let requestURL = components.url(relativeTo: Self.baseURL)!
-
-        struct Response: Decodable {
-            var data: [PatronResponse]
-            var included: [AnyResponse]
-            var links: [String: URL]?
+    @discardableResult
+    func fetchSupporters() async throws -> [Supporter] {
+        let supporters = try await SupporterFeedClient(session: session).fetchSupporters()
+        await MainActor.run {
+            preferences.patreonSupporters = supporters
         }
-
-        var allPatrons = [Patron]()
-
-        @Sendable func fetchPatrons(url: URL, allPatrons: inout [Patron]) async throws {
-            let request = URLRequest(url: url)
-
-            let response: Response = try await send(request, authorizationType: .creator)
-            let tiers = response.included.compactMap { response -> Tier? in
-                switch response {
-                case .tier(let tierResponse): return Tier(response: tierResponse)
-                case .benefit: return nil
-                }
-            }
-
-            let tiersByIdentifier = Dictionary(tiers.map { ($0.identifier, $0) }, uniquingKeysWith: { a, _ in a })
-
-            let patrons = response.data.map { response -> Patron in
-                let patron = Patron(response: response)
-
-                for tierID in response.relationships?.currently_entitled_tiers.data ?? [] {
-                    guard let tier = tiersByIdentifier[tierID.id]
-                    else { continue }
-                    patron.benefits.formUnion(tier.benefits)
-                }
-
-                return patron
-            }
-            // .filter { $0.benefits.contains(where: { $0.type == .credits }) }
-
-            allPatrons.append(contentsOf: patrons)
-
-            if let nextURL = response.links?["next"] {
-                try await fetchPatrons(url: nextURL, allPatrons: &allPatrons)
-            }
-        }
-
-        try await fetchPatrons(url: requestURL, allPatrons: &allPatrons)
-        return allPatrons
+        return supporters
     }
 
     func fetchPledgeHistory() async throws {
@@ -290,9 +241,6 @@ private extension PatreonService {
 
         switch authorizationType {
         case .none: break
-        case .creator:
-            guard let creatorAccessToken = preferences.patreonCredentials?.patreonCreatorAccessToken else { throw Error.invalidAccessToken }
-            request.setValue("Bearer " + creatorAccessToken, forHTTPHeaderField: "Authorization")
         case .user:
             guard let accessToken = preferences.patreonToken?.accessToken else { throw Error.notAuthenticated }
             request.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
@@ -302,7 +250,6 @@ private extension PatreonService {
 
         if let response = dataResponse as? HTTPURLResponse, response.statusCode == 401 {
             switch authorizationType {
-            case .creator: throw Error.invalidAccessToken
             case .none: throw Error.notAuthenticated
             case .user:
                 try await refreshAccessToken()

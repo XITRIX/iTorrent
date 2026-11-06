@@ -27,7 +27,6 @@ extension PatreonService {
     enum AuthorizationType {
         case none
         case user
-        case creator
     }
 
     enum AnyResponse: Decodable {

@@ -125,6 +125,7 @@ class PreferencesStorage: Resolvable {
     @UserDefaultItem("preferencesPatreonAccount", nil) var patreonAccount: PatreonAccount?
     @UserDefaultItem("preferencesPatreonToken", nil) var patreonToken: PatreonToken?
     @UserDefaultItem("preferencesPatreonCredentials", nil) var patreonCredentials: PatreonCredentials?
+    @UserDefaultItem("preferencesPatreonSupporters", []) var patreonSupporters: [Supporter]
     #endif
 
     @UserDefaultItem("initialSetupCellularPassed", false) var initialSetupCellularPassed: Bool
