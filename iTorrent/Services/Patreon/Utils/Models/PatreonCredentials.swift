@@ -14,7 +14,6 @@ struct PatreonCredentials: Codable {
 
     var clientID: String
     var clientSecret: String
-    var patreonCreatorAccessToken: String
     var campaignID: String
     var hideFSAds: Bool
     var hideBannerAds: Bool

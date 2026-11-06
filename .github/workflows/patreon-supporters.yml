@@ -1,0 +1,51 @@
+name: Patreon supporters
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+    inputs:
+      discover:
+        description: List campaign and tier IDs without publishing supporter names
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: patreon-supporters
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.repository == 'XITRIX/iTorrent' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: false
+
+      - name: Fetch Patreon supporters
+        env:
+          PATREON_CLIENT_ID: ${{ vars.PATREON_CLIENT_ID }}
+          PATREON_CLIENT_SECRET: ${{ secrets.PATREON_CLIENT_SECRET }}
+          PATREON_CREATOR_TOKENS: ${{ secrets.PATREON_CREATOR_TOKENS }}
+          PATREON_SECRETS_TOKEN: ${{ secrets.PATREON_SECRETS_TOKEN }}
+          PATREON_CAMPAIGN_ID: ${{ vars.PATREON_CAMPAIGN_ID }}
+          PATREON_TIER_ID: ${{ vars.PATREON_TIER_ID }}
+          DISCOVER: ${{ inputs.discover || false }}
+        run: |
+          if [ "$DISCOVER" = "true" ]; then
+            python3 scripts/sync_patreon_supporters.py --discover
+          else
+            python3 scripts/sync_patreon_supporters.py --output "$RUNNER_TEMP/supporters.json"
+          fi
+
+      - name: Publish data branch
+        if: ${{ !inputs.discover }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/publish_supporters.py "$RUNNER_TEMP/supporters.json"

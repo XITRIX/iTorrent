@@ -1,0 +1,33 @@
+name: Patreon sync tests
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/patreon-supporters*.yml'
+      - 'scripts/sync_patreon_supporters.py'
+      - 'scripts/publish_supporters.py'
+      - 'scripts/tests/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/patreon-supporters*.yml'
+      - 'scripts/sync_patreon_supporters.py'
+      - 'scripts/publish_supporters.py'
+      - 'scripts/tests/**'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          submodules: false
+
+      - name: Verify sync and publishing
+        run: python3 -m unittest discover -s scripts/tests -v

@@ -5,12 +5,11 @@
 //  Created by Daniil Vinogradov on 24/04/2024.
 //
 
-import Combine
 import Foundation
 import UIKit.UIImage
 
-// Declares in-memory image cache
-public protocol ImageCacheType: AnyObject {
+/// A cache whose operations may be called concurrently from any executor.
+public protocol ImageCacheType: AnyObject, Sendable {
     // Returns the image associated with a given url
     func image(for url: URL) -> UIImage?
     // Inserts the image of the specified url in the cache
@@ -23,25 +22,18 @@ public protocol ImageCacheType: AnyObject {
     subscript(_ url: URL) -> UIImage? { get set }
 }
 
-public final class ImageCache: ImageCacheType {
+// Both caches are initialized before sharing the instance. The lock serializes
+// all access to the two levels, including promotions and removals.
+public final class ImageCache: ImageCacheType, @unchecked Sendable {
     // 1st level cache, that contains encoded images
-    private lazy var imageCache: NSCache<AnyObject, AnyObject> = {
-        let cache = NSCache<AnyObject, AnyObject>()
-        cache.countLimit = config.countLimit
-        return cache
-    }()
+    private let imageCache: NSCache<NSURL, UIImage>
 
     // 2nd level cache, that contains decoded images
-    private lazy var decodedImageCache: NSCache<AnyObject, AnyObject> = {
-        let cache = NSCache<AnyObject, AnyObject>()
-        cache.totalCostLimit = config.memoryLimit
-        return cache
-    }()
+    private let decodedImageCache: NSCache<NSURL, UIImage>
 
     private let lock = NSLock()
-    private let config: Config
 
-    public struct Config {
+    public struct Config: Sendable {
         public let countLimit: Int
         public let memoryLimit: Int
 
@@ -49,19 +41,22 @@ public final class ImageCache: ImageCacheType {
     }
 
     public init(config: Config = Config.defaultConfig) {
-        self.config = config
+        imageCache = NSCache<NSURL, UIImage>()
+        imageCache.countLimit = config.countLimit
+        decodedImageCache = NSCache<NSURL, UIImage>()
+        decodedImageCache.totalCostLimit = config.memoryLimit
     }
 
     public func image(for url: URL) -> UIImage? {
         lock.lock(); defer { lock.unlock() }
         // the best case scenario -> there is a decoded image in memory
-        if let decodedImage = decodedImageCache.object(forKey: url as AnyObject) as? UIImage {
+        if let decodedImage = decodedImageCache.object(forKey: url as NSURL) {
             return decodedImage
         }
         // search for image data
-        if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
+        if let image = imageCache.object(forKey: url as NSURL) {
             let decodedImage = image.decodedImage()
-            decodedImageCache.setObject(image as AnyObject, forKey: url as AnyObject, cost: decodedImage.diskSize)
+            decodedImageCache.setObject(decodedImage, forKey: url as NSURL, cost: decodedImage.diskSize)
             return decodedImage
         }
         return nil
@@ -72,14 +67,14 @@ public final class ImageCache: ImageCacheType {
         let decompressedImage = image.decodedImage()
 
         lock.lock(); defer { lock.unlock() }
-        imageCache.setObject(decompressedImage, forKey: url as AnyObject, cost: 1)
-        decodedImageCache.setObject(image as AnyObject, forKey: url as AnyObject, cost: decompressedImage.diskSize)
+        imageCache.setObject(image, forKey: url as NSURL, cost: 1)
+        decodedImageCache.setObject(decompressedImage, forKey: url as NSURL, cost: decompressedImage.diskSize)
     }
 
     public func removeImage(for url: URL) {
         lock.lock(); defer { lock.unlock() }
-        imageCache.removeObject(forKey: url as AnyObject)
-        decodedImageCache.removeObject(forKey: url as AnyObject)
+        imageCache.removeObject(forKey: url as NSURL)
+        decodedImageCache.removeObject(forKey: url as NSURL)
     }
 
     public func removeAllImages() {
@@ -103,10 +98,11 @@ private extension UIImage {
         guard let cgImage = cgImage else { return self }
         let size = CGSize(width: cgImage.width, height: cgImage.height)
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: cgImage.bytesPerRow, space: colorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+        let bitmapInfo = CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.premultipliedFirst.rawValue
+        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo)
         context?.draw(cgImage, in: CGRect(origin: .zero, size: size))
         guard let decodedImage = context?.makeImage() else { return self }
-        return UIImage(cgImage: decodedImage)
+        return UIImage(cgImage: decodedImage, scale: scale, orientation: imageOrientation)
     }
 
     // Rough estimation of how much memory image uses in bytes

@@ -5,12 +5,11 @@
 //  Created by Daniil Vinogradov on 24/04/2024.
 //
 
-import Combine
 import Foundation
 import UIKit.UIImage
 import MvvmFoundation
 
-public final class ImageLoader: Resolvable {
+public final class ImageLoader: Resolvable, Sendable {
     public convenience init() {
         self.init(cache: ImageCache())
     }
@@ -33,9 +32,4 @@ public final class ImageLoader: Resolvable {
     }
 
     private let cache: ImageCacheType
-    private lazy var backgroundQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 5
-        return queue
-    }()
 }
