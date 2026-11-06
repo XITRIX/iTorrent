@@ -1,0 +1,14 @@
+{
+  "data": [
+    {"type": "member", "id": "a", "attributes": {"full_name": " Alice ", "patron_status": "active_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "b", "attributes": {"full_name": "Alice", "patron_status": "active_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "c", "attributes": {"full_name": "Declined", "patron_status": "declined_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "d", "attributes": {"full_name": "Former", "patron_status": "former_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "e", "attributes": {"full_name": "Other tier", "patron_status": "active_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "7"}]}}},
+    {"type": "member", "id": "f", "attributes": {"full_name": null, "patron_status": "active_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "g", "attributes": {"full_name": "  ", "patron_status": "active_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "h", "attributes": {"full_name": "Unknown", "patron_status": null}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}]}}},
+    {"type": "member", "id": "i", "attributes": {"full_name": "Élodie 🌟", "patron_status": "active_patron"}, "relationships": {"currently_entitled_tiers": {"data": [{"type": "tier", "id": "6"}, {"type": "tier", "id": "7"}]}}}
+  ],
+  "links": {"next": null}
+}

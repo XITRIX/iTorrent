@@ -247,6 +247,7 @@
 		D1B99D892BEE613B00F51514 /* PatreonWebServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D882BEE613B00F51514 /* PatreonWebServer.swift */; };
 		D1B99D8B2BEE62C700F51514 /* PatreonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8A2BEE62C700F51514 /* PatreonAccount.swift */; };
 		D1B99D912BEE631B00F51514 /* Patron.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8D2BEE631B00F51514 /* Patron.swift */; };
+		C0DE00012FA0000000000001 /* SupporterFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE00012FA0000000000002 /* SupporterFeed.swift */; };
 		D1B99D922BEE631B00F51514 /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8E2BEE631B00F51514 /* Campaign.swift */; };
 		D1B99D932BEE631B00F51514 /* Benefit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8F2BEE631B00F51514 /* Benefit.swift */; };
 		D1B99D942BEE631B00F51514 /* Tier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D902BEE631B00F51514 /* Tier.swift */; };
@@ -537,6 +538,7 @@
 		D1B99D882BEE613B00F51514 /* PatreonWebServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonWebServer.swift; sourceTree = "<group>"; };
 		D1B99D8A2BEE62C700F51514 /* PatreonAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonAccount.swift; sourceTree = "<group>"; };
 		D1B99D8D2BEE631B00F51514 /* Patron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
+		C0DE00012FA0000000000002 /* SupporterFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupporterFeed.swift; sourceTree = "<group>"; };
 		D1B99D8E2BEE631B00F51514 /* Campaign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
 		D1B99D8F2BEE631B00F51514 /* Benefit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benefit.swift; sourceTree = "<group>"; };
 		D1B99D902BEE631B00F51514 /* Tier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tier.swift; sourceTree = "<group>"; };
@@ -1544,6 +1546,7 @@
 				D1B99D8F2BEE631B00F51514 /* Benefit.swift */,
 				D1B99D8E2BEE631B00F51514 /* Campaign.swift */,
 				D1B99D8D2BEE631B00F51514 /* Patron.swift */,
+				C0DE00012FA0000000000002 /* SupporterFeed.swift */,
 				D1B99D902BEE631B00F51514 /* Tier.swift */,
 				D1B99D952BEE657F00F51514 /* API.swift */,
 				7C4ED0972BEF8B8E0034B62C /* PatreonCredentials.swift */,
@@ -1929,6 +1932,7 @@
 				D17871FF2AF2C0A700F11F9F /* UIKitSwiftUIInarop.swift in Sources */,
 				D135C59C2AEFB96F00440680 /* TorrentDetailsViewModel.swift in Sources */,
 				D1B99D912BEE631B00F51514 /* Patron.swift in Sources */,
+				C0DE00012FA0000000000001 /* SupporterFeed.swift in Sources */,
 				D11138552AF97511008907F7 /* TorrentAddFileItemViewModel.swift in Sources */,
 				7C97D1872CFF791000FF97DC /* UIScheduler.swift in Sources */,
 				D11333B52AF19C4900FA017E /* TorrentHandle+Extension.swift in Sources */,

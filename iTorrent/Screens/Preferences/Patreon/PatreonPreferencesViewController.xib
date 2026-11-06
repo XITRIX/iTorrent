@@ -23,6 +23,10 @@
                 <outlet property="patronMessage" destination="4bs-Gi-Yen" id="yPM-2x-j30"/>
                 <outlet property="patronTitle" destination="gCp-Ge-ehk" id="IDT-lW-XUl"/>
                 <outlet property="scrollView" destination="aiv-63-8AE" id="SkH-nt-AbL"/>
+                <outlet property="supportersSection" destination="FyX-d7-ZPA" id="spS-00-001"/>
+                <outlet property="supportersTitle" destination="OdA-Jh-C6C" id="spT-00-001"/>
+                <outlet property="supportersCollection" destination="fIq-tQ-jcS" id="spC-00-001"/>
+                <outlet property="supportersHeight" destination="miM-WO-Ldb" id="spH-00-001"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="roundedViews" destination="Px2-S8-Ev4" collectionClass="NSMutableArray" id="qxr-lP-3Gq"/>
                 <outletCollection property="roundedViews" destination="i54-hH-OSI" collectionClass="NSMutableArray" id="Wky-BR-79a"/>
@@ -225,47 +229,19 @@ Thanks for all your support!</string>
                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FyX-d7-ZPA">
                                             <rect key="frame" x="0.0" y="537" width="361" height="36"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-Jh-C6C">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special thanks to:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-Jh-C6C">
                                                     <rect key="frame" x="0.0" y="0.0" width="361" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="X8V-ao-M5W">
-                                                    <rect key="frame" x="0.0" y="8" width="361" height="0.0"/>
-                                                </activityIndicatorView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fIq-tQ-jcS">
                                                     <rect key="frame" x="0.0" y="16" width="361" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="miM-WO-Ldb"/>
+                                                        <constraint firstAttribute="height" constant="20" priority="999" id="miM-WO-Ldb"/>
                                                     </constraints>
                                                     <collectionViewLayout key="collectionViewLayout" id="sFG-QR-6He"/>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PatronCell" id="Wjb-mo-Dne">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="28"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kWd-aa-PC9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="28"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Patron name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.30000001192092896" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVr-c7-bOX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="28"/>
-                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="KVr-c7-bOX" secondAttribute="bottom" id="ETV-YB-cKN"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="KVr-c7-bOX" secondAttribute="trailing" id="MIq-f9-HEX"/>
-                                                                    <constraint firstItem="KVr-c7-bOX" firstAttribute="top" secondItem="kWd-aa-PC9" secondAttribute="top" id="U4j-6V-E65"/>
-                                                                    <constraint firstItem="KVr-c7-bOX" firstAttribute="leading" secondItem="kWd-aa-PC9" secondAttribute="leading" id="r2z-mC-KYU"/>
-                                                                </constraints>
-                                                            </collectionViewCellContentView>
-                                                            <size key="customSize" width="150" height="28"/>
-                                                        </collectionViewCell>
-                                                    </cells>
                                                 </collectionView>
                                             </subviews>
                                         </stackView>

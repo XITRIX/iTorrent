@@ -35,6 +35,17 @@ class PatreonPreferencesViewModel: BaseViewModel, @unchecked Sendable {
 }
 
 extension PatreonPreferencesViewModel {
+    var supporterNamesPublisher: AnyPublisher<[String], Never> {
+        preferencesStorage.$patreonSupporterNames.eraseToAnyPublisher()
+    }
+
+    func refreshSupporters() {
+        Task {
+            // A failed refresh leaves the persisted names visible.
+            try? await patreonService.fetchSupporterNames()
+        }
+    }
+
     var linkButtonTitle: AnyPublisher<String, Never> {
         accountState.map { account in
             switch account {
