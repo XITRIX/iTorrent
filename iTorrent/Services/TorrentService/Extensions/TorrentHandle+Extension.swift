@@ -68,6 +68,15 @@ extension TorrentHandle {
 }
 
 extension TorrentHandle.Snapshot {
+    func didFinishDownloading(from previousSnapshot: TorrentHandle.Snapshot) -> Bool {
+        // Restoring saved progress during startup is not a new completion.
+        previousSnapshot.state != .checkingFiles &&
+            previousSnapshot.state != .checkingResumeData &&
+            previousSnapshot.friendlyState != .paused &&
+            previousSnapshot.progressWanted < 1 &&
+            progressWanted >= 1
+    }
+
     var friendlyState: TorrentHandle.State {
         if isStorageMissing {
             return .storageError

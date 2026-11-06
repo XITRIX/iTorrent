@@ -202,10 +202,7 @@ private extension TorrentHandle {
                     // Apply automatic pause before publishing completion, so
                     // background shutdown and Live Activities see the final state.
                     if PreferencesStorage.shared.stopSeedingOnFinish,
-                       oldSnapshot.state != .checkingFiles,
-                       oldSnapshot.friendlyState != .paused,
-                       oldSnapshot.progressWanted < 1,
-                       snapshot.progressWanted >= 1
+                       snapshot.didFinishDownloading(from: oldSnapshot)
                     {
                         pause()
                         updateSnapshot()
