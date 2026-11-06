@@ -1,17 +1,65 @@
 {
   "version": 1,
-  "names": [
-    "Charlie Lin",
-    "Henri Laouari",
-    "Hoolofist",
-    "Ivan Cakaric",
-    "Kimmy Lindell Ekström",
-    "Matthieu Ansart",
-    "Monica Nyberg",
-    "Riley + Shane",
-    "Roberto",
-    "shengchalover",
-    "Simon",
-    "Éric Marco-Pena"
+  "supporters": [
+    {
+      "name": "shengchalover",
+      "avatar_url": "https://c8.patreon.com/4/200/52946529/S",
+      "since": "2023-10-17"
+    },
+    {
+      "name": "Ivan Cakaric",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/136805313/6681952a629642efb16297e198ab8328/eyJ3IjoyMDB9/1.png?token-hash=tcsEIUjf7n4xkjlDI2xusuDQv1uy2zJsjtMMddoK_3A%3D",
+      "since": "2024-07-28"
+    },
+    {
+      "name": "Riley + Shane",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/2863968/27bdd880ded3442ba7a13ab7335a33c5/eyJ3IjoyMDB9/3.JPG?token-hash=9IxPFrHAMFX9kd2B5K70VXPI7h-GesJYXesFHi310L0%3D",
+      "since": "2024-10-28"
+    },
+    {
+      "name": "Éric Marco-Pena",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/156682616/9323a4560c654b7db7a4133e6b83fc46/eyJ3IjoyMDB9/1.png?token-hash=IrP0P1M5OgozOz2Pwbz1sZ4cfy6xXh3CgLTlbKGE25M%3D",
+      "since": "2025-01-17"
+    },
+    {
+      "name": "Matthieu Ansart",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/159699660/f778217f05124f26b4ef0834b54efc62/eyJ3IjoyMDB9/1.png?token-hash=7V_XTuaK7tdj5uiPNySDwb1IU3ZjHWrgQHSWFAXTFkE%3D",
+      "since": "2025-02-07"
+    },
+    {
+      "name": "Henri Laouari",
+      "avatar_url": "https://c8.patreon.com/4/200/15283885/H",
+      "since": "2025-07-14"
+    },
+    {
+      "name": "Kimmy Lindell Ekström",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/204141326/260a211b240a4409b7ac351ebe9b0415/eyJ3IjoyMDB9/1.png?token-hash=_uNO3UYV4OJsn6hIPnyed5mrmZ_EmunUYSWXY0vFg0Q%3D",
+      "since": "2026-02-21"
+    },
+    {
+      "name": "Monica Nyberg",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/213194475/8c03c5788e784dac96e08c10ada42ed6/eyJ3IjoyMDB9/1.png?token-hash=ysqCwqCUQ1e_XFcp89CpWVV3Z6qGLcY2F02MryJWjQ0%3D",
+      "since": "2026-05-11"
+    },
+    {
+      "name": "Hoolofist",
+      "avatar_url": "https://c8.patreon.com/4/200/48077258/H",
+      "since": "2026-05-24"
+    },
+    {
+      "name": "Simon",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/227916816/7af38296c622404eae38119c07fbd96c/eyJ3IjoyMDB9/1.png?token-hash=bg2GZ5fJKNS12Ic3MTwxUlAZZ65Nj5Pbz8sK01E9MMs%3D",
+      "since": "2026-09-24"
+    },
+    {
+      "name": "Roberto",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/228886357/33347662d95e4d2a98389b01fc5a7558/eyJ3IjoyMDB9/1.png?token-hash=GkgYsbn2bXQgUzvqB4BuQ_LvwV1BczghGUkKcv-FpJ0%3D",
+      "since": "2026-10-04"
+    },
+    {
+      "name": "Charlie Lin",
+      "avatar_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/228888834/c3148e95945c472a9822df83271b6e55/eyJ3IjoyMDB9/1.jpeg?token-hash=USXjpD9iRfPlzxQEvHCoh2b7ZalmIylAAse38Kfy2mI%3D",
+      "since": "2026-10-11"
+    }
   ]
 }
