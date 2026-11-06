@@ -199,6 +199,17 @@ private extension TorrentHandle {
                     _ = metadata // trigger to generate
                     let oldSnapshot = snapshot
                     updateSnapshot()
+                    // Apply automatic pause before publishing completion, so
+                    // background shutdown and Live Activities see the final state.
+                    if PreferencesStorage.shared.stopSeedingOnFinish,
+                       oldSnapshot.state != .checkingFiles,
+                       oldSnapshot.friendlyState != .paused,
+                       oldSnapshot.progressWanted < 1,
+                       snapshot.progressWanted >= 1
+                    {
+                        pause()
+                        updateSnapshot()
+                    }
                     let preparedSnapshot = snapshot
                     let updateModel = TorrentService.TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: self)
 

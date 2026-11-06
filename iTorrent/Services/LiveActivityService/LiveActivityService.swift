@@ -20,7 +20,16 @@ actor LiveActivityService {
 #if canImport(ActivityKit)
             TorrentService.shared.updateNotifier
                 .sink { [unowned self] updateModel in
-                    Task { await updateLiveActivity(with: updateModel) }
+                    // Acquire execution time before the publisher's next subscriber
+                    // can stop the download's background service.
+                    let needsDismissal = updateModel.handle.map {
+                        !$0.snapshot.friendlyState.shouldShowLiveActivity
+                    } ?? true
+                    let backgroundTask = needsDismissal ? LiveActivityBackgroundTask() : nil
+                    Task {
+                        defer { backgroundTask?.end() }
+                        await updateLiveActivity(with: updateModel)
+                    }
                 }
 #endif
         }
@@ -33,24 +42,91 @@ actor LiveActivityService {
 }
 
 extension LiveActivityService {
-    static func endAllLiveActivities() {
+    static func endPreviousLiveActivities() {
 #if canImport(ActivityKit)
-        if #available(iOS 16.2, *) {
-            let semaphore = DispatchSemaphore(value: 0)
+        if #available(iOS 16.1, *) {
+            // Capture the previous process's activities before scene setup can
+            // start new ones for the restored downloads.
+            let activities = Activity<ProgressWidgetAttributes>.activities
+            guard !activities.isEmpty else { return }
+            let backgroundTask = LiveActivityBackgroundTask()
             Task.detached {
-                print("Terminating live activities...")
-                for activity in Activity<ProgressWidgetAttributes>.activities {
-                    await activity.end(nil, dismissalPolicy: .immediate)
-                }
-                semaphore.signal()
+                defer { backgroundTask.end() }
+                await dismiss(activities)
             }
-            semaphore.wait()
         }
 #endif
     }
+
+    static func endAllLiveActivities() {
+#if canImport(ActivityKit)
+        if #available(iOS 16.1, *) {
+            let activities = Activity<ProgressWidgetAttributes>.activities
+            guard !activities.isEmpty else { return }
+            let semaphore = DispatchSemaphore(value: 0)
+            Task.detached(priority: .high) {
+                await dismiss(activities)
+                semaphore.signal()
+            }
+            // UIKit gives termination callbacks limited time. Never wait
+            // indefinitely if ActivityKit cannot finish before the process exits.
+            _ = semaphore.wait(timeout: .now() + 2)
+        }
+#endif
+    }
+
+#if canImport(ActivityKit)
+    @available(iOS 16.1, *)
+    private static func dismiss(_ activities: [Activity<ProgressWidgetAttributes>]) async {
+        await withTaskGroup(of: Void.self) { group in
+            for activity in activities {
+                group.addTask {
+                    if #available(iOS 16.2, *) {
+                        await activity.end(nil, dismissalPolicy: .immediate)
+                    } else {
+                        await activity.end(using: nil, dismissalPolicy: .immediate)
+                    }
+                }
+            }
+        }
+    }
+#endif
 }
 
 #if canImport(ActivityKit)
+private final class LiveActivityBackgroundTask: @unchecked Sendable {
+    private let application: UIApplication = .shared
+    private let lock = NSLock()
+    private var identifier: UIBackgroundTaskIdentifier = .invalid
+    private var hasEnded = false
+
+    init() {
+        let identifier = application.beginBackgroundTask(withName: "Live Activity dismissal") { [weak self] in
+            self?.end()
+        }
+
+        lock.lock()
+        // Expiration can arrive before beginBackgroundTask returns.
+        if hasEnded {
+            lock.unlock()
+            if identifier != .invalid { application.endBackgroundTask(identifier) }
+        } else {
+            self.identifier = identifier
+            lock.unlock()
+        }
+    }
+
+    func end() {
+        lock.lock()
+        hasEnded = true
+        let identifier = self.identifier
+        self.identifier = .invalid
+        lock.unlock()
+
+        if identifier != .invalid { application.endBackgroundTask(identifier) }
+    }
+}
+
 private extension LiveActivityService {
     func updateLiveActivity(with updateModel: TorrentService.TorrentUpdateModel) async {
         if #available(iOS 16.1, *) {

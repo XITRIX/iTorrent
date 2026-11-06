@@ -37,17 +37,15 @@ struct ProgressWidgetLiveActivity: Widget {
         let config = ActivityConfiguration(for: ProgressWidgetAttributes.self) { context in
             // Lock screen/banner UI goes here
 
-            if #available(iOS 18, *) {
-                ProgressWidgetLiveActivityWatchSupportContent(context: context)
-                    .tint(Color(uiColor: context.tintColor))
-                    .padding()
-                    .activityBackgroundTint(.clear)
-            } else {
-                ProgressWidgetLiveActivityContent(context: context)
-                    .tint(Color(uiColor: context.tintColor))
-                    .padding()
-                    .activityBackgroundTint(.clear)
+            Group {
+                if #available(iOS 18, *) {
+                    ProgressWidgetLiveActivityWatchSupportContent(context: context)
+                } else {
+                    ProgressWidgetLiveActivityContent(context: context)
+                }
             }
+            .tint(Color(uiColor: context.tintColor))
+            .padding()
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through
@@ -113,66 +111,19 @@ struct ProgressWidgetLiveActivityWatchSupportContent: View {
     @State var context: ActivityViewContext<ProgressWidgetAttributes>
 
     var body: some View {
-        if activityFamily == .medium {
+        switch activityFamily {
+        case .medium:
             ProgressWidgetLiveActivityContent(context: context)
-        } else {
-            VStack(spacing: 8) {
-                HStack {
-                    MarqueeText(
-                        text: context.state.name,
-                        font: UIFont.preferredFont(forTextStyle: .caption1),
-                        leftFade: 16,
-                        rightFade: 16,
-                        startDelay: 3)
-                    Spacer()
-                }
-                HStack {
-                    switch context.state.state {
-                    case .checkingFiles:
-                        Text(context.state.state.name)
-                        Spacer()
-                    case .downloadingMetadata:
-                        Text(context.state.state.name)
-                        Spacer()
-                    case .downloading:
-                        Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
-                        Spacer()
-                        Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
-                    case .finished:
-                        Text(context.state.state.name)
-                        Spacer()
-                    case .seeding:
-                        Text(context.state.state.name)
-                        Spacer()
-                        Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
-                    case .checkingResumeData:
-                        Text(context.state.state.name)
-                        Spacer()
-                    case .paused:
-                        Text(context.state.state.name)
-                        Spacer()
-                    case .storageError:
-                        EmptyView()
-                    }
-                }
-                .font(.caption2)
-                .foregroundColor(.secondary)
-
-                HStack {
-                    ProgressView(value: context.state.progress)
-                        .progressViewStyle(.linear)
-                    Text(String("\(String(format: "%.2f", context.state.progress * 100))%"))
-                        .font(.caption2)
-                        .monospaced()
-                }
-            }
-            .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
+        case .small:
+            WatchProgressWidgetLiveActivityContent(context: context)
+        default:
+            EmptyView()
         }
     }
 }
 
 struct ProgressWidgetLiveActivityContent: View {
-    @State var context: ActivityViewContext<ProgressWidgetAttributes>
+    let context: ActivityViewContext<ProgressWidgetAttributes>
 
     var body: some View {
         VStack(spacing: 8) {
@@ -225,6 +176,66 @@ struct ProgressWidgetLiveActivityContent: View {
                 .progressViewStyle(.linear)
         }
         .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
+        .activityBackgroundTint(.black.opacity(0.6))
+    }
+}
+
+struct WatchProgressWidgetLiveActivityContent: View {
+    let context: ActivityViewContext<ProgressWidgetAttributes>
+
+    var body: some View {
+        VStack(spacing: 8) {
+            HStack {
+                MarqueeText(
+                    text: context.state.name,
+                    font: UIFont.preferredFont(forTextStyle: .caption1),
+                    leftFade: 16,
+                    rightFade: 16,
+                    startDelay: 3)
+                Spacer()
+            }
+            HStack {
+                switch context.state.state {
+                case .checkingFiles:
+                    Text(context.state.state.name)
+                    Spacer()
+                case .downloadingMetadata:
+                    Text(context.state.state.name)
+                    Spacer()
+                case .downloading:
+                    Text(String("\(context.state.downSpeed.bitrateToHumanReadable)/s ↓"))
+                    Spacer()
+                    Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
+                case .finished:
+                    Text(context.state.state.name)
+                    Spacer()
+                case .seeding:
+                    Text(context.state.state.name)
+                    Spacer()
+                    Text(String("\(context.state.upSpeed.bitrateToHumanReadable)/s ↑"))
+                case .checkingResumeData:
+                    Text(context.state.state.name)
+                    Spacer()
+                case .paused:
+                    Text(context.state.state.name)
+                    Spacer()
+                case .storageError:
+                    EmptyView()
+                }
+            }
+            .font(.caption2)
+            .foregroundColor(.secondary)
+
+            HStack {
+                ProgressView(value: context.state.progress)
+                    .progressViewStyle(.linear)
+                Text(String("\(String(format: "%.2f", context.state.progress * 100))%"))
+                    .font(.caption2)
+                    .monospaced()
+            }
+        }
+        .widgetURL(URL(string: "iTorrent:hash:\(context.attributes.hash)"))
+        .activityBackgroundTint(nil)
     }
 }
 

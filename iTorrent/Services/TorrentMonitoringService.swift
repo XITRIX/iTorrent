@@ -43,10 +43,6 @@ private extension TorrentMonitoringService {
               handle.snapshot.progressWanted >= 1
         else { return }
 
-        if PreferencesStorage.shared.stopSeedingOnFinish {
-            handle.pause()
-        }
-
         let content = UNMutableNotificationContent()
 
         let hash = handle.snapshot.infoHashes.best.hex
