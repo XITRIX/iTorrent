@@ -2,7 +2,7 @@
 [AltStore Classic Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-classic://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with AltStore Classic.'
 
 [AltStore PAL Button]: https://img.shields.io/badge/Download-AltStore_PAL-green?style=flat
-[AltStore PAL Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-classic://source?url=https://xitrix.github.io/iTorrent/AltStoreEU.json 'Download with AltStore.'
+[AltStore PAL Link]: https://intradeus.github.io/http-protocol-redirector?r=altstore-pal://source?url=https://xitrix.github.io/iTorrent/AltStoreEU.json 'Download with AltStore.'
 
 [SideStore Button]: https://img.shields.io/badge/Download-SideStore-purple?style=flat
 [SideStore Link]: https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://xitrix.github.io/iTorrent/AltStore.json 'Download with SideStore.'
