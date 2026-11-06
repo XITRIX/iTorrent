@@ -13,6 +13,9 @@ extension TorrentHandle {
     class ObservedSnapshot {
         private weak var torrentHandle: TorrentHandle?
         private var hasLoadedImmutableTorrentMetadata = false
+        // Observing the source invalidates lazy properties when a new snapshot
+        // arrives, without reading their values until a consumer requests them.
+        private var sourceSnapshot: TorrentHandle.Snapshot
 
         var isValid: Bool
         var infoHashes: TorrentHashes
@@ -44,12 +47,12 @@ extension TorrentHandle {
         var isSequential: Bool
         var isFirstLastPiecePriority: Bool
         var isPrivate: Bool
-        var pieces: [NSNumber]?
-        var files: [FileEntry]
-        var trackers: [TorrentTracker]
-        var magnetLink: String
-        var torrentFilePath: String?
-        var downloadPath: URL?
+        var pieces: [NSNumber]? { sourceSnapshot.pieces }
+        var files: [FileEntry] { sourceSnapshot.files }
+        var trackers: [TorrentTracker] { sourceSnapshot.trackers }
+        var magnetLink: String { sourceSnapshot.magnetLink }
+        var torrentFilePath: String? { sourceSnapshot.torrentFilePath }
+        var downloadPath: URL? { sourceSnapshot.downloadPath }
         var storageUUID: UUID?
         var isStorageMissing: Bool
 
@@ -57,6 +60,7 @@ extension TorrentHandle {
             self.torrentHandle = torrentHandle
 
             let snapshot = torrentHandle.snapshot
+            sourceSnapshot = snapshot
             isValid = snapshot.isValid
             infoHashes = snapshot.infoHashes
             name = snapshot.name
@@ -87,20 +91,14 @@ extension TorrentHandle {
             isSequential = snapshot.isSequential
             isFirstLastPiecePriority = snapshot.isFirstLastPiecePriority
             isPrivate = torrentHandle.isPrivate
-            pieces = snapshot.pieces
-            files = snapshot.files
-            trackers = snapshot.trackers
-            magnetLink = snapshot.magnetLink
-            torrentFilePath = snapshot.torrentFilePath
-            downloadPath = snapshot.downloadPath
             storageUUID = snapshot.storageUUID
             isStorageMissing = snapshot.isStorageMissing
             hasLoadedImmutableTorrentMetadata = snapshot.hasMetadata
         }
 
-        func update() {
+        func update(with preparedSnapshot: TorrentHandle.Snapshot? = nil) {
             guard let torrentHandle else { return }
-            let snapshot = torrentHandle.snapshot
+            let snapshot = preparedSnapshot ?? torrentHandle.snapshot
 
             isValid = snapshot.isValid
             if !hasLoadedImmutableTorrentMetadata {
@@ -135,12 +133,7 @@ extension TorrentHandle {
             isSequential = snapshot.isSequential
             isFirstLastPiecePriority = snapshot.isFirstLastPiecePriority
             isPrivate = torrentHandle.isPrivate
-            pieces = snapshot.pieces
-            files = snapshot.files
-            trackers = snapshot.trackers
-            magnetLink = snapshot.magnetLink
-            torrentFilePath = snapshot.torrentFilePath
-            downloadPath = snapshot.downloadPath
+            sourceSnapshot = snapshot
             storageUUID = snapshot.storageUUID
             isStorageMissing = snapshot.isStorageMissing
         }

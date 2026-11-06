@@ -91,14 +91,14 @@ private extension CellularNotAllowedOverlay {
             }.receive(on: UIScheduler.shared)
                 .debounce(for: .seconds(1), scheduler: UIScheduler.shared)
                 .throttle(for: .seconds(4), scheduler: UIScheduler.shared, latest: false)
-                .sink { [unowned self] shouldShowOverlay in
-                    guard shouldShowOverlay else { return }
+                .sink { [weak self] shouldShowOverlay in
+                    guard let self, shouldShowOverlay else { return }
 
                     currentOverlayTask?.cancel()
-                    currentOverlayTask = Task { @MainActor in
-                        showOverlay()
+                    currentOverlayTask = Task { @MainActor [weak self] in
+                        self?.showOverlay()
                         try await Task.sleep(for: .seconds(4))
-                        hideOverlay()
+                        self?.hideOverlay()
                     }
                 }
         }

@@ -20,19 +20,23 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
         super.viewDidLoad()
 
         disposeBag.bind {
-            viewModel.$sections.sink { [unowned self] sections in
+            viewModel.$sections.sink { [weak self] sections in
+                guard let self else { return }
                 collectionView.diffDataSource.applyModels(sections)
             }
 
-            viewModel.isRemoveAvailable.sink { [unowned self] available in
+            viewModel.isRemoveAvailable.sink { [weak self] available in
+                guard let self else { return }
                 removeButton.isEnabled = available
             }
 
-            collectionView.$selectedIndexPaths.sink { [unowned self] indexPaths in
+            collectionView.$selectedIndexPaths.sink { [weak self] indexPaths in
+                guard let self else { return }
                 viewModel.selectedIndexPaths = indexPaths
             }
 
-            viewModel.$trackers.map { $0.isEmpty }.sink { [unowned self] isEmpty in
+            viewModel.$trackers.map { $0.isEmpty }.sink { [weak self] isEmpty in
+                guard let self else { return }
                 if #available(iOS 17.0, *) {
                     var config = UIContentUnavailableConfiguration.empty()
                     config.image = .init(systemName: "externaldrive.fill.badge.questionmark")
@@ -51,26 +55,31 @@ class TorrentTrackersViewController<VM: TorrentTrackersViewModel>: BaseViewContr
 
 //        collectionView.delegate = delegates
 
-        let importActions: [UIAction] = viewModel.trackersListService.trackerSources.value.values.map { [unowned self] source in
-            .init(title: source.title) { [unowned self] _ in
+        let importActions: [UIAction] = viewModel.trackersListService.trackerSources.value.values.map { source in
+            .init(title: source.title) { [weak self] _ in
+                guard let self else { return }
                 viewModel.addTrackers(from: source)
             }
         }
 
         addButton.menu = .init(title: %"trackers.add", children: [
-            UIAction(title: %"trackers.add.manually") { [unowned self] _ in
+            UIAction(title: %"trackers.add.manually") { [weak self] _ in
+                guard let self else { return }
                 viewModel.addTrackers()
             },
             UIMenu(title: %"trackers.add.fromSource", children: importActions + [
-                UIAction(title: %"trackers.add.fromSource.all", image: .init(systemName: "list.bullet")) { [unowned self] _ in
+                UIAction(title: %"trackers.add.fromSource.all", image: .init(systemName: "list.bullet")) { [weak self] _ in
+                    guard let self else { return }
                     viewModel.addAllTrackersFromSourcesList()
                 }
             ])
         ])
-        removeButton.primaryAction = .init(title: %"trackers.remove", image: .init(systemName: "trash"), handler: { [unowned self] _ in
+        removeButton.primaryAction = .init(title: %"trackers.remove", image: .init(systemName: "trash"), handler: { [weak self] _ in
+            guard let self else { return }
             viewModel.removeSelected()
         })
-        reannounceButton.primaryAction = .init(title: %"trackers.reannounceAll") { [unowned self] _ in
+        reannounceButton.primaryAction = .init(title: %"trackers.reannounceAll") { [weak self] _ in
+            guard let self else { return }
             viewModel.reannounceAll()
         }
 

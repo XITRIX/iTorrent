@@ -26,8 +26,9 @@ class BaseCollectionViewController<VM: BaseCollectionViewModel>: BaseViewControl
         collectionView.keyboardDismissMode = .interactive
 #endif
 
-        refresh.addAction(.init { [unowned self] _ in
-            Task {
+        refresh.addAction(.init { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
                 await refreshTask?()
                 refresh.endRefreshing()
             }

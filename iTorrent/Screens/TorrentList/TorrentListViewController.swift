@@ -417,8 +417,9 @@ private extension TorrentListViewController {
         }
 
         alert.addAction(.init(title: %"common.cancel", style: .cancel))
-        alert.addAction(.init(title: %"common.ok", style: .default) { [unowned self] _ in
-            Task {
+        alert.addAction(.init(title: %"common.ok", style: .default) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self else { return }
                 guard let text = alert.textFields?.first?.text,
                       let url = URL(string: text),
                       ["http", "https"].contains(url.scheme?.lowercased())

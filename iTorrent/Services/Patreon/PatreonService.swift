@@ -70,26 +70,28 @@ extension PatreonService {
         }
 
         let code = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<String, Swift.Error>) in
+            let finish = OneShotCallback<Result<String, Swift.Error>> {
+                continuation.resume(with: $0)
+            }
             do {
                 try PatreonWebServer.shared.run { [self] code in
-                    Task {
+                    Task { @MainActor in
                         await authenticationSession?.dismiss(animated: true)
                         guard let code else {
-                            continuation.resume(with: .failure(Error.unknown))
+                            finish.call(.failure(Error.unknown))
                             return
                         }
 
-                        continuation.resume(returning: code)
+                        finish.call(.success(code))
                     }
                 }
             }
             catch {
-                continuation.resume(throwing: error)
+                finish.call(.failure(error))
             }
         }
 
         let token = try await fetchAccessToken(oauthCode: code)
-        print(token)
 
         await MainActor.run {
             preferences.patreonToken = token

@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import LibTorrent
 
+@MainActor
 protocol BackgroundServiceProtocol {
     var isRunning: Bool { get }
     func start() -> Bool
@@ -23,6 +24,7 @@ extension BackgroundService {
     }
 }
 
+@MainActor
 class BackgroundService: BackgroundServiceProtocol {
     @Published var isRunningPublisher: Bool = false
 
@@ -38,7 +40,6 @@ class BackgroundService: BackgroundServiceProtocol {
     }
 
     func stop() {
-        guard isRunning else { return }
         isRunningPublisher = false
         impl.stop()
     }
@@ -48,15 +49,27 @@ class BackgroundService: BackgroundServiceProtocol {
     }
 
     func applyMode(_ mode: Mode) async -> Bool {
+        let request = UUID()
+        modeRequest = request
+        let replacement: BackgroundServiceProtocol
         switch mode {
         case .audio:
-            impl = AudioBackgroundService()
+            replacement = AudioBackgroundService()
         case .location:
-            impl = LocationBackgroundService()
+            replacement = LocationBackgroundService()
         }
-        return await impl.prepare()
+        // Stop the old implementation before releasing its player or location
+        // manager. Keep the replacement alive across the authorization prompt.
+        impl.stop()
+        isRunningPublisher = false
+        impl = replacement
+        let prepared = await replacement.prepare()
+        // An older authorization response must not reset a newer mode choice.
+        guard modeRequest == request else { return true }
+        return prepared
     }
 
+    private var modeRequest: UUID?
     private var impl: BackgroundServiceProtocol = AudioBackgroundService()
 }
 

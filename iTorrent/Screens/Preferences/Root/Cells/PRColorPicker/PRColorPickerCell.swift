@@ -41,8 +41,9 @@ class PRColorPickerCell<VM: PRColorPickerViewModel>: MvvmCollectionViewListCell<
     @IBAction func colorPicker(_ sender: UIControl) {
         let vc = CustomColorPickerViewController()
         vc.selectedColor = PreferencesStorage.shared.tintColor
-        vc.delegate = delegates
-        viewController?.present(vc, animated: true)
+        viewController?.present(vc, animated: true) { [delegates] in
+            vc.delegate = delegates
+        }
     }
 }
 
@@ -124,8 +125,8 @@ private class CustomColorPickerViewController: UIColorPickerViewController {
         }
 
 #if !os(visionOS)
-        // Custom detents started to be supported for remote view controllers yet from iOS 17
-        if #available(iOS 17, *) {
+        // Custom detents started to be supported for remote view controllers yet from iOS 17.2
+        if #available(iOS 17.2, *) {
             guard let sheet = sheetPresentationController else { return }
             sheet.prefersGrabberVisible = true
 

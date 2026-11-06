@@ -13,7 +13,7 @@ extension UInt64 {
         formatter.allowedUnits = .useAll//.subtracting(.useBytes)
         formatter.countStyle = .memory //.decimal
         formatter.allowsNonnumericFormatting = false
-        return formatter.string(fromByteCount: Int64(self)).replacingOccurrences(of: "bytes", with: "B")
+        return formatter.string(fromByteCount: Int64(clamping: self)).replacingOccurrences(of: "bytes", with: "B")
     }
 
     var timeString: String {

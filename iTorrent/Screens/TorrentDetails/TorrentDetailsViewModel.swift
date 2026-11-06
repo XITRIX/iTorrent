@@ -197,12 +197,13 @@ extension TorrentDetailsViewModel {
     }
 
     func removeTorrent(from source: MvvmPresentationSource) {
+        let infoHashes = torrentHandle.snapshot.infoHashes
         alert(title: %"torrent.remove.title", message: torrentHandle.snapshot.name, style: .actionSheet, actions: [
-            .init(title: %"torrent.remove.action.dropData", style: .destructive, action: { [unowned self] in
-                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: true)
+            .init(title: %"torrent.remove.action.dropData", style: .destructive, action: {
+                TorrentService.shared.removeTorrent(by: infoHashes, deleteFiles: true)
             }),
-            .init(title: %"torrent.remove.action.keepData", style: .default, action: { [unowned self] in
-                TorrentService.shared.removeTorrent(by: torrentHandle.snapshot.infoHashes, deleteFiles: false)
+            .init(title: %"torrent.remove.action.keepData", style: .default, action: {
+                TorrentService.shared.removeTorrent(by: infoHashes, deleteFiles: false)
             }),
             .init(title: %"common.cancel", style: .cancel, isPrimary: true),
         ], sourceView: source)

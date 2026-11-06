@@ -8,26 +8,29 @@
 import AVFoundation
 import UIKit
 
-class AudioBackgroundService: @unchecked Sendable {
+@MainActor
+class AudioBackgroundService {
     private var player: AVAudioPlayer?
     private var backgroundTask: UIBackgroundTaskIdentifier?
     private var asyncTask: Task<Void, Never>?
-    private let asyncTaskLock = NSLock()
+    private var isStarted = false
 }
 
 extension AudioBackgroundService: BackgroundServiceProtocol {
     var isRunning: Bool {
-        (player?.isPlaying ?? false) || (backgroundTask != nil && backgroundTask != .invalid)
+        isStarted
     }
     
     func start() -> Bool {
         guard !isRunning else { return true }
-        startBackgroundTask()
+        isStarted = true
         NotificationCenter.default.addObserver(self, selector: #selector(interruptedAudio), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
-        return true
+        startBackgroundTask()
+        return isRunning
     }
 
     func stop() {
+        isStarted = false
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.interruptionNotification, object: nil)
         replaceAsyncTask(with: nil)
         stopBackgroundTask()
@@ -38,7 +41,7 @@ extension AudioBackgroundService: BackgroundServiceProtocol {
 }
 
 private extension AudioBackgroundService {
-    @objc func interruptedAudio(_ notification: Notification) {
+    @objc nonisolated func interruptedAudio(_ notification: Notification) {
         guard notification.name == AVAudioSession.interruptionNotification,
               let typeValue = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,
               let type = AVAudioSession.InterruptionType(rawValue: typeValue)
@@ -46,6 +49,13 @@ private extension AudioBackgroundService {
             return
         }
 
+        Task { @MainActor [weak self] in
+            self?.handleInterruption(type)
+        }
+    }
+
+    func handleInterruption(_ type: AVAudioSession.InterruptionType) {
+        guard isStarted else { return }
         switch type {
         case .began:
             // Keep the service alive while the system owns the audio session.
@@ -106,9 +116,9 @@ private extension AudioBackgroundService {
     }
 
     func startBackgroundTask() {
+        guard isStarted else { return }
         guard BackgroundService.isBackgroundNeeded else {
-            stopBackgroundTask()
-            stopAudio()
+            stop()
             return
         }
 
@@ -121,16 +131,15 @@ private extension AudioBackgroundService {
 
     func runBackgroundTask() async {
         while !Task.isCancelled {
-            guard BackgroundService.isBackgroundNeeded else {
-                stopBackgroundTask()
-                stopAudio()
+            guard isStarted, BackgroundService.isBackgroundNeeded else {
+                stop()
                 return
             }
 
             playAudio()
             stopBackgroundTask()
 
-            backgroundTask = await UIApplication.shared.beginBackgroundTask { [weak self] in
+            backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
                 guard let self else { return }
                 print("\(Date.now.timestamp) [BG] timeout!!!")
                 startBackgroundTask()
@@ -151,10 +160,8 @@ private extension AudioBackgroundService {
     }
 
     func replaceAsyncTask(with task: Task<Void, Never>?) {
-        asyncTaskLock.lock()
         let previousTask = asyncTask
         asyncTask = task
-        asyncTaskLock.unlock()
 
         previousTask?.cancel()
     }

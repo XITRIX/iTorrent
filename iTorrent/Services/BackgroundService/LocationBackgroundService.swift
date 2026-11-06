@@ -7,7 +7,8 @@
 
 import CoreLocation
 
-class LocationBackgroundService: NSObject, @unchecked Sendable {
+@MainActor
+class LocationBackgroundService: NSObject {
     override init() {
         super.init()
         locationManager.delegate = self
@@ -15,7 +16,7 @@ class LocationBackgroundService: NSObject, @unchecked Sendable {
 
     var isRunning: Bool = false
 
-    private var continuation: CheckedContinuation<Void, Never>?
+    private var continuations: [CheckedContinuation<Void, Never>] = []
     private let locationManager = CLLocationManager()
 }
 
@@ -38,12 +39,16 @@ extension LocationBackgroundService: BackgroundServiceProtocol {
             return status != .denied && status != .restricted
         }
 
-#if !os(visionOS)
-        locationManager.requestAlwaysAuthorization()
-#endif
-        
         await withCheckedContinuation { continuation in
-            self.continuation = continuation
+            let shouldRequestAuthorization = continuations.isEmpty
+            continuations.append(continuation)
+#if !os(visionOS)
+            if shouldRequestAuthorization {
+                locationManager.requestAlwaysAuthorization()
+            }
+#else
+            finishAuthorization()
+#endif
         }
 
         status = locationManager.authorizationStatus
@@ -52,6 +57,12 @@ extension LocationBackgroundService: BackgroundServiceProtocol {
 }
 
 private extension LocationBackgroundService {
+    func finishAuthorization() {
+        let pending = continuations
+        continuations.removeAll()
+        pending.forEach { $0.resume() }
+    }
+
     func runLocationService() -> Bool {
         locationManager.desiredAccuracy = kCLLocationAccuracyReduced
 
@@ -75,9 +86,9 @@ extension LocationBackgroundService: CLLocationManagerDelegate {
         guard manager.authorizationStatus != .notDetermined
         else { return }
 
-        Task {
-            continuation?.resume()
-            continuation = nil
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            finishAuthorization()
         }
     }
 }

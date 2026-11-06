@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0DE000130B0000000000001 /* OneShotCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE000130B0000000000002 /* OneShotCallback.swift */; };
 		7C013DE32C28AA3C0026A11B /* sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C013DE22C28A97F0026A11B /* sound.m4a */; };
 		7C013DE42C2F38AA0026A11B /* LocalizationAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */; };
 		7C013DE52C2F41760026A11B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
@@ -327,6 +328,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C0DE000130B0000000000002 /* OneShotCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneShotCallback.swift; sourceTree = "<group>"; };
 		7C013DE22C28A97F0026A11B /* sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.m4a; sourceTree = "<group>"; };
 		7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTorrentIntent.swift; sourceTree = "<group>"; };
@@ -1302,6 +1304,7 @@
 		D19E00232AF045DA000A17A2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C0DE000130B0000000000002 /* OneShotCallback.swift */,
 				7C8D580E303E26B800F61E14 /* PrivateGlass */,
 				7C36BB022FDA1ACE006C240E /* Perception */,
 				7C92760D2F7C321A0081CA19 /* AirPlay */,
@@ -1869,7 +1872,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+			shellScript = "# Unsigned local verification builds do not publish symbols or build events.\nif [ \"${CODE_SIGNING_ALLOWED:-YES}\" = \"NO\" ]; then\n    exit 0\nfi\n\n# CI uses a shared package cache outside DerivedData.\nPACKAGES_PATH=\"${CI_SOURCE_PACKAGES_PATH:-${BUILD_DIR%/Build/*}/SourcePackages}\"\n\"${PACKAGES_PATH}/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2023,6 +2026,7 @@
 				7C95B7B72C385B99000EC50F /* UICellAccessory+Image.swift in Sources */,
 				D1EFCD192AF6AEC700D33A7A /* TorrentFilesDictionaryItemViewModel.swift in Sources */,
 				D1B99D892BEE613B00F51514 /* PatreonWebServer.swift in Sources */,
+				C0DE000130B0000000000001 /* OneShotCallback.swift in Sources */,
 				7C5B410A2EEC3E5B001D4C68 /* TorrentFilesModels.swift in Sources */,
 				7CFEBE762BC3ED550013233F /* RssFeedCellViewModel.swift in Sources */,
 				7C5FBE0F2BBB227D0069E5A0 /* UISegmentedProgressView.swift in Sources */,

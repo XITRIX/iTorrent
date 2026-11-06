@@ -188,20 +188,25 @@ private extension TorrentHandle {
         updateSnapshot()
         observableSnapshot.update()
 
+        let snapshotQueue = DispatchQueue(label: "com.xitrix.iTorrent.snapshot-update", qos: .userInitiated)
         disposeBag.bind {
             __unthrottledUpdatePublisher
                 .throttle(for: .seconds(0.1), scheduler: .main, latest: true)
-                .receive(on: DispatchQueue.global(qos: .userInitiated))
+                .receive(on: snapshotQueue)
                 .sink { [weak self, weak torrentServide] in
                     guard let self, let torrentServide else { return }
 
                     _ = metadata // trigger to generate
                     let oldSnapshot = snapshot
                     updateSnapshot()
-                    observableSnapshot.update()
+                    let preparedSnapshot = snapshot
                     let updateModel = TorrentService.TorrentUpdateModel(oldSnapshot: oldSnapshot, handle: self)
 
                     Task { @MainActor in
+                        // Observation reads and writes must share the UI executor.
+                        // In particular, URL/String values cannot be replaced while
+                        // a details view is reading them on the main thread.
+                        self.observableSnapshot.update(with: preparedSnapshot)
                         torrentServide.updateNotifier.send(updateModel)
                         self.__updatePublisher.send(updateModel)
                     }
