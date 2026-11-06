@@ -165,7 +165,7 @@ class TorrentListViewController<VM: TorrentListViewModel>: BaseViewController<VM
                     let start = UIAction(title: %"details.start", image: .init(systemName: "play.fill"), handler: { _ in
                         handles.forEach { $0.resume() }
                     })
-                    let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), handler: { _ in
+                    let pause = UIAction(title: %"details.pause", image: .init(systemName: "pause.fill"), attributes: handles.contains(where: { $0.snapshot.canPause }) ? [] : .hidden, handler: { _ in
                         handles.forEach { $0.pause() }
                     })
 //                    let delete = UIAction(title: %"common.delete", image: UIImage(systemName: "trash.fill"), attributes: .destructive) { [unowned self] _ in

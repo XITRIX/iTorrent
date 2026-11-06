@@ -102,7 +102,7 @@ extension TorrentHandle.Snapshot {
     }
 
     var canPause: Bool {
-        !isPaused
+        !isPaused && state != .checkingResumeData
     }
 }
 

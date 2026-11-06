@@ -429,7 +429,7 @@ private extension TorrentHandle.ObservedSnapshot {
     }
 
     var canPause: Bool {
-        !isPaused
+        !isPaused && state != .checkingResumeData
     }
 
     var timeRemains: String {
