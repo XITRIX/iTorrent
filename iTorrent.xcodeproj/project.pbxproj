@@ -693,13 +693,6 @@
 			path = AdView;
 			sourceTree = "<group>";
 		};
-		7C519C8D2C4282F000E353A9 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
 		7C5B41002EEC3214001D4C68 /* LibTorrent */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,7 +1317,6 @@
 			children = (
 				7C5B41002EEC3214001D4C68 /* LibTorrent */,
 				7CCDB3352ED5B4A2001E857B /* UIImage */,
-				7C519C8D2C4282F000E353A9 /* Foundation */,
 				7C95B7B52C385B8E000EC50F /* UIKit */,
 				7C5FBE722BC2F0940069E5A0 /* MvvmFoundation */,
 				7C5FBE2F2BBF5C990069E5A0 /* SwiftUI */,
@@ -1771,6 +1763,7 @@
 				de,
 				it,
 				pl,
+				ta,
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (

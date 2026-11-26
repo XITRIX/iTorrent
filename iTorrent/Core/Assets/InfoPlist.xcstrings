@@ -8,6 +8,12 @@
             "state" : "translated",
             "value" : "BitTorrent Metadata"
           }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BitTorrent மீத்தரவு"
+          }
         }
       }
     },
@@ -37,6 +43,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "iTorrent uses the local network to discover playback devices and cast video on your network."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வீடியோவை இயக்கும் சாதனங்களைக் கண்டறிந்து அவற்றுக்கு வீடியோவை அனுப்ப iTorrent உங்கள் உள்ளூர் நெட்வொர்க்கைப் பயன்படுத்துகிறது."
           }
         }
       }

@@ -5,10 +5,24 @@
 
     },
     "-%@" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-%@"
+          }
+        }
+      }
     },
     "%@" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
     "%@ of %@ (%@)" : {
       "localizations" : {
@@ -46,6 +60,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ из %2$@ (%3$@)"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ / %2$@ (%3$@)"
           }
         },
         "zh-Hans" : {
@@ -94,6 +114,12 @@
             "value" : "%1$lld / %2$lld файлов"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld உருப்படிகள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -103,7 +129,14 @@
       }
     },
     "Add Torrent" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்டைச் சேர்"
+          }
+        }
+      }
     },
     "add.dismiss.message" : {
       "extractionState" : "manual",
@@ -142,6 +175,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Все не сохранённые изменения будут утеряны"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்து மாற்றங்களும் இழக்கப்படும்"
           }
         },
         "zh-Hans" : {
@@ -191,6 +230,12 @@
             "value" : "Вы уверены что хотите закрыть это окно?"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மாற்றங்களைக் கைவிட விரும்புகிறீர்களா?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -235,6 +280,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Торрент с хэшем:\n\"%@\" уже имеется в списке загрузок"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த Hash கொண்ட டோரண்ட் ஏற்கனவே பதிவிறக்க வரிசையில் உள்ளது: \"%@\""
           }
         },
         "zh-Hans" : {
@@ -283,6 +334,12 @@
             "value" : "Этот торрент уже добавлен"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த டோரண்ட் ஏற்கனவே உள்ளது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -327,6 +384,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Настроить..."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நிர்வகி..."
           }
         },
         "zh-Hans" : {
@@ -375,6 +438,12 @@
             "value" : "Выберите хранилище"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடத்தைத் தேர்ந்தெடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -384,7 +453,14 @@
       }
     },
     "AirPlay" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        }
+      }
     },
     "Audio" : {
       "localizations" : {
@@ -424,6 +500,12 @@
             "value" : "Аудио"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒலி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -433,7 +515,14 @@
       }
     },
     "Close" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூடு"
+          }
+        }
+      }
     },
     "common.add" : {
       "localizations" : {
@@ -471,6 +560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேர்"
           }
         },
         "zh-Hans" : {
@@ -519,6 +614,12 @@
             "value" : "Все"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்தும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -563,6 +664,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отменить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ரத்து செய்"
           }
         },
         "zh-Hans" : {
@@ -611,6 +718,12 @@
             "value" : "Закрыть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -657,6 +770,12 @@
             "value" : "Продолжить"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தொடர்க"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -701,6 +820,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நீக்கு"
           }
         },
         "zh-Hans" : {
@@ -750,6 +875,12 @@
             "value" : "Закрыть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -794,6 +925,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Включить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இயக்கு"
           }
         },
         "zh-Hans" : {
@@ -842,6 +979,12 @@
             "value" : "Ошибка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பிழை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -886,6 +1029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Логин"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உள்நுழை"
           }
         },
         "zh-Hans" : {
@@ -934,6 +1083,12 @@
             "value" : "Нет"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இல்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -978,6 +1133,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ОК"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சரி"
           }
         },
         "zh-Hans" : {
@@ -1026,6 +1187,12 @@
             "value" : "Открыть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "திற"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1070,6 +1237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Опционально"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விருப்பத்தேர்வு"
           }
         },
         "zh-Hans" : {
@@ -1118,6 +1291,12 @@
             "value" : "Пароль"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கடவுச்சொல்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1162,6 +1341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Порт"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Port"
           }
         },
         "zh-Hans" : {
@@ -1210,6 +1395,12 @@
             "value" : "Удалить"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அகற்று"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1254,6 +1445,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сбросить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மீட்டமை"
           }
         },
         "zh-Hans" : {
@@ -1302,6 +1499,12 @@
             "value" : "Поиск"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1346,6 +1549,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поделиться"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பகிர்"
           }
         },
         "zh-Hans" : {
@@ -1394,6 +1603,12 @@
             "value" : "Да"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஆம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1403,10 +1618,24 @@
       }
     },
     "Delete Keeping Files" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகளை வைத்துக்கொண்டு நீக்கு"
+          }
+        }
+      }
     },
     "Delete With Files" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகளுடன் நீக்கு"
+          }
+        }
+      }
     },
     "details.actions" : {
       "localizations" : {
@@ -1444,6 +1673,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Действия"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயல்கள்"
           }
         },
         "zh-Hans" : {
@@ -1492,6 +1727,12 @@
             "value" : "Файлы"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1536,6 +1777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Трекеры"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர்கள்"
           }
         },
         "zh-Hans" : {
@@ -1584,6 +1831,12 @@
             "value" : "Комментарий скопирован в буфер обмена"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கருத்து நகலெடுக்கப்பட்டது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1628,6 +1881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Создатель скопирован в буфер обмена"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உருவாக்கியவரின் பெயர் நகலெடுக்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -1676,6 +1935,12 @@
             "value" : "Хэш скопирован в буфер обмена"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash நகலெடுக்கப்பட்டது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1720,6 +1985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Хэш v2 скопирован в буфер обмена"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash v2 நகலெடுக்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -1768,6 +2039,12 @@
             "value" : "Загрузка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்குகிறது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1812,6 +2089,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Приоритеты"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னுரிமைகள்"
           }
         },
         "zh-Hans" : {
@@ -1860,6 +2143,12 @@
             "value" : "Первый и последний"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முதல் மற்றும் கடைசி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1904,6 +2193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прогресс"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னேற்றம்"
           }
         },
         "zh-Hans" : {
@@ -1952,6 +2247,12 @@
             "value" : "Последовательная загрузка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வரிசைப்படி பதிவிறக்கம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1996,6 +2297,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Медиаплеер"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மீடியா பிளேயர்"
           }
         },
         "zh-Hans" : {
@@ -2044,6 +2351,12 @@
             "value" : "Открыть в VLC Player"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Player-ல் திற"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2088,6 +2401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Режим превью"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னோட்டப் பயன்முறை"
           }
         },
         "zh-Hans" : {
@@ -2136,6 +2455,12 @@
             "value" : "Quick Look превью"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Look முன்னோட்டம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2177,6 +2502,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Player"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "VLC Player"
@@ -2228,6 +2559,12 @@
             "value" : "Основная информация"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முக்கியத் தகவல்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2272,6 +2609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавлен"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேர்க்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -2320,6 +2663,12 @@
             "value" : "Комментарий"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கருத்து"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2364,6 +2713,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Создан"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உருவாக்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -2412,6 +2767,12 @@
             "value" : "Создатель"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உருவாக்கியவர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2456,6 +2817,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Хэш"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash"
           }
         },
         "zh-Hans" : {
@@ -2504,6 +2871,12 @@
             "value" : "Хэш v2"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash v2"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2548,6 +2921,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Приватный"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தனிப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -2596,6 +2975,12 @@
             "value" : "Хранилище"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2640,6 +3025,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Текущее"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தற்போதையது"
           }
         },
         "zh-Hans" : {
@@ -2688,6 +3079,12 @@
             "value" : "Пауза"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இடைநிறுத்து"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2732,6 +3129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Хранилище не найдено"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடம் கிடைக்கவில்லை"
           }
         },
         "zh-Hans" : {
@@ -2780,6 +3183,12 @@
             "value" : "iTorrent попробует найти утерянное хранилище"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "காணாமல் போன சேமிப்பிடத்தைக் கண்டறிய iTorrent முயற்சிக்கும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2824,6 +3233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Перезагрузить хранилище"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடத்தைப் புதுப்பி"
           }
         },
         "zh-Hans" : {
@@ -2872,6 +3287,12 @@
             "value" : "Перехешировать"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash-ஐ மீண்டும் சரிபார்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2916,6 +3337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Старт"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hash-ஐ மீண்டும் சரிபார்"
           }
         },
         "zh-Hans" : {
@@ -2964,6 +3391,12 @@
             "value" : "Это перепроверит состояние всех скаченных файлов"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் செயல் பதிவிறக்கம் செய்யப்பட்ட அனைத்து கோப்புகளின் நிலையையும் மீண்டும் சரிபார்க்கும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3008,6 +3441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Перепроверка хэша"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட் Hash மறுசரிபார்ப்பு"
           }
         },
         "zh-Hans" : {
@@ -3056,6 +3495,12 @@
             "value" : "Magnet ссылка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet இணைப்பு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3100,6 +3545,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Magnet ссылка скопирована в буфер обмена"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet URL நகலெடுக்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -3148,6 +3599,12 @@
             "value" : "Torrent файл"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட் கோப்பு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3192,6 +3649,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скорость"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வேகம்"
           }
         },
         "zh-Hans" : {
@@ -3240,6 +3703,12 @@
             "value" : "Загрузка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3284,6 +3753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Осталось"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மீதமுள்ள நேரம்"
           }
         },
         "zh-Hans" : {
@@ -3332,6 +3807,12 @@
             "value" : "Отдача"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவேற்றம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3376,6 +3857,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Старт"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தொடங்கு"
           }
         },
         "zh-Hans" : {
@@ -3424,6 +3911,12 @@
             "value" : "Состояние"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நிலை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3468,6 +3961,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Передано"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தரவு பரிமாற்றம்"
           }
         },
         "zh-Hans" : {
@@ -3516,6 +4015,12 @@
             "value" : "Завершено"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முடிந்தது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3560,6 +4065,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скачано"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -3608,6 +4119,12 @@
             "value" : "Личеры"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்குபவர்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3652,6 +4169,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прогресс Выбранные/Всего"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னேற்றம்: தேர்ந்தெடுத்தவை/மொத்தம்"
           }
         },
         "zh-Hans" : {
@@ -3700,6 +4223,12 @@
             "value" : "Сиды"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பகிர்பவர்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3744,6 +4273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбрано/Всего"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேர்ந்தெடுத்தவை/மொத்தம்"
           }
         },
         "zh-Hans" : {
@@ -3792,6 +4327,12 @@
             "value" : "Отдано"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவேற்றப்பட்டது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3801,7 +4342,14 @@
       }
     },
     "Dict: %@" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புறை: %@"
+          }
+        }
+      }
     },
     "Displaying via AirPlay" : {
       "localizations" : {
@@ -3839,6 +4387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Воспроизведение через AirPlay"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay மூலம் காட்டப்படுகிறது"
           }
         },
         "zh-Hans" : {
@@ -3887,6 +4441,12 @@
             "value" : "Отключить"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முடக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3931,6 +4491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разрешить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனுமதி"
           }
         },
         "zh-Hans" : {
@@ -3979,6 +4545,12 @@
             "value" : "Требовать"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கட்டாயம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4023,6 +4595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выход"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வெளியேறு"
           }
         },
         "zh-Hans" : {
@@ -4071,6 +4649,12 @@
             "value" : "Вам надо обновить приложение"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயலியைப் புதுப்பிக்க வேண்டும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4115,6 +4699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сборка просрочена"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த Build காலாவதியாகிவிட்டது"
           }
         },
         "zh-Hans" : {
@@ -4163,6 +4753,12 @@
             "value" : "Обновить"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதுப்பி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4207,6 +4803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Открыть"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "திற"
           }
         },
         "zh-Hans" : {
@@ -4255,6 +4857,12 @@
             "value" : "Поделиться"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பகிர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4301,6 +4909,12 @@
             "value" : "Показать в \"Файлы\""
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Files செயலியில் காட்டு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4310,7 +4924,14 @@
       }
     },
     "Files" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகள்"
+          }
+        }
+      }
     },
     "For AirPlay-compatible devices, use system Screen Mirroring" : {
       "localizations" : {
@@ -4350,6 +4971,12 @@
             "value" : "Для устройств с поддержкой AirPlay используйте системную функцию «Повтор экрана»"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay ஆதரிக்கும் சாதனங்களுக்கு, உங்கள் சாதனத்தின் Screen Mirroring வசதியைப் பயன்படுத்தவும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4359,7 +4986,14 @@
       }
     },
     "General" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பொது"
+          }
+        }
+      }
     },
     "initialSetup.cellular.allowCheck.confirm" : {
       "localizations" : {
@@ -4397,6 +5031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Я осознаю риски"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இதிலுள்ள ஆபத்துகளை நான் அறிவேன்"
           }
         },
         "zh-Hans" : {
@@ -4445,6 +5085,12 @@
             "value" : "Разрешить Сотовую Сеть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மொபைல் டேட்டா இணைப்பை அனுமதி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4489,6 +5135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Разрешить Сотовую Сеть"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மொபைல் டேட்டா பயன்பாட்டை அனுமதி"
           }
         },
         "zh-Hans" : {
@@ -4537,6 +5189,12 @@
             "value" : "Не Разрешать Сотовую Сеть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மொபைல் டேட்டாவை அனுமதிக்காதே"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4581,6 +5239,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Стандартно, iTorrent предпочитает не разрешать использование сотовой сети, ввиду того, что большинство сотовых операторов не поддерживают безлимитный входящий и\\или исходящий трафик.\n\nВы можете поменять эту настройку в любое время."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பெரும்பாலான மொபைல் டேட்டா திட்டங்களில் வரம்பற்ற பதிவிறக்கம் மற்றும் / அல்லது பதிவேற்றம் கிடைக்காததால், இயல்பாக iTorrent மொபைல் டேட்டா பயன்பாட்டை அனுமதிப்பதில்லை.\n\nஇந்த அமைப்பைச் செயலியின் விருப்பத்தேர்வுகளில் எப்போது வேண்டுமானாலும் மாற்றலாம்."
           }
         },
         "zh-Hans" : {
@@ -4629,6 +5293,12 @@
             "value" : "Разрешить Сотовую Сеть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மொபைல் டேட்டா பயன்பாட்டை அனுமதி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -4673,6 +5343,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Хэш торрента который требуется остановить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நிறுத்த வேண்டிய டோரண்டின் Hash"
           }
         },
         "zh-Hans" : {
@@ -4721,6 +5397,12 @@
             "value" : "Хэш торрента"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட் Hash"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4767,6 +5449,12 @@
             "value" : "Остановить торрент"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்டை இடைநிறுத்து"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4808,6 +5496,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iTorrent"
@@ -4859,6 +5553,12 @@
             "value" : "Файлы"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4900,6 +5600,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Magnet"
@@ -4951,6 +5657,12 @@
             "value" : "Magnet ссылка не валидна"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet இணைப்பு செல்லுபடியாகாது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4997,6 +5709,12 @@
             "value" : "Введите magnet ссылку ниже"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கீழே Magnet இணைப்பை உள்ளிடவும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5038,6 +5756,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "magnet:"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "magnet:"
@@ -5089,6 +5813,12 @@
             "value" : "Добавить из magnet"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet இணைப்பு மூலம் சேர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5135,6 +5865,12 @@
             "value" : "Добавить из"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இதிலிருந்து சேர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5176,6 +5912,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -5227,6 +5969,12 @@
             "value" : "Ссылка на Torrent файл не валидна"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட் இணைப்பு செல்லுபடியாகாது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5271,6 +6019,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Этот трекер требует входа через браузер. Откройте ссылку в браузере, скачайте файл .torrent, затем поделитесь им с iTorrent."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த டிராக்கருக்கு உள்நுழைந்துள்ள உலாவி அமர்வு தேவை. இணைப்பை உலாவியில் திறந்து, .torrent கோப்பைப் பதிவிறக்கி, பின்னர் iTorrent-உடன் பகிரவும்."
           }
         },
         "zh-Hans" : {
@@ -5319,6 +6073,12 @@
             "value" : "Запрос torrent-файла завершился с HTTP-статусом %ld. Попробуйте открыть ссылку в браузере."
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட் கோரிக்கை தோல்வியடைந்தது (HTTP நிலைக் குறியீடு %ld). இணைப்பை உலாவியில் திறந்து முயற்சிக்கவும்."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5363,6 +6123,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сервер не вернул корректный файл .torrent. Возможно, требуется войти через браузер."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சரியான .torrent கோப்பை சர்வர் வழங்கவில்லை. உலாவியில் உள்நுழைய வேண்டியிருக்கலாம்."
           }
         },
         "zh-Hans" : {
@@ -5411,6 +6177,12 @@
             "value" : "Введите ссылку на Torrent файл"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கீழே டோரண்ட் இணைப்பை உள்ளிடவும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5457,6 +6229,12 @@
             "value" : "Открыть в браузере"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உலாவியில் திற"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5498,6 +6276,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "https://"
@@ -5549,6 +6333,12 @@
             "value" : "Добавить по ссылке"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL மூலம் சேர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5593,6 +6383,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Попробуйте выключить текущий фильтр или выбрать другой"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த வடிகட்டியை முடக்கவும் அல்லது வேறொன்றைத் தேர்ந்தெடுக்கவும்"
           }
         },
         "zh-Hans" : {
@@ -5641,6 +6437,12 @@
             "value" : "Нет торрентов для фильтра «%@»"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%1$@” வடிகட்டிக்கு டோரண்ட்கள் இல்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -5685,6 +6487,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Для добавления загрузки нажмите '+' в углу экрана или откройте torrent файл из приложения Файлы или Веб Браузера"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதிய டோரண்ட்களைச் சேர்க்க, கீழ் இடது மூலையில் உள்ள '+' குறியீட்டை அழுத்தவும் அல்லது Files செயலி / இணைய உலாவியில் டோரண்ட் கோப்பை நேரடியாகத் திறக்கவும்"
           }
         },
         "zh-Hans" : {
@@ -5733,6 +6541,12 @@
             "value" : "Добро пожаловать"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent-க்கு வரவேற்கிறோம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5777,6 +6591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбрать Все"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்தையும் தேர்ந்தெடு"
           }
         },
         "zh-Hans" : {
@@ -5825,6 +6645,12 @@
             "value" : "Сортировка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வரிசைப்படுத்தல்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5869,6 +6695,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дате добавления"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேர்க்கப்பட்ட தேதி"
           }
         },
         "zh-Hans" : {
@@ -5917,6 +6749,12 @@
             "value" : "Дате создания"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உருவாக்கப்பட்ட தேதி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5961,6 +6799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Группировать на секции"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நிலையின் அடிப்படையில் குழுவாக்கு"
           }
         },
         "zh-Hans" : {
@@ -6009,6 +6853,12 @@
             "value" : "Имени"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பெயர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6055,6 +6905,12 @@
             "value" : "Размеру"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அளவு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6099,6 +6955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сортировать торренты по:"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட்களை இதன்படி வரிசைப்படுத்து:"
           }
         },
         "zh-Hans" : {
@@ -6148,6 +7010,12 @@
             "value" : "Аудио"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒலி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6193,6 +7061,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вычисление..."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கணக்கிடுகிறது..."
           }
         },
         "zh-Hans" : {
@@ -6242,6 +7116,12 @@
             "value" : "Документы"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஆவணங்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6287,6 +7167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Свободно"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "காலி"
           }
         },
         "zh-Hans" : {
@@ -6336,6 +7222,12 @@
             "value" : "Изображения"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "படங்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6381,6 +7273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Другое"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மற்றவை"
           }
         },
         "zh-Hans" : {
@@ -6430,6 +7328,12 @@
             "value" : "Видео"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வீடியோ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6474,6 +7378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет результатов по запросу «%@»"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” என்பதற்கான முடிவுகள் இல்லை"
           }
         },
         "zh-Hans" : {
@@ -6522,6 +7432,12 @@
             "value" : "%@ закончил загрузку"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ பதிவிறக்கம் முடிந்தது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6566,6 +7482,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Загрузка завершена"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கம் முடிந்தது"
           }
         },
         "zh-Hans" : {
@@ -6614,6 +7536,12 @@
             "value" : "Обновления RSS"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS புதுப்பிப்புகள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6658,6 +7586,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нажмите чтобы открыть настройки"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விருப்பத்தேர்வுகளைத் திறக்க இங்கே அழுத்தவும்"
           }
         },
         "zh-Hans" : {
@@ -6706,6 +7640,12 @@
             "value" : "Сотовая связь запрещена"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மொபைல் டேட்டா பயன்பாடு அனுமதிக்கப்படவில்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -6750,6 +7690,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Привязать Patreon аккаунт"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon-உடன் இணை"
           }
         },
         "zh-Hans" : {
@@ -6798,6 +7744,12 @@
             "value" : "Стать патроном"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஆதரவாளராகுங்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6842,6 +7794,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отвязать"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இணைப்பை நீக்கு"
           }
         },
         "zh-Hans" : {
@@ -6890,6 +7848,12 @@
             "value" : "Отвязать Patreon аккаунт"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon கணக்கு இணைப்பை நீக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6934,6 +7898,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вы уверены, что хотите отвязать ваш Patreon аккаунт?"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்கள் Patreon கணக்கின் இணைப்பை நீக்க விரும்புகிறீர்களா?"
           }
         },
         "zh-Hans" : {
@@ -6982,6 +7952,12 @@
             "value" : "Создатель iTorrent"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent-ஐ உருவாக்கியவர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7026,6 +8002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Привет всем,  Вы можете поддержать дальнейшую разработку iTorrent задонатив мне на Patreon. Взамен, вы получите доступ к версии приложения iTorrent без рекламы.  Спасибо за вашу поддержку!"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைவருக்கும் வணக்கம்,\n\niTorrent-ன் எதிர்கால மேம்பாட்டிற்கு Patreon மூலம் நன்கொடை அளித்து ஆதரவளிக்கலாம். அதற்குப் பதிலாக, விளம்பரங்கள் இல்லாத iTorrent செயலியைப் பயன்படுத்தும் அணுகலைப் பெறுவீர்கள்.\n\nஉங்கள் ஆதரவுக்கு மிக்க நன்றி!"
           }
         },
         "zh-Hans" : {
@@ -7074,6 +8056,12 @@
             "value" : "XITRIX (Даниил Виноградов)"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XITRIX (Daniil Vinogradov)"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7118,6 +8106,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет файла учетных данных."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உள்நுழைவுச் சான்றுகள் இல்லை."
           }
         },
         "zh-Hans" : {
@@ -7166,6 +8160,12 @@
             "value" : "Нет подключенного аккаунта Patreon."
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon கணக்கு இணைக்கப்படவில்லை."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7210,6 +8210,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Неверный Access Token"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அணுகல் Token செல்லுபடியாகாது."
           }
         },
         "zh-Hans" : {
@@ -7258,6 +8264,12 @@
             "value" : "Произошла неизвестная ошибка."
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அறியப்படாத பிழை ஏற்பட்டது."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7302,6 +8314,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Реклама отключена!"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விளம்பரமில்லா வசதி இயக்கப்பட்டது. மகிழுங்கள்!"
           }
         },
         "zh-Hans" : {
@@ -7350,6 +8368,12 @@
             "value" : "У вас полная версия"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்களிடம் முழுப் பதிப்பு உள்ளது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7396,6 +8420,12 @@
             "value" : "Вы патрон"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நீங்கள் ஆதரவாளர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7405,10 +8435,24 @@
       }
     },
     "Peers" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பங்கேற்பாளர்கள்"
+          }
+        }
+      }
     },
     "Picture in Picture" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "படத்திற்குள் படம்"
+          }
+        }
+      }
     },
     "Play on" : {
       "localizations" : {
@@ -7446,6 +8490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Воспроизвести на"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இதில் இயக்கு"
           }
         },
         "zh-Hans" : {
@@ -7492,6 +8542,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скорость воспроизведения"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இயக்க வேகம்"
           }
         },
         "zh-Hans" : {
@@ -7541,6 +8597,12 @@
             "value" : "Подключено к %@"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ உடன் இணைக்கப்பட்டது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7585,6 +8647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Подключение к %@…"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ உடன் இணைக்கப்படுகிறது…"
           }
         },
         "zh-Hans" : {
@@ -7633,6 +8701,12 @@
             "value" : "Не удалось запустить поиск устройств вывода VLC"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Renderer தேடலைத் தொடங்க முடியவில்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7679,6 +8753,12 @@
             "value" : "Службы поиска устройств вывода VLC недоступны"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Renderer-ஐக் கண்டறியும் வசதி எதுவும் இல்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7723,6 +8803,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не удалось начать воспроизведение на устройстве вывода"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renderer இயக்கத்தைத் தொடங்க முடியவில்லை"
           }
         },
         "zh-Hans" : {
@@ -7772,6 +8858,12 @@
             "value" : "Воспроизведение на этом устройстве"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் சாதனத்தில் இயக்கப்படுகிறது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7816,6 +8908,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Возврат на это устройство…"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் சாதனத்திற்குத் திரும்புகிறது…"
           }
         },
         "zh-Hans" : {
@@ -7864,6 +8962,12 @@
             "value" : "Настройки"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விருப்பத்தேர்வுகள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7908,6 +9012,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поддерживает уже %@"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ஆக ஆதரவளித்து வருகிறார்"
           }
         },
         "zh-Hans" : {
@@ -7956,6 +9066,12 @@
             "value" : "Особая благодарность:"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சிறப்பு நன்றி:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8000,6 +9116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Внешний вид"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தோற்றம்"
           }
         },
         "zh-Hans" : {
@@ -8048,6 +9170,12 @@
             "value" : "Порядок секций"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பிரிவுகளின் குழு வரிசை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8092,6 +9220,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тема приложения"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயலியின் தீம்"
           }
         },
         "zh-Hans" : {
@@ -8140,6 +9274,12 @@
             "value" : "Выберите тему приложения"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயலியின் தீமைத் தேர்ந்தெடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8184,6 +9324,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тёмная"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அடர்"
           }
         },
         "zh-Hans" : {
@@ -8232,6 +9378,12 @@
             "value" : "Светлая"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வெளிர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8276,6 +9428,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Авто"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சாதன அமைப்பு"
           }
         },
         "zh-Hans" : {
@@ -8324,6 +9482,12 @@
             "value" : "Фоновая загрузка"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பின்னணி பதிவிறக்கம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8368,6 +9532,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Включить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இயக்கு"
           }
         },
         "zh-Hans" : {
@@ -8416,6 +9586,12 @@
             "value" : "Показывать индикатор"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இருப்பிடக் குறியீட்டைக் காட்டு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8460,6 +9636,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Фоновый режим"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பின்னணி பயன்முறை"
           }
         },
         "zh-Hans" : {
@@ -8508,6 +9690,12 @@
             "value" : "Выберите фоновый режим"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பின்னணி பயன்முறையைத் தேர்ந்தெடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8552,6 +9740,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Аудио"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒலி"
           }
         },
         "zh-Hans" : {
@@ -8600,6 +9794,12 @@
             "value" : "Локация"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இருப்பிடம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8646,6 +9846,12 @@
             "value" : "Донат на еду"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோனட்களுக்காக நன்கொடை அளிக்கவும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8687,6 +9893,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Patreon"
@@ -8738,6 +9950,12 @@
             "value" : "Сеть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நெட்வொர்க்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8782,6 +10000,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Настройки соединения"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இணைப்பு அமைப்புகள்"
           }
         },
         "zh-Hans" : {
@@ -8830,6 +10054,12 @@
             "value" : "Шифрование"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "குறியாக்கம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8874,6 +10104,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Режим"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பயன்முறை"
           }
         },
         "zh-Hans" : {
@@ -8922,6 +10158,12 @@
             "value" : "Выберите тип шифрования"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "குறியாக்கப் பயன்முறையைத் தேர்ந்தெடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8966,6 +10208,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Валидировать HTTPS трекеры"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTPS டிராக்கர்கள்-ஐச் சரிபார்"
           }
         },
         "zh-Hans" : {
@@ -9014,6 +10262,12 @@
             "value" : "Стандартный порт"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இயல்புநிலை Port-ஐப் பயன்படுத்து"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9058,6 +10312,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Количество повторений"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மீண்டும் முயற்சிக்கும் வரம்பு"
           }
         },
         "zh-Hans" : {
@@ -9106,6 +10366,12 @@
             "value" : "Порт"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தனிப்பயன் Port"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9150,6 +10416,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Протоколы соединения"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இணைப்பு நெறிமுறைகள்"
           }
         },
         "zh-Hans" : {
@@ -9198,6 +10470,12 @@
             "value" : "Включить DHT"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DHT-ஐ இயக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9242,6 +10520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Включить LSD"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LSD-ஐ இயக்கு"
           }
         },
         "zh-Hans" : {
@@ -9290,6 +10574,12 @@
             "value" : "Включить µTP"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NAT-PMP-ஐ இயக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9334,6 +10624,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Включить UPnP"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UPnP-ஐ இயக்கு"
           }
         },
         "zh-Hans" : {
@@ -9382,6 +10678,12 @@
             "value" : "Включить NAT-PMP"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "µTP-ஐ இயக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9426,6 +10728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Интерфейсы"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இணைப்பு இடைமுகங்கள்"
           }
         },
         "zh-Hans" : {
@@ -9474,6 +10782,12 @@
             "value" : "Параллельное соединение"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒரே நேரத்தில் பல இணைப்புகள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9518,6 +10832,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сотовые данные"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மொபைல் டேட்டா"
           }
         },
         "zh-Hans" : {
@@ -9566,6 +10886,12 @@
             "value" : "Параллельное соединение может повысить скорость загрузки, но приведёт к утечке IP адреса при использовании VPN."
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒரே நேரத்தில் பல இணைப்புகளைப் பயன்படுத்துவது பதிவிறக்க வேகத்தை அதிகரிக்கலாம். VPN பயன்படுத்தினால் உங்கள் IP முகவரி வெளிப்படும்."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9610,6 +10936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прокси"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy"
           }
         },
         "zh-Hans" : {
@@ -9658,6 +10990,12 @@
             "value" : "Авторизация"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அங்கீகாரம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9702,6 +11040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Требуется авторизация"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அங்கீகாரம் தேவை"
           }
         },
         "zh-Hans" : {
@@ -9750,6 +11094,12 @@
             "value" : "Хост"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9794,6 +11144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Имя хоста"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Host பெயர்"
           }
         },
         "zh-Hans" : {
@@ -9842,6 +11198,12 @@
             "value" : "Тип прокси"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy வகை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9886,6 +11248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выберите тип прокси"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy வகையைத் தேர்ந்தெடு"
           }
         },
         "zh-Hans" : {
@@ -9934,6 +11302,12 @@
             "value" : "Источники трекеров"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் மூலங்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9978,6 +11352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Оповещения"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அறிவிப்புகள்"
           }
         },
         "zh-Hans" : {
@@ -10026,6 +11406,12 @@
             "value" : "По окончании загрузки"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கம் முடிந்ததும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10070,6 +11456,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Лимиты очерёдности торрентов"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட் வரிசை வரம்புகள்"
           }
         },
         "zh-Hans" : {
@@ -10118,6 +11510,12 @@
             "value" : "Активных торрентов"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயலில் உள்ள டோரண்ட்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10162,6 +11560,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Активных загрузок"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கப்படும் டோரண்ட்கள்"
           }
         },
         "zh-Hans" : {
@@ -10210,6 +11614,12 @@
             "value" : "Активных раздач"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவேற்றப்படும் டோரண்ட்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10254,6 +11664,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Раздача"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பகிர்வு"
           }
         },
         "zh-Hans" : {
@@ -10302,6 +11718,12 @@
             "value" : "Остановить по окончании загрузки"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கம் முடிந்ததும் நிறுத்து"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10346,6 +11768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Обмен файлами"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்பு பகிர்வு"
           }
         },
         "zh-Hans" : {
@@ -10394,6 +11822,12 @@
             "value" : "Авторизация"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அங்கீகாரம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10438,6 +11872,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WebDav сервер"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WebDAV சர்வர்"
           }
         },
         "zh-Hans" : {
@@ -10486,6 +11926,12 @@
             "value" : "Используйте WebDav клиент для соединения с iTorrent"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent-உடன் இணைக்க WebDAV Client-ஐப் பயன்படுத்தவும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10530,6 +11976,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Web сервер"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இணைய சர்வர்"
           }
         },
         "zh-Hans" : {
@@ -10578,6 +12030,12 @@
             "value" : "Используйте любой браузер для обмена файлами"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகளைப் பகிர எந்த இணைய உலாவியையும் பயன்படுத்தலாம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10622,6 +12080,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ограничение скорости"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வேக வரம்புகள்"
           }
         },
         "zh-Hans" : {
@@ -10670,6 +12134,12 @@
             "value" : "Лимит загрузки"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அதிகபட்ச பதிவிறக்க வேகம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10714,6 +12184,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скорость в КБ/с"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வேகம் KB/s-ல்"
           }
         },
         "zh-Hans" : {
@@ -10762,6 +12238,12 @@
             "value" : "Отключено"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வரம்பற்றது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10806,6 +12288,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Лимит раздачи"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அதிகபட்ச பதிவேற்ற வேகம்"
           }
         },
         "zh-Hans" : {
@@ -10854,6 +12342,12 @@
             "value" : "Память"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10898,6 +12392,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить..."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மேலும் சேர்..."
           }
         },
         "zh-Hans" : {
@@ -10946,6 +12446,12 @@
             "value" : "Выбранный путь не является директорией"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேர்ந்தெடுத்த பாதை ஒரு கோப்புறை அல்ல"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10990,6 +12496,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выделять память"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடத்தை ஒதுக்கு"
           }
         },
         "zh-Hans" : {
@@ -11038,6 +12550,12 @@
             "value" : "Доступно"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கிடைப்பது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11082,6 +12600,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Если вы удалите хранилище, все торренты принадлежащие ему будут не доступны из приложения iTorrent  "
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் சேமிப்பிடத்தை அகற்றினால், அதனுடன் தொடர்புடைய டோரண்ட்களை iTorrent செயலியில் அணுக முடியாது"
           }
         },
         "zh-Hans" : {
@@ -11130,6 +12654,12 @@
             "value" : "Удалить хранилище"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடத்தை அகற்று"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11174,6 +12704,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Хранилища"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடங்கள்"
           }
         },
         "zh-Hans" : {
@@ -11222,6 +12758,12 @@
             "value" : "Доступно: %1$lld/%2$lld"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கிடைப்பது: %1$lld/%2$lld"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11266,6 +12808,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Я понял, продолжить"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புரிந்துகொண்டேன், தொடர்க"
           }
         },
         "zh-Hans" : {
@@ -11315,6 +12863,12 @@
             "value" : "В случае использования внешних дисков извлекать их следует только после закрытия приложения iTorrent. В противном случае iTorrent не может гарантировать безопасное хранение загруженных вами файлов и потенциально может испортить текущее состояние торрентов с извлеченного диска."
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வெளிப்புற Drive-களைப் பயன்படுத்தினால், iTorrent செயலியை மூடிய பிறகே அவற்றை Eject செய்ய வேண்டும். இல்லையெனில், பதிவிறக்கிய கோப்புகளின் பாதுகாப்பை iTorrent உறுதிப்படுத்த முடியாது; மேலும் அந்த Drive-இல் உள்ள டோரண்ட்களின் தற்போதைய நிலையும் பாதிக்கப்படலாம்."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11359,6 +12913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ВНИМАНИЕ!"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "எச்சரிக்கை!"
           }
         },
         "zh-Hans" : {
@@ -11407,6 +12967,12 @@
             "value" : "Добавить список трекеров"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் பட்டியலைச் சேர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11451,6 +13017,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Название"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தலைப்பு"
           }
         },
         "zh-Hans" : {
@@ -11499,6 +13071,12 @@
             "value" : "URL на источник списка трекеров"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் மூலக் கோப்பின் URL"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11543,6 +13121,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Включить автодобавление"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தானாகச் சேர்ப்பதை இயக்கு"
           }
         },
         "zh-Hans" : {
@@ -11591,6 +13175,12 @@
             "value" : "Автоматически добавлять все трекеры в новые публичные торренты. Приватные торренты исключены."
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதிதாகச் சேர்க்கப்படும் பொது டோரண்ட்களில் அனைத்து டிராக்கர்களையும் தானாகச் சேர். தனிப்பட்ட டோரண்ட்கள் இதில் சேர்க்கப்படாது."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11635,6 +13225,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавьте URL на источник списка трекеров нажав «+»"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«+» அழுத்தி டிராக்கர் பட்டியல் மூலத்தின் URL-ஐச் சேர்க்கவும்"
           }
         },
         "zh-Hans" : {
@@ -11683,6 +13279,12 @@
             "value" : "Список источников трекеров пуст"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் மூலப் பட்டியல் காலியாக உள்ளது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11727,6 +13329,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Этот источник уже присутствует"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த டிராக்கர் மூலம் ஏற்கனவே சேர்க்கப்பட்டுள்ளது"
           }
         },
         "zh-Hans" : {
@@ -11775,6 +13383,12 @@
             "value" : "Вы хотите удалить этот источник трекеров?"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்த டிராக்கர் மூலத்தை அகற்ற விரும்புகிறீர்களா?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11819,6 +13433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить источник"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூலத்தை அகற்று"
           }
         },
         "zh-Hans" : {
@@ -11867,6 +13487,12 @@
             "value" : "Переименовать источник"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூலத்தின் பெயரை மாற்று"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11911,6 +13537,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Версия"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிப்பு"
           }
         },
         "zh-Hans" : {
@@ -11959,6 +13591,12 @@
             "value" : "Страница GitHub"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub பக்கம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11968,7 +13606,14 @@
       }
     },
     "Primary Info" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முக்கியத் தகவல்"
+          }
+        }
+      }
     },
     "prioriry.change.title" : {
       "localizations" : {
@@ -12006,6 +13651,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить приоритет"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னுரிமையை மாற்று"
           }
         },
         "zh-Hans" : {
@@ -12054,6 +13705,12 @@
             "value" : "Нормальный"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இயல்புநிலை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12098,6 +13755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не скачивать"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்க வேண்டாம்"
           }
         },
         "zh-Hans" : {
@@ -12146,6 +13809,12 @@
             "value" : "Низкий"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "குறைவு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12192,6 +13861,12 @@
             "value" : "Наивысший"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மிக உயர்வு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12233,6 +13908,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "HTTP"
@@ -12284,6 +13965,12 @@
             "value" : "I2P"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I2P"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12330,6 +14017,12 @@
             "value" : "Нет"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "எதுவுமில்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12371,6 +14064,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS4"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SOCKS4"
@@ -12422,6 +14121,12 @@
             "value" : "SOCKS5"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS5"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12466,6 +14171,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Уже добавлено"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஏற்கனவே சேர்க்கப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -12514,6 +14225,12 @@
             "value" : "Скачать Magnet"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet-ஐப் பதிவிறக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12558,6 +14275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скачать"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்கம்"
           }
         },
         "zh-Hans" : {
@@ -12606,6 +14329,12 @@
             "value" : "Экспортировать Все"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்தையும் ஏற்றுமதி செய்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -12650,6 +14379,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Экспортировать Выделенное"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேர்ந்தெடுத்தவற்றை ஏற்றுமதி செய்"
           }
         },
         "zh-Hans" : {
@@ -12698,6 +14433,12 @@
             "value" : "Импортировать"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இறக்குமதி செய்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -12742,6 +14483,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прочитать всё"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்தையும் படித்ததாகக் குறி"
           }
         },
         "zh-Hans" : {
@@ -12790,6 +14537,12 @@
             "value" : "Открыть в Safari"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safari-ல் திற"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12834,6 +14587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Прочитать"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பார்த்தவை"
           }
         },
         "zh-Hans" : {
@@ -12882,6 +14641,12 @@
             "value" : "Развидеть"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பார்க்காதவை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12926,6 +14691,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RSS Фид"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Feed"
           }
         },
         "zh-Hans" : {
@@ -12974,6 +14745,12 @@
             "value" : "Вы можете добавить RSS каналы нажав 'Править' на этой странице"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தப் பக்கத்தைத் திருத்தி RSS சேனல்களைச் சேர்க்கலாம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13018,6 +14795,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить RSS фид"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Feed-ஐச் சேர்"
           }
         },
         "zh-Hans" : {
@@ -13066,6 +14849,12 @@
             "value" : "Описание"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "விளக்கம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13110,6 +14899,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Название"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தலைப்பு"
           }
         },
         "zh-Hans" : {
@@ -13158,6 +14953,12 @@
             "value" : "Оповещать при обновлении"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதுப்பிக்கப்படும்போது அறிவி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13199,6 +15000,12 @@
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -13250,6 +15057,12 @@
             "value" : "URL канала скопирован"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL நகலெடுக்கப்பட்டது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13294,6 +15107,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вы уверены, что хотите удалить выделенные RSS фиды?"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேர்ந்தெடுத்த RSS Feeds-ஐ அகற்ற விரும்புகிறீர்களா?"
           }
         },
         "zh-Hans" : {
@@ -13342,6 +15161,12 @@
             "value" : "Удаление RSS фидов"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS Feeds-ஐ அகற்று"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13386,6 +15211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Для начала добавьте RSS каналы"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முதலில் RSS சேனல்களைச் சேர்க்கவும்"
           }
         },
         "zh-Hans" : {
@@ -13434,6 +15265,12 @@
             "value" : "Нет RSS каналов"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS சேனல்கள் இல்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13443,7 +15280,14 @@
       }
     },
     "Search" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேடு"
+          }
+        }
+      }
     },
     "Searching…" : {
       "localizations" : {
@@ -13481,6 +15325,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Поиск…"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேடுகிறது…"
           }
         },
         "zh-Hans" : {
@@ -13529,6 +15379,12 @@
             "value" : "Субтитры"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வசனங்கள்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13573,6 +15429,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Это устройство"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் சாதனம்"
           }
         },
         "zh-Hans" : {
@@ -13621,6 +15483,12 @@
             "value" : "д"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நா"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13665,6 +15533,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ч"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ம"
           }
         },
         "zh-Hans" : {
@@ -13713,6 +15587,12 @@
             "value" : "Вечность"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முடிவில்லா காலம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13757,6 +15637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "м"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நி"
           }
         },
         "zh-Hans" : {
@@ -13805,6 +15691,12 @@
             "value" : "М"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மா"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13849,6 +15741,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "с"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வி"
           }
         },
         "zh-Hans" : {
@@ -13897,6 +15795,12 @@
             "value" : "н"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வா"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13941,6 +15845,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "г"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஆ"
           }
         },
         "zh-Hans" : {
@@ -13989,6 +15899,12 @@
             "value" : "Да, и удалить файлы"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஆம், தரவையும் நீக்கு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14033,6 +15949,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Да, но оставить файлы"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஆம், தரவை வைத்திரு"
           }
         },
         "zh-Hans" : {
@@ -14081,6 +16003,12 @@
             "value" : "Вы уверены что хотите удалить?"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நீக்க விரும்புகிறீர்களா?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14125,6 +16053,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Проверка Файлов"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கோப்புகளைச் சரிபார்க்கிறது"
           }
         },
         "zh-Hans" : {
@@ -14173,6 +16107,12 @@
             "value" : "Готово"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முடிந்தது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14217,6 +16157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Загрузка"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்குகிறது"
           }
         },
         "zh-Hans" : {
@@ -14265,6 +16211,12 @@
             "value" : "Получение Метаданных"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metadata பெறப்படுகிறது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14309,6 +16261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Пауза"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இடைநிறுத்தப்பட்டது"
           }
         },
         "zh-Hans" : {
@@ -14357,6 +16315,12 @@
             "value" : "Восстановление"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மீண்டும் தொடங்குகிறது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14401,6 +16365,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Раздача"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பகிர்கிறது"
           }
         },
         "zh-Hans" : {
@@ -14449,6 +16419,12 @@
             "value" : "Ошибка хранилища"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேமிப்பிடப் பிழை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14493,6 +16469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Личи:"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பதிவிறக்குபவர்கள்:"
           }
         },
         "zh-Hans" : {
@@ -14541,6 +16523,12 @@
             "value" : "Сообщение: %@"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செய்தி: %@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14585,6 +16573,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Н/Д"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கிடைக்கவில்லை"
           }
         },
         "zh-Hans" : {
@@ -14633,6 +16627,12 @@
             "value" : "Пиры:"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பங்கேற்பாளர்கள்:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14677,6 +16677,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сиды:"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பகிர்பவர்கள்:"
           }
         },
         "zh-Hans" : {
@@ -14725,6 +16731,12 @@
             "value" : "Состояние:"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நிலை:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14769,6 +16781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Связи пока нет"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தொடர்பு கொள்ளப்படவில்லை"
           }
         },
         "zh-Hans" : {
@@ -14817,6 +16835,12 @@
             "value" : "Не работает"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயல்படவில்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14861,6 +16885,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ошибка"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் பிழை"
           }
         },
         "zh-Hans" : {
@@ -14909,6 +16939,12 @@
             "value" : "Не доступен"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அணுக முடியவில்லை"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14953,6 +16989,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Обновляется"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "புதுப்பிக்கிறது"
           }
         },
         "zh-Hans" : {
@@ -15001,6 +17043,12 @@
             "value" : "Работает"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "செயல்படுகிறது"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15010,7 +17058,14 @@
       }
     },
     "Trackers" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர்கள்"
+          }
+        }
+      }
     },
     "trackers.action.copy" : {
       "localizations" : {
@@ -15048,6 +17103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL трекера скопирован в буфер обмена"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் URL நகலெடுக்கப்பட்டது!"
           }
         },
         "zh-Hans" : {
@@ -15096,6 +17157,12 @@
             "value" : "Добавить трекеры"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர்களைச் சேர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -15140,6 +17207,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Из списка источников"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூலப் பட்டியலிலிருந்து"
           }
         },
         "zh-Hans" : {
@@ -15188,6 +17261,12 @@
             "value" : "Импортировать все"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்தையும் இறக்குமதி செய்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -15232,6 +17311,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вручную"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கைமுறையாக"
           }
         },
         "zh-Hans" : {
@@ -15280,6 +17365,12 @@
             "value" : "Введите URL ссылки трекеров разделённые пустой строкой"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒவ்வொரு வரியிலும் ஒரு டிராக்கர் URL உள்ளிடவும்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15324,6 +17415,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введите URL ссылку трекера"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர் URL-ஐ உள்ளிடவும்"
           }
         },
         "zh-Hans" : {
@@ -15372,6 +17469,12 @@
             "value" : "Добавить трекеры"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர்களைச் சேர்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15416,6 +17519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить трекеры"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கரைச் சேர்"
           }
         },
         "zh-Hans" : {
@@ -15464,6 +17573,12 @@
             "value" : "Вы можете добавить трекеры вручную нажав 'Править' на этой странице"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தப் பக்கத்தைத் திருத்தி டிராக்கர்களைக் கைமுறையாகச் சேர்க்கலாம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15508,6 +17623,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет трекеров"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர்கள் இல்லை"
           }
         },
         "zh-Hans" : {
@@ -15556,6 +17677,12 @@
             "value" : "Переанонсировать Трекеры"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "அனைத்தையும் மீண்டும் அறிவி"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15600,6 +17727,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить трекеры"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிராக்கர்களை அகற்று"
           }
         },
         "zh-Hans" : {
@@ -15648,6 +17781,12 @@
             "value" : "Вы уверены что хотите удалить выбранные терекеры?"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தேர்ந்தெடுத்த டிராக்கர்களை அகற்ற விரும்புகிறீர்களா?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15692,6 +17831,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Добавить источник"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "மூலத்தைச் சேர்"
           }
         },
         "zh-Hans" : {
@@ -15740,6 +17885,12 @@
             "value" : "Локальный"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உள்ளூர் மூலம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15786,6 +17937,12 @@
             "value" : "Удалённый"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தொலைநிலை மூலம்"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15795,7 +17952,14 @@
       }
     },
     "Transfer" : {
-
+      "localizations" : {
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "தரவு பரிமாற்றம்"
+          }
+        }
+      }
     },
     "Video" : {
       "localizations" : {
@@ -15833,6 +17997,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Видео"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "வீடியோ"
           }
         },
         "zh-Hans" : {
@@ -15881,6 +18051,12 @@
             "value" : "Устройство вывода VLC"
           }
         },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Renderer வெளியீடு"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15925,6 +18101,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Веб сервер недоступен"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web Server கிடைக்கவில்லை"
           }
         },
         "zh-Hans" : {
