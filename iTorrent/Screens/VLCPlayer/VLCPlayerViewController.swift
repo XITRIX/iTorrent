@@ -278,6 +278,12 @@ class VLCPlayerViewController: BaseHostingController<VLCPlayerViewController.Bod
 #if !os(visionOS)
         @EnvironmentObject var airPlay: Air
 #endif
+#if os(iOS)
+        @Environment(\.accessibilityReduceMotion) private var reduceMotion
+        @State private var fillsVideoViewport = false
+        @State private var videoAspectRatio: CGFloat?
+        @State private var inlineVideoSurface = InlineVideoSurface()
+#endif
         @ObservedObject var viewModel: VLCPlayerViewModel
         var onClose: () -> Void
         @State private var player = Player()
@@ -366,14 +372,51 @@ private extension VLCPlayerViewController.VLCPlayerView {
         AdaptiveArrangementView(tabletopPrimaryEdge: .bottom) {
             playerOverlay
         } secondary: {
-            videoOutput
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            zoomableVideoOutput
                 .overlay { playerTapSurface }
         }
+        .simultaneousGesture(
+            MagnificationGesture(minimumScaleDelta: 0.05)
+                .onEnded { magnification in
+                    guard videoAspectRatio != nil, !airPlay.connected else { return }
+                    if magnification < 0.9 {
+                        fillsVideoViewport = false
+                    } else if magnification > 1.1 {
+                        fillsVideoViewport = true
+                    }
+                }
+        )
 #else
         legacyPlayer
 #endif
     }
+
+#if os(iOS)
+    var zoomableVideoOutput: some View {
+        GeometryReader { geometry in
+            videoOutput
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .scaleEffect(videoScale(in: geometry.size))
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.22), value: fillsVideoViewport)
+        }
+        .clipped()
+    }
+
+    func videoScale(in size: CGSize) -> CGFloat {
+        guard fillsVideoViewport, let videoAspectRatio, size.width > 0, size.height > 0 else { return 1 }
+        // VLC renders aspect fit. Zoom the entire surface just enough to cover the viewport.
+        let viewportAspectRatio = size.width / size.height
+        return max(viewportAspectRatio / videoAspectRatio, videoAspectRatio / viewportAspectRatio)
+    }
+
+    func updateVideoAspectRatio() {
+        guard !airPlay.connected else { return }
+        let aspectRatio = inlineVideoSurface.aspectRatio ?? player.videoSize.map { $0.width / $0.height }
+        if videoAspectRatio != aspectRatio {
+            videoAspectRatio = aspectRatio
+        }
+    }
+#endif
 
     var legacyPlayer: some View {
         ZStack {
@@ -605,6 +648,9 @@ private extension VLCPlayerViewController.VLCPlayerView {
             player,
             controller: $viewModel.pipController,
             onSurfaceReady: { surface in
+#if os(iOS)
+                inlineVideoSurface.view = surface
+#endif
                 Air.play(surface) {
                     player.refreshVideoOutputAfterDisplayMove()
                 }
@@ -615,6 +661,32 @@ private extension VLCPlayerViewController.VLCPlayerView {
 #endif
     }
 }
+
+#if os(iOS)
+@MainActor
+private final class InlineVideoSurface {
+    weak var view: UIView?
+
+    var aspectRatio: CGFloat? {
+        guard let view, let layer = Self.pictureLayer(in: view.layer) else { return nil }
+        let size = layer.bounds.size
+        guard size.width > 0, size.height > 0 else { return nil }
+        return size.width / size.height
+    }
+
+    private static func pictureLayer(in layer: CALayer) -> AVSampleBufferDisplayLayer? {
+        // The native VLC renderer sizes this layer to the displayed picture,
+        // including rotation and non-square pixels.
+        if let picture = layer as? AVSampleBufferDisplayLayer, picture.videoGravity == .resize {
+            return picture
+        }
+        for child in layer.sublayers ?? [] {
+            if let picture = pictureLayer(in: child) { return picture }
+        }
+        return nil
+    }
+}
+#endif
 
 // MARK: - Playback Lifecycle
 private extension VLCPlayerViewController.VLCPlayerView {
@@ -630,6 +702,9 @@ private extension VLCPlayerViewController.VLCPlayerView {
                 updateNowPlaying(duration: duration.timeInterval)
             }
             try Task.checkCancellation()
+#if os(iOS)
+            player.aspectRatio = .default
+#endif
             try player.play(media)
             setPlaybackRate(playbackRate)
             syncTracksFromPlayer()
@@ -645,6 +720,10 @@ private extension VLCPlayerViewController.VLCPlayerView {
         for await event in player.events {
             switch event {
             case .timeChanged(let time):
+#if os(iOS)
+                // The renderer may lay out its picture after the video output event.
+                updateVideoAspectRatio()
+#endif
                 guard !isSeeking else { continue }
                 let newPlaybackTime = max(time.timeInterval, 0)
                 if abs(currentPlaybackTime - newPlaybackTime) > 0.05 {
@@ -656,8 +735,15 @@ private extension VLCPlayerViewController.VLCPlayerView {
                 updateNowPlaying(duration: duration.timeInterval)
             case .tracksChanged, .mediaChanged:
                 syncTracksFromPlayer()
+#if os(iOS)
+            case .voutChanged:
+                updateVideoAspectRatio()
+#endif
             case .stateChanged:
                 updateNowPlayingPlaybackState()
+#if os(iOS)
+                updateVideoAspectRatio()
+#endif
             case .encounteredError:
                 rendererRouteController.handlePlaybackFailure(on: player)
                 updateNowPlayingPlaybackState()
