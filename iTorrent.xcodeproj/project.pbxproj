@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C0DE000130B0000000000001 /* OneShotCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE000130B0000000000002 /* OneShotCallback.swift */; };
 		7C013DE32C28AA3C0026A11B /* sound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C013DE22C28A97F0026A11B /* sound.m4a */; };
 		7C013DE42C2F38AA0026A11B /* LocalizationAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1352D1D2BBC2F7F00104E7B /* LocalizationAttribute.swift */; };
 		7C013DE52C2F41760026A11B /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = D1AA00CF2AFAC7D200B74629 /* Localizable.xcstrings */; };
@@ -143,6 +142,8 @@
 		7CFEBEA92BC721D50013233F /* RssListPreferencesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBEA82BC721D50013233F /* RssListPreferencesViewModel.swift */; };
 		7CFEBEAB2BC725E10013233F /* UIViewController+BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBEAA2BC725E10013233F /* UIViewController+BottomSheet.swift */; };
 		7CFEBEAD2BC88F4C0013233F /* AppDelegate+BackgroundRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFEBEAC2BC88F4C0013233F /* AppDelegate+BackgroundRefresh.swift */; };
+		C0DE00012FA0000000000001 /* SupporterFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE00012FA0000000000002 /* SupporterFeed.swift */; };
+		C0DE000130B0000000000001 /* OneShotCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE000130B0000000000002 /* OneShotCallback.swift */; };
 		D10257C62EE8619300201640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D10257C22EE8619300201640 /* Assets.xcassets */; };
 		D10257C82EE8619300201640 /* iTorrent_TVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10257C42EE8619300201640 /* iTorrent_TVApp.swift */; };
 		D10257C92EE8619300201640 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10257C32EE8619300201640 /* ContentView.swift */; };
@@ -248,7 +249,6 @@
 		D1B99D892BEE613B00F51514 /* PatreonWebServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D882BEE613B00F51514 /* PatreonWebServer.swift */; };
 		D1B99D8B2BEE62C700F51514 /* PatreonAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8A2BEE62C700F51514 /* PatreonAccount.swift */; };
 		D1B99D912BEE631B00F51514 /* Patron.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8D2BEE631B00F51514 /* Patron.swift */; };
-		C0DE00012FA0000000000001 /* SupporterFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE00012FA0000000000002 /* SupporterFeed.swift */; };
 		D1B99D922BEE631B00F51514 /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8E2BEE631B00F51514 /* Campaign.swift */; };
 		D1B99D932BEE631B00F51514 /* Benefit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8F2BEE631B00F51514 /* Benefit.swift */; };
 		D1B99D942BEE631B00F51514 /* Tier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D902BEE631B00F51514 /* Tier.swift */; };
@@ -328,7 +328,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C0DE000130B0000000000002 /* OneShotCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneShotCallback.swift; sourceTree = "<group>"; };
 		7C013DE22C28A97F0026A11B /* sound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.m4a; sourceTree = "<group>"; };
 		7C04A6082C446B4D00FBC649 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C1C08A92C31F2F000569B45 /* PauseTorrentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTorrentIntent.swift; sourceTree = "<group>"; };
@@ -447,6 +446,8 @@
 		7CFEBEA82BC721D50013233F /* RssListPreferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssListPreferencesViewModel.swift; sourceTree = "<group>"; };
 		7CFEBEAA2BC725E10013233F /* UIViewController+BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BottomSheet.swift"; sourceTree = "<group>"; };
 		7CFEBEAC2BC88F4C0013233F /* AppDelegate+BackgroundRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+BackgroundRefresh.swift"; sourceTree = "<group>"; };
+		C0DE00012FA0000000000002 /* SupporterFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupporterFeed.swift; sourceTree = "<group>"; };
+		C0DE000130B0000000000002 /* OneShotCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneShotCallback.swift; sourceTree = "<group>"; };
 		D10257AE2EE8614900201640 /* iTorrent-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTorrent-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10257C22EE8619300201640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D10257C32EE8619300201640 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -540,7 +541,6 @@
 		D1B99D882BEE613B00F51514 /* PatreonWebServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonWebServer.swift; sourceTree = "<group>"; };
 		D1B99D8A2BEE62C700F51514 /* PatreonAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatreonAccount.swift; sourceTree = "<group>"; };
 		D1B99D8D2BEE631B00F51514 /* Patron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
-		C0DE00012FA0000000000002 /* SupporterFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupporterFeed.swift; sourceTree = "<group>"; };
 		D1B99D8E2BEE631B00F51514 /* Campaign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
 		D1B99D8F2BEE631B00F51514 /* Benefit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Benefit.swift; sourceTree = "<group>"; };
 		D1B99D902BEE631B00F51514 /* Tier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tier.swift; sourceTree = "<group>"; };
@@ -2237,7 +2237,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2383,7 +2383,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2635,7 +2635,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.2.0;
+				MARKETING_VERSION = 2.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
