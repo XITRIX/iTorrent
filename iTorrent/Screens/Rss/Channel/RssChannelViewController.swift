@@ -12,7 +12,7 @@ class RssChannelViewController<VM: RssChannelViewModel>: BaseCollectionViewContr
     private let actionsButton: UIBarButtonItem
 
     required init(viewModel: VM) {
-        actionsButton = UIBarButtonItem(title: "Actions", image: .systemEllipsis)
+        actionsButton = UIBarButtonItem(title: %"details.actions", image: .systemEllipsis)
         super.init(viewModel: viewModel)
     }
 

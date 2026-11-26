@@ -1761,9 +1761,11 @@
 				Base,
 				ru,
 				de,
+				es,
 				it,
 				pl,
 				ta,
+				"zh-Hans",
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;
 			packageReferences = (

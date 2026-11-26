@@ -2,40 +2,13 @@
   "sourceLanguage" : "en",
   "strings" : {
     "" : {
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : ""
-          }
-        }
-      }
+      "shouldTranslate" : false
     },
     "-%@" : {
-      "localizations" : {
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "-%@"
-          }
-        }
-      }
+      "shouldTranslate" : false
     },
     "%@" : {
-      "localizations" : {
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        }
-      }
+      "shouldTranslate" : false
     },
     "%@ of %@ (%@)" : {
       "localizations" : {
@@ -47,7 +20,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%1$@ of %2$@ (%3$@)"
           }
         },
@@ -94,12 +67,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld / %1$lld Einträge"
+            "value" : "%1$lld / %2$lld Einträge"
           }
         },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "%1$lld / %2$lld items"
           }
         },
@@ -143,16 +116,52 @@
     },
     "Add Torrent" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Torrent"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir torrent"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi Torrent"
+            "value" : "Aggiungi torrent"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj torrent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить торрент"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "டோரண்டைச் சேர்"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加种子"
           }
         }
       }
@@ -473,7 +482,49 @@
     },
     "AirPlay" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AirPlay"
@@ -535,10 +586,52 @@
     },
     "Close" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cerrar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chiudi"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zamknij"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "மூடு"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭"
           }
         }
       }
@@ -641,8 +734,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "All"
+            "state" : "translated",
+            "value" : "全部"
           }
         }
       }
@@ -1016,50 +1109,50 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Login"
+            "state" : "translated",
+            "value" : "Benutzername"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Login"
+            "value" : "Username"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iniciar sesión"
+            "value" : "Nombre de usuario"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Login"
+            "value" : "Nome utente"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Login"
+            "value" : "Nazwa użytkownika"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Логин"
+            "value" : "Имя пользователя"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "உள்நுழை"
+            "value" : "பயனர்பெயர்"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登录"
+            "value" : "用户名"
           }
         }
       }
@@ -1120,7 +1213,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "OK"
           }
         },
@@ -1224,7 +1317,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Optional"
           }
         },
@@ -1267,7 +1360,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "可选择"
+            "value" : "选填"
           }
         }
       }
@@ -1328,7 +1421,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Port"
           }
         },
@@ -1638,10 +1731,40 @@
     },
     "Delete Keeping Files" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entfernen und Dateien behalten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Keeping Files"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar y conservar los archivos"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elimina mantenendo i file"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń i zachowaj pliki"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить, сохранив файлы"
           }
         },
         "ta" : {
@@ -1649,21 +1772,63 @@
             "state" : "translated",
             "value" : "கோப்புகளை வைத்துக்கொண்டு நீக்கு"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除任务并保留文件"
+          }
         }
       }
     },
     "Delete With Files" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit Dateien löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete With Files"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar también los archivos"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elimina anche i file"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń razem z plikami"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить вместе с файлами"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்புகளுடன் நீக்கு"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除任务及文件"
           }
         }
       }
@@ -1743,7 +1908,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Files"
+            "value" : "File"
           }
         },
         "pl" : {
@@ -1795,7 +1960,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trackers"
+            "value" : "Tracker"
           }
         },
         "pl" : {
@@ -1819,7 +1984,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trackers"
+            "value" : "Tracker"
           }
         }
       }
@@ -2816,7 +2981,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash"
           }
         },
@@ -2868,7 +3033,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hash v2"
           }
         },
@@ -3076,8 +3241,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Pause"
+            "state" : "translated",
+            "value" : "Pausieren"
           }
         },
         "en" : {
@@ -3284,8 +3449,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rehash"
+            "state" : "translated",
+            "value" : "Dateien erneut prüfen"
           }
         },
         "en" : {
@@ -3297,13 +3462,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Refrescar"
+            "value" : "Volver a comprobar los archivos"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rehash"
+            "value" : "Verifica di nuovo i file"
           }
         },
         "pl" : {
@@ -3327,7 +3492,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刷新"
+            "value" : "重新校验文件"
           }
         }
       }
@@ -3336,8 +3501,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Rehash"
+            "state" : "translated",
+            "value" : "Dateien erneut prüfen"
           }
         },
         "en" : {
@@ -3349,13 +3514,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Refrescar"
+            "value" : "Volver a comprobar los archivos"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rehash"
+            "value" : "Verifica di nuovo i file"
           }
         },
         "pl" : {
@@ -3367,7 +3532,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Старт"
+            "value" : "Проверить файлы повторно"
           }
         },
         "ta" : {
@@ -3379,7 +3544,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "刷新"
+            "value" : "重新校验文件"
           }
         }
       }
@@ -3441,7 +3606,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torrent neu hashen"
+            "value" : "Torrent-Dateien prüfen"
           }
         },
         "en" : {
@@ -3453,13 +3618,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rehacer torrent"
+            "value" : "Comprobar los archivos del torrent"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rehash torrent"
+            "value" : "Verifica dei file del torrent"
           }
         },
         "pl" : {
@@ -3483,7 +3648,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重新检查 Torrent"
+            "value" : "重新校验已下载的文件"
           }
         }
       }
@@ -3700,7 +3865,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Download"
           }
         },
@@ -3804,7 +3969,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Upload"
           }
         },
@@ -3817,7 +3982,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Subir"
+            "value" : "Subida"
           }
         },
         "it" : {
@@ -3856,8 +4021,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Start"
+            "state" : "translated",
+            "value" : "Starten"
           }
         },
         "en" : {
@@ -3960,8 +4125,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Transfer"
+            "state" : "translated",
+            "value" : "Datenübertragung"
           }
         },
         "en" : {
@@ -4129,7 +4294,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sanguijuelas"
+            "value" : "En descarga"
           }
         },
         "it" : {
@@ -4233,7 +4398,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sembradores"
+            "value" : "Compartiendo"
           }
         },
         "it" : {
@@ -4374,16 +4539,52 @@
     },
     "Dict: %@" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ordner: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carpeta: %@"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cartella: %@"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Папка: %@"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்புறை: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件夹：%@"
           }
         }
       }
@@ -4756,8 +4957,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Update"
+            "state" : "translated",
+            "value" : "Aktualisieren"
           }
         },
         "en" : {
@@ -4962,16 +5163,52 @@
     },
     "Files" : {
       "localizations" : {
-        "it" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dateien"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Files"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archivos"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pliki"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файлы"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்புகள்"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件"
           }
         }
       }
@@ -5030,16 +5267,52 @@
     },
     "General" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allgemein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Generale"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ogólne"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общие"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "பொது"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "概览"
           }
         }
       }
@@ -5090,8 +5363,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "I know the risks"
+            "state" : "translated",
+            "value" : "我了解相关风险"
           }
         }
       }
@@ -5142,8 +5415,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Allow Cellular Connection"
+            "state" : "translated",
+            "value" : "允许使用蜂窝数据"
           }
         }
       }
@@ -5194,8 +5467,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Allow Cellular Usage"
+            "state" : "translated",
+            "value" : "允许使用蜂窝数据"
           }
         }
       }
@@ -5246,8 +5519,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Do Not Allow Cellular"
+            "state" : "translated",
+            "value" : "不允许使用蜂窝数据"
           }
         }
       }
@@ -5257,7 +5530,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Standardmäßig erlaubt iTorrent keine Nutzung Mobiler Daten, da die meisten Mobilfunk-Verträge keinen unbegrenzten Download und/oder Upload erlauben.  Du kannst diese Einstellung jederzeit in den den App-Einstellungen ändern."
+            "value" : "iTorrent verwendet standardmäßig keine mobilen Daten, da viele Mobilfunktarife das Datenvolumen für Downloads und Uploads begrenzen.\n\nDu kannst das jederzeit in den App-Einstellungen ändern."
           }
         },
         "en" : {
@@ -5298,8 +5571,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "By default iTorrent prefers not to allow cellular usage because of most cellular plans does not support unlimited download and / or upload trafic.\n\nYou can always change this setting in application preferences."
+            "state" : "translated",
+            "value" : "许多蜂窝套餐对下载或上传流量有限制，因此 iTorrent 默认不使用蜂窝数据。\n\n你可以随时在 App 设置中更改此选项。"
           }
         }
       }
@@ -5350,8 +5623,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Allow Cellular Usage"
+            "state" : "translated",
+            "value" : "允许使用蜂窝数据"
           }
         }
       }
@@ -5361,25 +5634,25 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash des Torrents der beendet werden muss"
+            "value" : "Hash des Torrents, der pausiert werden soll"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash of the Torrent that needs to be stopped"
+            "value" : "Hash of the torrent to pause"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash del Torrent que necesita ser detenido"
+            "value" : "Hash del torrent que se va a pausar"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hash del Torrent che deve essere fermato"
+            "value" : "Hash del torrent da mettere in pausa"
           }
         },
         "pl" : {
@@ -5391,19 +5664,19 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Хэш торрента который требуется остановить"
+            "value" : "Хэш торрента, который нужно приостановить"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "நிறுத்த வேண்டிய டோரண்டின் Hash"
+            "value" : "இடைநிறுத்த வேண்டிய டோரண்டின் Hash"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "需要停止的Torrent的Hash"
+            "value" : "要暂停的种子的哈希值"
           }
         }
       }
@@ -5455,7 +5728,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torrent hash"
+            "value" : "种子哈希值"
           }
         }
       }
@@ -5587,7 +5860,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Files"
+            "value" : "File"
           }
         },
         "pl" : {
@@ -5620,8 +5893,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Magnet"
+            "state" : "translated",
+            "value" : "Magnet-Link"
           }
         },
         "en" : {
@@ -6419,7 +6692,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prova a disabilitare il filtro o selezionane un altro"
+            "value" : "Prova a disattivare il filtro o a selezionarne un altro"
           }
         },
         "pl" : {
@@ -6442,8 +6715,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Try to disable this filter or select another one"
+            "state" : "translated",
+            "value" : "试试关闭此筛选条件，或选择其他条件。"
           }
         }
       }
@@ -6494,8 +6767,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "No torrents for filter “%1$@”"
+            "state" : "translated",
+            "value" : "没有符合“%1$@”筛选条件的种子"
           }
         }
       }
@@ -6505,7 +6778,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Um neue Torrents hinzuzufügen, drücke das ‚+‘-Icon in der unteren rechten Ecke, oder indem Du eine Torrent-Datei direkt aus der Dateien-App oder dem Browser öffnest."
+            "value" : "Tippe unten links auf „+“ oder öffne eine Torrent-Datei direkt in der Dateien-App oder im Browser."
           }
         },
         "en" : {
@@ -6608,8 +6881,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Select All"
+            "state" : "translated",
+            "value" : "Alle auswählen"
           }
         },
         "en" : {
@@ -6620,8 +6893,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Select All"
+            "state" : "translated",
+            "value" : "Seleccionar todo"
           }
         },
         "it" : {
@@ -6650,8 +6923,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Select All"
+            "state" : "translated",
+            "value" : "全选"
           }
         }
       }
@@ -6868,7 +7141,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Name"
           }
         },
@@ -7025,7 +7298,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Audio"
           }
         },
@@ -7343,7 +7616,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Video"
           }
         },
@@ -7551,8 +7824,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "RSS Updates"
+            "state" : "translated",
+            "value" : "RSS-Updates"
           }
         },
         "en" : {
@@ -7604,7 +7877,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hier klicken um Einstellungen zu öffnen"
+            "value" : "Tippe hier, um die Einstellungen zu öffnen."
           }
         },
         "en" : {
@@ -7645,8 +7918,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Click here to open preferences"
+            "state" : "translated",
+            "value" : "轻点此处打开设置"
           }
         }
       }
@@ -7656,37 +7929,37 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mobile Samml\u0010ung ist nicht erlaubt"
+            "value" : "Mobile Daten sind nicht erlaubt"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cellular collection is not allowed"
+            "value" : "Cellular data is not allowed"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se permite la recogida de móviles"
+            "value" : "No se permite el uso de datos móviles"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "La connessione su rete mobile non è permessa"
+            "value" : "L’uso dei dati cellulare non è consentito"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Użycie sieci komórkowej nie jest dozwolone"
+            "value" : "Użycie danych komórkowych jest niedozwolone"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сотовая связь запрещена"
+            "value" : "Использование мобильных данных запрещено"
           }
         },
         "ta" : {
@@ -7697,8 +7970,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cellular collection is not allowed"
+            "state" : "translated",
+            "value" : "不允许使用蜂窝数据"
           }
         }
       }
@@ -8485,10 +8758,40 @@
     },
     "Peers" : {
       "localizations" : {
-        "it" : {
+        "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Peers"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peers"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pares"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uczestnicy"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пиры"
           }
         },
         "ta" : {
@@ -8496,15 +8799,63 @@
             "state" : "translated",
             "value" : "பங்கேற்பாளர்கள்"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "对等节点"
+          }
         }
       }
     },
     "Picture in Picture" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bild-in-Bild"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picture in Picture"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagen dentro de imagen"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picture in Picture"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obraz w obrazie"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Картинка в картинке"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "படத்திற்குள் படம்"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "画中画"
           }
         }
       }
@@ -9451,8 +9802,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "System"
+            "state" : "translated",
+            "value" : "Systemeinstellung"
           }
         },
         "en" : {
@@ -9763,7 +10114,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Audio"
           }
         },
@@ -10231,50 +10582,50 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Validate HTTPS trackers"
+            "state" : "translated",
+            "value" : "HTTPS-Zertifikate prüfen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Validate HTTPS trackers"
+            "value" : "Verify HTTPS certificates"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Validate HTTPS trackers"
+            "state" : "translated",
+            "value" : "Verificar certificados HTTPS"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Convalida trackers HTTPS"
+            "value" : "Verifica i certificati HTTPS"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Validate HTTPS trackers"
+            "state" : "translated",
+            "value" : "Sprawdzaj certyfikaty HTTPS"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Валидировать HTTPS трекеры"
+            "value" : "Проверять сертификаты HTTPS"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "HTTPS டிராக்கர்கள்-ஐச் சரிபார்"
+            "value" : "HTTPS சான்றிதழ்களைச் சரிபார்"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Validate HTTPS trackers"
+            "state" : "translated",
+            "value" : "验证 HTTPS 证书"
           }
         }
       }
@@ -10335,50 +10686,50 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Retry range"
+            "state" : "translated",
+            "value" : "Wiederholungsversuche bei Portbelegung"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retry range"
+            "value" : "Port binding retries"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rango de reintentos"
+            "value" : "Reintentos de asignación de puerto"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Intervallo tentativi di prova"
+            "value" : "Tentativi di assegnazione della porta"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zakres ponownych prób"
+            "value" : "Ponowne próby powiązania z portem"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Количество повторений"
+            "value" : "Повторные попытки привязки к порту"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "மீண்டும் முயற்சிக்கும் வரம்பு"
+            "value" : "போர்ட்டை ஒதுக்க மீண்டும் முயலும் எண்ணிக்கை"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重试次数"
+            "value" : "端口绑定重试次数"
           }
         }
       }
@@ -10596,37 +10947,37 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "µTP aktivieren"
+            "value" : "NAT-PMP aktivieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enable µTP"
+            "value" : "Enable NAT-PMP"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activar µTP"
+            "value" : "Activar NAT-PMP"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attiva µTP"
+            "value" : "Attiva NAT-PMP"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Włąćż µTP"
+            "value" : "Włącz NAT-PMP"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Включить µTP"
+            "value" : "Включить NAT-PMP"
           }
         },
         "ta" : {
@@ -10638,7 +10989,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启用µTP"
+            "value" : "启用 NAT-PMP"
           }
         }
       }
@@ -10700,37 +11051,37 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "NAT-PMP aktivieren"
+            "value" : "µTP aktivieren"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enable NAT-PMP"
+            "value" : "Enable µTP"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activar NAT-PMP"
+            "value" : "Activar µTP"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attiva NAT-PMP"
+            "value" : "Attiva µTP"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Włącz NAT-PMP"
+            "value" : "Włącz µTP"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Включить NAT-PMP"
+            "value" : "Включить µTP"
           }
         },
         "ta" : {
@@ -10742,7 +11093,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启用NAT-PMP"
+            "value" : "启用 µTP"
           }
         }
       }
@@ -10959,7 +11310,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Proxy"
           }
         },
@@ -11115,7 +11466,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Host"
           }
         },
@@ -11158,7 +11509,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Host"
+            "value" : "主机"
           }
         }
       }
@@ -11167,7 +11518,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Hostname"
           }
         },
@@ -11687,7 +12038,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Seeding"
           }
         },
@@ -11700,7 +12051,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sembrado"
+            "value" : "Compartir torrents"
           }
         },
         "it" : {
@@ -11791,8 +12142,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "File sharing"
+            "state" : "translated",
+            "value" : "Dateifreigabe"
           }
         },
         "en" : {
@@ -11895,8 +12246,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "WebDav server"
+            "state" : "translated",
+            "value" : "WebDAV-Server"
           }
         },
         "en" : {
@@ -13560,7 +13911,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Version"
           }
         },
@@ -13655,23 +14006,59 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "GitHub page"
+            "value" : "GitHub 页面"
           }
         }
       }
     },
     "Primary Info" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grundinformationen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primary Info"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información básica"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informazione Principale"
+            "value" : "Informazioni principali"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podstawowe informacje"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Основная информация"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "முக்கியத் தகவல்"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基本信息"
           }
         }
       }
@@ -13888,8 +14275,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Top"
+            "state" : "translated",
+            "value" : "Höchste"
           }
         },
         "en" : {
@@ -13901,7 +14288,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Top"
+            "value" : "Máxima"
           }
         },
         "it" : {
@@ -14356,8 +14743,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export All"
+            "state" : "translated",
+            "value" : "Alle Feeds exportieren"
           }
         },
         "en" : {
@@ -14368,8 +14755,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export All"
+            "state" : "translated",
+            "value" : "Exportar todos los canales"
           }
         },
         "it" : {
@@ -14380,8 +14767,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export All"
+            "state" : "translated",
+            "value" : "Eksportuj wszystkie kanały"
           }
         },
         "ru" : {
@@ -14398,8 +14785,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export All"
+            "state" : "translated",
+            "value" : "导出全部订阅源"
           }
         }
       }
@@ -14408,8 +14795,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export Selected"
+            "state" : "translated",
+            "value" : "Ausgewählte Feeds exportieren"
           }
         },
         "en" : {
@@ -14420,8 +14807,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export Selected"
+            "state" : "translated",
+            "value" : "Exportar los canales seleccionados"
           }
         },
         "it" : {
@@ -14432,8 +14819,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export Selected"
+            "state" : "translated",
+            "value" : "Eksportuj zaznaczone kanały"
           }
         },
         "ru" : {
@@ -14450,8 +14837,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Export Selected"
+            "state" : "translated",
+            "value" : "导出所选订阅源"
           }
         }
       }
@@ -14460,8 +14847,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import"
+            "state" : "translated",
+            "value" : "Feeds importieren"
           }
         },
         "en" : {
@@ -14472,8 +14859,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import"
+            "state" : "translated",
+            "value" : "Importar canales"
           }
         },
         "it" : {
@@ -14484,8 +14871,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import"
+            "state" : "translated",
+            "value" : "Importuj kanały"
           }
         },
         "ru" : {
@@ -14502,8 +14889,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import"
+            "state" : "translated",
+            "value" : "导入订阅源"
           }
         }
       }
@@ -14720,8 +15107,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "RSS Feed"
+            "state" : "translated",
+            "value" : "RSS-Feed"
           }
         },
         "en" : {
@@ -15342,16 +15729,52 @@
     },
     "Search" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buscar"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cerca"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szukaj"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "தேடு"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搜索"
           }
         }
       }
@@ -15516,8 +15939,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "d"
+            "state" : "translated",
+            "value" : "T"
           }
         },
         "en" : {
@@ -15568,7 +15991,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "h"
           }
         },
@@ -15672,8 +16095,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "m"
+            "state" : "translated",
+            "value" : "min"
           }
         },
         "en" : {
@@ -15724,8 +16147,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "M"
+            "state" : "translated",
+            "value" : "Mon."
           }
         },
         "en" : {
@@ -15776,7 +16199,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "s"
           }
         },
@@ -15828,8 +16251,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "w"
+            "state" : "translated",
+            "value" : "Wo."
           }
         },
         "en" : {
@@ -15880,8 +16303,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "y"
+            "state" : "translated",
+            "value" : "J."
           }
         },
         "en" : {
@@ -16504,8 +16927,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Leeches:"
+            "state" : "translated",
+            "value" : "Leecher:"
           }
         },
         "en" : {
@@ -16517,19 +16940,19 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sanguijuelas:"
+            "value" : "En descarga:"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leeches:"
+            "value" : "Leecher:"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leeczów:"
+            "value" : "Pobierający:"
           }
         },
         "ru" : {
@@ -16608,8 +17031,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "N/A"
+            "state" : "translated",
+            "value" : "k. A."
           }
         },
         "en" : {
@@ -16651,7 +17074,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "N/A"
+            "value" : "暂无数据"
           }
         }
       }
@@ -16660,7 +17083,7 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Peers:"
           }
         },
@@ -16679,13 +17102,13 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Peers:"
+            "value" : "Peer:"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Partnerzy:"
+            "value" : "Uczestnicy:"
           }
         },
         "ru" : {
@@ -16703,7 +17126,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用户: "
+            "value" : "对等节点："
           }
         }
       }
@@ -16712,8 +17135,8 @@
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Seeds:"
+            "state" : "translated",
+            "value" : "Seeder:"
           }
         },
         "en" : {
@@ -16725,13 +17148,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Semillas:"
+            "value" : "Compartiendo:"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seeds:"
+            "value" : "Seeder:"
           }
         },
         "pl" : {
@@ -17126,16 +17549,52 @@
     },
     "Trackers" : {
       "localizations" : {
-        "it" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trackers"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rastreadores"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trackery"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трекеры"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கர்கள்"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tracker"
           }
         }
       }
@@ -17197,7 +17656,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tracker hinzu"
+            "value" : "Tracker hinzufügen"
           }
         },
         "en" : {
@@ -17238,8 +17697,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Add trackers"
+            "state" : "translated",
+            "value" : "添加 Tracker"
           }
         }
       }
@@ -17290,8 +17749,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "From sources list"
+            "state" : "translated",
+            "value" : "从来源列表添加"
           }
         }
       }
@@ -17342,8 +17801,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Import all"
+            "state" : "translated",
+            "value" : "全部导入"
           }
         }
       }
@@ -17394,8 +17853,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Manually"
+            "state" : "translated",
+            "value" : "手动添加"
           }
         }
       }
@@ -17405,37 +17864,37 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gib Tracker URLs mit Leerzeilen getrennt ein"
+            "value" : "Gib pro Zeile eine Tracker-URL ein."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enter tracker URLs separated by blank line"
+            "value" : "Enter one tracker URL per line."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Introduce las URL del tracker separadas por una línea en blanco"
+            "value" : "Introduce una URL de rastreador por línea."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci gli URL del tracker separati da una riga vuota"
+            "value" : "Inserisci un URL di tracker per riga."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wpisz URLe trackerów, rozdzielone przez pustą linie"
+            "value" : "Wpisz po jednym adresie URL trackera w każdym wierszu."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Введите URL ссылки трекеров разделённые пустой строкой"
+            "value" : "Введите по одному URL трекера на строку."
           }
         },
         "ta" : {
@@ -17447,7 +17906,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请输入Tracker URL，以空行分隔"
+            "value" : "每行输入一个 Tracker URL。"
           }
         }
       }
@@ -18026,16 +18485,52 @@
     },
     "Transfer" : {
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenübertragung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transfer"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transferencia"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trasferimento"
           }
         },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transfer danych"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Передача данных"
+          }
+        },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "தரவு பரிமாற்றம்"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传输"
           }
         }
       }

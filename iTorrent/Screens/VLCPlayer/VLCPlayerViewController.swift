@@ -90,7 +90,8 @@ private extension Track {
 
     var localizedLanguageName: String? {
         guard let language else { return nil }
-        return Locale(identifier: "en").localizedString(forLanguageCode: language)
+        let locale = Bundle.main.preferredLocalizations.first.map { Locale(identifier: $0) } ?? .current
+        return locale.localizedString(forLanguageCode: language)
     }
 }
 

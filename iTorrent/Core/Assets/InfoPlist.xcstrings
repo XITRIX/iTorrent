@@ -3,16 +3,52 @@
   "strings" : {
     "BitTorrent Metadata" : {
       "localizations" : {
-        "ru" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BitTorrent-Metadaten"
+          }
+        },
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "BitTorrent Metadata"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metadatos de BitTorrent"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metadati BitTorrent"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metadane BitTorrent"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метаданные BitTorrent"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "BitTorrent மீத்தரவு"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BitTorrent 元数据"
           }
         }
       }
@@ -21,13 +57,49 @@
       "comment" : "Bundle name",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "iTorrent"
           }
         },
         "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iTorrent"
@@ -39,16 +111,52 @@
       "comment" : "Privacy - Local Network Usage Description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent verwendet das lokale Netzwerk, um Wiedergabegeräte zu finden und Videos auf diese Geräte zu übertragen."
+          }
+        },
         "en" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "iTorrent uses the local network to discover playback devices and cast video on your network."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent usa la red local para encontrar dispositivos de reproducción y enviarles vídeo."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent usa la rete locale per trovare i dispositivi di riproduzione e trasmettervi video."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent korzysta z sieci lokalnej, aby znajdować urządzenia odtwarzające i przesyłać na nie wideo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent использует локальную сеть, чтобы находить устройства воспроизведения и передавать на них видео."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "வீடியோவை இயக்கும் சாதனங்களைக் கண்டறிந்து அவற்றுக்கு வீடியோவை அனுப்ப iTorrent உங்கள் உள்ளூர் நெட்வொர்க்கைப் பயன்படுத்துகிறது."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent 需要访问本地网络，以查找播放设备并向这些设备投放视频。"
           }
         }
       }

@@ -29,7 +29,7 @@ struct TorrentDetailsView: View {
 
                     Section {
                         VStack {
-                            DetailView(title: "State", detail: "Done")
+                            DetailView(title: "details.state", detail: String(localized: "torrent.state.done"))
                         }
                     }
 
@@ -41,10 +41,10 @@ struct TorrentDetailsView: View {
 
                     Section {
                         VStack {
-                            DetailView(title: "Hash", detail: "284d665fc0c912286d1505d6372140281384cb6d")
-                            DetailView(title: "Creator", detail: "iTorrent 2.1.0")
-                            DetailView(title: "Created", detail: "17/11/2025")
-                            DetailView(title: "Added", detail: "17/11/2025")
+                            DetailView(title: "details.info.hash", detail: "284d665fc0c912286d1505d6372140281384cb6d")
+                            DetailView(title: "details.info.creator", detail: "iTorrent 2.1.0")
+                            DetailView(title: "details.info.created", detail: "17/11/2025")
+                            DetailView(title: "details.info.added", detail: "17/11/2025")
                         }
                     } header: {
                         Text("Primary Info")
@@ -52,13 +52,13 @@ struct TorrentDetailsView: View {
 
                     Section {
                         VStack {
-                            DetailView(title: "Selected/Total", detail: "9.3 GB / 24.9 GB")
-                            DetailView(title: "Completed", detail: "9.3 GB")
-                            DetailView(title: "Progress Selected/Total", detail: "100.00% / 100.00%")
-                            DetailView(title: "Downloaded", detail: "0 B")
-                            DetailView(title: "Uploaded", detail: "0 B")
-                            DetailView(title: "Seeders", detail: "0(0)")
-                            DetailView(title: "Leechers", detail: "0(29)")
+                            DetailView(title: "details.transfer.selectedTotal", detail: "9.3 GB / 24.9 GB")
+                            DetailView(title: "details.transfer.completed", detail: "9.3 GB")
+                            DetailView(title: "details.transfer.progressSelectedTotal", detail: "100.00% / 100.00%")
+                            DetailView(title: "details.transfer.downloaded", detail: "0 B")
+                            DetailView(title: "details.transfer.uploaded", detail: "0 B")
+                            DetailView(title: "details.transfer.seeders", detail: "0(0)")
+                            DetailView(title: "details.transfer.leechers", detail: "0(29)")
                         }
                     } header: {
                         Text("Transfer")
@@ -94,7 +94,7 @@ struct TorrentDetailsView: View {
 }
 
 struct DetailView: View {
-    let title: String
+    let title: LocalizedStringKey
     let detail: String
 
     var body: some View {
