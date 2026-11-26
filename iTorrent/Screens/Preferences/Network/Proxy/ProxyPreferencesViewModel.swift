@@ -47,7 +47,7 @@ private extension ProxyPreferencesViewModel {
 
             if preferences.proxyType != .none {
                 PRButtonViewModel(with: .init(title: %"preferences.network.proxy.host.name", value: preferences.$proxyHostname.eraseToAnyPublisher()) { [unowned self] in
-                    textInput(title: %"preferences.network.proxy.host.name", placeholder: "Hostname", defaultValue: "\(preferences.proxyHostname)", type: .URL) { [unowned self] res in
+                    textInput(title: %"preferences.network.proxy.host.name", placeholder: %"preferences.network.proxy.host.name", defaultValue: "\(preferences.proxyHostname)", type: .URL) { [unowned self] res in
                         dismissSelection.send()
                         guard let res else { return }
                         preferences.proxyHostname = res

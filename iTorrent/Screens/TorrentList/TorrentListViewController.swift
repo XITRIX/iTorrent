@@ -251,7 +251,7 @@ private extension TorrentListViewController {
         searchVC.showsSearchResultsController = false
         searchVC.searchBar.placeholder = %"common.search"
 
-        searchVC.searchBar.scopeButtonTitles = ["Torrents", "RSS"]
+        searchVC.searchBar.scopeButtonTitles = [%"list.search.scope.torrents", "RSS"]
         searchVC.scopeBarActivation = .onSearchActivation
 
         navigationItem.searchController = searchVC

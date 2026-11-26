@@ -54,6 +54,12 @@
             "value" : "%1$@ / %2$@ (%3$@)"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ / %2$@ (%3$@)"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -106,6 +112,12 @@
             "value" : "%1$lld / %2$lld உருப்படிகள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld öğe"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -156,6 +168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டோரண்டைச் சேர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent Ekle"
           }
         },
         "zh-Hans" : {
@@ -211,6 +229,12 @@
             "value" : "அனைத்து மாற்றங்களும் இழக்கப்படும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm değişiklikler kaybolacak."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -262,6 +286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மாற்றங்களைக் கைவிட விரும்புகிறீர்களா?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değişikliklerden vazgeçilsin mi?"
           }
         },
         "zh-Hans" : {
@@ -316,6 +346,12 @@
             "value" : "இந்த Hash கொண்ட டோரண்ட் ஏற்கனவே பதிவிறக்க வரிசையில் உள்ளது: \"%@\""
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu karma değerine sahip torrent zaten indirme kuyruğunda: “%@”"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -366,6 +402,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இந்த டோரண்ட் ஏற்கனவே உள்ளது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu torrent zaten var"
           }
         },
         "zh-Hans" : {
@@ -420,6 +462,12 @@
             "value" : "நிர்வகி..."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yönet…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -472,6 +520,12 @@
             "value" : "சேமிப்பிடத்தைத் தேர்ந்தெடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kayıt konumu seçin"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -519,6 +573,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AirPlay"
@@ -576,6 +636,12 @@
             "value" : "ஒலி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -626,6 +692,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மூடு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapat"
           }
         },
         "zh-Hans" : {
@@ -680,6 +752,12 @@
             "value" : "சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekle"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -730,6 +808,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அனைத்தும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tümü"
           }
         },
         "zh-Hans" : {
@@ -784,6 +868,12 @@
             "value" : "ரத்து செய்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İptal"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -834,6 +924,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மூடு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapat"
           }
         },
         "zh-Hans" : {
@@ -888,6 +984,12 @@
             "value" : "தொடர்க"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devam Et"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -938,6 +1040,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "நீக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sil"
           }
         },
         "zh-Hans" : {
@@ -993,6 +1101,12 @@
             "value" : "மூடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vazgeç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1043,6 +1157,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இயக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etkinleştir"
           }
         },
         "zh-Hans" : {
@@ -1097,6 +1217,12 @@
             "value" : "பிழை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hata"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1147,6 +1273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பயனர்பெயர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kullanıcı adı"
           }
         },
         "zh-Hans" : {
@@ -1201,6 +1333,12 @@
             "value" : "இல்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1251,6 +1389,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சரி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamam"
           }
         },
         "zh-Hans" : {
@@ -1305,6 +1449,12 @@
             "value" : "திற"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1355,6 +1505,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "விருப்பத்தேர்வு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İsteğe bağlı"
           }
         },
         "zh-Hans" : {
@@ -1409,6 +1565,12 @@
             "value" : "கடவுச்சொல்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parola"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1459,6 +1621,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Port"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantı noktası"
           }
         },
         "zh-Hans" : {
@@ -1513,6 +1681,12 @@
             "value" : "அகற்று"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaldır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1563,6 +1737,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மீட்டமை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıfırla"
           }
         },
         "zh-Hans" : {
@@ -1617,6 +1797,12 @@
             "value" : "தேடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ara"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1667,6 +1853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பகிர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaş"
           }
         },
         "zh-Hans" : {
@@ -1721,6 +1913,12 @@
             "value" : "ஆம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evet"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1771,6 +1969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்புகளை வைத்துக்கொண்டு நீக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyaları Tutup Torrenti Kaldır"
           }
         },
         "zh-Hans" : {
@@ -1825,6 +2029,12 @@
             "value" : "கோப்புகளுடன் நீக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrenti Dosyalarıyla Sil"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1875,6 +2085,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "செயல்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İşlemler"
           }
         },
         "zh-Hans" : {
@@ -1929,6 +2145,12 @@
             "value" : "கோப்புகள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1979,6 +2201,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கர்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyiciler"
           }
         },
         "zh-Hans" : {
@@ -2033,6 +2261,12 @@
             "value" : "கருத்து நகலெடுக்கப்பட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorum panoya kopyalandı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2083,6 +2317,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "உருவாக்கியவரின் பெயர் நகலெடுக்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oluşturanın adı panoya kopyalandı"
           }
         },
         "zh-Hans" : {
@@ -2137,6 +2377,12 @@
             "value" : "Hash நகலெடுக்கப்பட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karma değeri panoya kopyalandı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2187,6 +2433,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hash v2 நகலெடுக்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v2 karma değeri panoya kopyalandı"
           }
         },
         "zh-Hans" : {
@@ -2241,6 +2493,12 @@
             "value" : "பதிவிறக்குகிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndiriliyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2291,6 +2549,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முன்னுரிமைகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öncelikler"
           }
         },
         "zh-Hans" : {
@@ -2345,6 +2609,12 @@
             "value" : "முதல் மற்றும் கடைசி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İlk ve son parçaları önce indir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2395,6 +2665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முன்னேற்றம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İlerleme"
           }
         },
         "zh-Hans" : {
@@ -2449,6 +2725,12 @@
             "value" : "வரிசைப்படி பதிவிறக்கம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıralı indirme"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2499,6 +2781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மீடியா பிளேயர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medya oynatıcı"
           }
         },
         "zh-Hans" : {
@@ -2553,6 +2841,12 @@
             "value" : "VLC Player-ல் திற"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Player’da aç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2603,6 +2897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முன்னோட்டப் பயன்முறை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önizleme modu"
           }
         },
         "zh-Hans" : {
@@ -2657,6 +2957,12 @@
             "value" : "Quick Look முன்னோட்டம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hızlı Bak ile önizleme"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2704,6 +3010,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Player"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "VLC Player"
@@ -2761,6 +3073,12 @@
             "value" : "முக்கியத் தகவல்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temel bilgiler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2811,6 +3129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேர்க்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eklenme tarihi"
           }
         },
         "zh-Hans" : {
@@ -2865,6 +3189,12 @@
             "value" : "கருத்து"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yorum"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2915,6 +3245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "உருவாக்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oluşturulma tarihi"
           }
         },
         "zh-Hans" : {
@@ -2969,6 +3305,12 @@
             "value" : "உருவாக்கியவர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oluşturan"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3019,6 +3361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hash"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karma değeri"
           }
         },
         "zh-Hans" : {
@@ -3073,6 +3421,12 @@
             "value" : "Hash v2"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karma değeri (v2)"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3123,6 +3477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தனிப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özel"
           }
         },
         "zh-Hans" : {
@@ -3177,6 +3537,12 @@
             "value" : "சேமிப்பிடம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depolama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3227,6 +3593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தற்போதையது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kayıt konumu"
           }
         },
         "zh-Hans" : {
@@ -3281,6 +3653,12 @@
             "value" : "இடைநிறுத்து"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duraklat"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3331,6 +3709,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேமிப்பிடம் கிடைக்கவில்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kayıt konumu bulunamadı"
           }
         },
         "zh-Hans" : {
@@ -3385,6 +3769,12 @@
             "value" : "காணாமல் போன சேமிப்பிடத்தைக் கண்டறிய iTorrent முயற்சிக்கும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent, artık erişilemeyen kayıt konumunu bulmaya çalışacak."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3435,6 +3825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேமிப்பிடத்தைப் புதுப்பி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kayıt konumunu yenile"
           }
         },
         "zh-Hans" : {
@@ -3489,6 +3885,12 @@
             "value" : "Hash-ஐ மீண்டும் சரிபார்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyaları yeniden doğrula"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3539,6 +3941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hash-ஐ மீண்டும் சரிபார்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeniden doğrula"
           }
         },
         "zh-Hans" : {
@@ -3593,6 +4001,12 @@
             "value" : "இந்தச் செயல் பதிவிறக்கம் செய்யப்பட்ட அனைத்து கோப்புகளின் நிலையையும் மீண்டும் சரிபார்க்கும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirilen tüm dosyaların bütünlüğü yeniden doğrulanacak."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3643,6 +4057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டோரண்ட் Hash மறுசரிபார்ப்பு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalar yeniden doğrulansın mı?"
           }
         },
         "zh-Hans" : {
@@ -3697,6 +4117,12 @@
             "value" : "Magnet இணைப்பு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet bağlantısı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3747,6 +4173,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Magnet URL நகலெடுக்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet bağlantısı panoya kopyalandı"
           }
         },
         "zh-Hans" : {
@@ -3801,6 +4233,12 @@
             "value" : "டோரண்ட் கோப்பு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent dosyası"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3851,6 +4289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வேகம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hız"
           }
         },
         "zh-Hans" : {
@@ -3905,6 +4349,12 @@
             "value" : "பதிவிறக்கம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirme"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3955,6 +4405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மீதமுள்ள நேரம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalan süre"
           }
         },
         "zh-Hans" : {
@@ -4009,6 +4465,12 @@
             "value" : "பதிவேற்றம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gönderim"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4059,6 +4521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தொடங்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başlat"
           }
         },
         "zh-Hans" : {
@@ -4113,6 +4581,12 @@
             "value" : "நிலை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durum"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4163,6 +4637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தரவு பரிமாற்றம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktarım"
           }
         },
         "zh-Hans" : {
@@ -4217,6 +4697,12 @@
             "value" : "முடிந்தது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamamlanan"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4267,6 +4753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பதிவிறக்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirilen"
           }
         },
         "zh-Hans" : {
@@ -4321,6 +4813,12 @@
             "value" : "பதிவிறக்குபவர்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirenler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4371,6 +4869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முன்னேற்றம்: தேர்ந்தெடுத்தவை/மொத்தம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İlerleme: seçilen / tümü"
           }
         },
         "zh-Hans" : {
@@ -4425,6 +4929,12 @@
             "value" : "பகிர்பவர்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşanlar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4475,6 +4985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தேர்ந்தெடுத்தவை/மொத்தம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilen / tümü"
           }
         },
         "zh-Hans" : {
@@ -4529,6 +5045,12 @@
             "value" : "பதிவேற்றப்பட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gönderilen"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4579,6 +5101,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்புறை: %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klasör: %@"
           }
         },
         "zh-Hans" : {
@@ -4633,6 +5161,12 @@
             "value" : "AirPlay மூலம் காட்டப்படுகிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay ile oynatılıyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4683,6 +5217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முடக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapalı"
           }
         },
         "zh-Hans" : {
@@ -4737,6 +5277,12 @@
             "value" : "அனுமதி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İsteğe bağlı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4787,6 +5333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கட்டாயம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zorunlu"
           }
         },
         "zh-Hans" : {
@@ -4841,6 +5393,12 @@
             "value" : "வெளியேறு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çık"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4891,6 +5449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "செயலியைப் புதுப்பிக்க வேண்டும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulamayı güncellemeniz gerekiyor."
           }
         },
         "zh-Hans" : {
@@ -4945,6 +5509,12 @@
             "value" : "இந்த Build காலாவதியாகிவிட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sürümün süresi doldu"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4995,6 +5565,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "புதுப்பி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Güncelle"
           }
         },
         "zh-Hans" : {
@@ -5049,6 +5625,12 @@
             "value" : "திற"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5099,6 +5681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பகிர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaş"
           }
         },
         "zh-Hans" : {
@@ -5153,6 +5741,12 @@
             "value" : "Files செயலியில் காட்டு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalar’da göster"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5203,6 +5797,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்புகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalar"
           }
         },
         "zh-Hans" : {
@@ -5257,6 +5857,12 @@
             "value" : "AirPlay ஆதரிக்கும் சாதனங்களுக்கு, உங்கள் சாதனத்தின் Screen Mirroring வசதியைப் பயன்படுத்தவும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirPlay uyumlu aygıtlar için Denetim Merkezi’ndeki Ekran Yansıtma’yı kullanın."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5307,6 +5913,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பொது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genel"
           }
         },
         "zh-Hans" : {
@@ -5361,6 +5973,12 @@
             "value" : "இதிலுள்ள ஆபத்துகளை நான் அறிவேன்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riskleri anlıyorum"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5411,6 +6029,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மொபைல் டேட்டா இணைப்பை அனுமதி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hücresel veriye izin ver"
           }
         },
         "zh-Hans" : {
@@ -5465,6 +6089,12 @@
             "value" : "மொபைல் டேட்டா பயன்பாட்டை அனுமதி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hücresel Veriye İzin Ver"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5515,6 +6145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மொபைல் டேட்டாவை அனுமதிக்காதே"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hücresel Veriye İzin Verme"
           }
         },
         "zh-Hans" : {
@@ -5569,6 +6205,12 @@
             "value" : "பெரும்பாலான மொபைல் டேட்டா திட்டங்களில் வரம்பற்ற பதிவிறக்கம் மற்றும் / அல்லது பதிவேற்றம் கிடைக்காததால், இயல்பாக iTorrent மொபைல் டேட்டா பயன்பாட்டை அனுமதிப்பதில்லை.\n\nஇந்த அமைப்பைச் செயலியின் விருப்பத்தேர்வுகளில் எப்போது வேண்டுமானாலும் மாற்றலாம்."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Birçok mobil veri planında indirme veya gönderim kotası olduğu için iTorrent varsayılan olarak hücresel veri kullanmaz.\n\nBu seçeneği uygulama ayarlarından istediğiniz zaman değiştirebilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5619,6 +6261,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மொபைல் டேட்டா பயன்பாட்டை அனுமதி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hücresel veri kullanımı"
           }
         },
         "zh-Hans" : {
@@ -5673,6 +6321,12 @@
             "value" : "இடைநிறுத்த வேண்டிய டோரண்டின் Hash"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duraklatılacak torrentin karma değeri"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5723,6 +6377,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டோரண்ட் Hash"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrentin karma değeri"
           }
         },
         "zh-Hans" : {
@@ -5777,6 +6437,12 @@
             "value" : "டோரண்டை இடைநிறுத்து"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrenti Duraklat"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5824,6 +6490,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iTorrent"
@@ -5881,6 +6553,12 @@
             "value" : "கோப்புகள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5931,6 +6609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Magnet"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet bağlantısı"
           }
         },
         "zh-Hans" : {
@@ -5985,6 +6669,12 @@
             "value" : "Magnet இணைப்பு செல்லுபடியாகாது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet bağlantısı geçersiz"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6037,6 +6727,12 @@
             "value" : "கீழே Magnet இணைப்பை உள்ளிடவும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet bağlantısını aşağıya girin."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6084,6 +6780,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "magnet:"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "magnet:"
@@ -6141,6 +6843,12 @@
             "value" : "Magnet இணைப்பு மூலம் சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet bağlantısından ekle"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6193,6 +6901,12 @@
             "value" : "இதிலிருந்து சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekleme kaynağı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6240,6 +6954,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -6297,6 +7017,12 @@
             "value" : "டோரண்ட் இணைப்பு செல்லுபடியாகாது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent bağlantısı geçersiz"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6347,6 +7073,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இந்த டிராக்கருக்கு உள்நுழைந்துள்ள உலாவி அமர்வு தேவை. இணைப்பை உலாவியில் திறந்து, .torrent கோப்பைப் பதிவிறக்கி, பின்னர் iTorrent-உடன் பகிரவும்."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu izleyici, tarayıcıda oturum açmanızı gerektiriyor. Bağlantıyı tarayıcıda açın, .torrent dosyasını indirin ve iTorrent ile paylaşın."
           }
         },
         "zh-Hans" : {
@@ -6401,6 +7133,12 @@
             "value" : "டோரண்ட் கோரிக்கை தோல்வியடைந்தது (HTTP நிலைக் குறியீடு %ld). இணைப்பை உலாவியில் திறந்து முயற்சிக்கவும்."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent isteği başarısız oldu (HTTP %ld). Bağlantıyı tarayıcıda açmayı deneyin."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6451,6 +7189,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சரியான .torrent கோப்பை சர்வர் வழங்கவில்லை. உலாவியில் உள்நுழைய வேண்டியிருக்கலாம்."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucu geçerli bir .torrent dosyası döndürmedi. Tarayıcıda oturum açmanız gerekebilir."
           }
         },
         "zh-Hans" : {
@@ -6505,6 +7249,12 @@
             "value" : "கீழே டோரண்ட் இணைப்பை உள்ளிடவும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent bağlantısını aşağıya girin."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6557,6 +7307,12 @@
             "value" : "உலாவியில் திற"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarayıcıda Aç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6604,6 +7360,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https://"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "https://"
@@ -6661,6 +7423,12 @@
             "value" : "URL மூலம் சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL ile ekle"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6711,6 +7479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இந்த வடிகட்டியை முடக்கவும் அல்லது வேறொன்றைத் தேர்ந்தெடுக்கவும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu filtreyi kapatmayı veya başka bir filtre seçmeyi deneyin."
           }
         },
         "zh-Hans" : {
@@ -6765,6 +7539,12 @@
             "value" : "“%1$@” வடிகட்டிக்கு டோரண்ட்கள் இல்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%1$@” filtresine uyan torrent yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6815,6 +7595,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "புதிய டோரண்ட்களைச் சேர்க்க, கீழ் இடது மூலையில் உள்ள '+' குறியீட்டை அழுத்தவும் அல்லது Files செயலி / இணைய உலாவியில் டோரண்ட் கோப்பை நேரடியாகத் திறக்கவும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent eklemek için sol alttaki “+” düğmesine dokunun veya bir .torrent dosyasını doğrudan Dosyalar’dan ya da tarayıcıdan açın."
           }
         },
         "zh-Hans" : {
@@ -6869,10 +7655,75 @@
             "value" : "iTorrent-க்கு வரவேற்கிறோம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent’e hoş geldiniz"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "欢迎使用iTorrent"
+          }
+        }
+      }
+    },
+    "list.search.scope.torrents" : {
+      "comment" : "Search scope for torrents, shown next to the RSS scope.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrents"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrents"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrents"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrenty"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Торренты"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோரண்ட்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrentler"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "种子"
           }
         }
       }
@@ -6919,6 +7770,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அனைத்தையும் தேர்ந்தெடு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tümünü Seç"
           }
         },
         "zh-Hans" : {
@@ -6973,6 +7830,12 @@
             "value" : "வரிசைப்படுத்தல்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıralama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7023,6 +7886,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேர்க்கப்பட்ட தேதி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eklenme tarihi"
           }
         },
         "zh-Hans" : {
@@ -7077,6 +7946,12 @@
             "value" : "உருவாக்கப்பட்ட தேதி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oluşturulma tarihi"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7127,6 +8002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "நிலையின் அடிப்படையில் குழுவாக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duruma göre grupla"
           }
         },
         "zh-Hans" : {
@@ -7181,6 +8062,12 @@
             "value" : "பெயர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7233,6 +8120,12 @@
             "value" : "அளவு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boyut"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7283,6 +8176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டோரண்ட்களை இதன்படி வரிசைப்படுத்து:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrentleri sırala"
           }
         },
         "zh-Hans" : {
@@ -7338,6 +8237,12 @@
             "value" : "ஒலி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7389,6 +8294,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கணக்கிடுகிறது..."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesaplanıyor…"
           }
         },
         "zh-Hans" : {
@@ -7444,6 +8355,12 @@
             "value" : "ஆவணங்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belgeler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7495,6 +8412,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "காலி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boş alan"
           }
         },
         "zh-Hans" : {
@@ -7550,6 +8473,12 @@
             "value" : "படங்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görseller"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7601,6 +8530,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மற்றவை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diğer"
           }
         },
         "zh-Hans" : {
@@ -7656,6 +8591,12 @@
             "value" : "வீடியோ"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7706,6 +8647,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@” என்பதற்கான முடிவுகள் இல்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” için sonuç yok"
           }
         },
         "zh-Hans" : {
@@ -7760,6 +8707,12 @@
             "value" : "%@ பதிவிறக்கம் முடிந்தது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” indirildi"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7810,6 +8763,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பதிவிறக்கம் முடிந்தது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirme tamamlandı"
           }
         },
         "zh-Hans" : {
@@ -7864,6 +8823,12 @@
             "value" : "RSS புதுப்பிப்புகள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS güncellemeleri"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7914,6 +8879,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "விருப்பத்தேர்வுகளைத் திறக்க இங்கே அழுத்தவும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarları açmak için buraya dokunun."
           }
         },
         "zh-Hans" : {
@@ -7968,6 +8939,12 @@
             "value" : "மொபைல் டேட்டா பயன்பாடு அனுமதிக்கப்படவில்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hücresel veri kullanımına izin verilmiyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8018,6 +8995,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Patreon-உடன் இணை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon hesabını bağla"
           }
         },
         "zh-Hans" : {
@@ -8072,6 +9055,12 @@
             "value" : "ஆதரவாளராகுங்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destekçi ol"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8122,6 +9111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இணைப்பை நீக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantıyı Kaldır:"
           }
         },
         "zh-Hans" : {
@@ -8176,6 +9171,12 @@
             "value" : "Patreon கணக்கு இணைப்பை நீக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon hesabının bağlantısını kaldır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8226,6 +9227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "உங்கள் Patreon கணக்கின் இணைப்பை நீக்க விரும்புகிறீர்களா?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon hesabınızın bağlantısını kaldırmak istediğinizden emin misiniz?"
           }
         },
         "zh-Hans" : {
@@ -8280,6 +9287,12 @@
             "value" : "iTorrent-ஐ உருவாக்கியவர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent’in geliştiricisi"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8332,6 +9345,12 @@
             "value" : "அனைவருக்கும் வணக்கம்,\n\niTorrent-ன் எதிர்கால மேம்பாட்டிற்கு Patreon மூலம் நன்கொடை அளித்து ஆதரவளிக்கலாம். அதற்குப் பதிலாக, விளம்பரங்கள் இல்லாத iTorrent செயலியைப் பயன்படுத்தும் அணுகலைப் பெறுவீர்கள்.\n\nஉங்கள் ஆதரவுக்கு மிக்க நன்றி!"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herkese merhaba!\n\nPatreon üzerinden bağış yaparak iTorrent’in gelişimine destek olabilirsiniz. Karşılığında iTorrent’in reklamsız sürümüne erişebilirsiniz.\n\nDesteğiniz için teşekkür ederim!"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8379,6 +9398,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XITRIX (Daniil Vinogradov)"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "XITRIX (Daniil Vinogradov)"
@@ -8436,6 +9461,12 @@
             "value" : "உள்நுழைவுச் சான்றுகள் இல்லை."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kimlik bilgileri bulunamadı."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8486,6 +9517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Patreon கணக்கு இணைக்கப்படவில்லை."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlı bir Patreon hesabı yok."
           }
         },
         "zh-Hans" : {
@@ -8540,6 +9577,12 @@
             "value" : "அணுகல் Token செல்லுபடியாகாது."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erişim belirteci geçersiz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8590,6 +9633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அறியப்படாத பிழை ஏற்பட்டது."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilinmeyen bir hata oluştu."
           }
         },
         "zh-Hans" : {
@@ -8644,6 +9693,12 @@
             "value" : "விளம்பரமில்லா வசதி இயக்கப்பட்டது. மகிழுங்கள்!"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reklamlar kapatıldı. Keyfini çıkarın!"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8694,6 +9749,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "உங்களிடம் முழுப் பதிப்பு உள்ளது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tam sürümü kullanıyorsunuz"
           }
         },
         "zh-Hans" : {
@@ -8748,6 +9809,12 @@
             "value" : "நீங்கள் ஆதரவாளர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon destekçisisiniz"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8798,6 +9865,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பங்கேற்பாளர்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eşler"
           }
         },
         "zh-Hans" : {
@@ -8852,6 +9925,12 @@
             "value" : "படத்திற்குள் படம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resim İçinde Resim"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8904,6 +9983,12 @@
             "value" : "இதில் இயக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oynatma aygıtı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8954,6 +10039,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இயக்க வேகம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oynatma Hızı"
           }
         },
         "zh-Hans" : {
@@ -9009,6 +10100,12 @@
             "value" : "%@ உடன் இணைக்கப்பட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlanılan aygıt: %@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9059,6 +10156,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ உடன் இணைக்கப்படுகிறது…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlanılıyor: %@…"
           }
         },
         "zh-Hans" : {
@@ -9113,6 +10216,12 @@
             "value" : "VLC Renderer தேடலைத் தொடங்க முடியவில்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC ile aygıt araması başlatılamadı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9165,6 +10274,12 @@
             "value" : "VLC Renderer-ஐக் கண்டறியும் வசதி எதுவும் இல்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC’de aygıt arama hizmeti bulunamadı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9215,6 +10330,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Renderer இயக்கத்தைத் தொடங்க முடியவில்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilen aygıtta oynatma başlatılamadı"
           }
         },
         "zh-Hans" : {
@@ -9270,6 +10391,12 @@
             "value" : "இந்தச் சாதனத்தில் இயக்கப்படுகிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu aygıtta oynatılıyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9320,6 +10447,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இந்தச் சாதனத்திற்குத் திரும்புகிறது…"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu aygıta dönülüyor…"
           }
         },
         "zh-Hans" : {
@@ -9374,6 +10507,12 @@
             "value" : "விருப்பத்தேர்வுகள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayarlar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9424,6 +10563,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ ஆக ஆதரவளித்து வருகிறார்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destek süresi: %@"
           }
         },
         "zh-Hans" : {
@@ -9478,6 +10623,12 @@
             "value" : "சிறப்பு நன்றி:"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özel teşekkürler:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9528,6 +10679,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தோற்றம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Görünüm"
           }
         },
         "zh-Hans" : {
@@ -9582,6 +10739,12 @@
             "value" : "பிரிவுகளின் குழு வரிசை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durum gruplarının sırası"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9632,6 +10795,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "செயலியின் தீம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulama teması"
           }
         },
         "zh-Hans" : {
@@ -9686,6 +10855,12 @@
             "value" : "செயலியின் தீமைத் தேர்ந்தெடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uygulama temasını seçin"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9736,6 +10911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அடர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koyu"
           }
         },
         "zh-Hans" : {
@@ -9790,6 +10971,12 @@
             "value" : "வெளிர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açık"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9840,6 +11027,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சாதன அமைப்பு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistem ayarına göre"
           }
         },
         "zh-Hans" : {
@@ -9894,6 +11087,12 @@
             "value" : "பின்னணி பதிவிறக்கம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arka planda indirme"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9944,6 +11143,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இயக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arka planda indirmeyi etkinleştir"
           }
         },
         "zh-Hans" : {
@@ -9998,6 +11203,12 @@
             "value" : "இருப்பிடக் குறியீட்டைக் காட்டு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konum göstergesini göster"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10048,6 +11259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பின்னணி பயன்முறை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arka plan modu"
           }
         },
         "zh-Hans" : {
@@ -10102,6 +11319,12 @@
             "value" : "பின்னணி பயன்முறையைத் தேர்ந்தெடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arka plan modunu seçin"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10152,6 +11375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ஒலி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ses"
           }
         },
         "zh-Hans" : {
@@ -10206,6 +11435,12 @@
             "value" : "இருப்பிடம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konum"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10258,6 +11493,12 @@
             "value" : "டோனட்களுக்காக நன்கொடை அளிக்கவும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Donut için bağış yap"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10305,6 +11546,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Patreon"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Patreon"
@@ -10362,6 +11609,12 @@
             "value" : "நெட்வொர்க்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ağ"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10412,6 +11665,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இணைப்பு அமைப்புகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantı ayarları"
           }
         },
         "zh-Hans" : {
@@ -10466,6 +11725,12 @@
             "value" : "குறியாக்கம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şifreleme"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10516,6 +11781,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பயன்முறை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şifreleme modu"
           }
         },
         "zh-Hans" : {
@@ -10570,6 +11841,12 @@
             "value" : "குறியாக்கப் பயன்முறையைத் தேர்ந்தெடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şifreleme modunu seçin"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10620,6 +11897,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "HTTPS சான்றிதழ்களைச் சரிபார்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTPS sertifikalarını doğrula"
           }
         },
         "zh-Hans" : {
@@ -10674,6 +11957,12 @@
             "value" : "இயல்புநிலை Port-ஐப் பயன்படுத்து"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varsayılan bağlantı noktasını kullan"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10724,6 +12013,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "போர்ட்டை ஒதுக்க மீண்டும் முயலும் எண்ணிக்கை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantı noktası için yeniden deneme sayısı"
           }
         },
         "zh-Hans" : {
@@ -10778,6 +12073,12 @@
             "value" : "தனிப்பயன் Port"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Özel bağlantı noktası"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10828,6 +12129,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இணைப்பு நெறிமுறைகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bağlantı protokolleri"
           }
         },
         "zh-Hans" : {
@@ -10882,6 +12189,12 @@
             "value" : "DHT-ஐ இயக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DHT’yi etkinleştir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10932,6 +12245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LSD-ஐ இயக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "LSD’yi etkinleştir"
           }
         },
         "zh-Hans" : {
@@ -10986,6 +12305,12 @@
             "value" : "NAT-PMP-ஐ இயக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NAT-PMP’yi etkinleştir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11036,6 +12361,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "UPnP-ஐ இயக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UPnP’yi etkinleştir"
           }
         },
         "zh-Hans" : {
@@ -11090,6 +12421,12 @@
             "value" : "µTP-ஐ இயக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "µTP’yi etkinleştir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11140,6 +12477,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இணைப்பு இடைமுகங்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ağ arayüzleri"
           }
         },
         "zh-Hans" : {
@@ -11194,6 +12537,12 @@
             "value" : "ஒரே நேரத்தில் பல இணைப்புகள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ağları aynı anda kullan"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11244,6 +12593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மொபைல் டேட்டா"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hücresel veri"
           }
         },
         "zh-Hans" : {
@@ -11298,6 +12653,12 @@
             "value" : "ஒரே நேரத்தில் பல இணைப்புகளைப் பயன்படுத்துவது பதிவிறக்க வேகத்தை அதிகரிக்கலாம். VPN பயன்படுத்தினால் உங்கள் IP முகவரி வெளிப்படும்."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ağları aynı anda kullanmak indirme hızını artırabilir, ancak VPN kullanırken gerçek IP adresiniz açığa çıkabilir."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11345,6 +12706,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proxy"
@@ -11402,6 +12769,12 @@
             "value" : "அங்கீகாரம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kimlik doğrulama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11452,6 +12825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அங்கீகாரம் தேவை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kimlik doğrulaması gerekli"
           }
         },
         "zh-Hans" : {
@@ -11506,6 +12885,12 @@
             "value" : "Host"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucu"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11556,6 +12941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Host பெயர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunucu adı"
           }
         },
         "zh-Hans" : {
@@ -11610,6 +13001,12 @@
             "value" : "Proxy வகை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy türü"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11660,6 +13057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Proxy வகையைத் தேர்ந்தெடு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proxy türünü seçin"
           }
         },
         "zh-Hans" : {
@@ -11714,6 +13117,12 @@
             "value" : "டிராக்கர் மூலங்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici kaynakları"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11764,6 +13173,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அறிவிப்புகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirimler"
           }
         },
         "zh-Hans" : {
@@ -11818,6 +13233,12 @@
             "value" : "பதிவிறக்கம் முடிந்ததும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirme tamamlandığında"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11868,6 +13289,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டோரண்ட் வரிசை வரம்புகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent kuyruğu sınırları"
           }
         },
         "zh-Hans" : {
@@ -11922,6 +13349,12 @@
             "value" : "செயலில் உள்ள டோரண்ட்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etkin torrentler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11972,6 +13405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பதிவிறக்கப்படும் டோரண்ட்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirilmekte olan torrentler"
           }
         },
         "zh-Hans" : {
@@ -12026,6 +13465,12 @@
             "value" : "பதிவேற்றப்படும் டோரண்ட்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gönderim yapan torrentler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12076,6 +13521,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பகிர்வு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Torrent paylaşımı"
           }
         },
         "zh-Hans" : {
@@ -12130,6 +13581,12 @@
             "value" : "பதிவிறக்கம் முடிந்ததும் நிறுத்து"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirme tamamlanınca paylaşımı durdur"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12180,6 +13637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கோப்பு பகிர்வு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosya paylaşımı"
           }
         },
         "zh-Hans" : {
@@ -12234,6 +13697,12 @@
             "value" : "அங்கீகாரம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kimlik doğrulama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12284,6 +13753,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "WebDAV சர்வர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WebDAV sunucusu"
           }
         },
         "zh-Hans" : {
@@ -12338,6 +13813,12 @@
             "value" : "iTorrent-உடன் இணைக்க WebDAV Client-ஐப் பயன்படுத்தவும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent’e bağlanmak için bir WebDAV istemcisi kullanın."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12388,6 +13869,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இணைய சர்வர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web sunucusu"
           }
         },
         "zh-Hans" : {
@@ -12442,6 +13929,12 @@
             "value" : "கோப்புகளைப் பகிர எந்த இணைய உலாவியையும் பயன்படுத்தலாம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyaları paylaşmak için herhangi bir web tarayıcısını kullanabilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12492,6 +13985,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வேக வரம்புகள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hız sınırları"
           }
         },
         "zh-Hans" : {
@@ -12546,6 +14045,12 @@
             "value" : "அதிகபட்ச பதிவிறக்க வேகம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En yüksek indirme hızı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12596,6 +14101,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வேகம் KB/s-ல்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hız (KB/sn)"
           }
         },
         "zh-Hans" : {
@@ -12650,6 +14161,12 @@
             "value" : "வரம்பற்றது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sınırsız"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12700,6 +14217,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அதிகபட்ச பதிவேற்ற வேகம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En yüksek gönderim hızı"
           }
         },
         "zh-Hans" : {
@@ -12754,6 +14277,12 @@
             "value" : "சேமிப்பிடம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depolama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12804,6 +14333,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மேலும் சேர்..."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni konum ekle…"
           }
         },
         "zh-Hans" : {
@@ -12858,6 +14393,12 @@
             "value" : "தேர்ந்தெடுத்த பாதை ஒரு கோப்புறை அல்ல"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilen konum bir klasör değil"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12908,6 +14449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேமிப்பிடத்தை ஒதுக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disk alanını önceden ayır"
           }
         },
         "zh-Hans" : {
@@ -12962,6 +14509,12 @@
             "value" : "கிடைப்பது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kullanılabilir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13012,6 +14565,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இந்தச் சேமிப்பிடத்தை அகற்றினால், அதனுடன் தொடர்புடைய டோரண்ட்களை iTorrent செயலியில் அணுக முடியாது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu kayıt konumunu kaldırırsanız buradaki torrentlere iTorrent’ten erişemezsiniz."
           }
         },
         "zh-Hans" : {
@@ -13066,6 +14625,12 @@
             "value" : "சேமிப்பிடத்தை அகற்று"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kayıt konumunu kaldır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13116,6 +14681,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேமிப்பிடங்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kayıt konumları"
           }
         },
         "zh-Hans" : {
@@ -13170,6 +14741,12 @@
             "value" : "கிடைப்பது: %1$lld/%2$lld"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kullanılan: %1$lld / %2$lld"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13220,6 +14797,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "புரிந்துகொண்டேன், தொடர்க"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anladım, Devam Et"
           }
         },
         "zh-Hans" : {
@@ -13275,6 +14858,12 @@
             "value" : "வெளிப்புற Drive-களைப் பயன்படுத்தினால், iTorrent செயலியை மூடிய பிறகே அவற்றை Eject செய்ய வேண்டும். இல்லையெனில், பதிவிறக்கிய கோப்புகளின் பாதுகாப்பை iTorrent உறுதிப்படுத்த முடியாது; மேலும் அந்த Drive-இல் உள்ள டோரண்ட்களின் தற்போதைய நிலையும் பாதிக்கப்படலாம்."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harici sürücüleri çıkarmadan önce iTorrent’i kapatın. Aksi hâlde indirdiğiniz dosyalar bozulabilir ve sürücüdeki torrentlerin ilerleme durumu kaybolabilir."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13325,6 +14914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "எச்சரிக்கை!"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uyarı"
           }
         },
         "zh-Hans" : {
@@ -13379,6 +14974,12 @@
             "value" : "டிராக்கர் பட்டியலைச் சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici listesi ekle"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13429,6 +15030,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தலைப்பு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başlık"
           }
         },
         "zh-Hans" : {
@@ -13483,6 +15090,12 @@
             "value" : "டிராக்கர் மூலக் கோப்பின் URL"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici listesi URL’si"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13533,6 +15146,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தானாகச் சேர்ப்பதை இயக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyicileri otomatik ekle"
           }
         },
         "zh-Hans" : {
@@ -13587,6 +15206,12 @@
             "value" : "புதிதாகச் சேர்க்கப்படும் பொது டோரண்ட்களில் அனைத்து டிராக்கர்களையும் தானாகச் சேர். தனிப்பட்ட டோரண்ட்கள் இதில் சேர்க்கப்படாது."
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm izleyicileri yeni eklenen herkese açık torrentlere otomatik olarak ekler. Özel torrentlere izleyici eklenmez."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13637,6 +15262,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "«+» அழுத்தி டிராக்கர் பட்டியல் மூலத்தின் URL-ஐச் சேர்க்கவும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici listesinin URL’sini eklemek için “+” düğmesine dokunun."
           }
         },
         "zh-Hans" : {
@@ -13691,6 +15322,12 @@
             "value" : "டிராக்கர் மூலப் பட்டியல் காலியாக உள்ளது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici kaynağı yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13741,6 +15378,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இந்த டிராக்கர் மூலம் ஏற்கனவே சேர்க்கப்பட்டுள்ளது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu izleyici kaynağı zaten ekli"
           }
         },
         "zh-Hans" : {
@@ -13795,6 +15438,12 @@
             "value" : "இந்த டிராக்கர் மூலத்தை அகற்ற விரும்புகிறீர்களா?"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu izleyici kaynağını kaldırmak istiyor musunuz?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13845,6 +15494,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மூலத்தை அகற்று"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaynağı kaldır"
           }
         },
         "zh-Hans" : {
@@ -13899,6 +15554,12 @@
             "value" : "மூலத்தின் பெயரை மாற்று"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaynağı yeniden adlandır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13949,6 +15610,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பதிப்பு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürüm"
           }
         },
         "zh-Hans" : {
@@ -14003,6 +15670,12 @@
             "value" : "GitHub பக்கம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub sayfası"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14053,6 +15726,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முக்கியத் தகவல்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temel Bilgiler"
           }
         },
         "zh-Hans" : {
@@ -14107,6 +15786,12 @@
             "value" : "முன்னுரிமையை மாற்று"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önceliği değiştir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14157,6 +15842,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "இயல்புநிலை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varsayılan"
           }
         },
         "zh-Hans" : {
@@ -14211,6 +15902,12 @@
             "value" : "பதிவிறக்க வேண்டாம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirme dışı bırak"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14261,6 +15958,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "குறைவு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Düşük"
           }
         },
         "zh-Hans" : {
@@ -14315,6 +16018,12 @@
             "value" : "மிக உயர்வு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En yüksek"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14362,6 +16071,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HTTP"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "HTTP"
@@ -14419,6 +16134,12 @@
             "value" : "I2P"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I2P"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14471,6 +16192,12 @@
             "value" : "எதுவுமில்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14518,6 +16245,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS4"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "SOCKS4"
@@ -14575,6 +16308,12 @@
             "value" : "SOCKS5"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SOCKS5"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14625,6 +16364,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ஏற்கனவே சேர்க்கப்பட்டது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaten eklendi"
           }
         },
         "zh-Hans" : {
@@ -14679,6 +16424,12 @@
             "value" : "Magnet-ஐப் பதிவிறக்கு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Magnet Bağlantısıyla İndir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14729,6 +16480,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பதிவிறக்கம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndir"
           }
         },
         "zh-Hans" : {
@@ -14783,6 +16540,12 @@
             "value" : "அனைத்தையும் ஏற்றுமதி செய்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm akışları dışa aktar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14833,6 +16596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தேர்ந்தெடுத்தவற்றை ஏற்றுமதி செய்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili akışları dışa aktar"
           }
         },
         "zh-Hans" : {
@@ -14887,6 +16656,12 @@
             "value" : "இறக்குமதி செய்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akışları içe aktar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14937,6 +16712,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அனைத்தையும் படித்ததாகக் குறி"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tümünü okundu olarak işaretle"
           }
         },
         "zh-Hans" : {
@@ -14991,6 +16772,12 @@
             "value" : "Safari-ல் திற"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Safari’de aç"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15041,6 +16828,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பார்த்தவை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okunanlar"
           }
         },
         "zh-Hans" : {
@@ -15095,6 +16888,12 @@
             "value" : "பார்க்காதவை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Okunmayanlar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15145,6 +16944,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RSS Feed"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS akışları"
           }
         },
         "zh-Hans" : {
@@ -15199,6 +17004,12 @@
             "value" : "இந்தப் பக்கத்தைத் திருத்தி RSS சேனல்களைச் சேர்க்கலாம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sayfayı düzenleyerek RSS akışları ekleyebilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15249,6 +17060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RSS Feed-ஐச் சேர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS akışı ekle"
           }
         },
         "zh-Hans" : {
@@ -15303,6 +17120,12 @@
             "value" : "விளக்கம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Açıklama"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15353,6 +17176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தலைப்பு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Başlık"
           }
         },
         "zh-Hans" : {
@@ -15407,6 +17236,12 @@
             "value" : "புதுப்பிக்கப்படும்போது அறிவி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Güncelleme olduğunda bildir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15454,6 +17289,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "URL"
@@ -15511,6 +17352,12 @@
             "value" : "URL நகலெடுக்கப்பட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL panoya kopyalandı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15561,6 +17408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தேர்ந்தெடுத்த RSS Feeds-ஐ அகற்ற விரும்புகிறீர்களா?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili RSS akışlarını kaldırmak istediğinizden emin misiniz?"
           }
         },
         "zh-Hans" : {
@@ -15615,6 +17468,12 @@
             "value" : "RSS Feeds-ஐ அகற்று"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS akışlarını kaldır"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15665,6 +17524,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முதலில் RSS சேனல்களைச் சேர்க்கவும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Önce bir RSS akışı ekleyin."
           }
         },
         "zh-Hans" : {
@@ -15719,6 +17584,12 @@
             "value" : "RSS சேனல்கள் இல்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RSS akışı yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15769,6 +17640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தேடு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ara"
           }
         },
         "zh-Hans" : {
@@ -15823,6 +17700,12 @@
             "value" : "தேடுகிறது…"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aranıyor…"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15873,6 +17756,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வசனங்கள்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altyazılar"
           }
         },
         "zh-Hans" : {
@@ -15927,6 +17816,12 @@
             "value" : "இந்தச் சாதனம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Aygıt"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15977,6 +17872,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "நா"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " gün"
           }
         },
         "zh-Hans" : {
@@ -16031,6 +17932,12 @@
             "value" : "ம"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " sa."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16081,6 +17988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முடிவில்லா காலம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Süresiz"
           }
         },
         "zh-Hans" : {
@@ -16135,6 +18048,12 @@
             "value" : "நி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " dk."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16185,6 +18104,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மா"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ay"
           }
         },
         "zh-Hans" : {
@@ -16239,6 +18164,12 @@
             "value" : "வி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " sn."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16289,6 +18220,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வா"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " hafta"
           }
         },
         "zh-Hans" : {
@@ -16343,6 +18280,12 @@
             "value" : "ஆ"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " yıl"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16393,6 +18336,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ஆம், தரவையும் நீக்கு"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalarıyla Sil"
           }
         },
         "zh-Hans" : {
@@ -16447,6 +18396,12 @@
             "value" : "ஆம், தரவை வைத்திரு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyaları Tut"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16497,6 +18452,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "நீக்க விரும்புகிறீர்களா?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçilenler kaldırılsın mı?"
           }
         },
         "zh-Hans" : {
@@ -16551,6 +18512,12 @@
             "value" : "கோப்புகளைச் சரிபார்க்கிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dosyalar doğrulanıyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16601,6 +18568,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "முடிந்தது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamamlandı"
           }
         },
         "zh-Hans" : {
@@ -16655,6 +18628,12 @@
             "value" : "பதிவிறக்குகிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndiriliyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16705,6 +18684,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Metadata பெறப்படுகிறது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Üst veriler alınıyor"
           }
         },
         "zh-Hans" : {
@@ -16759,6 +18744,12 @@
             "value" : "இடைநிறுத்தப்பட்டது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duraklatıldı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16809,6 +18800,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மீண்டும் தொடங்குகிறது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sürdürülüyor"
           }
         },
         "zh-Hans" : {
@@ -16863,6 +18860,12 @@
             "value" : "பகிர்கிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşılıyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16913,6 +18916,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "சேமிப்பிடப் பிழை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depolama hatası"
           }
         },
         "zh-Hans" : {
@@ -16967,6 +18976,12 @@
             "value" : "பதிவிறக்குபவர்கள்:"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İndirenler:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17017,6 +19032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "செய்தி: %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İleti: %@"
           }
         },
         "zh-Hans" : {
@@ -17071,6 +19092,12 @@
             "value" : "கிடைக்கவில்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veri yok"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17121,6 +19148,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "பங்கேற்பாளர்கள்:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eşler:"
           }
         },
         "zh-Hans" : {
@@ -17175,6 +19208,12 @@
             "value" : "பகிர்பவர்கள்:"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylaşanlar:"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17225,6 +19264,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "நிலை:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durum:"
           }
         },
         "zh-Hans" : {
@@ -17279,6 +19324,12 @@
             "value" : "தொடர்பு கொள்ளப்படவில்லை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Henüz bağlantı kurulmadı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17329,6 +19380,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "செயல்படவில்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalışmıyor"
           }
         },
         "zh-Hans" : {
@@ -17383,6 +19440,12 @@
             "value" : "டிராக்கர் பிழை"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici hatası"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17433,6 +19496,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "அணுக முடியவில்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erişilemiyor"
           }
         },
         "zh-Hans" : {
@@ -17487,6 +19556,12 @@
             "value" : "புதுப்பிக்கிறது"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Güncelleniyor"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17537,6 +19612,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "செயல்படுகிறது"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çalışıyor"
           }
         },
         "zh-Hans" : {
@@ -17591,6 +19672,12 @@
             "value" : "டிராக்கர்கள்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyiciler"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17641,6 +19728,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கர் URL நகலெடுக்கப்பட்டது!"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici URL’si panoya kopyalandı"
           }
         },
         "zh-Hans" : {
@@ -17695,6 +19788,12 @@
             "value" : "டிராக்கர்களைச் சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici Ekle"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17745,6 +19844,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மூலப் பட்டியலிலிருந்து"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaynak listesinden"
           }
         },
         "zh-Hans" : {
@@ -17799,6 +19904,12 @@
             "value" : "அனைத்தையும் இறக்குமதி செய்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tümünü içe aktar"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17849,6 +19960,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "கைமுறையாக"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle ekle"
           }
         },
         "zh-Hans" : {
@@ -17903,6 +20020,12 @@
             "value" : "ஒவ்வொரு வரியிலும் ஒரு டிராக்கர் URL உள்ளிடவும்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Her satıra bir izleyici URL’si girin."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17953,6 +20076,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கர் URL-ஐ உள்ளிடவும்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici URL’sini girin."
           }
         },
         "zh-Hans" : {
@@ -18007,6 +20136,12 @@
             "value" : "டிராக்கர்களைச் சேர்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici ekle"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18057,6 +20192,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கரைச் சேர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici ekle"
           }
         },
         "zh-Hans" : {
@@ -18111,6 +20252,12 @@
             "value" : "இந்தப் பக்கத்தைத் திருத்தி டிராக்கர்களைக் கைமுறையாகச் சேர்க்கலாம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu sayfayı düzenleyerek elle izleyici ekleyebilirsiniz."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18161,6 +20308,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கர்கள் இல்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyici yok"
           }
         },
         "zh-Hans" : {
@@ -18215,6 +20368,12 @@
             "value" : "அனைத்தையும் மீண்டும் அறிவி"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tüm izleyicilere yeniden bildir"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18265,6 +20424,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "டிராக்கர்களை அகற்று"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İzleyicileri Kaldır"
           }
         },
         "zh-Hans" : {
@@ -18319,6 +20484,12 @@
             "value" : "தேர்ந்தெடுத்த டிராக்கர்களை அகற்ற விரும்புகிறீர்களா?"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seçili izleyicileri kaldırmak istediğinizden emin misiniz?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18369,6 +20540,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "மூலத்தைச் சேர்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaynak ekle"
           }
         },
         "zh-Hans" : {
@@ -18423,6 +20600,12 @@
             "value" : "உள்ளூர் மூலம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yerel kaynak"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18473,6 +20656,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "தொலைநிலை மூலம்"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uzak kaynak"
           }
         },
         "zh-Hans" : {
@@ -18527,6 +20716,12 @@
             "value" : "தரவு பரிமாற்றம்"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktarım"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18577,6 +20772,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வீடியோ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Video"
           }
         },
         "zh-Hans" : {
@@ -18631,6 +20832,12 @@
             "value" : "VLC Renderer வெளியீடு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VLC Oynatma Aygıtı"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18681,6 +20888,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Web Server கிடைக்கவில்லை"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web sunucusu kullanılamıyor"
           }
         },
         "zh-Hans" : {

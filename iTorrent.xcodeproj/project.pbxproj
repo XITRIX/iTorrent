@@ -1765,6 +1765,7 @@
 				it,
 				pl,
 				ta,
+				tr,
 				"zh-Hans",
 			);
 			mainGroup = D1A226912AEEEFCC00669D6D;

@@ -86,6 +86,8 @@ iTorrent supports the following languages:
 - Russian
 - Spanish
 - Simplified Chinese
+- Tamil
+- Turkish
 
 If you are fluent in the languages not listed above and want to help with translation, you are welcome!
 

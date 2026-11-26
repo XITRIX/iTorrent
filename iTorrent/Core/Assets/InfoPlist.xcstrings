@@ -45,6 +45,12 @@
             "value" : "BitTorrent மீத்தரவு"
           }
         },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BitTorrent Üst Verileri"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -94,6 +100,12 @@
           }
         },
         "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent"
+          }
+        },
+        "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "iTorrent"
@@ -151,6 +163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "வீடியோவை இயக்கும் சாதனங்களைக் கண்டறிந்து அவற்றுக்கு வீடியோவை அனுப்ப iTorrent உங்கள் உள்ளூர் நெட்வொர்க்கைப் பயன்படுத்துகிறது."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iTorrent, oynatma aygıtlarını bulmak ve bu aygıtlara video yayımlamak için yerel ağı kullanır."
           }
         },
         "zh-Hans" : {
